@@ -1,0 +1,55 @@
+@import '~/assets/colors.scss';
+@import '~/assets/fonts.scss';
+@import '~/assets/mixins.scss';
+
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	outline: none;
+	-webkit-tap-highlight-color: transparent;
+}
+
+body {
+	font-family: 'MyFont', system;
+	color: $black;
+
+
+	@include headings(){
+		font-weight: bold;
+		&::selection{
+			background: $primary;
+		}
+	}
+	
+	
+	
+}
+
+.container {
+	width:100%;
+	min-height: 100vh;
+
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+
+
+
+
+
+
+
+
+
+
+.page-enter-active, .page-leave-active {
+	transition: opacity .2s cubic-bezier(0.55, 0.055, 0.675, 0.19);
+}
+.page-enter, .page-leave-active {
+	opacity: 0
+}

@@ -1,10 +1,8 @@
 export default {
 	pages: {
-		about: 'о нас',
-		shows: 'шоу',
-		events: 'ивенты',
-		contact: 'контакты',
-		casting: 'кастинг',
-		crew: 'банда',
+		services: 'Услуги',
+		projects: 'Проекты',
+		blog: 'Новости',
+		contact: 'Контакты',
 	},
 }

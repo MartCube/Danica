@@ -40,13 +40,18 @@ export default {
 		locales: [
 			{
 				code: 'en',
-				name: 'EN',
+				name: 'eng',
 				file: 'en.js',
 			},
 			{
 				code: 'ru',
-				name: 'RU',
+				name: 'рус',
 				file: 'ru.js',
+			},
+			{
+				code: 'ua',
+				name: 'укр',
+				file: 'ua.js',
 			},
 		],
 	},

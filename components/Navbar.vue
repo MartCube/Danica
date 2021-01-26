@@ -6,7 +6,7 @@
 
 		<div class="lang">
 			<div class="current_locale" @click="showLocales = !showLocales">
-				{{ currentLocale }}
+				<span>{{ currentLocale }}</span>
 			</div>
 
 			<template v-if="showLocales">
@@ -82,23 +82,34 @@ export default {
 	}
 
 	.lang {
-		display: flex;
-		height: 20px;
+		height: 15px;
 		margin-right: 15px;
+
+		display: flex;
+
 		.current_locale {
+			height: 100%;
 			padding: 0 10px;
+
+			display: flex;
+			justify-content: center;
+			span {
+				line-height: 12px;
+				font-weight: 400;
+			}
 			border-left: 3px solid $primary;
 			cursor: pointer;
 		}
 
 		a {
+			height: 12px;
 			padding: 0 10px;
 
 			display: flex;
 			align-items: center;
 
 			text-decoration: none;
-			font-size: 1rem;
+			line-height: 22px;
 			font-weight: 400;
 			color: $black;
 			outline: none;

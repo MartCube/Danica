@@ -67,7 +67,7 @@ export default {
 	position: fixed;
 	top: 0;
 	z-index: 9;
-	background: transparent;
+	background: white;
 	user-select: none;
 
 	display: flex;

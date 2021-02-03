@@ -1,12 +1,13 @@
 <template>
 	<div class="project_card">
 		<div class="image">
-			<img :src="image" :alt="title" />
+			<img :src="image + Thumbnail_imgIX" class="lazyload" />
+			<div class="overlay"></div>
 			<div class="link">
 				<IconChevron size="25px" />
 			</div>
 		</div>
-		<h2>{{ title }}</h2>
+		<h2>{{ this.$prismic.asText(title) }}</h2>
 	</div>
 </template>
 
@@ -18,8 +19,13 @@ export default {
 			required: true,
 		},
 		title: {
-			type: String,
+			type: Array,
 			required: true,
+		},
+	},
+	computed: {
+		Thumbnail_imgIX() {
+			return `&fit=crop&w=300&h=300&dpr=1`
 		},
 	},
 }
@@ -34,21 +40,47 @@ export default {
 
 	display: flex;
 	flex-direction: column;
+
 	.image {
 		width: 300px;
 		height: 300px;
 		user-select: none;
 		position: relative;
 		overflow: hidden;
+
+		.overlay {
+			position: absolute;
+			top: 0;
+			right: 0;
+			width: 100%;
+			height: 100%;
+			z-index: -1;
+			background: $black;
+			opacity: 0.2;
+		}
 		img {
-			width: inherit;
-			height: inherit;
+			width: 100%;
+			height: 100%;
+			z-index: 1;
+			position: relative;
+			object-fit: cover;
+			object-position: center;
 			transition: all 0.75s ease;
+			&.lazyload,
+			&.lazyloading {
+				opacity: 0;
+			}
+			&.lazyloaded {
+				opacity: 1;
+				transition: all 0.75s ease;
+			}
 		}
 		.link {
 			position: absolute;
 			bottom: 0;
 			right: 0;
+			z-index: 2;
+
 			padding: 25px;
 			background: $primary;
 

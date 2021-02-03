@@ -5,15 +5,19 @@
 
 		<div class="projects">
 			<div class="filter">
-				<span v-for="i in filter" :key="i">{{ i }}</span>
+				<span :class="{ active: activeFilter[0] == null }" @click="filterUpdate('all')"> all </span>
+				<span v-for="filter in filters" :key="filter" :class="{ active: activeFilter[0] == filter }" @click="filterUpdate(filter)">{{ filter }}</span>
 			</div>
 			<div class="grid">
-				<ProjectCard image="1.png" title="fox" />
-				<ProjectCard image="2.png" title="freedom" />
-				<ProjectCard image="3.png" title="shelter" />
-				<ProjectCard image="4.png" title="leon" />
-				<ProjectCard image="5.png" title="wolf" />
-				<ProjectCard image="6.png" title="bee" />
+				<template v-if="$fetchState.error" class="error">
+					<p>error..</p>
+				</template>
+				<template v-if="$fetchState.pending" class="loading">
+					<Spinner />
+				</template>
+				<template v-if="!$fetchState.error && !$fetchState.pending">
+					<ProjectCard v-for="(project, i) in projects" :key="i" :image="project.data.main_image.url" :title="project.data.title" />
+				</template>
 			</div>
 		</div>
 		<span class="load">load more</span>
@@ -23,8 +27,30 @@
 <script>
 export default {
 	data: () => ({
-		filter: ['all', 'architecture', 'design', 'remont'],
+		filters: [],
+		activeFilter: [],
+		projects: Object,
+
+		currentPage: 1,
+		results_per_page: 6,
 	}),
+	async fetch() {
+		const projects = await this.$prismic.api.query([this.$prismic.predicates.at('document.type', 'project_post'), this.$prismic.predicates.at('document.tags', this.activeFilter)], {
+			orderings: '[document.first_publication_date desc]',
+			pageSize: this.results_per_page,
+		})
+		this.filters = await this.$prismic.api.tags
+
+		this.projects = projects.results
+	},
+	methods: {
+		filterUpdate(filter) {
+			this.activeFilter = [filter]
+			if (filter === 'all') this.activeFilter = []
+
+			this.$fetch()
+		},
+	},
 }
 </script>
 
@@ -61,6 +87,7 @@ export default {
 				transition: all 0.2s ease;
 			}
 
+			&.active,
 			&:hover {
 				color: $primary;
 				&::before {
@@ -73,6 +100,7 @@ export default {
 	.grid {
 		max-width: 1000px;
 		width: 100%;
+		min-height: 700px;
 
 		display: flex;
 		justify-content: space-between;

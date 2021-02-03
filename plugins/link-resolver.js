@@ -2,8 +2,8 @@ export default function (doc) {
 	// Return the path depending on Prismic Document's type
 
 	// If it is a Repeatable Custom Type with the API ID
-	if (doc.type === 'project') {
-		return '/shows/' + doc.uid
+	if (doc.type === 'project_post') {
+		return '/projects/' + doc.uid
 	}
 
 	// Default to the root

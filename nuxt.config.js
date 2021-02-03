@@ -27,7 +27,7 @@ export default {
 	modules: ['@nuxtjs/prismic', '@nuxtjs/axios', 'nuxt-i18n'],
 
 	prismic: {
-		endpoint: 'https://piratcrew.cdn.prismic.io/api/v2',
+		endpoint: 'https://danica.cdn.prismic.io/api/v2',
 		linkResolver: '@/plugins/link-resolver',
 		htmlSerializer: '@/plugins/html-serializer',
 		preview: false,

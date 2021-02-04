@@ -20,7 +20,7 @@
 				</template>
 			</div>
 		</div>
-		<span class="load">load more</span>
+		<span v-if="currentPage < totalPages" class="load" @click="loadMore">load more</span>
 	</div>
 </template>
 
@@ -29,8 +29,8 @@ export default {
 	data: () => ({
 		filters: [],
 		activeFilter: [],
-		projects: Object,
-
+		projects: [],
+		totalPages: null,
 		currentPage: 1,
 		results_per_page: 6,
 	}),
@@ -40,13 +40,23 @@ export default {
 			pageSize: this.results_per_page,
 		})
 		this.filters = await this.$prismic.api.tags
-
 		this.projects = projects.results
+		this.totalPages = projects.total_pages
 	},
 	methods: {
 		filterUpdate(filter) {
 			this.activeFilter = [filter]
 			if (filter === 'all') this.activeFilter = []
+
+			// restart results
+			this.currentPage = 1
+			this.results_per_page = 6
+
+			this.$fetch()
+		},
+		loadMore(filter) {
+			this.results_per_page += 6
+			this.currentPage++
 
 			this.$fetch()
 		},

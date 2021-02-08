@@ -35,6 +35,7 @@ export default {
 @import '~/assets/colors.scss';
 
 .project_card {
+	width: 300px;
 	margin-bottom: 50px;
 	cursor: pointer;
 
@@ -42,8 +43,9 @@ export default {
 	flex-direction: column;
 
 	.image {
-		width: 300px;
+		width: inherit;
 		height: 300px;
+
 		user-select: none;
 		position: relative;
 		overflow: hidden;

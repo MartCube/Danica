@@ -27,7 +27,13 @@ body {
 		}
 	}
 	
-	
+	svg{
+		cursor: pointer;
+		.disable{
+			opacity: 0.5;
+			user-select: none;
+		}
+	}
 	
 }
 

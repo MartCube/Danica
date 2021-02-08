@@ -1,6 +1,5 @@
 <template>
 	<div class="container">
-		<div class="sidebar"></div>
 		<Title value="projects" />
 
 		<div class="projects">

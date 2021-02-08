@@ -16,8 +16,11 @@ export default {
 <style lang="scss" scoped>
 .title {
 	width: 100%;
-	margin: 100px 0;
+	height: 250px;
 	padding-left: 240px;
+
+	display: flex;
+	align-items: center;
 
 	text-transform: capitalize;
 	font-size: 4rem;

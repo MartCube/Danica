@@ -7,18 +7,19 @@
 				<span :class="{ active: activeFilter[0] == null }" @click="filterUpdate('all')"> all </span>
 				<span v-for="filter in filters" :key="filter" :class="{ active: activeFilter[0] == filter }" @click="filterUpdate(filter)">{{ filter }}</span>
 			</div>
-			<div class="grid">
-				<template v-if="$fetchState.error" class="error">
-					<p>error..</p>
-				</template>
-				<template v-if="$fetchState.pending" class="loading">
+			<template v-if="$fetchState.error" class="error">
+				<p>error..</p>
+			</template>
+			<template v-if="$fetchState.pending">
+				<div class="loading">
 					<Spinner />
-				</template>
-				<template v-if="!$fetchState.error && !$fetchState.pending">
-					<BlogCard v-for="(post, i) in blogPosts" :key="i" :class="{ first: i == 0 }" :data="post.data" />
-				</template>
-			</div>
-
+				</div>
+			</template>
+			<template v-if="!$fetchState.error && !$fetchState.pending">
+				<div class="grid">
+					<BlogCard v-for="(post, i) in blogPosts" :key="'post' + i" :class="{ first: i == 0 }" :data="post.data" />
+				</div>
+			</template>
 			<div class="pagination">
 				<!-- <span :class="{ disable: prev_page == null }" class="back" @click="fetchBack"> <i class="icon icon-left" /> </span> -->
 
@@ -41,6 +42,8 @@
 </template>
 
 <script>
+import { blogAnim } from '~/assets/anime'
+
 export default {
 	data: () => ({
 		filters: [],
@@ -67,6 +70,14 @@ export default {
 		this.prev_page = blogPosts.prev_page
 		this.next_page = blogPosts.next_page
 	},
+	watch: {
+		async fetch(newValue, oldValue) {
+			await this.$nextTick() // wait DOM to render
+			const cards = document.querySelectorAll('.blog_card')
+			console.log(cards)
+			blogAnim(cards, true)
+		},
+	},
 	methods: {
 		filterUpdate(filter) {
 			this.activeFilter = [filter]
@@ -76,7 +87,7 @@ export default {
 			this.currentPage = 1
 			this.results_per_page = 6
 
-			this.$fetch()
+			this.fetch()
 		},
 		fetchNext() {
 			this.currentPage++
@@ -139,9 +150,18 @@ export default {
 		}
 	}
 
+	.loading {
+		width: calc(100% - 320px);
+		height: 500px;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+
 	.grid {
 		width: calc(100% - 320px);
-		height: 1040px;
+		height: 100%;
+		min-height: 500px;
 
 		display: grid;
 		grid-template-columns: repeat(4, 1fr);
@@ -197,5 +217,9 @@ export default {
 			}
 		}
 	}
+}
+
+.loading {
+	height: 1000px;
 }
 </style>

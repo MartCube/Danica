@@ -9,7 +9,6 @@
 @import '~/assets/colors.scss';
 
 .spinner {
-	margin: 100px auto;
 	width: 40px;
 	height: 40px;
 	position: relative;

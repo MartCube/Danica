@@ -1,6 +1,6 @@
 <template>
 	<div class="container">
-		<Title value="blog" />
+		<Title ref="title" value="blog" />
 
 		<div class="blog">
 			<div class="filter">
@@ -15,11 +15,9 @@
 					<Spinner />
 				</div>
 			</template>
-			<template v-if="!$fetchState.error && !$fetchState.pending">
-				<div class="grid">
-					<BlogCard v-for="(post, i) in blogPosts" :key="'post' + i" :class="{ first: i == 0 }" :data="post.data" />
-				</div>
-			</template>
+			<div v-show="!$fetchState.error && !$fetchState.pending" ref="blogPosts" class="grid">
+				<LazyBlogCard v-for="(post, i) in blogPosts" :key="'post' + i" :class="{ first: i == 0 }" :data="post.data" />
+			</div>
 			<div class="pagination">
 				<!-- <span :class="{ disable: prev_page == null }" class="back" @click="fetchBack"> <i class="icon icon-left" /> </span> -->
 
@@ -48,7 +46,6 @@ export default {
 	data: () => ({
 		filters: [],
 		activeFilter: [],
-		blogPosts: [],
 
 		currentPage: 1,
 		results_per_page: 6,
@@ -63,21 +60,29 @@ export default {
 			page: this.currentPage,
 		})
 
+		this.$store.dispatch('bindBlogPosts', blogPosts.results)
+		// this.blogPosts = blogPosts.results
+
 		this.filters = await this.$prismic.api.tags
-		this.blogPosts = blogPosts.results
 
 		this.totalPages = blogPosts.total_pages
 		this.prev_page = blogPosts.prev_page
 		this.next_page = blogPosts.next_page
 	},
-	watch: {
-		async fetch(newValue, oldValue) {
-			await this.$nextTick() // wait DOM to render
-			const cards = document.querySelectorAll('.blog_card')
-			console.log(cards)
-			blogAnim(cards, true)
+	computed: {
+		blogPosts() {
+			return this.$store.getters.blogPosts
 		},
 	},
+	watch: {
+		async blogPosts(newValue, oldValue) {
+			await this.$nextTick()
+
+			console.log(this.$refs.blogPosts.children)
+			blogAnim(this.$refs.blogPosts.children, true)
+		},
+	},
+	mounted() {},
 	methods: {
 		filterUpdate(filter) {
 			this.activeFilter = [filter]
@@ -87,7 +92,7 @@ export default {
 			this.currentPage = 1
 			this.results_per_page = 6
 
-			this.fetch()
+			this.$fetch()
 		},
 		fetchNext() {
 			this.currentPage++

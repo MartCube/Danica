@@ -45,7 +45,7 @@ export default {
 
 .blog_card {
 	//anime style
-	opacity: 0;
+	opacity: 1;
 
 	width: 100%;
 	height: 100%;

@@ -30,15 +30,6 @@ body {
 			background: $primary;
 		}
 	}
-	
-	svg{
-		cursor: pointer;
-		.disable{
-			opacity: 0.5;
-			user-select: none;
-		}
-	}
-	
 }
 
 .container {
@@ -48,18 +39,7 @@ body {
 
 	display: flex;
 	flex-direction: column;
-
-	
 }
-
-
-
-
-
-
-
-
-
 
 
 .page-enter-active, .page-leave-active {

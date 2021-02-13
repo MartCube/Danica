@@ -1,39 +1,28 @@
 <template>
 	<div class="container">
-		<Title ref="title" value="blog" />
+		<!-- add loading animation in title component -->
+		<Title value="blog" />
 
 		<div class="blog">
 			<div class="filter">
-				<span :class="{ active: activeFilter[0] == null }" @click="filterUpdate('all')"> all </span>
-				<span v-for="filter in filters" :key="filter" :class="{ active: activeFilter[0] == filter }" @click="filterUpdate(filter)">{{ filter }}</span>
+				<span :class="{ active: active_filter[0] == null }" @click="filterUpdate('all')"> all </span>
+				<span v-for="filter in filters" :key="filter" :class="{ active: active_filter[0] == filter }" @click="filterUpdate(filter)">{{ filter }}</span>
 			</div>
-			<template v-if="$fetchState.error" class="error">
-				<p>error..</p>
-			</template>
-			<template v-if="$fetchState.pending">
-				<div class="loading">
-					<Spinner />
+			<template v-if="$fetchState.error"><p>error..</p></template>
+			<template v-if="!$fetchState.error">
+				<div ref="blogPosts" class="grid">
+					<LazyBlogCard v-for="(post, i) in blogPosts" :key="'post' + i" :class="{ first: i == 0 }" :data="post" />
 				</div>
 			</template>
-			<div v-show="!$fetchState.error && !$fetchState.pending" ref="blogPosts" class="grid">
-				<LazyBlogCard v-for="(post, i) in blogPosts" :key="'post' + i" :class="{ first: i == 0 }" :data="post.data" />
-			</div>
 			<div class="pagination">
-				<!-- <span :class="{ disable: prev_page == null }" class="back" @click="fetchBack"> <i class="icon icon-left" /> </span> -->
-
-				<IconDouble left />
-				<IconChevron left :class="{ disable: prev_page == null }" @click.native="fetchBack" />
-
+				<IconDouble left :class="{ disable: !prev_page }" @click.native="fetchFirst" />
+				<IconChevron left :class="{ disable: !prev_page }" @click.native="fetchBack" />
 				<div class="pages">
-					<div v-for="i in totalPages" :key="i" :class="{ active: i == currentPage }" class="page" @click="fetchPage(i)">
-						<span>{{ i }}</span>
-					</div>
-					<IconDots />
+					<span v-for="i in total_pages" :key="i" :class="{ active: i == current_page }" class="page" @click="fetchPage(i)">{{ i }}</span>
+					<!-- <IconDots /> -->
 				</div>
-
-				<!-- <span :class="{ disable: next_page == null }" class="next" @click="fetchNext"> <i class="icon icon-right" /> </span> -->
-				<IconChevron :class="{ disable: next_page == null }" class="next" @click.native="fetchNext" />
-				<IconDouble />
+				<IconChevron :class="{ disable: !next_page }" @click.native="fetchNext" />
+				<IconDouble :class="{ disable: !next_page }" @click.native="fetchLast" />
 			</div>
 		</div>
 	</div>
@@ -45,19 +34,19 @@ import { blogAnim } from '~/assets/anime'
 export default {
 	data: () => ({
 		filters: [],
-		activeFilter: [],
-
-		currentPage: 1,
-		results_per_page: 6,
-		totalPages: null,
+		active_filter: [],
+		// pagination
+		current_page: 1,
+		page_size: 6,
+		total_pages: null,
 		prev_page: null,
 		next_page: null,
 	}),
 	async fetch() {
-		const blogPosts = await this.$prismic.api.query([this.$prismic.predicates.at('document.type', 'blog_post'), this.$prismic.predicates.at('document.tags', this.activeFilter)], {
-			// orderings: '[document.first_publication_date desc]',
-			pageSize: this.results_per_page,
-			page: this.currentPage,
+		const blogPosts = await this.$prismic.api.query([this.$prismic.predicates.at('document.type', 'blog_post'), this.$prismic.predicates.at('document.tags', this.active_filter)], {
+			orderings: '[document.last_publication_date desc]',
+			pageSize: this.page_size,
+			page: this.current_page,
 		})
 
 		this.$store.dispatch('bindBlogPosts', blogPosts.results)
@@ -65,7 +54,7 @@ export default {
 
 		this.filters = await this.$prismic.api.tags
 
-		this.totalPages = blogPosts.total_pages
+		this.total_pages = blogPosts.total_pages
 		this.prev_page = blogPosts.prev_page
 		this.next_page = blogPosts.next_page
 	},
@@ -77,34 +66,41 @@ export default {
 	watch: {
 		async blogPosts(newValue, oldValue) {
 			await this.$nextTick()
-
-			console.log(this.$refs.blogPosts.children)
 			blogAnim(this.$refs.blogPosts.children, true)
 		},
 	},
-	mounted() {},
 	methods: {
 		filterUpdate(filter) {
-			this.activeFilter = [filter]
-			if (filter === 'all') this.activeFilter = []
+			this.active_filter = [filter]
+			if (filter === 'all') this.active_filter = []
 
 			// restart results
-			this.currentPage = 1
-			this.results_per_page = 6
+			this.current_page = 1
+			this.next_page = 6
 
 			this.$fetch()
 		},
 		fetchNext() {
-			this.currentPage++
-			this.$fetch()
+			if (this.next_page) {
+				this.current_page++
+				this.$fetch()
+			}
 		},
 		fetchBack() {
-			this.currentPage--
-			this.$fetch()
+			if (this.prev_page) {
+				this.current_page--
+				this.$fetch()
+			}
 		},
 		fetchPage(value) {
-			this.currentPage = value
+			this.current_page = value
 			this.$fetch()
+		},
+		fetchFirst() {
+			this.fetchPage(1)
+		},
+		fetchLast() {
+			this.fetchPage(this.total_pages)
 		},
 	},
 }
@@ -155,14 +151,6 @@ export default {
 		}
 	}
 
-	.loading {
-		width: calc(100% - 320px);
-		height: 500px;
-		display: flex;
-		justify-content: center;
-		align-items: center;
-	}
-
 	.grid {
 		width: calc(100% - 320px);
 		height: 100%;
@@ -182,12 +170,11 @@ export default {
 	}
 
 	.pagination {
-		flex-basis: 100%;
-		width: max-content;
+		width: 100%;
 		margin: 100px 240px;
 
 		display: flex;
-		justify-content: space-between;
+		justify-content: center;
 		align-items: center;
 		align-content: center;
 		.pages {
@@ -221,10 +208,15 @@ export default {
 				}
 			}
 		}
+		svg {
+			margin: 0 35px;
+			cursor: pointer;
+			transition: all 0.2 ease-in-out;
+			&.disable {
+				cursor: initial;
+				opacity: 0.5;
+			}
+		}
 	}
-}
-
-.loading {
-	height: 1000px;
 }
 </style>

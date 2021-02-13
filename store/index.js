@@ -1,12 +1,12 @@
 export const state = () => ({
 	blogPosts: null,
-	// blogFilters: [],
+	projects: null,
 })
 
 // Functions that return back data contained in the state.
 export const getters = {
 	blogPosts: (state) => state.blogPosts,
-	blogFilters: (state) => state.blogFilters,
+	projects: (state) => state.projects,
 }
 
 // Functions that directly mutate the state.
@@ -14,8 +14,8 @@ export const mutations = {
 	setBlogPosts(state, value) {
 		state.blogPosts = value
 	},
-	setBlogFilters(state, value) {
-		//
+	setProjects(state, value) {
+		state.projects = value
 	},
 }
 
@@ -23,5 +23,8 @@ export const mutations = {
 export const actions = {
 	bindBlogPosts(context, value) {
 		context.commit('setBlogPosts', value)
+	},
+	bindProjects(context, value) {
+		context.commit('setProjects', value)
 	},
 }

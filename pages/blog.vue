@@ -1,6 +1,5 @@
 <template>
 	<div class="container">
-		<!-- add loading animation in title component -->
 		<Title value="blog" />
 
 		<div class="blog">
@@ -10,7 +9,7 @@
 			</div>
 			<template v-if="$fetchState.error"><p>error..</p></template>
 			<template v-if="!$fetchState.error">
-				<div ref="blogPosts" class="grid">
+				<div ref="grid" class="grid">
 					<LazyBlogCard v-for="(post, i) in blogPosts" :key="'post' + i" :class="{ first: i == 0 }" :data="post" />
 				</div>
 			</template>
@@ -50,10 +49,7 @@ export default {
 		})
 
 		this.$store.dispatch('bindBlogPosts', blogPosts.results)
-		// this.blogPosts = blogPosts.results
-
 		this.filters = await this.$prismic.api.tags
-
 		this.total_pages = blogPosts.total_pages
 		this.prev_page = blogPosts.prev_page
 		this.next_page = blogPosts.next_page
@@ -66,7 +62,7 @@ export default {
 	watch: {
 		async blogPosts(newValue, oldValue) {
 			await this.$nextTick()
-			blogAnim(this.$refs.blogPosts.children, true)
+			blogAnim(this.$refs.grid.children, true)
 		},
 	},
 	methods: {
@@ -116,7 +112,6 @@ export default {
 	.filter {
 		width: 240px;
 		padding-right: 30px;
-
 		background: white;
 
 		display: flex;

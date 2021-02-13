@@ -4,58 +4,66 @@
 
 		<div class="projects">
 			<div class="filter">
-				<span :class="{ active: activeFilter[0] == null }" @click="filterUpdate('all')"> all </span>
-				<span v-for="filter in filters" :key="filter" :class="{ active: activeFilter[0] == filter }" @click="filterUpdate(filter)">{{ filter }}</span>
+				<span :class="{ active: active_filter[0] == null }" @click="filterUpdate('all')"> all </span>
+				<span v-for="filter in filters" :key="filter" :class="{ active: active_filter[0] == filter }" @click="filterUpdate(filter)">{{ filter }}</span>
 			</div>
-			<div class="grid">
-				<template v-if="$fetchState.error" class="error">
-					<p>error..</p>
-				</template>
-				<template v-if="$fetchState.pending" class="loading">
-					<Spinner />
-				</template>
-				<template v-if="!$fetchState.error && !$fetchState.pending">
-					<ProjectCard v-for="(project, i) in projects" :key="i" :image="project.data.main_image.url" :title="project.data.title" />
-				</template>
-			</div>
+			<template v-if="$fetchState.error"><p>error..</p></template>
+			<template v-if="!$fetchState.error">
+				<div ref="grid" class="grid">
+					<LazyProjectCard v-for="(project, i) in projects" :key="i" :image="project.data.main_image.url" :title="project.data.title" />
+				</div>
+			</template>
 		</div>
-		<span v-if="currentPage < totalPages" class="load" @click="loadMore">load more</span>
+		<span v-if="current_page < total_pages" class="load" @click="loadMore">load more</span>
 	</div>
 </template>
 
 <script>
+import { blogAnim } from '~/assets/anime'
+
 export default {
 	data: () => ({
 		filters: [],
-		activeFilter: [],
-		projects: [],
-		totalPages: null,
-		currentPage: 1,
-		results_per_page: 6,
+		active_filter: [],
+		total_pages: null,
+		current_page: 1,
+		page_size: 6,
 	}),
 	async fetch() {
-		const projects = await this.$prismic.api.query([this.$prismic.predicates.at('document.type', 'project_post'), this.$prismic.predicates.at('document.tags', this.activeFilter)], {
+		const projects = await this.$prismic.api.query([this.$prismic.predicates.at('document.type', 'project_post'), this.$prismic.predicates.at('document.tags', this.active_filter)], {
 			orderings: '[document.first_publication_date desc]',
-			pageSize: this.results_per_page,
+			pageSize: this.page_size,
 		})
+
+		this.$store.dispatch('bindProjects', projects.results)
 		this.filters = await this.$prismic.api.tags
-		this.projects = projects.results
-		this.totalPages = projects.total_pages
+		this.total_pages = projects.total_pages
+	},
+	computed: {
+		projects() {
+			return this.$store.getters.projects
+		},
+	},
+	watch: {
+		async projects(newValue, oldValue) {
+			await this.$nextTick()
+			blogAnim(this.$refs.grid.children, true)
+		},
 	},
 	methods: {
 		filterUpdate(filter) {
-			this.activeFilter = [filter]
-			if (filter === 'all') this.activeFilter = []
+			this.active_filter = [filter]
+			if (filter === 'all') this.active_filter = []
 
 			// restart results
-			this.currentPage = 1
-			this.results_per_page = 6
+			this.current_page = 1
+			this.page_size = 6
 
 			this.$fetch()
 		},
 		loadMore(filter) {
-			this.results_per_page += 6
-			this.currentPage++
+			this.page_size += 6
+			this.current_page++
 
 			this.$fetch()
 		},
@@ -72,7 +80,6 @@ export default {
 	.filter {
 		width: 240px;
 		padding-right: 30px;
-
 		background: white;
 
 		display: flex;
@@ -81,6 +88,7 @@ export default {
 		span {
 			margin: 10px 0;
 			text-transform: capitalize;
+			white-space: nowrap;
 
 			display: flex;
 			align-items: center;

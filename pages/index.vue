@@ -18,5 +18,7 @@
 		<IconFacebook outlined />
 		<IconInstagram />
 		<IconYoutube />
+
+		<IconExclamation />
 	</div>
 </template>

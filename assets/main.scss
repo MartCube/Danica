@@ -20,8 +20,15 @@ body {
 	color: $black;
 
 	a,p,span{
+		text-decoration: none;
 		font-family: 'MyFont';
 		font-weight: 500;
+
+		font-size: 1rem;
+		line-height: 1rem;
+		&::selection{
+			background: $primary;
+		}
 	}
 
 	@include headings(){

@@ -9,6 +9,8 @@ export default {
 		link: [{ rel: 'icon', type: 'image/png', href: '/favicon.png' }],
 	},
 
+	loading: { color: '#ffc424' },
+
 	// Global CSS (https://go.nuxtjs.dev/config-css)
 	css: ['~/assets/main.scss'],
 

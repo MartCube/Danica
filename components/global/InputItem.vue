@@ -5,7 +5,7 @@
 		</div>
 
 		<input :id="name" v-model="input_value" :type="type" :placeholder="name" :name="name" @change="emitValue" />
-		<IconArrow class="arrow" />
+		<IconArrow v-if="subscribe" class="arrow" />
 
 		<label :for="name" class="input_label">{{ name }}</label>
 	</ValidationProvider>
@@ -30,6 +30,10 @@ export default {
 		rules: {
 			type: [Object, String],
 			required: true,
+		},
+		subscribe: {
+			type: Boolean,
+			required: false,
 		},
 	},
 	data: () => ({

@@ -24,7 +24,7 @@
 				</div>
 				<div class="wrap">
 					<span>Киев, ул Новозабарская 23 </span>
-					<span>info@danica.ua</span>
+					<span @click="openModal">info@danica.ua</span>
 				</div>
 				<div class="wrap">
 					<div class="icons">
@@ -38,10 +38,10 @@
 						<IconViber />
 					</div>
 				</div>
-				<form name="subscribe" class="subscribe" autocomplete="off">
+				<ValidationObserver ref="subscribe" class="subscribe" tag="form" autocomplete="off" @submit.prevent="Submit()">
 					<p>Stay up to date with the latest news</p>
-					<InputItem name="email" rules="email" />
-				</form>
+					<InputItem subscribe name="email" rules="email" />
+				</ValidationObserver>
 			</div>
 		</div>
 		<div class="policy">
@@ -57,17 +57,58 @@
 				<n-link to="/">Terms and Conditions</n-link>
 			</div>
 		</div>
+		<LazyModalContact v-if="modalContact" />
 	</div>
 </template>
 
 <script>
+import { ValidationObserver } from 'vee-validate'
+
 export default {
+	components: {
+		ValidationObserver,
+	},
 	data: () => ({
+		modalContact: false,
+		loading: false,
 		data: Object,
+		form: {
+			email: String,
+			action: 'subscribe',
+		},
 	}),
 	async fetch() {
 		const data = await this.$prismic.api.getSingle('footer')
 		this.data = data.data
+	},
+	methods: {
+		openModal() {
+			this.modalContact = true
+		},
+		async Submit() {
+			const isValid = await this.$refs.subscribe.validate()
+			// validation
+			if (!isValid) return
+
+			this.loading = true
+			console.log('loading')
+
+			// compose email template
+			this.form.emailTemplate = `
+				<h4>${this.form.email} just subscribed.</h4>
+			
+			`
+
+			// trigger netlify function
+			try {
+				await this.$axios.$post('.netlify/functions/sendmail', this.form)
+			} catch (error) {
+				console.log(error)
+			}
+
+			this.loading = false
+			console.log('submited')
+		},
 	},
 }
 </script>

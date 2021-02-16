@@ -1,4 +1,5 @@
 <template>
+	<!-- revert back to data-src -->
 	<img :data-src="src" class="lazyload" :alt="alt" />
 </template>
 

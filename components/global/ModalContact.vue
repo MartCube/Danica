@@ -1,12 +1,17 @@
 <template>
 	<div class="modal_contact">
 		<div class="image">
-			<ImageItem :src="image" alt="contact" />
+			<ImageItem v-if="!$fetchState.pending" :src="image" alt="contact" />
 		</div>
 		<ValidationObserver ref="contact" class="contact" tag="form" autocomplete="off" @submit.prevent="Submit()">
-			<h2>We care about your opinion</h2>
-			<InputItem name="email" rules="email" />
+			<h2 class="title">Write us</h2>
+			<InputItem name="name" rules="required" @getValue="getName" />
+			<InputItem name="number" rules="digits:3|required" @getValue="getNumber" />
+			<InputItem name="email" rules="email|required" @getValue="getEmail" />
+			<InputItem name="message" rules="required" @getValue="getMessage" />
+			<ButtonItem> Submit <IconMail /> </ButtonItem>
 		</ValidationObserver>
+		<IconClose class="close" size="30px" @click.native="closeModal" />
 	</div>
 </template>
 
@@ -21,8 +26,11 @@ export default {
 		loading: false,
 		image: '',
 		form: {
-			email: String,
-			action: 'subscribe',
+			name: '',
+			number: '',
+			email: '',
+			message: '',
+			action: 'contact',
 		},
 	}),
 	async fetch() {
@@ -30,8 +38,23 @@ export default {
 		this.image = data.data.image.url
 	},
 	methods: {
+		closeModal() {
+			this.$emit('closeModal')
+		},
+		getName(value) {
+			this.form.name = value
+		},
+		getNumber(value) {
+			this.form.number = value
+		},
+		getEmail(value) {
+			this.form.email = value
+		},
+		getMessage(value) {
+			this.form.message = value
+		},
 		async Submit() {
-			const isValid = await this.$refs.subscribe.validate()
+			const isValid = await this.$refs.contact.validate()
 			// validation
 			if (!isValid) return
 
@@ -82,7 +105,28 @@ export default {
 		padding: 0 15%;
 		display: flex;
 		flex-direction: column;
-		justify-content: center;
+		justify-content: space-between;
+		.title {
+			font-size: 2rem;
+			width: max-content;
+			border-bottom: 2px solid $primary;
+		}
+		.title,
+		button {
+			margin: 15% 0;
+		}
+	}
+
+	.close {
+		position: absolute;
+		top: 25px;
+		right: 25px;
+		fill: white;
+		transition: all 0.2s linear;
+		cursor: pointer;
+		&:hover {
+			opacity: 0.75;
+		}
 	}
 }
 </style>

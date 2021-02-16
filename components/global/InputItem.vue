@@ -56,6 +56,7 @@ export default {
 	padding: 1rem 0 0;
 	width: 100%;
 	height: 50px;
+
 	font-weight: 500;
 
 	input {
@@ -108,6 +109,7 @@ export default {
 		transition: 0.2s;
 		font-size: 0.8rem;
 		color: white;
+		text-transform: capitalize;
 	}
 	.arrow {
 		position: absolute;

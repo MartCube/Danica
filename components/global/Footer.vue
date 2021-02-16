@@ -7,7 +7,7 @@
 				<div class="text"></div>
 			</div>
 			<div class="info">
-				<h2 class="title">Write us</h2>
+				<h2 class="title">Call us</h2>
 				<div class="wrap">
 					<div class="numbers">
 						<h4>Office:</h4>
@@ -24,7 +24,7 @@
 				</div>
 				<div class="wrap">
 					<span>Киев, ул Новозабарская 23 </span>
-					<span @click="openModal">info@danica.ua</span>
+					<span @click="toggleModal(true)">info@danica.ua</span>
 				</div>
 				<div class="wrap">
 					<div class="icons">
@@ -40,14 +40,14 @@
 				</div>
 				<ValidationObserver ref="subscribe" class="subscribe" tag="form" autocomplete="off" @submit.prevent="Submit()">
 					<p>Stay up to date with the latest news</p>
-					<InputItem subscribe name="email" rules="email" />
+					<InputItem subscribe name="email" rules="email" @getValue="getEmail" />
 				</ValidationObserver>
 			</div>
 		</div>
 		<div class="policy">
 			<div class="links">
 				<IconCopyRight size="16px" />
-				<n-link to="/"> Danica</n-link>
+				<n-link to="/"> Danica {{ year }}</n-link>
 				<span>|</span>
 				<n-link to="/">All rights reserved</n-link>
 			</div>
@@ -57,7 +57,7 @@
 				<n-link to="/">Terms and Conditions</n-link>
 			</div>
 		</div>
-		<LazyModalContact v-if="modalContact" />
+		<LazyModalContact v-if="modalContact" @closeModal="toggleModal(false)" />
 	</div>
 </template>
 
@@ -71,9 +71,13 @@ export default {
 	data: () => ({
 		modalContact: false,
 		loading: false,
-		data: Object,
+		data: {
+			image: '',
+			office: [],
+			for_clients: [],
+		},
 		form: {
-			email: String,
+			email: '',
 			action: 'subscribe',
 		},
 	}),
@@ -81,9 +85,17 @@ export default {
 		const data = await this.$prismic.api.getSingle('footer')
 		this.data = data.data
 	},
+	computed: {
+		year() {
+			return new Date().getFullYear()
+		},
+	},
 	methods: {
-		openModal() {
-			this.modalContact = true
+		toggleModal(value) {
+			this.modalContact = value
+		},
+		getEmail(value) {
+			this.form.email = value
 		},
 		async Submit() {
 			const isValid = await this.$refs.subscribe.validate()
@@ -158,6 +170,7 @@ export default {
 			justify-content: space-between;
 
 			.title {
+				font-size: 2rem;
 				width: max-content;
 				border-bottom: 2px solid $primary;
 			}

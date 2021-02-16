@@ -71,7 +71,7 @@ export default {
 		},
 		transpile: ['vee-validate/dist/rules'],
 		extend(config, { isClient, loaders: { vue } }) {
-			vue.transformAssetUrls.ImageItem = ['src']
+			vue.transformAssetUrls.ImageItem = ['data-src', 'src']
 		},
 	},
 

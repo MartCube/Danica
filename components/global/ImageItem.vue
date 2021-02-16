@@ -27,6 +27,10 @@ img {
 	object-fit: cover;
 	object-position: center;
 
+	&::before {
+		display: none;
+	}
+
 	&.lazyload,
 	&.lazyloading {
 		opacity: 0;

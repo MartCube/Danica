@@ -190,7 +190,13 @@ export default {
 						margin-bottom: 10px;
 					}
 				}
-
+				span {
+					cursor: pointer;
+					transition: all 0.2s ease;
+					&:hover {
+						opacity: 0.75;
+					}
+				}
 				.icons {
 					width: 25%;
 					display: flex;

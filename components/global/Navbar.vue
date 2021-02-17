@@ -140,7 +140,10 @@ export default {
 			font-weight: 400;
 			color: $black;
 			outline: none;
-
+			transition: all 0.2s ease;
+			&:hover {
+				background: $primary;
+			}
 			&.nuxt-link-active {
 				background: $primary;
 			}

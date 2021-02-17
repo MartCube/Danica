@@ -57,7 +57,7 @@
 				<n-link to="/">Terms and Conditions</n-link>
 			</div>
 		</div>
-		<LazyModalContact v-if="modalContact" @closeModal="toggleModal(false)" />
+		<LazyModalContact v-show="modalContact" @closeModal="toggleModal(false)" />
 	</div>
 </template>
 

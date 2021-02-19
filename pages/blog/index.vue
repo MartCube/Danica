@@ -7,12 +7,12 @@
 				<span :class="{ active: active_filter[0] == null }" @click="filterUpdate('all')"> all </span>
 				<span v-for="filter in filters" :key="filter" :class="{ active: active_filter[0] == filter }" @click="filterUpdate(filter)">{{ filter }}</span>
 			</div>
+
 			<template v-if="$fetchState.error"><p>error..</p></template>
-			<template v-if="!$fetchState.error">
-				<div ref="grid" class="grid">
-					<LazyBlogCard v-for="(post, i) in blogPosts" :key="'post' + i" :class="{ first: i == 0 }" :data="post" />
-				</div>
-			</template>
+			<div v-else ref="grid" class="grid">
+				<BlogCard v-for="(post, i) in blogPosts" :key="'post' + i" :class="{ first: i == 0 }" :data="post" />
+			</div>
+
 			<div class="pagination">
 				<IconDouble left :class="{ disable: !prev_page }" @click.native="fetchFirst" />
 				<IconChevron left :class="{ disable: !prev_page }" @click.native="fetchBack" />
@@ -166,7 +166,7 @@ export default {
 
 	.pagination {
 		width: 100%;
-		margin: 100px 240px;
+		margin: 100px 240px 0 240px;
 
 		display: flex;
 		justify-content: center;
@@ -190,16 +190,16 @@ export default {
 				align-content: center;
 				border: 1px solid transparent;
 				color: $black;
-				transition: all 0.25s ease;
+				transition: all 0.2s ease;
 				&:last-child {
 					margin-right: 0;
 				}
 				&.active {
-					color: white;
-					background: $primary;
+					color: $primary;
+					background: $black;
 				}
 				&:hover {
-					border: 1px solid $primary;
+					border: 1px solid $black;
 				}
 			}
 		}

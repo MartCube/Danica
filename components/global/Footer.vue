@@ -2,7 +2,9 @@
 	<div class="footer">
 		<div class="group">
 			<div class="image">
-				<IconLocation size="100px" />
+				<div class="map" @click="ScrollToTop">
+					<IconArrow size="40px" />
+				</div>
 				<ImageItem :src="data.image.url" alt="footer" />
 				<div class="text"></div>
 			</div>
@@ -57,7 +59,7 @@
 				<n-link to="/">Terms and Conditions</n-link>
 			</div>
 		</div>
-		<LazyModalContact v-show="modalContact" @closeModal="toggleModal(false)" />
+		<ModalContact v-show="modalContact" @closeModal="toggleModal(false)" />
 	</div>
 </template>
 
@@ -121,6 +123,9 @@ export default {
 			this.loading = false
 			console.log('submited')
 		},
+		ScrollToTop() {
+			window.scrollTo({ top: 0, behavior: 'smooth' })
+		},
 	},
 }
 </script>
@@ -130,7 +135,7 @@ export default {
 
 .footer {
 	width: 100%;
-	margin-top: 200px;
+	margin-top: 100px;
 
 	display: flex;
 	flex-direction: column;
@@ -149,20 +154,35 @@ export default {
 				width: 100%;
 				user-select: none;
 			}
-			svg {
+			.map {
 				position: absolute;
 				top: 0;
 				right: 0;
+				width: 80px;
+				height: 80px;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+
 				z-index: 2;
 				background: $primary;
-				padding: 25px;
 				cursor: pointer;
+				transform: rotate(-90deg);
+
+				svg {
+					transition: all 0.35s ease;
+				}
+				&:hover {
+					svg {
+						transform: translateX(5px);
+					}
+				}
 			}
 		}
 
 		.info {
 			width: 50%;
-			padding: 50px 100px;
+			padding: 50px 50px 50px 100px;
 			background: $black;
 
 			display: flex;
@@ -229,6 +249,7 @@ export default {
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
+		position: relative;
 
 		background: $black;
 		.links {

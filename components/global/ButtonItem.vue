@@ -9,7 +9,6 @@
 
 button {
 	width: max-content;
-	margin: 20px 0;
 	padding: 10px 30px;
 
 	border: none;
@@ -17,6 +16,7 @@ button {
 	color: white;
 	cursor: pointer;
 
+	text-transform: capitalize;
 	font-weight: 700;
 	font-size: 1.2rem;
 	line-height: 1.2rem;

@@ -1,19 +1,17 @@
 <template>
-	<div class="blog_card">
+	<n-link :to="link" class="blog_card">
 		<h2 class="title">{{ title }}</h2>
 		<div class="info">
 			<span class="date">{{ date }}</span>
 			<span class="tag">{{ tag }}</span>
 		</div>
-
 		<div class="image">
-			<img :src="image + Thumbnail_imgIX" class="lazyload" />
-			<div class="overlay"></div>
+			<ImageItem :src="image" :alt="title" />
 			<div class="link">
 				<IconChevron size="25px" />
 			</div>
 		</div>
-	</div>
+	</n-link>
 </template>
 
 <script>
@@ -41,6 +39,9 @@ export default {
 		tag() {
 			return this.data.tags[0]
 		},
+		link() {
+			return this.$prismic.linkResolver(this.data)
+		},
 	},
 }
 </script>
@@ -56,12 +57,15 @@ export default {
 	display: flex;
 	flex-direction: column;
 
+	color: $black;
+
 	.title {
 		padding: 40px 0;
 		position: relative;
 
 		text-transform: capitalize;
-		font-size: 1.1rem;
+		font-size: 1.2rem;
+		line-height: 1.5rem;
 		&::after {
 			content: '';
 			position: absolute;
@@ -183,29 +187,9 @@ export default {
 			img {
 				width: 100%;
 				height: 100%;
-				z-index: 1;
 				position: relative;
 				object-fit: cover;
 				object-position: center;
-				transition: all 0.75s ease;
-				&.lazyload,
-				&.lazyloading {
-					opacity: 0;
-				}
-				&.lazyloaded {
-					opacity: 1;
-					transition: all 0.75s ease;
-				}
-			}
-			.overlay {
-				position: absolute;
-				top: 0;
-				right: 0;
-				width: 100%;
-				height: 100%;
-				z-index: -1;
-				background: $black;
-				opacity: 0.2;
 			}
 
 			.link {
@@ -213,9 +197,8 @@ export default {
 				bottom: 0;
 				right: 0;
 				z-index: 2;
-
-				padding: 25px;
 				background: $primary;
+				padding: 25px;
 
 				opacity: 0;
 				transition: all 0.3s ease;

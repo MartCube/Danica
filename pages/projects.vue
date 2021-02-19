@@ -10,11 +10,11 @@
 			<template v-if="$fetchState.error"><p>error..</p></template>
 			<template v-if="!$fetchState.error">
 				<div ref="grid" class="grid">
-					<LazyProjectCard v-for="(project, i) in projects" :key="i" :image="project.data.main_image.url" :title="project.data.title" />
+					<ProjectCard v-for="(project, i) in projects" :key="i" :data="project" />
 				</div>
 			</template>
 		</div>
-		<span v-if="current_page < total_pages" class="load" @click="loadMore">load more</span>
+		<ButtonItem v-if="current_page < total_pages" @click.native="loadMore"> load more </ButtonItem>
 	</div>
 </template>
 
@@ -125,23 +125,8 @@ export default {
 		flex-wrap: wrap;
 	}
 }
-.load {
-	height: 2rem;
+button {
 	margin-left: 240px;
-
-	display: flex;
-	align-items: center;
-	cursor: pointer;
-
-	text-transform: capitalize;
-	font-size: 1.2rem;
-
-	&::before {
-		content: '';
-		width: 10px;
-		height: 100%;
-		margin-right: 10px;
-		background: $primary;
-	}
+	color: $black;
 }
 </style>

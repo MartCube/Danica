@@ -1,31 +1,32 @@
 <template>
 	<div class="project_card">
 		<div class="image">
-			<img :src="image + Thumbnail_imgIX" class="lazyload" />
-			<div class="overlay"></div>
+			<ImageItem :src="image + Thumbnail_imgIX" :alt="title" />
 			<div class="link">
 				<IconChevron size="25px" />
 			</div>
 		</div>
-		<h2>{{ this.$prismic.asText(title) }}</h2>
+		<h2>{{ title }}</h2>
 	</div>
 </template>
 
 <script>
 export default {
 	props: {
-		image: {
-			type: String,
-			required: true,
-		},
-		title: {
-			type: Array,
+		data: {
+			type: Object,
 			required: true,
 		},
 	},
 	computed: {
 		Thumbnail_imgIX() {
 			return `&fit=crop&w=300&h=300&dpr=1`
+		},
+		image() {
+			return this.data.data.main_image.url
+		},
+		title() {
+			return this.$prismic.asText(this.data.data.title)
 		},
 	},
 }

@@ -3,7 +3,7 @@
 		<div class="image">
 			<ImageItem v-if="!$fetchState.pending" :src="image" alt="contact" />
 		</div>
-		<ValidationObserver ref="contact" class="contact" tag="form" autocomplete="off" @submit.prevent="Submit()">
+		<ValidationObserver v-if="!message" ref="contact" class="contact" tag="form" autocomplete="off" @submit.prevent="Submit()">
 			<h2 class="title">Write us</h2>
 			<InputItem name="name" rules="required" @getValue="getName" />
 			<InputItem name="number" rules="digits:3|required" @getValue="getNumber" />
@@ -11,6 +11,12 @@
 			<InputItem name="message" rules="required" @getValue="getMessage" />
 			<ButtonItem> Submit <IconMail /> </ButtonItem>
 		</ValidationObserver>
+		<div v-else class="message">
+			<h2 class="title">Message send</h2>
+			<p>Thank you for writing to us.</p>
+			<p>We will replay to you as soon as posible.</p>
+			<ButtonItem> go home </ButtonItem>
+		</div>
 		<IconClose class="close" size="30px" @click.native="closeModal" />
 	</div>
 </template>
@@ -23,6 +29,7 @@ export default {
 		ValidationObserver,
 	},
 	data: () => ({
+		message: false,
 		loading: false,
 		image: '',
 		form: {
@@ -63,8 +70,14 @@ export default {
 
 			// compose email template
 			this.form.emailTemplate = `
-				<h4>${this.form.email} just subscribed.</h4>
-			
+				<h4>Name</h4>
+				<p>${this.form.name}</p>
+				<h4>Number</h4>
+				<p>${this.form.number}</p>
+				<h4>Email</h4>
+				<p>${this.form.email}</p>
+				<h4>Email</h4>
+				<p>${this.form.messagee}</p>
 			`
 
 			// trigger netlify function
@@ -76,6 +89,8 @@ export default {
 
 			this.loading = false
 			console.log('submited')
+
+			this.message = !this.message
 		},
 	},
 }
@@ -100,17 +115,33 @@ export default {
 		width: 40%;
 	}
 
+	.title {
+		font-size: 2rem;
+		width: max-content;
+		border-bottom: 2px solid $primary;
+	}
+
+	.message {
+		width: 60%;
+		padding: 0 15%;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		.title {
+			margin-bottom: 2rem;
+		}
+		p {
+			line-height: 1.5rem;
+		}
+	}
+
 	.contact {
 		width: 60%;
 		padding: 0 15%;
 		display: flex;
 		flex-direction: column;
 		justify-content: space-between;
-		.title {
-			font-size: 2rem;
-			width: max-content;
-			border-bottom: 2px solid $primary;
-		}
+
 		.title,
 		button {
 			margin: 15% 0;

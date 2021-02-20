@@ -32,7 +32,6 @@ import { blogAnim } from '~/assets/anime'
 
 export default {
 	data: () => ({
-		filters: [],
 		active_filter: [],
 		// pagination
 		current_page: 1,
@@ -49,7 +48,8 @@ export default {
 		})
 
 		this.$store.dispatch('bindBlogPosts', blogPosts.results)
-		this.filters = await this.$prismic.api.tags
+		if (!this.filters) this.$store.dispatch('bindFilter', await this.$prismic.api.tags)
+
 		this.total_pages = blogPosts.total_pages
 		this.prev_page = blogPosts.prev_page
 		this.next_page = blogPosts.next_page
@@ -57,6 +57,9 @@ export default {
 	computed: {
 		blogPosts() {
 			return this.$store.getters.blogPosts
+		},
+		filters() {
+			return this.$store.getters.filter
 		},
 	},
 	watch: {

@@ -7,16 +7,19 @@
 			<p>loading..</p>
 		</template>
 		<template v-else>
-			<div class="blog_post">
+			<div class="project">
 				<div class="intro">
 					<h2 class="title">{{ post.title }}</h2>
-					<span class="date">{{ post.date }}</span>
 					<ImageItem :src="post.main_image" :alt="post.title" />
-					<n-link class="go_back" to="/blog">
-						<IconArrow />
-						go back
-					</n-link>
 				</div>
+				<div class="info">
+					<p>square: {{ post.info.square }}&#13217;</p>
+					<p>date: {{ post.info.date }}</p>
+					<p>architect: {{ post.info.architect }}</p>
+					<p>designer: {{ post.info.designer }}</p>
+				</div>
+
+				<!-- Slice Machine -->
 				<div v-for="(slice, i) in post.slices" :key="i" class="slice" :class="slice.slice_type">
 					<p v-if="slice.slice_type == 'text'">{{ $prismic.asText(slice.primary.text) }}</p>
 
@@ -40,12 +43,17 @@ export default {
 		post: Object,
 	}),
 	async fetch() {
-		const post = await this.$prismic.api.getByUID('blog_post', this.$route.params.blog_post)
+		const post = await this.$prismic.api.getByUID('project_post', this.$route.params.project_post)
 		this.post = {
 			main_image: post.data.main_image.url,
 			title: this.$prismic.asText(post.data.title),
-			date: post.data.date,
-			tags: post.tags,
+			info: {
+				date: post.data.info[0].date,
+				square: this.$prismic.asText(post.data.info[0].square),
+				architect: this.$prismic.asText(post.data.info[0].architect),
+				designer: this.$prismic.asText(post.data.info[0].designer),
+			},
+
 			slices: post.data.body,
 		}
 	},
@@ -55,12 +63,9 @@ export default {
 <style lang="scss" scoped>
 @import '~/assets/colors.scss';
 
-.blog_post {
-	margin: 0 240px;
-
+.project {
 	display: flex;
 	flex-direction: column;
-	align-items: flex-end;
 	& > * {
 		margin-bottom: 25px;
 	}
@@ -75,41 +80,35 @@ export default {
 		position: relative;
 
 		.title {
-			margin-bottom: 25px;
-			font-size: 2rem;
-		}
-		.date {
-			margin-bottom: 25px;
-		}
-		.go_back {
 			position: absolute;
-			bottom: -100px;
-			left: -240px;
-			padding: 0 20px 0 260px;
-			background: $primary;
-			cursor: pointer;
+			bottom: 0;
+			left: 240px;
+			z-index: 2;
 
-			height: 50px;
-			display: flex;
-			align-items: center;
+			padding: 20px 20px 0 20px;
+			background: white;
 
 			text-transform: capitalize;
-			font-weight: 500;
-			font-size: 1.2rem;
-			line-height: 1.5rem;
-
-			svg {
-				transition: all 0.2s ease;
-				margin-right: 20px;
-				transform: rotate(180deg);
-			}
-
-			&:hover {
-				svg {
-					transform: rotate(180deg) translateX(10px);
-				}
-			}
+			font-size: 3rem;
 		}
+	}
+	.info {
+		margin: 0 240px;
+
+		p {
+			margin: 20px;
+
+			text-transform: capitalize;
+			color: $black;
+			font-weight: 700;
+			font-size: 1.2rem;
+			line-height: 1.2rem;
+		}
+	}
+
+	.info {
+		display: flex;
+		flex-direction: column;
 	}
 
 	.text {

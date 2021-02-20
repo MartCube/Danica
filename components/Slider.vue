@@ -34,7 +34,7 @@ export default {
 			border-radius: 25px;
 			margin: 25px;
 			background: $primary;
-			opacity: 0.5;
+			opacity: 0.35;
 			transition: all 0.2s ease;
 			&.agile__dot--current {
 				opacity: 1;

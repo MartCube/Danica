@@ -140,7 +140,7 @@ export default {
 	display: flex;
 	flex-direction: column;
 
-	color: white;
+	color: $white;
 
 	.group {
 		height: calc(100vh - 160px);

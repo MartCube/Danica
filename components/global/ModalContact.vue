@@ -152,7 +152,7 @@ export default {
 		position: absolute;
 		top: 25px;
 		right: 25px;
-		fill: white;
+		fill: $white;
 		transition: all 0.2s linear;
 		cursor: pointer;
 		&:hover {

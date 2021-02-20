@@ -1,5 +1,5 @@
 <template>
-	<div class="project_card">
+	<n-link :to="link" class="project_card">
 		<div class="image">
 			<ImageItem :src="image + Thumbnail_imgIX" :alt="title" />
 			<div class="link">
@@ -7,7 +7,7 @@
 			</div>
 		</div>
 		<h2>{{ title }}</h2>
-	</div>
+	</n-link>
 </template>
 
 <script>
@@ -27,6 +27,9 @@ export default {
 		},
 		title() {
 			return this.$prismic.asText(this.data.data.title)
+		},
+		link() {
+			return this.$prismic.linkResolver(this.data)
 		},
 	},
 }
@@ -93,7 +96,7 @@ export default {
 	}
 	h2 {
 		margin: 20px 40px;
-		padding-top: 10px;
+		padding-top: 20px;
 		position: relative;
 
 		text-transform: capitalize;
@@ -102,7 +105,7 @@ export default {
 			position: absolute;
 			width: 10%;
 			background-color: $black;
-			height: 2px;
+			height: 3px;
 			top: 0;
 			left: 0;
 		}

@@ -64,7 +64,7 @@ export default {
 	& > * {
 		margin-bottom: 25px;
 	}
-
+	border-left: 1px solid black;
 	.intro {
 		width: 100%;
 		height: calc(100vh - 80px);

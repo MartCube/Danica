@@ -128,6 +128,7 @@ export default {
 		flex-wrap: wrap;
 	}
 }
+
 button {
 	margin-left: 240px;
 	color: $black;

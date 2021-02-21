@@ -63,10 +63,10 @@ export default {
 		font-family: inherit;
 		width: 100%;
 		border: 0;
-		border-bottom: 2px solid white;
+		border-bottom: 2px solid $white;
 		outline: 0;
 		font-size: 0.9rem;
-		color: white;
+		color: $white;
 		padding: 7px 0;
 		background: transparent;
 		transition: border-color 0.2s;
@@ -92,7 +92,7 @@ export default {
 				display: block;
 				transition: 0.2s;
 				font-size: 0.8rem;
-				color: #aaaaaa;
+				color: $grey;
 			}
 		}
 		/* reset input */

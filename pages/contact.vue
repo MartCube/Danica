@@ -1,5 +1,7 @@
 <template>
 	<div class="container">
-		<h2>contact</h2>
+		<div class="map"></div>
 	</div>
 </template>
+
+<style lang="scss" scoped></style>

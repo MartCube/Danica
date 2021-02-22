@@ -104,14 +104,11 @@ export default {
 		justify-content: space-between;
 	}
 	.title {
-		margin-top: 20%;
 		font-size: 2rem;
 		width: max-content;
 		border-bottom: 2px solid $primary;
 	}
-	button {
-		margin-bottom: 20%;
-	}
+
 	.message {
 		width: 50%;
 		padding: 0 15%;

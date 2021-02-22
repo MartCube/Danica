@@ -47,7 +47,7 @@ export default {
 	.contact_form {
 		width: 50%;
 		height: 100%;
-		padding: 0 10%;
+		padding: 5% 10%;
 	}
 
 	.close {

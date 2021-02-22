@@ -1,6 +1,6 @@
 <template>
 	<div class="footer">
-		<div class="group">
+		<div class="wrap">
 			<div class="image">
 				<div class="to_top" @click="ScrollToTop">
 					<IconArrow size="40px" top />
@@ -141,7 +141,6 @@ export default {
 
 .footer {
 	width: 100%;
-	margin-top: 100px;
 
 	display: flex;
 	flex-direction: column;
@@ -157,7 +156,7 @@ export default {
 		}
 	}
 
-	.group {
+	.wrap {
 		height: calc(100vh - 160px);
 		display: flex;
 		.image {

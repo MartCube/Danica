@@ -25,6 +25,7 @@ button {
 	background: $primary;
 	color: white;
 	cursor: pointer;
+	z-index: 1;
 
 	text-transform: capitalize;
 	font-weight: 700;
@@ -43,10 +44,10 @@ button {
 			position: absolute;
 			top: 0;
 			left: 0;
+			z-index: -1;
 
 			width: 5%;
 			height: 100%;
-			z-index: -1;
 			background-color: $primary;
 			transition: all 0.2s ease;
 		}

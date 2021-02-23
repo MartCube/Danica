@@ -41,10 +41,7 @@
 					</div>
 				</div>
 
-				<ValidationObserver ref="subscribe" class="subscribe" tag="form" autocomplete="off" @submit.prevent="Submit()">
-					<p>Stay up to date with the latest news</p>
-					<InputItem subscribe name="email" rules="email" @getValue="GetEmail" />
-				</ValidationObserver>
+				<SubscribeForm />
 			</div>
 		</div>
 		<div class="policy">
@@ -65,20 +62,10 @@
 </template>
 
 <script>
-import { ValidationObserver } from 'vee-validate'
-
 export default {
-	components: {
-		ValidationObserver,
-	},
 	data: () => ({
 		modalContact: false,
-		loading: false,
 		data: Object,
-		form: {
-			email: '',
-			action: 'subscribe',
-		},
 	}),
 	async fetch() {
 		const footer = await this.$prismic.api.getSingle('footer')
@@ -96,33 +83,6 @@ export default {
 	methods: {
 		ToggleModal(value) {
 			this.modalContact = value
-		},
-		GetEmail(value) {
-			this.form.email = value
-		},
-		async Submit() {
-			const isValid = await this.$refs.subscribe.validate()
-			// validation
-			if (!isValid) return
-
-			this.loading = true
-			console.log('loading')
-
-			// compose email template
-			this.form.emailTemplate = `
-				<h4>${this.form.email} just subscribed.</h4>
-			
-			`
-
-			// trigger netlify function
-			try {
-				await this.$axios.$post('.netlify/functions/sendmail', this.form)
-			} catch (error) {
-				console.log(error)
-			}
-
-			this.loading = false
-			console.log('submited')
 		},
 		ScrollToTop() {
 			window.scrollTo({ top: 0, behavior: 'smooth' })
@@ -258,13 +218,6 @@ export default {
 				}
 				.for_clients {
 					padding-left: 50px;
-				}
-			}
-
-			.subscribe {
-				width: 50%;
-				p {
-					margin-bottom: 10px;
 				}
 			}
 		}

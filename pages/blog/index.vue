@@ -8,10 +8,13 @@
 				<span v-for="filter in filters" :key="filter" :class="{ active: active_filter[0] == filter }" @click="filterUpdate(filter)">{{ filter }}</span>
 			</div>
 
-			<template v-if="$fetchState.error"><p>error..</p></template>
-			<div v-else ref="grid" class="grid">
-				<BlogCard v-for="(post, i) in blogPosts" :key="'post' + i" :class="{ first: i == 0 }" :data="post" />
-			</div>
+			<template v-if="$fetchState.error">error</template>
+			<!-- <template v-else-if="$fetchState.pending">loading</template> -->
+			<template v-else>
+				<div ref="grid" class="grid">
+					<BlogCard v-for="(post, i) in blogPosts" :key="'post' + i" :class="{ first: i == 0 }" :data="post" />
+				</div>
+			</template>
 
 			<div class="pagination">
 				<IconDouble left :class="{ disable: !prev_page }" @click.native="fetchFirst" />

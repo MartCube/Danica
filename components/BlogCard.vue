@@ -150,6 +150,7 @@ export default {
 			z-index: 2;
 
 			font-size: 2rem;
+			line-height: 2rem;
 			color: white;
 
 			height: 50px;

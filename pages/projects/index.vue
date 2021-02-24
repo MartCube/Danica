@@ -7,8 +7,9 @@
 				<span :class="{ active: active_filter[0] == null }" @click="filterUpdate('all')"> all </span>
 				<span v-for="filter in filters" :key="filter" :class="{ active: active_filter[0] == filter }" @click="filterUpdate(filter)">{{ filter }}</span>
 			</div>
-			<template v-if="$fetchState.error"><p>error..</p></template>
-			<template v-if="!$fetchState.error">
+			<template v-if="$fetchState.error">error</template>
+			<!-- <template v-else-if="$fetchState.pending">loading</template> -->
+			<template v-else>
 				<div ref="grid" class="grid">
 					<ProjectCard v-for="(project, i) in projects" :key="i" :data="project" />
 				</div>
@@ -30,7 +31,7 @@ export default {
 	}),
 	async fetch() {
 		const projects = await this.$prismic.api.query([this.$prismic.predicates.at('document.type', 'project_post'), this.$prismic.predicates.at('document.tags', this.active_filter)], {
-			orderings: '[document.first_publication_date desc]',
+			// orderings: '[document.first_publication_date desc]',
 			pageSize: this.page_size,
 		})
 

@@ -1,11 +1,7 @@
 <template>
 	<div class="container">
-		<template v-if="$fetchState.error" class="error">
-			<p>error..</p>
-		</template>
-		<template v-else-if="$fetchState.pending" class="loading">
-			<p>loading..</p>
-		</template>
+		<template v-if="$fetchState.error">error</template>
+		<template v-else-if="$fetchState.pending">loading</template>
 		<template v-else>
 			<div class="blog_post">
 				<div class="intro">
@@ -17,6 +13,8 @@
 						go back
 					</n-link>
 				</div>
+
+				<!-- Slice Machine -->
 				<div v-for="(slice, i) in post.slices" :key="i" class="slice" :class="slice.slice_type">
 					<p v-if="slice.slice_type == 'text'">{{ $prismic.asText(slice.primary.text) }}</p>
 

@@ -1,17 +1,14 @@
 <template>
 	<div class="container">
-		<template v-if="$fetchState.error" class="error">
-			<p>error..</p>
-		</template>
-		<template v-else-if="$fetchState.pending" class="loading">
-			<p>loading..</p>
-		</template>
+		<template v-if="$fetchState.error">error </template>
+		<template v-else-if="$fetchState.pending">loading </template>
 		<template v-else>
 			<div class="project">
 				<div class="intro">
 					<h2 class="title">{{ post.title }}</h2>
 					<ImageItem :src="post.main_image" :alt="post.title" />
 				</div>
+
 				<div class="info">
 					<p>square: {{ post.info.square }}&#13217;</p>
 					<p>date: {{ post.info.date }}</p>
@@ -73,7 +70,6 @@ export default {
 	.intro {
 		width: 100%;
 		height: calc(100vh - 80px);
-		margin-bottom: 50px;
 		display: flex;
 		flex-direction: column;
 
@@ -93,7 +89,7 @@ export default {
 		}
 	}
 	.info {
-		margin: 0 240px;
+		margin: 50px 240px;
 
 		p {
 			margin: 20px;
@@ -111,6 +107,9 @@ export default {
 		flex-direction: column;
 	}
 
+	.slice {
+		margin-left: 240px;
+	}
 	.text {
 		width: 75%;
 		p {
@@ -120,7 +119,7 @@ export default {
 		}
 	}
 	.image {
-		width: 85%;
+		width: auto;
 		display: flex;
 		flex-direction: column;
 		align-items: center;

@@ -31,7 +31,7 @@
 </template>
 
 <script>
-import { blogAnim } from '~/assets/anime'
+import { postAnim } from '~/assets/anime'
 
 export default {
 	data: () => ({
@@ -68,7 +68,7 @@ export default {
 	watch: {
 		async blogPosts(newValue, oldValue) {
 			await this.$nextTick()
-			blogAnim(this.$refs.grid.children, true)
+			postAnim(this.$refs.grid.children, true)
 		},
 	},
 	methods: {

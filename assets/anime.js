@@ -30,6 +30,7 @@ export function introAnim(lettersWeAre, lettersLeadersIn, lettersDesign, collage
 
 	const colllageEasing = 'easeInOutCubic'
 	const collageDuration = '1000'
+	const collageBorder = '10px solid white'
 
 	StartUpTimeline.add(
 		{
@@ -51,7 +52,7 @@ export function introAnim(lettersWeAre, lettersLeadersIn, lettersDesign, collage
 
 				easing: 'easeInOutCubic',
 				delay: anime.stagger(50, { from: 'first' }),
-				duration: 1500,
+				duration: 2500,
 			},
 			200,
 		)
@@ -59,9 +60,11 @@ export function introAnim(lettersWeAre, lettersLeadersIn, lettersDesign, collage
 			{
 				targets: collage1,
 				opacity: [0, 1],
-				translateX: ['-50%', '0%'],
+				translateX: ['-100%', '0%'],
 				rotateY: [-90, 0],
+				scaleY: [0.75, 1],
 
+				border: collageBorder,
 				easing: colllageEasing,
 				duration: collageDuration,
 			},
@@ -71,8 +74,10 @@ export function introAnim(lettersWeAre, lettersLeadersIn, lettersDesign, collage
 			{
 				targets: collage2,
 				opacity: [0, 1],
-				translateY: ['25%', '0%'],
+				// translateY: ['100%', '0%'],
+				scaleX: [0, 1],
 
+				border: collageBorder,
 				easing: colllageEasing,
 				duration: collageDuration,
 			},
@@ -82,8 +87,11 @@ export function introAnim(lettersWeAre, lettersLeadersIn, lettersDesign, collage
 			{
 				targets: collage3,
 				opacity: [0, 1],
-				translateX: ['-50%', '0%'],
+				translateX: ['-100%', '0%'],
+				rotateY: [90, 0],
+				scaleY: [0.75, 1],
 
+				border: collageBorder,
 				easing: colllageEasing,
 				duration: collageDuration,
 			},

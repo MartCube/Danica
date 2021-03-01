@@ -124,9 +124,11 @@ export default {
 		flex-direction: column;
 
 		span {
-			margin: 10px 0;
+			margin: 10px 0 15px;
 			text-transform: capitalize;
 			white-space: nowrap;
+			font-weight: 500;
+			font-size: 1.4rem;
 
 			display: flex;
 			align-items: center;
@@ -136,7 +138,8 @@ export default {
 			&::before {
 				content: '';
 				width: 100%;
-				height: 1px;
+				display: inline-table;
+				height: 2px;
 				margin-right: 10px;
 				background: $black;
 				transition: all 0.2s ease;

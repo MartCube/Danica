@@ -89,10 +89,10 @@ export default {
 		}
 	}
 	.info {
-		margin: 50px 240px;
+		margin: 40px 240px 50px;
 
 		p {
-			margin: 20px;
+			margin: 10px 20px;
 
 			text-transform: capitalize;
 			color: $black;

@@ -60,7 +60,7 @@ export default {
 	color: $black;
 
 	.title {
-		padding: 40px 0;
+		padding: 25px 0;
 		position: relative;
 
 		text-transform: capitalize;
@@ -79,10 +79,11 @@ export default {
 	.info {
 		display: flex;
 		justify-content: space-between;
-		padding-bottom: 20px;
+		padding-bottom: 5px;
 
 		> * {
-			font-size: 0.8rem;
+			font-size: 0.9rem;
+			font-weight: 500;
 			opacity: 0.5;
 		}
 		.tag {
@@ -176,6 +177,9 @@ export default {
 				opacity: 1;
 				font-size: 1.2rem;
 				color: white;
+			}
+			.date ~ .tag {
+				color: $primary
 			}
 		}
 

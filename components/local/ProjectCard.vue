@@ -39,8 +39,8 @@ export default {
 @import '~/assets/colors.scss';
 
 .project_card {
-	width: 300px;
-	margin-bottom: 50px;
+	width: 340px;
+	margin-bottom: 20px;
 	cursor: pointer;
 
 	display: flex;
@@ -48,7 +48,7 @@ export default {
 
 	.image {
 		width: inherit;
-		height: 300px;
+		height: 340px;
 
 		user-select: none;
 		position: relative;
@@ -95,8 +95,8 @@ export default {
 		}
 	}
 	h2 {
-		margin: 20px 40px;
-		padding-top: 20px;
+		margin: 25px 20px 10px;
+		padding-top: 30px;
 		position: relative;
 
 		text-transform: capitalize;

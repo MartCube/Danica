@@ -6,14 +6,16 @@
 			<div class="intro">
 				<div class="text">
 					<div>
-						<span v-for="letter in lettersWeAre" :key="letter" ref="lettersWeAre">{{ letter }}</span>
+						<span v-for="(letter, i) in lettersWeAre" :key="i" ref="lettersWeAre">{{ letter }}</span>
 					</div>
 					<div>
-						<span v-for="letter in lettersLeadersIn" :key="letter" ref="lettersLeadersIn">{{ letter }}</span>
+						<span v-for="(letter, i) in lettersLeadersIn" :key="i" ref="lettersLeadersIn">{{ letter }}</span>
 					</div>
 					<div class="textSlider">
-						<span v-for="letter in lettersDesign" :key="letter" ref="lettersDesign">{{ letter }}</span>
+						<span v-for="(letter, i) in lettersDesign" :key="i" ref="lettersDesign">{{ letter }}</span>
+						<IconArrow size="50px" />
 					</div>
+					<ButtonItem> write us </ButtonItem>
 				</div>
 
 				<div class="collage">
@@ -64,7 +66,6 @@ export default {
 		Animate() {
 			this.imagesLoaded++
 			if (this.imagesLoaded === 3) {
-				console.log(this.$refs.text)
 				introAnim(this.$refs.lettersWeAre, this.$refs.lettersLeadersIn, this.$refs.lettersDesign, this.$refs.collage1, this.$refs.collage2, this.$refs.collage3)
 			}
 		},
@@ -85,7 +86,7 @@ export default {
 
 	.text {
 		width: min-content;
-		padding-top: 80px;
+		padding-top: 40px;
 
 		display: flex;
 		flex-direction: column;
@@ -93,6 +94,7 @@ export default {
 		& > * {
 			width: max-content;
 			display: flex;
+			align-items: center;
 			overflow: hidden;
 			span {
 				opacity: 0; // opacity: 1
@@ -102,29 +104,43 @@ export default {
 				font-weight: 400;
 				font-size: 4rem;
 			}
-			&.textSlider {
-				margin-top: 4rem;
-				cursor: pointer;
-				position: relative;
+		}
+		.textSlider {
+			margin-top: 2rem;
+			cursor: pointer;
+			position: relative;
+
+			svg {
+				margin: 0 1rem;
+				opacity: 0;
+				transition: all 0.35s cubic-bezier(0.65, 0, 0.35, 1);
+				transform: translateX(-20px);
+			}
+			&::after {
+				content: '';
+				position: absolute;
+				width: 0;
+				height: 100%;
+				left: 0;
+				background: $primary;
+				z-index: -1;
+				transition: all 0.35s cubic-bezier(0.65, 0, 0.35, 1);
+			}
+			&:hover {
 				&::after {
-					content: '';
-					position: absolute;
-					width: 0;
-					height: 100%;
-					left: 0;
-					background: $primary;
-					z-index: -1;
-					transition: all 0.35s cubic-bezier(0.65, 0, 0.35, 1);
+					width: 100%;
 				}
-				&:hover {
-					&::after {
-						width: 100%;
-					}
-				}
-				span {
-					font-weight: 700;
+				svg {
+					opacity: 1;
+					transform: translateX(0);
 				}
 			}
+			span {
+				font-weight: 700;
+			}
+		}
+		button {
+			margin: 2rem 0;
 		}
 	}
 	.collage {

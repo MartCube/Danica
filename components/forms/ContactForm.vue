@@ -6,14 +6,14 @@
 			<InputItem name="number" rules="digits:3|required" @getValue="getNumber" />
 			<InputItem name="email" rules="email|required" @getValue="getEmail" />
 			<InputItem name="message" rules="required" @getValue="getMessage" />
-			<ButtonItem> Submit <IconMail /> </ButtonItem>
+			<ButtonItem white> Submit <IconMail /> </ButtonItem>
 		</ValidationObserver>
 
 		<div v-else class="message">
 			<h2 class="title">Message send</h2>
 			<p>Thank you for writing to us.</p>
 			<p>We will replay to you as soon as posible.</p>
-			<ButtonItem> go home </ButtonItem>
+			<ButtonItem white> go home </ButtonItem>
 		</div>
 	</div>
 </template>
@@ -95,7 +95,6 @@ export default {
 .contact_form {
 	width: 100%;
 	height: 100%;
-
 	form {
 		width: 100%;
 		height: 100%;

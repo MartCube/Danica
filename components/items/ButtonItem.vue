@@ -1,5 +1,5 @@
 <template>
-	<button :class="{ animated: animated }">
+	<button :class="{ animated: animated, white: white }">
 		<slot> slot </slot>
 	</button>
 </template>
@@ -10,6 +10,10 @@ export default {
 		animated: {
 			type: Boolean,
 			default: true,
+		},
+		white: {
+			type: Boolean,
+			default: false,
 		},
 	},
 }
@@ -23,7 +27,7 @@ button {
 	padding: 15px 30px;
 	border: none;
 	background: $primary;
-	color: white;
+	color: $black;
 	cursor: pointer;
 	z-index: 1;
 
@@ -52,9 +56,15 @@ button {
 			transition: all 0.2s ease;
 		}
 	}
+	&.white {
+		color: $white;
+		svg {
+			fill: $white;
+		}
+	}
 
 	svg {
-		fill: white;
+		fill: $black;
 		margin-left: 15px;
 		transition: all 0.2s ease;
 	}

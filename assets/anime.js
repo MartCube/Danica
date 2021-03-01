@@ -52,7 +52,7 @@ export function introAnim(lettersWeAre, lettersLeadersIn, lettersDesign, collage
 
 				easing: 'easeInOutCubic',
 				delay: anime.stagger(50, { from: 'first' }),
-				duration: 2500,
+				duration: 1000,
 			},
 			200,
 		)
@@ -60,9 +60,9 @@ export function introAnim(lettersWeAre, lettersLeadersIn, lettersDesign, collage
 			{
 				targets: collage1,
 				opacity: [0, 1],
-				translateX: ['-100%', '0%'],
-				rotateY: [-90, 0],
-				scaleY: [0.75, 1],
+				translateX: ['-50%', '0%'],
+				// scaleY: [0.75, 1],
+				width: [0, '300px'],
 
 				border: collageBorder,
 				easing: colllageEasing,
@@ -74,8 +74,8 @@ export function introAnim(lettersWeAre, lettersLeadersIn, lettersDesign, collage
 			{
 				targets: collage2,
 				opacity: [0, 1],
-				// translateY: ['100%', '0%'],
-				scaleX: [0, 1],
+				translateY: ['50%', '0%'],
+				height: [0, '600px'],
 
 				border: collageBorder,
 				easing: colllageEasing,
@@ -87,9 +87,8 @@ export function introAnim(lettersWeAre, lettersLeadersIn, lettersDesign, collage
 			{
 				targets: collage3,
 				opacity: [0, 1],
-				translateX: ['-100%', '0%'],
-				rotateY: [90, 0],
-				scaleY: [0.75, 1],
+				translateX: ['-50%', '0%'],
+				width: [0, '400px'],
 
 				border: collageBorder,
 				easing: colllageEasing,
@@ -105,7 +104,7 @@ export function introAnim(lettersWeAre, lettersLeadersIn, lettersDesign, collage
 
 				delay: anime.stagger(50, { from: 'first' }),
 				easing: 'easeOutExpo',
-				duration: 1000,
+				duration: 2000,
 			},
 			1600,
 		)

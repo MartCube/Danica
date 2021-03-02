@@ -37,9 +37,9 @@ export default {
 		imagesLoaded: 0,
 	}),
 	async fetch() {
-		const index = await this.$prismic.api.getSingle('index')
+		const intro = await this.$prismic.api.getSingle('intro')
 		this.data = {
-			intro_collage: index.data.intro_collage,
+			intro_collage: intro.data.intro_collage,
 		}
 	},
 	computed: {
@@ -113,7 +113,7 @@ export default {
 			svg {
 				margin: 0 1rem;
 				opacity: 0;
-				transition: all 0.35s cubic-bezier(0.65, 0, 0.35, 1);
+				transition: all 0.35s ease;
 				transform: translateX(-20px);
 			}
 			&::after {
@@ -124,7 +124,7 @@ export default {
 				left: 0;
 				background: $primary;
 				z-index: -1;
-				transition: all 0.35s cubic-bezier(0.65, 0, 0.35, 1);
+				transition: all 0.35s ease;
 			}
 			&:hover {
 				&::after {

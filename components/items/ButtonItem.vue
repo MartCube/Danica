@@ -1,10 +1,16 @@
 <template>
 	<button :class="{ animated: animated, white: white }">
-		<slot> slot </slot>
+		<div ref="buttonText" class="text">
+			<slot />
+		</div>
+
+		<div v-if="animated" ref="buttonOverlay" class="overlay"></div>
 	</button>
 </template>
 
 <script>
+import { buttonAnim } from '~/assets/anime'
+
 export default {
 	props: {
 		animated: {
@@ -15,6 +21,9 @@ export default {
 			type: Boolean,
 			default: false,
 		},
+	},
+	mounted() {
+		if (this.animated) buttonAnim(this.$refs.buttonText, this.$refs.buttonOverlay)
 	},
 }
 </script>
@@ -28,30 +37,31 @@ button {
 	border: none;
 	background: $primary;
 	color: $black;
+
 	cursor: pointer;
 	z-index: 1;
-
-	text-transform: capitalize;
-	font-weight: 700;
-	font-size: 1.5rem;
-	line-height: 1.5rem;
-
-	display: flex;
-	align-items: center;
+	overflow: hidden;
 	position: relative;
 
 	&.animated {
 		background: transparent;
+		.text {
+			opacity: 0; // opacity: 1
+			display: flex;
+			align-items: center;
 
-		&::after {
-			content: '';
+			text-transform: capitalize;
+			font-weight: 700;
+			font-size: 1.5rem;
+		}
+		.overlay {
 			position: absolute;
-			top: 0;
+			bottom: 0;
 			left: 0;
 			z-index: -1;
 
 			width: 5%;
-			height: 100%;
+			height: 0; // height: 100%;
 			background-color: $primary;
 			transition: all 0.2s ease;
 		}
@@ -66,13 +76,14 @@ button {
 	svg {
 		fill: $black;
 		margin-left: 15px;
+
 		transition: all 0.2s ease;
 	}
 
 	transition: all 0.2s ease;
 	&:hover {
 		color: $black;
-		&::after {
+		.overlay {
 			width: 100%;
 		}
 		svg {

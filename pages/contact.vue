@@ -7,11 +7,19 @@
 				<div class="directions">
 					<IconDirections size="40px" />
 				</div>
-				<img src="https://maps.googleapis.com/maps/api/staticmap?center=50.490841015518846,30.446994616564965&zoom=13&format=png32&&size=1920x1920&key=AIzaSyBnTb01XNm3AOU8jwhC3neqhpNdMVLxnlI&map_id=c26449f55b3ee7" alt="" />
+				<ImageItem :src="map_url" alt="map" />
 			</div>
 		</div>
 	</div>
 </template>
+
+<script>
+export default {
+	data: () => ({
+		map_url: 'https://maps.googleapis.com/maps/api/staticmap?center=50.490841015518846,30.446994616564965&zoom=13&format=png32&&size=1920x1920&key=AIzaSyBnTb01XNm3AOU8jwhC3neqhpNdMVLxnlI&map_id=c26449f55b3ee7',
+	}),
+}
+</script>
 
 <style lang="scss" scoped>
 @import '~/assets/colors.scss';

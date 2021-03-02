@@ -23,6 +23,25 @@ export function postAnim(cards) {
 	})
 }
 
+export function buttonAnim(button, overlay) {
+	anime({
+		targets: button,
+		opacity: [0, 1],
+		translateX: ['50%', '0%'],
+
+		easing: 'easeInOutCubic',
+		duration: 750,
+		delay: 2000,
+	})
+	anime({
+		targets: overlay,
+		height: [0, '100%'],
+		easing: 'easeInOutCubic',
+		duration: 350,
+		delay: 2000,
+	})
+}
+
 export function introAnim(lettersWeAre, lettersLeadersIn, lettersDesign, collage1, collage2, collage3) {
 	const StartUpTimeline = anime.timeline({
 		autoplay: true,

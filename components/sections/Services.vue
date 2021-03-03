@@ -20,11 +20,9 @@
 </template>
 
 <script>
-// import { introAnim } from '~/assets/anime'
-
 export default {
 	data: () => ({
-		data: Object,
+		data: null,
 		links: [' interior design', 'passive house block', 'remont', 'architectural design', 'construction', 'other types of work'],
 	}),
 	async fetch() {

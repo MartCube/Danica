@@ -33,7 +33,7 @@ import { introAnim } from '~/assets/anime'
 
 export default {
 	data: () => ({
-		data: Object,
+		data: null,
 		imagesLoaded: 0,
 	}),
 	async fetch() {

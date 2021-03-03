@@ -19,11 +19,9 @@
 </template>
 
 <script>
-// import { introAnim } from '~/assets/anime'
-
 export default {
 	data: () => ({
-		data: Object,
+		data: null,
 	}),
 	async fetch() {
 		const achievements = await this.$prismic.api.getSingle('achievements')

@@ -3,10 +3,10 @@
 		<template v-if="$fetchState.error">error</template>
 		<template v-else-if="$fetchState.pending">loading</template>
 		<template v-else>
-			<div class="latest_projects">
-				<h2 class="title">Latest projects</h2>
+			<div class="highlight_projects">
+				<h2 class="title">We offer more than a service</h2>
 				<div ref="grid" class="grid">
-					<ProjectCard v-for="(project, i) in projects" :key="i" :data="project" />
+					<HighlightCard v-for="(project, i) in projects" :key="'post' + i" :first="i == 0" :data="project" />
 				</div>
 			</div>
 		</template>
@@ -16,12 +16,12 @@
 <script>
 export default {
 	data: () => ({
-		page_size: 3,
+		page_size: 5,
 		projects: null,
 	}),
 	async fetch() {
-		const projects = await this.$prismic.api.query(this.$prismic.predicates.at('document.type', 'project_post'), {
-			orderings: '[document.first_publication_date desc]',
+		const projects = await this.$prismic.api.query([this.$prismic.predicates.at('document.type', 'project_post'), this.$prismic.predicates.at('document.tags', ['highlight'])], {
+			// orderings: '[document.first_publication_date desc]',
 			pageSize: this.page_size,
 		})
 		this.projects = projects.results
@@ -34,7 +34,7 @@ export default {
 <style lang="scss" scoped>
 @import '~/assets/colors.scss';
 
-.latest_projects {
+.highlight_projects {
 	margin-left: 240px;
 	margin-top: 80px;
 
@@ -49,6 +49,7 @@ export default {
 		width: 1000px;
 		display: flex;
 		justify-content: space-between;
+		flex-wrap: wrap;
 	}
 }
 </style>

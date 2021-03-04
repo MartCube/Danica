@@ -1,63 +1,69 @@
 <template>
-	<div class="footer">
-		<div class="wrap">
-			<div class="image">
-				<div class="to_top" @click="ScrollToTop">
-					<IconArrow size="40px" top />
-				</div>
-				<ImageItem :src="data.image" alt="footer" />
-				<div class="text"></div>
-			</div>
-			<div class="info">
-				<h2 class="title">Call us</h2>
+	<div>
+		<template v-if="$fetchState.error"> error </template>
+		<template v-else-if="$fetchState.pending"> loading </template>
+		<template v-else>
+			<div class="footer">
 				<div class="wrap">
-					<div class="office">
-						<div class="numbers">
-							<h4>office:</h4>
-							<a v-for="(number, i) in data.office" :key="i" :href="NumberLink(number)">
-								{{ $prismic.asText(number.number) }}
-							</a>
+					<div class="image">
+						<div class="to_top" @click="ScrollToTop">
+							<IconArrow size="40px" top />
 						</div>
-						<span>Киев, ул Новозабарская 23 </span>
-						<div class="icons">
-							<IconFacebook />
-							<IconInstagram />
-							<IconYoutube />
-						</div>
+						<ImageItem :src="data.image" alt="footer" />
+						<div class="text"></div>
 					</div>
-					<div class="for_clients">
-						<div class="numbers">
-							<h4>for clients:</h4>
-							<a v-for="(number, i) in data.office" :key="i" :href="NumberLink(number)">
-								{{ $prismic.asText(number.number) }}
-							</a>
+					<div class="info">
+						<h2 class="title">Call us</h2>
+						<div class="wrap">
+							<div class="office">
+								<div class="numbers">
+									<h4>office:</h4>
+									<a v-for="(number, i) in data.office" :key="i" :href="NumberLink(number)">
+										{{ $prismic.asText(number.number) }}
+									</a>
+								</div>
+								<span>Киев, ул Новозабарская 23 </span>
+								<div class="icons">
+									<IconFacebook />
+									<IconInstagram />
+									<IconYoutube />
+								</div>
+							</div>
+							<div class="for_clients">
+								<div class="numbers">
+									<h4>for clients:</h4>
+									<a v-for="(number, i) in data.office" :key="i" :href="NumberLink(number)">
+										{{ $prismic.asText(number.number) }}
+									</a>
+								</div>
+								<span @click="ToggleModal(true)">info@danica.ua</span>
+								<div class="icons">
+									<IconMessenger />
+									<IconTelegram />
+									<IconViber />
+								</div>
+							</div>
 						</div>
-						<span @click="ToggleModal(true)">info@danica.ua</span>
-						<div class="icons">
-							<IconMessenger />
-							<IconTelegram />
-							<IconViber />
-						</div>
+
+						<SubscribeForm />
 					</div>
 				</div>
-
-				<SubscribeForm />
+				<div class="policy">
+					<div class="links">
+						<IconCopyRight size="16px" />
+						<n-link to="/"> Danica {{ year }}</n-link>
+						<span>|</span>
+						<n-link to="/">All rights reserved</n-link>
+					</div>
+					<div class="links">
+						<n-link to="/">Privacy Policy</n-link>
+						<span>|</span>
+						<n-link to="/">Terms and Conditions</n-link>
+					</div>
+				</div>
+				<ContactModal v-show="modalContact" @closeModal="ToggleModal(false)" />
 			</div>
-		</div>
-		<div class="policy">
-			<div class="links">
-				<IconCopyRight size="16px" />
-				<n-link to="/"> Danica {{ year }}</n-link>
-				<span>|</span>
-				<n-link to="/">All rights reserved</n-link>
-			</div>
-			<div class="links">
-				<n-link to="/">Privacy Policy</n-link>
-				<span>|</span>
-				<n-link to="/">Terms and Conditions</n-link>
-			</div>
-		</div>
-		<ContactModal v-show="modalContact" @closeModal="ToggleModal(false)" />
+		</template>
 	</div>
 </template>
 

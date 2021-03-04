@@ -10,6 +10,7 @@
 				</div>
 
 				<div class="info">
+					<p>service: {{ post.info.service }}</p>
 					<p>square: {{ post.info.square }}&#13217;</p>
 					<p>date: {{ post.info.date }}</p>
 					<p>architect: {{ post.info.architect }}</p>
@@ -45,6 +46,7 @@ export default {
 			main_image: post.data.main_image.url,
 			title: this.$prismic.asText(post.data.title),
 			info: {
+				service: this.$prismic.asText(post.data.info[0].service),
 				date: post.data.info[0].date,
 				square: this.$prismic.asText(post.data.info[0].square),
 				architect: this.$prismic.asText(post.data.info[0].architect),
@@ -90,9 +92,12 @@ export default {
 	}
 	.info {
 		margin: 50px 240px;
-
+		width: max-content;
+		display: flex;
+		flex-direction: column;
 		p {
-			margin: 20px;
+			padding: 20px 0;
+			border-bottom: 1px solid $grey;
 
 			text-transform: capitalize;
 			color: $black;
@@ -100,11 +105,6 @@ export default {
 			font-size: 1.2rem;
 			line-height: 1.2rem;
 		}
-	}
-
-	.info {
-		display: flex;
-		flex-direction: column;
 	}
 
 	.slice {

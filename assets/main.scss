@@ -11,9 +11,7 @@
 	-webkit-tap-highlight-color: transparent;
 }
 
-html{
-	scroll-behavior: smooth;
-}
+
 
 body {
 	font-family: 'MyFont', system;
@@ -33,6 +31,7 @@ body {
 		text-decoration: none;
 		color: $black;
 	}
+
 
 	@include headings(){
 		font-weight: bold;

@@ -3,7 +3,7 @@
 		<Intro />
 		<Achievements />
 		<Services />
-		<LatestProjects />
+		<HighlightProjects />
 	</div>
 </template>
 

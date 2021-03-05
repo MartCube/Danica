@@ -1,8 +1,6 @@
 <template>
 	<div>
-		<template v-if="$fetchState.error">error</template>
-		<template v-else-if="$fetchState.pending">loading</template>
-		<template v-else>
+		<template v-if="!$fetchState.pending">
 			<div class="latest_projects">
 				<h2 class="title">Latest projects</h2>
 				<div ref="grid" class="grid">

@@ -35,6 +35,8 @@ export default {
 	data: () => ({
 		isActive: false,
 		showLocales: false,
+		showNavbar: true,
+		lastScrollPosition: 0,
 	}),
 	computed: {
 		availableLocales() {
@@ -44,8 +46,26 @@ export default {
 			return this.$i18n.locale
 		},
 	},
-
+	mounted() {
+		window.addEventListener('scroll', this.onScroll)
+	},
+	beforeDestroy() {
+		window.removeEventListener('scroll', this.onScroll)
+	},
 	methods: {
+		onScroll() {
+			// Get the current scroll position
+			const currentScrollPosition = window.pageYOffset || document.documentElement.scrollTop
+			// Because of momentum scrolling on mobiles, we shouldn't continue if it is less than zero
+			if (Math.abs(currentScrollPosition - this.lastScrollPosition) < 80) {
+				return
+			} // Here we determine whether we need to show or hide the navbar
+
+			this.showNavbar = currentScrollPosition < this.lastScrollPosition // Set the current scroll position as the last scroll position
+			this.lastScrollPosition = currentScrollPosition
+
+			console.log('onScroll', this.lastScrollPosition, screen.height)
+		},
 		ShowHideMenu() {
 			this.isActive = !this.isActive
 		},
@@ -67,7 +87,7 @@ export default {
 	position: fixed;
 	top: 0;
 	z-index: 9;
-	background: white;
+	background: rgba(255, 255, 255, 0.2);
 	user-select: none;
 
 	display: flex;

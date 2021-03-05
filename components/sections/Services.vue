@@ -1,8 +1,6 @@
 <template>
 	<div>
-		<template v-if="$fetchState.error">error</template>
-		<template v-else-if="$fetchState.pending">loading</template>
-		<template v-else>
+		<template v-if="!$fetchState.pending">
 			<div class="services">
 				<h2 class="title">Optimality and quality are the grounds of our Company</h2>
 				<div class="links">

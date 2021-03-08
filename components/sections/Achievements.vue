@@ -1,17 +1,15 @@
 <template>
-	<div>
+	<div class="achievements">
 		<template v-if="!$fetchState.pending">
-			<div class="achievements">
-				<h2 class="title">{{ data.title }}</h2>
-				<div class="text">
-					<p>{{ data.text }}</p>
-					<div v-for="(counter, i) in data.counters" :key="i" class="counter">
-						<span class="number">{{ $prismic.asText(counter.primary.number) }}</span>
-						<h4>{{ $prismic.asText(counter.primary.counter_title) }}</h4>
-					</div>
+			<h2 class="title">{{ data.title }}</h2>
+			<div class="text">
+				<p>{{ data.text }}</p>
+				<div v-for="(counter, i) in data.counters" :key="i" class="counter">
+					<span class="number">{{ $prismic.asText(counter.primary.number) }}</span>
+					<h4>{{ $prismic.asText(counter.primary.counter_title) }}</h4>
 				</div>
-				<ImageItem :src="data.image" alt="achievements" />
 			</div>
+			<ImageItem :src="data.image" alt="achievements" />
 		</template>
 	</div>
 </template>

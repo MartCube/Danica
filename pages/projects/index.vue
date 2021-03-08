@@ -23,6 +23,7 @@
 import { postAnim } from '~/assets/anime'
 
 export default {
+	name: 'Projects',
 	data: () => ({
 		active_filter: [],
 		total_pages: null,

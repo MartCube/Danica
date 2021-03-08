@@ -1,11 +1,9 @@
 <template>
-	<div>
+	<div class="latest_projects">
 		<template v-if="!$fetchState.pending">
-			<div class="latest_projects">
-				<h2 class="title">Latest projects</h2>
-				<div ref="grid" class="grid">
-					<ProjectCard v-for="(project, i) in projects" :key="i" :data="project" />
-				</div>
+			<h2 class="title">Latest projects</h2>
+			<div ref="grid" class="grid">
+				<ProjectCard v-for="(project, i) in projects" :key="i" :data="project" />
 			</div>
 		</template>
 	</div>

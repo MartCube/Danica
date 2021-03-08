@@ -1,16 +1,14 @@
 <template>
-	<div>
+	<div class="services">
 		<template v-if="!$fetchState.pending">
-			<div class="services">
-				<h2 class="title">Optimality and quality are the grounds of our Company</h2>
-				<div class="links">
-					<div v-for="(link, i) in links" :key="i" class="link">
-						<n-link to="/">
-							<span>0{{ i + 1 }}/</span>
-							{{ link }}
-							<IconArrow />
-						</n-link>
-					</div>
+			<h2 class="title">Optimality and quality are the grounds of our Company</h2>
+			<div class="links">
+				<div v-for="(link, i) in links" :key="i" class="link">
+					<n-link to="/">
+						<span>0{{ i + 1 }}/</span>
+						{{ link }}
+						<IconArrow />
+					</n-link>
 				</div>
 			</div>
 		</template>

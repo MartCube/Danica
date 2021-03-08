@@ -1,26 +1,24 @@
 <template>
-	<div>
+	<div class="intro">
 		<template v-if="!$fetchState.pending">
-			<div class="intro">
-				<div class="text">
-					<div>
-						<span v-for="(letter, i) in lettersWeAre" :key="i" ref="lettersWeAre">{{ letter }}</span>
-					</div>
-					<div>
-						<span v-for="(letter, i) in lettersLeadersIn" :key="i" ref="lettersLeadersIn">{{ letter }}</span>
-					</div>
-					<div class="textSlider">
-						<span v-for="(letter, i) in lettersDesign" :key="i" ref="lettersDesign">{{ letter }}</span>
-						<IconArrow size="50px" />
-					</div>
-					<ButtonItem> write us </ButtonItem>
+			<div class="text">
+				<div>
+					<span v-for="(letter, i) in lettersWeAre" :key="i" ref="lettersWeAre">{{ letter }}</span>
 				</div>
+				<div>
+					<span v-for="(letter, i) in lettersLeadersIn" :key="i" ref="lettersLeadersIn">{{ letter }}</span>
+				</div>
+				<div class="textSlider">
+					<span v-for="(letter, i) in lettersDesign" :key="i" ref="lettersDesign">{{ letter }}</span>
+					<IconArrow size="50px" />
+				</div>
+				<ButtonItem> write us </ButtonItem>
+			</div>
 
-				<div class="collage">
-					<img ref="collage1" class="first" :src="first_imgIX" alt="danica" @load="Animate" />
-					<img ref="collage2" class="second" :src="second_imgIX" alt="danica" @load="Animate" />
-					<img ref="collage3" class="third" :src="third_imgIX" alt="danica" @load="Animate" />
-				</div>
+			<div class="collage">
+				<img ref="collage1" class="first" :src="first_imgIX" alt="danica" @load="Animate" />
+				<img ref="collage2" class="second" :src="second_imgIX" alt="danica" @load="Animate" />
+				<img ref="collage3" class="third" :src="third_imgIX" alt="danica" @load="Animate" />
 			</div>
 		</template>
 	</div>

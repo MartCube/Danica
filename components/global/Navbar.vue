@@ -1,5 +1,5 @@
 <template>
-	<nav class="navbar">
+	<nav class="navbar" :class="{ transparent_to_white: whiteNavbar && transparent, transparent: transparent }">
 		<n-link class="logo" exact :to="localePath('index')">
 			<Logo />
 		</n-link>
@@ -35,10 +35,13 @@ export default {
 	data: () => ({
 		isActive: false,
 		showLocales: false,
-		showNavbar: true,
+		whiteNavbar: false,
 		lastScrollPosition: 0,
 	}),
 	computed: {
+		transparent() {
+			return this.$store.getters.navbarTransparent
+		},
 		availableLocales() {
 			return this.$i18n.locales
 		},
@@ -46,11 +49,11 @@ export default {
 			return this.$i18n.locale
 		},
 	},
-	mounted() {
-		window.addEventListener('scroll', this.onScroll)
-	},
-	beforeDestroy() {
-		window.removeEventListener('scroll', this.onScroll)
+	watch: {
+		transparent(newValue, oldValue) {
+			if (newValue) window.addEventListener('scroll', this.onScroll)
+			else window.removeEventListener('scroll', this.onScroll)
+		},
 	},
 	methods: {
 		onScroll() {
@@ -61,10 +64,10 @@ export default {
 				return
 			} // Here we determine whether we need to show or hide the navbar
 
-			this.showNavbar = currentScrollPosition < this.lastScrollPosition // Set the current scroll position as the last scroll position
+			this.whiteNavbar = currentScrollPosition > 600
 			this.lastScrollPosition = currentScrollPosition
 
-			console.log('onScroll', this.lastScrollPosition, screen.height)
+			console.log('onScroll', this.lastScrollPosition, screen.height, this.whiteNavbar)
 		},
 		ShowHideMenu() {
 			this.isActive = !this.isActive
@@ -79,6 +82,7 @@ export default {
 <style lang="scss" scooped>
 @import '~/assets/colors.scss';
 
+$transition: all 0.35s ease;
 .navbar {
 	width: 100%;
 	height: 80px;
@@ -87,8 +91,17 @@ export default {
 	position: fixed;
 	top: 0;
 	z-index: 9;
-	background: rgba(255, 255, 255, 0.2);
 	user-select: none;
+
+	background: white;
+	transition: $transition;
+	&.transparent {
+		background: rgba(255, 255, 255, 0.2);
+		backdrop-filter: blur(10px) saturate(100%) contrast(45%) brightness(130%);
+	}
+	&.transparent_to_white {
+		background: white;
+	}
 
 	display: flex;
 	align-items: center;

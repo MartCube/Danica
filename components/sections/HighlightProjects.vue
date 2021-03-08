@@ -1,11 +1,9 @@
 <template>
-	<div>
+	<div class="highlight_projects">
 		<template v-if="!$fetchState.pending">
-			<div class="highlight_projects">
-				<h2 class="title">We offer more than a service</h2>
-				<div ref="grid" class="grid">
-					<HighlightCard v-for="(project, i) in projects" :key="'post' + i" :first="i == 0" :data="project" />
-				</div>
+			<h2 class="title">We offer more than a service</h2>
+			<div ref="grid" class="grid">
+				<HighlightCard v-for="(project, i) in projects" :key="'post' + i" :first="i == 0" :data="project" />
 			</div>
 		</template>
 	</div>

@@ -1,6 +1,6 @@
 <template>
 	<div class="container">
-		<Intro />
+		<IntroAnim />
 		<Achievements />
 		<Services />
 		<HighlightProjects />
@@ -9,6 +9,8 @@
 
 <script>
 export default {
+	name: 'Index',
+
 	data: () => ({}),
 }
 </script>

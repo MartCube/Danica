@@ -50,10 +50,16 @@ export default {
 		},
 	},
 	watch: {
-		transparent(newValue, oldValue) {
-			if (newValue) window.addEventListener('scroll', this.onScroll)
+		transparent() {
+			if (this.transparent) window.addEventListener('scroll', this.onScroll)
 			else window.removeEventListener('scroll', this.onScroll)
 		},
+	},
+	mounted() {
+		if (this.transparent) window.addEventListener('scroll', this.onScroll)
+	},
+	beforeDestroy() {
+		window.removeEventListener('scroll', this.onScroll)
 	},
 	methods: {
 		onScroll() {

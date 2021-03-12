@@ -20,7 +20,6 @@ export default {
 </script>
 
 <style lang="scss">
-@import '~/assets/colors.scss';
 .agile__actions {
 	justify-content: center;
 	.agile__nav-button--prev,

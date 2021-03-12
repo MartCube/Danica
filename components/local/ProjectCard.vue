@@ -36,8 +36,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '~/assets/colors.scss';
-
 .project_card {
 	width: 300px;
 	margin-bottom: 50px;

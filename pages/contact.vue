@@ -22,8 +22,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '~/assets/colors.scss';
-
 .container {
 	background: $black;
 	margin-bottom: 0;

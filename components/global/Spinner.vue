@@ -6,8 +6,6 @@
 </template>
 
 <style lang="scss" scoped>
-@import '~/assets/colors.scss';
-
 .spinner {
 	width: 40px;
 	height: 40px;

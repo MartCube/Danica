@@ -29,8 +29,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '~/assets/colors.scss';
-
 button {
 	width: max-content;
 	padding: 15px 30px;

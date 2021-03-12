@@ -109,8 +109,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '~/assets/colors.scss';
-
 .blog {
 	display: flex;
 	flex-wrap: wrap;

@@ -51,8 +51,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '~/assets/colors.scss';
-
 .blog_post {
 	margin: 0 240px;
 

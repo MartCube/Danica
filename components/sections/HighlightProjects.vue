@@ -28,8 +28,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '~/assets/colors.scss';
-
 .highlight_projects {
 	margin-left: 240px;
 	margin-top: 80px;

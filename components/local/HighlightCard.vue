@@ -72,8 +72,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '~/assets/colors.scss';
-
 $transition: all 0.35s ease;
 
 .highlight_card {

@@ -32,8 +32,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '~/assets/colors.scss';
-
 .achievements {
 	margin-left: 240px;
 	margin-top: 80px;

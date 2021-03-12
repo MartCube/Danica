@@ -70,8 +70,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '~/assets/colors.scss';
-
 .intro {
 	margin-left: 240px;
 	overflow: hidden;

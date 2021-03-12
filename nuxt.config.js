@@ -12,7 +12,7 @@ export default {
 	loading: { color: '#ffc424' },
 
 	// Global CSS (https://go.nuxtjs.dev/config-css)
-	css: ['~/assets/main.scss'],
+	css: ['~/assets/main.scss', '~/assets/colors.scss'],
 
 	// Plugins to run before rendering page (https://go.nuxtjs.dev/config-plugins)
 	plugins: [{ src: '@/plugins/vue-slider.js' }, { src: '@/plugins/vee-validate.js' }, { src: `~/plugins/lazysizes.client.js` }],
@@ -26,7 +26,7 @@ export default {
 	],
 
 	// Modules (https://go.nuxtjs.dev/config-modules)
-	modules: ['@nuxtjs/prismic', '@nuxtjs/axios', 'nuxt-i18n'],
+	modules: ['@nuxtjs/prismic', '@nuxtjs/axios', 'nuxt-i18n', '@nuxtjs/style-resources'],
 
 	prismic: {
 		endpoint: 'https://danica.cdn.prismic.io/api/v2',
@@ -60,6 +60,10 @@ export default {
 
 	axios: {
 		baseURL: '/',
+	},
+
+	styleResources: {
+		scss: ['./assets/colors.scss', './assets/mixins.scss'],
 	},
 
 	// Build Configuration (https://go.nuxtjs.dev/config-build)

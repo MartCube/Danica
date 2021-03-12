@@ -103,8 +103,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '~/assets/colors.scss';
-
 .footer {
 	width: 100%;
 

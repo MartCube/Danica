@@ -48,9 +48,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '~/assets/mixins.scss';
-@import '~/assets/colors.scss';
-
 .input_item {
 	position: relative;
 	padding: 1rem 0 0;

@@ -17,6 +17,7 @@ export default {
 
 <style lang="scss" scoped>
 .intro_image {
+	margin-bottom: 80px;
 	width: 100%;
 	height: 100vh;
 	display: flex;

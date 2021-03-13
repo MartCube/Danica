@@ -47,10 +47,6 @@ button {
 			opacity: 0; // opacity: 1
 			display: flex;
 			align-items: center;
-
-			text-transform: capitalize;
-			font-weight: 700;
-			font-size: 1.5rem;
 		}
 		.overlay {
 			position: absolute;
@@ -69,6 +65,12 @@ button {
 		svg {
 			fill: $white;
 		}
+	}
+
+	.text {
+		text-transform: capitalize;
+		font-weight: 700;
+		font-size: 1.5rem;
 	}
 
 	svg {

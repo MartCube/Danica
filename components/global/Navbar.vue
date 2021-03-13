@@ -70,7 +70,7 @@ export default {
 				return
 			} // Here we determine whether we need to show or hide the navbar
 
-			this.whiteNavbar = currentScrollPosition > screen.height - 160
+			this.whiteNavbar = currentScrollPosition > screen.height - 200
 			this.lastScrollPosition = currentScrollPosition
 
 			console.log('onScroll', this.lastScrollPosition, screen.height, this.whiteNavbar)

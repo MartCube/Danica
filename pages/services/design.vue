@@ -1,23 +1,21 @@
 <template>
-	<div class="services">
+	<div class="design">
 		<template v-if="!$fetchState.pending">
 			<IntroImage :image="IntroImage" />
 			<Charles :data="charles" />
 
 			<!-- Slice Machine -->
 			<div v-for="(slice, i) in slices" :key="i">
-				<DesignStages v-if="slice.slice_type == 'stages'" :data="slice" />
-				<DesignAdvantages v-if="slice.slice_type == 'advantages'" :data="slice" />
+				<Stages v-if="slice.slice_type == 'stages'" :data="slice" />
+				<Advantages v-if="slice.slice_type == 'advantages'" :data="slice" />
 			</div>
 		</template>
 	</div>
 </template>
 
 <script>
-import DesignAdvantages from '~/components/sections/DesignAdvantages.vue'
 export default {
-	name: 'Services',
-	components: { DesignAdvantages },
+	name: 'Design',
 	beforeRouteLeave(to, from, next) {
 		this.$store.dispatch('bindNavbarTransparent', false)
 		next()
@@ -41,7 +39,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.services {
+.design {
 	min-height: 100vh;
 }
 </style>

@@ -2,7 +2,7 @@
 	<div class="container">
 		<IntroAnim />
 		<Achievements />
-		<Services />
+		<ServicesList />
 		<HighlightProjects />
 	</div>
 </template>

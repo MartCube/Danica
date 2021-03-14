@@ -1,9 +1,11 @@
 <template>
-	<div class="design_advantages">
+	<div class="stages">
 		<h2 class="title">{{ title }}</h2>
 		<div class="list">
-			<div v-for="(item, i) in data.items" :key="i" class="stage">
-				<p>{{ $prismic.asText(item.advantage) }}</p>
+			<div v-for="(stage, i) in data.items" :key="i" class="stage">
+				<h2>0{{ i + 1 }}</h2>
+				<h2>{{ $prismic.asText(stage.stage_title) }}</h2>
+				<p>{{ $prismic.asText(stage.stage_description) }}</p>
 			</div>
 		</div>
 	</div>
@@ -19,7 +21,7 @@ export default {
 	},
 	computed: {
 		title() {
-			return this.$prismic.asText(this.data.primary.advantage_title)
+			return this.$prismic.asText(this.data.primary.stages_title)
 		},
 	},
 }
@@ -28,7 +30,7 @@ export default {
 <style lang="scss" scoped>
 $transition: all 0.35s ease;
 
-.design_advantages {
+.stages {
 	margin-bottom: 80px;
 	margin-left: 240px;
 
@@ -40,20 +42,14 @@ $transition: all 0.35s ease;
 		margin-bottom: 80px;
 	}
 	.list {
+		width: 800px;
 		display: flex;
-		flex-direction: column;
-		p {
-			font-size: 1.2rem;
-			margin-bottom: 16px;
-			display: flex;
-			align-items: center;
-			&::before {
-				content: '';
-				margin-right: 20px;
-				width: 20px;
-				height: 3px;
-				background: $primary;
-			}
+		justify-content: space-between;
+		flex-wrap: wrap;
+		.stage {
+			width: 100%;
+			max-width: 300px;
+			margin-bottom: 40px;
 		}
 	}
 }

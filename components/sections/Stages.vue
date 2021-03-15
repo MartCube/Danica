@@ -36,7 +36,6 @@ $transition: all 0.35s ease;
 
 	display: flex;
 	flex-direction: column;
-	position: relative;
 	.title {
 		max-width: 500px;
 		margin-bottom: 80px;

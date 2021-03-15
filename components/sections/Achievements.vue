@@ -39,7 +39,6 @@ export default {
 	height: 500px;
 	display: flex;
 	flex-direction: column;
-	position: relative;
 	.title {
 		max-width: 500px;
 		margin-bottom: 80px;

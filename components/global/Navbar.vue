@@ -73,7 +73,7 @@ export default {
 			this.whiteNavbar = currentScrollPosition > screen.height - 200
 			this.lastScrollPosition = currentScrollPosition
 
-			console.log('onScroll', this.lastScrollPosition, screen.height, this.whiteNavbar)
+			// console.log('onScroll', this.lastScrollPosition, screen.height, this.whiteNavbar)
 		},
 		ShowHideMenu() {
 			this.isActive = !this.isActive

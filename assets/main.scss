@@ -27,6 +27,13 @@ body {
 			background: $primary;
 		}
 	}
+
+	
+	p{
+		font-weight: 300;
+		font-size: 1.2rem;
+		line-height: 1.5rem;
+	}
 	a{
 		text-decoration: none;
 		color: $black;
@@ -43,6 +50,22 @@ body {
 	
 }
 
+section{
+	margin-bottom: 80px;
+	margin-left: 240px;
+	h2{
+		font-size: 2rem;
+	}
+	h3{
+		font-size: 1.5rem;
+	}
+
+	.title {
+		max-width: 600px;
+		margin-bottom: 80px;
+	}
+}
+
 .container {
 	width:100%;
 	min-height: 100vh;
@@ -51,6 +74,8 @@ body {
 	display: flex;
 	flex-direction: column;
 }
+
+
 
 
 .page-enter-active, .page-leave-active {

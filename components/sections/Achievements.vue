@@ -1,57 +1,60 @@
 <template>
-	<div class="achievements">
-		<template v-if="!$fetchState.pending">
-			<h2 class="title">{{ data.title }}</h2>
-			<div class="text">
-				<p>{{ data.text }}</p>
-				<div v-for="(counter, i) in data.counters" :key="i" class="counter">
-					<span class="number">{{ $prismic.asText(counter.primary.number) }}</span>
-					<h4>{{ $prismic.asText(counter.primary.counter_title) }}</h4>
-				</div>
+	<section class="achievements">
+		<h2 class="title">{{ title }}</h2>
+		<div class="text">
+			<p>{{ description }}</p>
+			<div class="counter">
+				<span class="number">{{ data.years_on_market }}</span>
+				<h4>years on the market</h4>
 			</div>
-			<ImageItem :src="data.image" alt="achievements" />
-		</template>
-	</div>
+			<div class="counter">
+				<span class="number">{{ data.houses_build }}</span>
+				<h4>houses build</h4>
+			</div>
+			<div class="counter">
+				<span class="number">{{ data.projects }}</span>
+				<h4>architecture projects</h4>
+			</div>
+		</div>
+		<ImageItem :src="image" alt="achievements" />
+	</section>
 </template>
 
 <script>
 export default {
-	data: () => ({
-		data: null,
-	}),
-	async fetch() {
-		const achievements = await this.$prismic.api.getSingle('achievements')
-		this.data = {
-			title: this.$prismic.asText(achievements.data.title),
-			text: this.$prismic.asText(achievements.data.text),
-			image: achievements.data.image.url,
-			counters: achievements.data.body,
-		}
+	props: {
+		data: {
+			type: Object,
+			required: true,
+		},
+	},
+	computed: {
+		title() {
+			return this.$prismic.asText(this.data.achievements_title)
+		},
+		description() {
+			return this.$prismic.asText(this.data.achievements_description)
+		},
+		image() {
+			return this.data.achievements_image.url
+		},
 	},
 }
 </script>
 
 <style lang="scss" scoped>
 .achievements {
-	margin-left: 240px;
-	margin-top: 80px;
-
 	height: 500px;
 	display: flex;
 	flex-direction: column;
-	.title {
-		max-width: 500px;
-		margin-bottom: 80px;
-	}
+	position: relative;
+
 	.text {
 		display: flex;
 		justify-content: space-between;
 		padding-right: 50px;
 		p {
 			max-width: 500px;
-			font-weight: 300;
-			font-size: 1.2rem;
-			line-height: 1.5rem;
 		}
 		.counter {
 			padding-left: 20px;
@@ -78,7 +81,7 @@ export default {
 		width: 75%;
 		top: 0;
 		right: 0;
-		z-index: 0;
+		z-index: -1;
 		opacity: 0.1;
 	}
 }

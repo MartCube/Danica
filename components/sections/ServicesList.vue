@@ -1,28 +1,33 @@
 <template>
-	<div class="services">
-		<template v-if="!$fetchState.pending">
-			<h2 class="title">Optimality and quality are the grounds of our Company</h2>
-			<div class="links">
-				<div v-for="(link, i) in links" :key="i" class="link">
-					<n-link to="/">
-						<span>0{{ i + 1 }}/</span>
-						{{ link }}
-						<IconArrow />
-					</n-link>
-				</div>
+	<section class="services">
+		<h2 class="title">{{ title }}</h2>
+		<div class="links">
+			<div v-for="(link, i) in links" :key="i" class="link">
+				<n-link to="/">
+					<span>0{{ i + 1 }}/</span>
+					{{ link }}
+					<IconArrow />
+				</n-link>
 			</div>
-		</template>
-	</div>
+		</div>
+	</section>
 </template>
 
 <script>
 export default {
+	props: {
+		data: {
+			type: Object,
+			required: true,
+		},
+	},
 	data: () => ({
-		data: null,
 		links: [' interior design', 'passive house block', 'remont', 'architectural design', 'construction', 'other types of work'],
 	}),
-	async fetch() {
-		// const achievements = await this.$prismic.api.getSingle('achievements')
+	computed: {
+		title() {
+			return this.$prismic.asText(this.data.services_list_title)
+		},
 	},
 }
 </script>
@@ -31,16 +36,10 @@ export default {
 $transition: all 0.35s ease;
 
 .services {
-	margin-left: 240px;
-	margin-top: 80px;
-
 	display: flex;
 	flex-direction: column;
 	position: relative;
-	.title {
-		max-width: 500px;
-		margin-bottom: 80px;
-	}
+
 	.links {
 		display: flex;
 		justify-content: space-between;

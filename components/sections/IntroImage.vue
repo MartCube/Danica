@@ -1,7 +1,7 @@
 <template>
-	<div class="intro_image">
+	<section class="intro_image">
 		<ImageItem :src="image.url" :alt="image.alt" />
-	</div>
+	</section>
 </template>
 
 <script>
@@ -17,13 +17,13 @@ export default {
 
 <style lang="scss" scoped>
 .intro_image {
-	margin-bottom: 80px;
+	margin-left: 0;
 	width: 100%;
 	height: 100vh;
+
 	display: flex;
 	align-items: center;
 	justify-content: center;
-
 	position: relative;
 	img {
 		position: absolute;

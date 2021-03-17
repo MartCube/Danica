@@ -1,12 +1,12 @@
 <template>
-	<div class="advantages">
+	<section class="advantages">
 		<h2 class="title">{{ title }}</h2>
 		<div class="list">
 			<div v-for="(item, i) in data.items" :key="i" class="stage">
 				<p>{{ $prismic.asText(item.advantage) }}</p>
 			</div>
 		</div>
-	</div>
+	</section>
 </template>
 
 <script>
@@ -29,21 +29,14 @@ export default {
 $transition: all 0.35s ease;
 
 .advantages {
-	margin-bottom: 80px;
-	margin-left: 240px;
-
 	display: flex;
 	flex-direction: column;
 	position: relative;
-	.title {
-		max-width: 500px;
-		margin-bottom: 80px;
-	}
+
 	.list {
 		display: flex;
 		flex-direction: column;
 		p {
-			font-size: 1.2rem;
 			margin-bottom: 16px;
 			display: flex;
 			align-items: center;

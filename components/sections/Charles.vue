@@ -1,5 +1,5 @@
 <template>
-	<div class="charles">
+	<section class="charles">
 		<div class="title">
 			<h2><span>the details</span> are not the the details</h2>
 			<h2>they make <span>the design</span>.</h2>
@@ -10,7 +10,7 @@
 			<ImageItem :src="data.charles_top.url" class="top" alt="charles eames" />
 			<ImageItem :src="data.charles_bottom.url" class="bottom" alt="charles eames" />
 		</div>
-	</div>
+	</section>
 </template>
 
 <script>
@@ -27,11 +27,9 @@ export default {
 
 <style lang="scss" scoped>
 .charles {
-	margin-top: 80px;
-	margin-left: 240px;
-
 	display: flex;
 	.title {
+		max-width: 100%;
 		display: flex;
 		flex-direction: column;
 		user-select: none;

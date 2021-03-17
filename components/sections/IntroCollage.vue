@@ -1,43 +1,39 @@
 <template>
-	<div class="intro">
-		<template v-if="!$fetchState.pending">
-			<div class="text">
-				<div>
-					<span v-for="(letter, i) in lettersWeAre" :key="i" ref="lettersWeAre">{{ letter }}</span>
-				</div>
-				<div>
-					<span v-for="(letter, i) in lettersLeadersIn" :key="i" ref="lettersLeadersIn">{{ letter }}</span>
-				</div>
-				<div class="textSlider">
-					<span v-for="(letter, i) in lettersDesign" :key="i" ref="lettersDesign">{{ letter }}</span>
-					<IconArrow size="50px" />
-				</div>
-				<ButtonItem> write us </ButtonItem>
+	<section class="intro">
+		<div class="text">
+			<div>
+				<span v-for="(letter, i) in lettersWeAre" :key="i" ref="lettersWeAre">{{ letter }}</span>
 			</div>
+			<div>
+				<span v-for="(letter, i) in lettersLeadersIn" :key="i" ref="lettersLeadersIn">{{ letter }}</span>
+			</div>
+			<div class="textSlider">
+				<span v-for="(letter, i) in lettersDesign" :key="i" ref="lettersDesign">{{ letter }}</span>
+			</div>
+			<ButtonItem> write us </ButtonItem>
+		</div>
 
-			<div class="collage">
-				<img ref="collage1" class="first" :src="first_imgIX" alt="danica" @load="Animate" />
-				<img ref="collage2" class="second" :src="second_imgIX" alt="danica" @load="Animate" />
-				<img ref="collage3" class="third" :src="third_imgIX" alt="danica" @load="Animate" />
-			</div>
-		</template>
-	</div>
+		<div class="collage">
+			<img ref="collage1" class="first" :src="first_imgIX" alt="danica" @load="Animate" />
+			<img ref="collage2" class="second" :src="second_imgIX" alt="danica" @load="Animate" />
+			<img ref="collage3" class="third" :src="third_imgIX" alt="danica" @load="Animate" />
+		</div>
+	</section>
 </template>
 
 <script>
 import { introAnim } from '~/assets/anime'
 
 export default {
+	props: {
+		data: {
+			type: Array,
+			required: true,
+		},
+	},
 	data: () => ({
-		data: null,
 		imagesLoaded: 0,
 	}),
-	async fetch() {
-		const intro = await this.$prismic.api.getSingle('intro')
-		this.data = {
-			intro_collage: intro.data.intro_collage,
-		}
-	},
 	computed: {
 		lettersWeAre() {
 			return 'We Are'.split('')
@@ -49,13 +45,13 @@ export default {
 			return 'Design'.split('')
 		},
 		first_imgIX() {
-			return this.data.intro_collage[0].image.url + `&fit=crop&w=300&h=300&dpr=1`
+			return this.data[0].intro_image.url + `&fit=crop&w=300&h=300&dpr=1`
 		},
 		second_imgIX() {
-			return this.data.intro_collage[1].image.url + `&fit=crop&w=600&h=600&dpr=1`
+			return this.data[1].intro_image.url + `&fit=crop&w=600&h=600&dpr=1`
 		},
 		third_imgIX() {
-			return this.data.intro_collage[2].image.url + `&fit=crop&w=400&h=400&dpr=1`
+			return this.data[2].intro_image.url + `&fit=crop&w=400&h=400&dpr=1`
 		},
 	},
 	methods: {
@@ -71,12 +67,10 @@ export default {
 
 <style lang="scss" scoped>
 .intro {
-	margin-left: 240px;
-	overflow: hidden;
-
 	height: calc(100vh - 80px);
 	display: flex;
 	justify-content: space-between;
+	overflow: hidden;
 
 	.text {
 		width: min-content;
@@ -104,12 +98,6 @@ export default {
 			cursor: pointer;
 			position: relative;
 
-			svg {
-				margin: 0 1rem;
-				opacity: 0;
-				transition: all 0.35s ease;
-				transform: translateX(-20px);
-			}
 			&::after {
 				content: '';
 				position: absolute;
@@ -123,10 +111,6 @@ export default {
 			&:hover {
 				&::after {
 					width: 100%;
-				}
-				svg {
-					opacity: 1;
-					transform: translateX(0);
 				}
 			}
 			span {

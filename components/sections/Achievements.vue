@@ -16,7 +16,7 @@
 				<h4>architecture projects</h4>
 			</div>
 		</div>
-		<ImageItem :src="image" alt="achievements" />
+		<img class="lazyload" :src="image" alt="achievements" />
 	</section>
 </template>
 
@@ -82,7 +82,18 @@ export default {
 		top: 0;
 		right: 0;
 		z-index: -1;
-		opacity: 0.1;
+		&::before {
+			display: none;
+		}
+
+		&.lazyload,
+		&.lazyloading {
+			opacity: 0;
+		}
+		&.lazyloaded {
+			opacity: 0.1;
+			transition: all 2s cubic-bezier(0.215, 0.61, 0.355, 1);
+		}
 	}
 }
 </style>

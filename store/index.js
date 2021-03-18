@@ -1,7 +1,6 @@
 export const state = () => ({
 	blogPosts: null,
 	projects: null,
-	filter: null,
 	navbarTransparent: false,
 })
 
@@ -9,7 +8,6 @@ export const state = () => ({
 export const getters = {
 	blogPosts: (state) => state.blogPosts,
 	projects: (state) => state.projects,
-	filter: (state) => state.filter,
 	navbarTransparent: (state) => state.navbarTransparent,
 }
 
@@ -21,9 +19,7 @@ export const mutations = {
 	setProjects(state, value) {
 		state.projects = value
 	},
-	setFilter(state, value) {
-		state.filter = value
-	},
+
 	setNavbarTransparent(state, value) {
 		state.navbarTransparent = value
 	},
@@ -36,9 +32,6 @@ export const actions = {
 	},
 	bindProjects(context, value) {
 		context.commit('setProjects', value)
-	},
-	bindFilter(context, value) {
-		context.commit('setFilter', value)
 	},
 	bindNavbarTransparent(context, value) {
 		context.commit('setNavbarTransparent', value)

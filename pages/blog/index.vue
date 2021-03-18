@@ -5,11 +5,13 @@
 		<div class="blog">
 			<div class="filter">
 				<span :class="{ active: active_filter[0] == null }" @click="filterUpdate('all')"> all </span>
-				<span v-for="filter in filters" :key="filter" :class="{ active: active_filter[0] == filter }" @click="filterUpdate(filter)">{{ filter }}</span>
+				<span v-for="(filter, i) in filters" :key="i" :class="{ active: active_filter[0] == filter }" @click="filterUpdate(filter)">
+					{{ filter }}
+				</span>
 			</div>
 
 			<template v-if="$fetchState.error">error</template>
-			<!-- <template v-else-if="$fetchState.pending">loading</template> -->
+			<template v-else-if="$fetchState.pending">loading</template>
 			<template v-else>
 				<div ref="grid" class="grid">
 					<BlogCard v-for="(post, i) in blogPosts" :key="'post' + i" :class="{ first: i == 0 }" :data="post" />
@@ -35,7 +37,10 @@ import { postAnim } from '~/assets/anime'
 
 export default {
 	data: () => ({
+		// filters
+		filters: [],
 		active_filter: [],
+
 		// pagination
 		current_page: 1,
 		page_size: 6,
@@ -44,6 +49,11 @@ export default {
 		next_page: null,
 	}),
 	async fetch() {
+		if (this.filters.length === 0) {
+			const fetch = await this.$prismic.api.getSingle('blog')
+			this.filterAsText(fetch.data.filters)
+		}
+
 		const blogPosts = await this.$prismic.api.query([this.$prismic.predicates.at('document.type', 'blog_post'), this.$prismic.predicates.at('document.tags', this.active_filter)], {
 			orderings: '[document.last_publication_date desc]',
 			pageSize: this.page_size,
@@ -51,7 +61,6 @@ export default {
 		})
 
 		this.$store.dispatch('bindBlogPosts', blogPosts.results)
-		if (!this.filters) this.$store.dispatch('bindFilter', await this.$prismic.api.tags)
 
 		this.total_pages = blogPosts.total_pages
 		this.prev_page = blogPosts.prev_page
@@ -61,9 +70,6 @@ export default {
 		blogPosts() {
 			return this.$store.getters.blogPosts
 		},
-		filters() {
-			return this.$store.getters.filter
-		},
 	},
 	watch: {
 		async blogPosts(newValue, oldValue) {
@@ -72,6 +78,12 @@ export default {
 		},
 	},
 	methods: {
+		// filters
+		filterAsText(array) {
+			array.forEach((filter) => {
+				this.filters.push(this.$prismic.asText(filter.filter_name))
+			})
+		},
 		filterUpdate(filter) {
 			this.active_filter = [filter]
 			if (filter === 'all') this.active_filter = []
@@ -82,6 +94,8 @@ export default {
 
 			this.$fetch()
 		},
+
+		// pagination
 		fetchNext() {
 			if (this.next_page) {
 				this.current_page++

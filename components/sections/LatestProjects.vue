@@ -1,11 +1,16 @@
 <template>
-	<section class="latest_projects">
+	<section>
 		<template v-if="!$fetchState.pending">
-			<h2 class="title">Latest projects</h2>
-			<div ref="grid" class="grid">
-				<ProjectCard v-for="(project, i) in projects" :key="i" :data="project" />
+			<div class="name">
+				<span>projects</span>
 			</div>
-			<ButtonItem> all projects </ButtonItem>
+			<div class="content">
+				<h2 class="title">Latest projects</h2>
+				<div ref="grid" class="grid">
+					<ProjectCard v-for="(project, i) in projects" :key="i" :data="project" />
+				</div>
+				<ButtonItem> all projects </ButtonItem>
+			</div>
 		</template>
 	</section>
 </template>
@@ -29,10 +34,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.latest_projects {
+.content {
 	display: flex;
 	flex-direction: column;
-
 	.grid {
 		width: 1000px;
 		display: flex;

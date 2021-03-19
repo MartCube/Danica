@@ -1,10 +1,15 @@
 <template>
-	<section class="values">
-		<div class="text">
-			<h2 class="title">{{ $prismic.asText(data.title) }}</h2>
-			<p class="description">{{ $prismic.asText(data.description) }}</p>
+	<section>
+		<div class="name">
+			<span>values</span>
 		</div>
-		<VideoItem />
+		<div class="content">
+			<div class="text">
+				<h2 class="title">{{ $prismic.asText(data.title) }}</h2>
+				<p class="description">{{ $prismic.asText(data.description) }}</p>
+			</div>
+			<VideoItem />
+		</div>
 	</section>
 </template>
 
@@ -21,9 +26,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-$transition: all 0.35s ease;
-
-.values {
+.content {
 	display: flex;
 	justify-content: space-between;
 	.text {

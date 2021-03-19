@@ -52,17 +52,39 @@ body {
 
 section{
 	margin-bottom: 80px;
-	margin-left: 240px;
+	display: flex;
+	.name {
+		width: 240px;
+		margin-top: 10px;
+		padding-right: 40px;
+		display: flex;
+
+		text-transform: capitalize;
+		color: $grey;
+
+		&::before {
+			content: '';
+			width: 100%;
+			height: 1px;
+			margin-top: 10px;
+			margin-right: 10px;
+			background: $primary;
+		}
+	}
+	.content{
+		flex-grow: 1;
+		.title {
+			max-width: 600px;
+			margin-bottom: 80px;
+		}	
+	}
+
+
 	h2{
 		font-size: 2rem;
 	}
 	h3{
 		font-size: 1.5rem;
-	}
-
-	.title {
-		max-width: 600px;
-		margin-bottom: 80px;
 	}
 }
 

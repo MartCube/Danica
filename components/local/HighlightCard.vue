@@ -2,7 +2,7 @@
 	<n-link v-if="first" :to="link" class="highlight_card first">
 		<ImageItem :src="image + first_imgIX" :alt="title" />
 		<div class="text">
-			<h2>{{ title }}</h2>
+			<h3>{{ title }}</h3>
 			<!-- Slice Machine -->
 			<div v-for="(slice, i) in data.data.body" :key="i" class="text_slice">
 				<p v-if="slice.slice_type == 'text'">{{ $prismic.asText(slice.primary.text) }}</p>
@@ -10,11 +10,11 @@
 		</div>
 		<div class="info">
 			<div class="service">
-				<h2>{{ service }}</h2>
+				<h3>{{ service }}</h3>
 				<p>service</p>
 			</div>
 			<div class="square">
-				<h2>{{ square }}&#13217;</h2>
+				<h3>{{ square }}&#13217;</h3>
 				<p>square</p>
 			</div>
 			<div class="link1">
@@ -28,7 +28,7 @@
 			<IconChevron size="25px" />
 		</div>
 		<div class="title">
-			<h2>{{ title }}</h2>
+			<h3>{{ title }}</h3>
 		</div>
 	</n-link>
 </template>
@@ -89,6 +89,7 @@ $transition: all 0.35s ease;
 		flex-direction: row;
 
 		position: relative;
+
 		.info {
 			position: absolute;
 			bottom: -60px;
@@ -103,7 +104,7 @@ $transition: all 0.35s ease;
 			.service,
 			.square {
 				margin-right: 40px;
-				h2 {
+				h3 {
 					margin-bottom: 20px;
 					text-transform: capitalize;
 					border-bottom: 2px solid $primary;
@@ -127,7 +128,7 @@ $transition: all 0.35s ease;
 			display: flex;
 			flex-direction: column;
 
-			h2 {
+			h3 {
 				margin-bottom: 40px;
 				text-transform: capitalize;
 			}
@@ -151,6 +152,7 @@ $transition: all 0.35s ease;
 		padding: 25px;
 		background: rgba(0, 0, 0, 0.5);
 		background: $primary;
+		font-size: 1.5rem;
 	}
 	.link {
 		z-index: 2;

@@ -1,22 +1,27 @@
 <template>
 	<section class="achievements">
-		<h2 class="title">{{ title }}</h2>
-		<div class="text">
-			<p>{{ description }}</p>
-			<div class="counter">
-				<span class="number">{{ data.years_on_market }}</span>
-				<h4>years on the market</h4>
-			</div>
-			<div class="counter">
-				<span class="number">{{ data.houses_build }}</span>
-				<h4>houses build</h4>
-			</div>
-			<div class="counter">
-				<span class="number">{{ data.projects }}</span>
-				<h4>architecture projects</h4>
-			</div>
+		<div class="name">
+			<span>achievements</span>
 		</div>
-		<img class="lazyload" :src="image" alt="achievements" />
+		<div class="content">
+			<h2 class="title">{{ title }}</h2>
+			<div class="text">
+				<p>{{ description }}</p>
+				<div class="counter">
+					<span class="number">{{ data.years_on_market }}</span>
+					<h4>years on the market</h4>
+				</div>
+				<div class="counter">
+					<span class="number">{{ data.houses_build }}</span>
+					<h4>houses build</h4>
+				</div>
+				<div class="counter">
+					<span class="number">{{ data.projects }}</span>
+					<h4>architecture projects</h4>
+				</div>
+			</div>
+			<img class="lazyload" :src="image" alt="achievements" />
+		</div>
 	</section>
 </template>
 
@@ -43,7 +48,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.achievements {
+.content {
 	height: 500px;
 	display: flex;
 	flex-direction: column;

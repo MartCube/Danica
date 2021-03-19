@@ -67,6 +67,7 @@ export default {
 
 <style lang="scss" scoped>
 .intro {
+	margin-left: 240px;
 	height: calc(100vh - 80px);
 	display: flex;
 	justify-content: space-between;

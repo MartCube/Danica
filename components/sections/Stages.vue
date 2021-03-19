@@ -1,12 +1,17 @@
 <template>
-	<section class="stages">
-		<h2 class="title">{{ title }}</h2>
-		<div class="list">
-			<div v-for="(stage, i) in data.items" :key="i">
-				<h2 class="number">0{{ i + 1 }}</h2>
-				<div class="stage">
-					<h3>{{ $prismic.asText(stage.stage_title) }}</h3>
-					<p>{{ $prismic.asText(stage.stage_description) }}</p>
+	<section>
+		<div class="name">
+			<span>stages</span>
+		</div>
+		<div class="content">
+			<h2 class="title">{{ title }}</h2>
+			<div class="list">
+				<div v-for="(stage, i) in data.items" :key="i">
+					<h2 class="number">0{{ i + 1 }}</h2>
+					<div class="stage">
+						<h3>{{ $prismic.asText(stage.stage_title) }}</h3>
+						<p>{{ $prismic.asText(stage.stage_description) }}</p>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -30,9 +35,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-$transition: all 0.35s ease;
-
-.stages {
+.content {
 	display: flex;
 	flex-direction: column;
 

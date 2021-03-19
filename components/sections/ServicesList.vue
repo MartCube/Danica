@@ -1,13 +1,18 @@
 <template>
-	<section class="services">
-		<h2 class="title">{{ title }}</h2>
-		<div class="links">
-			<div v-for="(link, i) in links" :key="i" class="link">
-				<n-link to="/">
-					<span>0{{ i + 1 }}/</span>
-					{{ link }}
-					<IconArrow />
-				</n-link>
+	<section>
+		<div class="name">
+			<span>services</span>
+		</div>
+		<div class="content">
+			<h2 class="title">{{ title }}</h2>
+			<div class="links">
+				<div v-for="(link, i) in links" :key="i" class="link">
+					<n-link to="/">
+						<span>0{{ i + 1 }}/</span>
+						{{ link }}
+						<IconArrow />
+					</n-link>
+				</div>
 			</div>
 		</div>
 	</section>
@@ -35,12 +40,12 @@ export default {
 <style lang="scss" scoped>
 $transition: all 0.35s ease;
 
-.services {
+.content {
 	display: flex;
 	flex-direction: column;
-	position: relative;
 
 	.links {
+		width: 1000px;
 		display: flex;
 		justify-content: space-between;
 		flex-wrap: wrap;

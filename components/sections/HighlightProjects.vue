@@ -1,12 +1,17 @@
 <template>
-	<div class="highlight_projects">
+	<section>
 		<template v-if="!$fetchState.pending">
-			<h2 class="title">We offer more than a service</h2>
-			<div ref="grid" class="grid">
-				<HighlightCard v-for="(project, i) in projects" :key="'post' + i" :first="i == 0" :data="project" />
+			<div class="name">
+				<span>projects</span>
+			</div>
+			<div class="content">
+				<h2 class="title">We offer more than a service</h2>
+				<div ref="grid" class="grid">
+					<HighlightCard v-for="(project, i) in projects" :key="'post' + i" :first="i == 0" :data="project" />
+				</div>
 			</div>
 		</template>
-	</div>
+	</section>
 </template>
 
 <script>
@@ -28,17 +33,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.highlight_projects {
-	margin-left: 240px;
-	margin-top: 80px;
-
+.content {
 	display: flex;
 	flex-direction: column;
 
-	.title {
-		max-width: 500px;
-		margin-bottom: 80px;
-	}
 	.grid {
 		width: 1000px;
 		display: flex;

@@ -1,14 +1,16 @@
 <template>
-	<section class="charles">
-		<div class="title">
-			<h2><span>the details</span> are not the the details</h2>
-			<h2>they make <span>the design</span>.</h2>
-			<h4>- charles eames</h4>
-			<ButtonItem :animated="false">Write us </ButtonItem>
-		</div>
-		<div class="collage">
-			<ImageItem :src="data.charles_top.url" class="top" alt="charles eames" />
-			<ImageItem :src="data.charles_bottom.url" class="bottom" alt="charles eames" />
+	<section>
+		<div class="content">
+			<div class="title">
+				<h2><span>the details</span> are not the the details</h2>
+				<h2>they make <span>the design</span>.</h2>
+				<h4>- charles eames</h4>
+				<ButtonItem :animated="false">Write us </ButtonItem>
+			</div>
+			<div class="collage">
+				<ImageItem :src="data.charles_top.url" class="top" alt="charles eames" />
+				<ImageItem :src="data.charles_bottom.url" class="bottom" alt="charles eames" />
+			</div>
 		</div>
 	</section>
 </template>
@@ -26,7 +28,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.charles {
+.content {
+	margin-left: 240px;
+
 	display: flex;
 	.title {
 		max-width: 100%;

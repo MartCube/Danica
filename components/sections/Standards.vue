@@ -1,12 +1,17 @@
 <template>
-	<section class="standards">
-		<h2 class="title">Standards</h2>
-		<div class="list">
-			<div v-for="(standard, i) in data" :key="i">
-				<ImageItem :src="standard.standard_image.url" :alt="$prismic.asText(standard.standard_title)" />
-				<div class="standard">
-					<h3>{{ $prismic.asText(standard.standard_title) }}</h3>
-					<p>{{ $prismic.asText(standard.standard_description) }}</p>
+	<section>
+		<div class="name">
+			<span>standards</span>
+		</div>
+		<div class="content">
+			<h2 class="title">Standards</h2>
+			<div class="list">
+				<div v-for="(standard, i) in data" :key="i">
+					<ImageItem :src="standard.standard_image.url" :alt="$prismic.asText(standard.standard_title)" />
+					<div class="standard">
+						<h3>{{ $prismic.asText(standard.standard_title) }}</h3>
+						<p>{{ $prismic.asText(standard.standard_description) }}</p>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -37,7 +42,7 @@ export default {
 <style lang="scss" scoped>
 $transition: all 0.35s ease;
 
-.standards {
+.content {
 	display: flex;
 	flex-direction: column;
 

@@ -42,7 +42,7 @@ export function buttonAnim(button, overlay) {
 	})
 }
 
-export function introAnim(lettersWeAre, lettersLeadersIn, lettersDesign, collage1, collage2, collage3) {
+export function introAnim(lettersWeAre, lettersLeadersIn, collage1, collage2, collage3) {
 	const StartUpTimeline = anime.timeline({
 		autoplay: true,
 	})
@@ -114,17 +114,5 @@ export function introAnim(lettersWeAre, lettersLeadersIn, lettersDesign, collage
 				duration: collageDuration,
 			},
 			1000,
-		)
-		.add(
-			{
-				targets: lettersDesign,
-				opacity: [0, 1],
-				rotateY: [-90, 0],
-
-				delay: anime.stagger(50, { from: 'first' }),
-				easing: 'easeOutExpo',
-				duration: 2000,
-			},
-			1600,
 		)
 }

@@ -1,15 +1,13 @@
 <template>
 	<section class="intro">
 		<div class="text">
-			<div>
+			<div class="title">
 				<span v-for="(letter, i) in lettersWeAre" :key="i" ref="lettersWeAre">{{ letter }}</span>
 			</div>
-			<div>
+			<div class="title">
 				<span v-for="(letter, i) in lettersLeadersIn" :key="i" ref="lettersLeadersIn">{{ letter }}</span>
 			</div>
-			<div class="textSlider">
-				<span v-for="(letter, i) in lettersDesign" :key="i" ref="lettersDesign">{{ letter }}</span>
-			</div>
+			<TextSlider />
 			<ButtonItem> write us </ButtonItem>
 		</div>
 
@@ -41,9 +39,6 @@ export default {
 		lettersLeadersIn() {
 			return 'Leaders In'.split('')
 		},
-		lettersDesign() {
-			return 'Design'.split('')
-		},
 		first_imgIX() {
 			return this.data[0].intro_image.url + `&fit=crop&w=300&h=300&dpr=1`
 		},
@@ -58,7 +53,7 @@ export default {
 		Animate() {
 			this.imagesLoaded++
 			if (this.imagesLoaded === 3) {
-				introAnim(this.$refs.lettersWeAre, this.$refs.lettersLeadersIn, this.$refs.lettersDesign, this.$refs.collage1, this.$refs.collage2, this.$refs.collage3)
+				introAnim(this.$refs.lettersWeAre, this.$refs.lettersLeadersIn, this.$refs.collage1, this.$refs.collage2, this.$refs.collage3)
 			}
 		},
 	},
@@ -69,18 +64,25 @@ export default {
 .intro {
 	margin-left: 240px;
 	height: calc(100vh - 80px);
+
 	display: flex;
-	justify-content: space-between;
+	justify-content: flex-end;
+
+	position: relative;
 	overflow: hidden;
 
 	.text {
 		width: min-content;
 		padding-top: 40px;
 
+		position: absolute;
+		top: 0;
+		left: 0;
+
 		display: flex;
 		flex-direction: column;
 
-		& > * {
+		.title {
 			width: max-content;
 			display: flex;
 			align-items: center;
@@ -94,34 +96,12 @@ export default {
 				font-size: 4rem;
 			}
 		}
-		.textSlider {
-			margin-top: 2rem;
-			cursor: pointer;
-			position: relative;
 
-			&::after {
-				content: '';
-				position: absolute;
-				width: 0;
-				height: 100%;
-				left: 0;
-				background: $primary;
-				z-index: -1;
-				transition: all 0.35s ease;
-			}
-			&:hover {
-				&::after {
-					width: 100%;
-				}
-			}
-			span {
-				font-weight: 700;
-			}
-		}
 		button {
 			margin: 2rem 0;
 		}
 	}
+
 	.collage {
 		width: 900px;
 		position: relative;

@@ -4,7 +4,7 @@
 
 		<div class="services">
 			<n-link to="/services/design">interior design</n-link>
-			<n-link to="/services/architecture">architecture</n-link>
+			<n-link ref="test" to="/services/architecture">architecture</n-link>
 		</div>
 	</div>
 </template>
@@ -19,5 +19,9 @@ export default {
 .services {
 	margin-top: 80px;
 	margin-left: 240px;
+
+	width: 500px;
+	display: flex;
+	justify-content: space-between;
 }
 </style>

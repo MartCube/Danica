@@ -10,24 +10,23 @@
 				</span>
 			</div>
 
-			<template v-if="$fetchState.error">error</template>
-			<template v-else-if="$fetchState.pending">loading</template>
-			<template v-else>
+			<template v-if="$fetchState.error">error component</template>
+			<template v-else-if="!$fetchState.pending">
 				<div ref="grid" class="grid">
 					<BlogCard v-for="(post, i) in blogPosts" :key="'post' + i" :class="{ first: i == 0 }" :data="post" />
 				</div>
-			</template>
 
-			<div class="pagination">
-				<IconDouble left :class="{ disable: !prev_page }" @click.native="fetchFirst" />
-				<IconChevron left :class="{ disable: !prev_page }" @click.native="fetchBack" />
-				<div class="pages">
-					<span v-for="i in total_pages" :key="i" :class="{ active: i == current_page }" class="page" @click="fetchPage(i)">{{ i }}</span>
-					<!-- <IconDots /> -->
+				<div class="pagination">
+					<IconDouble left :class="{ disable: !prev_page }" @click.native="fetchFirst" />
+					<IconChevron left :class="{ disable: !prev_page }" @click.native="fetchBack" />
+					<div class="pages">
+						<span v-for="i in total_pages" :key="i" :class="{ active: i == current_page }" class="page" @click="fetchPage(i)">{{ i }}</span>
+						<!-- <IconDots /> -->
+					</div>
+					<IconChevron :class="{ disable: !next_page }" @click.native="fetchNext" />
+					<IconDouble :class="{ disable: !next_page }" @click.native="fetchLast" />
 				</div>
-				<IconChevron :class="{ disable: !next_page }" @click.native="fetchNext" />
-				<IconDouble :class="{ disable: !next_page }" @click.native="fetchLast" />
-			</div>
+			</template>
 		</div>
 	</div>
 </template>
@@ -38,7 +37,7 @@ import { postAnim } from '~/assets/anime'
 export default {
 	data: () => ({
 		// filters
-		filters: [],
+		filters: ['design', 'architecture', 'energy save', 'remont'],
 		active_filter: [],
 
 		// pagination
@@ -49,11 +48,6 @@ export default {
 		next_page: null,
 	}),
 	async fetch() {
-		if (this.filters.length === 0) {
-			const fetch = await this.$prismic.api.getSingle('blog')
-			this.filterAsText(fetch.data.filters)
-		}
-
 		const blogPosts = await this.$prismic.api.query([this.$prismic.predicates.at('document.type', 'blog_post'), this.$prismic.predicates.at('document.tags', this.active_filter)], {
 			orderings: '[document.last_publication_date desc]',
 			pageSize: this.page_size,
@@ -61,7 +55,6 @@ export default {
 		})
 
 		this.$store.dispatch('bindBlogPosts', blogPosts.results)
-
 		this.total_pages = blogPosts.total_pages
 		this.prev_page = blogPosts.prev_page
 		this.next_page = blogPosts.next_page
@@ -79,11 +72,7 @@ export default {
 	},
 	methods: {
 		// filters
-		filterAsText(array) {
-			array.forEach((filter) => {
-				this.filters.push(this.$prismic.asText(filter.filter_name))
-			})
-		},
+
 		filterUpdate(filter) {
 			this.active_filter = [filter]
 			if (filter === 'all') this.active_filter = []
@@ -167,7 +156,6 @@ export default {
 	.grid {
 		width: calc(100% - 320px);
 		height: 100%;
-		min-height: 500px;
 
 		display: grid;
 		grid-template-columns: repeat(4, 1fr);

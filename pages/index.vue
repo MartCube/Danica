@@ -4,7 +4,7 @@
 			<IntroCollage :data="introCollage" />
 			<Achievements :data="achievements" />
 			<ServicesList :data="serviceList" />
-			<HighlightProjects />
+			<HighlightProjects :data="HighlightProjects" />
 		</template>
 	</div>
 </template>
@@ -13,9 +13,11 @@
 export default {
 	name: 'Index',
 	data: () => ({
+		// components data
 		introCollage: null,
 		achievements: null,
 		serviceList: null,
+		HighlightProjects: null,
 	}),
 	async fetch() {
 		const fetch = await this.$prismic.api.getSingle('home_index')
@@ -23,6 +25,7 @@ export default {
 		this.introCollage = fetch.data.intro_collage
 		this.achievements = fetch.data.achievements[0]
 		this.serviceList = fetch.data.services_list[0]
+		this.HighlightProjects = fetch.data.highlight_projects[0]
 	},
 }
 </script>

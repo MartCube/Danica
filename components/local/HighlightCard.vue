@@ -22,7 +22,7 @@
 			</div>
 		</div>
 	</n-link>
-	<n-link v-else :to="link" class="highlight_card">
+	<n-link v-else :to="link" class="highlight_card" :class="{ last: last }">
 		<ImageItem :src="image + Thumbnail_imgIX" :alt="title" />
 		<div class="link">
 			<IconChevron size="25px" />
@@ -41,6 +41,10 @@ export default {
 			required: true,
 		},
 		first: {
+			type: Boolean,
+			default: false,
+		},
+		last: {
 			type: Boolean,
 			default: false,
 		},
@@ -75,16 +79,22 @@ export default {
 $transition: all 0.35s ease;
 
 .highlight_card {
+	width: 400px;
+	height: 500px;
 	margin-bottom: 80px;
-	cursor: pointer;
+	margin-right: 80px;
 
 	display: flex;
 	flex-direction: column;
 	position: relative;
 
+	cursor: pointer;
+
 	&.first {
-		margin-bottom: 160px;
-		width: 100%;
+		width: 1120px;
+		height: 560px;
+		margin-right: 0;
+
 		display: flex;
 		flex-direction: row;
 
@@ -92,7 +102,7 @@ $transition: all 0.35s ease;
 
 		.info {
 			position: absolute;
-			bottom: -60px;
+			bottom: 0;
 			left: 150px;
 			padding-left: 40px;
 			height: 120px;
@@ -104,8 +114,12 @@ $transition: all 0.35s ease;
 			.service,
 			.square {
 				margin-right: 40px;
+				height: 100%;
+				display: flex;
+				flex-direction: column;
 				h3 {
 					margin-bottom: 20px;
+					line-height: 60px;
 					text-transform: capitalize;
 					border-bottom: 2px solid $primary;
 				}
@@ -143,6 +157,10 @@ $transition: all 0.35s ease;
 			width: 600px;
 			height: 500px;
 		}
+	}
+	&.last {
+		width: 600px;
+		margin-right: 0;
 	}
 
 	.title {

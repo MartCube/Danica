@@ -8,7 +8,7 @@
 				<span v-for="(letter, i) in lettersLeadersIn" :key="i" ref="lettersLeadersIn">{{ letter }}</span>
 			</div>
 			<TextSlider />
-			<ButtonItem> write us </ButtonItem>
+			<ButtonItem @click.native="openModal"> write us </ButtonItem>
 		</div>
 
 		<div class="collage">
@@ -43,13 +43,16 @@ export default {
 			return this.data[0].intro_image.url + `&fit=crop&w=300&h=300&dpr=1`
 		},
 		second_imgIX() {
-			return this.data[1].intro_image.url + `&fit=crop&w=600&h=600&dpr=1`
+			return this.data[1].intro_image.url + `&fit=crop&w=500&h=500&dpr=1`
 		},
 		third_imgIX() {
 			return this.data[2].intro_image.url + `&fit=crop&w=400&h=400&dpr=1`
 		},
 	},
 	methods: {
+		openModal() {
+			this.$store.dispatch('bindModalContact', true)
+		},
 		Animate() {
 			this.imagesLoaded++
 			if (this.imagesLoaded === 3) {
@@ -103,7 +106,7 @@ export default {
 	}
 
 	.collage {
-		width: 900px;
+		width: 800px;
 		position: relative;
 		img {
 			border: 0 solid transparent; // border: 10px solid white
@@ -117,8 +120,8 @@ export default {
 		}
 		.second {
 			z-index: 2;
-			bottom: 0;
-			left: 150px;
+			bottom: 50px;
+			right: 150px;
 		}
 		.third {
 			z-index: 1;

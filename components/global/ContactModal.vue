@@ -19,7 +19,7 @@ export default {
 	},
 	methods: {
 		closeModal() {
-			this.$emit('closeModal')
+			this.$store.dispatch('bindModalContact', false)
 		},
 	},
 }

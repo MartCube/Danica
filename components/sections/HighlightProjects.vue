@@ -5,9 +5,10 @@
 				<span>projects</span>
 			</div>
 			<div class="content">
-				<h2 class="title">We offer more than a service</h2>
+				<h2 class="title">{{ title }}</h2>
+
 				<div ref="grid" class="grid">
-					<HighlightCard v-for="(project, i) in projects" :key="'post' + i" :first="i == 0" :data="project" />
+					<HighlightCard v-for="(project, i) in projects" :key="'post' + i" :first="i == 0" :last="i + 1 == projects.length" :data="project" />
 				</div>
 			</div>
 		</template>
@@ -16,31 +17,46 @@
 
 <script>
 export default {
+	props: {
+		data: {
+			type: Object,
+			required: true,
+		},
+	},
 	data: () => ({
 		page_size: 5,
-		projects: null,
+		projects: [],
 	}),
 	async fetch() {
 		const projects = await this.$prismic.api.query([this.$prismic.predicates.at('document.type', 'project_post'), this.$prismic.predicates.at('document.tags', ['highlight'])], {
-			// orderings: '[document.first_publication_date desc]',
+			orderings: '[document.first_publication_date desc]',
 			pageSize: this.page_size,
 		})
 		this.projects = projects.results
 	},
-	computed: {},
+	computed: {
+		firstProject() {
+			return this.projects[0]
+		},
+		title() {
+			return this.$prismic.asText(this.data.highlight_projects_title)
+		},
+	},
 	methods: {},
 }
 </script>
 
 <style lang="scss" scoped>
+section {
+	margin: 0;
+}
 .content {
 	display: flex;
 	flex-direction: column;
 
 	.grid {
-		width: 1000px;
+		width: 1120px;
 		display: flex;
-		justify-content: space-between;
 		flex-wrap: wrap;
 	}
 }

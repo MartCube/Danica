@@ -2,6 +2,7 @@ export const state = () => ({
 	blogPosts: null,
 	projects: null,
 	navbarTransparent: false,
+	modalContact: false,
 })
 
 // Functions that return back data contained in the state.
@@ -9,6 +10,7 @@ export const getters = {
 	blogPosts: (state) => state.blogPosts,
 	projects: (state) => state.projects,
 	navbarTransparent: (state) => state.navbarTransparent,
+	modalContact: (state) => state.modalContact,
 }
 
 // Functions that directly mutate the state.
@@ -19,9 +21,11 @@ export const mutations = {
 	setProjects(state, value) {
 		state.projects = value
 	},
-
 	setNavbarTransparent(state, value) {
 		state.navbarTransparent = value
+	},
+	setModalContact(state, value) {
+		state.modalContact = value
 	},
 }
 
@@ -35,5 +39,8 @@ export const actions = {
 	},
 	bindNavbarTransparent(context, value) {
 		context.commit('setNavbarTransparent', value)
+	},
+	bindModalContact(context, value) {
+		context.commit('setModalContact', value)
 	},
 }

@@ -36,7 +36,6 @@ export default {
 		}
 		.contact_form {
 			padding: 50px 0;
-
 			padding-left: 240px;
 			padding-right: 100px;
 			color: $white;
@@ -75,5 +74,8 @@ export default {
 }
 .title {
 	color: $white;
+	&::selection {
+		color: $black;
+	}
 }
 </style>

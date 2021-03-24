@@ -27,7 +27,7 @@ export default {
 		},
 	},
 	mounted() {
-		this.Animate()
+		setTimeout(() => this.Animate(), 2000)
 	},
 	methods: {
 		async Animate() {
@@ -37,7 +37,7 @@ export default {
 				autoplay: true,
 			})
 			const el = document.querySelectorAll('.text_slider span')
-			const duration = 1200
+			const duration = 1000
 
 			StartUpTimeline.add({
 				targets: el,
@@ -50,7 +50,7 @@ export default {
 			})
 				.add({
 					targets: el,
-					duration,
+					duration: 3000,
 				})
 				.add({
 					targets: el,

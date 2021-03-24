@@ -1,5 +1,5 @@
 <template>
-	<svg viewBox="0 0 24 24" :width="size" :height="size" :fill="fill" :class="{ left: left }">
+	<svg viewBox="0 0 24 24" :width="size" :height="size" :fill="fill" :class="{ left: left, top: top }">
 		<path d="M8.17,2,5.83,4.35,13.46,12,5.83,19.65,8.17,22l10-10Z" />
 	</svg>
 </template>
@@ -19,11 +19,18 @@ export default {
 			type: Boolean,
 			default: false,
 		},
+		top: {
+			type: Boolean,
+			default: false,
+		},
 	},
 }
 </script>
 
 <style lang="scss" scoped>
+.top {
+	transform: rotate(-90deg);
+}
 .left {
 	transform: rotate(180deg);
 }

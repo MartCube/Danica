@@ -9,11 +9,9 @@
 				<span>{{ currentLocale }}</span>
 			</div>
 
-			<template v-if="showLocales">
-				<n-link v-for="locale in availableLocales" :key="locale.code" :to="switchLocalePath(locale.code)" @click.native="showLocales = false">
-					{{ locale.code }}
-				</n-link>
-			</template>
+			<n-link v-for="locale in availableLocales" :key="locale.code" class="locale" :to="switchLocalePath(locale.code)" @click.native="showLocales = false">
+				{{ locale.code }}
+			</n-link>
 		</div>
 
 		<div class="links" :class="{ active: isActive }" @click="CloseMenu">
@@ -31,6 +29,8 @@
 </template>
 
 <script>
+import { localleAnim } from '~/assets/anime'
+
 export default {
 	data: () => ({
 		isActive: false,
@@ -54,12 +54,14 @@ export default {
 			if (this.transparent) window.addEventListener('scroll', this.onScroll)
 			else window.removeEventListener('scroll', this.onScroll)
 		},
+		async showLocales(newValue, oldValue) {
+			await this.$nextTick()
+			if (newValue) localleAnim(document.querySelectorAll('.locale'), true)
+			else localleAnim(document.querySelectorAll('.locale'), false)
+		},
 	},
 	mounted() {
 		if (this.transparent) window.addEventListener('scroll', this.onScroll)
-	},
-	beforeDestroy() {
-		window.removeEventListener('scroll', this.onScroll)
 	},
 	methods: {
 		onScroll() {
@@ -119,34 +121,43 @@ $transition: all 0.35s ease;
 	}
 
 	.lang {
-		height: 15px;
+		height: 20px;
 		margin-right: 15px;
 
 		display: flex;
 
 		.current_locale {
-			height: 100%;
 			padding: 0 10px;
 
 			display: flex;
-			justify-content: center;
+			align-items: center;
+			z-index: 2;
 			span {
 				line-height: 12px;
 				font-weight: 400;
 			}
+			&:hover {
+				background: $primary;
+			}
+
 			border-left: 3px solid $primary;
 			cursor: pointer;
 		}
+		.locale {
+			opacity: 0; //opacity:1
+			&:hover {
+				background: $primary;
+			}
+		}
 
 		a {
-			height: 12px;
 			padding: 0 10px;
 
 			display: flex;
 			align-items: center;
 
 			text-decoration: none;
-			line-height: 22px;
+			line-height: 12px;
 			font-weight: 400;
 			color: $black;
 			outline: none;

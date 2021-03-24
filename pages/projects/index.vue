@@ -10,9 +10,8 @@
 				</span>
 			</div>
 
-			<template v-if="$fetchState.error">error</template>
-			<template v-else-if="$fetchState.pending">loading</template>
-			<template v-else>
+			<template v-if="$fetchState.error">error component</template>
+			<template v-else-if="!$fetchState.pending">
 				<div ref="grid" class="grid">
 					<ProjectCard v-for="(project, i) in projects" :key="i" :data="project" />
 				</div>
@@ -28,25 +27,19 @@ import { postAnim } from '~/assets/anime'
 export default {
 	name: 'Projects',
 	data: () => ({
-		filters: [],
+		filters: ['design', 'architecture', 'remont'],
 		active_filter: [],
-		total_pages: null,
+		total_pages: 0,
 		current_page: 1,
 		page_size: 6,
 	}),
 	async fetch() {
-		if (this.filters.length === 0) {
-			const fetch = await this.$prismic.api.getSingle('projects')
-			this.filterAsText(fetch.data.filters)
-		}
-
 		const projects = await this.$prismic.api.query([this.$prismic.predicates.at('document.type', 'project_post'), this.$prismic.predicates.at('document.tags', this.active_filter)], {
-			// orderings: '[document.first_publication_date desc]',
+			orderings: '[document.first_publication_date desc]',
 			pageSize: this.page_size,
 		})
 
 		this.$store.dispatch('bindProjects', projects.results)
-
 		this.total_pages = projects.total_pages
 	},
 	computed: {
@@ -61,16 +54,12 @@ export default {
 		},
 	},
 	methods: {
-		filterAsText(array) {
-			array.forEach((filter) => {
-				this.filters.push(this.$prismic.asText(filter.filter_name))
-			})
-		},
 		filterUpdate(filter) {
 			this.active_filter = [filter]
 			if (filter === 'all') this.active_filter = []
 
 			// restart results
+			this.total_pages = 0
 			this.current_page = 1
 			this.page_size = 6
 

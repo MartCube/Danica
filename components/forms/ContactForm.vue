@@ -101,9 +101,14 @@ export default {
 		justify-content: space-between;
 	}
 	.title {
-		font-size: 2rem;
 		width: max-content;
 		border-bottom: 2px solid $primary;
+
+		font-size: 2rem;
+		color: $white;
+		&::selection {
+			color: $black;
+		}
 	}
 
 	.message {

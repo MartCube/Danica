@@ -20,8 +20,8 @@ export default {
 	margin-top: 80px;
 	margin-left: 240px;
 
-	width: 500px;
+	// width: 500px;
 	display: flex;
-	justify-content: space-between;
+	justify-content: space-around;
 }
 </style>

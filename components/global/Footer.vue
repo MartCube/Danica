@@ -4,7 +4,7 @@
 			<div class="wrap">
 				<div class="image">
 					<div class="to_top" @click="ScrollToTop">
-						<IconArrow size="40px" top />
+						<IconChevron size="40px" top />
 					</div>
 					<ImageItem :src="data.image" alt="footer" />
 					<div class="text"></div>
@@ -33,7 +33,7 @@
 									{{ $prismic.asText(number.number) }}
 								</a>
 							</div>
-							<span @click="ToggleModal(true)">info@danica.ua</span>
+							<span @click="openModal()">info@danica.ua</span>
 							<div class="icons">
 								<IconMessenger />
 								<IconTelegram />
@@ -58,7 +58,6 @@
 					<n-link to="/">Terms and Conditions</n-link>
 				</div>
 			</div>
-			<ContactModal v-show="modalContact" @closeModal="ToggleModal(false)" />
 		</template>
 	</footer>
 </template>
@@ -66,7 +65,6 @@
 <script>
 export default {
 	data: () => ({
-		modalContact: false,
 		data: Object,
 	}),
 	async fetch() {
@@ -83,8 +81,8 @@ export default {
 		},
 	},
 	methods: {
-		ToggleModal(value) {
-			this.modalContact = value
+		openModal() {
+			this.$store.dispatch('bindModalContact', true)
 		},
 		ScrollToTop() {
 			window.scrollTo({ top: 0, behavior: 'smooth' })
@@ -104,12 +102,18 @@ export default {
 
 	display: flex;
 	flex-direction: column;
-
 	color: $white;
 
+	h2,
+	span,
+	a {
+		color: $white;
+		&::selection {
+			color: $black;
+		}
+	}
 	a {
 		font-weight: 400;
-		color: $white;
 		transition: opacity 0.2 ease;
 		&:hover {
 			color: $grey;

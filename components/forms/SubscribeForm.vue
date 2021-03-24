@@ -55,8 +55,18 @@ export default {
 <style lang="scss" scoped>
 .subscribe {
 	width: 50%;
+
 	p {
+		font-weight: normal;
+		font-size: 1rem;
+		line-height: 1.5rem;
+
 		margin-bottom: 10px;
+		color: $white;
+
+		&::selection {
+			color: $black;
+		}
 	}
 }
 </style>

@@ -42,6 +42,29 @@ export function buttonAnim(button, overlay) {
 	})
 }
 
+export function localleAnim(locales, show) {
+	if (show) {
+		anime({
+			targets: locales,
+			opacity: [0, 1],
+			translateX: ['-50%', '0%'],
+
+			easing: 'easeInOutCubic',
+			duration: 250,
+			delay: anime.stagger(50, { from: 'last' }),
+		})
+	} else
+		anime({
+			targets: locales,
+			opacity: [1, 0],
+			translateX: ['0%', '-50%'],
+
+			easing: 'easeInCubic',
+			duration: 150,
+			delay: anime.stagger(50, { from: 'last' }),
+		})
+}
+
 export function introAnim(lettersWeAre, lettersLeadersIn, collage1, collage2, collage3) {
 	const StartUpTimeline = anime.timeline({
 		autoplay: true,
@@ -81,7 +104,7 @@ export function introAnim(lettersWeAre, lettersLeadersIn, collage1, collage2, co
 				opacity: [0, 1],
 				translateX: ['-50%', '0%'],
 				// scaleY: [0.75, 1],
-				width: [0, '300px'],
+				height: [0, '300px'],
 
 				border: collageBorder,
 				easing: colllageEasing,
@@ -94,7 +117,7 @@ export function introAnim(lettersWeAre, lettersLeadersIn, collage1, collage2, co
 				targets: collage2,
 				opacity: [0, 1],
 				translateY: ['50%', '0%'],
-				height: [0, '600px'],
+				height: [0, '500px'],
 
 				border: collageBorder,
 				easing: colllageEasing,

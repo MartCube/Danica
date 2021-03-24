@@ -6,7 +6,7 @@
 			</div>
 			<div class="content">
 				<h2 class="title">Latest projects</h2>
-				<div ref="grid" class="grid">
+				<div class="grid">
 					<ProjectCard v-for="(project, i) in projects" :key="i" :data="project" />
 				</div>
 				<ButtonItem> all projects </ButtonItem>

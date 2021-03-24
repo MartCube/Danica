@@ -6,7 +6,7 @@
 
 		<div class="lang">
 			<div class="current_locale" @click="showLocales = !showLocales">
-				<span>{{ currentLocale }}</span>
+				<span v-if="currentLocale">{{ currentLocale }}</span>
 			</div>
 
 			<n-link v-for="locale in availableLocales" :key="locale.code" class="locale" :to="switchLocalePath(locale.code)" @click.native="showLocales = false">
@@ -43,7 +43,7 @@ export default {
 			return this.$store.getters.navbarTransparent
 		},
 		availableLocales() {
-			return this.$i18n.locales
+			return this.$i18n.locales.filter((locale) => locale.code !== this.currentLocale)
 		},
 		currentLocale() {
 			return this.$i18n.locale
@@ -161,10 +161,6 @@ $transition: all 0.35s ease;
 			font-weight: 400;
 			color: $black;
 			outline: none;
-
-			&.nuxt-link-active {
-				display: none;
-			}
 		}
 	}
 

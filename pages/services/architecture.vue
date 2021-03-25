@@ -3,7 +3,7 @@
 		<template v-if="!$fetchState.pending">
 			<IntroImage :image="IntroImage" />
 			<Values :data="values" />
-			<LatestProjects />
+			<SliderProjects />
 			<Standards :data="standards" />
 
 			<!-- Slice Machine -->

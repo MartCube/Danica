@@ -9,6 +9,7 @@
 				<Stages v-if="slice.slice_type == 'stages'" :data="slice" />
 				<Advantages v-if="slice.slice_type == 'advantages'" :data="slice" />
 			</div>
+			<LatestProjects />
 		</template>
 	</div>
 </template>

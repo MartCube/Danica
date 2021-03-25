@@ -9,7 +9,8 @@
 				<div class="project_slider">
 					<div v-swiper="swiperOption" class="swiper-container">
 						<div class="swiper-wrapper">
-							<ProjectCard v-for="(project, i) in projects" :key="i" :data="project" class="swiper-slide" />
+							<ProjectSlide v-for="(project, i) in projects" :key="i" :data="project" class="swiper-slide" />
+							<div class="swiper-pagination"></div>
 						</div>
 					</div>
 				</div>
@@ -22,12 +23,21 @@
 <script>
 export default {
 	data: () => ({
-		page_size: 6,
+		page_size: 5,
 		projects: null,
 		swiperOption: {
-			slidesPerView: 3, // slidesPerView: 'auto',
+			slidesPerView: 1,
 			spaceBetween: 100,
 			loop: true,
+			autoplay: {
+				delay: 500,
+				disableOnInteraction: false,
+			},
+			pagination: {
+				el: '.swiper-pagination',
+				// dynamicBullets: true,
+				clickable: true,
+			},
 		},
 	}),
 	async fetch() {
@@ -47,12 +57,21 @@ export default {
 	display: flex;
 	flex-direction: column;
 	.project_slider {
-		width: 1100px;
-		margin-bottom: 50px;
+		width: 992px;
+		margin-bottom: 80px;
 		.swiper-container {
-			width: 1100px;
+			width: 992px;
 			margin: 0;
+			.swiper-wrapper {
+				position: relative;
+			}
 		}
 	}
+}
+
+.swiper-pagination {
+	width: 50px;
+	height: 50px;
+	backdrop-filter: red;
 }
 </style>

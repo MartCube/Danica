@@ -38,7 +38,6 @@ export default {
 <style lang="scss" scoped>
 .project_card {
 	width: 300px;
-	margin-bottom: 50px;
 	cursor: pointer;
 
 	display: flex;

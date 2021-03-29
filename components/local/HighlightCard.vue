@@ -5,7 +5,7 @@
 			<h3>{{ title }}</h3>
 			<!-- Slice Machine -->
 			<div v-for="(slice, i) in data.data.body" :key="i" class="text_slice">
-				<p v-if="slice.slice_type == 'text'">{{ $prismic.asText(slice.primary.text) }}</p>
+				<p v-if="slice.slice_type == 'text' && i <= 3">{{ $prismic.asText(slice.primary.text) }}</p>
 			</div>
 		</div>
 		<div class="info">

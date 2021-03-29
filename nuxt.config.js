@@ -2,6 +2,9 @@ export default {
 	// Target (https://go.nuxtjs.dev/config-target)
 	target: 'static',
 
+	// Auto import components (https://go.nuxtjs.dev/config-components)
+	components: true,
+
 	// Global page headers (https://go.nuxtjs.dev/config-head)
 	head: {
 		title: 'Danica',
@@ -15,10 +18,7 @@ export default {
 	css: ['~/assets/main.scss', '~/assets/colors.scss'],
 
 	// Plugins to run before rendering page (https://go.nuxtjs.dev/config-plugins)
-	plugins: [{ src: '@/plugins/vue-swiper', mode: 'client' }, { src: '~/plugins/vue-plyr', mode: 'client' }, { src: '@/plugins/vue-slider.js' }, { src: '@/plugins/vee-validate.js' }, { src: `~/plugins/lazysizes.client.js` }],
-
-	// Auto import components (https://go.nuxtjs.dev/config-components)
-	components: true,
+	plugins: [{ src: '@/plugins/vue-swiper', mode: 'client' }, { src: '~/plugins/vue-plyr', mode: 'client' }, { src: '@/plugins/vee-validate.js' }, { src: `~/plugins/lazysizes.client.js` }],
 
 	// Modules for dev and build (recommended) (https://go.nuxtjs.dev/config-modules)
 	buildModules: [
@@ -73,7 +73,7 @@ export default {
 				quiet: true,
 			},
 		},
-		transpile: ['vee-validate/dist/rules', 'vue-agile'],
+		transpile: ['vee-validate/dist/rules'],
 		extend(config, { isClient, loaders: { vue } }) {
 			vue.transformAssetUrls.img = ['data-src', 'src']
 		},

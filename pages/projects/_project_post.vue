@@ -18,7 +18,11 @@
 
 				<!-- Slice Machine -->
 				<div v-for="(slice, i) in post.slices" :key="i" class="slice" :class="slice.slice_type">
-					<p v-if="slice.slice_type == 'text'">{{ $prismic.asText(slice.primary.text) }}</p>
+					<!-- <p v-if="slice.slice_type == 'text'">{{ $prismic.asText(slice.primary.text) }}</p> -->
+
+					<template v-if="slice.slice_type == 'text'">
+						<prismic-rich-text class="paragraph" :field="slice.primary.text" />
+					</template>
 
 					<template v-else-if="slice.slice_type == 'image'">
 						<ImageItem :src="slice.primary.image.url" :alt="slice.primary.image.alt" />
@@ -26,7 +30,24 @@
 					</template>
 
 					<template v-else-if="slice.slice_type == 'image_slider'">
-						<Slider :images="slice.items" />
+						<div class="image_slider">
+							<div v-swiper="swiperOption" class="swiper-container">
+								<div class="swiper-wrapper">
+									<ImageItem v-for="item in slice.items" :key="item.image.url" class="swiper-slide" :src="item.image.url" :alt="item.image.alt" />
+									<div class="swiper-slide"></div>
+								</div>
+								<div slot="pagination" class="swiper-pagination"></div>
+							</div>
+						</div>
+					</template>
+
+					<template v-else-if="slice.slice_type == 'image_text'">
+						<div class="image_text">
+							<ImageItem :src="slice.primary.image.url" :alt="slice.primary.image.alt" />
+							<div class="text">
+								<p v-for="(item, key) in slice.items" :key="key">{{ $prismic.asText(item.text) }}</p>
+							</div>
+						</div>
 					</template>
 				</div>
 			</div>
@@ -38,6 +59,14 @@
 export default {
 	data: () => ({
 		post: Object,
+		swiperOption: {
+			slidesPerView: 2,
+			spaceBetween: 40,
+			pagination: {
+				el: '.swiper-pagination',
+				clickable: true,
+			},
+		},
 	}),
 	async fetch() {
 		const post = await this.$prismic.api.getByUID('project_post', this.$route.params.project_post)
@@ -65,6 +94,7 @@ export default {
 	& > * {
 		margin-bottom: 25px;
 	}
+	overflow-x: hidden;
 
 	.intro {
 		width: 100%;
@@ -108,11 +138,8 @@ export default {
 		margin-left: 240px;
 	}
 	.text {
-		width: 75%;
-		p {
-			font-weight: 300;
-			font-size: 1.2rem;
-			line-height: 1.5rem;
+		.paragraph {
+			width: 75%;
 		}
 	}
 	.image {
@@ -127,7 +154,59 @@ export default {
 		}
 	}
 	.image_slider {
-		width: 100%;
+		width: 1840px;
+		height: 100%;
+		margin-bottom: 50px;
+
+		overflow: hidden;
+		.swiper-container {
+			width: 1840px;
+			height: 100%;
+			margin: 0;
+
+			display: flex;
+			flex-direction: column;
+			align-items: flex-start;
+		}
 	}
+	.image_text {
+		display: flex;
+		margin: 25px 0;
+
+		.text {
+			display: flex;
+			flex-direction: column;
+			padding: 40px;
+			p {
+				margin-bottom: 25px;
+			}
+		}
+		img {
+			width: 800px;
+			height: 450px;
+		}
+	}
+}
+
+::v-deep {
+	--swiper-theme-color: rgb(255, 196, 36);
+}
+::v-deep .swiper-pagination-bullet {
+	width: 12px;
+	height: 12px;
+	border-radius: 10px;
+	transition: width 0.3s ease;
+	&.swiper-pagination-bullet-active {
+		width: 40px;
+	}
+}
+
+::v-deep .swiper-pagination {
+	position: initial;
+	margin-top: 20px;
+
+	width: max-content;
+	height: 20px;
+	display: flex;
 }
 </style>

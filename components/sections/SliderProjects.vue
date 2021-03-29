@@ -6,14 +6,13 @@
 			</div>
 			<div class="content">
 				<h2 class="title">Latest projects</h2>
+
 				<div class="project_slider">
-					<div v-swiper="swiperOption" class="swiper-container">
-						<div class="swiper-wrapper">
-							<ProjectSlide v-for="(project, i) in projects" :key="i" :data="project" class="swiper-slide" />
-							<div class="swiper-pagination"></div>
-						</div>
-					</div>
+					<SwiperSlider pagination>
+						<ProjectSlide v-for="(project, i) in projects" :key="i" :data="project" class="swiper-slide" />
+					</SwiperSlider>
 				</div>
+
 				<ButtonItem> all projects </ButtonItem>
 			</div>
 		</template>
@@ -21,7 +20,9 @@
 </template>
 
 <script>
+import SwiperSlider from '../global/SwiperSlider.vue'
 export default {
+	components: { SwiperSlider },
 	data: () => ({
 		page_size: 5,
 		projects: null,
@@ -30,14 +31,15 @@ export default {
 			spaceBetween: 100,
 			loop: true,
 			autoplay: {
-				delay: 500,
-				disableOnInteraction: false,
+				delay: 3000,
+				disableOnInteraction: true,
 			},
 			pagination: {
 				el: '.swiper-pagination',
 				// dynamicBullets: true,
 				clickable: true,
 			},
+			// effect: 'fade',
 		},
 	}),
 	async fetch() {
@@ -59,19 +61,19 @@ export default {
 	.project_slider {
 		width: 992px;
 		margin-bottom: 80px;
+
+		overflow: hidden;
+
 		.swiper-container {
-			width: 992px;
+			width: inherit;
+			height: inherit;
 			margin: 0;
-			.swiper-wrapper {
-				position: relative;
-			}
+			overflow: initial;
+
+			display: flex;
+			flex-direction: column;
+			align-items: center;
 		}
 	}
-}
-
-.swiper-pagination {
-	width: 50px;
-	height: 50px;
-	backdrop-filter: red;
 }
 </style>

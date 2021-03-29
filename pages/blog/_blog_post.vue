@@ -23,7 +23,7 @@
 					</template>
 
 					<template v-else-if="slice.slice_type == 'image_slider'">
-						<Slider :images="slice.items" />
+						<!-- <Slider :images="slice.items" /> -->
 					</template>
 				</div>
 			</div>

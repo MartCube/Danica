@@ -24,6 +24,7 @@
 
 					<template v-else-if="slice.slice_type == 'image_slider'">
 						<!-- <Slider :images="slice.items" /> -->
+						<p>slider</p>
 					</template>
 				</div>
 			</div>

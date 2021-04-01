@@ -1,6 +1,7 @@
 export default {
 	pages: {
-		services: 'services',
+		design: 'design',
+		architecture: 'architecture',
 		projects: 'projects',
 		blog: 'blog',
 		contact: 'contact',

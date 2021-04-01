@@ -1,6 +1,7 @@
 export default {
 	pages: {
-		services: 'Послуги',
+		design: 'Дизайн',
+		architecture: 'архитектура',
 		projects: 'Проекти',
 		blog: 'Новини',
 		contact: 'Контакти',

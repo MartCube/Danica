@@ -15,7 +15,8 @@
 		</div>
 
 		<div class="links" :class="{ active: isActive }" @click="CloseMenu">
-			<n-link :to="localePath('services')">{{ $t('pages.services') }}</n-link>
+			<n-link :to="localePath('design')">{{ $t('pages.design') }}</n-link>
+			<n-link :to="localePath('architecture')">{{ $t('pages.architecture') }}</n-link>
 			<n-link :to="localePath('projects')">{{ $t('pages.projects') }}</n-link>
 			<n-link :to="localePath('blog')">{{ $t('pages.blog') }}</n-link>
 			<n-link :to="localePath('contact')">{{ $t('pages.contact') }}</n-link>
@@ -104,6 +105,10 @@ $transition: all 0.35s ease;
 	&.transparent {
 		background: rgba(255, 255, 255, 0.2);
 		backdrop-filter: blur(10px) saturate(100%) contrast(45%) brightness(130%);
+		.links .active {
+			background: rgba(255, 255, 255, 0.2);
+			backdrop-filter: blur(10px) saturate(100%) contrast(45%) brightness(130%);
+		}
 	}
 	&.transparent_to_white {
 		background: white;
@@ -200,7 +205,6 @@ $transition: all 0.35s ease;
 			align-items: center;
 			overflow: hidden;
 			background: white;
-			overflow: hidden;
 
 			position: fixed;
 			top: 60px;
@@ -216,6 +220,7 @@ $transition: all 0.35s ease;
 
 				font-weight: 400;
 				font-size: 1.5rem;
+				color: $black;
 				&.nuxt-link-active {
 					background: none;
 
@@ -244,7 +249,7 @@ $transition: all 0.35s ease;
 
 		span {
 			width: 100%;
-			height: 2px;
+			height: 0.2rem;
 			background: $black;
 			transition: all 0.3s ease;
 		}
@@ -253,7 +258,7 @@ $transition: all 0.35s ease;
 			content: '';
 			position: absolute;
 			width: 100%;
-			height: 2px;
+			height: 0.2rem;
 			background: $primary;
 			top: 0;
 			right: 0;
@@ -299,6 +304,8 @@ $transition: all 0.35s ease;
 
 			flex-direction: row-reverse;
 			.current_locale {
+				background: $primary;
+
 				border-left: none;
 				border-right: 3px solid $primary;
 			}

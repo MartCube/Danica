@@ -25,7 +25,7 @@
 					</template>
 
 					<template v-else-if="slice.slice_type == 'image'">
-						<ImageItem :src="slice.primary.image.url" :alt="slice.primary.image.alt" />
+						<ImageItem :src="slice.primary.image.url" :alt="alt" />
 						<span class="description">"{{ slice.primary.image.alt }}"</span>
 					</template>
 
@@ -33,7 +33,7 @@
 						<div class="image_slider">
 							<div v-swiper="swiperOption" class="swiper-container">
 								<div class="swiper-wrapper">
-									<ImageItem v-for="item in slice.items" :key="item.image.url" class="swiper-slide" :src="item.image.url" :alt="item.image.alt" />
+									<ImageItem v-for="item in slice.items" :key="item.image.url" class="swiper-slide" :src="item.image.url" alt="alt" />
 									<div class="swiper-slide"></div>
 								</div>
 								<div slot="pagination" class="swiper-pagination"></div>
@@ -43,7 +43,7 @@
 
 					<template v-else-if="slice.slice_type == 'image_text'">
 						<div class="image_text">
-							<ImageItem :src="slice.primary.image.url" :alt="slice.primary.image.alt" />
+							<ImageItem :src="slice.primary.image.url" alt="alt" />
 							<div class="text">
 								<p v-for="(item, key) in slice.items" :key="key">{{ $prismic.asText(item.text) }}</p>
 							</div>
@@ -60,7 +60,7 @@ export default {
 	data: () => ({
 		post: Object,
 		swiperOption: {
-			slidesPerView: 2,
+			slidesPerView: 'auto',
 			spaceBetween: 40,
 			pagination: {
 				el: '.swiper-pagination',
@@ -83,6 +83,7 @@ export default {
 
 			slices: post.data.body,
 		}
+		console.log(post.data.body)
 	},
 }
 </script>
@@ -91,6 +92,7 @@ export default {
 .project {
 	display: flex;
 	flex-direction: column;
+
 	& > * {
 		margin-bottom: 25px;
 	}
@@ -117,6 +119,7 @@ export default {
 			font-size: 3rem;
 		}
 	}
+
 	.info {
 		margin: 50px 240px;
 		width: max-content;
@@ -137,13 +140,15 @@ export default {
 	.slice {
 		margin-left: 240px;
 	}
+
 	.text {
 		.paragraph {
 			width: 75%;
 		}
 	}
+
 	.image {
-		width: auto;
+		width: 85%;
 		display: flex;
 		flex-direction: column;
 		align-items: center;
@@ -153,15 +158,16 @@ export default {
 			font-style: italic;
 		}
 	}
+
 	.image_slider {
 		width: 1840px;
-		height: 100%;
-		margin-bottom: 50px;
+		height: max-content;
+		margin-top: 10px;
+		margin-bottom: 25px;
 
-		overflow: hidden;
 		.swiper-container {
-			width: 1840px;
-			height: 100%;
+			width: inherit;
+			height: inherit;
 			margin: 0;
 
 			display: flex;
@@ -203,10 +209,14 @@ export default {
 
 ::v-deep .swiper-pagination {
 	position: initial;
-	margin-top: 20px;
+	margin-top: 25px;
 
 	width: max-content;
 	height: 20px;
 	display: flex;
+}
+
+::v-deep .swiper-wrapper {
+	max-width: 900px;
 }
 </style>

@@ -293,7 +293,7 @@ $transition: all 0.35s ease;
 @media (max-width: 900px) {
 	.navbar {
 		height: 60px;
-		padding: 0 15px;
+		padding: 0 40px;
 		justify-content: flex-end;
 
 		.logo {
@@ -301,8 +301,8 @@ $transition: all 0.35s ease;
 		}
 		.lang {
 			flex-grow: 1;
-
 			flex-direction: row-reverse;
+			margin-right: 40px;
 			.current_locale {
 				background: $primary;
 

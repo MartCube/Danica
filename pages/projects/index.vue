@@ -17,7 +17,7 @@
 				</div>
 			</template>
 		</div>
-		<ButtonItem v-if="current_page < total_pages" @click.native="loadMore"> load more </ButtonItem>
+		<ButtonItem v-if="current_page < total_pages" :animated="false" @click.native="loadMore"> load more </ButtonItem>
 	</div>
 </template>
 
@@ -80,7 +80,7 @@ export default {
 	display: flex;
 
 	.filter {
-		width: 240px;
+		min-width: 240px;
 		padding-right: 30px;
 		background: white;
 
@@ -131,5 +131,28 @@ export default {
 button {
 	margin-left: 240px;
 	color: $black;
+}
+
+@media (max-width: 900px) {
+	.projects {
+		flex-direction: column;
+
+		.filter {
+			width: 50%;
+			min-width: auto;
+			padding: 0;
+			margin-bottom: 25px;
+		}
+		.grid {
+			width: 350px;
+			justify-content: space-around;
+		}
+	}
+
+	button {
+		margin: 0;
+		margin-top: 40px;
+		align-self: center;
+	}
 }
 </style>

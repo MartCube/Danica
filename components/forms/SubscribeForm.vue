@@ -1,6 +1,6 @@
 <template>
 	<ValidationObserver ref="subscribe" class="subscribe" tag="form" autocomplete="off" @submit.prevent="Submit()">
-		<p>Stay up to date with the latest news</p>
+		<p>Subscribe and keep up to date with the latest news and projects</p>
 		<InputItem subscribe name="email" rules="email" @getValue="GetEmail" />
 	</ValidationObserver>
 </template>
@@ -62,11 +62,18 @@ export default {
 		line-height: 1.5rem;
 
 		margin-bottom: 10px;
-		color: $white;
+		color: $grey;
 
 		&::selection {
 			color: $black;
 		}
+	}
+}
+
+@media (max-width: 900px) {
+	.subscribe {
+		width: calc(100vw - 80px);
+		margin-bottom: 15px;
 	}
 }
 </style>

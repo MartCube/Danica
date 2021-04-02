@@ -15,29 +15,37 @@
 						<div class="office">
 							<div class="numbers">
 								<h4>office:</h4>
-								<a v-for="(number, i) in data.office" :key="i" :href="NumberLink(number)">
-									{{ $prismic.asText(number.number) }}
-								</a>
+								<a v-for="(number, i) in data.office" :key="i" :href="NumberLink(number)"> <IconPhone size="20px" /> {{ $prismic.asText(number.number) }} </a>
 							</div>
-							<span>Киев, ул Новозабарская 23 </span>
-							<div class="icons">
-								<IconFacebook />
-								<IconInstagram />
-								<IconYoutube />
+							<div class="location">
+								<h4>find us</h4>
+								<span> <IconLocation /> Киев, ул Новозабарская 23 </span>
+							</div>
+							<div class="smedias">
+								<h4>follow us</h4>
+								<div class="icons">
+									<IconFacebook />
+									<IconInstagram />
+									<IconYoutube />
+								</div>
 							</div>
 						</div>
 						<div class="for_clients">
 							<div class="numbers">
 								<h4>for clients:</h4>
-								<a v-for="(number, i) in data.office" :key="i" :href="NumberLink(number)">
-									{{ $prismic.asText(number.number) }}
-								</a>
+								<a v-for="(number, i) in data.office" :key="i" :href="NumberLink(number)"> <IconPhone size="20px" /> {{ $prismic.asText(number.number) }} </a>
 							</div>
-							<span @click="openModal()">info@danica.ua</span>
-							<div class="icons">
-								<IconMessenger />
-								<IconTelegram />
-								<IconViber />
+							<div class="contact">
+								<h4>write us</h4>
+								<span @click="openModal()"> <IconMail /> info@danica.ua</span>
+							</div>
+							<div class="chat">
+								<h4>live chat</h4>
+								<div class="icons">
+									<IconMessenger />
+									<IconTelegram />
+									<IconViber />
+								</div>
 							</div>
 						</div>
 					</div>
@@ -47,8 +55,7 @@
 			</div>
 			<div class="policy">
 				<div class="links">
-					<IconCopyRight size="16px" />
-					<n-link to="/"> Danica {{ year }}</n-link>
+					<n-link to="/"> <IconCopyRight size="16px" /> Danica {{ year }}</n-link>
 					<span>|</span>
 					<n-link to="/">All rights reserved</n-link>
 				</div>
@@ -159,7 +166,8 @@ export default {
 
 		.info {
 			width: 50%;
-			padding: 50px 100px;
+			padding: 0 80px;
+			padding-top: 40px;
 			background: $black;
 
 			display: flex;
@@ -169,9 +177,9 @@ export default {
 				width: max-content;
 				border-bottom: 2px solid $primary;
 				font-size: 2rem;
+				margin-bottom: 40px;
 			}
 			.wrap {
-				margin: 50px 0;
 				width: 100%;
 				height: 100%;
 				display: flex;
@@ -182,25 +190,51 @@ export default {
 					width: 50%;
 					display: flex;
 					flex-direction: column;
-					justify-content: space-between;
+
+					& > * {
+						margin-bottom: 25px;
+					}
+
+					h4 {
+						color: $grey;
+						text-transform: capitalize;
+						font-size: 0.8rem;
+						font-weight: medium;
+						margin-bottom: 15px;
+						user-select: none;
+					}
+					svg {
+						fill: $primary;
+						cursor: pointer;
+						transition: opacity 0.2 ease;
+
+						&:hover {
+							opacity: 0.75;
+						}
+					}
 					.numbers {
 						display: flex;
 						flex-direction: column;
-						h4 {
-							color: $grey;
-							text-transform: capitalize;
-							font-size: 0.8rem;
-							font-weight: medium;
-							margin-bottom: 25px;
-							user-select: none;
-						}
+
 						a {
 							margin-bottom: 10px;
+							display: flex;
+							align-items: flex-end;
+							svg {
+								display: none;
+								margin-right: 10px;
+							}
 						}
 					}
 					span {
 						cursor: pointer;
 						transition: all 0.2s ease;
+
+						display: flex;
+						align-items: flex-end;
+						svg {
+							margin-right: 10px;
+						}
 						&:hover {
 							color: $grey;
 						}
@@ -209,15 +243,6 @@ export default {
 						width: 150px;
 						display: flex;
 						justify-content: space-between;
-						svg {
-							fill: $primary;
-							cursor: pointer;
-							transition: opacity 0.2 ease;
-
-							&:hover {
-								opacity: 0.75;
-							}
-						}
 					}
 				}
 				.for_clients {
@@ -243,13 +268,74 @@ export default {
 			justify-content: space-between;
 			justify-items: center;
 
-			svg {
-				fill: $primary;
-				margin-right: 10px;
+			a {
+				display: flex;
+				align-items: center;
+				svg {
+					fill: $primary;
+					margin-right: 10px;
+				}
 			}
 
 			span {
 				margin: 0 25px;
+			}
+		}
+	}
+}
+
+@media (max-width: 900px) {
+	.footer {
+		.wrap {
+			flex-direction: column;
+			height: auto;
+			.image {
+				display: none;
+			}
+			.info {
+				width: 100%;
+				padding: 40px 0;
+				padding-left: 40px;
+				.wrap {
+					margin: 0;
+					.office,
+					.for_clients {
+						width: max-content;
+						margin: 0;
+						padding: 0;
+						& > * {
+							margin-bottom: 15px;
+						}
+						.numbers {
+							h4 {
+								font-size: 1rem;
+							}
+							a {
+								margin-bottom: 15px;
+								svg {
+									display: initial;
+								}
+							}
+						}
+						.icons {
+							margin-top: 15px;
+						}
+					}
+				}
+			}
+		}
+		.policy {
+			height: auto;
+			flex-direction: column;
+			padding: 0 40px;
+			.links {
+				width: 100%;
+				& > * {
+					margin-bottom: 15px;
+				}
+				span {
+					display: none;
+				}
 			}
 		}
 	}

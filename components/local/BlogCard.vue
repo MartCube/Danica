@@ -89,7 +89,7 @@ export default {
 		}
 	}
 	.image {
-		width: inherit;
+		width: auto;
 		height: auto;
 		user-select: none;
 		display: flex;

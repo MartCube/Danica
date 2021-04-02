@@ -45,7 +45,7 @@ export default {
 
 	.image {
 		width: inherit;
-		height: 300px;
+		height: inherit;
 
 		user-select: none;
 		position: relative;
@@ -117,6 +117,12 @@ export default {
 				opacity: 1;
 			}
 		}
+	}
+}
+
+@media (max-width: 900px) {
+	.project_card {
+		width: 150px;
 	}
 }
 </style>

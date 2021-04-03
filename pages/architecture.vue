@@ -1,9 +1,9 @@
 <template>
 	<div class="architecture">
 		<template v-if="!$fetchState.pending">
-			<IntroImage :image="IntroImage" />
+			<Intro :image="IntroImage" />
 			<Values :data="values" />
-			<SliderProjects />
+			<!-- <SliderProjects /> -->
 			<Standards :data="standards" />
 
 			<!-- Slice Machine -->
@@ -11,15 +11,23 @@
 				<Stages v-if="slice.slice_type == 'stages'" :data="slice" />
 				<Advantages v-if="slice.slice_type == 'advantages'" :data="slice" />
 			</div>
+
+			<MediaQueryProvider :queries="{ mobile: '(max-width: 900px)' }" ssr>
+				<MatchMedia v-slot="{ mobile }">
+					{{ mobile }}
+					<!-- will be true on server, will automatically update on client -->
+				</MatchMedia>
+			</MediaQueryProvider>
 		</template>
 	</div>
 </template>
 
 <script>
-import Standards from '~/components/sections/Standards.vue'
+import { MediaQueryProvider, MatchMedia } from 'vue-component-media-queries'
+
 export default {
 	name: 'Architecture',
-	components: { Standards },
+	components: { MediaQueryProvider, MatchMedia },
 	beforeRouteLeave(to, from, next) {
 		this.$store.dispatch('bindNavbarTransparent', false)
 		next()

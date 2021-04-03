@@ -5,7 +5,7 @@
 				<span>projects</span>
 			</div>
 			<div class="content">
-				<h2 class="title">Latest projects</h2>
+				<h2 class="title">Stay up to date with the newsest projects</h2>
 				<div class="project_slider">
 					<div v-swiper="swiperOption" class="swiper-container">
 						<div class="swiper-wrapper">

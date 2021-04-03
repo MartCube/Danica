@@ -39,16 +39,36 @@ export default {
 	.list {
 		display: flex;
 		flex-direction: column;
+
+		.stage {
+			p {
+				margin-bottom: 16px;
+				display: flex;
+				align-items: center;
+				&::before {
+					content: '';
+					margin-right: 20px;
+					min-width: 20px;
+					height: 2px;
+					background: $primary;
+				}
+			}
+			&:last-child {
+				p {
+					margin: 0;
+				}
+			}
+		}
+	}
+}
+
+@media (max-width: 900px) {
+	.content .list .stage {
 		p {
-			margin-bottom: 16px;
 			display: flex;
-			align-items: center;
+			align-items: flex-start;
 			&::before {
-				content: '';
-				margin-right: 20px;
-				width: 20px;
-				height: 3px;
-				background: $primary;
+				margin-top: 15px;
 			}
 		}
 	}

@@ -1,7 +1,7 @@
 <template>
 	<div class="design">
 		<template v-if="!$fetchState.pending">
-			<IntroImage :image="IntroImage" />
+			<Intro :image="IntroImage" />
 			<Charles :data="charles" />
 
 			<!-- Slice Machine -->

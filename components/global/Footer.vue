@@ -3,23 +3,20 @@
 		<template v-if="!$fetchState.pending">
 			<div class="wrap">
 				<div class="image">
-					<div class="to_top" @click="ScrollToTop">
-						<IconChevron size="40px" top />
-					</div>
 					<ImageItem :src="data.image" alt="footer" />
 					<div class="text"></div>
 				</div>
 				<div class="info">
-					<h2 class="title">Call us</h2>
+					<!-- <h2 class="title">Call us</h2> -->
 					<div class="wrap">
 						<div class="office">
 							<div class="numbers">
 								<h4>office:</h4>
-								<a v-for="(number, i) in data.office" :key="i" :href="NumberLink(number)"> <IconPhone size="20px" /> {{ $prismic.asText(number.number) }} </a>
+								<a v-for="(number, i) in data.office" :key="i" :href="NumberLink(number)"> <IconPhone size="16px" /> {{ $prismic.asText(number.number) }} </a>
 							</div>
 							<div class="location">
 								<h4>find us</h4>
-								<span> <IconLocation /> Киев, ул Новозабарская 23 </span>
+								<span> <IconLocation size="20px" /> Киев, ул Новозабарская 23 </span>
 							</div>
 							<div class="smedias">
 								<h4>follow us</h4>
@@ -33,11 +30,11 @@
 						<div class="for_clients">
 							<div class="numbers">
 								<h4>for clients:</h4>
-								<a v-for="(number, i) in data.office" :key="i" :href="NumberLink(number)"> <IconPhone size="20px" /> {{ $prismic.asText(number.number) }} </a>
+								<a v-for="(number, i) in data.office" :key="i" :href="NumberLink(number)"> <IconPhone size="16px" /> {{ $prismic.asText(number.number) }} </a>
 							</div>
 							<div class="contact">
 								<h4>write us</h4>
-								<span @click="openModal()"> <IconMail /> info@danica.ua</span>
+								<span @click="openModal()"> <IconMail size="20px" /> info@danica.ua</span>
 							</div>
 							<div class="chat">
 								<h4>live chat</h4>
@@ -55,7 +52,7 @@
 			</div>
 			<div class="policy">
 				<div class="links">
-					<n-link to="/"> <IconCopyRight size="16px" /> Danica {{ year }}</n-link>
+					<n-link to="/"> Danica {{ year }} <IconCopyRight size="16px" /></n-link>
 					<span>|</span>
 					<n-link to="/">All rights reserved</n-link>
 				</div>
@@ -64,6 +61,9 @@
 					<span>|</span>
 					<n-link to="/">Terms and Conditions</n-link>
 				</div>
+			</div>
+			<div class="to_top" @click="ScrollToTop">
+				<IconChevron size="40px" top />
 			</div>
 		</template>
 	</footer>
@@ -126,6 +126,7 @@ export default {
 			color: $grey;
 		}
 	}
+	position: relative;
 
 	.wrap {
 		height: calc(100vh - 160px);
@@ -135,32 +136,9 @@ export default {
 
 			display: flex;
 			position: relative;
-			img {
+			picture {
 				width: 100%;
 				user-select: none;
-			}
-			.to_top {
-				position: absolute;
-				top: 0;
-				right: 0;
-				width: 80px;
-				height: 80px;
-				display: flex;
-				justify-content: center;
-				align-items: center;
-
-				z-index: 2;
-				background: $primary;
-				cursor: pointer;
-
-				svg {
-					transition: all 0.35s ease;
-				}
-				&:hover {
-					svg {
-						transform: rotate(-90deg) scale(1.2);
-					}
-				}
 			}
 		}
 
@@ -190,6 +168,7 @@ export default {
 					width: 50%;
 					display: flex;
 					flex-direction: column;
+					justify-content: space-evenly;
 
 					& > * {
 						margin-bottom: 25px;
@@ -219,9 +198,8 @@ export default {
 						a {
 							margin-bottom: 10px;
 							display: flex;
-							align-items: flex-end;
+							align-items: center;
 							svg {
-								display: none;
 								margin-right: 10px;
 							}
 						}
@@ -273,12 +251,36 @@ export default {
 				align-items: center;
 				svg {
 					fill: $primary;
-					margin-right: 10px;
+					margin-left: 10px;
 				}
 			}
 
 			span {
 				margin: 0 25px;
+			}
+		}
+	}
+
+	.to_top {
+		position: absolute;
+		top: 0;
+		right: 50%;
+		width: 80px;
+		height: 80px;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+
+		z-index: 2;
+		background: $primary;
+		cursor: pointer;
+
+		svg {
+			transition: all 0.35s ease;
+		}
+		&:hover {
+			svg {
+				transform: rotate(-90deg) scale(1.2);
 			}
 		}
 	}
@@ -336,6 +338,16 @@ export default {
 				span {
 					display: none;
 				}
+			}
+		}
+		.to_top {
+			top: 0;
+			right: 0;
+			width: 40px;
+			height: 40px;
+			svg {
+				width: 24px;
+				height: 24px;
 			}
 		}
 	}

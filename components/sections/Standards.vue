@@ -4,7 +4,7 @@
 			<span>standards</span>
 		</div>
 		<div class="content">
-			<h2 class="title">Standards</h2>
+			<h2 class="title">The standards you set determine the life you get</h2>
 			<div class="list">
 				<div v-for="(standard, i) in data" :key="i">
 					<ImageItem :src="standard.standard_image.url" :alt="$prismic.asText(standard.standard_title)" />
@@ -58,8 +58,9 @@ $transition: all 0.35s ease;
 
 			display: flex;
 
-			img {
+			picture {
 				width: 120px;
+				min-width: 120px;
 				height: 120px;
 				margin-right: 40px;
 			}
@@ -69,6 +70,29 @@ $transition: all 0.35s ease;
 					margin-bottom: 20px;
 
 					text-transform: capitalize;
+				}
+			}
+		}
+	}
+}
+
+@media (max-width: 900px) {
+	section {
+		.content {
+			flex-direction: column;
+			.list {
+				width: 100%;
+				& > * {
+					flex-direction: column;
+					&:last-child {
+						margin: 0;
+					}
+				}
+				picture {
+					margin-bottom: 20px;
+				}
+				.standard h3 {
+					word-spacing: initial;
 				}
 			}
 		}

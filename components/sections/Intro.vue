@@ -1,6 +1,8 @@
 <template>
-	<section class="intro_image">
-		<ImageItem :src="image.url" :alt="image.alt" />
+	<section class="intro">
+		<div class="bg">
+			<ImageItem :src="image.url" :mobile="image.mobile.url" :alt="image.alt" />
+		</div>
 	</section>
 </template>
 
@@ -16,7 +18,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.intro_image {
+.intro {
 	margin-left: 0;
 	width: 100%;
 	height: 100vh;
@@ -25,8 +27,12 @@ export default {
 	align-items: center;
 	justify-content: center;
 	position: relative;
-	img {
+	.bg {
 		position: absolute;
+		top: 0;
+		left: 0;
+		width: inherit;
+		height: inherit;
 	}
 }
 </style>

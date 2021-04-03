@@ -1,5 +1,9 @@
 <template>
-	<img :data-src="src" :src="src" class="lazyload" :alt="alt" />
+	<!-- <img :data-src="src" :src="src" class="lazyload" :alt="alt" /> -->
+	<picture>
+		<source :data-srcset="mobile" media="(max-width: 600px)" />
+		<img :data-src="src" class="lazyload" :alt="alt" />
+	</picture>
 </template>
 
 <script>
@@ -8,6 +12,10 @@ export default {
 		src: {
 			type: String,
 			required: true,
+		},
+		mobile: {
+			type: String,
+			default: '',
 		},
 		alt: {
 			type: String,

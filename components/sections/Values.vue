@@ -38,9 +38,19 @@ export default {
 			max-width: 500px;
 		}
 	}
+}
 
-	.plyr--video {
-		width: 700px;
+@media (max-width: 900px) {
+	section {
+		.content {
+			flex-direction: column;
+			.text {
+				margin-bottom: 40px;
+				.title {
+					margin-bottom: 40px;
+				}
+			}
+		}
 	}
 }
 </style>

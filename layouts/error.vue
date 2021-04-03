@@ -28,7 +28,7 @@ export default {
 	justify-content: center;
 
 	position: relative;
-	img {
+	picture {
 		position: absolute;
 	}
 	.text {

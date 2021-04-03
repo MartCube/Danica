@@ -199,6 +199,7 @@ $transition: all 0.35s ease;
 		}
 
 		&.active {
+			width: 100%;
 			display: flex;
 			flex-direction: column;
 			justify-content: center;
@@ -209,8 +210,6 @@ $transition: all 0.35s ease;
 			position: fixed;
 			top: 60px;
 			right: 0;
-			width: 100%;
-			height: calc(100vh - 80px);
 
 			a {
 				animation: fadeInRight 0.5s ease forwards;

@@ -16,4 +16,10 @@
 :root {
 	--plyr-color-main: rgb(255, 196, 36);
 }
+
+@media (max-width: 900px) {
+	.plyr_video {
+		width: 100%;
+	}
+}
 </style>

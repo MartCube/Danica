@@ -6,9 +6,9 @@
 		<div class="content">
 			<h2 class="title">{{ title }}</h2>
 			<div class="list">
-				<div v-for="(stage, i) in data.items" :key="i">
+				<div v-for="(stage, i) in data.items" :key="i" class="stage">
 					<h2 class="number">0{{ i + 1 }}</h2>
-					<div class="stage">
+					<div class="info">
 						<h3>{{ $prismic.asText(stage.stage_title) }}</h3>
 						<p>{{ $prismic.asText(stage.stage_description) }}</p>
 					</div>
@@ -38,15 +38,13 @@ export default {
 .content {
 	display: flex;
 	flex-direction: column;
-
 	.list {
-		width: 1000px;
+		max-width: 1200px;
 		display: flex;
 		justify-content: space-between;
 		flex-wrap: wrap;
-		& > * {
-			width: 100%;
-			max-width: 450px;
+		.stage {
+			max-width: 550px;
 			margin-bottom: 40px;
 
 			display: flex;
@@ -54,18 +52,43 @@ export default {
 			.number {
 				min-width: 120px;
 				margin-right: 40px;
-
 				text-align: right;
 				font-size: 4rem;
 				color: $primary;
 			}
-			.stage {
+			.info {
 				h3 {
 					word-spacing: 450px;
 					margin-top: 10px;
 					margin-bottom: 20px;
-
 					text-transform: capitalize;
+				}
+			}
+		}
+	}
+}
+
+@media (max-width: 900px) {
+	section {
+		.content {
+			flex-direction: column;
+			.list {
+				width: 100%;
+				.stage {
+					.number {
+						min-width: 40px;
+						margin-right: 20px;
+
+						text-align: right;
+						font-size: 1.5rem;
+						color: $primary;
+					}
+					.info h3 {
+						margin-top: 0;
+					}
+					&:last-child {
+						margin-bottom: 0;
+					}
 				}
 			}
 		}

@@ -5,8 +5,7 @@
 				<span>projects</span>
 			</div>
 			<div class="content">
-				<h2 class="title">Latest projects</h2>
-
+				<h2 class="title">Stay up to date with the newest projects</h2>
 				<div class="project_slider">
 					<SwiperSlider pagination>
 						<ProjectSlide v-for="(project, i) in projects" :key="i" :data="project" class="swiper-slide" />

@@ -136,7 +136,6 @@ button {
 @media (max-width: 900px) {
 	.projects {
 		flex-direction: column;
-
 		.filter {
 			width: 50%;
 			min-width: auto;
@@ -144,8 +143,8 @@ button {
 			margin-bottom: 25px;
 		}
 		.grid {
-			width: 350px;
-			justify-content: space-around;
+			width: 100%;
+			justify-content: space-evenly;
 		}
 	}
 

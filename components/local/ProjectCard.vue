@@ -45,7 +45,7 @@ export default {
 
 	.image {
 		width: inherit;
-		height: 300px;
+		height: auto;
 
 		user-select: none;
 		position: relative;
@@ -123,9 +123,6 @@ export default {
 @media (max-width: 900px) {
 	.project_card {
 		width: 150px;
-		.image {
-			height: auto;
-		}
 		h2 {
 			margin: 20px;
 		}

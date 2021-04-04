@@ -352,4 +352,10 @@ export default {
 		}
 	}
 }
+
+@media (max-width: 360px) {
+	.footer .policy .links {
+		flex-direction: column;
+	}
+}
 </style>

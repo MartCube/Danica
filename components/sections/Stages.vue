@@ -94,4 +94,24 @@ export default {
 		}
 	}
 }
+
+@media (max-width: 360px) {
+	section {
+		.content {
+			.list {
+				.stage {
+					.info {
+						h3 {
+							font-size: 1.2rem;
+						}
+						p {
+							font-size: 1rem;
+							line-height: 1.5rem;
+						}
+					}
+				}
+			}
+		}
+	}
+}
 </style>

@@ -42,5 +42,6 @@ export default {
 <style lang="scss" scoped>
 .design {
 	min-height: 100vh;
+	overflow: hidden;
 }
 </style>

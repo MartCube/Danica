@@ -9,7 +9,7 @@
 				<p>{{ description }}</p>
 				<div class="counter">
 					<span class="number">{{ data.years_on_market }}</span>
-					<h4>years on the market</h4>
+					<h4>years of establishment</h4>
 				</div>
 				<div class="counter">
 					<span class="number">{{ data.houses_build }}</span>
@@ -63,7 +63,7 @@ export default {
 		}
 		.counter {
 			padding-left: 20px;
-			border-left: 5px solid $primary;
+			border-left: 4px solid $primary;
 			width: 150px;
 			height: 100%;
 			display: flex;
@@ -98,6 +98,38 @@ export default {
 		&.lazyloaded {
 			opacity: 0.1;
 			transition: all 2s cubic-bezier(0.215, 0.61, 0.355, 1);
+		}
+	}
+}
+
+@media (max-width: 900px) {
+	.content {
+		height: auto;
+		.text {
+			padding: 0;
+			flex-direction: column;
+			p {
+				margin-bottom: 60px;
+			}
+			.counter {
+				width: max-content;
+				height: 60px;
+				margin-bottom: 20px;
+
+				.number {
+					font-size: 1.5rem;
+				}
+				h4 {
+					font-size: 1rem;
+					word-spacing: initial;
+				}
+			}
+		}
+		img {
+			width: 100%;
+			height: 260px;
+			top: initial;
+			bottom: 0;
 		}
 	}
 }

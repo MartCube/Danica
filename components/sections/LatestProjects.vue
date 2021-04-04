@@ -55,4 +55,18 @@ export default {
 		}
 	}
 }
+
+@media (max-width: 360px) {
+	.content {
+		.project_slider {
+			width: 800px;
+			.swiper-container {
+				width: 800px;
+				.swiper-wrapper .image {
+					height: 200px;
+				}
+			}
+		}
+	}
+}
 </style>

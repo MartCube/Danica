@@ -91,7 +91,7 @@ export default {
 <style lang="scss" scooped>
 $transition: all 0.35s ease;
 .navbar {
-	width: 100%;
+	width: 100vw;
 	height: 80px;
 	padding: 0 50px;
 
@@ -317,6 +317,16 @@ $transition: all 0.35s ease;
 		}
 		.button {
 			display: flex;
+		}
+	}
+}
+
+@media (max-width: 360px) {
+	.navbar {
+		padding: 0 5px;
+
+		.lang {
+			margin-right: 10px;
 		}
 	}
 }

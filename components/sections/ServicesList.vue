@@ -103,4 +103,26 @@ $transition: all 0.35s ease;
 		}
 	}
 }
+
+@media (max-width: 900px) {
+	.content .links {
+		width: min-content;
+		flex-direction: column;
+		.link a svg {
+			display: none;
+		}
+		.link:last-child {
+			margin: 0;
+		}
+	}
+}
+
+@media (max-width: 360px) {
+	.content .links {
+		flex-direction: column;
+		.link a {
+			font-size: 1.2rem;
+		}
+	}
+}
 </style>

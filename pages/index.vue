@@ -3,10 +3,10 @@
 		
 		<!-- <main> -->
 		<template v-if="!$fetchState.pending">
-			<IntroCollage :data="introCollage" />
+			<!-- <IntroCollage :data="introCollage" /> -->
 			<Achievements :data="achievements" />
 			<ServicesList :data="serviceList" />
-			<HighlightProjects :data="HighlightProjects" />
+			<!-- <HighlightProjects :data="HighlightProjects" /> -->
 		</template>
 		<!-- </main> -->
 	</div>

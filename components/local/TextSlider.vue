@@ -85,6 +85,7 @@ export default {
 	width: max-content;
 	display: flex;
 	align-items: center;
+	z-index: 2;
 	span {
 		opacity: 0; // opacity: 1
 

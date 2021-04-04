@@ -58,7 +58,28 @@ body {
 		}
 	}
 
+	main{
+		width: calc(100vw - 240px);
+
+	}
 	
+}
+
+.wrapper{
+	header { grid-area: header; }
+	aside{ grid-area: aside; }
+	main { grid-area: main; }
+	footer { grid-area: footer; }
+
+	overflow: hidden;
+
+	display: grid;
+	grid-template-areas:
+		'header header'
+		'aside main'
+		'aside main'
+		'aside main'
+		'footer footer';
 }
 
 section{
@@ -70,6 +91,7 @@ section{
 		padding-right: 40px;
 		display: flex;
 
+		margin-left: -240px;
 		text-transform: capitalize;
 		color: $grey;
 

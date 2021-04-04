@@ -1,5 +1,6 @@
 <template>
 	<section class="intro">
+		<img class="bg_letter" src="../../static/d_letter.svg" alt="">
 		<div class="text">
 			<div class="title">
 				<span v-for="(letter, i) in lettersWeAre" :key="i" ref="lettersWeAre">{{ letter }}</span>
@@ -34,16 +35,16 @@ export default {
 	}),
 	computed: {
 		lettersWeAre() {
-			return 'We Are'.split('')
+			return 'We are'.split('')
 		},
 		lettersLeadersIn() {
-			return 'Leaders In'.split('')
+			return 'leaders in'.split('')
 		},
 		first_imgIX() {
 			return this.data[0].intro_image.url + `&fit=crop&w=300&h=300&dpr=1`
 		},
 		second_imgIX() {
-			return this.data[1].intro_image.url + `&fit=crop&w=500&h=500&dpr=1`
+			return this.data[1].intro_image.url + `&fit=crop&w=800&h=1000&dpr=1`
 		},
 		third_imgIX() {
 			return this.data[2].intro_image.url + `&fit=crop&w=400&h=400&dpr=1`
@@ -65,22 +66,30 @@ export default {
 
 <style lang="scss" scoped>
 .intro {
-	margin-left: 240px;
+	width: 100%;
 	height: calc(100vh - 80px);
 
 	display: flex;
 	justify-content: flex-end;
 
 	position: relative;
-	overflow: hidden;
+	// overflow: hidden;
+
+	.bg_letter{
+		position: absolute;
+    left: -240px;
+    top: 9%;
+		width: 23vw;
+		z-index: 0;
+	}
 
 	.text {
 		width: min-content;
-		padding-top: 40px;
+		padding-top: 10vh;
 
 		position: absolute;
 		top: 0;
-		left: 0;
+		left: -70px;
 
 		display: flex;
 		flex-direction: column;
@@ -92,7 +101,7 @@ export default {
 			overflow: hidden;
 			span {
 				opacity: 0; // opacity: 1
-
+				min-width: 1rem;
 				text-transform: none;
 				line-height: initial;
 				font-weight: 400;
@@ -106,27 +115,34 @@ export default {
 	}
 
 	.collage {
-		width: 800px;
+		width: 57vw;
 		position: relative;
 		img {
 			border: 0 solid transparent; // border: 10px solid white
-			opacity: 0; // opacity: 1
+			// opacity: 0; // opacity: 1
+			width: 0;
 			position: absolute;
+			object-fit: cover;
 		}
 		.first {
 			z-index: 3;
+			height: 16vw;
 			bottom: 0;
 			left: 0;
 		}
 		.second {
 			z-index: 2;
-			bottom: 50px;
-			right: 150px;
+			bottom: 0;
+			height: 90vh;
+			// width: 500px;
+			left: 8vw;
 		}
 		.third {
 			z-index: 1;
 			bottom: 100px;
-			right: 0;
+			height: 30vw;
+			bottom: 10vh;
+			left: 27vw;
 		}
 	}
 }

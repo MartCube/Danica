@@ -1,5 +1,5 @@
 <template>
-	<nav class="navbar" :class="{ transparent_to_white: whiteNavbar && transparent, transparent: transparent }">
+	<header class="navbar" :class="{ transparent_to_white: whiteNavbar && transparent, transparent: transparent }">
 		<n-link class="logo" exact :to="localePath('index')">
 			<Logo />
 		</n-link>
@@ -14,19 +14,19 @@
 			</n-link>
 		</div>
 
-		<div class="links" :class="{ active: isActive }" @click="CloseMenu">
+		<nav class="links" :class="{ active: isActive }" @click="CloseMenu">
 			<n-link :to="localePath('design')">{{ $t('pages.design') }}</n-link>
 			<n-link :to="localePath('architecture')">{{ $t('pages.architecture') }}</n-link>
 			<n-link :to="localePath('projects')">{{ $t('pages.projects') }}</n-link>
 			<n-link :to="localePath('blog')">{{ $t('pages.blog') }}</n-link>
 			<n-link :to="localePath('contact')">{{ $t('pages.contact') }}</n-link>
-		</div>
+		</nav>
 
 		<div class="button" :class="{ active: isActive }" @click="ShowHideMenu">
 			<span class="top" />
 			<span class="bot" />
 		</div>
-	</nav>
+	</header>
 </template>
 
 <script>

@@ -53,9 +53,12 @@ aside{
 	}
 }
 
-// @media (max-width: 900px) {
-// 	svg {
-// 		height: 50px;
-// 	}
-// }
+	@media (max-width: 900px) {
+		aside{
+			width: 15vw;
+			ul.messengers{
+				left: 7.5vw;
+			}
+		}
+	}
 </style>

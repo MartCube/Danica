@@ -92,7 +92,7 @@ export default {
 		text-transform: none;
 		line-height: initial;
 		font-weight: 700;
-		font-size: 4rem;
+		font-size: 4.5vw;
 	}
 
 	&::after {
@@ -109,6 +109,11 @@ export default {
 		&::after {
 			width: 100%;
 		}
+	}
+}
+@media (max-width: 900px) {
+	.text_slider span{
+		font-size: 8.5vw;
 	}
 }
 </style>

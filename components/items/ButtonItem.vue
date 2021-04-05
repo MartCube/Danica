@@ -68,7 +68,7 @@ button {
 	}
 
 	.text {
-		text-transform: capitalize;
+		// text-transform: capitalize;
 		font-weight: 700;
 		font-size: 1.5rem;
 	}
@@ -89,6 +89,12 @@ button {
 		svg {
 			opacity: 1;
 			fill: $black;
+		}
+	}
+
+	@media (max-width: 900px) {
+		.text{
+			font-size: 2rem;
 		}
 	}
 }

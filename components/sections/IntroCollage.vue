@@ -9,7 +9,7 @@
 				<span v-for="(letter, i) in lettersLeadersIn" :key="i" ref="lettersLeadersIn">{{ letter }}</span>
 			</div>
 			<TextSlider />
-			<ButtonItem @click.native="openModal"> write us </ButtonItem>
+			<ButtonItem @click.native="openModal"> Write us </ButtonItem>
 		</div>
 
 		<div class="collage">
@@ -85,7 +85,7 @@ export default {
 
 	.text {
 		width: min-content;
-		padding-top: 10vh;
+		padding-top: 9vh;
 
 		position: absolute;
 		top: 0;
@@ -105,7 +105,7 @@ export default {
 				text-transform: none;
 				line-height: initial;
 				font-weight: 400;
-				font-size: 4rem;
+				font-size: 4vw;
 			}
 		}
 
@@ -119,7 +119,6 @@ export default {
 		position: relative;
 		img {
 			border: 0 solid transparent; // border: 10px solid white
-			// opacity: 0; // opacity: 1
 			width: 0;
 			position: absolute;
 			object-fit: cover;
@@ -134,7 +133,6 @@ export default {
 			z-index: 2;
 			bottom: 0;
 			height: 90vh;
-			// width: 500px;
 			left: 8vw;
 		}
 		.third {
@@ -143,6 +141,71 @@ export default {
 			height: 30vw;
 			bottom: 10vh;
 			left: 27vw;
+		}
+	}
+
+	@media (max-width: 1220px) {
+		.text{
+			left: -7vw;
+		}
+		.collage .first{
+			height: 21vw;
+		}
+		.bg_letter{
+			width: 25vw;
+		}
+	}
+	@media (max-width: 1084px) {
+		.collage .second{
+			left: 12vw;
+		}
+		.bg_letter{
+			width: 28vw;
+		}
+	}
+	@media (max-width: 900px) {
+		.collage{
+			display: none;
+		}
+		.text{
+			width: 100%;
+			left: 0;
+			.title span{
+				font-size: 11vw;
+			}
+			button{
+				align-self: flex-end;
+				margin: 14vw 10vw;
+				text-transform: initial;
+			}
+		}
+		.bg_letter{
+			left: -15vw;
+			width: 40vw;
+		}
+	}
+	@media (max-width: 600px) {
+		.text{
+			width: 100%;
+			left: 0;
+			padding-top: 17vh;
+			.title {
+				span{
+					font-size: 2.5rem;
+				}
+			}
+			.text_slider{
+				margin-top: 2rem;
+			}
+			button{
+				align-self: flex-end;
+				margin: 40% 10% 0 0 ;
+				text-transform: initial;
+			}
+		}
+		.bg_letter{
+			left: -15vw;
+			width: 90%;
 		}
 	}
 }

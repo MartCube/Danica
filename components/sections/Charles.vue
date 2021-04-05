@@ -92,6 +92,14 @@ export default {
 			}
 			.collage {
 				margin-bottom: 20px;
+				.top {
+					width: 200px;
+					height: 200px;
+				}
+				.bottom {
+					width: 100px;
+					height: 50px;
+				}
 			}
 		}
 	}

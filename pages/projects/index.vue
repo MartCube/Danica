@@ -10,12 +10,11 @@
 				</span>
 			</div>
 
-			<template v-if="$fetchState.error">error component</template>
-			<template v-else-if="!$fetchState.pending">
-				<div ref="grid" class="grid">
+			<div ref="grid" class="grid">
+				<template v-if="!$fetchState.pending">
 					<ProjectCard v-for="(project, i) in projects" :key="i" :data="project" />
-				</div>
-			</template>
+				</template>
+			</div>
 		</div>
 		<ButtonItem v-if="current_page < total_pages" :animated="false" @click.native="loadMore"> load more </ButtonItem>
 	</div>
@@ -117,9 +116,10 @@ export default {
 	}
 
 	.grid {
-		max-width: 1000px;
 		width: 100%;
-		min-height: 700px;
+		max-width: 1000px;
+		height: 100%;
+		min-height: 800px;
 
 		display: flex;
 		justify-content: space-between;

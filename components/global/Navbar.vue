@@ -1,6 +1,6 @@
 <template>
 	<nav class="navbar" :class="{ transparent_to_white: whiteNavbar && transparent, transparent: transparent }">
-		<n-link class="logo" exact :to="localePath('index')">
+		<n-link class="logo" exact :to="localePath('index')" @click.native="CloseMenu">
 			<Logo />
 		</n-link>
 
@@ -133,10 +133,12 @@ $transition: all 0.35s ease;
 
 		.current_locale {
 			padding: 0 10px;
+			padding-bottom: 2px;
 
 			display: flex;
 			align-items: center;
 			z-index: 2;
+			cursor: pointer;
 			span {
 				line-height: 12px;
 				font-weight: 400;
@@ -144,12 +146,11 @@ $transition: all 0.35s ease;
 			&:hover {
 				background: $primary;
 			}
-
-			border-left: 3px solid $primary;
-			cursor: pointer;
 		}
 		.locale {
 			opacity: 0; //opacity:1
+			padding-bottom: 2px;
+
 			&:hover {
 				background: $primary;
 			}

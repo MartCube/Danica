@@ -92,4 +92,21 @@ button {
 		}
 	}
 }
+
+@media (max-width: 900px) {
+	button.animated {
+		background: $primary;
+
+		.text {
+			opacity: 1;
+			color: $black;
+		}
+		svg {
+			fill: $black;
+		}
+		.overlay {
+			width: 100%;
+		}
+	}
+}
 </style>

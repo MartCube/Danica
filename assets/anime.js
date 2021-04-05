@@ -42,6 +42,18 @@ export function buttonAnim(button, overlay) {
 	})
 }
 
+export function modalAnim(modal) {
+	anime({
+		targets: modal,
+		opacity: [0, 1],
+		scale: [0.75, 1],
+		display: 'inline',
+
+		easing: 'easeInOutCubic',
+		duration: 350,
+	})
+}
+
 export function localleAnim(locales, show) {
 	if (show) {
 		anime({

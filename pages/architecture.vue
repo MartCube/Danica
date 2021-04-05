@@ -1,7 +1,7 @@
 <template>
 	<div class="architecture">
 		<template v-if="!$fetchState.pending">
-			<Intro :image="IntroImage" />
+			<ServiceIntro :image="IntroImage" />
 			<Values :data="values" />
 			<!-- <SliderProjects /> -->
 			<Standards :data="standards" />

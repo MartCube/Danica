@@ -69,9 +69,7 @@ export default {
 	width: 100%;
 	height: calc(100vh - 80px);
 
-	display: flex;
 	justify-content: flex-end;
-
 	position: relative;
 	// overflow: hidden;
 
@@ -206,6 +204,29 @@ export default {
 		.bg_letter{
 			left: -15vw;
 			width: 90%;
+		}
+	}
+}
+
+@media (max-width: 900px) {
+	.intro {
+		margin: 0;
+		padding-left: 40px;
+		height: calc(100vh - 60px);
+
+		.text {
+			height: inherit;
+			left: initial;
+			.title span {
+				font-size: 2rem;
+			}
+			button {
+				margin-top: auto;
+				margin-bottom: 80px;
+			}
+		}
+		.collage {
+			display: none;
 		}
 	}
 }

@@ -45,11 +45,12 @@ export default {
 				margin-bottom: 16px;
 				display: flex;
 				align-items: center;
+				font-weight: 400;
 				&::before {
 					content: '';
 					margin-right: 20px;
 					min-width: 20px;
-					height: 2px;
+					height: 4px;
 					background: $primary;
 				}
 			}

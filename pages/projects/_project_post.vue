@@ -5,15 +5,15 @@
 			<div class="project">
 				<div class="intro">
 					<h2 class="title">{{ post.title }}</h2>
-					<ImageItem :src="post.main_image" :alt="post.title" />
+					<ImageItem :src="post.main_image.url" :mobile="post.main_image.mobile.url" :alt="post.title" />
 				</div>
 
 				<div class="info">
-					<p>service: {{ post.info.service }}</p>
-					<p>square: {{ post.info.square }}&#13217;</p>
-					<p>date: {{ post.info.date }}</p>
-					<p>architect: {{ post.info.architect }}</p>
-					<p>designer: {{ post.info.designer }}</p>
+					<p><span>service:</span> {{ post.info.service }}</p>
+					<p><span>square:</span> {{ post.info.square }}&#13217;</p>
+					<p><span>date:</span> {{ post.info.date }}</p>
+					<p><span>architect:</span> {{ post.info.architect }}</p>
+					<p><span>designer:</span> {{ post.info.designer }}</p>
 				</div>
 
 				<!-- Slice Machine -->
@@ -25,7 +25,7 @@
 					</template>
 
 					<template v-else-if="slice.slice_type == 'image'">
-						<ImageItem :src="slice.primary.image.url" :alt="alt" />
+						<ImageItem :src="slice.primary.image.url" :mobile="slice.primary.image.mobile.url" :alt="slice.primary.image.alt" />
 						<span class="description">"{{ slice.primary.image.alt }}"</span>
 					</template>
 
@@ -71,7 +71,7 @@ export default {
 	async fetch() {
 		const post = await this.$prismic.api.getByUID('project_post', this.$route.params.project_post)
 		this.post = {
-			main_image: post.data.main_image.url,
+			main_image: post.data.main_image,
 			title: this.$prismic.asText(post.data.title),
 			info: {
 				service: this.$prismic.asText(post.data.info[0].service),
@@ -83,7 +83,6 @@ export default {
 
 			slices: post.data.body,
 		}
-		console.log(post.data.body)
 	},
 }
 </script>
@@ -105,6 +104,13 @@ export default {
 		flex-direction: column;
 
 		position: relative;
+		picture {
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: inherit;
+			height: inherit;
+		}
 
 		.title {
 			position: absolute;
@@ -122,7 +128,7 @@ export default {
 
 	.info {
 		margin: 50px 240px;
-		width: max-content;
+		max-width: 400px;
 		display: flex;
 		flex-direction: column;
 		p {
@@ -131,9 +137,13 @@ export default {
 
 			text-transform: capitalize;
 			color: $black;
-			font-weight: 700;
+			font-weight: 500;
 			font-size: 1.2rem;
 			line-height: 1.2rem;
+			text-align: right;
+			span {
+				float: left;
+			}
 		}
 	}
 
@@ -148,7 +158,7 @@ export default {
 	}
 
 	.image {
-		width: 85%;
+		width: 75%;
 		display: flex;
 		flex-direction: column;
 		align-items: center;
@@ -175,6 +185,7 @@ export default {
 			align-items: flex-start;
 		}
 	}
+
 	.image_text {
 		display: flex;
 		margin: 25px 0;
@@ -187,9 +198,42 @@ export default {
 				margin-bottom: 25px;
 			}
 		}
-		img {
-			width: 800px;
+		picture {
+			max-width: 800px;
 			height: 450px;
+		}
+	}
+}
+
+@media (max-width: 900px) {
+	.project {
+		.intro {
+			width: 100%;
+			height: calc(100vh - 60px);
+			.title {
+				left: 0;
+			}
+		}
+
+		.info {
+			width: 100%;
+			margin: 40px 0;
+			p {
+				font-size: 1rem;
+				padding: 20px;
+			}
+		}
+
+		.slice {
+			margin: 0;
+		}
+		.text .paragraph {
+			width: 100%;
+			padding: 0 40px;
+		}
+		.image {
+			width: 100%;
+			padding: 0 20px;
 		}
 	}
 }

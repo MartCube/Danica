@@ -15,11 +15,11 @@
 		</div>
 
 		<div class="links" :class="{ active: isActive }" @click="CloseMenu">
-			<n-link :to="localePath('design')">{{ $t('pages.design') }}</n-link>
-			<n-link :to="localePath('architecture')">{{ $t('pages.architecture') }}</n-link>
-			<n-link :to="localePath('projects')">{{ $t('pages.projects') }}</n-link>
-			<n-link :to="localePath('blog')">{{ $t('pages.blog') }}</n-link>
-			<n-link :to="localePath('contact')">{{ $t('pages.contact') }}</n-link>
+			<n-link :to="localePath('/services/interior-design')">{{ $t('pages.design') }}</n-link>
+			<n-link :to="localePath('/services/architecture')">{{ $t('pages.architecture') }}</n-link>
+			<n-link :to="localePath('/projects')">{{ $t('pages.projects') }}</n-link>
+			<n-link :to="localePath('/blog')">{{ $t('pages.blog') }}</n-link>
+			<n-link :to="localePath('/contact')">{{ $t('pages.contact') }}</n-link>
 		</div>
 
 		<div class="button" :class="{ active: isActive }" @click="ShowHideMenu">
@@ -336,7 +336,7 @@ $transition: all 0.35s ease;
 
 @media (max-width: 360px) {
 	.navbar {
-		padding: 0 5px;
+		padding: 0 30px;
 
 		.lang {
 			margin-right: 10px;

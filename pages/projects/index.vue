@@ -144,6 +144,7 @@ button {
 		}
 		.grid {
 			width: 100%;
+			min-height: auto;
 			justify-content: space-evenly;
 		}
 	}

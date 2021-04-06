@@ -25,7 +25,7 @@ export default {
 		page_size: 6,
 		projects: null,
 		swiperOption: {
-			slidesPerView: 3, // slidesPerView: 'auto',
+			slidesPerView: 3,
 			spaceBetween: 100,
 			loop: true,
 		},
@@ -60,6 +60,7 @@ export default {
 	.content {
 		.project_slider {
 			width: 800px;
+			margin-bottom: 20px;
 			.swiper-container {
 				width: 800px;
 				.swiper-wrapper .image {

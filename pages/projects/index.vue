@@ -162,8 +162,7 @@ button {
 	}
 
 	button {
-		margin: 0;
-		margin-top: 40px;
+		margin: 40px 0;
 		align-self: center;
 	}
 }

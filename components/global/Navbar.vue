@@ -245,17 +245,29 @@ $transition: all 0.35s ease;
 				font-weight: 400;
 				font-size: 1.5rem;
 				color: $black;
+
+				&::after {
+					content: '';
+					position: absolute;
+					width: 1000%;
+					background-color: $primary;
+					height: 3rem;
+					right: 0;
+					z-index: -1;
+					opacity: 0;
+					transition: all 0.2s ease;
+				}
+
+				&:hover {
+					background: none;
+					&::after {
+						opacity: 1;
+					}
+				}
 				&.nuxt-link-active {
 					background: none;
-
 					&::after {
-						// content: '';
-						// position: absolute;
 						width: 20rem;
-						// background-color: $primary;
-						// height: 3rem;
-						// right: 0;
-						// z-index: -1;
 					}
 				}
 			}

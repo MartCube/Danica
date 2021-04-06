@@ -13,10 +13,9 @@
 import anime from 'animejs'
 
 export default {
-	props: {},
 	data: () => ({
 		active: true,
-		link: '/services/design',
+		link: '/services/interior-design',
 	}),
 	computed: {
 		lettersArchitecture() {
@@ -25,17 +24,23 @@ export default {
 		lettersDesign() {
 			return 'Design'.split('')
 		},
+		array() {
+			return [this.lettersArchitecture, this.lettersDesign]
+		},
 	},
-	mounted() {
+	watch: {},
+	created() {
 		setTimeout(() => this.Animate(), 2000)
 	},
 	methods: {
 		async Animate() {
 			await this.$nextTick()
+			console.log('animate')
 
 			const StartUpTimeline = anime.timeline({
 				autoplay: true,
 			})
+
 			const el = document.querySelectorAll('.text_slider span')
 			const duration = 1000
 
@@ -63,12 +68,13 @@ export default {
 				})
 
 			StartUpTimeline.finished.then(() => {
+				console.log('finished')
+
 				// changing the array of letters
 				this.active = !this.active
 				// changing the link
-				if (this.active) this.link = '/services/design'
+				if (this.active) this.link = '/services/interior-design'
 				else this.link = '/services/architecture'
-				this.Animate()
 			})
 		},
 	},

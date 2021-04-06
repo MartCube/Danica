@@ -118,6 +118,7 @@ export default {
 
 	.filter {
 		width: 240px;
+		margin-left: -240px;
 		padding-right: 30px;
 		background: white;
 
@@ -154,7 +155,7 @@ export default {
 	}
 
 	.grid {
-		width: calc(100% - 320px);
+		width: calc(100% - 80px);
 		height: 100%;
 
 		display: grid;
@@ -217,6 +218,14 @@ export default {
 				cursor: initial;
 				opacity: 0.5;
 			}
+		}
+	}
+}
+
+@media (max-width: 900px) {
+	.blog{
+		.filter{
+			margin-left: -10vw;
 		}
 	}
 }

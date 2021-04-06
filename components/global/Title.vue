@@ -17,7 +17,7 @@ export default {
 .title {
 	width: 100%;
 	height: 240px;
-	padding-left: 240px;
+	padding-left: 3rem;
 
 	display: flex;
 	align-items: center;
@@ -28,10 +28,14 @@ export default {
 @media (max-width: 900px) {
 	.title {
 		height: 200px;
-
-		padding: 0;
 		font-size: 2.5rem;
-		justify-content: center;
+	}
+}
+@media (max-width: 320px) {
+	.title {
+		height: 200px;
+		font-size: 2.5rem;
+		padding-left: 1rem;
 	}
 }
 </style>

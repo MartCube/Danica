@@ -84,6 +84,8 @@ export default {
 		padding-right: 30px;
 		background: white;
 		height: fit-content;
+		position: relative;
+		z-index: 6;
 
 		display: flex;
 		flex-direction: column;
@@ -121,7 +123,7 @@ export default {
 
 	.grid {
 		width: 100%;
-		padding-right: 1rem;
+		padding-right: 1.5rem;
 		// max-width: 1000px;
 		height: 100%;
 		min-height: 800px;
@@ -135,11 +137,6 @@ export default {
 			}
 	}
 }
-@media (max-width: 900px) {
-	.filter{
-		margin-left: -15vw;
-	}
-}
 
 button {
 	margin: 5% 0 2%;
@@ -150,20 +147,31 @@ button {
 	.projects {
 		flex-direction: column;
 		.filter {
+			margin-left: -10vw;
 			width: 50%;
 			min-width: auto;
 			padding: 0;
 			margin-bottom: 25px;
 		}
 		.grid {
-			width: calc( 100% - 10vw);
-			justify-content: space-evenly;
+			width: 100%;
+			justify-content: space-between;
+			.project_card{
+				margin-right: 0;
+			}
 		}
 	}
 
 	button {
 		margin: 40px 0;
 		align-self: center;
+	}
+}
+@media (max-width: 320px) {
+	.projects{
+		.filter{
+			width: 60%;
+		}
 	}
 }
 </style>

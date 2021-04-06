@@ -1,5 +1,5 @@
 <template>
-	<nav class="navbar" :class="{ transparent_to_white: whiteNavbar && transparent, transparent: transparent }">
+	<header class="navbar" :class="{ transparent_to_white: whiteNavbar && transparent, transparent: transparent }">
 		<n-link class="logo" exact :to="localePath('index')" @click.native="CloseMenu">
 			<Logo />
 		</n-link>
@@ -26,7 +26,7 @@
 			<span class="top" />
 			<span class="bot" />
 		</div>
-	</nav>
+	</header>
 </template>
 
 <script>
@@ -167,6 +167,8 @@ $transition: all 0.35s ease;
 			font-weight: 400;
 			color: $black;
 			outline: none;
+			position: relative;
+		
 		}
 	}
 
@@ -177,10 +179,11 @@ $transition: all 0.35s ease;
 		display: flex;
 		flex-direction: row;
 		justify-content: flex-end;
+		
 
 		a {
 			padding: 0 25px;
-
+			position: relative;
 			display: flex;
 			align-items: center;
 
@@ -194,11 +197,32 @@ $transition: all 0.35s ease;
 			&:hover {
 				background: $primary;
 			}
-			&.nuxt-link-active {
+			&.nuxt-link-active, &:hover {
 				background: $primary;
 			}
-		}
+			&::after{
+				content: '';
+				display: block;
+				transition: all 0.2s ease;
+				width: 0;
+				right: 0;
+				position: absolute;
+				height: 100%;
+				z-index: 1;
+				background-color: $primary;
+			}
+			span{
+				position: relative;
+				z-index: 3;
+				font-size: inherit;
+				font-weight: inherit;
+				color: inherit;
+				outline: inherit;
+				transition: inherit;
 
+			}
+		}
+		
 		&.active {
 			width: 100%;
 			display: flex;
@@ -207,7 +231,7 @@ $transition: all 0.35s ease;
 			align-items: center;
 			overflow: hidden;
 			background: white;
-
+			height: calc(100vh - 60px);
 			position: fixed;
 			top: 60px;
 			right: 0;
@@ -243,7 +267,7 @@ $transition: all 0.35s ease;
 				&.nuxt-link-active {
 					background: none;
 					&::after {
-						opacity: 1;
+						width: 20rem;
 					}
 				}
 			}

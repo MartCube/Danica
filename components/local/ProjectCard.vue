@@ -122,7 +122,7 @@ export default {
 
 @media (max-width: 900px) {
 	.project_card {
-		width: 150px;
+		width: 40vw;
 		.image {
 			height: auto;
 		}

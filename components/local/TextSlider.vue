@@ -91,13 +91,14 @@ export default {
 	width: max-content;
 	display: flex;
 	align-items: center;
+	z-index: 2;
 	span {
 		opacity: 0; // opacity: 1
 
 		text-transform: none;
 		line-height: initial;
 		font-weight: 700;
-		font-size: 4rem;
+		font-size: 4.5vw;
 	}
 
 	&::after {
@@ -117,8 +118,13 @@ export default {
 	}
 }
 @media (max-width: 900px) {
-	.text_slider span {
-		font-size: 2rem;
+	.text_slider span{
+		font-size: 8.5vw;
+	}
+}
+@media (max-width: 400px) {
+	.text_slider span{
+		font-size: 1.8rem;
 	}
 }
 </style>

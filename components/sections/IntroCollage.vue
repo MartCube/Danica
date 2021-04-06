@@ -1,5 +1,6 @@
 <template>
 	<section class="intro">
+		<img class="bg_letter" src="../../static/d_letter.svg" alt="">
 		<div class="text">
 			<div class="title">
 				<span v-for="(letter, i) in lettersWeAre" :key="i" ref="lettersWeAre">{{ letter }}</span>
@@ -8,7 +9,7 @@
 				<span v-for="(letter, i) in lettersLeadersIn" :key="i" ref="lettersLeadersIn">{{ letter }}</span>
 			</div>
 			<TextSlider />
-			<ButtonItem @click.native="openModal"> write us </ButtonItem>
+			<ButtonItem @click.native="openModal"> Write us </ButtonItem>
 		</div>
 
 		<div class="collage">
@@ -34,16 +35,16 @@ export default {
 	}),
 	computed: {
 		lettersWeAre() {
-			return 'We Are'.split('')
+			return 'We are'.split('')
 		},
 		lettersLeadersIn() {
-			return 'Leaders In'.split('')
+			return 'leaders in'.split('')
 		},
 		first_imgIX() {
 			return this.data[0].intro_image.url + `&fit=crop&w=300&h=300&dpr=1`
 		},
 		second_imgIX() {
-			return this.data[1].intro_image.url + `&fit=crop&w=500&h=500&dpr=1`
+			return this.data[1].intro_image.url + `&fit=crop&w=800&h=1000&dpr=1`
 		},
 		third_imgIX() {
 			return this.data[2].intro_image.url + `&fit=crop&w=400&h=400&dpr=1`
@@ -65,23 +66,32 @@ export default {
 
 <style lang="scss" scoped>
 .intro {
-	margin-left: 240px;
+	width: 100%;
 	height: calc(100vh - 80px);
 
 	justify-content: flex-end;
 	position: relative;
-	overflow: hidden;
+	// overflow: hidden;
+
+	.bg_letter{
+		position: absolute;
+    left: -245px;
+    top: 9%;
+		width: 23vw;
+		z-index: 6;
+	}
 
 	.text {
 		width: min-content;
-		padding-top: 40px;
+		padding-top: 9vh;
 
 		position: absolute;
 		top: 0;
-		left: 0;
+		left: -70px;
 
 		display: flex;
 		flex-direction: column;
+		z-index: 6;
 
 		.title {
 			width: max-content;
@@ -90,11 +100,11 @@ export default {
 			overflow: hidden;
 			span {
 				opacity: 0; // opacity: 1
-
+				min-width: 1rem;
 				text-transform: none;
 				line-height: initial;
 				font-weight: 400;
-				font-size: 4rem;
+				font-size: 4vw;
 			}
 		}
 
@@ -104,51 +114,109 @@ export default {
 	}
 
 	.collage {
-		width: 800px;
+		width: 57vw;
 		position: relative;
 		img {
 			border: 0 solid transparent; // border: 10px solid white
-			opacity: 0; // opacity: 1
+			width: 0;
 			position: absolute;
+			object-fit: cover;
 		}
 		.first {
 			z-index: 3;
+			height: 16vw;
 			bottom: 0;
 			left: 0;
 		}
 		.second {
 			z-index: 2;
-			bottom: 50px;
-			right: 150px;
+			bottom: 0;
+			height: 90vh;
+			left: 8vw;
 		}
 		.third {
 			z-index: 1;
 			bottom: 100px;
-			right: 0;
+			height: 30vw;
+			bottom: 10vh;
+			left: 27vw;
 		}
 	}
-}
 
-@media (max-width: 900px) {
-	.intro {
-		margin: 0;
-		padding-left: 40px;
-		height: calc(100vh - 60px);
-
-		.text {
-			height: inherit;
-			left: initial;
-			.title span {
-				font-size: 2rem;
-			}
-			button {
-				margin-top: auto;
-				margin-bottom: 80px;
-			}
+	@media (max-width: 1220px) {
+		.text{
+			left: -7vw;
 		}
-		.collage {
+		.collage .first{
+			height: 21vw;
+		}
+		.bg_letter{
+			width: 25vw;
+		}
+	}
+	@media (max-width: 1084px) {
+		.collage .second{
+			left: 12vw;
+		}
+		.bg_letter{
+			width: 28vw;
+		}
+	}
+	@media (max-width: 900px) {
+		.collage{
 			display: none;
 		}
+		.text{
+			width: 100%;
+			left: 0;
+			.title span{
+				font-size: 11vw;
+			}
+			button{
+				align-self: flex-end;
+				margin: 14vw 10vw;
+				text-transform: initial;
+			}
+		}
+		.bg_letter{
+			left: -15vw;
+			width: 40vw;
+		}
+	}
+	@media (max-width: 600px) {
+		.text{
+			width: 100%;
+			left: 0;
+			padding-top: 20vh;
+			.title {
+				span{
+					font-size: 3rem;
+				}
+			}
+			.text_slider{
+				margin-top: 2rem;
+			}
+			button{
+				align-self: flex-end;
+				margin: 35% 10% 0 0 ;
+				text-transform: initial;
+			}
+		}
+		.bg_letter{
+			left: -15vw;
+			width: 80%;
+			top: 8%;
+		}
+	}
+	@media (max-width: 400px){
+		.text{
+			.title {
+				span{
+					font-size: 2rem;
+				}
+			}
+		}
 	}
 }
+
 </style>

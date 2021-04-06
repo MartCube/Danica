@@ -81,10 +81,12 @@ export default {
 
 		> * {
 			font-size: 0.8rem;
-			opacity: 0.5;
+			// opacity: 0.5;
+			color: rgba(0,0,0, .4);
+			font-weight: 500;
 		}
 		.tag {
-			color: $primary;
+			color: darken($primary, 5%);
 			text-transform: capitalize;
 		}
 	}
@@ -174,6 +176,10 @@ export default {
 				opacity: 1;
 				font-size: 1.2rem;
 				color: white;
+			}
+			.tag {
+				color:$primary;
+				font-weight: 500;
 			}
 		}
 

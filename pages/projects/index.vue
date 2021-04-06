@@ -80,16 +80,22 @@ export default {
 
 	.filter {
 		min-width: 240px;
+		margin-left: -240px;
 		padding-right: 30px;
 		background: white;
+		height: fit-content;
+		position: relative;
+		z-index: 6;
 
 		display: flex;
 		flex-direction: column;
-
+	
 		span {
 			margin: 10px 0;
 			text-transform: capitalize;
 			white-space: nowrap;
+			font-weight: 500;
+			font-size: 1.4rem;
 
 			display: flex;
 			align-items: center;
@@ -117,19 +123,23 @@ export default {
 
 	.grid {
 		width: 100%;
-		max-width: 1000px;
+		padding-right: 1.5rem;
+		// max-width: 1000px;
 		height: 100%;
 		min-height: 800px;
 
 		display: flex;
-		justify-content: space-between;
+		justify-content: flex-start;
 		align-items: center;
 		flex-wrap: wrap;
+		.project_card{
+			margin-right: 2rem;
+			}
 	}
 }
 
 button {
-	margin-left: 240px;
+	margin: 5% 0 2%;
 	color: $black;
 }
 
@@ -137,6 +147,7 @@ button {
 	.projects {
 		flex-direction: column;
 		.filter {
+			margin-left: -10vw;
 			width: 50%;
 			min-width: auto;
 			padding: 0;
@@ -144,14 +155,23 @@ button {
 		}
 		.grid {
 			width: 100%;
-			min-height: auto;
-			justify-content: space-evenly;
+			justify-content: space-between;
+			.project_card{
+				margin-right: 0;
+			}
 		}
 	}
 
 	button {
 		margin: 40px 0;
 		align-self: center;
+	}
+}
+@media (max-width: 320px) {
+	.projects{
+		.filter{
+			width: 60%;
+		}
 	}
 }
 </style>

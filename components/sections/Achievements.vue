@@ -133,4 +133,16 @@ export default {
 		}
 	}
 }
+@media (max-width: 400px) {
+	.content {
+		padding: 0 1rem 0 .2rem;
+		.title{
+			font-size: 1.4rem;
+		}
+		.text p{
+			font-size: 1rem;
+			line-height: 1.5;
+		}
+	}
+}
 </style>

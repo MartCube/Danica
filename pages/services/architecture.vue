@@ -1,7 +1,7 @@
 <template>
 	<div class="architecture">
 		<template v-if="!$fetchState.pending">
-			<ServiceIntro :image="IntroImage" />
+			<ServiceIntro :image="IntroImage" :title="title" :project="project" :isWhiteClassEnabled="isWhiteClassEnabled"/>
 			<Values :data="values" />
 			<!-- <SliderProjects /> -->
 			<Standards :data="standards" />
@@ -35,9 +35,18 @@ export default {
 	middleware: 'navbar',
 	data: () => ({
 		IntroImage: null,
+		title: {
+			main: "Architecture",
+			subtitle: "Design",
+		},
+		project: {
+			name: "Проект: Fox",
+			author: "Диазйнер: Анастасия Лисовская",
+		},
 		values: null,
 		standards: null,
 		slices: null,
+		isWhiteClassEnabled: true
 	}),
 	async fetch() {
 		const fetch = await this.$prismic.api.getSingle('service_architecture')
@@ -53,7 +62,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.architecture {
-	min-height: 100vh;
-}
+// .architecture {
+// 	min-height: 100vh;
+// }
 </style>

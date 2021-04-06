@@ -28,7 +28,8 @@ export default {
 
 <style lang="scss" scoped>
 .content {
-	margin-left: 240px;
+	// margin-left: 240px;
+	padding: 0 1rem;
 
 	display: flex;
 	.title {

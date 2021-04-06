@@ -58,7 +58,32 @@ body {
 		}
 	}
 
+	main{
+		width: calc(100vw - 240px);
+	}
+	@media (max-width: 900px) {
+		main{
+			width: calc(100vw - 10vw);
+		}
+	}
 	
+}
+
+.wrapper{
+	header { grid-area: header; }
+	aside{ grid-area: aside; }
+	main { grid-area: main; }
+	footer { grid-area: footer; }
+
+	overflow: hidden;
+
+	display: grid;
+	grid-template-areas:
+		'header header'
+		'aside main'
+		'aside main'
+		'aside main'
+		'footer footer';
 }
 
 section{
@@ -67,9 +92,10 @@ section{
 	.name {
 		width: 240px;
 		margin-top: 10px;
-		padding-right: 40px;
+		padding-right: 1.5rem;
 		display: flex;
-
+		// margin-right: 1.5rem;
+		margin-left: -240px;
 		text-transform: capitalize;
 		color: $grey;
 
@@ -82,8 +108,12 @@ section{
 			background: $primary;
 		}
 	}
+	.name ~ .content {
+		padding-left: 1.5rem;
+	}
 	.content{
 		flex-grow: 1;
+		width: 100%;
 		.title {
 			max-width: 600px;
 			margin-bottom: 80px;
@@ -91,7 +121,7 @@ section{
 	}
 
 	h2{
-		font-size: 2rem;
+		font-size: 1.8rem;
 	}
 	h3{
 		font-size: 1.5rem;
@@ -122,9 +152,10 @@ section{
 			width: max-content;
 			margin-top: 0;
 			margin-bottom: 40px;
+			margin-left: -10vw;
 			&::before {
 				content: '';
-				width: 40px;
+				width: 10vw;
 			}
 		}
 		.content{
@@ -139,6 +170,11 @@ section{
 	}
 }
 
+@media (max-width: 360px) {
+	section h2{
+		font-size: 1.4rem;
+	}
+}
 @media (max-width: 360px) {
 	section h2{
 		font-size: 1.4rem;

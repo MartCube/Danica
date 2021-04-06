@@ -1,7 +1,10 @@
 <template>
-	<div>
+	<div class="wrapper">
 		<Navbar />
-		<Nuxt keep-alive />
+		<SideBar />
+		<main>
+			<Nuxt keep-alive />
+		</main>
 		<Footer />
 		<ContactModal />
 	</div>

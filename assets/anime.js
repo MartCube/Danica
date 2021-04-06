@@ -87,67 +87,61 @@ export function introAnim(lettersWeAre, lettersLeadersIn, collage1, collage2, co
 	const collageBorder = '10px solid white'
 
 	StartUpTimeline.add(
-		{
-			targets: lettersWeAre,
-			opacity: [0, 1],
-			translateY: ['100%', '0%'],
+    {
+      targets: lettersWeAre,
+      opacity: [0, 1],
+      translateY: ["100%", "0%"],
 
-			easing: 'easeInOutCubic',
-			delay: anime.stagger(50, { from: 'first' }),
-			duration: 1000,
-		},
-		0,
-	)
-		.add(
-			{
-				targets: lettersLeadersIn,
-				opacity: [0, 1],
-				translateY: ['100%', '0%'],
+      easing: "easeInOutCubic",
+      delay: anime.stagger(50, {from: "first"}),
+      duration: 1000,
+    },
+    0
+  )
+    .add(
+      {
+        targets: lettersLeadersIn,
+        opacity: [0, 1],
+        translateY: ["100%", "0%"],
 
-				easing: 'easeInOutCubic',
-				delay: anime.stagger(50, { from: 'first' }),
-				duration: 1000,
-			},
-			200,
-		)
-		.add(
-			{
-				targets: collage1,
-				opacity: [0, 1],
-				translateX: ['-50%', '0%'],
-				// scaleY: [0.75, 1],
-				height: [0, '300px'],
+        easing: "easeInOutCubic",
+        delay: anime.stagger(50, {from: "first"}),
+        duration: 1000,
+      },
+      200
+    )
+    .add(
+      {
+        targets: collage1,
+        // opacity: [0, 1],
+        width: [0, "16vw"],
+        border: collageBorder,
+        easing: colllageEasing,
+        duration: collageDuration,
+      },
+      1400
+    )
+    .add(
+      {
+        targets: collage2,
+        // opacity: [0, 1],
+        width: [0, "37vw"],
+        border: collageBorder,
+        easing: colllageEasing,
+        duration: collageDuration,
+      },
+      1200
+    )
+    .add(
+      {
+        targets: collage3,
+        // opacity: [0, 1],
+        width: [0, "30vw"],
 
-				border: collageBorder,
-				easing: colllageEasing,
-				duration: collageDuration,
-			},
-			1400,
-		)
-		.add(
-			{
-				targets: collage2,
-				opacity: [0, 1],
-				translateY: ['50%', '0%'],
-				height: [0, '500px'],
-
-				border: collageBorder,
-				easing: colllageEasing,
-				duration: collageDuration,
-			},
-			1200,
-		)
-		.add(
-			{
-				targets: collage3,
-				opacity: [0, 1],
-				translateX: ['-50%', '0%'],
-				width: [0, '400px'],
-
-				border: collageBorder,
-				easing: colllageEasing,
-				duration: collageDuration,
-			},
-			1000,
-		)
+        border: collageBorder,
+        easing: colllageEasing,
+        duration: collageDuration,
+      },
+      1000
+    );
 }

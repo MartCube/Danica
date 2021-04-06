@@ -1,5 +1,5 @@
 <template>
-	<button :class="{ animated: animated, white: white }">
+	<button :class="{ animated: animated, white: white }" @click="$router.push(localePath(link))">
 		<div ref="buttonText" class="text">
 			<slot />
 		</div>
@@ -20,6 +20,10 @@ export default {
 		white: {
 			type: Boolean,
 			default: false,
+		},
+		link: {
+			type: String,
+			default: '',
 		},
 	},
 	mounted() {

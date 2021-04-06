@@ -26,24 +26,28 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-img {
+picture {
 	width: 100%;
 	height: 100%;
-	position: relative;
-	object-fit: cover;
-	object-position: center;
+	img {
+		width: inherit;
+		height: inherit;
+		position: relative;
+		object-fit: cover;
+		object-position: center;
 
-	&::before {
-		display: none;
-	}
+		&::before {
+			display: none;
+		}
 
-	&.lazyload,
-	&.lazyloading {
-		opacity: 0;
-	}
-	&.lazyloaded {
-		opacity: 1;
-		transition: all 2s cubic-bezier(0.215, 0.61, 0.355, 1);
+		&.lazyload,
+		&.lazyloading {
+			opacity: 0;
+		}
+		&.lazyloaded {
+			opacity: 1;
+			transition: all 2s cubic-bezier(0.215, 0.61, 0.355, 1);
+		}
 	}
 }
 </style>

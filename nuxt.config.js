@@ -36,7 +36,7 @@ export default {
 	},
 
 	i18n: {
-		defaultLocale: 'en',
+		defaultLocale: 'ua',
 		lazy: true,
 		langDir: 'locales/',
 		locales: [

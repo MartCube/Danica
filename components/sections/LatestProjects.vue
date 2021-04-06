@@ -6,6 +6,7 @@
 			</div>
 			<div class="content">
 				<h2 class="title">Stay up to date with the newsest projects</h2>
+
 				<div class="project_slider">
 					<div v-swiper="swiperOption" class="swiper-container">
 						<div class="swiper-wrapper">
@@ -13,7 +14,8 @@
 						</div>
 					</div>
 				</div>
-				<ButtonItem> all projects </ButtonItem>
+
+				<ButtonItem link="/projects"> all projects </ButtonItem>
 			</div>
 		</template>
 	</section>
@@ -25,8 +27,8 @@ export default {
 		page_size: 6,
 		projects: null,
 		swiperOption: {
-			slidesPerView: 3, // slidesPerView: 'auto',
-			spaceBetween: 100,
+			slidesPerView: 'auto',
+			spaceBetween: 50,
 			loop: true,
 		},
 	}),
@@ -43,25 +45,31 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+section .name {
+	min-width: 240px;
+	width: 100%;
+}
 .content {
 	display: flex;
 	flex-direction: column;
 	.project_slider {
-		width: 1100px;
+		width: 100vw;
 		margin-bottom: 50px;
 		.swiper-container {
-			width: 1100px;
+			width: auto;
 			margin: 0;
 		}
+		position: relative;
 	}
 }
 
-@media (max-width: 360px) {
+@media (max-width: 900px) {
 	.content {
 		.project_slider {
-			width: 800px;
+			width: 700px;
+			margin-bottom: 20px;
 			.swiper-container {
-				width: 800px;
+				width: 700px;
 				.swiper-wrapper .image {
 					height: 200px;
 				}

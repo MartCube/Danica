@@ -156,7 +156,7 @@ button {
 			margin-bottom: 25px;
 		}
 		.grid {
-			width: calc( 100% - 15vw);
+			width: calc( 100% - 10vw);
 			justify-content: space-evenly;
 		}
 	}

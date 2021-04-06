@@ -14,13 +14,13 @@
 			</n-link>
 		</div>
 
-		<nav class="links" :class="{ active: isActive }" @click="CloseMenu">
-			<n-link :to="localePath('design')"><span> {{ $t('pages.design') }} </span></n-link>
-			<n-link :to="localePath('architecture')"><span> {{ $t('pages.architecture') }} </span></n-link>
-			<n-link :to="localePath('projects')"><span> {{ $t('pages.projects') }} </span></n-link>
-			<n-link :to="localePath('blog')"><span> {{ $t('pages.blog') }} </span></n-link>
-			<n-link :to="localePath('contact')"><span> {{ $t('pages.contact') }} </span></n-link>
-		</nav>
+		<div class="links" :class="{ active: isActive }" @click="CloseMenu">
+			<n-link :to="localePath('/services/interior-design')">{{ $t('pages.design') }}</n-link>
+			<n-link :to="localePath('/services/architecture')">{{ $t('pages.architecture') }}</n-link>
+			<n-link :to="localePath('/projects')">{{ $t('pages.projects') }}</n-link>
+			<n-link :to="localePath('/blog')">{{ $t('pages.blog') }}</n-link>
+			<n-link :to="localePath('/contact')">{{ $t('pages.contact') }}</n-link>
+		</div>
 
 		<div class="button" :class="{ active: isActive }" @click="ShowHideMenu">
 			<span class="top" />
@@ -237,7 +237,7 @@ $transition: all 0.35s ease;
 			right: 0;
 
 			a {
-				animation: fadeInRight 0.5s ease forwards;
+				animation: fadeInRight 0.35s ease;
 				margin: 20px 0;
 				padding: 0 10px;
 				position: relative;
@@ -360,7 +360,7 @@ $transition: all 0.35s ease;
 
 @media (max-width: 360px) {
 	.navbar {
-		padding: 0 5px;
+		padding: 0 30px;
 
 		.lang {
 			margin-right: 10px;

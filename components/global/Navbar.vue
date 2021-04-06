@@ -213,7 +213,7 @@ $transition: all 0.35s ease;
 			right: 0;
 
 			a {
-				animation: fadeInRight 0.5s ease forwards;
+				animation: fadeInRight 0.35s ease;
 				margin: 20px 0;
 				padding: 0 10px;
 				position: relative;

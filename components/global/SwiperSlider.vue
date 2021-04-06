@@ -1,9 +1,7 @@
 <template>
 	<div v-swiper="swiperOption" class="swiper-container">
 		<div class="swiper-wrapper">
-			<div>
-				<slot> </slot>
-			</div>
+			<slot> </slot>
 		</div>
 		<div v-if="pagination" slot="pagination" class="swiper-pagination"></div>
 	</div>
@@ -19,7 +17,7 @@ export default {
 	},
 	data: () => ({
 		swiperOption: {
-			slidesPerView: "auto",
+			slidesPerView: 1,
 			spaceBetween: 100,
 			loop: true,
 			autoplay: {

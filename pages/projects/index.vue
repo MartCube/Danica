@@ -80,16 +80,20 @@ export default {
 
 	.filter {
 		min-width: 240px;
+		margin-left: -240px;
 		padding-right: 30px;
 		background: white;
+		height: fit-content;
 
 		display: flex;
 		flex-direction: column;
-
+	
 		span {
 			margin: 10px 0;
 			text-transform: capitalize;
 			white-space: nowrap;
+			font-weight: 500;
+			font-size: 1.4rem;
 
 			display: flex;
 			align-items: center;
@@ -117,19 +121,28 @@ export default {
 
 	.grid {
 		width: 100%;
-		max-width: 1000px;
+		padding-right: 1rem;
+		// max-width: 1000px;
 		height: 100%;
 		min-height: 800px;
 
 		display: flex;
-		justify-content: space-between;
+		justify-content: flex-start;
 		align-items: center;
 		flex-wrap: wrap;
+		.project_card{
+			margin-right: 2rem;
+			}
+	}
+}
+@media (max-width: 900px) {
+	.filter{
+		margin-left: -15vw;
 	}
 }
 
 button {
-	margin-left: 240px;
+	margin: 5% 0 2%;
 	color: $black;
 }
 
@@ -143,7 +156,7 @@ button {
 			margin-bottom: 25px;
 		}
 		.grid {
-			width: 100%;
+			width: calc( 100% - 15vw);
 			justify-content: space-evenly;
 		}
 	}

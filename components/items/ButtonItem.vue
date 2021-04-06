@@ -97,5 +97,10 @@ button {
 			font-size: 2rem;
 		}
 	}
+	@media (max-width: 400px) {
+		.text{
+			font-size: 1.5rem;
+		}
+	}
 }
 </style>

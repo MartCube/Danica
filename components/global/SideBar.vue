@@ -49,6 +49,7 @@ aside{
     z-index: 1;
 		li{
 			list-style-type: none;
+			margin-bottom: 5px;
 		}	
 	}
 }
@@ -58,6 +59,14 @@ aside{
 			width: 15vw;
 			ul.messengers{
 				left: 7.5vw;
+			}
+		}
+	}
+	@media (max-width: 400px) {
+		aside{
+			// width: 15vw;
+			ul.messengers{
+				left: 4vw;
 			}
 		}
 	}

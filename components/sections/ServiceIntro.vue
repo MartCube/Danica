@@ -20,7 +20,7 @@ export default {
 <style lang="scss" scoped>
 .intro {
 	margin-left: 0;
-	width: 100%;
+	width: 100vw;
 	height: 100vh;
 
 	display: flex;
@@ -30,9 +30,15 @@ export default {
 	.bg {
 		position: absolute;
 		top: 0;
-		left: 0;
+		left: -240px;
 		width: inherit;
 		height: inherit;
 	}
+	@media (max-width: 900px) {
+		.bg{
+			left: -15vw;
+		}
+	}
 }
+
 </style>

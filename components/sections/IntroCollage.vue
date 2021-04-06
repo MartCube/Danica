@@ -189,7 +189,7 @@ export default {
 			padding-top: 17vh;
 			.title {
 				span{
-					font-size: 2.5rem;
+					font-size: 3rem;
 				}
 			}
 			.text_slider{
@@ -197,7 +197,7 @@ export default {
 			}
 			button{
 				align-self: flex-end;
-				margin: 40% 10% 0 0 ;
+				margin: 35% 10% 0 0 ;
 				text-transform: initial;
 			}
 		}
@@ -206,28 +206,41 @@ export default {
 			width: 90%;
 		}
 	}
-}
-
-@media (max-width: 900px) {
-	.intro {
-		margin: 0;
-		padding-left: 40px;
-		height: calc(100vh - 60px);
-
-		.text {
-			height: inherit;
-			left: initial;
-			.title span {
-				font-size: 2rem;
+	@media (max-width: 400px){
+		.text{
+			// width: 100%;
+			// left: 0;
+			// padding-top: 17vh;
+			.title {
+				span{
+					font-size: 2rem;
+				}
 			}
-			button {
-				margin-top: auto;
-				margin-bottom: 80px;
-			}
-		}
-		.collage {
-			display: none;
+			// .text_slider{
+			// 	span{font-size: 3rem;}
+			// }
 		}
 	}
 }
+
+// @media (max-width: 900px) {
+// 	.intro {
+// 		margin: 0;
+// 		// padding-left: 40px;
+// 		height: calc(100vh - 60px);
+
+// 		.text {
+// 			height: inherit;
+// 			left: initial;
+// 			.title span {
+// 				font-size: 3rem;
+// 			}
+// 			// button {
+// 			// 	margin-top: auto;
+// 			// 	margin-bottom: 80px;
+// 			// }
+// 		}
+	
+// 	}
+// }
 </style>

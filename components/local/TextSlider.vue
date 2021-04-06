@@ -116,4 +116,9 @@ export default {
 		font-size: 8.5vw;
 	}
 }
+@media (max-width: 400px) {
+	.text_slider span{
+		font-size: 1.8rem;
+	}
+}
 </style>

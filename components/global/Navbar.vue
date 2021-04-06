@@ -15,11 +15,11 @@
 		</div>
 
 		<nav class="links" :class="{ active: isActive }" @click="CloseMenu">
-			<n-link :to="localePath('design')">{{ $t('pages.design') }}</n-link>
-			<n-link :to="localePath('architecture')">{{ $t('pages.architecture') }}</n-link>
-			<n-link :to="localePath('projects')">{{ $t('pages.projects') }}</n-link>
-			<n-link :to="localePath('blog')">{{ $t('pages.blog') }}</n-link>
-			<n-link :to="localePath('contact')">{{ $t('pages.contact') }}</n-link>
+			<n-link :to="localePath('design')"><span> {{ $t('pages.design') }} </span></n-link>
+			<n-link :to="localePath('architecture')"><span> {{ $t('pages.architecture') }} </span></n-link>
+			<n-link :to="localePath('projects')"><span> {{ $t('pages.projects') }} </span></n-link>
+			<n-link :to="localePath('blog')"><span> {{ $t('pages.blog') }} </span></n-link>
+			<n-link :to="localePath('contact')"><span> {{ $t('pages.contact') }} </span></n-link>
 		</nav>
 
 		<div class="button" :class="{ active: isActive }" @click="ShowHideMenu">
@@ -167,6 +167,8 @@ $transition: all 0.35s ease;
 			font-weight: 400;
 			color: $black;
 			outline: none;
+			position: relative;
+		
 		}
 	}
 
@@ -177,10 +179,11 @@ $transition: all 0.35s ease;
 		display: flex;
 		flex-direction: row;
 		justify-content: flex-end;
+		
 
 		a {
 			padding: 0 25px;
-
+			position: relative;
 			display: flex;
 			align-items: center;
 
@@ -191,14 +194,35 @@ $transition: all 0.35s ease;
 			color: $black;
 			outline: none;
 			transition: all 0.2s ease;
-			&:hover {
-				background: $primary;
+			// &:hover {
+				// background: $primary;
+			// }
+			&.nuxt-link-active, &:hover {
+				// background: $primary;
 			}
-			&.nuxt-link-active {
-				background: $primary;
+			&::after{
+				content: '';
+				display: block;
+				transition: all 0.2s ease;
+				width: 0;
+				right: 0;
+				position: absolute;
+				height: 100%;
+				z-index: 1;
+				background-color: $primary;
+			}
+			span{
+				position: relative;
+				z-index: 3;
+				font-size: inherit;
+				font-weight: inherit;
+				color: inherit;
+				outline: inherit;
+				transition: inherit;
+
 			}
 		}
-
+		
 		&.active {
 			width: 100%;
 			display: flex;
@@ -207,7 +231,7 @@ $transition: all 0.35s ease;
 			align-items: center;
 			overflow: hidden;
 			background: white;
-
+			height: calc(100vh - 60px);
 			position: fixed;
 			top: 60px;
 			right: 0;
@@ -225,13 +249,13 @@ $transition: all 0.35s ease;
 					background: none;
 
 					&::after {
-						content: '';
-						position: absolute;
-						width: 1000%;
-						background-color: $primary;
-						height: 3rem;
-						right: 0;
-						z-index: -1;
+						// content: '';
+						// position: absolute;
+						width: 20rem;
+						// background-color: $primary;
+						// height: 3rem;
+						// right: 0;
+						// z-index: -1;
 					}
 				}
 			}

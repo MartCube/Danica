@@ -75,10 +75,10 @@ export default {
 
 	.bg_letter{
 		position: absolute;
-    left: -240px;
+    left: -245px;
     top: 9%;
 		width: 23vw;
-		z-index: 0;
+		z-index: 6;
 	}
 
 	.text {
@@ -91,6 +91,7 @@ export default {
 
 		display: flex;
 		flex-direction: column;
+		z-index: 6;
 
 		.title {
 			width: max-content;
@@ -186,7 +187,7 @@ export default {
 		.text{
 			width: 100%;
 			left: 0;
-			padding-top: 17vh;
+			padding-top: 20vh;
 			.title {
 				span{
 					font-size: 3rem;
@@ -203,44 +204,19 @@ export default {
 		}
 		.bg_letter{
 			left: -15vw;
-			width: 90%;
+			width: 80%;
+			top: 8%;
 		}
 	}
 	@media (max-width: 400px){
 		.text{
-			// width: 100%;
-			// left: 0;
-			// padding-top: 17vh;
 			.title {
 				span{
 					font-size: 2rem;
 				}
 			}
-			// .text_slider{
-			// 	span{font-size: 3rem;}
-			// }
 		}
 	}
 }
 
-// @media (max-width: 900px) {
-// 	.intro {
-// 		margin: 0;
-// 		// padding-left: 40px;
-// 		height: calc(100vh - 60px);
-
-// 		.text {
-// 			height: inherit;
-// 			left: initial;
-// 			.title span {
-// 				font-size: 3rem;
-// 			}
-// 			// button {
-// 			// 	margin-top: auto;
-// 			// 	margin-bottom: 80px;
-// 			// }
-// 		}
-	
-// 	}
-// }
 </style>

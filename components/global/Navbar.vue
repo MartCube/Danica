@@ -194,11 +194,11 @@ $transition: all 0.35s ease;
 			color: $black;
 			outline: none;
 			transition: all 0.2s ease;
-			// &:hover {
-				// background: $primary;
-			// }
+			&:hover {
+				background: $primary;
+			}
 			&.nuxt-link-active, &:hover {
-				// background: $primary;
+				background: $primary;
 			}
 			&::after{
 				content: '';

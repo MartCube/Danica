@@ -41,6 +41,9 @@ export default {
 aside{
 	width: 240px;
 	position: relative;
+	border-right: 1px solid #EAEAEA;
+	position: relative;
+	z-index: 4;
 	ul.messengers{
 		position: fixed;
     left: 150px;
@@ -56,17 +59,23 @@ aside{
 
 	@media (max-width: 900px) {
 		aside{
-			width: 15vw;
+			width: 10vw;
 			ul.messengers{
-				left: 7.5vw;
+				left: 3vw;
 			}
 		}
 	}
-	@media (max-width: 400px) {
+	@media (max-width: 600px) {
 		aside{
-			// width: 15vw;
 			ul.messengers{
-				left: 4vw;
+				left: 2vw;			
+			}
+		}
+	}
+	@media (max-width: 320px) {
+		aside{
+			ul.messengers{
+				left: 1vw;			
 			}
 		}
 	}

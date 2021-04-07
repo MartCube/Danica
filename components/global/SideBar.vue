@@ -39,17 +39,13 @@ export default {
 @import '~/assets/colors.scss';
 
 aside{
-	width: 240px;
-	position: relative;
-	border-right: 1px solid #EAEAEA;
-	position: relative;
-	z-index: 4;
+	position: fixed;
+	left: 150px;
+	height: fit-content;
+	bottom: 2vh;
+	z-index: 1;
 	ul.messengers{
-		position: fixed;
-    left: 150px;
-    height: fit-content;
-    bottom: 2vh;
-    z-index: 1;
+		
 		li{
 			list-style-type: none;
 			margin-bottom: 5px;
@@ -57,26 +53,19 @@ aside{
 	}
 }
 
-	@media (max-width: 900px) {
-		aside{
-			width: 10vw;
-			ul.messengers{
-				left: 3vw;
-			}
-		}
+@media (max-width: 900px) {
+	aside{
+		left: 3vw;
 	}
-	@media (max-width: 600px) {
-		aside{
-			ul.messengers{
-				left: 2vw;			
-			}
-		}
+}
+@media (max-width: 600px) {
+	aside{
+		left: 2vw;			
 	}
-	@media (max-width: 320px) {
-		aside{
-			ul.messengers{
-				left: 1vw;			
-			}
-		}
+}
+@media (max-width: 320px) {
+	aside{
+		left: 1vw;			
 	}
+}
 </style>

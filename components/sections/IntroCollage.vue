@@ -75,7 +75,7 @@ export default {
 
 	.bg_letter{
 		position: absolute;
-    left: -245px;
+    left: 0;
     top: 9%;
 		width: 23vw;
 		z-index: 6;
@@ -87,7 +87,7 @@ export default {
 
 		position: absolute;
 		top: 0;
-		left: -70px;
+		left: 150px;
 
 		display: flex;
 		flex-direction: column;
@@ -203,7 +203,7 @@ export default {
 			}
 		}
 		.bg_letter{
-			left: -15vw;
+			// left: -15vw;
 			width: 80%;
 			top: 8%;
 		}

@@ -17,7 +17,7 @@ export default {
 .title {
 	width: 100%;
 	height: 240px;
-	padding-left: 3rem;
+	margin-left: calc(240px + 1.5rem);
 
 	display: flex;
 	align-items: center;

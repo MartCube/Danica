@@ -168,8 +168,9 @@ $transition: all 0.35s ease;
 		top: 0;
 		left: 0;
 		padding: 25px;
-		background: rgba(0, 0, 0, 0.5);
-		background: $primary;
+		background: rgba(0, 0, 0, 0.2);
+		backdrop-filter: blur(10px);
+		color: $white;
 		font-size: 1.5rem;
 	}
 	.link {

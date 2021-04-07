@@ -87,7 +87,7 @@ export default {
 
 		position: absolute;
 		top: 0;
-		left: -70px;
+		left: 150px;
 
 		display: flex;
 		flex-direction: column;

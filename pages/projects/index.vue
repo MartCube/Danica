@@ -80,7 +80,7 @@ export default {
 
 	.filter {
 		min-width: 240px;
-		margin-left: -240px;
+		// margin-left: -240px;
 		padding-right: 30px;
 		background: white;
 		height: fit-content;
@@ -122,8 +122,13 @@ export default {
 	}
 
 	.grid {
+<<<<<<< HEAD
 		width: 100%;
 		padding-left: 1.5rem;
+=======
+		width: calc(100vw - 240px);
+		padding-right: 1.5rem;
+>>>>>>> 80844a8a6d1d7910535e06a0feb854bc025211a9
 		// max-width: 1000px;
 		height: 100%;
 		min-height: 800px;
@@ -139,8 +144,12 @@ export default {
 }
 
 button {
+<<<<<<< HEAD
 	margin-top: 40px;
 	margin-left: 3rem;
+=======
+	margin: 5% 0 2% 15rem;
+>>>>>>> 80844a8a6d1d7910535e06a0feb854bc025211a9
 	color: $black;
 }
 

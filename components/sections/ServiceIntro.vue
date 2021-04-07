@@ -35,13 +35,6 @@ export default {
 		image() {
 			return this.data.primary.image
 		},
-<<<<<<< HEAD
-=======
-		colorClass: {
-			isActive: true,
-			className: 'yellow'
-		}
->>>>>>> 80844a8a6d1d7910535e06a0feb854bc025211a9
 	},
 }
 </script>
@@ -64,7 +57,6 @@ export default {
 		height: inherit;
 	}
 
-<<<<<<< HEAD
 	.content {
 		width: inherit;
 		height: inherit;
@@ -77,16 +69,6 @@ export default {
 		flex-direction: column;
 		justify-content: center;
 
-=======
-	.content{
-		display: flex;
-		width: calc( 100vw - 480px);
-		height: 100vh;
-		position: relative;
-		z-index: 5;
-		margin-left: 240px;
-		flex:initial;
->>>>>>> 80844a8a6d1d7910535e06a0feb854bc025211a9
 		border-left: 1px solid $black;
 		border-right: 1px solid $black;
 		color: $black;
@@ -105,26 +87,12 @@ export default {
 		button {
 			margin-top: 3rem;
 		}
-<<<<<<< HEAD
 		.project {
 			position: absolute;
 			top: 30%;
 			right: 0;
 			background-color: $primary;
 			padding: 15px 2px;
-=======
-		&.primary{
-			border-left: 1px solid $primary;
-			color: $primary;
-			.project-description{
-				.project, .author{
-					&::after{
-						background-color: $primary;
-					}
-				}
-			}
-		}
->>>>>>> 80844a8a6d1d7910535e06a0feb854bc025211a9
 
 			writing-mode: vertical-rl;
 			text-orientation: mixed;
@@ -132,47 +100,11 @@ export default {
 			color: $black;
 		}
 
-<<<<<<< HEAD
 		&.white {
 			border-left: 1px solid $white;
 			border-right: 1px solid $white;
 
 			color: $white;
-=======
-		.project-description {
-			display: flex;
-			align-items: center;
-			.project{
-				margin-right: .5rem;
-			}
-			.project, .author{
-				
-				writing-mode: vertical-rl;
-				text-orientation: mixed;
-				display: flex;
-				height: 100%;
-				align-items:center;
-				position: relative;
-				padding-top: 25vh;
-				color: $black;
-				&::after{
-					content: '';
-					display: flex;
-					width: 1px;
-					height: 100%;
-					position: absolute;
-					background-color: $black;
-					left: 0;
-					top: 0;
-				}
-				span{
-					font-weight: 500;
-					background-color: $primary;
-					display: inline-block;
-					padding: 5px 3px;
-				}
-			}
->>>>>>> 80844a8a6d1d7910535e06a0feb854bc025211a9
 		}
 	}
 }

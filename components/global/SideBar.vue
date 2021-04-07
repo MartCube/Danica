@@ -26,12 +26,13 @@
 </template>
 
 <script>
-// import { logoAnim } from '~/assets/anime'
+import { messengersAnim } from '~/assets/anime'
 
 export default {
-	// mounted() {
-	// 	logoAnim(this.$refs.triangle)
-	// },
+	mounted() {
+		console.log(document.querySelectorAll('.messengers li'))
+		messengersAnim(document.querySelectorAll('.messengers li'))
+	},
 }
 </script>
 
@@ -39,20 +40,16 @@ export default {
 @import '~/assets/colors.scss';
 
 aside {
-	width: 240px;
-	position: relative;
-	border-right: 1px solid $line;
-	position: relative;
-	z-index: 4;
-	ul.messengers {
-		height: fit-content;
+	height: fit-content;
+	position: fixed;
+	left: 217px;
+	bottom: 0;
 
-		position: fixed;
-		left: 240px;
-		bottom: 0;
-		transform: translate(-120%, -50%);
-		z-index: 1;
+	z-index: 2;
+	transform: translateY(-50%);
+	ul.messengers {
 		li {
+			opacity: 0; // opacity: 1
 			list-style-type: none;
 			margin-bottom: 5px;
 			a {
@@ -84,24 +81,17 @@ aside {
 
 @media (max-width: 900px) {
 	aside {
-		width: 10vw;
-		ul.messengers {
-			left: 3vw;
-		}
+		left: 3vw;
 	}
 }
 @media (max-width: 600px) {
 	aside {
-		ul.messengers {
-			left: 2vw;
-		}
+		left: 2vw;
 	}
 }
 @media (max-width: 320px) {
 	aside {
-		ul.messengers {
-			left: 1vw;
-		}
+		left: 1vw;
 	}
 }
 </style>

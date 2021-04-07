@@ -52,7 +52,6 @@ export default {
 	.bg {
 		position: absolute;
 		top: 0;
-		// left: -240px;
 		width: 100%;
 		height: inherit;
 	}
@@ -61,7 +60,7 @@ export default {
 		width: inherit;
 		height: inherit;
 		padding-left: 1rem;
-		margin-right: 240px;
+		margin: 0 240px;
 		position: relative;
 
 		display: flex;
@@ -111,9 +110,7 @@ export default {
 @media (max-width: 900px) {
 	.intro {
 		flex-direction: row;
-		.bg {
-			left: -10vw;
-		}
+
 		.content {
 			width: 100%;
 			margin: 0;

@@ -54,6 +54,18 @@ export function modalAnim(modal) {
 	})
 }
 
+export function messengersAnim(items) {
+	anime({
+		targets: items,
+		opacity: [0, 1],
+		translateY: ['400%', '0%'],
+		delay: anime.stagger(50, { from: 'last' }),
+
+		easing: 'easeInOutElastic',
+		duration: 2500,
+	})
+}
+
 export function localleAnim(locales, show) {
 	if (show) {
 		anime({
@@ -87,61 +99,61 @@ export function introAnim(lettersWeAre, lettersLeadersIn, collage1, collage2, co
 	const collageBorder = '10px solid white'
 
 	StartUpTimeline.add(
-    {
-      targets: lettersWeAre,
-      opacity: [0, 1],
-      translateY: ["100%", "0%"],
+		{
+			targets: lettersWeAre,
+			opacity: [0, 1],
+			translateY: ['100%', '0%'],
 
-      easing: "easeInOutCubic",
-      delay: anime.stagger(50, {from: "first"}),
-      duration: 1000,
-    },
-    0
-  )
-    .add(
-      {
-        targets: lettersLeadersIn,
-        opacity: [0, 1],
-        translateY: ["100%", "0%"],
+			easing: 'easeInOutCubic',
+			delay: anime.stagger(50, { from: 'first' }),
+			duration: 1000,
+		},
+		0,
+	)
+		.add(
+			{
+				targets: lettersLeadersIn,
+				opacity: [0, 1],
+				translateY: ['100%', '0%'],
 
-        easing: "easeInOutCubic",
-        delay: anime.stagger(50, {from: "first"}),
-        duration: 1000,
-      },
-      200
-    )
-    .add(
-      {
-        targets: collage1,
-        // opacity: [0, 1],
-        width: [0, "16vw"],
-        border: collageBorder,
-        easing: colllageEasing,
-        duration: collageDuration,
-      },
-      1400
-    )
-    .add(
-      {
-        targets: collage2,
-        // opacity: [0, 1],
-        width: [0, "37vw"],
-        border: collageBorder,
-        easing: colllageEasing,
-        duration: collageDuration,
-      },
-      1200
-    )
-    .add(
-      {
-        targets: collage3,
-        // opacity: [0, 1],
-        width: [0, "30vw"],
+				easing: 'easeInOutCubic',
+				delay: anime.stagger(50, { from: 'first' }),
+				duration: 1000,
+			},
+			200,
+		)
+		.add(
+			{
+				targets: collage1,
+				// opacity: [0, 1],
+				width: [0, '16vw'],
+				border: collageBorder,
+				easing: colllageEasing,
+				duration: collageDuration,
+			},
+			1400,
+		)
+		.add(
+			{
+				targets: collage2,
+				// opacity: [0, 1],
+				width: [0, '37vw'],
+				border: collageBorder,
+				easing: colllageEasing,
+				duration: collageDuration,
+			},
+			1200,
+		)
+		.add(
+			{
+				targets: collage3,
+				// opacity: [0, 1],
+				width: [0, '30vw'],
 
-        border: collageBorder,
-        easing: colllageEasing,
-        duration: collageDuration,
-      },
-      1000
-    );
+				border: collageBorder,
+				easing: colllageEasing,
+				duration: collageDuration,
+			},
+			1000,
+		)
 }

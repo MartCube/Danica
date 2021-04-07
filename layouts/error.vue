@@ -1,7 +1,8 @@
 <template>
 	<div class="error">
 		<div class="text">
-			<h2>you are swiming in the wrong watters</h2>
+			<h2>you are looking in a wrong place</h2>
+			<ButtonItem :to="localePath('index')" :animated="false" > Go home </ButtonItem>
 		</div>
 		<ImageItem v-if="!$fetchState.pending" :src="image" alt="error" />
 	</div>
@@ -28,6 +29,7 @@ export default {
 	justify-content: center;
 
 	position: relative;
+	max-height: 100vh;
 	picture {
 		position: absolute;
 	}
@@ -35,8 +37,16 @@ export default {
 		z-index: 2;
 
 		max-width: 300px;
+		text-align: center;
 		display: flex;
 		flex-direction: column;
+		align-items:center;
+		h2{
+			margin-top: 2rem;
+		}
+		button{
+			margin: 2rem 0 3rem;
+		}
 	}
 }
 </style>

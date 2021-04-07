@@ -3,7 +3,7 @@
 		<div class="bg">
 			<ImageItem :src="image.url" :mobile="image.mobile.url" :alt="image.alt" />
 		</div>
-		<div class="content" :class="{ 'white': isWhiteClassEnabled }">
+		<div class="content" :class="colorClass.className">
 			<div class="text">
 				<h1 class="main-title">{{ title.main}}</h1>
 				<h3 class="sub-title">{{ title.subtitle }}</h3>
@@ -17,11 +17,11 @@
 						{{project.name}}
 					</span> 
 				</div>
-				<div class="author">
+				<!-- <div class="author">
 					<span>
 						{{project.author}}
 					</span> 
-				</div>
+				</div> -->
 			</div>
 		</div>
 	</section>
@@ -42,7 +42,10 @@ export default {
 			type: Object,
 			required: true
 		},
-		isWhiteClassEnabled: false
+		colorClass: {
+			isActive: true,
+			className: 'yellow'
+		}
 	},
 }
 </script>
@@ -60,18 +63,18 @@ export default {
 	.bg {
 		position: absolute;
 		top: 0;
-		left: -240px;
-		width: 100vw;
+		// left: -240px;
+		width: 100%;
 		height: inherit;
 	}
 
 	.content{
 		display: flex;
-		width: calc( 100% - 240px);
+		width: calc( 100vw - 480px);
 		height: 100vh;
 		position: relative;
 		z-index: 5;
-		margin-left: -1px;
+		margin-left: 240px;
 		flex:initial;
 		border-left: 1px solid $black;
 		color: $black;
@@ -109,6 +112,17 @@ export default {
 				}
 			}
 		}
+		&.primary{
+			border-left: 1px solid $primary;
+			color: $primary;
+			.project-description{
+				.project, .author{
+					&::after{
+						background-color: $primary;
+					}
+				}
+			}
+		}
 
 
 		.project-description {
@@ -125,7 +139,7 @@ export default {
 				height: 100%;
 				align-items:center;
 				position: relative;
-				padding-top: 35vh;
+				padding-top: 25vh;
 				color: $black;
 				&::after{
 					content: '';

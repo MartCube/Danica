@@ -3,26 +3,12 @@
 		<div class="bg">
 			<ImageItem :src="image.url" :mobile="image.mobile.url" :alt="image.alt" />
 		</div>
-		<div class="content" :class="{ 'white': isWhiteClassEnabled }">
-			<div class="text">
-				<h1 class="main-title">{{ title.main}}</h1>
-				<h3 class="sub-title">{{ title.subtitle }}</h3>
+		<div class="content" :class="{ white: white }">
+			<h1 class="main-title">{{ title }}</h1>
+			<h3 class="sub-title">{{ subtitle }}</h3>
+			<ButtonItem :white="white"> Write us </ButtonItem>
 
-				<ButtonItem @click.native="openModal"> Write us </ButtonItem>
-			</div>
-
-			<div class="project-description">
-				<div class="project">
-					<span>
-						{{project.name}}
-					</span> 
-				</div>
-				<div class="author">
-					<span>
-						{{project.author}}
-					</span> 
-				</div>
-			</div>
+			<span class="project"> Project - {{ image.alt }} </span>
 		</div>
 	</section>
 </template>
@@ -30,19 +16,25 @@
 <script>
 export default {
 	props: {
-		image: {
+		data: {
 			type: Object,
 			required: true,
 		},
-		project: {
-			type: Object,
-			required: true
+		white: {
+			type: Boolean,
+			default: true,
 		},
-		title: {
-			type: Object,
-			required: true
+	},
+	computed: {
+		title() {
+			return this.$prismic.asText(this.data.primary.title)
 		},
-		isWhiteClassEnabled: false
+		subtitle() {
+			return this.$prismic.asText(this.data.primary.subtitle)
+		},
+		image() {
+			return this.data.primary.image
+		},
 	},
 }
 </script>
@@ -65,151 +57,124 @@ export default {
 		height: inherit;
 	}
 
-	.content{
-		display: flex;
-		width: calc( 100% - 240px);
-		height: 100vh;
+	.content {
+		width: inherit;
+		height: inherit;
+		padding-left: 1rem;
+		margin-right: 240px;
 		position: relative;
-		z-index: 5;
-		margin-left: -1px;
-		flex:initial;
+
+		display: flex;
+		flex: 1;
+		flex-direction: column;
+		justify-content: center;
+
 		border-left: 1px solid $black;
+		border-right: 1px solid $black;
 		color: $black;
-		.text{
-			display: flex;
-			flex-direction: column;
-			justify-content: center;
-			padding-left: 1rem;
-			flex:1;
+		z-index: 5;
+
+		.main-title {
+			font-size: 5rem;
 			color: inherit;
-			.main-title{
-				font-size: 5vw;
-				color: inherit;
-			}
-			.sub-title{
-				font-size: 4vw;
-				color: inherit;
-				text-transform: lowercase;
-			}
-			button{
-				margin-top: 5rem;
-			}
+			text-transform: capitalize;
 		}
-		button{
-			color: $black
+		.sub-title {
+			font-size: 4rem;
+			color: inherit;
+			text-transform: capitalize;
 		}
-		&.white{
+		button {
+			margin-top: 3rem;
+		}
+		.project {
+			position: absolute;
+			top: 30%;
+			right: 0;
+			background-color: $primary;
+			padding: 15px 2px;
+
+			writing-mode: vertical-rl;
+			text-orientation: mixed;
+			font-weight: 500;
+			color: $black;
+		}
+
+		&.white {
 			border-left: 1px solid $white;
+			border-right: 1px solid $white;
+
 			color: $white;
-			.project-description{
-				.project, .author{
-					&::after{
-						background-color: $white;
-					}
-				}
-			}
-		}
-
-
-		.project-description {
-			display: flex;
-			align-items: center;
-			.project{
-				margin-right: .5rem;
-			}
-			.project, .author{
-				
-				writing-mode: vertical-rl;
-				text-orientation: mixed;
-				display: flex;
-				height: 100%;
-				align-items:center;
-				position: relative;
-				padding-top: 35vh;
-				color: $black;
-				&::after{
-					content: '';
-					display: flex;
-					width: 1px;
-					height: 100%;
-					position: absolute;
-					background-color: $black;
-					left: 0;
-					top: 0;
-				}
-				span{
-					font-weight: 500;
-					background-color: $primary;
-					display: inline-block;
-					padding: 5px 3px;
-				}
-			}
 		}
 	}
 }
 @media (max-width: 900px) {
-	
-	.intro{
+	.intro {
 		flex-direction: row;
-		.bg{
+		.bg {
 			left: -10vw;
 		}
-		.content{
+		.content {
 			width: 100%;
-			padding: 0;
-			.text{
-				.main-title{
-					font-size: 6.5vw;
-				}
-				.sub-title{
-					font-size: 5vw;
-				}
-				
+			margin: 0;
+			border-right: initial;
+
+			.main-title {
+				font-size: 2.5rem;
 			}
-	
+			.sub-title {
+				font-size: 2rem;
+			}
+			.project {
+				top: initial;
+				bottom: 0;
+			}
+			&.white {
+				border-right: initial;
+			}
 		}
 	}
 }
 
 @media (max-width: 600px) {
-	.intro{
-		.content{
-			.text{
+	.intro {
+		.content {
+			.text {
 				align-items: flex-end;
 				justify-content: flex-end;
 				padding-bottom: 10vh;
 				padding-left: 0;
-				.main-title{
+				.main-title {
 					font-size: 2rem;
 				}
-				.sub-title{
+				.sub-title {
 					font-size: 1.5rem;
 				}
 			}
-			.project-description{
-				.project, .author{
+			.project-description {
+				.project,
+				.author {
 					padding-top: 60px;
 				}
 			}
-			button{
+			button {
 				margin-right: -63px;
 			}
 		}
 	}
-} 
+}
 @media (max-width: 400px) {
-	.intro{
-		.content{
-			.text{
-				.main-title{
+	.intro {
+		.content {
+			.text {
+				.main-title {
 					font-size: 1.8rem;
 				}
-				.sub-title{
+				.sub-title {
 					font-size: 1.5rem;
 				}
 			}
 		}
 	}
-} 
-
+}
 </style>

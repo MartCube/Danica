@@ -1,9 +1,8 @@
 <template>
 	<div class="container">
-		
 		<!-- <main> -->
 		<template v-if="!$fetchState.pending">
-			<!-- <IntroCollage :data="introCollage" /> -->
+			<!-- <HomeIntro :data="introCollage" /> -->
 			<Achievements :data="achievements" />
 			<ServicesList :data="serviceList" />
 			<HighlightProjects :data="HighlightProjects" />

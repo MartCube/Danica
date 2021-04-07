@@ -6,11 +6,11 @@
 		<div class="content">
 			<h2 class="title">The standards you set determine the life you get</h2>
 			<div class="list">
-				<div v-for="(standard, i) in data" :key="i">
-					<ImageItem :src="standard.standard_image.url" :alt="$prismic.asText(standard.standard_title)" />
+				<div v-for="(standard, i) in data.items" :key="i">
+					<ImageItem :src="standard.image.url" :alt="$prismic.asText(standard.title)" />
 					<div class="standard">
-						<h3>{{ $prismic.asText(standard.standard_title) }}</h3>
-						<p>{{ $prismic.asText(standard.standard_description) }}</p>
+						<h3>{{ $prismic.asText(standard.title) }}</h3>
+						<p>{{ $prismic.asText(standard.description) }}</p>
 					</div>
 				</div>
 			</div>
@@ -22,7 +22,7 @@
 export default {
 	props: {
 		data: {
-			type: Array,
+			type: Object,
 			required: true,
 		},
 	},
@@ -71,6 +71,9 @@ $transition: all 0.35s ease;
 
 					text-transform: capitalize;
 				}
+			}
+			&:last-child {
+				margin-bottom: 0;
 			}
 		}
 	}

@@ -1,6 +1,6 @@
 <template>
 	<section class="intro">
-		<img class="bg_letter" src="../../static/d_letter.svg" alt="">
+		<img class="bg_letter" src="/d_letter.svg" alt="" />
 		<div class="text">
 			<div class="title">
 				<span v-for="(letter, i) in lettersWeAre" :key="i" ref="lettersWeAre">{{ letter }}</span>
@@ -38,7 +38,7 @@ export default {
 			return 'We are'.split('')
 		},
 		lettersLeadersIn() {
-			return 'leaders in'.split('')
+			return 'Leaders in'.split('')
 		},
 		first_imgIX() {
 			return this.data[0].intro_image.url + `&fit=crop&w=300&h=300&dpr=1`
@@ -73,10 +73,10 @@ export default {
 	position: relative;
 	// overflow: hidden;
 
-	.bg_letter{
+	.bg_letter {
 		position: absolute;
-    left: -245px;
-    top: 9%;
+		left: -245px;
+		top: 9%;
 		width: 23vw;
 		z-index: 6;
 	}
@@ -144,79 +144,78 @@ export default {
 	}
 
 	@media (max-width: 1220px) {
-		.text{
+		.text {
 			left: -7vw;
 		}
-		.collage .first{
+		.collage .first {
 			height: 21vw;
 		}
-		.bg_letter{
+		.bg_letter {
 			width: 25vw;
 		}
 	}
 	@media (max-width: 1084px) {
-		.collage .second{
+		.collage .second {
 			left: 12vw;
 		}
-		.bg_letter{
+		.bg_letter {
 			width: 28vw;
 		}
 	}
 	@media (max-width: 900px) {
-		.collage{
+		.collage {
 			display: none;
 		}
-		.text{
+		.text {
 			width: 100%;
 			left: 0;
-			.title span{
+			.title span {
 				font-size: 11vw;
 			}
-			button{
+			button {
 				align-self: flex-end;
 				margin: 14vw 10vw;
 				text-transform: initial;
 			}
 		}
-		.bg_letter{
+		.bg_letter {
 			left: -15vw;
 			width: 40vw;
 		}
 	}
 	@media (max-width: 600px) {
-		.text{
+		.text {
 			width: 100%;
 			left: 0;
 			padding-top: 20vh;
 			.title {
-				span{
+				span {
 					font-size: 3rem;
 				}
 			}
-			.text_slider{
+			.text_slider {
 				margin-top: 2rem;
 			}
-			button{
+			button {
 				align-self: flex-end;
-				margin: 35% 10% 0 0 ;
+				margin: 35% 10% 0 0;
 				text-transform: initial;
 			}
 		}
-		.bg_letter{
+		.bg_letter {
 			left: -15vw;
 			width: 80%;
 			top: 8%;
 		}
 	}
-	@media (max-width: 400px){
-		.text{
+	@media (max-width: 400px) {
+		.text {
 			.title {
-				span{
+				span {
 					font-size: 2rem;
 				}
 			}
 		}
 	}
 }
-
 </style>

@@ -5,8 +5,8 @@
 		</div>
 		<div class="content">
 			<div class="text">
-				<h2 class="title">{{ $prismic.asText(data.title) }}</h2>
-				<p class="description">{{ $prismic.asText(data.description) }}</p>
+				<h2 class="title">{{ $prismic.asText(data.primary.title) }}</h2>
+				<p class="description">{{ $prismic.asText(data.primary.description) }}</p>
 			</div>
 			<VideoItem />
 		</div>

@@ -15,7 +15,9 @@
 					</div>
 				</div>
 
-				<ButtonItem link="/projects"> all projects </ButtonItem>
+				<n-link :to="localePath('/projects')">
+					<ButtonItem> all projects </ButtonItem>
+				</n-link>
 			</div>
 		</template>
 	</section>

@@ -1,13 +1,12 @@
 <template>
 	<div class="design">
 		<template v-if="!$fetchState.pending">
-			<ServiceIntro :image="IntroImage" :title="title" :project="project" :class="isWhiteClassEnabled"/>
-			<Charles :data="charles" />
-
 			<!-- Slice Machine -->
 			<div v-for="(slice, i) in slices" :key="i">
-				<Stages v-if="slice.slice_type == 'stages'" :data="slice" />
-				<Advantages v-if="slice.slice_type == 'advantages'" :data="slice" />
+				<ServiceIntro v-if="slice.slice_type == 'serviceintro'" :data="slice" />
+				<Charles v-else-if="slice.slice_type == 'charles'" :data="slice" />
+				<Stages v-else-if="slice.slice_type == 'stages'" :data="slice" />
+				<Advantages v-else-if="slice.slice_type == 'advantages'" :data="slice" />
 			</div>
 			<LatestProjects />
 		</template>
@@ -23,23 +22,10 @@ export default {
 	},
 	middleware: 'navbar',
 	data: () => ({
-		title: {
-			main: "Interior",
-			subtitle: "Design",
-		},
-		project: {
-			name: "Проект: Fox",
-			author: "Диазйнер: Анастасия Лисовская",
-		},
-		IntroImage: null,
-		charles: null,
 		slices: null,
-		isWhiteClassEnabled: false
 	}),
 	async fetch() {
 		const fetch = await this.$prismic.api.getSingle('service_design')
-		this.IntroImage = fetch.data.image
-		this.charles = fetch.data.charles_eames[0]
 		this.slices = fetch.data.body
 	},
 	mounted() {
@@ -49,8 +35,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-// .design {
-// 	min-height: 100vh;
-// 	overflow: hidden;
-// }
+.design {
+	min-height: 100vh;
+}
 </style>

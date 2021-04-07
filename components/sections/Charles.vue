@@ -28,9 +28,7 @@ export default {
 
 <style lang="scss" scoped>
 .content {
-	// margin-left: 240px;
-	padding: 0 1rem;
-
+	margin-left: 240px;
 	display: flex;
 	.title {
 		max-width: 100%;
@@ -77,6 +75,7 @@ export default {
 	section {
 		.content {
 			margin: 0;
+			padding-top: 40px;
 			flex-direction: column-reverse;
 			.title {
 				margin: 0;

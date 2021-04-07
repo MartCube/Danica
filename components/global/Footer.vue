@@ -282,6 +282,7 @@ export default {
 
 @media (max-width: 900px) {
 	.footer {
+		margin-top: 40px;
 		.wrap {
 			flex-direction: column;
 			height: auto;

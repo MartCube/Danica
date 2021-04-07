@@ -4,7 +4,7 @@
 			<!-- <SliderProjects /> -->
 
 			<!-- Slice Machine -->
-			<div v-for="(slice, i) in slices" :key="i">
+			<div v-for="slice in slices" :key="slice.slice_type">
 				<ServiceIntro v-if="slice.slice_type == 'serviceintro'" :data="slice" />
 				<Values v-if="slice.slice_type == 'values'" :data="slice" />
 				<Stages v-if="slice.slice_type == 'stages'" :data="slice" />

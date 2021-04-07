@@ -41,7 +41,6 @@ export default {
 
 <style lang="scss" scoped>
 .intro {
-	margin-left: 0;
 	width: 100%;
 	height: 100vh;
 
@@ -107,14 +106,14 @@ export default {
 		}
 	}
 }
-@media (max-width: 900px) {
+@media (max-width: 1100px) {
 	.intro {
 		flex-direction: row;
 
 		.content {
 			width: 100%;
 			margin: 0;
-			border-right: initial;
+			border: initial;
 
 			.main-title {
 				font-size: 2.5rem;
@@ -127,49 +126,7 @@ export default {
 				bottom: 0;
 			}
 			&.white {
-				border-right: initial;
-			}
-		}
-	}
-}
-
-@media (max-width: 600px) {
-	.intro {
-		.content {
-			.text {
-				align-items: flex-end;
-				justify-content: flex-end;
-				padding-bottom: 10vh;
-				padding-left: 0;
-				.main-title {
-					font-size: 2rem;
-				}
-				.sub-title {
-					font-size: 1.5rem;
-				}
-			}
-			.project-description {
-				.project,
-				.author {
-					padding-top: 60px;
-				}
-			}
-			button {
-				margin-right: -63px;
-			}
-		}
-	}
-}
-@media (max-width: 400px) {
-	.intro {
-		.content {
-			.text {
-				.main-title {
-					font-size: 1.8rem;
-				}
-				.sub-title {
-					font-size: 1.5rem;
-				}
+				border: initial;
 			}
 		}
 	}

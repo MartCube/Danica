@@ -30,7 +30,6 @@ import { messengersAnim } from '~/assets/anime'
 
 export default {
 	mounted() {
-		console.log(document.querySelectorAll('.messengers li'))
 		messengersAnim(document.querySelectorAll('.messengers li'))
 	},
 }
@@ -81,17 +80,7 @@ aside {
 
 @media (max-width: 900px) {
 	aside {
-		left: 3vw;
-	}
-}
-@media (max-width: 600px) {
-	aside {
-		left: 2vw;
-	}
-}
-@media (max-width: 320px) {
-	aside {
-		left: 1vw;
+		left: 0.5rem;
 	}
 }
 </style>

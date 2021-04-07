@@ -86,14 +86,23 @@ body {
 	// 	'footer footer';
 }
 
+.container {
+	width:100%;
+	min-height: 100vh;
+	margin-top: 80px;
+
+	display: flex;
+	flex-direction: column;
+}
+
 section{
-	margin-bottom: 80px;
 	display: flex;
 
 	.name {
 		min-width: 240px;
-		margin-top: 10px;
-		padding-right: 1.5rem;
+		margin: 80px 0;
+		padding-top: 5px;
+		padding-right: 24px;
 		display: flex;
 		text-transform: capitalize;
 		color: $grey;
@@ -103,17 +112,21 @@ section{
 			width: 100%;
 			height: 1px;
 			margin-top: 10px;
-			margin-right: 1.5rem;
+			margin-right: 24px;
 			background: $primary;
 		}
 	}
 
 	.content{
+		border-left: 1px solid $line;
+		padding-top: 80px;
+
 		flex-grow: 1;
 		width: 100%;
 		.title {
 			max-width: 600px;
 			margin-bottom: 80px;
+			padding-left: 1rem;
 		}	
 	}
 
@@ -125,14 +138,7 @@ section{
 	}
 }
 
-.container {
-	width:100%;
-	min-height: 100vh;
-	margin: 80px 0;
 
-	display: flex;
-	flex-direction: column;
-}
 
 
 
@@ -142,7 +148,6 @@ section{
 		margin-bottom: 0;
 	}
 	section {
-		margin-bottom: 40px;
 		flex-direction: column;
 
 		.name {
@@ -160,7 +165,7 @@ section{
 			padding: 0 40px;
 			.title{
 				margin-bottom: 40px;
-				padding-left: 1rem;
+				padding: 0;
 			}
 		}
 		.content .title{

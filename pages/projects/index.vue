@@ -80,7 +80,6 @@ export default {
 
 	.filter {
 		min-width: 240px;
-		// margin-left: -240px;
 		padding-right: 30px;
 		background: white;
 		height: fit-content;
@@ -123,10 +122,9 @@ export default {
 
 	.grid {
 		width: calc(100vw - 240px);
-		padding-right: 1.5rem;
-		// max-width: 1000px;
 		height: 100%;
 		min-height: 800px;
+		border-left: 1px solid $line;
 
 		display: flex;
 		justify-content: flex-start;
@@ -139,7 +137,8 @@ export default {
 }
 
 button {
-	margin: 5% 0 2% 15rem;
+	margin: 40px 0;
+	margin-left: 240px;
 	color: $black;
 }
 
@@ -147,7 +146,6 @@ button {
 	.projects {
 		flex-direction: column;
 		.filter {
-			margin-left: -10vw;
 			width: 50%;
 			min-width: auto;
 			padding: 0;
@@ -155,7 +153,8 @@ button {
 		}
 		.grid {
 			width: 100%;
-			padding: 0;
+			padding-left: 40px;
+
 			justify-content: space-between;
 			.project_card {
 				margin-right: 0;

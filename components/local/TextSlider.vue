@@ -95,13 +95,35 @@ export default {
 
 	width: auto;
 	z-index: 10;
-	height: 7rem;
+	height: 6rem;
+	.first {
+		z-index: 2;
+	}
+	.second{
+		z-index: 1;
+	}
 	.first, .second{
 		position: absolute;
 		display: flex;
+		overflow: hidden;
 		align-items: center;
-		z-index: 2;
-		height: inherit;
+		width: fit-content;
+		height: fit-content;
+		&::after {
+			content: '';
+			position: absolute;
+			width: 0;
+			height: 100%;
+			left: 0;
+			background: $primary;
+			z-index: -1;
+			transition: all 0.35s ease;
+		}
+		&:hover {
+			&::after {
+				width: 100%;
+			}
+		}
 	}
 	span {
 		opacity: 0; // opacity: 1
@@ -111,27 +133,14 @@ export default {
 		font-weight: 700;
 		font-size: 4.5vw;
 		min-width: 1rem;
-		display: flex;
+		position: relative;
+		z-index: 4;
+		display: block;
 		will-change: opacity, transform;
 		// transition: opacity, transform 1s ease-out;
 		// animation: titleLetters 1s linear infinite alternate;
 	}
 
-	&::after {
-		content: '';
-		position: absolute;
-		width: 0;
-		height: 100%;
-		left: 0;
-		background: $primary;
-		z-index: -1;
-		transition: all 0.35s ease;
-	}
-	&:hover {
-		&::after {
-			width: 100%;
-		}
-	}
 }
 
 @media (max-width: 900px) {

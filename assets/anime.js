@@ -144,73 +144,80 @@ export function introAnim(lettersWeAre, lettersLeadersIn, collage1, collage2, co
     200
   );
 
-  StartUpTimeline2
-	.add({
-    targets: ".bg_letter.first",
-    opacity: [0, 1],
-  },0)
-	.add({
-		targets: el1,
-		delay: anime.stagger(stagger, {start: 0}),
-		duration: 500,
-		opacity: 1,
-	},1000)
-	.add(
-		{
-			targets: collage1,
-			width: "16vw",
-		},
-		0
-	)
-	.add(
-		{
-			targets: collage2,
-			width: "35vw",
-		},
-		200
-	)
-	.add(
-		{
-			targets: collage3,
-			width: "30vw",
-		},
-		300
-	)
-	.add(
-		{
-			targets: collage3,
-			duration: 500,
-			width: 0,
-		},
-		4500
-	)
-	.add(
-		{
-			targets: collage2,
-			duration: 500,
-			width: 0,
-		},
-		4500
-	)
-	.add(
-		{
-			targets: collage1,
-			duration: 500,
-			width: 0,
-		},
-		4500
-	)
-	.add({
-		targets: el1,
-		delay: anime.stagger(stagger, {from: "last"}),
-		duration: 500,
-		opacity: 0,
-	})
-	.add({
-		targets: ".bg_letter.first",
-		opacity: 0,
-		duration: 500,
-	});
+  StartUpTimeline2.add(
+    {
+      targets: ".bg_letter.first",
+      opacity: [0, 1],
+    },
+    0
+  )
+    .add(
+      {
+        targets: el1,
+        delay: anime.stagger(stagger, {start: 0}),
+        duration: 500,
+        zIndex: 10,
+        opacity: 1,
+      },
+      1000
+    )
+    .add(
+      {
+        targets: collage1,
+        width: "16vw",
+      },
+      0
+    )
+    .add(
+      {
+        targets: collage2,
+        width: "35vw",
+      },
+      200
+    )
+    .add(
+      {
+        targets: collage3,
+        width: "30vw",
+      },
+      300
+    )
+    .add(
+      {
+        targets: collage3,
+        duration: 500,
+        width: 0,
+      },
+      4500
+    )
+    .add(
+      {
+        targets: collage2,
+        duration: 500,
+        width: 0,
+      },
+      4500
+    )
+    .add(
+      {
+        targets: collage1,
+        duration: 500,
+        width: 0,
+      },
+      4500
+    )
+    .add({
+      targets: el1,
+      delay: anime.stagger(stagger, {from: "last"}),
+      duration: 500,
+      opacity: 0,
+      zIndex: 0,
+    })
+    .add({
+      targets: ".bg_letter.first",
+      opacity: 0,
+      duration: 500,
+    });
 
 
 
@@ -219,68 +226,70 @@ export function introAnim(lettersWeAre, lettersLeadersIn, collage1, collage2, co
     targets: ".bg_letter.second",
     opacity: [0, 1],
   })
-	.add(
-		{
-			targets: el2,
-			delay: anime.stagger(stagger, {start: 0}),
-			duration: 500,
-			opacity: 1,
-		},
-		1000
-	)
-	.add(
-		{
-			targets: collage1,
-			width: "16vw",
-		},
-		0
-	)
-	.add(
-		{
-			targets: collage2,
-			width: "35vw",
-		},
-		200
-	)
-	.add(
-		{
-			targets: collage3,
-			width: "30vw",
-		},
-		300
-	)
-	.add(
-		{
-			targets: collage3,
-			duration: 500,
-			width: 0,
-		},
-		4500
-	)
-	.add(
-		{
-			targets: collage2,
-			duration: 500,
-			width: 0,
-		},
-		4500
-	)
-	.add(
-		{
-			targets: collage1,
-			duration: 500,
-			width: 0,
-		},
-		4500
-	)
-	.add({
-		targets: el2,
-		delay: anime.stagger(stagger, {from: "last"}),
-		duration: 500,
-		opacity: [1, 0],
-	})
-	.add({
-		targets: ".bg_letter.second",
+    .add(
+      {
+        targets: el2,
+        delay: anime.stagger(stagger, {start: 0}),
+        duration: 500,
+        opacity: 1,
+        zIndex: 10,
+      },
+      1000
+    )
+    .add(
+      {
+        targets: collage1,
+        width: "16vw",
+      },
+      0
+    )
+    .add(
+      {
+        targets: collage2,
+        width: "35vw",
+      },
+      200
+    )
+    .add(
+      {
+        targets: collage3,
+        width: "30vw",
+      },
+      300
+    )
+    .add(
+      {
+        targets: collage3,
+        duration: 500,
+        width: 0,
+      },
+      4500
+    )
+    .add(
+      {
+        targets: collage2,
+        duration: 500,
+        width: 0,
+      },
+      4500
+    )
+    .add(
+      {
+        targets: collage1,
+        duration: 500,
+        width: 0,
+      },
+      4500
+    )
+    .add({
+      targets: el2,
+      delay: anime.stagger(stagger, {from: "last"}),
+      duration: 500,
+      opacity: [1, 0],
+      zIndex: 0,
+    })
+    .add({
+      targets: ".bg_letter.second",
       opacity: [1, 0],
       duration: 500,
     });

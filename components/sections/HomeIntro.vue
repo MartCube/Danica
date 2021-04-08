@@ -164,9 +164,9 @@ export default {
 	}
 
 	@media (max-width: 1220px) {
-		.text {
-			left: -7vw;
-		}
+		// .text {
+		// 	left: -7vw;
+		// }
 		.collage .first {
 			height: 21vw;
 		}
@@ -199,8 +199,11 @@ export default {
 			}
 		}
 		.bg_letter {
-			left: -15vw;
 			width: 40vw;
+			&.second{
+				width: 60vw;
+				left: -20vw;
+			}
 		}
 	}
 	@media (max-width: 600px) {

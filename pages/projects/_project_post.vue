@@ -168,8 +168,8 @@ export default {
 	}
 
 	.image_slider {
-		width: 1840px;
-		// height: max-content;
+		width: 100vw;
+
 		margin-top: 10px;
 		margin-bottom: 25px;
 		z-index: 3;
@@ -236,10 +236,6 @@ export default {
 			width: 100%;
 		}
 
-		.image_slider {
-			width: max-content;
-		}
-
 		.image_text {
 			flex-direction: column;
 
@@ -258,6 +254,9 @@ export default {
 	}
 	::v-deep .swiper-pagination {
 		margin-left: 40px;
+	}
+	::v-deep .swiper-wrapper {
+		max-width: 100vw;
 	}
 }
 

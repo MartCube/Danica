@@ -7,9 +7,12 @@
 			<div class="content">
 				<h2 class="title">Stay up to date with the newest projects</h2>
 				<div class="project_slider">
-					<SwiperSlider pagination>
-						<ProjectSlide v-for="(project, i) in projects" :key="i" :data="project" class="swiper-slide" />
-					</SwiperSlider>
+					<div v-swiper="swiperOption" class="swiper-container">
+						<div class="swiper-wrapper">
+							<ProjectSlide v-for="(project, i) in projects" :key="i" :data="project" class="swiper-slide" />
+						</div>
+						<div slot="pagination" class="swiper-pagination"></div>
+					</div>
 				</div>
 
 				<ButtonItem> all projects </ButtonItem>
@@ -19,15 +22,13 @@
 </template>
 
 <script>
-import SwiperSlider from '../global/SwiperSlider.vue'
 export default {
-	components: { SwiperSlider },
 	data: () => ({
 		page_size: 5,
 		projects: null,
 		swiperOption: {
 			slidesPerView: 1,
-			spaceBetween: 100,
+			spaceBetween: 50,
 			loop: true,
 			autoplay: {
 				delay: 3000,
@@ -35,10 +36,8 @@ export default {
 			},
 			pagination: {
 				el: '.swiper-pagination',
-				// dynamicBullets: true,
 				clickable: true,
 			},
-			// effect: 'fade',
 		},
 	}),
 	async fetch() {
@@ -58,9 +57,7 @@ export default {
 	display: flex;
 	flex-direction: column;
 	.project_slider {
-		width: 992px;
-		margin-bottom: 80px;
-
+		width: 900px;
 		overflow: hidden;
 
 		.swiper-container {
@@ -71,8 +68,45 @@ export default {
 
 			display: flex;
 			flex-direction: column;
-			align-items: center;
+			align-items: flex-end;
 		}
 	}
+}
+
+@media (max-width: 900px) {
+	.content {
+		.project_slider {
+			width: 350px;
+			.swiper-container {
+				align-items: flex-start;
+			}
+		}
+	}
+}
+
+::v-deep {
+	--swiper-theme-color: rgb(255, 196, 36);
+}
+::v-deep .swiper-pagination-bullet {
+	width: 12px;
+	height: 12px;
+	border-radius: 10px;
+	transition: width 0.3s ease;
+	&.swiper-pagination-bullet-active {
+		width: 40px;
+	}
+}
+
+::v-deep .swiper-pagination {
+	position: initial;
+	margin: 25px 0;
+	width: max-content;
+	height: 20px;
+	display: flex;
+}
+
+::v-deep .swiper-wrapper {
+	max-width: 900px;
+	height: 100%;
 }
 </style>

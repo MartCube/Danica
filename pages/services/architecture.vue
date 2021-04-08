@@ -1,8 +1,6 @@
 <template>
 	<div class="architecture">
 		<template v-if="!$fetchState.pending">
-			<!-- <SliderProjects /> -->
-
 			<!-- Slice Machine -->
 			<div v-for="slice in slices" :key="slice.slice_type">
 				<ServiceIntro v-if="slice.slice_type == 'serviceintro'" :data="slice" />
@@ -12,6 +10,8 @@
 				<Advantages v-if="slice.slice_type == 'advantages'" :data="slice" />
 			</div>
 		</template>
+
+		<SliderProjects />
 	</div>
 </template>
 

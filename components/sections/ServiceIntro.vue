@@ -10,7 +10,7 @@
 			<div class="subtitle">
 				<span v-for="(letter, i) in subtitle" :key="i" ref="subtitle">{{ letter }}</span>
 			</div>
-			<ButtonItem :white="white"> Write us </ButtonItem>
+			<ButtonItem :white="white" @click.native="openModal"> Write us </ButtonItem>
 			<div class="project">
 				<span ref="project"> Project - {{ image.alt }} </span>
 			</div>
@@ -46,6 +46,11 @@ export default {
 	async mounted() {
 		await this.$nextTick()
 		serviceIntroAnim(this.$refs.maintitle, this.$refs.subtitle, this.$refs.project)
+	},
+	methods: {
+		openModal() {
+			this.$store.dispatch('bindModalContact', true)
+		},
 	},
 }
 </script>
@@ -152,17 +157,20 @@ export default {
 		.content {
 			width: 100%;
 			margin: 0;
+			padding-left: 40px;
 			border: initial;
 
 			.maintitle span {
-				font-size: 2.5rem;
-			}
-			.subtitle span {
 				font-size: 2rem;
 			}
+			.subtitle span {
+				font-size: 1.8rem;
+			}
+			button {
+				margin-top: 2rem;
+			}
 			.project {
-				top: initial;
-				bottom: 0;
+				top: 60px;
 			}
 			&.white {
 				border: initial;

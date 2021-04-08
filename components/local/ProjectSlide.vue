@@ -1,6 +1,6 @@
 <template>
 	<n-link :to="link" class="project_slide">
-		<ImageItem :src="image + imgIX" :alt="title" />
+		<ImageItem :src="image + imgIX" :mobile="image + imgIXmobile" :alt="title" />
 
 		<h2>{{ title }}</h2>
 	</n-link>
@@ -16,7 +16,10 @@ export default {
 	},
 	computed: {
 		imgIX() {
-			return `&fit=crop&w=992&h=558&dpr=1`
+			return `&fit=crop&w=900&h=600&dpr=1`
+		},
+		imgIXmobile() {
+			return `&fit=crop&w=500&h=350&dpr=1`
 		},
 		image() {
 			return this.data.data.main_image.url
@@ -38,13 +41,18 @@ export default {
 	cursor: pointer;
 
 	h2 {
+		z-index: 4;
 		padding: 40px 80px;
 		position: absolute;
 		bottom: 0;
 		left: 0;
 		background: white;
-
 		text-transform: capitalize;
+	}
+}
+@media (max-width: 900px) {
+	.content .project_slide h2 {
+		padding: 20px 40px;
 	}
 }
 </style>

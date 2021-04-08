@@ -61,7 +61,7 @@ section .name {
 	flex-direction: column;
 	.project_slider {
 		width: 100vw;
-		margin-bottom: 50px;
+		margin-bottom: 40px;
 		.swiper-container {
 			width: auto;
 			margin: 0;
@@ -70,18 +70,10 @@ section .name {
 	}
 }
 
-@media (max-width: 900px) {
-	.content {
-		.project_slider {
-			width: 700px;
-			margin-bottom: 20px;
-			.swiper-container {
-				width: 700px;
-				.swiper-wrapper .image {
-					height: 200px;
-				}
-			}
-		}
+::v-deep .swiper-wrapper {
+	.image {
+		max-width: 300px;
+		max-height: 300px;
 	}
 }
 </style>

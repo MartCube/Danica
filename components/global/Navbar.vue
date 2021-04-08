@@ -359,7 +359,8 @@ $transition: all 0.35s ease;
 
 @media (max-width: 360px) {
 	.navbar {
-		padding: 0 30px;
+		padding-left: 40px;
+		padding-right: 20px;
 
 		.lang {
 			margin-right: 10px;

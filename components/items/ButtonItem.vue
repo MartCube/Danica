@@ -42,7 +42,6 @@ button {
 	position: relative;
 
 	.text {
-		text-transform: capitalize;
 		font-weight: 700;
 		font-size: 1.5rem;
 
@@ -94,22 +93,22 @@ button {
 	}
 }
 
-@media (max-width: 900px) {
-	button.animated {
-		background: $primary;
+// @media (max-width: 900px) {
+// 	button.animated {
+// 		background: $primary;
 
-		.text {
-			opacity: 1;
-			color: $black;
-		}
-		svg {
-			fill: $black;
-		}
-		.overlay {
-			width: 100%;
-		}
-	}
-}
+// 		.text {
+// 			opacity: 1;
+// 			color: $black;
+// 		}
+// 		svg {
+// 			fill: $black;
+// 		}
+// 		.overlay {
+// 			width: 100%;
+// 		}
+// 	}
+// }
 @media (max-width: 360px) {
 	button.text {
 		font-size: 1.5rem;

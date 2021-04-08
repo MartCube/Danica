@@ -10,23 +10,22 @@
 				</span>
 			</div>
 
-			<template v-if="$fetchState.error">error component</template>
-			<template v-else-if="!$fetchState.pending">
-				<div ref="grid" class="grid">
+			<div ref="grid" class="grid">
+				<template v-if="!$fetchState.pending">
 					<BlogCard v-for="(post, i) in blogPosts" :key="'post' + i" :class="{ first: i == 0 }" :data="post" />
-				</div>
+				</template>
+			</div>
 
-				<div class="pagination">
-					<IconDouble left :class="{ disable: !prev_page }" @click.native="fetchFirst" />
-					<IconChevron left :class="{ disable: !prev_page }" @click.native="fetchBack" />
-					<div class="pages">
-						<span v-for="i in total_pages" :key="i" :class="{ active: i == current_page }" class="page" @click="fetchPage(i)">{{ i }}</span>
-						<!-- <IconDots /> -->
-					</div>
-					<IconChevron :class="{ disable: !next_page }" @click.native="fetchNext" />
-					<IconDouble :class="{ disable: !next_page }" @click.native="fetchLast" />
+			<div class="pagination">
+				<IconDouble left :class="{ disable: !prev_page }" @click.native="fetchFirst" />
+				<IconChevron left :class="{ disable: !prev_page }" @click.native="fetchBack" />
+				<div class="pages">
+					<span v-for="i in total_pages" :key="i" :class="{ active: i == current_page }" class="page" @click="fetchPage(i)">{{ i }}</span>
+					<!-- <IconDots /> -->
 				</div>
-			</template>
+				<IconChevron :class="{ disable: !next_page }" @click.native="fetchNext" />
+				<IconDouble :class="{ disable: !next_page }" @click.native="fetchLast" />
+			</div>
 		</div>
 	</div>
 </template>
@@ -126,7 +125,7 @@ export default {
 		flex-direction: column;
 
 		span {
-			margin:0 0 10px 0;
+			margin: 0 0 10px 0;
 			text-transform: capitalize;
 			white-space: nowrap;
 			font-weight: 500;
@@ -154,8 +153,8 @@ export default {
 				}
 			}
 		}
-		&::after{
-			content: "";
+		&::after {
+			content: '';
 			background-color: hsl(0, 0%, 90%);
 			position: absolute;
 			top: -30vh;
@@ -235,22 +234,22 @@ export default {
 }
 
 @media (min-width: 1900px) {
-	.blog .grid{
+	.blog .grid {
 		grid-template-columns: repeat(5, 1fr);
 	}
 }
 @media (max-width: 1100px) {
-	.blog .grid{
+	.blog .grid {
 		grid-template-columns: repeat(3, 1fr);
 		.blog_card {
 			&:first-child {
 				grid-column: 1;
 				grid-row: 1;
-				.image{
+				.image {
 					width: auto;
 					height: auto;
 				}
-				.info{
+				.info {
 					display: flex;
 					justify-content: initial;
 					padding-bottom: 20px;
@@ -261,13 +260,12 @@ export default {
 					flex-direction: initial;
 				}
 			}
-
 		}
 	}
 }
 @media (max-width: 900px) {
-	.blog{
-		.filter{
+	.blog {
+		.filter {
 			margin-left: -10vw;
 		}
 	}

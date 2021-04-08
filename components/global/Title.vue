@@ -29,15 +29,15 @@ export default {
 }
 @media (max-width: 900px) {
 	.title {
-		height: 200px;
-		font-size: 2.5rem;
-		padding-left: 1rem;
+		height: auto;
+		margin: 40px 0;
+		font-size: 2rem;
+		padding-left: 40px;
 	}
 }
 @media (max-width: 320px) {
 	.title {
-		height: 200px;
-		font-size: 2.5rem;
+		font-size: 1.8rem;
 	}
 }
 </style>

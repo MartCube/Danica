@@ -7,16 +7,27 @@
 			<div class="content">
 				<h2 class="title">{{ title }}</h2>
 
-				<div ref="grid" class="grid">
-					<HighlightCard v-for="(project, i) in projects" :key="'post' + i" :first="i == 0" :last="i + 1 == projects.length" :data="project" />
-				</div>
+				<MediaQueryProvider :queries="{ mobile: '(max-width: 900px)' }" ssr>
+					<MatchMedia v-slot="{ mobile }">
+						<span v-if="mobile">
+							<LatestProjects :filter-tag="['highlight']" />
+						</span>
+
+						<div v-else ref="grid" class="grid">
+							<HighlightCard v-for="(project, i) in projects" :key="'post' + i" :first="i == 0" :last="i + 1 == projects.length" :data="project" />
+						</div>
+					</MatchMedia>
+				</MediaQueryProvider>
 			</div>
 		</template>
 	</section>
 </template>
 
 <script>
+import { MediaQueryProvider, MatchMedia } from 'vue-component-media-queries'
+
 export default {
+	components: { MediaQueryProvider, MatchMedia },
 	props: {
 		data: {
 			type: Object,

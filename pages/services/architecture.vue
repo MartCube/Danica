@@ -11,23 +11,13 @@
 				<Standards v-if="slice.slice_type == 'standards'" :data="slice" />
 				<Advantages v-if="slice.slice_type == 'advantages'" :data="slice" />
 			</div>
-
-			<MediaQueryProvider :queries="{ mobile: '(max-width: 900px)' }" ssr>
-				<MatchMedia v-slot="{ mobile }">
-					{{ mobile }}
-					<!-- will be true on server, will automatically update on client -->
-				</MatchMedia>
-			</MediaQueryProvider>
 		</template>
 	</div>
 </template>
 
 <script>
-import { MediaQueryProvider, MatchMedia } from 'vue-component-media-queries'
-
 export default {
 	name: 'Architecture',
-	components: { MediaQueryProvider, MatchMedia },
 	beforeRouteLeave(to, from, next) {
 		this.$store.dispatch('bindNavbarTransparent', false)
 		next()

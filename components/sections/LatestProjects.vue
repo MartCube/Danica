@@ -25,6 +25,12 @@
 
 <script>
 export default {
+	props: {
+		filterTag: {
+			type: Array,
+			default: () => [],
+		},
+	},
 	data: () => ({
 		page_size: 6,
 		projects: null,
@@ -35,14 +41,13 @@ export default {
 		},
 	}),
 	async fetch() {
-		const projects = await this.$prismic.api.query(this.$prismic.predicates.at('document.type', 'project_post'), {
+		const projects = await this.$prismic.api.query([this.$prismic.predicates.at('document.type', 'project_post'), this.$prismic.predicates.at('document.tags', this.filterTag)], {
 			orderings: '[document.first_publication_date desc]',
 			pageSize: this.page_size,
 		})
+
 		this.projects = projects.results
 	},
-	computed: {},
-	methods: {},
 }
 </script>
 

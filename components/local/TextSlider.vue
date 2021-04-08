@@ -143,6 +143,16 @@ export default {
 
 }
 
+@media (min-width: 1500px) {
+	.text_slider {
+		height: 15vw;
+		span{
+		// font-size: 8.5vw;
+			display: inline-block;
+			line-height: 7vw;
+		}
+	}
+}
 @media (max-width: 900px) {
 	.text_slider span{
 		font-size: 8.5vw;

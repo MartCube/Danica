@@ -90,54 +90,35 @@ export function localleAnim(locales, show) {
 }
 
 export function introAnim(lettersWeAre, lettersLeadersIn, collage1, collage2, collage3) {
+	let el2 = document.querySelectorAll(".second span");
+	let el1 = document.querySelectorAll(".first span");
+
+	let duration = 2500;
+	let stagger = 50;
+
   const StartUpTimeline = anime.timeline({
     autoplay: true,
    
   });
   const StartUpTimeline2 = anime.timeline({
     autoplay: true,
-    duration: 2500,
+    duration: duration,
     easing: "easeOutExpo",
-    loop: true,
-    update: function (anim) {
-      console.log(anim, anim.progress);
-    },
-    loopBegin: function (anim) {
-      // loopBegan++;
-      console.log( loopBegan);
-    },
+    loop: 1,
     loopComplete: function (anim) {
-      // loopCompleted++;
 			StartUpTimeline1.play()
-      console.log(StartUpTimeline1);
     },
   });
   const StartUpTimeline1 = anime.timeline({
-    autoplay: true,
-    duration: 2500,
+    duration: duration,
     easing: "easeOutExpo",
     loop: 1,
 		autoplay: false,
-		loopBegin: function (anim) {
-			// loopBegan++;
-			console.log( loopBegan);
-		},
 		loopComplete: function (anim) {
-			// loopCompleted++;
 			StartUpTimeline2.play();
-			console.log(loopCompleted);
 		},
   });
-	let loopBegan = 0;
-  let loopCompleted = 0;
-  const colllageEasing = "easeOutSine";
-  const collageDuration = "2500";
-  const collageBorder = "10px solid white";
-  let el2 = document.querySelectorAll(".second span");
-  let el1 = document.querySelectorAll(".first span");
-
-  let duration = 2500;
-  let stagger = 50;
+	
 
   StartUpTimeline.add(
     {
@@ -223,13 +204,16 @@ export function introAnim(lettersWeAre, lettersLeadersIn, collage1, collage2, co
 		targets: el1,
 		delay: anime.stagger(stagger, {from: "last"}),
 		duration: 500,
-		opacity: [1, 0],
+		opacity: 0,
 	})
 	.add({
 		targets: ".bg_letter.first",
-		opacity: [1, 0],
+		opacity: 0,
 		duration: 500,
 	});
+
+
+
 
 	StartUpTimeline1.add({
     targets: ".bg_letter.second",

@@ -1,21 +1,23 @@
 <template>
-	<n-link class="text_slider" :to="link">
-		<template v-if="active">
+	<div class="text_slider" >
+		<div class="first">
 			<span v-for="(letter, i) in lettersDesign" :key="i">{{ letter }}</span>
-		</template>
-		<template v-else>
+		</div>
+		<div class="second">
 			<span v-for="(letter, i) in lettersArchitecture" :key="i">{{ letter }}</span>
-		</template>
-	</n-link>
+		</div>
+
+	</div>
 </template>
 
 <script>
-import anime from 'animejs'
+import anime, { timeline } from 'animejs'
 
 export default {
 	data: () => ({
 		active: true,
 		link: '/services/interior-design',
+		letters: null
 	}),
 	computed: {
 		lettersArchitecture() {
@@ -28,55 +30,58 @@ export default {
 			return [this.lettersArchitecture, this.lettersDesign]
 		},
 	},
-	watch: {},
-	created() {
-		setTimeout(() => this.Animate(), 2000)
+	mounted() {
+		this.Animate()
+		this.letters = this.lettersDesign
 	},
 	methods: {
-		async Animate() {
-			await this.$nextTick()
-			console.log('animate')
+		 Animate() {
+			// let el2 = document.querySelectorAll('.second span');
+			// let el1 = document.querySelectorAll('.first span');
 
-			const StartUpTimeline = anime.timeline({
-				autoplay: true,
-			})
+			// let duration = 2500;
+			// let stagger = 50;
 
-			const el = document.querySelectorAll('.text_slider span')
-			const duration = 1000
-
-			StartUpTimeline.add({
-				targets: el,
-				opacity: [0, 1],
-				rotateY: [90, 0],
-
-				delay: anime.stagger(50, { from: 'first' }),
-				easing: 'easeOutExpo',
-				duration,
-			})
-				.add({
-					targets: el,
-					duration: 3000,
-				})
-				.add({
-					targets: el,
-					opacity: [1, 0],
-					rotateY: [0, -90],
-
-					delay: anime.stagger(50, { from: 'last' }),
-					easing: 'easeOutExpo',
-					duration,
-				})
-
-			StartUpTimeline.finished.then(() => {
-				console.log('finished')
-
-				// changing the array of letters
-				this.active = !this.active
-				// changing the link
-				if (this.active) this.link = '/services/interior-design'
-				else this.link = '/services/architecture'
-			})
+			// const StartUpTimeline = anime.timeline({
+			// 	easing: 'easeOutExpo',
+			// 	loop: true,
+			// 	changeComplete: (e) => {
+			// 		},
+			// 	update: (e) => {
+			// 		},
+			// 	loopComplete: (e) => {
+			// 		},
+			// })
+			// .add({
+			// 	targets: el1,
+			// 	direction: 'alternate',
+			// 	delay: anime.stagger(stagger),
+			// 	duration: duration,
+			// 	opacity: 1,
+			// })
+			// .add({
+			// 	targets: el1,
+			// 	direction: 'alternate',
+			// 	delay: anime.stagger(stagger, {from: 'last'}),
+			// 	duration: duration,
+			// 	opacity: 0,
+			// })
+			// .add({
+			// 	targets: el2,
+			// 	duration: duration,
+			// 	delay: anime.stagger(stagger),
+			// 	opacity: 1,
+			// 	direction: 'alternate',
+			// })
+			// .add({
+			// 	targets: el2,
+			// 	duration: duration,
+			// 	delay: anime.stagger(stagger, {from: 'last'}),
+			// 	opacity: 0,
+			// 	direction: 'alternate',
+			// })
 		},
+		
 	},
 }
 </script>
@@ -88,43 +93,76 @@ export default {
 	position: relative;
 	overflow: hidden;
 
-	width: max-content;
-	display: flex;
-	align-items: center;
-	z-index: 2;
+	width: auto;
+	z-index: 10;
+	height: 6rem;
+	.first {
+		z-index: 2;
+	}
+	.second{
+		z-index: 1;
+	}
+	.first, .second{
+		position: absolute;
+		display: flex;
+		overflow: hidden;
+		align-items: center;
+		width: fit-content;
+		height: fit-content;
+		&::after {
+			content: '';
+			position: absolute;
+			width: 0;
+			height: 100%;
+			left: 0;
+			background: $primary;
+			z-index: -1;
+			transition: all 0.35s ease;
+		}
+		&:hover {
+			&::after {
+				width: 100%;
+			}
+		}
+	}
 	span {
 		opacity: 0; // opacity: 1
-
+		transform: translateY(-10px);
 		text-transform: none;
 		line-height: initial;
 		font-weight: 700;
 		font-size: 4.5vw;
+		min-width: 1rem;
+		position: relative;
+		z-index: 4;
+		display: block;
+		will-change: opacity, transform;
+		// transition: opacity, transform 1s ease-out;
+		// animation: titleLetters 1s linear infinite alternate;
 	}
 
-	&::after {
-		content: '';
-		position: absolute;
-		width: 0;
-		height: 100%;
-		left: 0;
-		background: $primary;
-		z-index: -1;
-		transition: all 0.35s ease;
-	}
-	&:hover {
-		&::after {
-			width: 100%;
+}
+
+@media (min-width: 1500px) {
+	.text_slider {
+		height: 15vw;
+		span{
+		// font-size: 8.5vw;
+			display: inline-block;
+			line-height: 7vw;
 		}
 	}
 }
 @media (max-width: 900px) {
 	.text_slider span{
 		font-size: 8.5vw;
+		display: inline-block;
+		line-height: 5rem;
 	}
 }
 @media (max-width: 400px) {
 	.text_slider span{
-		font-size: 1.8rem;
+		font-size: 2.2rem;
 	}
 }
 </style>

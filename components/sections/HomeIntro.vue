@@ -1,6 +1,7 @@
 <template>
 	<section class="intro">
-		<img class="bg_letter" src="/d_letter.svg" alt="" />
+		<img class="bg_letter first" src="/d_letter.svg" alt="" />
+		<img class="bg_letter second" src="/a_letter.svg" alt="" />
 		<div class="text">
 			<div class="title">
 				<span v-for="(letter, i) in lettersWeAre" :key="i" ref="lettersWeAre">{{ letter }}</span>
@@ -13,9 +14,15 @@
 		</div>
 
 		<div class="collage">
-			<img ref="collage1" class="first" :src="first_imgIX" alt="danica" @load="Animate" />
-			<img ref="collage2" class="second" :src="second_imgIX" alt="danica" @load="Animate" />
-			<img ref="collage3" class="third" :src="third_imgIX" alt="danica" @load="Animate" />
+			<div ref="collage1" class="first">
+				<img :src="first_imgIX" alt="danica" @load="Animate" />
+			</div>
+			<div ref="collage2" class="second">
+				<img  :src="second_imgIX" alt="danica" @load="Animate" />
+			</div>
+			<div ref="collage3" class="third">
+				<img :src="third_imgIX" alt="danica" @load="Animate" />
+			</div>
 		</div>
 	</section>
 </template>
@@ -32,6 +39,7 @@ export default {
 	},
 	data: () => ({
 		imagesLoaded: 0,
+		// bgLetter: document.querySelector(".bg_letter"),
 	}),
 	computed: {
 		lettersWeAre() {
@@ -75,20 +83,26 @@ export default {
 
 	.bg_letter {
 		position: absolute;
-		left: -245px;
-		top: 9%;
+		left: 0;
+		top: 7%;
+		opacity: 0;
 		width: 23vw;
 		z-index: 6;
+		&.first{}
+		&.second{
+			width: 31vw;
+			left: -5vw;
+		}
 	}
+
 
 	.text {
 		width: min-content;
-		padding-top: 9vh;
-
+		padding-top: 7vh;
+		width: 40%;			
 		position: absolute;
 		top: 0;
 		left: 150px;
-
 		display: flex;
 		flex-direction: column;
 		z-index: 6;
@@ -116,11 +130,17 @@ export default {
 	.collage {
 		width: 57vw;
 		position: relative;
-		img {
-			border: 0 solid transparent; // border: 10px solid white
+		img{
+			width: 101%;
+			height: 101%;
+			margin: 0;
+			padding: 0;
+		}
+		div {
+			overflow: hidden;
 			width: 0;
 			position: absolute;
-			object-fit: cover;
+			border: 10px solid white;
 		}
 		.first {
 			z-index: 3;
@@ -143,10 +163,22 @@ export default {
 		}
 	}
 
-	@media (max-width: 1220px) {
-		.text {
-			left: -7vw;
+	@media (min-width: 1900px) {
+		.text{
+			padding-top: 17vh;
 		}
+		.bg_letter{
+			width: 26vw;
+			.second{
+				width: 36vw;
+				left: -10vw;
+			}
+		}
+	}
+	@media (max-width: 1220px) {
+		// .text {
+		// 	left: -7vw;
+		// }
 		.collage .first {
 			height: 21vw;
 		}
@@ -169,6 +201,7 @@ export default {
 		.text {
 			width: 100%;
 			left: 0;
+			padding-left: 2rem;
 			.title span {
 				font-size: 11vw;
 			}
@@ -179,8 +212,11 @@ export default {
 			}
 		}
 		.bg_letter {
-			left: -15vw;
 			width: 40vw;
+			&.second{
+				width: 60vw;
+				left: -20vw;
+			}
 		}
 	}
 	@media (max-width: 600px) {
@@ -203,9 +239,12 @@ export default {
 			}
 		}
 		.bg_letter {
-			left: -15vw;
 			width: 80%;
 			top: 8%;
+			&.second{
+				width: 110%;
+				left: -30vw;
+			}
 		}
 	}
 	@media (max-width: 400px) {

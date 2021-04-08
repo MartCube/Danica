@@ -146,11 +146,13 @@ export default {
 @media (max-width: 900px) {
 	.text_slider span{
 		font-size: 8.5vw;
+		display: inline-block;
+		line-height: 5rem;
 	}
 }
 @media (max-width: 400px) {
 	.text_slider span{
-		font-size: 1.8rem;
+		font-size: 2.2rem;
 	}
 }
 </style>

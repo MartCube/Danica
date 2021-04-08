@@ -189,6 +189,7 @@ export default {
 		.text {
 			width: 100%;
 			left: 0;
+			padding-left: 2rem;
 			.title span {
 				font-size: 11vw;
 			}
@@ -226,9 +227,12 @@ export default {
 			}
 		}
 		.bg_letter {
-			left: -15vw;
 			width: 80%;
 			top: 8%;
+			&.second{
+				width: 110%;
+				left: -30vw;
+			}
 		}
 	}
 	@media (max-width: 400px) {

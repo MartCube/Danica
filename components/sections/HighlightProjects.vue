@@ -1,22 +1,31 @@
 <template>
-	<section>
-		<template v-if="!$fetchState.pending">
-			<div class="name">
-				<span>projects</span>
-			</div>
-			<div class="content">
-				<h2 class="title">{{ title }}</h2>
+	<MediaQueryProvider :queries="{ mobile: '(max-width: 1100px)' }" ssr>
+		<MatchMedia v-slot="{ mobile }">
+			<LatestProjects v-if="mobile" :tag="['highlight']" />
 
-				<div ref="grid" class="grid">
-					<HighlightCard v-for="(project, i) in projects" :key="'post' + i" :first="i == 0" :last="i + 1 == projects.length" :data="project" />
-				</div>
-			</div>
-		</template>
-	</section>
+			<section v-else>
+				<template v-if="!$fetchState.pending">
+					<div class="name">
+						<span>projects</span>
+					</div>
+					<div class="content">
+						<h2 class="title">{{ title }}</h2>
+
+						<div ref="grid" class="grid">
+							<HighlightCard v-for="(project, i) in projects" :key="'post' + i" :first="i == 0" :last="i + 1 == projects.length" :data="project" />
+						</div>
+					</div>
+				</template>
+			</section>
+		</MatchMedia>
+	</MediaQueryProvider>
 </template>
 
 <script>
+import { MediaQueryProvider, MatchMedia } from 'vue-component-media-queries'
+
 export default {
+	components: { MediaQueryProvider, MatchMedia },
 	props: {
 		data: {
 			type: Object,

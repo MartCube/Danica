@@ -161,14 +161,12 @@ $transition: all 0.35s ease;
 
 			display: flex;
 			align-items: center;
-
 			text-decoration: none;
 			line-height: 12px;
 			font-weight: 400;
 			color: $black;
 			outline: none;
 			position: relative;
-		
 		}
 	}
 
@@ -179,7 +177,6 @@ $transition: all 0.35s ease;
 		display: flex;
 		flex-direction: row;
 		justify-content: flex-end;
-		
 
 		a {
 			padding: 0 25px;
@@ -197,10 +194,11 @@ $transition: all 0.35s ease;
 			&:hover {
 				background: $primary;
 			}
-			&.nuxt-link-active, &:hover {
+			&.nuxt-link-active,
+			&:hover {
 				background: $primary;
 			}
-			&::after{
+			&::after {
 				content: '';
 				display: block;
 				transition: all 0.2s ease;
@@ -211,7 +209,7 @@ $transition: all 0.35s ease;
 				z-index: 1;
 				background-color: $primary;
 			}
-			span{
+			span {
 				position: relative;
 				z-index: 3;
 				font-size: inherit;
@@ -219,10 +217,9 @@ $transition: all 0.35s ease;
 				color: inherit;
 				outline: inherit;
 				transition: inherit;
-
 			}
 		}
-		
+
 		&.active {
 			width: 100%;
 			display: flex;
@@ -237,6 +234,8 @@ $transition: all 0.35s ease;
 			right: 0;
 
 			a {
+				will-change: transform;
+				will-change: opacity;
 				animation: fadeInRight 0.35s ease;
 				margin: 20px 0;
 				padding: 0 10px;

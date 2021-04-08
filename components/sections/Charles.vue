@@ -7,8 +7,8 @@
 				<ButtonItem :animated="false">Write us </ButtonItem>
 			</div>
 			<div class="collage">
-				<ImageItem :src="data.charles_top.url" class="top" alt="charles eames" />
-				<ImageItem :src="data.charles_bottom.url" class="bottom" alt="charles eames" />
+				<ImageItem :src="data.primary.top.url" class="top" alt="charles eames" />
+				<ImageItem :src="data.primary.bottom.url" class="bottom" alt="charles eames" />
 			</div>
 		</div>
 	</section>
@@ -28,9 +28,7 @@ export default {
 
 <style lang="scss" scoped>
 .content {
-	// margin-left: 240px;
-	padding: 0 1rem;
-
+	margin-left: 240px;
 	display: flex;
 	.title {
 		max-width: 100%;
@@ -77,6 +75,7 @@ export default {
 	section {
 		.content {
 			margin: 0;
+			padding-top: 40px;
 			flex-direction: column-reverse;
 			.title {
 				margin: 0;

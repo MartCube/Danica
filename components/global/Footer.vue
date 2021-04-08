@@ -7,7 +7,6 @@
 					<div class="text"></div>
 				</div>
 				<div class="info">
-					<!-- <h2 class="title">Call us</h2> -->
 					<div class="wrap">
 						<div class="office">
 							<div class="numbers">
@@ -136,6 +135,7 @@ export default {
 
 			display: flex;
 			position: relative;
+			z-index: 4;
 			picture {
 				width: 100%;
 				user-select: none;
@@ -151,12 +151,6 @@ export default {
 			display: flex;
 			flex-direction: column;
 			justify-content: space-between;
-			.title {
-				width: max-content;
-				border-bottom: 2px solid $primary;
-				font-size: 2rem;
-				margin-bottom: 40px;
-			}
 			.wrap {
 				width: 100%;
 				height: 100%;
@@ -201,6 +195,9 @@ export default {
 							align-items: center;
 							svg {
 								margin-right: 10px;
+							}
+							&:last-child {
+								margin: 0;
 							}
 						}
 					}
@@ -271,7 +268,7 @@ export default {
 		justify-content: center;
 		align-items: center;
 
-		z-index: 2;
+		z-index: 4;
 		background: $primary;
 		cursor: pointer;
 
@@ -288,6 +285,7 @@ export default {
 
 @media (max-width: 900px) {
 	.footer {
+		margin-top: 40px;
 		.wrap {
 			flex-direction: column;
 			height: auto;
@@ -306,21 +304,7 @@ export default {
 						margin: 0;
 						padding: 0;
 						& > * {
-							margin-bottom: 15px;
-						}
-						.numbers {
-							h4 {
-								font-size: 1rem;
-							}
-							a {
-								margin-bottom: 15px;
-								svg {
-									display: initial;
-								}
-							}
-						}
-						.icons {
-							margin-top: 15px;
+							margin-bottom: 2rem;
 						}
 					}
 				}

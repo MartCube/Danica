@@ -1,58 +1,33 @@
 <template>
 	<div class="architecture">
 		<template v-if="!$fetchState.pending">
-			<ServiceIntro :image="IntroImage" :title="title" :project="project" :isWhiteClassEnabled="isWhiteClassEnabled"/>
-			<Values :data="values" />
 			<!-- <SliderProjects /> -->
-			<Standards :data="standards" />
 
 			<!-- Slice Machine -->
-			<div v-for="(slice, i) in slices" :key="i">
+			<div v-for="slice in slices" :key="slice.slice_type">
+				<ServiceIntro v-if="slice.slice_type == 'serviceintro'" :data="slice" />
+				<Values v-if="slice.slice_type == 'values'" :data="slice" />
 				<Stages v-if="slice.slice_type == 'stages'" :data="slice" />
+				<Standards v-if="slice.slice_type == 'standards'" :data="slice" />
 				<Advantages v-if="slice.slice_type == 'advantages'" :data="slice" />
 			</div>
-
-			<MediaQueryProvider :queries="{ mobile: '(max-width: 900px)' }" ssr>
-				<MatchMedia v-slot="{ mobile }">
-					{{ mobile }}
-					<!-- will be true on server, will automatically update on client -->
-				</MatchMedia>
-			</MediaQueryProvider>
 		</template>
 	</div>
 </template>
 
 <script>
-import { MediaQueryProvider, MatchMedia } from 'vue-component-media-queries'
-
 export default {
 	name: 'Architecture',
-	components: { MediaQueryProvider, MatchMedia },
 	beforeRouteLeave(to, from, next) {
 		this.$store.dispatch('bindNavbarTransparent', false)
 		next()
 	},
 	middleware: 'navbar',
 	data: () => ({
-		IntroImage: null,
-		title: {
-			main: "Architecture",
-			subtitle: "Design",
-		},
-		project: {
-			name: "Проект: Fox",
-			author: "Диазйнер: Анастасия Лисовская",
-		},
-		values: null,
-		standards: null,
 		slices: null,
-		isWhiteClassEnabled: true
 	}),
 	async fetch() {
 		const fetch = await this.$prismic.api.getSingle('service_architecture')
-		this.IntroImage = fetch.data.image
-		this.values = fetch.data.values[0]
-		this.standards = fetch.data.standards
 		this.slices = fetch.data.body
 	},
 	mounted() {
@@ -62,7 +37,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-// .architecture {
-// 	min-height: 100vh;
-// }
+.architecture {
+	min-height: 100vh;
+}
 </style>

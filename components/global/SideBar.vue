@@ -22,50 +22,65 @@
 				</a>
 			</li>
 		</ul>
-	</aside>	
+	</aside>
 </template>
 
 <script>
-// import { logoAnim } from '~/assets/anime'
+import { messengersAnim } from '~/assets/anime'
 
 export default {
-	// mounted() {
-	// 	logoAnim(this.$refs.triangle)
-	// },
+	mounted() {
+		messengersAnim(document.querySelectorAll('.messengers li'))
+	},
 }
 </script>
 
 <style lang="scss" scoped>
 @import '~/assets/colors.scss';
 
-aside{
-	position: fixed;
-	left: 150px;
+aside {
 	height: fit-content;
-	bottom: 2vh;
-	z-index: 1;
-	ul.messengers{
-		
-		li{
+	position: fixed;
+	left: 217px;
+	bottom: 0;
+
+	z-index: 2;
+	transform: translateY(-50%);
+	ul.messengers {
+		li {
+			opacity: 0; // opacity: 1
 			list-style-type: none;
 			margin-bottom: 5px;
-		}	
+			a {
+				svg {
+					width: 20px;
+					height: 20px;
+					transition: all 0.2s ease;
+				}
+				&:hover {
+					svg {
+						fill: $primary;
+					}
+				}
+			}
+			&:last-child {
+				a {
+					display: flex;
+					align-items: center;
+					justify-content: center;
+					svg {
+						width: 18px;
+						height: 18px;
+					}
+				}
+			}
+		}
 	}
 }
 
 @media (max-width: 900px) {
-	aside{
-		left: 3vw;
-	}
-}
-@media (max-width: 600px) {
-	aside{
-		left: 2vw;			
-	}
-}
-@media (max-width: 320px) {
-	aside{
-		left: 1vw;			
+	aside {
+		left: 0.5rem;
 	}
 }
 </style>

@@ -1,6 +1,6 @@
 <template>
-	<button :class="{ animated: animated, white: white }" @click="$router.push(localePath(link))">
-		<div ref="buttonText" class="text">
+	<button :class="{ animated: animated }">
+		<div ref="buttonText" class="text" :class="{ white: white }">
 			<slot />
 		</div>
 
@@ -20,10 +20,6 @@ export default {
 		white: {
 			type: Boolean,
 			default: false,
-		},
-		link: {
-			type: String,
-			default: '',
 		},
 	},
 	mounted() {
@@ -45,6 +41,27 @@ button {
 	overflow: hidden;
 	position: relative;
 
+	.text {
+		text-transform: capitalize;
+		font-weight: 700;
+		font-size: 1.5rem;
+
+		svg {
+			fill: $black;
+			margin-left: 15px;
+
+			transition: all 0.2s ease;
+		}
+		&.white {
+			color: $white;
+			svg {
+				fill: $white;
+			}
+		}
+	}
+
+	transition: all 0.2s ease;
+
 	&.animated {
 		background: transparent;
 		.text {
@@ -64,27 +81,7 @@ button {
 			transition: all 0.2s ease;
 		}
 	}
-	&.white {
-		color: $white;
-		svg {
-			fill: $white;
-		}
-	}
 
-	.text {
-		// text-transform: capitalize;
-		font-weight: 700;
-		font-size: 1.5rem;
-	}
-
-	svg {
-		fill: $black;
-		margin-left: 15px;
-
-		transition: all 0.2s ease;
-	}
-
-	transition: all 0.2s ease;
 	&:hover {
 		color: $black;
 		.overlay {
@@ -93,15 +90,6 @@ button {
 		svg {
 			opacity: 1;
 			fill: $black;
-		}
-	}
-
-	@media (max-width: 900px) {
-
-	}
-	@media (max-width: 400px) {
-		.text{
-			font-size: 1.5rem;
 		}
 	}
 }
@@ -120,6 +108,11 @@ button {
 		.overlay {
 			width: 100%;
 		}
+	}
+}
+@media (max-width: 360px) {
+	button.text {
+		font-size: 1.5rem;
 	}
 }
 </style>

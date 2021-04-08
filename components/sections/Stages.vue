@@ -7,7 +7,7 @@
 			<h2 class="title">{{ title }}</h2>
 			<div class="list">
 				<div v-for="(stage, i) in data.items" :key="i" class="stage">
-					<h2 class="number">0{{ i + 1 }}</h2>
+					<h2 class="number">0{{ i + 1 }}<span>/</span></h2>
 					<div class="info">
 						<h3>{{ $prismic.asText(stage.stage_title) }}</h3>
 						<p>{{ $prismic.asText(stage.stage_description) }}</p>
@@ -55,6 +55,12 @@ export default {
 				text-align: right;
 				font-size: 4rem;
 				color: $primary;
+				span {
+					display: none;
+					font-size: inherit;
+					font-weight: inherit;
+					line-height: inherit;
+				}
 			}
 			.info {
 				h3 {
@@ -72,16 +78,20 @@ export default {
 	section {
 		.content {
 			flex-direction: column;
+			padding-right: 0;
 			.list {
 				width: 100%;
 				.stage {
 					.number {
-						min-width: 40px;
+						min-width: 60px;
 						margin-right: 20px;
 
 						text-align: right;
 						font-size: 1.5rem;
 						color: $primary;
+						span {
+							display: initial;
+						}
 					}
 					.info h3 {
 						margin-top: 0;

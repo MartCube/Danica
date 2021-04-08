@@ -16,11 +16,9 @@
 import anime from 'animejs'
 
 export default {
-	props: {},
 	data: () => ({
 		active: true,
-		link: '/services/design',
-		letters : null
+		link: '/services/interior-design',
 	}),
 	computed: {
 		lettersArchitecture() {
@@ -29,11 +27,18 @@ export default {
 		lettersDesign() {
 			return 'Design'.split('')
 		},
+		array() {
+			return [this.lettersArchitecture, this.lettersDesign]
+		},
 	},
 	mounted() {
 		this.Animate()
 		this.letters = this.lettersDesign
 		// setTimeout(() => this.letters = , 2000)
+	},
+	watch: {},
+	created() {
+		// setTimeout(() => this.Animate(), 2000)
 	},
 	methods: {
 		 Animate() {

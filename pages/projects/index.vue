@@ -14,9 +14,9 @@
 				<template v-if="!$fetchState.pending">
 					<ProjectCard v-for="(project, i) in projects" :key="i" :data="project" />
 				</template>
+				<ButtonItem v-if="current_page < total_pages" @click.native="loadMore"> Load More </ButtonItem>
 			</div>
 		</div>
-		<ButtonItem v-if="current_page < total_pages" :animated="false" @click.native="loadMore"> load more </ButtonItem>
 	</div>
 </template>
 
@@ -80,8 +80,7 @@ export default {
 
 	.filter {
 		min-width: 240px;
-		// margin-left: -240px;
-		padding-right: 30px;
+		padding-right: 1rem;
 		background: white;
 		height: fit-content;
 		position: relative;
@@ -89,13 +88,13 @@ export default {
 
 		display: flex;
 		flex-direction: column;
-	
+
 		span {
 			margin: 10px 0;
 			text-transform: capitalize;
 			white-space: nowrap;
 			font-weight: 500;
-			font-size: 1.4rem;
+			font-size: 1.2rem;
 
 			display: flex;
 			align-items: center;
@@ -123,31 +122,30 @@ export default {
 
 	.grid {
 		width: calc(100vw - 240px);
-		padding-right: 1.5rem;
-		// max-width: 1000px;
+		max-width: 1000px;
 		height: 100%;
 		min-height: 800px;
+		border-left: 1px solid $line;
 
 		display: flex;
 		justify-content: flex-start;
 		align-items: center;
 		flex-wrap: wrap;
-		.project_card{
+		.project_card {
 			margin-right: 2rem;
-			}
-	}
-}
+		}
 
-button {
-	margin: 5% 0 2% 15rem;
-	color: $black;
+		button {
+			margin: 40px 0;
+			color: $black;
+		}
+	}
 }
 
 @media (max-width: 900px) {
 	.projects {
 		flex-direction: column;
 		.filter {
-			margin-left: -10vw;
 			width: 50%;
 			min-width: auto;
 			padding: 0;
@@ -155,8 +153,11 @@ button {
 		}
 		.grid {
 			width: 100%;
+			min-height: auto;
+			padding-left: 40px;
+
 			justify-content: space-between;
-			.project_card{
+			.project_card {
 				margin-right: 0;
 			}
 		}
@@ -168,8 +169,8 @@ button {
 	}
 }
 @media (max-width: 320px) {
-	.projects{
-		.filter{
+	.projects {
+		.filter {
 			width: 60%;
 		}
 	}

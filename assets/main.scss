@@ -86,16 +86,24 @@ body {
 	// 	'footer footer';
 }
 
-section{
-	margin-bottom: 80px;
+.container {
+	width:100%;
+	min-height: 100vh;
+	margin-top: 80px;
+
 	display: flex;
+	flex-direction: column;
+}
+
+section{
+	display: flex;
+
 	.name {
-		width: 240px;
-		margin-top: 10px;
-		padding-right: 1.5rem;
+		min-width: 240px;
+		margin: 80px 0;
+		padding-top: 5px;
+		padding-right: 24px;
 		display: flex;
-		// margin-right: 1.5rem;
-		// margin-left: -240px;
 		text-transform: capitalize;
 		color: $grey;
 
@@ -104,19 +112,21 @@ section{
 			width: 100%;
 			height: 1px;
 			margin-top: 10px;
-			margin-right: 10px;
+			margin-right: 24px;
 			background: $primary;
 		}
 	}
-	.name ~ .content {
-		padding-left: 1.5rem;
-	}
+
 	.content{
+		border-left: 1px solid $line;
+		padding-top: 80px;
+
 		flex-grow: 1;
 		width: 100%;
 		.title {
 			max-width: 600px;
 			margin-bottom: 80px;
+			padding-left: 1rem;
 		}	
 	}
 
@@ -128,14 +138,7 @@ section{
 	}
 }
 
-.container {
-	width:100%;
-	min-height: 100vh;
-	margin: 80px 0;
 
-	display: flex;
-	flex-direction: column;
-}
 
 
 
@@ -145,23 +148,24 @@ section{
 		margin-bottom: 0;
 	}
 	section {
-		margin-bottom: 40px;
 		flex-direction: column;
 
 		.name {
+			min-width: auto;
 			width: max-content;
-			margin-top: 0;
-			margin-bottom: 40px;
-			margin-left: -10vw;
+			margin: 40px 0;
+			padding: 0;
 			&::before {
 				content: '';
-				width: 10vw;
+				width: 40px;
+				margin-right: 1rem;
 			}
 		}
 		.content{
 			padding: 0 40px;
 			.title{
 				margin-bottom: 40px;
+				padding: 0;
 			}
 		}
 		.content .title{

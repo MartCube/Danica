@@ -47,9 +47,8 @@ export function modalAnim(modal) {
 		targets: modal,
 		opacity: [0, 1],
 		scale: [0.75, 1],
-		display: 'inline',
 
-		easing: 'easeInOutCubic',
+		easing: 'easeOutExpo',
 		duration: 350,
 	})
 }
@@ -89,7 +88,7 @@ export function localleAnim(locales, show) {
 		})
 }
 
-export function introAnim(lettersWeAre, lettersLeadersIn, collage1, collage2, collage3) {
+export function HomeIntroAnim(lettersWeAre, lettersLeadersIn, collage1, collage2, collage3) {
 	let el2 = document.querySelectorAll(".second span");
 	let el1 = document.querySelectorAll(".first span");
 
@@ -294,4 +293,46 @@ export function introAnim(lettersWeAre, lettersLeadersIn, collage1, collage2, co
       duration: 500,
     });
 
+}
+
+export function serviceIntroAnim(maintitle, subtitle, project) {
+	const StartUpTimeline = anime.timeline({
+		autoplay: true,
+	})
+
+	StartUpTimeline.add(
+		{
+			targets: maintitle,
+			opacity: [0, 1],
+			translateY: ['100%', '0%'],
+
+			easing: 'easeInOutCubic',
+			delay: anime.stagger(50, { from: 'first' }),
+			duration: 1000,
+		},
+		1000,
+	)
+		.add(
+			{
+				targets: subtitle,
+				opacity: [0, 1],
+				translateY: ['100%', '0%'],
+
+				easing: 'easeInOutCubic',
+				delay: anime.stagger(50, { from: 'first' }),
+				duration: 1000,
+			},
+			1200,
+		)
+		.add(
+			{
+				targets: project,
+				opacity: [0, 1],
+				translateY: ['-100%', '0%'],
+
+				easing: 'easeInOutCubic',
+				duration: 1000,
+			},
+			1200,
+		)
 }

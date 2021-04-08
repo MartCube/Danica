@@ -40,6 +40,8 @@ export default {
 
 <style lang="scss" scoped>
 .modal_contact {
+	will-change: opacity;
+	will-change: transform;
 	opacity: 0; // opacity: 1
 
 	width: 100%;

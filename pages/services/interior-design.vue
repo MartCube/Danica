@@ -5,10 +5,12 @@
 			<div v-for="slice in slices" :key="slice.slice_type">
 				<ServiceIntro v-if="slice.slice_type == 'serviceintro'" :data="slice" />
 				<Charles v-else-if="slice.slice_type == 'charles'" :data="slice" />
-				<Stages v-else-if="slice.slice_type == 'stages'" :data="slice" />
+				<template v-else-if="slice.slice_type == 'stages'">
+					<Stages :data="slice" />
+					<LatestProjects />
+				</template>
 				<Advantages v-else-if="slice.slice_type == 'advantages'" :data="slice" />
 			</div>
-			<LatestProjects />
 		</template>
 	</div>
 </template>

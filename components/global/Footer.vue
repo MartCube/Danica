@@ -105,6 +105,7 @@ export default {
 <style lang="scss" scoped>
 .footer {
 	width: 100%;
+	margin-top: 40px;
 
 	display: flex;
 	flex-direction: column;
@@ -135,7 +136,6 @@ export default {
 
 			display: flex;
 			position: relative;
-			z-index: 4;
 			picture {
 				width: 100%;
 				user-select: none;
@@ -285,7 +285,6 @@ export default {
 
 @media (max-width: 900px) {
 	.footer {
-		margin-top: 40px;
 		.wrap {
 			flex-direction: column;
 			height: auto;

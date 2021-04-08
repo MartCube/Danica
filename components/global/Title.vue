@@ -1,5 +1,7 @@
 <template>
-	<h2 class="title">{{ value }}</h2>
+	<h1 class="title">
+		{{ value }}
+	</h1>
 </template>
 
 <script>
@@ -17,7 +19,7 @@ export default {
 .title {
 	width: 100%;
 	height: 240px;
-	padding-left: 256px;
+	padding-left: 240px;
 
 	display: flex;
 	align-items: center;

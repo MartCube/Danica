@@ -4,16 +4,23 @@
 			<ImageItem :src="image.url" :mobile="image.mobile.url" :alt="image.alt" />
 		</div>
 		<div class="content" :class="{ white: white }">
-			<h1 class="main-title">{{ title }}</h1>
-			<h3 class="sub-title">{{ subtitle }}</h3>
+			<div class="maintitle">
+				<span v-for="(letter, i) in title" :key="i" ref="maintitle">{{ letter }}</span>
+			</div>
+			<div class="subtitle">
+				<span v-for="(letter, i) in subtitle" :key="i" ref="subtitle">{{ letter }}</span>
+			</div>
 			<ButtonItem :white="white"> Write us </ButtonItem>
-
-			<span class="project"> Project - {{ image.alt }} </span>
+			<div class="project">
+				<span ref="project"> Project - {{ image.alt }} </span>
+			</div>
 		</div>
 	</section>
 </template>
 
 <script>
+import { serviceIntroAnim } from '~/assets/anime'
+
 export default {
 	props: {
 		data: {
@@ -27,14 +34,18 @@ export default {
 	},
 	computed: {
 		title() {
-			return this.$prismic.asText(this.data.primary.title)
+			return this.$prismic.asText(this.data.primary.title).split('')
 		},
 		subtitle() {
-			return this.$prismic.asText(this.data.primary.subtitle)
+			return this.$prismic.asText(this.data.primary.subtitle).split('')
 		},
 		image() {
 			return this.data.primary.image
 		},
+	},
+	async mounted() {
+		await this.$nextTick()
+		serviceIntroAnim(this.$refs.maintitle, this.$refs.subtitle, this.$refs.project)
 	},
 }
 </script>
@@ -53,6 +64,9 @@ export default {
 		top: 0;
 		width: 100%;
 		height: inherit;
+		picture {
+			z-index: 2;
+		}
 	}
 
 	.content {
@@ -68,40 +82,65 @@ export default {
 		justify-content: center;
 
 		border-left: 1px solid $black;
-		border-right: 1px solid $black;
 		color: $black;
 		z-index: 5;
 
-		.main-title {
-			font-size: 5rem;
-			color: inherit;
-			text-transform: capitalize;
+		.maintitle {
+			width: max-content;
+			display: flex;
+			align-items: center;
+			overflow: hidden;
+
+			span {
+				font-size: 5rem;
+				font-weight: bold;
+				color: inherit;
+				will-change: opacity;
+				will-change: transform;
+				opacity: 0;
+			}
 		}
-		.sub-title {
-			font-size: 4rem;
-			color: inherit;
-			text-transform: capitalize;
+		.subtitle {
+			width: max-content;
+			display: flex;
+			align-items: center;
+			overflow: hidden;
+			span {
+				font-size: 4rem;
+				font-weight: bold;
+				color: inherit;
+				will-change: opacity;
+				will-change: transform;
+				opacity: 0;
+			}
 		}
 		button {
 			margin-top: 3rem;
 		}
 		.project {
+			overflow: hidden;
+
 			position: absolute;
 			top: 30%;
 			right: 0;
-			background-color: $primary;
-			padding: 15px 2px;
+			cursor: pointer;
 
-			writing-mode: vertical-rl;
-			text-orientation: mixed;
-			font-weight: 500;
-			color: $black;
+			span {
+				width: 30px;
+				display: flex;
+				align-items: center;
+				opacity: 0; // opacity: 1
+				background-color: $primary;
+				padding: 15px 0;
+				writing-mode: vertical-rl;
+				text-orientation: mixed;
+				font-weight: 500;
+				color: $black;
+			}
 		}
 
 		&.white {
 			border-left: 1px solid $white;
-			border-right: 1px solid $white;
-
 			color: $white;
 		}
 	}
@@ -115,10 +154,10 @@ export default {
 			margin: 0;
 			border: initial;
 
-			.main-title {
+			.maintitle span {
 				font-size: 2.5rem;
 			}
-			.sub-title {
+			.subtitle span {
 				font-size: 2rem;
 			}
 			.project {

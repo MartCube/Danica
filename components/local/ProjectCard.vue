@@ -125,6 +125,19 @@ export default {
 		width: 40vw;
 		.image {
 			height: auto;
+			.link {
+				width: 100%;
+				height: 100%;
+				padding: 0;
+
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				svg {
+					width: 2rem;
+					height: 2rem;
+				}
+			}
 		}
 		h2 {
 			margin: 20px;

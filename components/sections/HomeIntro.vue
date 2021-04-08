@@ -28,7 +28,7 @@
 </template>
 
 <script>
-import { introAnim } from '~/assets/anime'
+import { HomeIntroAnim } from '~/assets/anime'
 
 export default {
 	props: {
@@ -65,7 +65,7 @@ export default {
 		Animate() {
 			this.imagesLoaded++
 			if (this.imagesLoaded === 3) {
-				introAnim( this.$refs.lettersWeAre, this.$refs.lettersLeadersIn, this.$refs.collage1, this.$refs.collage2, this.$refs.collage3)
+				HomeIntroAnim(this.$refs.lettersWeAre, this.$refs.lettersLeadersIn, this.$refs.collage1, this.$refs.collage2, this.$refs.collage3)
 			}
 		},
 	},
@@ -163,6 +163,18 @@ export default {
 		}
 	}
 
+	@media (min-width: 1900px) {
+		.text{
+			padding-top: 17vh;
+		}
+		.bg_letter{
+			width: 26vw;
+			.second{
+				width: 36vw;
+				left: -10vw;
+			}
+		}
+	}
 	@media (max-width: 1220px) {
 		// .text {
 		// 	left: -7vw;

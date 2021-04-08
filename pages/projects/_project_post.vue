@@ -30,14 +30,11 @@
 					</template>
 
 					<template v-else-if="slice.slice_type == 'image_slider'">
-						<div class="image_slider">
-							<div v-swiper="swiperOption" class="swiper-container">
-								<div class="swiper-wrapper">
-									<ImageItem v-for="item in slice.items" :key="item.image.url" class="swiper-slide" :src="item.image.url" alt="alt" />
-									<div class="swiper-slide"></div>
-								</div>
-								<div slot="pagination" class="swiper-pagination"></div>
+						<div v-swiper="swiperOption" class="swiper-container">
+							<div class="swiper-wrapper">
+								<ImageItem v-for="item in slice.items" :key="item.image.url" class="swiper-slide" :src="item.image.url" alt="alt" />
 							</div>
+							<div slot="pagination" class="swiper-pagination"></div>
 						</div>
 					</template>
 
@@ -61,7 +58,8 @@ export default {
 		post: Object,
 		swiperOption: {
 			slidesPerView: 'auto',
-			spaceBetween: 40,
+			spaceBetween: 50,
+			loop: true,
 			pagination: {
 				el: '.swiper-pagination',
 				clickable: true,
@@ -116,7 +114,7 @@ export default {
 			position: absolute;
 			bottom: 0;
 			left: 240px;
-			z-index: 2;
+			z-index: 4;
 
 			padding: 20px 20px 0 20px;
 			background: white;
@@ -171,9 +169,10 @@ export default {
 
 	.image_slider {
 		width: 1840px;
-		height: max-content;
+		// height: max-content;
 		margin-top: 10px;
 		margin-bottom: 25px;
+		z-index: 3;
 
 		.swiper-container {
 			width: inherit;
@@ -218,23 +217,47 @@ export default {
 		.info {
 			width: 100%;
 			margin: 40px 0;
+			padding-left: 40px;
+
 			p {
 				font-size: 1rem;
-				padding: 20px;
 			}
 		}
 
 		.slice {
 			margin: 0;
+			margin-bottom: 1rem;
 		}
 		.text .paragraph {
 			width: 100%;
-			padding: 0 40px;
+			padding-left: 40px;
 		}
 		.image {
 			width: 100%;
-			padding: 0 20px;
 		}
+
+		.image_slider {
+			width: max-content;
+		}
+
+		.image_text {
+			flex-direction: column;
+
+			.text {
+				display: flex;
+				flex-direction: column;
+				padding: 0 40px;
+				p {
+					margin-bottom: 25px;
+				}
+			}
+			picture {
+				margin-bottom: 40px;
+			}
+		}
+	}
+	::v-deep .swiper-pagination {
+		margin-left: 40px;
 	}
 }
 
@@ -254,7 +277,6 @@ export default {
 ::v-deep .swiper-pagination {
 	position: initial;
 	margin-top: 25px;
-
 	width: max-content;
 	height: 20px;
 	display: flex;

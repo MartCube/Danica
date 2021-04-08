@@ -6,19 +6,18 @@
 		<div class="second">
 			<span v-for="(letter, i) in lettersArchitecture" :key="i">{{ letter }}</span>
 		</div>
-		<!-- <template v-else> -->
-			<!-- <span v-for="(letter, i) in lettersArchitecture" :key="i">{{ letter }}</span> -->
-		<!-- </template> -->
+
 	</div>
 </template>
 
 <script>
-import anime from 'animejs'
+import anime, { timeline } from 'animejs'
 
 export default {
 	data: () => ({
 		active: true,
 		link: '/services/interior-design',
+		letters: null
 	}),
 	computed: {
 		lettersArchitecture() {
@@ -34,75 +33,54 @@ export default {
 	mounted() {
 		this.Animate()
 		this.letters = this.lettersDesign
-		// setTimeout(() => this.letters = , 2000)
-	},
-	watch: {},
-	created() {
-		// setTimeout(() => this.Animate(), 2000)
 	},
 	methods: {
 		 Animate() {
-			let loops = 0;
-			let el = document.querySelectorAll('.text_slider span');
-			// await this.$nextTick()
+			// let el2 = document.querySelectorAll('.second span');
+			// let el1 = document.querySelectorAll('.first span');
 
-			const StartUpTimeline = anime.timeline({
-				// autoplay: true,
-				easing: 'easeOutExpo',
-				loop: true,
-				direction: 'alternate',
-				duration: 2000,
-				changeComplete: (e) => {
-					// this.letters = this.lettersArchitecture
-				},
-				update: (e) => {
-					// logEl.innerHTML = JSON.stringify(battery);
-					++loops
-					console.log(e, loops);
+			// let duration = 2500;
+			// let stagger = 50;
 
-				},
-				// loopComplete: (e) => {
-				// 	++loops
-				// 	console.log(e, loops);
-				// 	if(loops % 2 === 0 ){
-				// 		this.letters = this.lettersArchitecture;
-				// 		el = document.querySelectorAll('.text_slider span')
-				// 	}
-				// 	else {
-				// 		this.letters = this.lettersDesign;
-				// 		el = document.querySelectorAll('.text_slider span')
-				// 	}
-				// },
-			}).add({
-				targets: ".first span",
-				opacity: [0, 1],
-				direction: "forwards",
-				delay: anime.stagger(100),
-			},
-			2000
-			).add({
-				targets: ".second span",
-				opacity: [0, 1],
-				direction: "forwards",
-				delay: anime.stagger(100),
-			},
-			2000)
-
-
-			StartUpTimeline.finished.then(() => {
-			// 	// changing the array of letters
-			// 	this.active = !this.active
-			// // 	// changing the link
-			// 	if (this.active) this.link = '/services/design'
-			// 	else this.link = '/services/architecture'
-			// 	// this.Animate()
-			})
+			// const StartUpTimeline = anime.timeline({
+			// 	easing: 'easeOutExpo',
+			// 	loop: true,
+			// 	changeComplete: (e) => {
+			// 		},
+			// 	update: (e) => {
+			// 		},
+			// 	loopComplete: (e) => {
+			// 		},
+			// })
+			// .add({
+			// 	targets: el1,
+			// 	direction: 'alternate',
+			// 	delay: anime.stagger(stagger),
+			// 	duration: duration,
+			// 	opacity: 1,
+			// })
+			// .add({
+			// 	targets: el1,
+			// 	direction: 'alternate',
+			// 	delay: anime.stagger(stagger, {from: 'last'}),
+			// 	duration: duration,
+			// 	opacity: 0,
+			// })
+			// .add({
+			// 	targets: el2,
+			// 	duration: duration,
+			// 	delay: anime.stagger(stagger),
+			// 	opacity: 1,
+			// 	direction: 'alternate',
+			// })
+			// .add({
+			// 	targets: el2,
+			// 	duration: duration,
+			// 	delay: anime.stagger(stagger, {from: 'last'}),
+			// 	opacity: 0,
+			// 	direction: 'alternate',
+			// })
 		},
-		// loop(t) {
-		// 	StartUpTimeline.tick(t);
-		// 	customRAF = requestAnimationFrame(loop);
-			
-		// },
 		
 	},
 }
@@ -115,13 +93,15 @@ export default {
 	position: relative;
 	overflow: hidden;
 
-	width: max-content;
+	width: auto;
+	z-index: 10;
+	height: 7rem;
 	.first, .second{
 		position: absolute;
 		display: flex;
 		align-items: center;
 		z-index: 2;
-		min-height: 6rem;
+		height: inherit;
 	}
 	span {
 		opacity: 0; // opacity: 1
@@ -153,13 +133,6 @@ export default {
 		}
 	}
 }
-
-
-
-@keyframes titleLetters {
-	
-}
-
 
 @media (max-width: 900px) {
 	.text_slider span{

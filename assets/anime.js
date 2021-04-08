@@ -90,70 +90,215 @@ export function localleAnim(locales, show) {
 }
 
 export function introAnim(lettersWeAre, lettersLeadersIn, collage1, collage2, collage3) {
-	const StartUpTimeline = anime.timeline({
-		autoplay: true,
-	})
-
-	const colllageEasing = 'easeInOutCubic'
-	const collageDuration = '1000'
-	const collageBorder = '10px solid white'
-
-	StartUpTimeline.add(
-		{
-			targets: lettersWeAre,
-			opacity: [0, 1],
-			translateY: ['100%', '0%'],
-
-			easing: 'easeInOutCubic',
-			delay: anime.stagger(50, { from: 'first' }),
-			duration: 1000,
+  const StartUpTimeline = anime.timeline({
+    autoplay: true,
+   
+  });
+  const StartUpTimeline2 = anime.timeline({
+    autoplay: true,
+    duration: 2500,
+    easing: "easeOutExpo",
+    loop: true,
+    update: function (anim) {
+      console.log(anim, anim.progress);
+    },
+    loopBegin: function (anim) {
+      // loopBegan++;
+      console.log( loopBegan);
+    },
+    loopComplete: function (anim) {
+      // loopCompleted++;
+			StartUpTimeline1.play()
+      console.log(StartUpTimeline1);
+    },
+  });
+  const StartUpTimeline1 = anime.timeline({
+    autoplay: true,
+    duration: 2500,
+    easing: "easeOutExpo",
+    loop: 1,
+		autoplay: false,
+		loopBegin: function (anim) {
+			// loopBegan++;
+			console.log( loopBegan);
 		},
-		0,
+		loopComplete: function (anim) {
+			// loopCompleted++;
+			StartUpTimeline2.play();
+			console.log(loopCompleted);
+		},
+  });
+	let loopBegan = 0;
+  let loopCompleted = 0;
+  const colllageEasing = "easeOutSine";
+  const collageDuration = "2500";
+  const collageBorder = "10px solid white";
+  let el2 = document.querySelectorAll(".second span");
+  let el1 = document.querySelectorAll(".first span");
+
+  let duration = 2500;
+  let stagger = 50;
+
+  StartUpTimeline.add(
+    {
+      targets: lettersWeAre,
+      opacity: [0, 1],
+      translateY: ["100%", "0%"],
+
+      easing: "easeInOutCubic",
+      delay: anime.stagger(50, {from: "first"}),
+      duration: 1000,
+    },
+    0
+  ).add(
+    {
+      targets: lettersLeadersIn,
+      opacity: [0, 1],
+      translateY: ["100%", "0%"],
+
+      easing: "easeInOutCubic",
+      delay: anime.stagger(50, {from: "first"}),
+      duration: 1000,
+    },
+    200
+  );
+
+  StartUpTimeline2
+	.add({
+    targets: ".bg_letter.first",
+    opacity: [0, 1],
+  },0)
+	.add({
+		targets: el1,
+		delay: anime.stagger(stagger, {start: 0}),
+		duration: 500,
+		opacity: 1,
+	},1000)
+	.add(
+		{
+			targets: collage1,
+			width: "16vw",
+		},
+		0
 	)
-		.add(
-			{
-				targets: lettersLeadersIn,
-				opacity: [0, 1],
-				translateY: ['100%', '0%'],
+	.add(
+		{
+			targets: collage2,
+			width: "35vw",
+		},
+		200
+	)
+	.add(
+		{
+			targets: collage3,
+			width: "30vw",
+		},
+		300
+	)
+	.add(
+		{
+			targets: collage3,
+			duration: 500,
+			width: 0,
+		},
+		4500
+	)
+	.add(
+		{
+			targets: collage2,
+			duration: 500,
+			width: 0,
+		},
+		4500
+	)
+	.add(
+		{
+			targets: collage1,
+			duration: 500,
+			width: 0,
+		},
+		4500
+	)
+	.add({
+		targets: el1,
+		delay: anime.stagger(stagger, {from: "last"}),
+		duration: 500,
+		opacity: [1, 0],
+	})
+	.add({
+		targets: ".bg_letter.first",
+		opacity: [1, 0],
+		duration: 500,
+	});
 
-				easing: 'easeInOutCubic',
-				delay: anime.stagger(50, { from: 'first' }),
-				duration: 1000,
-			},
-			200,
-		)
-		.add(
-			{
-				targets: collage1,
-				// opacity: [0, 1],
-				width: [0, '16vw'],
-				border: collageBorder,
-				easing: colllageEasing,
-				duration: collageDuration,
-			},
-			1400,
-		)
-		.add(
-			{
-				targets: collage2,
-				// opacity: [0, 1],
-				width: [0, '37vw'],
-				border: collageBorder,
-				easing: colllageEasing,
-				duration: collageDuration,
-			},
-			1200,
-		)
-		.add(
-			{
-				targets: collage3,
-				// opacity: [0, 1],
-				width: [0, '30vw'],
+	StartUpTimeline1.add({
+    targets: ".bg_letter.second",
+    opacity: [0, 1],
+  })
+	.add(
+		{
+			targets: el2,
+			delay: anime.stagger(stagger, {start: 0}),
+			duration: 500,
+			opacity: 1,
+		},
+		1000
+	)
+	.add(
+		{
+			targets: collage1,
+			width: "16vw",
+		},
+		0
+	)
+	.add(
+		{
+			targets: collage2,
+			width: "35vw",
+		},
+		200
+	)
+	.add(
+		{
+			targets: collage3,
+			width: "30vw",
+		},
+		300
+	)
+	.add(
+		{
+			targets: collage3,
+			duration: 500,
+			width: 0,
+		},
+		4500
+	)
+	.add(
+		{
+			targets: collage2,
+			duration: 500,
+			width: 0,
+		},
+		4500
+	)
+	.add(
+		{
+			targets: collage1,
+			duration: 500,
+			width: 0,
+		},
+		4500
+	)
+	.add({
+		targets: el2,
+		delay: anime.stagger(stagger, {from: "last"}),
+		duration: 500,
+		opacity: [1, 0],
+	})
+	.add({
+		targets: ".bg_letter.second",
+      opacity: [1, 0],
+      duration: 500,
+    });
 
-				border: collageBorder,
-				easing: colllageEasing,
-				duration: collageDuration,
-			},
-			1000,
-		)
 }

@@ -1,6 +1,7 @@
 <template>
 	<section class="intro">
-		<img class="bg_letter" src="/d_letter.svg" alt="" />
+		<img class="bg_letter first" src="/d_letter.svg" alt="" />
+		<img class="bg_letter second" src="/a_letter.svg" alt="" />
 		<div class="text">
 			<div class="title">
 				<span v-for="(letter, i) in lettersWeAre" :key="i" ref="lettersWeAre">{{ letter }}</span>
@@ -13,9 +14,15 @@
 		</div>
 
 		<div class="collage">
-			<img ref="collage1" class="first" :src="first_imgIX" alt="danica" @load="Animate" />
-			<img ref="collage2" class="second" :src="second_imgIX" alt="danica" @load="Animate" />
-			<img ref="collage3" class="third" :src="third_imgIX" alt="danica" @load="Animate" />
+			<div ref="collage1" class="first">
+				<img :src="first_imgIX" alt="danica" @load="Animate" />
+			</div>
+			<div ref="collage2" class="second">
+				<img  :src="second_imgIX" alt="danica" @load="Animate" />
+			</div>
+			<div ref="collage3" class="third">
+				<img :src="third_imgIX" alt="danica" @load="Animate" />
+			</div>
 		</div>
 	</section>
 </template>
@@ -32,6 +39,7 @@ export default {
 	},
 	data: () => ({
 		imagesLoaded: 0,
+		// bgLetter: document.querySelector(".bg_letter"),
 	}),
 	computed: {
 		lettersWeAre() {
@@ -57,7 +65,7 @@ export default {
 		Animate() {
 			this.imagesLoaded++
 			if (this.imagesLoaded === 3) {
-				introAnim(this.$refs.lettersWeAre, this.$refs.lettersLeadersIn, this.$refs.collage1, this.$refs.collage2, this.$refs.collage3)
+				introAnim( this.$refs.lettersWeAre, this.$refs.lettersLeadersIn, this.$refs.collage1, this.$refs.collage2, this.$refs.collage3)
 			}
 		},
 	},
@@ -75,20 +83,26 @@ export default {
 
 	.bg_letter {
 		position: absolute;
-		left: -245px;
-		top: 9%;
+		left: 0;
+		top: 7%;
+		opacity: 0;
 		width: 23vw;
 		z-index: 6;
+		&.first{}
+		&.second{
+			width: 31vw;
+			left: -5vw;
+		}
 	}
+
 
 	.text {
 		width: min-content;
-		padding-top: 9vh;
-
+		padding-top: 7vh;
+		width: 40%;			
 		position: absolute;
 		top: 0;
 		left: 150px;
-
 		display: flex;
 		flex-direction: column;
 		z-index: 6;
@@ -116,11 +130,17 @@ export default {
 	.collage {
 		width: 57vw;
 		position: relative;
-		img {
-			border: 0 solid transparent; // border: 10px solid white
+		img{
+			width: 101%;
+			height: 101%;
+			margin: 0;
+			padding: 0;
+		}
+		div {
+			overflow: hidden;
 			width: 0;
 			position: absolute;
-			object-fit: cover;
+			border: 10px solid white;
 		}
 		.first {
 			z-index: 3;

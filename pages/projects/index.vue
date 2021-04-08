@@ -80,7 +80,7 @@ export default {
 
 	.filter {
 		min-width: 240px;
-		padding-right: 1rem;
+		padding-right: 1.5rem;
 		background: white;
 		height: fit-content;
 		position: relative;

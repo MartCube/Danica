@@ -21,7 +21,7 @@
 </template>
 
 <script>
-import { introAnim } from '~/assets/anime'
+import { HomeIntroAnim } from '~/assets/anime'
 
 export default {
 	props: {
@@ -57,7 +57,7 @@ export default {
 		Animate() {
 			this.imagesLoaded++
 			if (this.imagesLoaded === 3) {
-				introAnim(this.$refs.lettersWeAre, this.$refs.lettersLeadersIn, this.$refs.collage1, this.$refs.collage2, this.$refs.collage3)
+				HomeIntroAnim(this.$refs.lettersWeAre, this.$refs.lettersLeadersIn, this.$refs.collage1, this.$refs.collage2, this.$refs.collage3)
 			}
 		},
 	},

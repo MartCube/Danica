@@ -1,26 +1,24 @@
 <template>
-	<section>
-		<template v-if="!$fetchState.pending">
-			<div class="name">
-				<span>projects</span>
-			</div>
-			<div class="content">
-				<h2 class="title">{{ title }}</h2>
+	<MediaQueryProvider :queries="{ mobile: '(max-width: 1100px)' }" ssr>
+		<MatchMedia v-slot="{ mobile }">
+			<LatestProjects v-if="mobile" :tag="['highlight']" />
 
-				<MediaQueryProvider :queries="{ mobile: '(max-width: 900px)' }" ssr>
-					<MatchMedia v-slot="{ mobile }">
-						<span v-if="mobile">
-							<LatestProjects :filter-tag="['highlight']" />
-						</span>
+			<section v-else>
+				<template v-if="!$fetchState.pending">
+					<div class="name">
+						<span>projects</span>
+					</div>
+					<div class="content">
+						<h2 class="title">{{ title }}</h2>
 
-						<div v-else ref="grid" class="grid">
+						<div ref="grid" class="grid">
 							<HighlightCard v-for="(project, i) in projects" :key="'post' + i" :first="i == 0" :last="i + 1 == projects.length" :data="project" />
 						</div>
-					</MatchMedia>
-				</MediaQueryProvider>
-			</div>
-		</template>
-	</section>
+					</div>
+				</template>
+			</section>
+		</MatchMedia>
+	</MediaQueryProvider>
 </template>
 
 <script>

@@ -26,7 +26,7 @@
 <script>
 export default {
 	props: {
-		filterTag: {
+		tag: {
 			type: Array,
 			default: () => [],
 		},
@@ -41,7 +41,7 @@ export default {
 		},
 	}),
 	async fetch() {
-		const projects = await this.$prismic.api.query([this.$prismic.predicates.at('document.type', 'project_post'), this.$prismic.predicates.at('document.tags', this.filterTag)], {
+		const projects = await this.$prismic.api.query([this.$prismic.predicates.at('document.type', 'project_post'), this.$prismic.predicates.at('document.tags', this.tag)], {
 			orderings: '[document.first_publication_date desc]',
 			pageSize: this.page_size,
 		})

@@ -29,13 +29,13 @@ export default {
 	.title {
 		height: 200px;
 		font-size: 2.5rem;
+		padding-left: 1rem;
 	}
 }
 @media (max-width: 320px) {
 	.title {
 		height: 200px;
 		font-size: 2.5rem;
-		padding-left: 1rem;
 	}
 }
 </style>

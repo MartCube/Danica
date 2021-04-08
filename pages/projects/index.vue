@@ -14,9 +14,9 @@
 				<template v-if="!$fetchState.pending">
 					<ProjectCard v-for="(project, i) in projects" :key="i" :data="project" />
 				</template>
+				<ButtonItem v-if="current_page < total_pages" @click.native="loadMore"> Load More </ButtonItem>
 			</div>
 		</div>
-		<ButtonItem v-if="current_page < total_pages" @click.native="loadMore"> Load More </ButtonItem>
 	</div>
 </template>
 
@@ -80,7 +80,7 @@ export default {
 
 	.filter {
 		min-width: 240px;
-		padding-right: 30px;
+		padding-right: 1rem;
 		background: white;
 		height: fit-content;
 		position: relative;
@@ -94,7 +94,7 @@ export default {
 			text-transform: capitalize;
 			white-space: nowrap;
 			font-weight: 500;
-			font-size: 1.4rem;
+			font-size: 1.2rem;
 
 			display: flex;
 			align-items: center;
@@ -122,6 +122,7 @@ export default {
 
 	.grid {
 		width: calc(100vw - 240px);
+		max-width: 1000px;
 		height: 100%;
 		min-height: 800px;
 		border-left: 1px solid $line;
@@ -133,13 +134,12 @@ export default {
 		.project_card {
 			margin-right: 2rem;
 		}
-	}
-}
 
-button {
-	margin: 40px 0;
-	margin-left: 240px;
-	color: $black;
+		button {
+			margin: 40px 0;
+			color: $black;
+		}
+	}
 }
 
 @media (max-width: 900px) {
@@ -153,6 +153,7 @@ button {
 		}
 		.grid {
 			width: 100%;
+			min-height: auto;
 			padding-left: 40px;
 
 			justify-content: space-between;

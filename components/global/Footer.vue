@@ -196,6 +196,9 @@ export default {
 							svg {
 								margin-right: 10px;
 							}
+							&:last-child {
+								margin: 0;
+							}
 						}
 					}
 					span {
@@ -301,21 +304,7 @@ export default {
 						margin: 0;
 						padding: 0;
 						& > * {
-							margin-bottom: 15px;
-						}
-						.numbers {
-							h4 {
-								font-size: 1rem;
-							}
-							a {
-								margin-bottom: 15px;
-								svg {
-									display: initial;
-								}
-							}
-						}
-						.icons {
-							margin-top: 15px;
+							margin-bottom: 2rem;
 						}
 					}
 				}

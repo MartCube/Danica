@@ -55,7 +55,7 @@ $transition: all 0.35s ease;
 			margin-bottom: 20px;
 
 			a {
-				padding: 10px;
+				padding: 0.5rem 1rem;
 				text-transform: capitalize;
 				font-size: 1.5rem;
 

@@ -64,6 +64,9 @@ export default {
 		top: 0;
 		width: 100%;
 		height: inherit;
+		picture {
+			z-index: 2;
+		}
 	}
 
 	.content {

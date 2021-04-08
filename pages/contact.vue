@@ -7,6 +7,7 @@
 				<div class="directions">
 					<IconDirections size="40px" />
 				</div>
+				<IconLocation class="location" />
 				<ImageItem :src="map_url" alt="map" />
 			</div>
 		</div>
@@ -42,9 +43,33 @@ export default {
 		}
 		.map {
 			position: relative;
+
 			.directions {
 				position: absolute;
 				top: 0;
+				left: 0;
+				width: 80px;
+				height: 80px;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+
+				z-index: 2;
+				background: $primary;
+				cursor: pointer;
+
+				svg {
+					transition: all 0.35s ease;
+				}
+				&:hover {
+					svg {
+						transform: scale(1.2);
+					}
+				}
+			}
+			.location {
+				position: absolute;
+				bottom: 0;
 				left: 0;
 				width: 80px;
 				height: 80px;

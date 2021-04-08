@@ -136,7 +136,6 @@ export default {
 
 			display: flex;
 			position: relative;
-			z-index: 4;
 			picture {
 				width: 100%;
 				user-select: none;

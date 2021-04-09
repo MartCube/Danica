@@ -6,7 +6,7 @@
 			<span class="tag">{{ tag }}</span>
 		</div>
 		<div class="image">
-			<ImageItem :src="image" :alt="title" />
+			<ImageItem :src="image.card.url" :mobile="image.mobileCard.url" :alt="title" />
 			<div class="link">
 				<IconChevron size="25px" />
 			</div>
@@ -23,12 +23,8 @@ export default {
 		},
 	},
 	computed: {
-		Thumbnail_imgIX() {
-			// return `&fit=crop&w=300&h=300&dpr=1`
-			return ''
-		},
 		image() {
-			return this.data.data.main_image.url
+			return this.data.data.image
 		},
 		title() {
 			return this.$prismic.asText(this.data.data.title)
@@ -82,7 +78,7 @@ export default {
 		> * {
 			font-size: 0.8rem;
 			// opacity: 0.5;
-			color: rgba(0,0,0, .4);
+			color: rgba(0, 0, 0, 0.4);
 			font-weight: 500;
 		}
 		.tag {
@@ -147,7 +143,7 @@ export default {
 			bottom: 0;
 			left: 25px;
 			margin-right: 75px;
-			z-index: 2;
+			z-index: 4;
 
 			font-size: 2rem;
 			line-height: 2rem;
@@ -165,7 +161,7 @@ export default {
 			position: absolute;
 			top: 0;
 			left: 0;
-			z-index: 2;
+			z-index: 4;
 			width: 100%;
 			height: 100%;
 			padding: 25px;
@@ -178,7 +174,7 @@ export default {
 				color: white;
 			}
 			.tag {
-				color:$primary;
+				color: $primary;
 				font-weight: 500;
 			}
 		}

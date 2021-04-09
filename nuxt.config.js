@@ -18,7 +18,7 @@ export default {
 	css: ['~/assets/main.scss', '~/assets/colors.scss'],
 
 	// Plugins to run before rendering page (https://go.nuxtjs.dev/config-plugins)
-	plugins: [{ src: '@/plugins/vue-swiper', mode: 'client' }, { src: '~/plugins/vue-plyr', mode: 'client' }, { src: '@/plugins/vee-validate.js' }, { src: `~/plugins/lazysizes.client.js` }],
+	plugins: [{ src: '@/plugins/vue-swiper', mode: 'client' }, { src: '~/plugins/vue-plyr', mode: 'client' }, { src: '@/plugins/vee-validate.js' }, { src: `~/plugins/lazysizes.client.js` }, { src: `~/plugins/lazysizes.client.js` }, { src: `~/plugins/vue-observe.js` }],
 
 	// Modules for dev and build (recommended) (https://go.nuxtjs.dev/config-modules)
 	buildModules: [

@@ -1,5 +1,10 @@
 <template>
-	<section>
+	<section class="charles" v-observe-visibility="{
+				callback: this.visibilityChanged,
+				once: true,
+				intersection: {
+					threshold: 1,
+				}}">
 		<div class="content">
 			<div class="title">
 				<h2><span>the details</span> are not the the details they make <span>the design</span>.</h2>
@@ -7,14 +12,15 @@
 				<ButtonItem :animated="false">Write us </ButtonItem>
 			</div>
 			<div class="collage">
-				<ImageItem :src="data.primary.top.url" class="top" alt="charles eames" />
-				<ImageItem :src="data.primary.bottom.url" class="bottom" alt="charles eames" />
+				<ImageItem :src="data.primary.top.url" class="top" alt="charles eames" ref="charlesTop" />
+				<ImageItem :src="data.primary.bottom.url" class="bottom" alt="charles eames" ref="charlesBottom"/>
 			</div>
 		</div>
 	</section>
 </template>
 
 <script>
+import { charles } from '~/assets/anime'
 export default {
 	props: {
 		data: {
@@ -22,7 +28,25 @@ export default {
 			required: true,
 		},
 	},
-	computed: {},
+	ccomputed: {
+		visibilityOptions() {
+			return {
+				callback: this.visibilityChanged,
+				once: true,
+				intersection: {
+					threshold: 1,
+				},
+			}
+		},
+	},
+	methods: {
+		visibilityChanged(isVisible) {
+			// console.log(isVisible, this.$refs.charlesTop, this.$refs.charlesBottom);
+			if (isVisible) {
+				charles()
+			}
+		},
+	},
 }
 </script>
 
@@ -55,18 +79,31 @@ export default {
 		}
 	}
 	.collage {
+		width: 60%;
+		padding-left: 10px;
+		position: relative;
 		flex-grow: 1;
 		display: flex;
 		flex-direction: column;
 		justify-content: center;
-		align-items: center;
+		align-items: flex-start;
+		overflow: hidden;
+		min-height: 540px;
 		.top {
-			width: 300px;
-			height: 300px;
+			width: 500px;
+			height: auto;
+			opacity: 0;
+			transform: translateY(-50%);
+			position: absolute;
 		}
 		.bottom {
-			width: 150px;
-			height: 75px;
+			width: 220px;
+			height: 105px;
+			position: absolute;
+			left: 168px;
+			bottom: 0;
+			opacity: 0;
+			transform: translateY(-30%);
 		}
 	}
 }

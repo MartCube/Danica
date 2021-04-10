@@ -18,8 +18,6 @@
 
 				<!-- Slice Machine -->
 				<div v-for="(slice, i) in post.slices" :key="i" class="slice" :class="slice.slice_type">
-					<!-- <p v-if="slice.slice_type == 'text'">{{ $prismic.asText(slice.primary.text) }}</p> -->
-
 					<template v-if="slice.slice_type == 'text'">
 						<prismic-rich-text class="paragraph" :field="slice.primary.text" />
 					</template>

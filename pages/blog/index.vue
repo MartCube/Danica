@@ -116,20 +116,22 @@ export default {
 	flex-wrap: wrap;
 
 	.filter {
-		width: 240px;
-		position: relative;
-		padding-right: 30px;
+		min-width: 240px;
+		padding-right: 1.5rem;
 		background: white;
+		height: fit-content;
+		position: relative;
+		z-index: 6;
 
 		display: flex;
 		flex-direction: column;
 
 		span {
-			margin: 0 0 10px 0;
+			margin: 10px 0;
 			text-transform: capitalize;
 			white-space: nowrap;
 			font-weight: 500;
-			font-size: 1.4rem;
+			font-size: 1.2rem;
 
 			display: flex;
 			align-items: center;
@@ -153,20 +155,11 @@ export default {
 				}
 			}
 		}
-		&::after {
-			content: '';
-			background-color: hsl(0, 0%, 90%);
-			position: absolute;
-			top: -30vh;
-			height: 100vh;
-			right: 0;
-			display: block;
-		}
 	}
 
 	.grid {
 		flex: 1;
-		height: 100%;
+		height: 1000px;
 
 		display: grid;
 		grid-template-columns: repeat(4, 1fr);

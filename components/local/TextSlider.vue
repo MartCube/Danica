@@ -1,23 +1,20 @@
 <template>
-	<div class="text_slider" >
+	<div class="text_slider">
 		<div class="first">
 			<span v-for="(letter, i) in lettersDesign" :key="i">{{ letter }}</span>
 		</div>
 		<div class="second">
 			<span v-for="(letter, i) in lettersArchitecture" :key="i">{{ letter }}</span>
 		</div>
-
 	</div>
 </template>
 
 <script>
-import anime, { timeline } from 'animejs'
-
 export default {
 	data: () => ({
 		active: true,
 		link: '/services/interior-design',
-		letters: null
+		letters: null,
 	}),
 	computed: {
 		lettersArchitecture() {
@@ -31,58 +28,9 @@ export default {
 		},
 	},
 	mounted() {
-		this.Animate()
 		this.letters = this.lettersDesign
 	},
-	methods: {
-		 Animate() {
-			// let el2 = document.querySelectorAll('.second span');
-			// let el1 = document.querySelectorAll('.first span');
-
-			// let duration = 2500;
-			// let stagger = 50;
-
-			// const StartUpTimeline = anime.timeline({
-			// 	easing: 'easeOutExpo',
-			// 	loop: true,
-			// 	changeComplete: (e) => {
-			// 		},
-			// 	update: (e) => {
-			// 		},
-			// 	loopComplete: (e) => {
-			// 		},
-			// })
-			// .add({
-			// 	targets: el1,
-			// 	direction: 'alternate',
-			// 	delay: anime.stagger(stagger),
-			// 	duration: duration,
-			// 	opacity: 1,
-			// })
-			// .add({
-			// 	targets: el1,
-			// 	direction: 'alternate',
-			// 	delay: anime.stagger(stagger, {from: 'last'}),
-			// 	duration: duration,
-			// 	opacity: 0,
-			// })
-			// .add({
-			// 	targets: el2,
-			// 	duration: duration,
-			// 	delay: anime.stagger(stagger),
-			// 	opacity: 1,
-			// 	direction: 'alternate',
-			// })
-			// .add({
-			// 	targets: el2,
-			// 	duration: duration,
-			// 	delay: anime.stagger(stagger, {from: 'last'}),
-			// 	opacity: 0,
-			// 	direction: 'alternate',
-			// })
-		},
-		
-	},
+	methods: {},
 }
 </script>
 
@@ -99,10 +47,11 @@ export default {
 	.first {
 		z-index: 2;
 	}
-	.second{
+	.second {
 		z-index: 1;
 	}
-	.first, .second{
+	.first,
+	.second {
 		position: absolute;
 		display: flex;
 		overflow: hidden;
@@ -140,28 +89,26 @@ export default {
 		// transition: opacity, transform 1s ease-out;
 		// animation: titleLetters 1s linear infinite alternate;
 	}
-
 }
 
 @media (min-width: 1500px) {
 	.text_slider {
-		height: 15vw;
-		span{
-		// font-size: 8.5vw;
+		span {
+			// font-size: 8.5vw;
 			display: inline-block;
 			line-height: 7vw;
 		}
 	}
 }
 @media (max-width: 900px) {
-	.text_slider span{
+	.text_slider span {
 		font-size: 8.5vw;
 		display: inline-block;
 		line-height: 5rem;
 	}
 }
 @media (max-width: 400px) {
-	.text_slider span{
+	.text_slider span {
 		font-size: 2.2rem;
 	}
 }

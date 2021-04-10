@@ -159,7 +159,7 @@ export default {
 
 	.grid {
 		flex: 1;
-		min-height: 1000px;
+		min-height: 1040px;
 
 		display: grid;
 		grid-template-columns: repeat(4, 1fr);
@@ -176,7 +176,7 @@ export default {
 	}
 
 	.pagination {
-		width: calc(100% -240px);
+		width: calc(100% - 240px);
 		margin: 100px 0;
 		margin-left: auto;
 
@@ -259,9 +259,8 @@ export default {
 }
 @media (max-width: 960px) {
 	.blog {
-		.grid{
-			grid-template-columns: repeat(2,1fr);
-		
+		.grid {
+			grid-template-columns: repeat(2, 1fr);
 		}
 	}
 }
@@ -272,13 +271,13 @@ export default {
 			margin-left: 0;
 			width: 50%;
 		}
-		.grid{
+		.grid {
 			width: 100%;
 			margin-top: 4rem;
 			gap: 20px;
 			padding: 0 40px;
 		}
-		.pagination{
+		.pagination {
 			margin: 3rem auto;
 		}
 	}

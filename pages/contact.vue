@@ -69,7 +69,6 @@
 </template>
 
 <script>
-
 export default {
 	data: () => ({
 		data: Object,
@@ -123,7 +122,7 @@ export default {
 			color: $grey;
 		}
 	}
-	h3.title{
+	h3.title {
 		color: $grey;
 		width: 100%;
 		padding-right: 50%;
@@ -173,7 +172,7 @@ export default {
 			width: 75%;
 			margin-top: 3rem;
 		}
-		.left_content{
+		.left_content {
 			width: 70%;
 			padding-left: 240px;
 			padding-bottom: 3rem;
@@ -313,41 +312,42 @@ export default {
 }
 
 @media (max-width: 1200px) {
-	.container{
-		h3.title{
+	.container {
+		h3.title {
 			padding-right: 20%;
-		} 
-		.wrap .left_content{
-			.for_clients{
+		}
+		.wrap .left_content {
+			.for_clients {
 				padding-left: 0;
 			}
-			.office, .for_clients{
+			.office,
+			.for_clients {
 				width: 100%;
 			}
 		}
-	
 	}
 }
 @media (max-width: 900px) {
-	.container{
-		.wrap{
-			.left_content{
+	.container {
+		.wrap {
+			.left_content {
 				padding-left: 50px;
 				padding-bottom: 3rem;
 				width: 60%;
-				.for_clients{
+				.for_clients {
 					padding-left: 0;
 				}
-				.office, .for_clients{
+				.office,
+				.for_clients {
 					width: 100%;
 				}
 			}
-			.map{
+			.map {
 				width: 40%;
 				max-height: 50vh;
 				margin-top: 4rem;
 			}
-			.contact_form{
+			.contact_form {
 				width: 85%;
 			}
 			.policy {
@@ -369,20 +369,21 @@ export default {
 }
 
 @media (max-width: 650px) {
-	.container{
-		.wrap{
-			.left_content{
+	.container {
+		.wrap {
+			.left_content {
 				padding-left: 40px;
 				padding-bottom: 0;
 				width: 100%;
-				.office, .for_clients{
+				.office,
+				.for_clients {
 					width: 100%;
 				}
 			}
-			.map{
+			.map {
 				width: 100%;
 			}
-			.contact_form{
+			.contact_form {
 				width: 90%;
 			}
 		}

@@ -31,6 +31,7 @@ export default {
 		this.slices = fetch.data.body
 	},
 	mounted() {
+		console.log('woko')
 		this.$store.dispatch('bindNavbarTransparent', true)
 	},
 }

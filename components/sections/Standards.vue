@@ -47,13 +47,14 @@ $transition: all 0.35s ease;
 	flex-direction: column;
 
 	.list {
-		width: 1000px;
+		width: 100%;
 		display: flex;
-		justify-content: space-between;
+		justify-content: flex-start;
 		flex-wrap: wrap;
+		padding: 0 1.5rem;
 		& > * {
 			width: 100%;
-			max-width: 450px;
+			max-width: 50%;
 			margin-bottom: 40px;
 
 			display: flex;
@@ -65,6 +66,7 @@ $transition: all 0.35s ease;
 				margin-right: 40px;
 			}
 			.standard {
+				padding-right: 2rem;
 				h3 {
 					word-spacing: 450px;
 					margin-bottom: 20px;
@@ -79,14 +81,16 @@ $transition: all 0.35s ease;
 	}
 }
 
-@media (max-width: 900px) {
+@media (max-width: 1100px) {
 	section {
 		.content {
 			flex-direction: column;
 			.list {
 				width: 100%;
+				padding-left: 0;
 				& > * {
 					flex-direction: column;
+					max-width: 100%;
 					&:last-child {
 						margin: 0;
 					}

@@ -159,7 +159,7 @@ export default {
 
 	.grid {
 		flex: 1;
-		height: 1000px;
+		min-height: 1000px;
 
 		display: grid;
 		grid-template-columns: repeat(4, 1fr);
@@ -176,8 +176,9 @@ export default {
 	}
 
 	.pagination {
-		width: 100%;
-		margin: 100px 240px 0 240px;
+		width: calc(100% -240px);
+		margin: 100px 0;
+		margin-left: auto;
 
 		display: flex;
 		justify-content: center;
@@ -222,6 +223,63 @@ export default {
 				cursor: initial;
 				opacity: 0.5;
 			}
+		}
+	}
+}
+
+@media (min-width: 1900px) {
+	.blog .grid {
+		grid-template-columns: repeat(5, 1fr);
+	}
+}
+@media (max-width: 1100px) {
+	.blog .grid {
+		grid-template-columns: repeat(3, 1fr);
+		.blog_card {
+			&:first-child {
+				grid-column: 1;
+				grid-row: 1;
+				.image {
+					width: auto;
+					height: auto;
+				}
+				.info {
+					display: flex;
+					justify-content: initial;
+					padding-bottom: 20px;
+					position: initial;
+					width: initial;
+					height: initial;
+					padding: initial;
+					flex-direction: initial;
+				}
+			}
+		}
+	}
+}
+@media (max-width: 960px) {
+	.blog {
+		.grid{
+			grid-template-columns: repeat(2,1fr);
+		
+		}
+	}
+}
+@media (max-width: 900px) {
+	.blog {
+		flex-direction: column;
+		.filter {
+			margin-left: 0;
+			width: 50%;
+		}
+		.grid{
+			width: 100%;
+			margin-top: 4rem;
+			gap: 20px;
+			padding: 0 40px;
+		}
+		.pagination{
+			margin: 3rem auto;
 		}
 	}
 }

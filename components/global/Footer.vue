@@ -105,8 +105,6 @@ export default {
 <style lang="scss" scoped>
 .footer {
 	width: 100%;
-	margin-top: 40px;
-
 	display: flex;
 	flex-direction: column;
 	color: $white;

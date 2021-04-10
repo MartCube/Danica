@@ -16,7 +16,7 @@
 				</div>
 
 				<n-link :to="localePath('/projects')">
-					<ButtonItem> all projects </ButtonItem>
+					<ButtonItem> All projects </ButtonItem>
 				</n-link>
 			</div>
 		</template>
@@ -38,6 +38,15 @@ export default {
 			slidesPerView: 'auto',
 			spaceBetween: 50,
 			loop: true,
+			breakpoints: {
+				// when window width is >= 480px
+				500: {
+					spaceBetween: 50,
+				},
+				320: {
+					spaceBetween: 20,
+				}
+			}
 		},
 	}),
 	async fetch() {
@@ -67,6 +76,9 @@ section .name {
 			margin: 0;
 		}
 		position: relative;
+	}
+	button{
+		margin-bottom: 2rem;
 	}
 }
 

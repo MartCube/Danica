@@ -126,8 +126,8 @@ export default {
 			overflow: hidden;
 
 			position: absolute;
-			top: 30%;
-			right: 0;
+			top: 80px;
+			left: -30px;
 			cursor: pointer;
 
 			span {
@@ -150,30 +150,68 @@ export default {
 		}
 	}
 }
+@media (max-width: 1300px) {
+	.intro{
+		.content{
+			margin-right: 10%;
+		}
+	}
+}
 @media (max-width: 1100px) {
 	.intro {
 		flex-direction: row;
 
 		.content {
-			width: 100%;
-			margin: 0;
-			padding-left: 40px;
-			border: initial;
-
+			.maintitle{
+				margin-top: 4vh;
+			}
 			.maintitle span {
-				font-size: 2rem;
+				font-size: 4rem;
 			}
 			.subtitle span {
-				font-size: 1.8rem;
+				font-size: 3.5rem;
 			}
 			button {
 				margin-top: 2rem;
 			}
+		}
+	}
+}
+@media (max-width: 900px) {
+	.intro{
+		.content{
+			margin: 0;
+			padding-left: 40px;
+			border: initial;
 			.project {
 				top: 60px;
+				left: 0;
 			}
-			&.white {
+			.maintitle span {
+				font-size: 3rem;
+			}
+			.subtitle span {
+				font-size: 2.5rem;
+			}
+			&.white{
 				border: initial;
+			}
+		}
+	}
+	
+}
+@media (max-width: 500px){
+	.intro{
+		.content{
+
+			.maintitle{
+				margin-top: 6vh;
+				span{
+					font-size: 5vh;
+				}
+			}
+			.subtitle span {
+				font-size: 5vh;
 			}
 		}
 	}

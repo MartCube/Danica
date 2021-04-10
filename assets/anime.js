@@ -88,6 +88,65 @@ export function localleAnim(locales, show) {
 		})
 }
 
+export function charles() {
+
+	let duration = 2500;
+	let stagger = 50;
+	let charlesTop = document.querySelector(".charles .top");
+	let charlesBottom = document.querySelector(".charles .bottom");
+
+ 
+  const StartUpTimeline = anime
+    .timeline({
+      duration: duration,
+      autoplay: true,
+      easing: "easeOutExpo",
+      endDelay: 200,
+      loop: 1,
+      loopComplete: function (anim) {
+        StartUpTimeline1.play();
+      },
+    })
+    .add(
+      {
+        targets: charlesBottom,
+        opacity: [0, 1],
+        translateY: ["-30%", "0"],
+        duration: 700,
+      },
+      0
+    )
+    .add(
+      {
+        targets: charlesTop,
+        easing: "cubicBezier(0.25, 0.46, 0.45, 0.94)",
+        keyframes: [
+          {opacity: 0, translateY: "-100%"},
+          {opacity: 0},
+          {translateY: "20px", opacity: 1},
+          {translateY: "10px", rotate: "6deg", translateX: "25px", duration: 600},
+        ],
+      },
+      100
+    );
+
+  const StartUpTimeline1 = anime
+    .timeline({
+      targets: charlesTop,
+      duration: duration,
+      direction: "alternate",
+      autoplay: false,
+      easing: "easeOutExpo",
+      loop: true,
+    })
+    .add({
+      rotate: ["6deg", "-6deg"],
+      translateX: ["25px", "-18px"],
+      translateY: ["10px", "9px"],
+    });
+	
+
+}
 export function HomeIntroAnim(lettersWeAre, lettersLeadersIn, collage1, collage2, collage3) {
 	let el2 = document.querySelectorAll(".second span");
 	let el1 = document.querySelectorAll(".first span");

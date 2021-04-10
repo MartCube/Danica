@@ -60,15 +60,7 @@ export default {
 		text-transform: capitalize;
 		font-size: 1.2rem;
 		line-height: 1.5rem;
-		&::after {
-			content: '';
-			position: absolute;
-			width: 100%;
-			background-color: $black;
-			height: 2px;
-			top: 0;
-			left: 0;
-		}
+		border-top: 2px solid $black;
 	}
 	.info {
 		display: flex;
@@ -153,6 +145,7 @@ export default {
 			display: flex;
 			justify-content: center;
 			align-items: center;
+			border: none;
 			&::after {
 				display: none;
 			}
@@ -214,6 +207,41 @@ export default {
 			}
 			.link {
 				opacity: 1;
+			}
+		}
+	}
+}
+
+@media (max-width: 1100px) {
+	.blog_card.first{
+		position: initial;
+		.title{
+			position: initial;
+			margin-right: 0;
+			z-index: 4;
+			font-size: 1.4rem;
+			line-height: 1.5rem;
+			color: black;
+			height: auto;
+			display: inline-block;
+			border-top: 2px solid $black;
+		}
+		.info{
+			position: initial;
+			width: initial;
+			height: initial;
+			padding: 0;
+			flex-direction: row;
+			padding-bottom: 20px;
+			justify-content: space-between;
+			& > *{
+				margin-bottom: 0;
+				color: rgba(0, 0, 0, 0.4);
+				font-size: 0.8rem;
+			}
+			.tag{
+				// color: $white;
+				margin-bottom: 0;
 			}
 		}
 	}

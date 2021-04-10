@@ -44,7 +44,7 @@ export default {
 		justify-content: space-between;
 		flex-wrap: wrap;
 		.stage {
-			max-width: 550px;
+			max-width: 50%;
 			margin-bottom: 40px;
 
 			display: flex;
@@ -74,7 +74,7 @@ export default {
 	}
 }
 
-@media (max-width: 900px) {
+@media (max-width: 1050px) {
 	section {
 		.content {
 			flex-direction: column;
@@ -82,6 +82,7 @@ export default {
 			.list {
 				width: 100%;
 				.stage {
+					// width: 100%;
 					.number {
 						min-width: 60px;
 						margin-right: 20px;
@@ -99,6 +100,17 @@ export default {
 					&:last-child {
 						margin-bottom: 0;
 					}
+				}
+			}
+		}
+	}
+}
+@media (max-width: 650px) {
+	section{
+		.content{
+			.list{
+				.stage{
+					max-width: 100%;
 				}
 			}
 		}

@@ -14,7 +14,7 @@
 				<template v-if="!$fetchState.pending">
 					<ProjectCard v-for="(project, i) in projects" :key="i" :data="project" />
 				</template>
-				<ButtonItem v-if="current_page < total_pages" @click.native="loadMore"> Load More </ButtonItem>
+				<ButtonItem v-if="current_page < total_pages" @click.native="loadMore"> Load more </ButtonItem>
 			</div>
 		</div>
 	</div>
@@ -138,6 +138,7 @@ export default {
 		button {
 			margin: 40px 0;
 			color: $black;
+			margin-right: 23vw;
 		}
 	}
 }
@@ -152,7 +153,7 @@ export default {
 			margin-bottom: 25px;
 		}
 		.grid {
-			width: 100%;
+			width: 93%;
 			min-height: auto;
 			padding-left: 40px;
 

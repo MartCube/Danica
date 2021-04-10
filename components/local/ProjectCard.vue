@@ -145,4 +145,16 @@ export default {
 		}
 	}
 }
+@media (max-width: 500px) {
+	.projects .grid{
+		width: 90%;
+	}
+	.project_card {
+		width: 37vw;
+		h2 {
+			margin: 20px;
+			font-size: 1.1rem;
+		}
+	}
+}
 </style>

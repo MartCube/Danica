@@ -1,10 +1,5 @@
 <template>
-	<section class="charles" v-observe-visibility="{
-				callback: this.visibilityChanged,
-				once: true,
-				intersection: {
-					threshold: 1,
-				}}">
+	<section class="charles" v-observe-visibility="this.visibilityOptions">
 		<div class="content">
 			<div class="title">
 				<h2><span>the details</span> are not the the details they make <span>the design</span>.</h2>
@@ -28,7 +23,7 @@ export default {
 			required: true,
 		},
 	},
-	ccomputed: {
+	computed: {
 		visibilityOptions() {
 			return {
 				callback: this.visibilityChanged,
@@ -41,7 +36,7 @@ export default {
 	},
 	methods: {
 		visibilityChanged(isVisible) {
-			// console.log(isVisible, this.$refs.charlesTop, this.$refs.charlesBottom);
+			console.log(isVisible, this.$refs.charlesTop, this.$refs.charlesBottom);
 			if (isVisible) {
 				charles()
 			}
@@ -80,6 +75,7 @@ export default {
 	}
 	.collage {
 		width: 60%;
+		min-width: 500px;
 		padding-left: 10px;
 		position: relative;
 		flex-grow: 1;
@@ -108,34 +104,144 @@ export default {
 	}
 }
 
+@media (max-width: 1100px) {
+	.content{
+		flex-direction: column;
+		align-items:center;
+		.collage{
+			width: 100%;
+			align-items:center;
+			.bottom{
+				left: 50%;
+				margin-left: -92px;
+			}
+		}
+		.title{
+			margin-bottom: 0;
+		}
+	}
+}
 @media (max-width: 900px) {
 	section {
 		.content {
 			margin: 0;
 			padding-top: 40px;
-			flex-direction: column-reverse;
+			align-items: flex-start;
+			position: relative;
 			.title {
 				margin: 0;
+				min-height: 500px;
 				h2 {
 					font-size: 1.2rem;
 					line-height: 2.4rem;
 				}
 				h4 {
-					margin: 0;
+					margin: 0 0 0 10%	;
+					flex:1;
+					align-self: flex-start;
 				}
 				button {
-					align-self: flex-end;
 				}
 			}
 			.collage {
-				margin-bottom: 20px;
+				bottom: 0;
+				width: 100%;
+				min-height: 415px;
+				position: absolute;
 				.top {
-					width: 200px;
-					height: 200px;
+					width: 350px;
+					height: auto;
 				}
 				.bottom {
-					width: 100px;
-					height: 50px;
+					width: 170px;
+					height: auto;
+					left: 50%;
+					margin-left: -74px;
+				}
+			}
+		}
+	}
+}
+@media (max-width: 540px) {
+	section {
+		.content {
+			margin: 0;
+			padding-top: 40px;
+			align-items: flex-start;
+			position: relative;
+			.title {
+				margin: 0;
+				min-height: 580px;
+				h2 {
+					font-size: 1.2rem;
+					line-height: 2.4rem;
+				}
+				h4 {
+					margin: 0 0 0 10%	;
+					flex:1;
+					align-self: flex-start;
+				}
+				button {
+				}
+			}
+			.collage {
+				bottom: 80px;
+				width: 100%;
+				min-width: 320px;
+				min-height: 415px;
+				position: absolute;
+				.top {
+					width: 350px;
+					height: auto;
+				}
+				.bottom {
+					width: 170px;
+					height: auto;
+					left: 50%;
+					margin-left: -74px;
+				}
+			}
+		}
+	}
+}
+@media (max-width: 440px) {
+	section {
+		.content {
+			margin: 0;
+			padding-top: 40px;
+			align-items: flex-start;
+			position: relative;
+			.title {
+				margin: 0;
+				min-height: 560px;
+				h2 {
+					font-size: 1.2rem;
+					line-height: 2.4rem;
+				}
+				h4 {
+					margin: 0 0 0 10%	;
+					flex:1;
+					align-self: flex-start;
+				}
+				button {
+				}
+			}
+			.collage {
+				bottom: 90px;
+				width: 100%;
+				min-height: 300px;
+				position: absolute;
+				align-items: flex-start;
+				padding-left: 50px;
+				.top {
+					width: 250px;
+					height: auto;
+				}
+				.bottom {
+					width: 120px;
+					height: auto;
+					left: 50%;
+					margin-left: -65px;
 				}
 			}
 		}

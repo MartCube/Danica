@@ -39,13 +39,14 @@ export default {
 	display: flex;
 	position: relative;
 	cursor: pointer;
+	width: 80%;
 
 	h2 {
 		z-index: 4;
 		padding: 40px 80px;
 		position: absolute;
 		bottom: 0;
-		left: 0;
+		left: -1px;
 		background: white;
 		text-transform: capitalize;
 	}

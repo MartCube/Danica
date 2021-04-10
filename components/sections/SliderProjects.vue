@@ -27,7 +27,7 @@ export default {
 		page_size: 5,
 		projects: null,
 		swiperOption: {
-			slidesPerView: 1,
+			slidesPerView: 'auto',
 			spaceBetween: 50,
 			loop: true,
 			autoplay: {
@@ -57,7 +57,7 @@ export default {
 	display: flex;
 	flex-direction: column;
 	.project_slider {
-		width: 900px;
+		width: 100;
 		overflow: hidden;
 
 		.swiper-container {
@@ -68,7 +68,7 @@ export default {
 
 			display: flex;
 			flex-direction: column;
-			align-items: flex-end;
+			align-items: flex-start;
 		}
 	}
 }
@@ -76,9 +76,12 @@ export default {
 @media (max-width: 900px) {
 	.content {
 		.project_slider {
-			width: 350px;
+			// width: 350px;
 			.swiper-container {
 				align-items: flex-start;
+			}
+			.swiper-container-horizontal > .swiper-pagination-bullets{
+				align-self: flex-end;
 			}
 		}
 	}
@@ -106,7 +109,7 @@ export default {
 }
 
 ::v-deep .swiper-wrapper {
-	max-width: 900px;
+	// max-width: 900px;
 	height: 100%;
 }
 </style>

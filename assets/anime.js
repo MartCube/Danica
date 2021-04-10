@@ -122,8 +122,8 @@ export function charles() {
         easing: "cubicBezier(0.25, 0.46, 0.45, 0.94)",
         keyframes: [
           {opacity: 0, translateY: "-100%"},
-          {opacity: 0, opacity: 1},
-          {translateY: "20px"},
+          {opacity: 0},
+          {translateY: "20px", opacity: 1},
           {translateY: "10px", rotate: "6deg", translateX: "25px", duration: 600},
         ],
       },

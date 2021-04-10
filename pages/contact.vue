@@ -176,6 +176,7 @@ export default {
 		.left_content{
 			width: 70%;
 			padding-left: 240px;
+			padding-bottom: 3rem;
 			display: flex;
 			flex-wrap: wrap;
 			height: fit-content;

@@ -15,7 +15,7 @@
 					</div>
 				</div>
 
-				<ButtonItem> all projects </ButtonItem>
+				<ButtonItem> All projects </ButtonItem>
 			</div>
 		</template>
 	</section>
@@ -68,8 +68,11 @@ export default {
 
 			display: flex;
 			flex-direction: column;
-			align-items: flex-start;
+			align-items: flex-end;
 		}
+	}
+	button{
+		margin-bottom: 3rem;
 	}
 }
 

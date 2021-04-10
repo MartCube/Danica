@@ -60,6 +60,7 @@ export default {
 		padding-right: 50px;
 		p {
 			max-width: 500px;
+			margin-left: 1.5rem;
 		}
 		.counter {
 			padding-left: 20px;
@@ -110,6 +111,7 @@ export default {
 			flex-direction: column;
 			p {
 				margin-bottom: 60px;
+				margin-left: 0;
 			}
 			.counter {
 				width: max-content;

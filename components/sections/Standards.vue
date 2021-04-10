@@ -51,6 +51,7 @@ $transition: all 0.35s ease;
 		display: flex;
 		justify-content: flex-start;
 		flex-wrap: wrap;
+		padding: 0 1.5rem;
 		& > * {
 			width: 100%;
 			max-width: 50%;
@@ -86,6 +87,7 @@ $transition: all 0.35s ease;
 			flex-direction: column;
 			.list {
 				width: 100%;
+				padding-left: 0;
 				& > * {
 					flex-direction: column;
 					max-width: 100%;

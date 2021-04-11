@@ -70,6 +70,11 @@
 
 <script>
 export default {
+	beforeRouteLeave(to, from, next) {
+		this.$store.dispatch('bindFooter', true)
+		next()
+	},
+	middleware: 'footer',
 	data: () => ({
 		data: Object,
 		map_image: './map.png',

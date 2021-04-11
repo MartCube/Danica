@@ -1,5 +1,5 @@
 <template>
-	<footer class="footer">
+	<footer v-show="footer" class="footer">
 		<template v-if="!$fetchState.pending">
 			<div class="wrap">
 				<div class="image">
@@ -84,6 +84,9 @@ export default {
 	computed: {
 		year() {
 			return new Date().getFullYear()
+		},
+		footer() {
+			return this.$store.getters.footer
 		},
 	},
 	methods: {

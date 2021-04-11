@@ -1,5 +1,4 @@
 <template>
-	<!-- <img :data-src="src" :src="src" class="lazyload" :alt="alt" /> -->
 	<picture>
 		<source :data-srcset="mobile" media="(max-width: 600px)" />
 		<img :data-src="src" loading="lazy" class="lazyload" :alt="alt" />

@@ -129,17 +129,12 @@ export default {
 		flex-direction: column;
 		p {
 			padding: 20px 0;
-			border-bottom: 1px solid $grey;
 
 			text-transform: capitalize;
 			color: $black;
 			font-weight: 500;
 			font-size: 1.2rem;
 			line-height: 1.2rem;
-			text-align: right;
-			span {
-				float: left;
-			}
 		}
 	}
 
@@ -209,6 +204,8 @@ export default {
 			height: calc(100vh - 60px);
 			.title {
 				left: 0;
+				font-size: 2rem;
+				padding: 20px 40px 0 40px;
 			}
 		}
 
@@ -228,7 +225,7 @@ export default {
 		}
 		.text .paragraph {
 			width: 100%;
-			padding-left: 40px;
+			padding: 0 40px;
 		}
 		.image {
 			width: 100%;

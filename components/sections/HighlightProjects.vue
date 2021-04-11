@@ -64,7 +64,7 @@ section {
 	flex-direction: column;
 
 	.grid {
-		width: 1120px;
+		width: calc(100% - 100px);
 		display: flex;
 		flex-wrap: wrap;
 	}

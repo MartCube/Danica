@@ -45,6 +45,7 @@ button {
 		font-weight: 700;
 		font-size: 1.5rem;
 
+		transition: all 0.2s ease;
 		svg {
 			fill: $black;
 			margin-left: 15px;
@@ -89,6 +90,12 @@ button {
 		svg {
 			opacity: 1;
 			fill: $black;
+		}
+		.text.white{
+			color: $black;
+			svg {
+				fill: $black;
+			}
 		}
 	}
 }

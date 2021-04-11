@@ -1,5 +1,5 @@
 <template>
-	<section class="achievements">
+	<section class="achievements" v-observe-visibility="this.visibilityOptions">
 		<div class="name">
 			<span>achievements</span>
 		</div>
@@ -26,6 +26,7 @@
 </template>
 
 <script>
+import { nambersIncreasingAnimation } from '~/assets/anime'
 export default {
 	props: {
 		data: {
@@ -43,6 +44,24 @@ export default {
 		image() {
 			return this.data.achievements_image.url
 		},
+		visibilityOptions() {
+			return {
+				callback: this.visibilityChanged,
+				once: true,
+				intersection: {
+					threshold: 1,
+				},
+			}
+		},
+	},
+	methods: {
+		visibilityChanged(isVisible) {
+			console.log(isVisible, this.$refs.charlesTop, this.$refs.charlesBottom);
+			if (isVisible) {
+				nambersIncreasingAnimation(this.data.years_on_market, this.data.houses_build, this.data.projects )
+			}
+		},
+		
 	},
 }
 </script>

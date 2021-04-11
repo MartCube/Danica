@@ -22,6 +22,45 @@ export function postAnim(cards) {
 		duration: 750,
 	})
 }
+export function nambersIncreasingAnimation(firstNumber, secondNumber, thirdNumber) {
+	var html = document.querySelectorAll(".achievements .counter .number");
+
+
+		let duration = 1500;
+    let round = 1;
+
+    const nambersIncreasingAnimation = anime
+      .timeline({
+        duration: duration,
+        autoplay: true,
+        easing: "easeOutExpo",
+        loop: 1,
+      })
+      .add(
+        {
+          targets: html[0],
+          innerHTML: [0, firstNumber],
+          round: round,
+        },
+        0
+      )
+      .add(
+        {
+          targets: html[1],
+          innerHTML: [0, secondNumber],
+          round: round,
+        },
+        0
+      )
+      .add(
+        {
+          targets: html[2],
+          innerHTML: [0, thirdNumber],
+          round: round,
+        },
+        0
+      );
+}
 
 export function buttonAnim(button, overlay) {
 	anime({

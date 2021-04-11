@@ -276,6 +276,7 @@ export default {
 			margin-top: 4rem;
 			gap: 20px;
 			padding: 0 40px;
+			grid-auto-rows: 350px;
 		}
 		.pagination {
 			margin: 3rem auto;

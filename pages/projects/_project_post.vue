@@ -123,18 +123,22 @@ export default {
 	}
 
 	.info {
-		margin: 50px 240px;
-		max-width: 400px;
+		margin: 50px 0 50px 260px;
+		// max-width: 400px;
 		display: flex;
 		flex-direction: column;
 		p {
-			padding: 20px 0;
+			padding: 10px 0;
 
 			text-transform: capitalize;
 			color: $black;
 			font-weight: 500;
-			font-size: 1.2rem;
+			font-size: 1.5rem;
 			line-height: 1.2rem;
+			span{
+				font-size: inherit;
+				margin-right: 1rem;
+			}
 		}
 	}
 

@@ -309,7 +309,7 @@ export default {
 					margin: 0;
 					.office,
 					.for_clients {
-						width: max-content;
+						width: 100%;
 						margin: 0;
 						padding: 0;
 						& > * {

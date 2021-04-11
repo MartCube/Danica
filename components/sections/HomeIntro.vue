@@ -14,14 +14,23 @@
 		</div>
 
 		<div class="collage">
-			<div ref="collage1" class="first">
+			<div class="first design">
 				<img :src="first_imgIX" alt="danica" @load="Animate" />
 			</div>
-			<div ref="collage2" class="second">
+			<div class="second design">
 				<img  :src="second_imgIX" alt="danica" @load="Animate" />
 			</div>
-			<div ref="collage3" class="third">
+			<div class="third design">
 				<img :src="third_imgIX" alt="danica" @load="Animate" />
+			</div>
+			<div class="first architecture">
+				<img src="shelter_danica_ar1.jpg" alt="danica" @load="Animate" />
+			</div>
+			<div class="second architecture">
+				<img  src="shelter_danica_ar2.jpg" alt="danica" @load="Animate" />
+			</div>
+			<div class="third architecture">
+				<img src="shelter_danica_ar3.jpg" alt="danica" @load="Animate" />
 			</div>
 		</div>
 	</section>
@@ -65,7 +74,7 @@ export default {
 		Animate() {
 			this.imagesLoaded++
 			if (this.imagesLoaded === 3) {
-				HomeIntroAnim(this.$refs.lettersWeAre, this.$refs.lettersLeadersIn, this.$refs.collage1, this.$refs.collage2, this.$refs.collage3)
+				HomeIntroAnim(this.$refs.lettersWeAre, this.$refs.lettersLeadersIn)
 			}
 		},
 	},

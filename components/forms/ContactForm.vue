@@ -1,19 +1,19 @@
 <template>
 	<div class="contact_form">
 		<ValidationObserver v-if="!message" ref="contact" tag="form" autocomplete="off" @submit.prevent="Submit()">
-			<h2 class="title">Write us</h2>
+			<h2 class="title">{{ $t('service.form.write_us') }}</h2>
 			<InputItem name="name" rules="required" @getValue="getName" />
 			<InputItem name="number" rules="digits:3|required" @getValue="getNumber" />
 			<InputItem name="email" rules="email|required" @getValue="getEmail" />
 			<InputItem name="message" rules="required" @getValue="getMessage" />
-			<ButtonItem white> Submit <IconMail /> </ButtonItem>
+			<ButtonItem white> {{ $t('service.buton_contact_form') }} <IconMail /> </ButtonItem>
 		</ValidationObserver>
 
 		<div v-else class="message">
-			<h2 class="title">Message send</h2>
-			<p>Thank you for writing to us.</p>
-			<p>We will replay to you as soon as posible.</p>
-			<ButtonItem white> go home </ButtonItem>
+			<h2 class="title">{{ $t('service.form.title') }}</h2>
+			<p>{{ $t('service.form.text_responce1') }}</p>
+			<p>{{ $t('service.form.text_responce2') }}</p>
+			<ButtonItem white> {{ $t('service.form.button_tohome') }} </ButtonItem>
 		</div>
 	</div>
 </template>

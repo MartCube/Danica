@@ -273,6 +273,7 @@ export function HomeIntroAnim(lettersWeAre, lettersLeadersIn) {
       {
         targets: collage1,
         width: "16vw",
+				opacity: 1,
       },
       0
     )
@@ -280,6 +281,7 @@ export function HomeIntroAnim(lettersWeAre, lettersLeadersIn) {
       {
         targets: collage2,
         width: "35vw",
+				opacity: 1,
       },
       200
     )
@@ -287,6 +289,7 @@ export function HomeIntroAnim(lettersWeAre, lettersLeadersIn) {
       {
         targets: collage3,
         width: "30vw",
+				opacity: 1,
       },
       300
     )
@@ -295,6 +298,7 @@ export function HomeIntroAnim(lettersWeAre, lettersLeadersIn) {
         targets: collage3,
         duration: 500,
         width: 0,
+				opacity: 0,
       },
       4500
     )
@@ -303,6 +307,7 @@ export function HomeIntroAnim(lettersWeAre, lettersLeadersIn) {
         targets: collage2,
         duration: 500,
         width: 0,
+				opacity: 0,
       },
       4500
     )
@@ -311,6 +316,7 @@ export function HomeIntroAnim(lettersWeAre, lettersLeadersIn) {
         targets: collage1,
         duration: 500,
         width: 0,
+				opacity: 0,
       },
       4500
     )
@@ -348,6 +354,7 @@ export function HomeIntroAnim(lettersWeAre, lettersLeadersIn) {
       {
         targets: architecture1,
         width: "16vw",
+				opacity: 1,
       },
       0
     )
@@ -355,6 +362,7 @@ export function HomeIntroAnim(lettersWeAre, lettersLeadersIn) {
       {
         targets: architecture2,
         width: "35vw",
+				opacity: 1,
       },
       200
     )
@@ -362,6 +370,7 @@ export function HomeIntroAnim(lettersWeAre, lettersLeadersIn) {
       {
         targets: architecture3,
         width: "30vw",
+				opacity: 1,
       },
       300
     )
@@ -370,6 +379,7 @@ export function HomeIntroAnim(lettersWeAre, lettersLeadersIn) {
         targets: architecture3,
         duration: 500,
         width: 0,
+				opacity: 0
       },
       4500
     )
@@ -378,6 +388,7 @@ export function HomeIntroAnim(lettersWeAre, lettersLeadersIn) {
         targets: architecture2,
         duration: 500,
         width: 0,
+				opacity: 0
       },
       4500
     )
@@ -386,6 +397,7 @@ export function HomeIntroAnim(lettersWeAre, lettersLeadersIn) {
         targets: architecture1,
         duration: 500,
         width: 0,
+				opacity: 0
       },
       4500
     )

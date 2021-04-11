@@ -46,11 +46,11 @@
 				</template>
 			</div>
 			<div class="map">
-				<div class="directions">
-					<IconDirections size="40px" />
-				</div>
-				<IconLocation class="location" />
-				<ImageItem :src="map_url" alt="map" />
+				<a target="_blank" :href="map_url">
+					<p class="hint">Tap to open in Google maps</p>
+					<ImageItem :src="map_image" alt="map" />
+				</a>
+				
 			</div>
 			<div class="policy">
 				<div class="links">
@@ -72,7 +72,8 @@
 export default {
 	data: () => ({
 		data: Object,
-		map_url: 'https://maps.googleapis.com/maps/api/staticmap?center=50.490841015518846,30.446994616564965&zoom=13&format=png32&&size=1920x1920&key=AIzaSyBnTb01XNm3AOU8jwhC3neqhpNdMVLxnlI&map_id=c26449f55b3ee7',
+		map_image: './map.png',
+		map_url: 'https://g.page/danica-ua?share',
 	}),
 	async fetch() {
 		const contact = await this.$prismic.api.getSingle('footer')
@@ -251,51 +252,13 @@ export default {
 			position: relative;
 			width: 30%;
 
-			.directions {
+			.hint{
 				position: absolute;
-				top: 0;
-				left: 0;
-				width: 80px;
-				height: 80px;
-				display: flex;
-				justify-content: center;
-				align-items: center;
-
-				z-index: 2;
-				background: $primary;
-				cursor: pointer;
-
-				svg {
-					transition: all 0.35s ease;
-				}
-				&:hover {
-					svg {
-						transform: scale(1.2);
-					}
-				}
-			}
-			.location {
-				position: absolute;
-				bottom: 0;
-				left: 0;
-				width: 80px;
-				height: 80px;
-				display: flex;
-				justify-content: center;
-				align-items: center;
-
-				z-index: 2;
-				background: $primary;
-				cursor: pointer;
-
-				svg {
-					transition: all 0.35s ease;
-				}
-				&:hover {
-					svg {
-						transform: scale(1.2);
-					}
-				}
+				top: 1rem;
+				left: 1rem;
+				color: $black;
+				z-index: 4;
+				font-weight: 500;
 			}
 			img {
 				width: 100%;

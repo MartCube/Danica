@@ -70,6 +70,11 @@
 
 <script>
 export default {
+	beforeRouteLeave(to, from, next) {
+		this.$store.dispatch('bindFooter', true)
+		next()
+	},
+	middleware: 'footer',
 	data: () => ({
 		data: Object,
 		map_url: 'https://maps.googleapis.com/maps/api/staticmap?center=50.490841015518846,30.446994616564965&zoom=13&format=png32&&size=1920x1920&key=AIzaSyBnTb01XNm3AOU8jwhC3neqhpNdMVLxnlI&map_id=c26449f55b3ee7',

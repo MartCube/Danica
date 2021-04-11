@@ -1,3 +1,3 @@
-export default function ({ route, store }) {
+export default function ({ store }) {
 	store.dispatch('bindNavbarTransparent', true)
 }

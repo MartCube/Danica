@@ -3,6 +3,7 @@ export const state = () => ({
 	projects: null,
 	navbarTransparent: false,
 	modalContact: false,
+	footer: true,
 })
 
 // Functions that return back data contained in the state.
@@ -11,6 +12,7 @@ export const getters = {
 	projects: (state) => state.projects,
 	navbarTransparent: (state) => state.navbarTransparent,
 	modalContact: (state) => state.modalContact,
+	footer: (state) => state.footer,
 }
 
 // Functions that directly mutate the state.
@@ -27,6 +29,9 @@ export const mutations = {
 	setModalContact(state, value) {
 		state.modalContact = value
 	},
+	setFooter(state, value) {
+		state.footer = value
+	},
 }
 
 // Functions that call mutations on the state. They can call multiple mutations, can call other actions, and they support asynchronous operations.
@@ -42,5 +47,8 @@ export const actions = {
 	},
 	bindModalContact(context, value) {
 		context.commit('setModalContact', value)
+	},
+	bindFooter(context, value) {
+		context.commit('setFooter', value)
 	},
 }

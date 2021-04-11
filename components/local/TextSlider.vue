@@ -43,7 +43,7 @@ export default {
 
 	width: auto;
 	z-index: 10;
-	height: 6rem;
+	height: 8rem;
 	.first {
 		z-index: 2;
 	}
@@ -58,21 +58,7 @@ export default {
 		align-items: center;
 		width: fit-content;
 		height: fit-content;
-		&::after {
-			content: '';
-			position: absolute;
-			width: 0;
-			height: 100%;
-			left: 0;
-			background: $primary;
-			z-index: -1;
-			transition: all 0.35s ease;
-		}
-		&:hover {
-			&::after {
-				width: 100%;
-			}
-		}
+	
 	}
 	span {
 		opacity: 0; // opacity: 1
@@ -86,15 +72,12 @@ export default {
 		z-index: 4;
 		display: block;
 		will-change: opacity, transform;
-		// transition: opacity, transform 1s ease-out;
-		// animation: titleLetters 1s linear infinite alternate;
 	}
 }
 
 @media (min-width: 1500px) {
 	.text_slider {
 		span {
-			// font-size: 8.5vw;
 			display: inline-block;
 			line-height: 7vw;
 		}

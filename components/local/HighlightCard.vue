@@ -79,10 +79,10 @@ export default {
 $transition: all 0.35s ease;
 
 .highlight_card {
-	width: 400px;
+	width: 35%;
 	height: 500px;
 	margin-bottom: 80px;
-	margin-right: 80px;
+	margin-right: 5%;
 
 	display: flex;
 	flex-direction: column;
@@ -91,7 +91,7 @@ $transition: all 0.35s ease;
 	cursor: pointer;
 
 	&.first {
-		width: 1120px;
+		width: 100%;
 		height: 560px;
 		margin-right: 0;
 
@@ -158,9 +158,21 @@ $transition: all 0.35s ease;
 			height: 500px;
 		}
 	}
+	picture{
+		z-index: 0;
+	}
 	&.last {
-		width: 600px;
+		width: auto;
+		flex: 1;
 		margin-right: 0;
+		.title{
+			width: 100%;
+			height: 100%;
+			max-width: 100%;
+		}
+		.link {
+			opacity: 1;
+		}
 	}
 
 	.title {
@@ -168,10 +180,13 @@ $transition: all 0.35s ease;
 		top: 0;
 		left: 0;
 		padding: 25px;
-		background: rgba(0, 0, 0, 0.2);
+		background: rgba(0, 0, 0, 0.4);
 		backdrop-filter: blur(10px);
 		color: $white;
 		font-size: 1.5rem;
+		h3::first-letter {
+			text-transform: uppercase;
+		}
 	}
 	.link {
 		z-index: 2;
@@ -183,11 +198,22 @@ $transition: all 0.35s ease;
 		opacity: 0; //opacity:1
 		transition: $transition;
 	}
+	&:nth-child(even){
+		margin-left: 150px;
+	}
+
 
 	&:hover {
 		.link {
 			opacity: 1;
 		}
+	}
+}
+
+@media (max-width: 1200px) {
+	.highlight_card {
+		width: 30%;
+		height: 25%;
 	}
 }
 </style>

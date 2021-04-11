@@ -147,7 +147,18 @@ export function charles() {
 	
 
 }
-export function HomeIntroAnim(lettersWeAre, lettersLeadersIn, collage1, collage2, collage3) {
+export function HomeIntroAnim(lettersWeAre, lettersLeadersIn) {
+	let design = document.querySelectorAll(".intro .design")
+	let architecture = document.querySelectorAll(".intro .architecture");
+	let collage1 = design[0]
+	let collage2 = design[1]
+	let collage3 = design[2]
+	let architecture1 = architecture[0]
+	let architecture2 = architecture[1]
+	let architecture3 = architecture[2]
+	
+	
+	
 	let el2 = document.querySelectorAll(".second span");
 	let el1 = document.querySelectorAll(".first span");
 
@@ -158,22 +169,22 @@ export function HomeIntroAnim(lettersWeAre, lettersLeadersIn, collage1, collage2
     autoplay: true,
    
   });
-  const StartUpTimeline2 = anime.timeline({
+  const designAnimation = anime.timeline({
     autoplay: true,
     duration: duration,
     easing: "easeOutExpo",
     loop: 1,
     loopComplete: function (anim) {
-			StartUpTimeline1.play()
+			architectureAnimation.play()
     },
   });
-  const StartUpTimeline1 = anime.timeline({
+  const architectureAnimation = anime.timeline({
     duration: duration,
     easing: "easeOutExpo",
     loop: 1,
 		autoplay: false,
 		loopComplete: function (anim) {
-			StartUpTimeline2.play();
+			designAnimation.play();
 		},
   });
 	
@@ -202,7 +213,7 @@ export function HomeIntroAnim(lettersWeAre, lettersLeadersIn, collage1, collage2
     200
   );
 
-  StartUpTimeline2.add(
+  designAnimation.add(
     {
       targets: ".bg_letter.first",
       opacity: [0, 1],
@@ -280,7 +291,7 @@ export function HomeIntroAnim(lettersWeAre, lettersLeadersIn, collage1, collage2
 
 
 
-	StartUpTimeline1.add({
+	architectureAnimation.add({
     targets: ".bg_letter.second",
     opacity: [0, 1],
   })
@@ -296,28 +307,28 @@ export function HomeIntroAnim(lettersWeAre, lettersLeadersIn, collage1, collage2
     )
     .add(
       {
-        targets: collage1,
+        targets: architecture1,
         width: "16vw",
       },
       0
     )
     .add(
       {
-        targets: collage2,
+        targets: architecture2,
         width: "35vw",
       },
       200
     )
     .add(
       {
-        targets: collage3,
+        targets: architecture3,
         width: "30vw",
       },
       300
     )
     .add(
       {
-        targets: collage3,
+        targets: architecture3,
         duration: 500,
         width: 0,
       },
@@ -325,7 +336,7 @@ export function HomeIntroAnim(lettersWeAre, lettersLeadersIn, collage1, collage2
     )
     .add(
       {
-        targets: collage2,
+        targets: architecture2,
         duration: 500,
         width: 0,
       },
@@ -333,7 +344,7 @@ export function HomeIntroAnim(lettersWeAre, lettersLeadersIn, collage1, collage2
     )
     .add(
       {
-        targets: collage1,
+        targets: architecture1,
         duration: 500,
         width: 0,
       },

@@ -91,7 +91,7 @@ button {
 			opacity: 1;
 			fill: $black;
 		}
-		.text.white {
+		.text.white{
 			color: $black;
 			svg {
 				fill: $black;

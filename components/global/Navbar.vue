@@ -19,7 +19,7 @@
 			<n-link :to="localePath('/services/architecture')">{{ $t('pages.architecture') }}</n-link>
 			<n-link :to="localePath('/projects')">{{ $t('pages.projects') }}</n-link>
 			<n-link :to="localePath('/blog')">{{ $t('pages.blog') }}</n-link>
-			<n-link :to="localePath('/contact')">{{ $t('pages.contact') }}</n-link>
+			<n-link :to="localePath('/contact')">{{ $t('pages.contact.name') }}</n-link>
 		</div>
 
 		<div class="button" :class="{ active: isActive }" @click="ShowHideMenu">

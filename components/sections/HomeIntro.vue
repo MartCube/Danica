@@ -144,12 +144,14 @@ export default {
 			height: 101%;
 			margin: 0;
 			padding: 0;
+			
 		}
 		div {
 			overflow: hidden;
 			width: 0;
 			position: absolute;
 			border: 10px solid white;
+			opacity: 0;
 		}
 		.first {
 			z-index: 3;

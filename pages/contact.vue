@@ -5,18 +5,18 @@
 		<div class="wrap">
 			<div class="left_content">
 				<template v-if="!$fetchState.pending">
-					<h3 class="title">Мы всегда рады новым знакомствам, напишите нам</h3>
+					<h3 class="title">{{ $t('pages.contact.title') }}</h3>
 					<div class="office">
 						<div class="numbers">
-							<h4>office:</h4>
+							<h4>{{ $t('pages.contact.office') }}:</h4>
 							<a v-for="(number, i) in data.office" :key="i" :href="NumberLink(number)"> <IconPhone size="16px" /> {{ $prismic.asText(number.number) }} </a>
 						</div>
 						<div class="location">
-							<h4>find us</h4>
-							<span> <IconLocation size="20px" /> Киев, ул Новозабарская 23 </span>
+							<h4>{{ $t('pages.contact.find_us') }}</h4>
+							<span> <IconLocation size="20px" />{{ $t('pages.contact.adress') }}</span>
 						</div>
 						<div class="smedias">
-							<h4>follow us</h4>
+							<h4>{{ $t('pages.contact.follow_us') }}</h4>
 							<div class="icons">
 								<IconFacebook />
 								<IconInstagram />
@@ -26,15 +26,15 @@
 					</div>
 					<div class="for_clients">
 						<div class="numbers">
-							<h4>for clients:</h4>
+							<h4>{{ $t('pages.contact.for_clients') }}</h4>
 							<a v-for="(number, i) in data.office" :key="i" :href="NumberLink(number)"> <IconPhone size="16px" /> {{ $prismic.asText(number.number) }} </a>
 						</div>
 						<div class="contact">
-							<h4>write us</h4>
+							<h4>{{ $t('service.form.write_us') }}</h4>
 							<span @click="openModal()"> <IconMail size="20px" /> info@danica.ua</span>
 						</div>
 						<div class="chat">
-							<h4>live chat</h4>
+							<h4>{{ $t('pages.contact.live_chat') }}</h4>
 							<div class="icons">
 								<IconMessenger />
 								<IconTelegram />
@@ -47,7 +47,7 @@
 			</div>
 			<div class="map">
 				<a target="_blank" :href="map_url">
-					<p class="hint">Tap to open in Google maps</p>
+					<p class="hint">{{ $t('pages.contact.tap_to_open') }}</p>
 					<ImageItem :src="map_image" alt="map" />
 				</a>
 			</div>
@@ -55,12 +55,12 @@
 				<div class="links">
 					<n-link to="/"> Danica {{ year }} <IconCopyRight size="16px" /></n-link>
 					<span>|</span>
-					<n-link to="/">All rights reserved</n-link>
+					<n-link to="/">{{ $t('service.footer.all_rights_reserved') }}</n-link>
 				</div>
 				<div class="links">
-					<n-link to="/">Privacy Policy</n-link>
+					<n-link to="/">{{ $t('service.footer.privacy_policy') }}</n-link>
 					<span>|</span>
-					<n-link to="/">Terms and Conditions</n-link>
+					<n-link to="/">{{ $t('service.footer.terms') }}</n-link>
 				</div>
 			</div>
 		</div>
@@ -76,7 +76,7 @@ export default {
 	middleware: 'footer',
 	data: () => ({
 		data: Object,
-		map_image: './map.png',
+		map_image: '../map.png',
 		map_url: 'https://g.page/danica-ua?share',
 	}),
 	async fetch() {
@@ -189,11 +189,13 @@ export default {
 			.for_clients {
 				h4 {
 					color: $white;
-					text-transform: capitalize;
 					font-size: 0.8rem;
 					font-weight: medium;
 					margin-bottom: 1.5rem;
 					user-select: none;
+					&::first-letter{
+						text-transform: capitalize;
+					}
 				}
 				width: 50%;
 				display: flex;
@@ -207,7 +209,7 @@ export default {
 				svg {
 					fill: $primary;
 					cursor: pointer;
-					transition: opacity 0.2 ease;
+					transition: opacity 0.2s ease;
 
 					&:hover {
 						opacity: 0.75;

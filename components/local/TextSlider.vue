@@ -37,7 +37,7 @@ export default {
 <style lang="scss" scoped>
 .text_slider {
 	margin-top: 2rem;
-	cursor: pointer;
+	// cursor: pointer;
 	position: relative;
 	overflow: hidden;
 

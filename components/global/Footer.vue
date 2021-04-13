@@ -10,15 +10,15 @@
 					<div class="wrap">
 						<div class="office">
 							<div class="numbers">
-								<h4>office:</h4>
+								<h4>{{ $t('pages.contact.office') }}:</h4>
 								<a v-for="(number, i) in data.office" :key="i" :href="NumberLink(number)"> <IconPhone size="16px" /> {{ $prismic.asText(number.number) }} </a>
 							</div>
 							<div class="location">
-								<h4>find us</h4>
-								<span> <IconLocation size="20px" /> Киев, ул Новозабарская 23 </span>
+								<h4>{{ $t('pages.contact.find_us') }}</h4>
+								<span> <IconLocation size="20px" />{{ $t('pages.contact.adress') }} </span>
 							</div>
 							<div class="smedias">
-								<h4>follow us</h4>
+								<h4>{{ $t('pages.contact.follow_us') }}</h4>
 								<div class="icons">
 									<IconFacebook />
 									<IconInstagram />
@@ -28,15 +28,15 @@
 						</div>
 						<div class="for_clients">
 							<div class="numbers">
-								<h4>for clients:</h4>
+								<h4>{{ $t('pages.contact.for_clients') }}:</h4>
 								<a v-for="(number, i) in data.office" :key="i" :href="NumberLink(number)"> <IconPhone size="16px" /> {{ $prismic.asText(number.number) }} </a>
 							</div>
 							<div class="contact">
-								<h4>write us</h4>
+								<h4>{{ $t('service.form.write_us') }}</h4>
 								<span @click="openModal()"> <IconMail size="20px" /> info@danica.ua</span>
 							</div>
 							<div class="chat">
-								<h4>live chat</h4>
+								<h4>{{ $t('pages.contact.live_chat') }}</h4>
 								<div class="icons">
 									<IconMessenger />
 									<IconTelegram />
@@ -53,12 +53,12 @@
 				<div class="links">
 					<n-link to="/"> Danica {{ year }} <IconCopyRight size="16px" /></n-link>
 					<span>|</span>
-					<n-link to="/">All rights reserved</n-link>
+					<n-link to="/">{{ $t('service.footer.all_rights_reserved') }}</n-link>
 				</div>
 				<div class="links">
-					<n-link to="/">Privacy Policy</n-link>
+					<n-link to="/">{{ $t('service.footer.privacy_policy') }}</n-link>
 					<span>|</span>
-					<n-link to="/">Terms and Conditions</n-link>
+					<n-link to="/">{{ $t('service.footer.terms') }}</n-link>
 				</div>
 			</div>
 			<div class="to_top" @click="ScrollToTop">
@@ -171,11 +171,14 @@ export default {
 
 					h4 {
 						color: $grey;
-						text-transform: capitalize;
+						
 						font-size: 0.8rem;
 						font-weight: medium;
 						margin-bottom: 15px;
 						user-select: none;
+						&::first-letter{
+							text-transform: capitalize;
+						}
 					}
 					svg {
 						fill: $primary;
@@ -200,6 +203,12 @@ export default {
 							&:last-child {
 								margin: 0;
 							}
+						}
+					}
+					.location{
+						svg{
+							align-self: flex-start;
+							margin-top: 5px;
 						}
 					}
 					span {
@@ -300,7 +309,7 @@ export default {
 					margin: 0;
 					.office,
 					.for_clients {
-						width: max-content;
+						width: 100%;
 						margin: 0;
 						padding: 0;
 						& > * {

@@ -226,6 +226,9 @@ export default {
 			display: inline-block;
 			border-top: 2px solid $black;
 		}
+		.image{
+			height: auto;
+		}
 		.info{
 			position: initial;
 			width: initial;

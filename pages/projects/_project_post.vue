@@ -136,7 +136,7 @@ export default {
 			font-weight: 500;
 			font-size: 1.5rem;
 			line-height: 1.2rem;
-			span{
+			span {
 				font-size: inherit;
 				margin-right: 1rem;
 			}

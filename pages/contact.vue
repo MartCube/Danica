@@ -50,7 +50,6 @@
 					<p class="hint">Tap to open in Google maps</p>
 					<ImageItem :src="map_image" alt="map" />
 				</a>
-				
 			</div>
 			<div class="policy">
 				<div class="links">
@@ -257,7 +256,7 @@ export default {
 			position: relative;
 			width: 30%;
 
-			.hint{
+			.hint {
 				position: absolute;
 				top: 1rem;
 				left: 1rem;

@@ -39,18 +39,20 @@ export default {
 	.list {
 		display: flex;
 		flex-direction: column;
-
 		.stage {
+			padding-left: 1rem;
+
 			p {
 				margin-bottom: 16px;
+				font-weight: 400;
+
 				display: flex;
 				align-items: center;
-				font-weight: 400;
 				&::before {
 					content: '';
 					margin-right: 20px;
 					min-width: 20px;
-					height: 4px;
+					height: 5px;
 					background: $primary;
 				}
 			}
@@ -65,6 +67,7 @@ export default {
 
 @media (max-width: 900px) {
 	.content .list .stage {
+		padding: 0;
 		p {
 			display: flex;
 			align-items: flex-start;

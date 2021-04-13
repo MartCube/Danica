@@ -278,7 +278,7 @@ export default {
 }
 ::v-deep .swiper-pagination {
 	position: initial;
-	margin-top: 25px;
+	margin-top: 35px;
 	width: max-content;
 	height: 20px;
 	display: flex;

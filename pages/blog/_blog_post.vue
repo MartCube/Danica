@@ -103,6 +103,7 @@ export default {
 			padding-left: 1rem;
 			font-size: 2rem;
 		}
+
 		.info {
 			margin-bottom: 20px;
 			padding-left: 1rem;
@@ -112,9 +113,11 @@ export default {
 				color: $primary;
 			}
 		}
+
 		picture {
 			height: 100vh;
 		}
+
 		.go_back {
 			position: absolute;
 			bottom: -100px;
@@ -224,6 +227,7 @@ export default {
 				padding: 0 40px;
 			}
 			picture {
+				// width: 100%;
 				height: auto;
 			}
 		}
@@ -246,7 +250,7 @@ export default {
 	}
 
 	::v-deep .swiper-pagination {
-		margin-left: 40px;
+		margin-right: 40px;
 	}
 	::v-deep .swiper-wrapper {
 		max-width: 100vw;
@@ -267,7 +271,7 @@ export default {
 }
 ::v-deep .swiper-pagination {
 	position: initial;
-	margin-top: 25px;
+	margin-top: 35px;
 
 	width: max-content;
 	height: 20px;

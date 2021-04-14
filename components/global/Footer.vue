@@ -56,9 +56,9 @@
 					<n-link to="/">{{ $t('service.footer.all_rights_reserved') }}</n-link>
 				</div>
 				<div class="links">
-					<n-link to="/">{{ $t('service.footer.privacy_policy') }}</n-link>
+					<n-link :to="localePath('/privacy-policy')">{{ $t('service.footer.privacy_policy') }}</n-link>
 					<span>|</span>
-					<n-link to="/">{{ $t('service.footer.terms') }}</n-link>
+					<n-link :to="localePath('/privacy-policy')">{{ $t('service.footer.terms') }}</n-link>
 				</div>
 			</div>
 			<div class="to_top" @click="ScrollToTop">
@@ -171,12 +171,12 @@ export default {
 
 					h4 {
 						color: $grey;
-						
+
 						font-size: 0.8rem;
 						font-weight: medium;
 						margin-bottom: 15px;
 						user-select: none;
-						&::first-letter{
+						&::first-letter {
 							text-transform: capitalize;
 						}
 					}
@@ -205,8 +205,8 @@ export default {
 							}
 						}
 					}
-					.location{
-						svg{
+					.location {
+						svg {
 							align-self: flex-start;
 							margin-top: 5px;
 						}

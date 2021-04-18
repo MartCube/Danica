@@ -193,7 +193,7 @@ export default {
 					font-weight: medium;
 					margin-bottom: 1.5rem;
 					user-select: none;
-					&::first-letter{
+					&::first-letter {
 						text-transform: capitalize;
 					}
 				}

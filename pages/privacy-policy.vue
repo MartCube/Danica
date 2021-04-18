@@ -1,6 +1,5 @@
 <template>
 	<div class="container">
-		<!-- Slice Machine -->
 		<div v-for="(slice, i) in data" :key="i" class="slice" :class="slice.slice_type">
 			<h3 class="title">{{ $prismic.asText(slice.primary.title) }}</h3>
 			<prismic-rich-text class="rich_text" :field="slice.primary.text" />
@@ -14,7 +13,9 @@ export default {
 		data: Object,
 	}),
 	async fetch() {
-		const policy = await this.$prismic.api.getSingle('policy')
+		const lang = this.$i18n.localeProperties.prismic
+
+		const policy = await this.$prismic.api.getSingle('policy', { lang })
 		this.data = policy.data.body
 	},
 }

@@ -5,7 +5,7 @@
 				<span>projects</span>
 			</div>
 			<div class="content">
-				<h2 class="title">Stay up to date with the newsest projects</h2>
+				<h2 class="title">Stay up to date with our latest projects</h2>
 
 				<div class="project_slider">
 					<div v-swiper="swiperOption" class="swiper-container">
@@ -36,17 +36,15 @@ export default {
 		projects: null,
 		swiperOption: {
 			slidesPerView: 'auto',
-			spaceBetween: 50,
 			loop: true,
 			breakpoints: {
-				// when window width is >= 480px
 				500: {
-					spaceBetween: 50,
+					spaceBetween: 60,
 				},
-				320: {
+				350: {
 					spaceBetween: 20,
-				}
-			}
+				},
+			},
 		},
 	}),
 	async fetch() {
@@ -54,31 +52,30 @@ export default {
 			orderings: '[document.first_publication_date desc]',
 			pageSize: this.page_size,
 		})
-
 		this.projects = projects.results
 	},
 }
 </script>
 
 <style lang="scss" scoped>
-section .name {
-	min-width: 240px;
-	width: 100%;
-}
-.content {
-	display: flex;
-	flex-direction: column;
-	.project_slider {
-		width: 100vw;
-		margin-bottom: 40px;
-		.swiper-container {
-			width: auto;
-			margin: 0;
-		}
-		position: relative;
+section {
+	.name {
+		min-width: 240px;
+		width: 100%;
 	}
-	button{
-		margin-bottom: 2rem;
+	.content {
+		display: flex;
+		flex-direction: column;
+
+		.project_slider {
+			width: 100vw;
+			margin-bottom: 40px;
+			.swiper-container {
+				width: auto;
+				margin: 0;
+			}
+			position: relative;
+		}
 	}
 }
 

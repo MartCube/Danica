@@ -43,16 +43,19 @@ export default {
 			{
 				code: 'en',
 				name: 'eng',
+				prismic: '',
 				file: 'en.js',
 			},
 			{
 				code: 'ru',
 				name: 'рус',
+				prismic: 'ru',
 				file: 'ru.js',
 			},
 			{
 				code: 'ua',
 				name: 'укр',
+				prismic: 'ua-ua',
 				file: 'ua.js',
 			},
 		],

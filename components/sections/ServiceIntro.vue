@@ -59,6 +59,7 @@ export default {
 .intro {
 	width: 100%;
 	height: 100vh;
+	padding: 0;
 
 	display: flex;
 	align-items: center;
@@ -86,7 +87,6 @@ export default {
 		flex-direction: column;
 		justify-content: center;
 
-		border-left: 1px solid $black;
 		color: $black;
 		z-index: 5;
 
@@ -145,14 +145,13 @@ export default {
 		}
 
 		&.white {
-			border-left: 1px solid $white;
 			color: $white;
 		}
 	}
 }
 @media (max-width: 1300px) {
-	.intro{
-		.content{
+	.intro {
+		.content {
 			margin-right: 10%;
 		}
 	}
@@ -162,7 +161,7 @@ export default {
 		flex-direction: row;
 
 		.content {
-			.maintitle{
+			.maintitle {
 				margin-top: 4vh;
 			}
 			.maintitle span {
@@ -178,11 +177,10 @@ export default {
 	}
 }
 @media (max-width: 900px) {
-	.intro{
-		.content{
+	.intro {
+		.content {
 			margin: 0;
 			padding-left: 40px;
-			border: initial;
 			.project {
 				top: 60px;
 				left: 0;
@@ -193,20 +191,15 @@ export default {
 			.subtitle span {
 				font-size: 2.5rem;
 			}
-			&.white{
-				border: initial;
-			}
 		}
 	}
-	
 }
-@media (max-width: 500px){
-	.intro{
-		.content{
-
-			.maintitle{
+@media (max-width: 500px) {
+	.intro {
+		.content {
+			.maintitle {
 				margin-top: 6vh;
-				span{
+				span {
 					font-size: 5vh;
 				}
 			}

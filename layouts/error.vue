@@ -1,8 +1,10 @@
 <template>
 	<div class="error">
 		<div class="text">
-			<h2>you are looking in a wrong place</h2>
-			<ButtonItem :to="localePath('index')" :animated="false" > Go home </ButtonItem>
+			<h2>4<span>0</span>4</h2>
+			<n-link :to="localePath('index')">
+				<ButtonItem :to="localePath('index')" :animated="false"> Go home </ButtonItem>
+			</n-link>
 		</div>
 		<ImageItem v-if="!$fetchState.pending" :src="image" alt="error" />
 	</div>
@@ -10,12 +12,20 @@
 
 <script>
 export default {
+	beforeRouteLeave(to, from, next) {
+		this.$store.dispatch('bindNavbarTransparent', false)
+		next()
+	},
+	middleware: 'navbarTransparent',
 	data: () => ({
 		image: null,
 	}),
 	async fetch() {
 		const error = await this.$prismic.api.getSingle('error')
 		this.image = error.data.image.url
+	},
+	mounted() {
+		this.$store.dispatch('bindNavbarTransparent', true)
 	},
 }
 </script>
@@ -32,20 +42,25 @@ export default {
 	max-height: 100vh;
 	picture {
 		position: absolute;
+		z-index: 1;
 	}
 	.text {
-		z-index: 2;
-
-		max-width: 300px;
-		text-align: center;
+		max-width: 400px;
 		display: flex;
 		flex-direction: column;
-		align-items:center;
-		h2{
-			margin-top: 2rem;
+		z-index: 4;
+
+		h2 {
+			font-size: 8rem;
+			span {
+				font-size: inherit;
+				font-weight: inherit;
+				color: $primary;
+			}
 		}
-		button{
-			margin: 2rem 0 3rem;
+
+		a {
+			margin: 40px auto;
 		}
 	}
 }

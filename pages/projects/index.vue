@@ -77,7 +77,6 @@ export default {
 <style lang="scss" scoped>
 .projects {
 	display: flex;
-
 	.filter {
 		min-width: 240px;
 		padding-right: 1.5rem;
@@ -136,9 +135,8 @@ export default {
 		}
 
 		button {
-			margin: 40px 0;
+			margin: 80px 0;
 			color: $black;
-			margin-right: 23vw;
 		}
 	}
 }
@@ -161,12 +159,11 @@ export default {
 			.project_card {
 				margin-right: 0;
 			}
+			button {
+				margin: 40px 0;
+				align-self: center;
+			}
 		}
-	}
-
-	button {
-		margin: 40px 0;
-		align-self: center;
 	}
 }
 @media (max-width: 320px) {

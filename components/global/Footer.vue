@@ -303,8 +303,7 @@ export default {
 			}
 			.info {
 				width: 100%;
-				padding: 40px 0;
-				padding-left: 40px;
+				padding: 40px;
 				.wrap {
 					margin: 0;
 					.office,

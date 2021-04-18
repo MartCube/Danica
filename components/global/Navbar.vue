@@ -6,7 +6,7 @@
 
 		<div class="lang">
 			<div class="current_locale" @click="showLocales = !showLocales">
-				<span v-if="currentLocale">{{ currentLocale }}</span>
+				<span>{{ currentLocale }}</span>
 			</div>
 
 			<n-link v-for="locale in availableLocales" :key="locale.code" class="locale" :to="switchLocalePath(locale.code)" @click.native="showLocales = false">
@@ -15,8 +15,8 @@
 		</div>
 
 		<div class="links" :class="{ active: isActive }" @click="CloseMenu">
-			<n-link :to="localePath('/services/interior-design')">{{ $t('pages.design') }}</n-link>
-			<n-link :to="localePath('/services/architecture')">{{ $t('pages.architecture') }}</n-link>
+			<n-link v-for="service in services" :key="service.uid" exact :to="linkResolver(service)">{{ service.uid }}</n-link>
+
 			<n-link :to="localePath('/projects')">{{ $t('pages.projects') }}</n-link>
 			<n-link :to="localePath('/blog')">{{ $t('pages.blog') }}</n-link>
 			<n-link :to="localePath('/contact')">{{ $t('pages.contact.name') }}</n-link>
@@ -38,7 +38,14 @@ export default {
 		showLocales: false,
 		whiteNavbar: false,
 		lastScrollPosition: 0,
+		services: [],
 	}),
+	async fetch() {
+		const services = await this.$prismic.api.query(this.$prismic.predicates.at('document.type', 'services'))
+
+		// console.log(services.results)
+		this.services = services.results
+	},
 	computed: {
 		transparent() {
 			return this.$store.getters.navbarTransparent
@@ -84,6 +91,9 @@ export default {
 		CloseMenu() {
 			this.isActive = false
 		},
+		linkResolver(value) {
+			return this.$prismic.linkResolver(value)
+		},
 	},
 }
 </script>
@@ -97,10 +107,11 @@ $transition: all 0.35s ease;
 
 	position: fixed;
 	top: 0;
-	z-index: 9;
+	z-index: 10;
 	user-select: none;
 
 	background: white;
+	border-bottom: 1px solid $line;
 	transition: $transition;
 	&.transparent {
 		background: rgba(255, 255, 255, 0.2);
@@ -222,16 +233,18 @@ $transition: all 0.35s ease;
 
 		&.active {
 			width: 100%;
+			height: calc(100vh - 60px);
+			top: 60px;
+			right: 0;
+
 			display: flex;
 			flex-direction: column;
 			justify-content: center;
 			align-items: center;
+
+			position: fixed;
 			overflow: hidden;
 			background: white;
-			height: calc(100vh - 60px);
-			position: fixed;
-			top: 60px;
-			right: 0;
 
 			a {
 				will-change: transform;

@@ -1,5 +1,5 @@
 <template>
-	<section class="charles" v-observe-visibility="this.visibilityOptions">
+	<section v-observe-visibility="visibilityOptions" class="charles">
 		<div class="content">
 			<div class="title">
 				<h2><span>the details</span> are not the the details they make <span>the design</span>.</h2>
@@ -7,8 +7,8 @@
 				<ButtonItem :animated="false">Write us </ButtonItem>
 			</div>
 			<div class="collage">
-				<ImageItem :src="data.primary.top.url" class="top" alt="charles eames" ref="charlesTop" />
-				<ImageItem :src="data.primary.bottom.url" class="bottom" alt="charles eames" ref="charlesBottom"/>
+				<ImageItem ref="charlesTop" :src="data.primary.top.url" class="top" alt="charles eames" />
+				<ImageItem ref="charlesBottom" :src="data.primary.bottom.url" class="bottom" alt="charles eames" />
 			</div>
 		</div>
 	</section>
@@ -29,6 +29,7 @@ export default {
 				callback: this.visibilityChanged,
 				once: true,
 				intersection: {
+					rootMargin: '75%',
 					threshold: 1,
 				},
 			}
@@ -36,7 +37,7 @@ export default {
 	},
 	methods: {
 		visibilityChanged(isVisible) {
-			console.log(isVisible, this.$refs.charlesTop, this.$refs.charlesBottom);
+			// console.log(isVisible, this.$refs.charlesTop, this.$refs.charlesBottom)
 			if (isVisible) {
 				charles()
 			}
@@ -105,18 +106,18 @@ export default {
 }
 
 @media (max-width: 1100px) {
-	.content{
+	.content {
 		flex-direction: column;
-		align-items:center;
-		.collage{
+		align-items: center;
+		.collage {
 			width: 100%;
-			align-items:center;
-			.bottom{
+			align-items: center;
+			.bottom {
 				left: 50%;
 				margin-left: -92px;
 			}
 		}
-		.title{
+		.title {
 			margin-bottom: 0;
 		}
 	}
@@ -136,11 +137,9 @@ export default {
 					line-height: 2.4rem;
 				}
 				h4 {
-					margin: 0 0 0 10%	;
-					flex:1;
+					margin: 0 0 0 10%;
+					flex: 1;
 					align-self: flex-start;
-				}
-				button {
 				}
 			}
 			.collage {
@@ -177,11 +176,9 @@ export default {
 					line-height: 2.4rem;
 				}
 				h4 {
-					margin: 0 0 0 10%	;
-					flex:1;
+					margin: 0 0 0 10%;
+					flex: 1;
 					align-self: flex-start;
-				}
-				button {
 				}
 			}
 			.collage {
@@ -219,11 +216,9 @@ export default {
 					line-height: 2.4rem;
 				}
 				h4 {
-					margin: 0 0 0 10%	;
-					flex:1;
+					margin: 0 0 0 10%;
+					flex: 1;
 					align-self: flex-start;
-				}
-				button {
 				}
 			}
 			.collage {

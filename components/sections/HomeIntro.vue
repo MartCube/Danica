@@ -18,7 +18,7 @@
 				<img :src="first_imgIX" alt="danica" @load="Animate" />
 			</div>
 			<div class="second design">
-				<img  :src="second_imgIX" alt="danica" @load="Animate" />
+				<img :src="second_imgIX" alt="danica" @load="Animate" />
 			</div>
 			<div class="third design">
 				<img :src="third_imgIX" alt="danica" @load="Animate" />
@@ -27,7 +27,7 @@
 				<img src="shelter_danica_ar1.jpg" alt="danica" @load="Animate" />
 			</div>
 			<div class="second architecture">
-				<img  src="shelter_danica_ar2.jpg" alt="danica" @load="Animate" />
+				<img src="shelter_danica_ar2.jpg" alt="danica" @load="Animate" />
 			</div>
 			<div class="third architecture">
 				<img src="shelter_danica_ar3.jpg" alt="danica" @load="Animate" />
@@ -97,24 +97,23 @@ export default {
 		opacity: 0;
 		width: 23vw;
 		z-index: 6;
-		&.first{}
-		&.second{
+
+		&.second {
 			width: 31vw;
 			left: -5vw;
 		}
 	}
 
-
 	.text {
 		width: min-content;
 		padding-top: 7vh;
-		width: 40%;			
+		width: 40%;
 		position: absolute;
 		top: 0;
 		left: 150px;
 		display: flex;
 		flex-direction: column;
-		z-index: 6;
+		z-index: 10;
 
 		.title {
 			width: max-content;
@@ -139,12 +138,11 @@ export default {
 	.collage {
 		width: 57vw;
 		position: relative;
-		img{
+		img {
 			width: 101%;
 			height: 101%;
 			margin: 0;
 			padding: 0;
-			
 		}
 		div {
 			overflow: hidden;
@@ -175,12 +173,12 @@ export default {
 	}
 
 	@media (min-width: 1900px) {
-		.text{
+		.text {
 			padding-top: 17vh;
 		}
-		.bg_letter{
+		.bg_letter {
 			width: 26vw;
-			.second{
+			.second {
 				width: 36vw;
 				left: -10vw;
 			}
@@ -224,7 +222,7 @@ export default {
 		}
 		.bg_letter {
 			width: 40vw;
-			&.second{
+			&.second {
 				width: 60vw;
 				left: -20vw;
 			}
@@ -252,7 +250,7 @@ export default {
 		.bg_letter {
 			width: 80%;
 			top: 8%;
-			&.second{
+			&.second {
 				width: 110%;
 				left: -30vw;
 			}

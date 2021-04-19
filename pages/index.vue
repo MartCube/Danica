@@ -1,13 +1,11 @@
 <template>
 	<div class="container">
-		<!-- <main> -->
 		<template v-if="!$fetchState.pending">
 			<HomeIntro :data="introCollage" />
 			<Achievements :data="achievements" />
 			<ServicesList :data="serviceList" />
 			<HighlightProjects :data="HighlightProjects" />
 		</template>
-		<!-- </main> -->
 	</div>
 </template>
 

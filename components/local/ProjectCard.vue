@@ -146,7 +146,7 @@ export default {
 	}
 }
 @media (max-width: 500px) {
-	.projects .grid{
+	.projects .grid {
 		width: 90%;
 	}
 	.project_card {

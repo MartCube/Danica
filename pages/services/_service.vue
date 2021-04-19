@@ -1,7 +1,6 @@
 <template>
 	<div class="container">
 		<template v-if="!$fetchState.pending">
-			<!-- Slice Machine -->
 			<div v-for="slice in slices" :key="slice.slice_type">
 				<ServiceIntro v-if="slice.slice_type == 'serviceintro'" :data="slice" />
 				<Values v-else-if="slice.slice_type == 'values'" :data="slice" />

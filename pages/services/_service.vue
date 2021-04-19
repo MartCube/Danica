@@ -1,6 +1,8 @@
 <template>
 	<div class="container">
-		<template v-if="!$fetchState.error && !$fetchState.pending">
+		<template v-if="!$fetchState.error"> error </template>
+		<template v-else-if="$fetchState.pending"> loading </template>
+		<template v-else>
 			<div v-for="slice in slices" :key="slice.slice_type">
 				<ServiceIntro v-if="slice.slice_type == 'serviceintro'" :data="slice" />
 				<Values v-else-if="slice.slice_type == 'values'" :data="slice" />

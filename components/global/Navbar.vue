@@ -118,6 +118,9 @@ export default {
 		linkResolver(value) {
 			return this.localePath(this.$prismic.linkResolver(value))
 		},
+		openModal() {
+			this.$store.dispatch('bindModalContact', true)
+		},
 	},
 }
 </script>

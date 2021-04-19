@@ -32,7 +32,7 @@ export default {
 		const fetch = await this.$prismic.api.getByUID('services', this.$route.params.service)
 		this.slices = fetch.data.body
 	},
-	// fetchOnServer: false,
+	fetchOnServer: false,
 	mounted() {
 		this.$store.dispatch('bindNavbarTransparent', true)
 	},

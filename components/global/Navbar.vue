@@ -15,7 +15,7 @@
 		</div>
 
 		<div class="links" :class="{ active: isActive }" @click="CloseMenu">
-			<n-link v-for="service in services" :key="service.uid" exact :to="localePath(linkResolver(service))">{{ service.uid }}</n-link>
+			<n-link v-for="service in services" :key="service.uid" exact :to="linkResolver(service)">{{ service.uid }}</n-link>
 
 			<n-link :to="localePath('/projects')">{{ $t('pages.projects') }}</n-link>
 			<n-link :to="localePath('/blog')">{{ $t('pages.blog') }}</n-link>
@@ -92,7 +92,7 @@ export default {
 			this.isActive = false
 		},
 		linkResolver(value) {
-			return this.$prismic.linkResolver(value)
+			return this.localePath(this.$prismic.linkResolver(value))
 		},
 	},
 }

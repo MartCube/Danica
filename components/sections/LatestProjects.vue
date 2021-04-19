@@ -1,6 +1,6 @@
 <template>
 	<section>
-		<template v-if="!$fetchState.error && !$fetchState.pending">
+		<template v-if="!$fetchState.pending">
 			<div class="name">
 				<span>projects</span>
 			</div>
@@ -54,6 +54,7 @@ export default {
 		})
 		this.projects = projects.results
 	},
+	fetchOnServer: false,
 }
 </script>
 

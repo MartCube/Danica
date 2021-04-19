@@ -17,7 +17,7 @@
 		<div class="links" :class="{ active: isActive }" @click="CloseMenu">
 			<n-link v-for="service in services" :key="service.uid" exact :to="linkResolver(service)">{{ service.uid }}</n-link>
 
-			<n-link :to="localePath('/projects')">{{ $t('pages.projects') }}</n-link>
+			<n-link rel="preload" :to="localePath('/projects')">{{ $t('pages.projects') }}</n-link>
 			<n-link :to="localePath('/blog')">{{ $t('pages.blog') }}</n-link>
 			<n-link :to="localePath('/contact')">{{ $t('pages.contact.name') }}</n-link>
 		</div>

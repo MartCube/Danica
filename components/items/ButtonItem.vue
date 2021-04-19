@@ -40,10 +40,11 @@ button {
 	z-index: 1;
 	overflow: hidden;
 	position: relative;
+	font-size: 1.5rem;
 
 	.text {
 		font-weight: 700;
-		font-size: 1.5rem;
+		font-size: inherit;
 
 		transition: all 0.2s ease;
 		svg {

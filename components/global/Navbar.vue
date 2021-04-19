@@ -1,5 +1,23 @@
 <template>
 	<header class="navbar" :class="{ transparent_to_white: whiteNavbar && transparent, transparent: transparent }">
+			<div class="top-content" :class="{hide : !this.topHeader}">
+				<ButtonItem  @click.native="openModal"> {{ $t('service.form.write_us') }} </ButtonItem>
+				<!-- <address> -->
+					<a href="mailto:info@danica.ua" class="email">
+						<IconMail :size="topHeaderIconSize"  :fill="this.topHeaderIconColor"/>
+						info@danica.ua
+					</a>
+					<a href="tel:+380673591111" class="phone">
+						<IconPhone :size="topHeaderIconSize"  :fill="this.topHeaderIconColor"/>
+						+38067-359-11-11
+					</a>
+					<span class="schedule">
+						<IconClock :size="topHeaderIconSize"  :fill="this.topHeaderIconColor"/>
+						пн-пт 10:00 -18:00 
+					</span>
+				<!-- </address> -->
+			</div>
+
 		<n-link class="logo" exact :to="localePath('index')" @click.native="CloseMenu">
 			<Logo />
 		</n-link>
@@ -36,7 +54,10 @@ export default {
 	data: () => ({
 		isActive: false,
 		showLocales: false,
+		topHeaderIconColor: 'rgb(255, 196, 36)',
+		topHeaderIconSize: '20px',
 		whiteNavbar: false,
+		topHeader: true,
 		lastScrollPosition: 0,
 		services: [],
 	}),
@@ -58,10 +79,10 @@ export default {
 		},
 	},
 	watch: {
-		transparent() {
-			if (this.transparent) window.addEventListener('scroll', this.onScroll)
-			else window.removeEventListener('scroll', this.onScroll)
-		},
+		// transparent() {
+		// 	if (this.transparent) window.addEventListener('scroll', this.onScroll)
+		// 	else window.removeEventListener('scroll', this.onScroll)
+		// },
 		async showLocales(newValue, oldValue) {
 			await this.$nextTick()
 			if (newValue) localleAnim(document.querySelectorAll('.locale'), true)
@@ -69,21 +90,24 @@ export default {
 		},
 	},
 	mounted() {
-		if (this.transparent) window.addEventListener('scroll', this.onScroll)
+		window.addEventListener('scroll', this.onScroll)
+		this.onScroll();
 	},
 	methods: {
 		onScroll() {
 			// Get the current scroll position
-			const currentScrollPosition = window.pageYOffset || document.documentElement.scrollTop
-			// Because of momentum scrolling on mobiles, we shouldn't continue if it is less than zero
-			if (Math.abs(currentScrollPosition - this.lastScrollPosition) < 80) {
-				return
-			} // Here we determine whether we need to show or hide the navbar
+				const currentScrollPosition = window.pageYOffset || document.documentElement.scrollTop ;
+				
+				this.topHeader = currentScrollPosition < screen.height - 200;
 
-			this.whiteNavbar = currentScrollPosition > screen.height - 200
-			this.lastScrollPosition = currentScrollPosition
-
-			// console.log('onScroll', this.lastScrollPosition, screen.height, this.whiteNavbar)
+				// Because of momentum scrolling on mobiles, we shouldn't continue if it is less than zero
+				if (Math.abs(currentScrollPosition - this.lastScrollPosition) < 80) {
+					return
+				} // Here we determine whether we need to show or hide the navbar
+				this.lastScrollPosition = currentScrollPosition
+				if(this.transparent){
+					this.whiteNavbar = currentScrollPosition > screen.height - 200
+				}
 		},
 		ShowHideMenu() {
 			this.isActive = !this.isActive
@@ -102,11 +126,12 @@ export default {
 $transition: all 0.35s ease;
 .navbar {
 	width: 100vw;
-	height: 80px;
+	max-height: 120px;
 	padding: 0 50px;
 
 	display: flex;
-	align-items: center;
+	align-items: flex-start;
+	flex-wrap: wrap;
 	position: fixed;
 	top: 0;
 	z-index: 10;
@@ -139,7 +164,7 @@ $transition: all 0.35s ease;
 	}
 
 	.logo {
-		height: 100%;
+		height: 80px;
 		padding-right: 50px;
 
 		display: flex;
@@ -149,6 +174,7 @@ $transition: all 0.35s ease;
 	.lang {
 		height: 20px;
 		margin-right: 15px;
+		margin-top: 31px;
 
 		display: flex;
 
@@ -192,8 +218,8 @@ $transition: all 0.35s ease;
 	}
 
 	.links {
-		width: stretch;
-		height: 100%;
+		flex:1;
+		height: 80px;
 
 		display: flex;
 		flex-direction: row;
@@ -270,25 +296,27 @@ $transition: all 0.35s ease;
 				&::after {
 					content: '';
 					position: absolute;
-					width: 1000%;
 					background-color: $primary;
 					height: 3rem;
 					right: 0;
+					width: 0;
 					z-index: -1;
 					opacity: 0;
-					transition: all 0.2s ease;
+					transition: width 0.2s ease;
 				}
 
 				&:hover {
 					background: none;
 					&::after {
 						opacity: 1;
+						width: 50rem;
 					}
 				}
 				&.nuxt-link-active {
 					background: none;
 					&::after {
-						width: 20rem;
+						width: 50rem;
+						opacity: 1;
 					}
 				}
 			}
@@ -334,6 +362,40 @@ $transition: all 0.35s ease;
 			}
 		}
 	}
+
+	.top-content{
+		width: 100%;
+		height: 40px;
+		display: flex;
+		justify-content: flex-end;
+		transition: height .1s ease-out;
+		button{
+			padding: 5px 30px;
+		}
+		.email, .phone, button, .schedule{
+			margin-right: 2rem;
+			margin: 5px  2rem 5px 0;
+			color: rgba(0,0,0, .6);
+			font-size: 14px;
+		}
+		.schedule{
+			margin-right: 1.5rem;
+		}
+		.email, .phone, .schedule{
+			display: flex;
+			align-items: center;
+				&:hover{
+					color: $primary;
+				}
+			svg {
+				margin-right: 10px;
+			}
+		}
+		&.hide{
+			height: 0;
+			opacity: 0;
+		}
+	}
 }
 
 @keyframes fadeInRight {
@@ -347,7 +409,7 @@ $transition: all 0.35s ease;
 	}
 }
 
-@media (max-width: 900px) {
+@media (max-width: 1020px) {
 	.navbar {
 		height: 60px;
 		padding: 0 40px;
@@ -358,11 +420,16 @@ $transition: all 0.35s ease;
 		}
 		.logo {
 			padding: 0;
+			height: 100%;
+			svg	{
+				height: inherit;
+			}
 		}
 		.lang {
 			flex-grow: 1;
 			flex-direction: row-reverse;
 			margin-right: 40px;
+			margin-top: 20px;
 			.current_locale {
 				background: $primary;
 
@@ -378,6 +445,10 @@ $transition: all 0.35s ease;
 		}
 		.button {
 			display: flex;
+			margin-top: 20px;
+		}
+		.top-content{
+			display: none;
 		}
 	}
 }

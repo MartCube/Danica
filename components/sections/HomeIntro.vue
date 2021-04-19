@@ -84,7 +84,7 @@ export default {
 <style lang="scss" scoped>
 .intro {
 	width: 100%;
-	height: calc(100vh - 80px);
+	height: calc(100vh - 120px);
 
 	justify-content: flex-end;
 	position: relative;

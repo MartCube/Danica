@@ -246,7 +246,7 @@ export default {
 		justify-content: space-between;
 		align-items: center;
 		position: relative;
-
+		z-index: 5;
 		background: $black;
 		.links {
 			display: flex;

@@ -142,26 +142,31 @@ export default {
 }
 
 @media (max-width: 900px) {
-	.projects {
-		flex-direction: column;
-		.filter {
-			width: 50%;
-			min-width: auto;
-			padding: 0;
-			margin-bottom: 25px;
+	.container {
+		&::after {
+			display: none;
 		}
-		.grid {
-			width: 93%;
-			min-height: auto;
-			padding-left: 40px;
-
-			justify-content: space-between;
-			.project_card {
-				margin-right: 0;
+		.projects {
+			flex-direction: column;
+			.filter {
+				width: 50%;
+				min-width: auto;
+				padding: 0;
+				margin-bottom: 25px;
 			}
-			button {
-				margin: 40px 0;
-				align-self: center;
+			.grid {
+				width: 93%;
+				min-height: auto;
+				padding-left: 40px;
+
+				justify-content: space-between;
+				.project_card {
+					margin-right: 0;
+				}
+				button {
+					margin: 40px 0;
+					align-self: center;
+				}
 			}
 		}
 	}

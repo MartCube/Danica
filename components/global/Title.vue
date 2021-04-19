@@ -17,9 +17,9 @@ export default {
 
 <style lang="scss" scoped>
 .title {
-	width: 100%;
+	width: max-content;
 	height: 240px;
-	padding-left: 240px;
+	padding-left: 256px;
 
 	display: flex;
 	align-items: center;
@@ -32,7 +32,8 @@ export default {
 		height: auto;
 		margin: 40px 0;
 		font-size: 2rem;
-		padding-left: 40px;
+		padding: 0;
+		align-self: center;
 	}
 }
 @media (max-width: 320px) {

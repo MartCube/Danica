@@ -107,13 +107,14 @@ export default {
 			left: 0;
 			width: inherit;
 			height: inherit;
+			z-index: 11;
 		}
 
 		.title {
 			position: absolute;
 			bottom: 0;
 			left: 240px;
-			z-index: 4;
+			z-index: 12;
 
 			padding: 20px 20px 0 20px;
 			background: white;
@@ -198,6 +199,7 @@ export default {
 		picture {
 			max-width: 800px;
 			height: 450px;
+			z-index: 11;
 		}
 	}
 }

@@ -28,7 +28,6 @@ export default {
 	}),
 	async fetch() {
 		const fetch = await this.$prismic.api.getByUID('services', this.$route.params.service)
-		console.log(fetch)
 		this.slices = fetch.data.body
 	},
 	mounted() {

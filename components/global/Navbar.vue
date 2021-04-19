@@ -4,8 +4,8 @@
 			<Logo />
 		</n-link>
 
-		<div class="lang">
-			<div class="current_locale" @click="showLocales = !showLocales">
+		<div class="lang" @mouseleave="showLocales = false">
+			<div class="current_locale" @mouseover="showLocales = true">
 				<span>{{ currentLocale }}</span>
 			</div>
 
@@ -105,6 +105,8 @@ $transition: all 0.35s ease;
 	height: 80px;
 	padding: 0 50px;
 
+	display: flex;
+	align-items: center;
 	position: fixed;
 	top: 0;
 	z-index: 10;
@@ -125,8 +127,16 @@ $transition: all 0.35s ease;
 		background: white;
 	}
 
-	display: flex;
-	align-items: center;
+	&::after {
+		content: '';
+		position: absolute;
+		top: 0;
+		left: 240px;
+
+		width: 1px;
+		height: 100%;
+		background: $line;
+	}
 
 	.logo {
 		height: 100%;
@@ -245,7 +255,6 @@ $transition: all 0.35s ease;
 			position: fixed;
 			overflow: hidden;
 			background: white;
-
 			a {
 				will-change: transform;
 				will-change: opacity;
@@ -344,6 +353,9 @@ $transition: all 0.35s ease;
 		padding: 0 40px;
 		justify-content: flex-end;
 
+		&::after {
+			display: none;
+		}
 		.logo {
 			padding: 0;
 		}

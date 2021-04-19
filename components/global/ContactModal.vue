@@ -46,7 +46,7 @@ export default {
 
 	width: 100%;
 	height: 100%;
-	z-index: 10;
+	z-index: 11;
 
 	position: fixed;
 	top: 0;

@@ -4,9 +4,9 @@
 			<Logo />
 		</n-link>
 
-		<div class="lang">
-			<div class="current_locale" @click="showLocales = !showLocales">
-				<span v-if="currentLocale">{{ currentLocale }}</span>
+		<div class="lang" @mouseleave="showLocales = false">
+			<div class="current_locale" @mouseover="showLocales = true">
+				<span>{{ currentLocale }}</span>
 			</div>
 
 			<n-link v-for="locale in availableLocales" :key="locale.code" class="locale" :to="switchLocalePath(locale.code)" @click.native="showLocales = false">
@@ -15,8 +15,8 @@
 		</div>
 
 		<div class="links" :class="{ active: isActive }" @click="CloseMenu">
-			<n-link :to="localePath('/services/interior-design')">{{ $t('pages.design') }}</n-link>
-			<n-link :to="localePath('/services/architecture')">{{ $t('pages.architecture') }}</n-link>
+			<n-link v-for="service in services" :key="service.uid" exact :to="localePath(linkResolver(service))">{{ service.uid }}</n-link>
+
 			<n-link :to="localePath('/projects')">{{ $t('pages.projects') }}</n-link>
 			<n-link :to="localePath('/blog')">{{ $t('pages.blog') }}</n-link>
 			<n-link :to="localePath('/contact')">{{ $t('pages.contact.name') }}</n-link>
@@ -38,7 +38,14 @@ export default {
 		showLocales: false,
 		whiteNavbar: false,
 		lastScrollPosition: 0,
+		services: [],
 	}),
+	async fetch() {
+		const services = await this.$prismic.api.query(this.$prismic.predicates.at('document.type', 'services'))
+
+		// console.log(services.results)
+		this.services = services.results
+	},
 	computed: {
 		transparent() {
 			return this.$store.getters.navbarTransparent
@@ -84,6 +91,9 @@ export default {
 		CloseMenu() {
 			this.isActive = false
 		},
+		linkResolver(value) {
+			return this.$prismic.linkResolver(value)
+		},
 	},
 }
 </script>
@@ -95,12 +105,15 @@ $transition: all 0.35s ease;
 	height: 80px;
 	padding: 0 50px;
 
+	display: flex;
+	align-items: center;
 	position: fixed;
 	top: 0;
-	z-index: 9;
+	z-index: 10;
 	user-select: none;
 
 	background: white;
+	border-bottom: 1px solid $line;
 	transition: $transition;
 	&.transparent {
 		background: rgba(255, 255, 255, 0.2);
@@ -114,8 +127,16 @@ $transition: all 0.35s ease;
 		background: white;
 	}
 
-	display: flex;
-	align-items: center;
+	&::after {
+		content: '';
+		position: absolute;
+		top: 0;
+		left: 240px;
+
+		width: 1px;
+		height: 100%;
+		background: $line;
+	}
 
 	.logo {
 		height: 100%;
@@ -222,17 +243,18 @@ $transition: all 0.35s ease;
 
 		&.active {
 			width: 100%;
+			height: calc(100vh - 60px);
+			top: 60px;
+			right: 0;
+
 			display: flex;
 			flex-direction: column;
 			justify-content: center;
 			align-items: center;
+
+			position: fixed;
 			overflow: hidden;
 			background: white;
-			height: calc(100vh - 60px);
-			position: fixed;
-			top: 60px;
-			right: 0;
-
 			a {
 				will-change: transform;
 				will-change: opacity;
@@ -331,6 +353,9 @@ $transition: all 0.35s ease;
 		padding: 0 40px;
 		justify-content: flex-end;
 
+		&::after {
+			display: none;
+		}
 		.logo {
 			padding: 0;
 		}

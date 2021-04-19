@@ -77,7 +77,6 @@ export default {
 <style lang="scss" scoped>
 .projects {
 	display: flex;
-
 	.filter {
 		min-width: 240px;
 		padding-right: 1.5rem;
@@ -136,37 +135,40 @@ export default {
 		}
 
 		button {
-			margin: 40px 0;
+			margin: 80px 0;
 			color: $black;
-			margin-right: 23vw;
 		}
 	}
 }
 
 @media (max-width: 900px) {
-	.projects {
-		flex-direction: column;
-		.filter {
-			width: 50%;
-			min-width: auto;
-			padding: 0;
-			margin-bottom: 25px;
+	.container {
+		&::after {
+			display: none;
 		}
-		.grid {
-			width: 93%;
-			min-height: auto;
-			padding-left: 40px;
+		.projects {
+			flex-direction: column;
+			.filter {
+				width: 50%;
+				min-width: auto;
+				padding: 0;
+				margin-bottom: 25px;
+			}
+			.grid {
+				width: 93%;
+				min-height: auto;
+				padding-left: 40px;
 
-			justify-content: space-between;
-			.project_card {
-				margin-right: 0;
+				justify-content: space-between;
+				.project_card {
+					margin-right: 0;
+				}
+				button {
+					margin: 40px 0;
+					align-self: center;
+				}
 			}
 		}
-	}
-
-	button {
-		margin: 40px 0;
-		align-self: center;
 	}
 }
 @media (max-width: 320px) {

@@ -1,5 +1,5 @@
 <template>
-	<section class="achievements" v-observe-visibility="this.visibilityOptions">
+	<section v-observe-visibility="visibilityOptions" class="achievements">
 		<div class="name">
 			<span>achievements</span>
 		</div>
@@ -49,6 +49,7 @@ export default {
 				callback: this.visibilityChanged,
 				once: true,
 				intersection: {
+					rootMargin: '75%',
 					threshold: 1,
 				},
 			}
@@ -56,12 +57,10 @@ export default {
 	},
 	methods: {
 		visibilityChanged(isVisible) {
-			console.log(isVisible, this.$refs.charlesTop, this.$refs.charlesBottom);
 			if (isVisible) {
-				nambersIncreasingAnimation(this.data.years_on_market, this.data.houses_build, this.data.projects )
+				nambersIncreasingAnimation(this.data.years_on_market, this.data.houses_build, this.data.projects)
 			}
 		},
-		
 	},
 }
 </script>

@@ -114,6 +114,7 @@ export default {
 .blog {
 	display: flex;
 	flex-wrap: wrap;
+	margin-bottom: 80px;
 
 	.filter {
 		min-width: 240px;
@@ -177,7 +178,7 @@ export default {
 
 	.pagination {
 		width: calc(100% - 240px);
-		margin: 100px 0;
+		margin-top: 80px;
 		margin-left: auto;
 
 		display: flex;
@@ -267,6 +268,8 @@ export default {
 @media (max-width: 900px) {
 	.blog {
 		flex-direction: column;
+		margin-bottom: 40px;
+
 		.filter {
 			margin-left: 0;
 			width: 50%;
@@ -279,7 +282,7 @@ export default {
 			grid-auto-rows: 350px;
 		}
 		.pagination {
-			margin: 3rem auto;
+			margin: 3rem auto 0;
 		}
 	}
 }

@@ -12,7 +12,6 @@
 }
 
 
-
 body {
 	font-family: 'MyFont', system;
 	color: $black;
@@ -27,29 +26,18 @@ body {
 			background: $primary;
 		}
 	}
-
 	
-	p{
+	p {
 		font-weight: 300;
 		font-size: 1.2rem;
 		line-height: 1.8rem;
-		a {
-			color: $primary;
-			font-weight: inherit;
-			font-size: inherit;
-			line-height: inherit;
-
-			&:hover{
-				background: $black;
-			}
-		}
 	}
-	a{
+
+	a {
 		text-decoration: none;
 		color: $black;
 		
 	}
-
 
 	@include headings(){
 		font-weight: bold;
@@ -58,49 +46,36 @@ body {
 		}
 	}
 
-	// main{
-	// 	width: calc(100vw - 240px);
-	// }
-	// @media (max-width: 900px) {
-	// 	main{
-	// 		width: calc(100vw - 10vw);
-	// 	}
-	// }
-	
-}
-
-.wrapper{
-	// header { grid-area: header; }
-	// aside{ grid-area: aside; }
-	// main { grid-area: main; }
-	// footer { grid-area: footer; }
-
-	overflow: hidden;
-
-	// display: grid;
-	// grid-template-areas:
-	// 	'header header'
-	// 	'aside main'
-	// 	'aside main'
-	// 	'aside main'
-	// 	'footer footer';
 }
 
 .container {
-	width:100%;
 	min-height: 100vh;
-	margin-top: 80px;
+	padding-top: 80px;
 
 	display: flex;
 	flex-direction: column;
+	position: relative;
+	&::after {
+		content: '';
+		position: absolute;
+		top: 0;
+		left: 240px;
+		z-index: 5;
+
+		width: 1px;
+		height: 100%;
+		background: $line;
+
+	}
 }
 
 section{
 	display: flex;
+	overflow: hidden;
+	padding-top: 80px;
 
 	.name {
 		min-width: 240px;
-		margin: 80px 0;
 		padding-top: 5px;
 		padding-right: 24px;
 		display: flex;
@@ -118,9 +93,6 @@ section{
 	}
 
 	.content{
-		border-left: 1px solid $line;
-		padding-top: 80px;
-
 		flex-grow: 1;
 		width: 100%;
 		.title {
@@ -138,39 +110,69 @@ section{
 	}
 }
 
+.rich_text{
+	p a {
+		color: $primary;
+		font-weight: inherit;
+		font-size: inherit;
+		line-height: inherit;
+
+		&:hover{
+			text-decoration: underline;
+			text-decoration-color: $black;
+		}
+	}
+	
+	ul {
+		margin: 20px 0 20px 20px;
+		list-style-type: none;
+		li {
+			margin-top: 20px;
+			display: flex;
+			align-items: center;
+			&::before {
+				content: '';
+				margin-right: 20px;
+				min-width: 20px;
+				height: 5px;
+				background: $primary;
+			}
+		}
+	}
+}
 
 
 
 
 @media (max-width: 900px) {
 	.container {
-		margin-top: 60px;
-		margin-bottom: 0;
+		padding-top: 60px;
+		&::after {
+			left: 40px;
+		}
 	}
 	section {
 		flex-direction: column;
+		padding-top: 40px;
 
 		.name {
 			min-width: auto;
 			width: max-content;
-			margin: 40px 0;
-			padding: 0;
+			margin-bottom: 40px;
 			&::before {
 				content: '';
 				width: 40px;
 				margin-right: 1rem;
 			}
 		}
-		.content{
+		.content {
 			padding: 0 40px;
-			.title{
+			.title {
 				margin-bottom: 40px;
-				padding: 0;
+				font-size: 1.5rem;
 			}
 		}
-		.content .title{
-			font-size: 1.5rem;
-		}
+		
 	}
 }
 

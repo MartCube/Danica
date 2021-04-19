@@ -5,7 +5,7 @@
 				<span>projects</span>
 			</div>
 			<div class="content">
-				<h2 class="title">Stay up to date with the newest projects</h2>
+				<h2 class="title">Stay up to date with the latest projects</h2>
 				<div class="project_slider">
 					<div v-swiper="swiperOption" class="swiper-container">
 						<div class="swiper-wrapper">
@@ -23,12 +23,17 @@
 
 <script>
 export default {
+	props: {
+		tag: {
+			type: Array,
+			default: () => [],
+		},
+	},
 	data: () => ({
 		page_size: 5,
 		projects: null,
 		swiperOption: {
 			slidesPerView: 'auto',
-			spaceBetween: 50,
 			loop: true,
 			autoplay: {
 				delay: 3000,
@@ -38,17 +43,24 @@ export default {
 				el: '.swiper-pagination',
 				clickable: true,
 			},
+			breakpoints: {
+				500: {
+					spaceBetween: 60,
+					autoplay: false,
+				},
+				320: {
+					spaceBetween: 20,
+				},
+			},
 		},
 	}),
 	async fetch() {
-		const projects = await this.$prismic.api.query(this.$prismic.predicates.at('document.type', 'project_post'), {
+		const projects = await this.$prismic.api.query([this.$prismic.predicates.at('document.type', 'project_post'), this.$prismic.predicates.at('document.tags', this.tag)], {
 			orderings: '[document.first_publication_date desc]',
 			pageSize: this.page_size,
 		})
 		this.projects = projects.results
 	},
-	computed: {},
-	methods: {},
 }
 </script>
 
@@ -71,9 +83,6 @@ export default {
 			align-items: flex-end;
 		}
 	}
-	button{
-		margin-bottom: 3rem;
-	}
 }
 
 @media (max-width: 900px) {
@@ -83,7 +92,7 @@ export default {
 			.swiper-container {
 				align-items: flex-start;
 			}
-			.swiper-container-horizontal > .swiper-pagination-bullets{
+			.swiper-container-horizontal > .swiper-pagination-bullets {
 				align-self: flex-end;
 			}
 		}

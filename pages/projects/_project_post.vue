@@ -1,11 +1,11 @@
 <template>
 	<div class="container">
-		<template v-if="$fetchState.error">error </template>
+		<template v-if="$fetchState.error">error</template>
 		<template v-else-if="!$fetchState.pending">
-			<div class="project">
+			<div class="project_post">
 				<div class="intro">
 					<h2 class="title">{{ post.title }}</h2>
-					<ImageItem :src="post.main_image.url" :mobile="post.main_image.mobile.url" :alt="post.title" />
+					<ImageItem :src="post.image.url" :mobile="post.image.mobile.url" :alt="post.title" />
 				</div>
 
 				<div class="info">
@@ -19,7 +19,7 @@
 				<!-- Slice Machine -->
 				<div v-for="(slice, i) in post.slices" :key="i" class="slice" :class="slice.slice_type">
 					<template v-if="slice.slice_type == 'text'">
-						<prismic-rich-text class="paragraph" :field="slice.primary.text" />
+						<prismic-rich-text class="rich_text" :field="slice.primary.text" />
 					</template>
 
 					<template v-else-if="slice.slice_type == 'image'">
@@ -67,7 +67,7 @@ export default {
 	async fetch() {
 		const post = await this.$prismic.api.getByUID('project_post', this.$route.params.project_post)
 		this.post = {
-			main_image: post.data.main_image,
+			image: post.data.main_image,
 			title: this.$prismic.asText(post.data.title),
 			info: {
 				service: this.$prismic.asText(post.data.info[0].service),
@@ -84,9 +84,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.project {
+.project_post {
 	display: flex;
 	flex-direction: column;
+	padding-bottom: 40px;
 
 	& > * {
 		margin-bottom: 25px;
@@ -106,13 +107,14 @@ export default {
 			left: 0;
 			width: inherit;
 			height: inherit;
+			z-index: 11;
 		}
 
 		.title {
 			position: absolute;
 			bottom: 0;
 			left: 240px;
-			z-index: 4;
+			z-index: 12;
 
 			padding: 20px 20px 0 20px;
 			background: white;
@@ -135,7 +137,7 @@ export default {
 			font-weight: 500;
 			font-size: 1.5rem;
 			line-height: 1.2rem;
-			span{
+			span {
 				font-size: inherit;
 				margin-right: 1rem;
 			}
@@ -147,7 +149,7 @@ export default {
 	}
 
 	.text {
-		.paragraph {
+		.rich_text {
 			width: 75%;
 		}
 	}
@@ -197,12 +199,14 @@ export default {
 		picture {
 			max-width: 800px;
 			height: 450px;
+			z-index: 11;
 		}
 	}
 }
 
 @media (max-width: 900px) {
-	.project {
+	.project_post {
+		padding: 0;
 		.intro {
 			width: 100%;
 			height: calc(100vh - 60px);
@@ -227,10 +231,12 @@ export default {
 			margin: 0;
 			margin-bottom: 1rem;
 		}
-		.text .paragraph {
+
+		.text .rich_text {
 			width: 100%;
 			padding: 0 40px;
 		}
+
 		.image {
 			width: 100%;
 		}
@@ -251,6 +257,7 @@ export default {
 			}
 		}
 	}
+
 	::v-deep .swiper-pagination {
 		margin-left: 40px;
 	}
@@ -271,15 +278,13 @@ export default {
 		width: 40px;
 	}
 }
-
 ::v-deep .swiper-pagination {
 	position: initial;
-	margin-top: 25px;
+	margin-top: 35px;
 	width: max-content;
 	height: 20px;
 	display: flex;
 }
-
 ::v-deep .swiper-wrapper {
 	max-width: 900px;
 }

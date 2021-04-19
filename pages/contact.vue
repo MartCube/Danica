@@ -50,7 +50,6 @@
 					<p class="hint">{{ $t('pages.contact.tap_to_open') }}</p>
 					<ImageItem :src="map_image" alt="map" />
 				</a>
-				
 			</div>
 			<div class="policy">
 				<div class="links">
@@ -139,11 +138,12 @@ export default {
 		width: 100%;
 		display: flex;
 		flex-wrap: wrap;
+		padding-left: 2rem;
 
 		.policy {
 			width: 100%;
 			height: 80px;
-			padding: 0 50px;
+			padding: 0 2rem 0 240px;
 
 			display: flex;
 			justify-content: space-between;
@@ -194,7 +194,7 @@ export default {
 					font-weight: medium;
 					margin-bottom: 1.5rem;
 					user-select: none;
-					&::first-letter{
+					&::first-letter {
 						text-transform: capitalize;
 					}
 				}
@@ -258,12 +258,13 @@ export default {
 		.map {
 			position: relative;
 			width: 30%;
-
-			.hint{
+			.hint {
 				position: absolute;
 				top: 1rem;
-				left: 1rem;
+				left: 40px;
 				color: $black;
+				background: $primary;
+				padding-left: 1rem;
 				z-index: 4;
 				font-weight: 500;
 			}
@@ -300,8 +301,10 @@ export default {
 @media (max-width: 900px) {
 	.container {
 		.wrap {
+			padding-left: 0;
+
 			.left_content {
-				padding-left: 50px;
+				padding-left: 56px;
 				padding-bottom: 3rem;
 				width: 60%;
 				.for_clients {
@@ -316,6 +319,7 @@ export default {
 				width: 40%;
 				max-height: 50vh;
 				margin-top: 4rem;
+				z-index: 6;
 			}
 			.contact_form {
 				width: 85%;
@@ -323,7 +327,7 @@ export default {
 			.policy {
 				height: auto;
 				flex-direction: column;
-				padding: 40px;
+				padding: 16px 16px 16px 56px;
 				.links {
 					width: 100%;
 					& > * {
@@ -342,7 +346,6 @@ export default {
 	.container {
 		.wrap {
 			.left_content {
-				padding-left: 40px;
 				padding-bottom: 0;
 				width: 100%;
 				.office,

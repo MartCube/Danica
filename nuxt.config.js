@@ -5,6 +5,10 @@ export default {
 	// Auto import components (https://go.nuxtjs.dev/config-components)
 	components: true,
 
+	// router: {
+	// 	trailingSlash: true,
+	// },
+
 	// Global page headers (https://go.nuxtjs.dev/config-head)
 	head: {
 		title: 'Danica',
@@ -43,16 +47,19 @@ export default {
 			{
 				code: 'en',
 				name: 'eng',
+				prismic: '',
 				file: 'en.js',
 			},
 			{
 				code: 'ru',
 				name: 'рус',
+				prismic: 'ru',
 				file: 'ru.js',
 			},
 			{
 				code: 'ua',
 				name: 'укр',
+				prismic: 'ua-ua',
 				file: 'ua.js',
 			},
 		],

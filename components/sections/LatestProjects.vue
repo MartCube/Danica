@@ -55,7 +55,7 @@ export default {
 		this.projects = projects.results
 	},
 	fetchKey: 'latest-projects',
-	// fetchOnServer: false,
+	fetchOnServer: false,
 }
 </script>
 

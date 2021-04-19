@@ -79,6 +79,7 @@ export default {
 			slices: post.data.body,
 		}
 	},
+	fetchKey: 'project-post',
 	fetchOnServer: false,
 }
 </script>

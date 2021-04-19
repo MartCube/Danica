@@ -31,7 +31,12 @@ export default {
 		const fetch = await this.$prismic.api.getByUID('services', this.$route.params.service)
 		this.slices = fetch.data.body
 	},
-	fetchKey: 'service',
+	// fetchKey: 'service',
+	fetchKey(getCounter) {
+		// getCounter is a method that can be called to get the next number in a sequence
+		// as part of generating a unique fetchKey.
+		return this.someOtherData + getCounter('sidebar')
+	},
 	mounted() {
 		this.$store.dispatch('bindNavbarTransparent', true)
 	},

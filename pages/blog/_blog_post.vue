@@ -208,7 +208,7 @@ export default {
 			}
 		}
 		picture {
-			max-width: 600px;
+			max-width: 40%;
 		}
 	}
 }

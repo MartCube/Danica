@@ -126,7 +126,7 @@ export default {
 			overflow: hidden;
 
 			position: absolute;
-			top: 80px;
+			top: 120px;
 			left: -30px;
 			cursor: pointer;
 

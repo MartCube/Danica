@@ -121,14 +121,14 @@ export default {
 
 	.grid {
 		width: calc(100vw - 240px);
-		max-width: 1000px;
+		max-width: 1500px;
 		height: 100%;
 		min-height: 800px;
 		border-left: 1px solid $line;
 
 		display: flex;
 		justify-content: flex-start;
-		align-items: center;
+		align-items: flex-start;
 		flex-wrap: wrap;
 		.project_card {
 			margin-right: 2rem;

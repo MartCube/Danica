@@ -1,7 +1,6 @@
 <template>
 	<div class="container">
-		<template v-if="$fetchState.error">error</template>
-		<template v-else-if="!$fetchState.pending">
+		<template v-if="!$fetchState.pending">
 			<div class="project_post">
 				<div class="intro">
 					<h2 class="title">{{ post.title }}</h2>

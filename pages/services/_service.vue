@@ -1,7 +1,7 @@
 <template>
 	<div class="container">
-		<template v-if="$fetchState.error" class="error"> </template>
-		<template v-else-if="$fetchState.pending" class="loading"> </template>
+		<template v-if="$fetchState.error" class="error"> error </template>
+		<template v-else-if="$fetchState.pending" class="loading"> loading </template>
 		<template v-else>
 			<div v-for="slice in slices" :key="slice.slice_type">
 				<ServiceIntro v-if="slice.slice_type == 'serviceintro'" :data="slice" />

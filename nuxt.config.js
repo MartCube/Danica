@@ -5,6 +5,10 @@ export default {
 	// Auto import components (https://go.nuxtjs.dev/config-components)
 	components: true,
 
+	router: {
+		trailingSlash: false,
+	},
+
 	// Global page headers (https://go.nuxtjs.dev/config-head)
 	head: {
 		title: 'Danica',

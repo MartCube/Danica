@@ -19,7 +19,6 @@
 
 <script>
 export default {
-	name: 'Service',
 	beforeRouteLeave(to, from, next) {
 		this.$store.dispatch('bindNavbarTransparent', false)
 		next()
@@ -32,6 +31,7 @@ export default {
 		const fetch = await this.$prismic.api.getByUID('services', this.$route.params.service)
 		this.slices = fetch.data.body
 	},
+	fetchKey: 'service',
 	mounted() {
 		this.$store.dispatch('bindNavbarTransparent', true)
 	},

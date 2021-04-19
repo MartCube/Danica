@@ -6,7 +6,7 @@ export default {
 	components: true,
 
 	router: {
-		trailingSlash: false,
+		trailingSlash: true,
 	},
 
 	// Global page headers (https://go.nuxtjs.dev/config-head)

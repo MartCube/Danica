@@ -1,6 +1,6 @@
 <template>
 	<section>
-		<template v-if="!$fetchState.pending">
+		<template v-if="!$fetchState.error && !$fetchState.pending">
 			<div class="name">
 				<span>projects</span>
 			</div>

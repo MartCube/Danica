@@ -27,5 +27,6 @@ export default {
 		this.serviceList = fetch.data.services_list[0]
 		this.HighlightProjects = fetch.data.highlight_projects[0]
 	},
+	fetchOnServer: false,
 }
 </script>

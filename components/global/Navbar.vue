@@ -1,22 +1,22 @@
 <template>
 	<header class="navbar" :class="{ transparent_to_white: whiteNavbar && transparent, transparent: transparent }">
-			<div class="top-content" :class="{hide : !this.topHeader}">
-				<ButtonItem  @click.native="openModal"> {{ $t('service.form.write_us') }} </ButtonItem>
-				<!-- <address> -->
-					<a href="mailto:info@danica.ua" class="email">
-						<IconMail :size="topHeaderIconSize"  :fill="this.topHeaderIconColor"/>
-						info@danica.ua
-					</a>
-					<a href="tel:+380673591111" class="phone">
-						<IconPhone :size="topHeaderIconSize"  :fill="this.topHeaderIconColor"/>
-						+38067-359-11-11
-					</a>
-					<span class="schedule">
-						<IconClock :size="topHeaderIconSize"  :fill="this.topHeaderIconColor"/>
-						пн-пт 10:00 -18:00 
-					</span>
-				<!-- </address> -->
-			</div>
+		<div class="top-content" :class="{ hide: !topHeader }">
+			<ButtonItem @click.native="openModal"> {{ $t('service.form.write_us') }} </ButtonItem>
+			<!-- <address> -->
+			<a href="mailto:info@danica.ua" class="email">
+				<IconMail :size="topHeaderIconSize" :fill="topHeaderIconColor" />
+				info@danica.ua
+			</a>
+			<a href="tel:+380673591111" class="phone">
+				<IconPhone :size="topHeaderIconSize" :fill="topHeaderIconColor" />
+				+38067-359-11-11
+			</a>
+			<span class="schedule">
+				<IconClock :size="topHeaderIconSize" :fill="topHeaderIconColor" />
+				пн-пт 10:00 -18:00
+			</span>
+			<!-- </address> -->
+		</div>
 
 		<n-link class="logo" exact :to="localePath('index')" @click.native="CloseMenu">
 			<Logo />
@@ -91,23 +91,23 @@ export default {
 	},
 	mounted() {
 		window.addEventListener('scroll', this.onScroll)
-		this.onScroll();
+		this.onScroll()
 	},
 	methods: {
 		onScroll() {
 			// Get the current scroll position
-				const currentScrollPosition = window.pageYOffset || document.documentElement.scrollTop ;
-				
-				this.topHeader = currentScrollPosition < screen.height - 200;
+			const currentScrollPosition = window.pageYOffset || document.documentElement.scrollTop
 
-				// Because of momentum scrolling on mobiles, we shouldn't continue if it is less than zero
-				if (Math.abs(currentScrollPosition - this.lastScrollPosition) < 80) {
-					return
-				} // Here we determine whether we need to show or hide the navbar
-				this.lastScrollPosition = currentScrollPosition
-				if(this.transparent){
-					this.whiteNavbar = currentScrollPosition > screen.height - 200
-				}
+			this.topHeader = currentScrollPosition < screen.height - 200
+
+			// Because of momentum scrolling on mobiles, we shouldn't continue if it is less than zero
+			if (Math.abs(currentScrollPosition - this.lastScrollPosition) < 80) {
+				return
+			} // Here we determine whether we need to show or hide the navbar
+			this.lastScrollPosition = currentScrollPosition
+			if (this.transparent) {
+				this.whiteNavbar = currentScrollPosition > screen.height - 200
+			}
 		},
 		ShowHideMenu() {
 			this.isActive = !this.isActive
@@ -218,7 +218,7 @@ $transition: all 0.35s ease;
 	}
 
 	.links {
-		flex:1;
+		flex: 1;
 		height: 80px;
 
 		display: flex;
@@ -363,35 +363,40 @@ $transition: all 0.35s ease;
 		}
 	}
 
-	.top-content{
+	.top-content {
 		width: 100%;
 		height: 40px;
 		display: flex;
 		justify-content: flex-end;
-		transition: height .1s ease-out;
-		button{
+		transition: height 0.1s ease-out;
+		button {
 			padding: 5px 30px;
 		}
-		.email, .phone, button, .schedule{
+		.email,
+		.phone,
+		button,
+		.schedule {
 			margin-right: 2rem;
-			margin: 5px  2rem 5px 0;
-			color: rgba(0,0,0, .6);
+			margin: 5px 2rem 5px 0;
+			color: rgba(0, 0, 0, 0.6);
 			font-size: 14px;
 		}
-		.schedule{
+		.schedule {
 			margin-right: 1.5rem;
 		}
-		.email, .phone, .schedule{
+		.email,
+		.phone,
+		.schedule {
 			display: flex;
 			align-items: center;
-				&:hover{
-					color: $primary;
-				}
+			&:hover {
+				color: $primary;
+			}
 			svg {
 				margin-right: 10px;
 			}
 		}
-		&.hide{
+		&.hide {
 			height: 0;
 			opacity: 0;
 		}
@@ -421,7 +426,7 @@ $transition: all 0.35s ease;
 		.logo {
 			padding: 0;
 			height: 100%;
-			svg	{
+			svg {
 				height: inherit;
 			}
 		}
@@ -447,7 +452,7 @@ $transition: all 0.35s ease;
 			display: flex;
 			margin-top: 20px;
 		}
-		.top-content{
+		.top-content {
 			display: none;
 		}
 	}

@@ -44,6 +44,7 @@ export default {
 		})
 		this.projects = projects.results
 	},
+	fetchOnServer: false,
 	computed: {
 		firstProject() {
 			return this.projects[0]
@@ -52,7 +53,6 @@ export default {
 			return this.$prismic.asText(this.data.highlight_projects_title)
 		},
 	},
-	methods: {},
 }
 </script>
 

@@ -456,11 +456,14 @@ $transition: all 0.35s ease;
 	}
 }
 
-@media (max-width: 360px) {
+@media (max-width: 400px) {
 	.navbar {
 		padding-left: 40px;
 		padding-right: 20px;
-
+		.logo {
+			height: 90%;
+			margin-top: 1%;
+		}
 		.lang {
 			margin-right: 10px;
 		}

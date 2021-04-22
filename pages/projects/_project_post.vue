@@ -147,11 +147,16 @@ export default {
 
 	.slice {
 		margin-left: 240px;
+		
 	}
 
 	.text {
 		.rich_text {
 			width: 75%;
+			padding-left: 1.5rem;
+			h4{
+				font-size: 1.5rem;
+			}
 		}
 	}
 
@@ -193,6 +198,7 @@ export default {
 			display: flex;
 			flex-direction: column;
 			padding: 40px;
+			max-width: 50%;
 			p {
 				margin-bottom: 25px;
 			}
@@ -221,7 +227,7 @@ export default {
 		.info {
 			width: 100%;
 			margin: 40px 0;
-			padding-left: 40px;
+			padding-left: 55px;
 
 			p {
 				font-size: 1rem;
@@ -235,7 +241,7 @@ export default {
 
 		.text .rich_text {
 			width: 100%;
-			padding: 0 40px;
+			padding: 0 30px 0 55px;
 		}
 
 		.image {
@@ -248,7 +254,8 @@ export default {
 			.text {
 				display: flex;
 				flex-direction: column;
-				padding: 0 40px;
+				padding: 0 30px 0 55px;
+				max-width: 100%;
 				p {
 					margin-bottom: 25px;
 				}

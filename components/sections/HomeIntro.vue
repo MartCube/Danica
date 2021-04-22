@@ -243,7 +243,7 @@ export default {
 			}
 			button {
 				align-self: flex-end;
-				margin: 35% 10% 0 0;
+				margin: 25% 10% 0 0;
 				text-transform: initial;
 			}
 		}

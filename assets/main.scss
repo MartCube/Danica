@@ -130,9 +130,9 @@ section{
 		li {
 			margin-top: 20px;
 			display: flex;
-			align-items: center;
 			&::before {
 				content: '';
+				margin-top: 10px;
 				margin-right: 20px;
 				min-width: 20px;
 				height: 5px;

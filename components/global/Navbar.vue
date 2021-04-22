@@ -22,8 +22,8 @@
 			<Logo />
 		</n-link>
 
-		<div class="lang" @mouseleave="showLocales = false">
-			<div class="current_locale" @mouseover="showLocales = true">
+		<div class="lang">
+			<div class="current_locale" @click="showLocales = !showLocales">
 				<span>{{ currentLocale }}</span>
 			</div>
 
@@ -248,7 +248,6 @@ $transition: all 0.35s ease;
 			&::after {
 				content: '';
 				display: block;
-				transition: all 0.2s ease;
 				width: 0;
 				right: 0;
 				position: absolute;
@@ -302,7 +301,6 @@ $transition: all 0.35s ease;
 					width: 0;
 					z-index: -1;
 					opacity: 0;
-					transition: width 0.2s ease;
 				}
 
 				&:hover {

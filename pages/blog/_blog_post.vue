@@ -121,6 +121,7 @@ export default {
 
 		picture {
 			height: 100vh;
+			z-index: 6;
 		}
 
 		.go_back {
@@ -157,6 +158,9 @@ export default {
 
 	.slice {
 		display: flex;
+		&:last-child {
+			margin-bottom: 0;
+		}
 	}
 
 	.text {
@@ -173,6 +177,8 @@ export default {
 		width: 85%;
 		flex-direction: column;
 		align-items: flex-end;
+		z-index: 6;
+
 		.description {
 			margin: 25px 0;
 			opacity: 0.75;
@@ -186,6 +192,7 @@ export default {
 		z-index: 3;
 		margin-top: 10px;
 		margin-bottom: 25px;
+		z-index: 6;
 
 		.swiper-container {
 			width: inherit;
@@ -201,6 +208,7 @@ export default {
 	.image_text {
 		display: flex;
 		padding: 20px 0;
+		margin: 0;
 		.text {
 			display: flex;
 			flex-direction: column;
@@ -246,11 +254,16 @@ export default {
 
 		.image {
 			width: 100%;
+			margin: 0;
 		}
 
 		.image_text {
 			flex-direction: column;
 			padding: 0;
+			picture {
+				margin-left: 40px;
+				max-width: 100%;
+			}
 		}
 	}
 

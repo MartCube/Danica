@@ -1,7 +1,7 @@
 <template>
 	<div class="container">
-		<template v-if="!$fetchState.error"> error </template>
-		<template v-else-if="$fetchState.pending"> loading </template>
+		<template v-if="$fetchState.error" class="error"> error </template>
+		<template v-else-if="$fetchState.pending" class="loading"> loading </template>
 		<template v-else>
 			<div v-for="slice in slices" :key="slice.slice_type">
 				<ServiceIntro v-if="slice.slice_type == 'serviceintro'" :data="slice" />
@@ -19,7 +19,6 @@
 
 <script>
 export default {
-	name: 'Service',
 	beforeRouteLeave(to, from, next) {
 		this.$store.dispatch('bindNavbarTransparent', false)
 		next()
@@ -31,6 +30,11 @@ export default {
 	async fetch() {
 		const fetch = await this.$prismic.api.getByUID('services', this.$route.params.service)
 		this.slices = fetch.data.body
+	},
+	fetchKey(getCounter) {
+		// getCounter is a method that can be called to get the next number in a sequence
+		// as part of generating a unique fetchKey.
+		return 'services' + getCounter('sidebar')
 	},
 	fetchOnServer: false,
 	mounted() {

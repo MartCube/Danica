@@ -71,6 +71,8 @@ export default {
 			slices: post.data.body,
 		}
 	},
+	fetchKey: 'blog-post',
+	fetchOnServer: false,
 }
 </script>
 

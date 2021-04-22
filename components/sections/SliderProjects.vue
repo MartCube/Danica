@@ -61,6 +61,8 @@ export default {
 		})
 		this.projects = projects.results
 	},
+	fetchKey: 'slider-projects',
+	fetchOnServer: false,
 }
 </script>
 

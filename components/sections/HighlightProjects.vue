@@ -25,6 +25,7 @@
 import { MediaQueryProvider, MatchMedia } from 'vue-component-media-queries'
 
 export default {
+	name: 'HighlightProjects',
 	components: { MediaQueryProvider, MatchMedia },
 	props: {
 		data: {

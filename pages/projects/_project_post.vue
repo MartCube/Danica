@@ -79,7 +79,6 @@ export default {
 			slices: post.data.body,
 		}
 	},
-	fetchOnServer: false,
 }
 </script>
 

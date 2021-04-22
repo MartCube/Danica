@@ -3,7 +3,8 @@ export default {
 	target: 'static',
 
 	// Auto import components (https://go.nuxtjs.dev/config-components)
-	components: true,
+	// components: true,
+	components: ['~/components/forms', '~/components/icons', '~/components/global', '~/components/items', '~/components/local', '~/components/sections'],
 
 	// Global page headers (https://go.nuxtjs.dev/config-head)
 	head: {

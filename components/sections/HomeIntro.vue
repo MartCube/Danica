@@ -185,9 +185,6 @@ export default {
 		}
 	}
 	@media (max-width: 1220px) {
-		// .text {
-		// 	left: -7vw;
-		// }
 		.collage .first {
 			height: 21vw;
 		}
@@ -204,6 +201,7 @@ export default {
 		}
 	}
 	@media (max-width: 900px) {
+
 		.collage {
 			display: none;
 		}
@@ -243,7 +241,7 @@ export default {
 			}
 			button {
 				align-self: flex-end;
-				margin: 10%;
+				margin:20% 10%;
 				text-transform: initial;
 			}
 		}
@@ -264,6 +262,11 @@ export default {
 				}
 			}
 		}
+	}
+}
+@media (max-width: 900px) {
+	.intro{
+		height: calc(100vh - 60px);
 	}
 }
 </style>

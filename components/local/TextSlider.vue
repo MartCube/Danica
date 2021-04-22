@@ -92,7 +92,7 @@ export default {
 }
 @media (max-width: 400px) {
 	.text_slider span {
-		font-size: 2.2rem;
+		font-size: 2rem;
 	}
 }
 </style>

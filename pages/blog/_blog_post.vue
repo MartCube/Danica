@@ -71,6 +71,11 @@ export default {
 			slices: post.data.body,
 		}
 	},
+	fetchKey(getCounter) {
+		// getCounter is a method that can be called to get the next number in a sequence
+		// as part of generating a unique fetchKey.
+		return 'blog_post' + getCounter('blog_post')
+	},
 }
 </script>
 

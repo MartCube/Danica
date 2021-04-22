@@ -44,7 +44,6 @@ export default {
 		})
 		this.projects = projects.results
 	},
-	fetchOnServer: false,
 	computed: {
 		firstProject() {
 			return this.projects[0]

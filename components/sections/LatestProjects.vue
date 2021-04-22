@@ -55,7 +55,6 @@ export default {
 		})
 		this.projects = projects.results
 	},
-	fetchOnServer: false,
 }
 </script>
 

@@ -41,6 +41,7 @@ export default {
 		const projects = await this.$prismic.api.query([this.$prismic.predicates.at('document.type', 'project_post'), this.$prismic.predicates.at('document.tags', ['highlight'])], {
 			orderings: '[document.first_publication_date desc]',
 			pageSize: this.page_size,
+			lang: this.$i18n.localeProperties.prismic,
 		})
 		this.projects = projects.results
 	},

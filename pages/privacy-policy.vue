@@ -24,6 +24,7 @@ export default {
 <style lang="scss" scoped>
 .container {
 	margin-left: 240px;
+	margin-top: 100px;
 	padding: 0 0 40px 1rem;
 	border-left: 1px solid $line;
 

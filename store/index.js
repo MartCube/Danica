@@ -1,6 +1,8 @@
-export const state = () => ({
+export const state = (context) => ({
+	// lang: context.$i18n.localeProperties.prismic,
 	blogPosts: null,
 	projects: null,
+
 	navbarTransparent: false,
 	modalContact: false,
 	footer: true,

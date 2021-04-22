@@ -36,7 +36,7 @@ export default {
 			return this.data.tags[0]
 		},
 		link() {
-			return this.$prismic.linkResolver(this.data)
+			return this.localePath(this.$prismic.linkResolver(this.data))
 		},
 	},
 }

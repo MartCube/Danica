@@ -51,6 +51,7 @@ export default {
 			orderings: '[document.last_publication_date desc]',
 			pageSize: this.page_size,
 			page: this.current_page,
+			lang: this.$i18n.localeProperties.prismic,
 		})
 
 		this.$store.dispatch('bindBlogPosts', blogPosts.results)

@@ -25,6 +25,7 @@
 
 <script>
 export default {
+	name: 'LatestProjects',
 	props: {
 		tag: {
 			type: Array,
@@ -54,8 +55,6 @@ export default {
 		})
 		this.projects = projects.results
 	},
-	fetchKey: 'latest-projects',
-	fetchOnServer: false,
 }
 </script>
 

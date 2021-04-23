@@ -34,9 +34,8 @@ export default {
 	fetchKey(getCounter) {
 		// getCounter is a method that can be called to get the next number in a sequence
 		// as part of generating a unique fetchKey.
-		return 'services' + getCounter('sidebar')
+		return 'service' + getCounter('service')
 	},
-	fetchOnServer: false,
 	mounted() {
 		this.$store.dispatch('bindNavbarTransparent', true)
 	},

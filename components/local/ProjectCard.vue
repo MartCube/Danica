@@ -1,7 +1,7 @@
 <template>
 	<n-link :to="link" class="project_card">
 		<div class="image">
-			<ImageItem :src="image + Thumbnail_imgIX" :alt="title" />
+			<ImageItem :src="image" :alt="title" />
 			<div class="link">
 				<IconChevron size="25px" />
 			</div>
@@ -19,11 +19,8 @@ export default {
 		},
 	},
 	computed: {
-		Thumbnail_imgIX() {
-			return `&fit=crop&w=300&h=300&dpr=1`
-		},
 		image() {
-			return this.data.data.main_image.url
+			return this.data.data.main_image.thumbnail.url
 		},
 		title() {
 			return this.$prismic.asText(this.data.data.title)

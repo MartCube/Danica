@@ -3,22 +3,22 @@
 		<ul class="messengers">
 			<li>
 				<a href="#">
-					<IconFacebook :fill="this.messengersIconColor"/>
+					<IconFacebook />
 				</a>
 			</li>
 			<li>
 				<a href="#">
-					<IconInstagram :fill="this.messengersIconColor"/>
+					<IconInstagram />
 				</a>
 			</li>
 			<li>
 				<a href="#">
-					<IconViber :fill="this.messengersIconColor"/>
+					<IconViber />
 				</a>
 			</li>
 			<li>
 				<a href="#">
-					<IconPhone :fill="this.messengersIconColor"/>
+					<IconPhone />
 				</a>
 			</li>
 		</ul>
@@ -29,7 +29,7 @@
 import { messengersAnim } from '~/assets/anime'
 
 export default {
-	data: () =>({
+	data: () => ({
 		messengersIconColor: 'hsl(44deg 100% 47%)',
 	}),
 	mounted() {
@@ -45,10 +45,9 @@ aside {
 	height: fit-content;
 	position: fixed;
 	left: 217px;
-	bottom: -3rem;
+	bottom: 0;
 
 	z-index: 2;
-	transform: translateY(-50%);
 	ul.messengers {
 		li {
 			opacity: 0; // opacity: 1
@@ -59,11 +58,11 @@ aside {
 					width: 20px;
 					height: 20px;
 					transition: all 0.2s ease;
+				}
+				&:hover {
 					svg {
 						fill: $primary;
 					}
-				}
-				&:hover {
 				}
 			}
 			&:last-child {

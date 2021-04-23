@@ -52,7 +52,6 @@ export default {
 			return this.$prismic.asText(this.data.highlight_projects_title)
 		},
 	},
-	methods: {},
 }
 </script>
 

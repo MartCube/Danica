@@ -23,6 +23,7 @@
 
 <script>
 export default {
+	name: 'SliderProjects',
 	props: {
 		tag: {
 			type: Array,
@@ -61,8 +62,6 @@ export default {
 		})
 		this.projects = projects.results
 	},
-	fetchKey: 'slider-projects',
-	fetchOnServer: false,
 }
 </script>
 

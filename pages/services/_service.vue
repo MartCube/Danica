@@ -1,4 +1,4 @@
-<template>
+<template keep-alive>
 	<div class="container">
 		<template v-if="$fetchState.error" class="error"> error </template>
 		<template v-else-if="$fetchState.pending" class="loading"> loading </template>

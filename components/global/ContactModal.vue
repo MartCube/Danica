@@ -1,5 +1,5 @@
 <template>
-	<div v-show="modalContact" ref="modal" class="modal_contact">
+	<div v-if="modalContact" ref="modal" class="modal_contact">
 		<div class="image">
 			<ImageItem v-if="!$fetchState.pending" :src="image" alt="contact" />
 		</div>

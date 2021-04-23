@@ -5,10 +5,16 @@
 		</div>
 		<div class="content">
 			<div class="text">
-				<h2 class="title">{{ $prismic.asText(data.primary.title) }}</h2>
-				<p class="description">{{ $prismic.asText(data.primary.description) }}</p>
+				<h2 class="title">{{ title }}</h2>
+				<p class="description">{{ description }}</p>
 			</div>
-			<VideoItem />
+			<div class="image">
+				<ImageItem :src="image.url" :mobile="image.mobile.url" :alt="image.alt" />
+				<div class="play" @click="openModal">
+					<IconPlay />
+				</div>
+			</div>
+			<ModalVideo />
 		</div>
 	</section>
 </template>
@@ -21,21 +27,50 @@ export default {
 			required: true,
 		},
 	},
-	computed: {},
+	computed: {
+		title() {
+			return this.$prismic.asText(this.data.primary.title)
+		},
+		description() {
+			return this.$prismic.asText(this.data.primary.description)
+		},
+		image() {
+			return this.data.primary.image
+		},
+	},
+	methods: {
+		openModal() {
+			this.$store.dispatch('bindModalVideo', true)
+		},
+	},
 }
 </script>
 
 <style lang="scss" scoped>
 .content {
 	display: flex;
-	justify-content: space-between;
 	.text {
-		.title {
-			max-width: 500px;
-			margin-bottom: 80px;
-		}
+		min-width: 500px;
 		.description {
 			max-width: 500px;
+		}
+	}
+	.image {
+		margin-left: 40px;
+		position: relative;
+		.play {
+			padding: 24px;
+			background: $primary;
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+			border-radius: 50%;
+			cursor: pointer;
+
+			svg {
+				fill: $white;
+			}
 		}
 	}
 }
@@ -45,10 +80,14 @@ export default {
 		.content {
 			flex-direction: column;
 			.text {
+				min-width: auto;
 				margin-bottom: 40px;
 				.title {
 					margin-bottom: 40px;
 				}
+			}
+			.image {
+				margin: 0;
 			}
 		}
 	}

@@ -62,7 +62,9 @@ export default {
 		},
 	}),
 	async fetch() {
-		const post = await this.$prismic.api.getByUID('blog_post', this.$route.params.blog_post)
+		const lang = this.$i18n.localeProperties.prismic
+
+		const post = await this.$prismic.api.getByUID('blog_post', this.$route.params.blog_post, { lang })
 		this.post = {
 			image: post.data.image,
 			title: this.$prismic.asText(post.data.title),

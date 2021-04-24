@@ -44,11 +44,16 @@ export default {
 aside {
 	height: fit-content;
 	position: fixed;
-	left: 217px;
+	left: 205px;
 	bottom: 0;
 
 	z-index: 2;
 	ul.messengers {
+		width: 40px;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
 		li {
 			opacity: 0; // opacity: 1
 			list-style-type: none;
@@ -82,7 +87,10 @@ aside {
 
 @media (max-width: 900px) {
 	aside {
-		left: 0.5rem;
+		left: 0;
+		ul.messengers li {
+			margin-bottom: 15px;
+		}
 	}
 }
 </style>

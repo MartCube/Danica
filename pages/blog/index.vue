@@ -47,10 +47,13 @@ export default {
 		next_page: null,
 	}),
 	async fetch() {
+		this.ScrollToTop()
+
 		const blogPosts = await this.$prismic.api.query([this.$prismic.predicates.at('document.type', 'blog_post'), this.$prismic.predicates.at('document.tags', this.active_filter)], {
 			orderings: '[document.last_publication_date desc]',
 			pageSize: this.page_size,
 			page: this.current_page,
+			lang: this.$i18n.localeProperties.prismic,
 		})
 
 		this.$store.dispatch('bindBlogPosts', blogPosts.results)
@@ -71,7 +74,6 @@ export default {
 	},
 	methods: {
 		// filters
-
 		filterUpdate(filter) {
 			this.active_filter = [filter]
 			if (filter === 'all') this.active_filter = []
@@ -105,6 +107,10 @@ export default {
 		},
 		fetchLast() {
 			this.fetchPage(this.total_pages)
+		},
+
+		ScrollToTop() {
+			window.scrollTo({ top: 0, behavior: 'smooth' })
 		},
 	},
 }

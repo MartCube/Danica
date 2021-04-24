@@ -10,7 +10,7 @@
 
 <style lang="scss">
 .plyr_video {
-	width: 700px;
+	width: 70%;
 }
 
 :root {

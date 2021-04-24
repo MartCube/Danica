@@ -1,18 +1,25 @@
-export const state = () => ({
+export const state = (context) => ({
+	// lang: context.$i18n.localeProperties.prismic,
 	blogPosts: null,
 	projects: null,
+
 	navbarTransparent: false,
-	modalContact: false,
 	footer: true,
+
+	modalContact: false,
+	modalVideo: false,
 })
 
 // Functions that return back data contained in the state.
 export const getters = {
 	blogPosts: (state) => state.blogPosts,
 	projects: (state) => state.projects,
+
 	navbarTransparent: (state) => state.navbarTransparent,
-	modalContact: (state) => state.modalContact,
 	footer: (state) => state.footer,
+
+	modalContact: (state) => state.modalContact,
+	modalVideo: (state) => state.modalVideo,
 }
 
 // Functions that directly mutate the state.
@@ -23,14 +30,19 @@ export const mutations = {
 	setProjects(state, value) {
 		state.projects = value
 	},
+
 	setNavbarTransparent(state, value) {
 		state.navbarTransparent = value
 	},
+	setFooter(state, value) {
+		state.footer = value
+	},
+
 	setModalContact(state, value) {
 		state.modalContact = value
 	},
-	setFooter(state, value) {
-		state.footer = value
+	setModalVideo(state, value) {
+		state.modalVideo = value
 	},
 }
 
@@ -42,13 +54,18 @@ export const actions = {
 	bindProjects(context, value) {
 		context.commit('setProjects', value)
 	},
+
 	bindNavbarTransparent(context, value) {
 		context.commit('setNavbarTransparent', value)
 	},
+	bindFooter(context, value) {
+		context.commit('setFooter', value)
+	},
+
 	bindModalContact(context, value) {
 		context.commit('setModalContact', value)
 	},
-	bindFooter(context, value) {
-		context.commit('setFooter', value)
+	bindModalVideo(context, value) {
+		context.commit('setModalVideo', value)
 	},
 }

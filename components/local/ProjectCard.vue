@@ -26,7 +26,7 @@ export default {
 			return this.$prismic.asText(this.data.data.title)
 		},
 		link() {
-			return this.$prismic.linkResolver(this.data)
+			return this.localePath(this.$prismic.linkResolver(this.data))
 		},
 	},
 }

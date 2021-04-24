@@ -1,6 +1,7 @@
 <template>
 	<div class="container">
-		<template v-if="!$fetchState.pending">
+		<template v-if="$fetchState.error">error</template>
+		<template v-else-if="!$fetchState.pending">
 			<div class="project_post">
 				<div class="intro">
 					<h2 class="title">{{ post.title }}</h2>
@@ -37,7 +38,7 @@
 
 					<template v-else-if="slice.slice_type == 'image_text'">
 						<div class="image_text">
-							<ImageItem :src="slice.primary.image.url" alt="alt" />
+							<ImageItem :src="slice.primary.image.url" :mobile="slice.primary.image.mobile.url" alt="alt" />
 							<div class="text">
 								<p v-for="(item, key) in slice.items" :key="key">{{ $prismic.asText(item.text) }}</p>
 							</div>
@@ -64,7 +65,9 @@ export default {
 		},
 	}),
 	async fetch() {
-		const post = await this.$prismic.api.getByUID('project_post', this.$route.params.project_post)
+		const lang = this.$i18n.localeProperties.prismic
+
+		const post = await this.$prismic.api.getByUID('project_post', this.$route.params.project_post, { lang })
 		this.post = {
 			image: post.data.main_image,
 			title: this.$prismic.asText(post.data.title),

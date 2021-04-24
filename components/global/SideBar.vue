@@ -2,23 +2,23 @@
 	<aside>
 		<ul class="messengers">
 			<li>
-				<a href="#">
-					<IconFacebook />
+				<a href="https://facebook.com/danica.ukraine" target="_blank">
+					<IconFacebook :fill="messengersIconColor" />
 				</a>
 			</li>
 			<li>
-				<a href="#">
-					<IconInstagram />
+				<a href="https://www.instagram.com/danica.ua" target="_blank">
+					<IconInstagram :fill="messengersIconColor" />
 				</a>
 			</li>
 			<li>
-				<a href="#">
-					<IconViber />
+				<a href="viber://chat/?number=%2B380674011181" target="_blank">
+					<IconViber :fill="messengersIconColor" />
 				</a>
 			</li>
 			<li>
-				<a href="#">
-					<IconPhone />
+				<a href="tel:tel:+380973591111" target="_blank">
+					<IconPhone :fill="messengersIconColor" />
 				</a>
 			</li>
 		</ul>

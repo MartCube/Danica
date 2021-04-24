@@ -7,45 +7,7 @@
 					<div class="text"></div>
 				</div>
 				<div class="info">
-					<div class="wrap">
-						<div class="office">
-							<div class="numbers">
-								<h4>{{ $t('pages.contact.office') }}:</h4>
-								<a v-for="(number, i) in data.office" :key="i" :href="NumberLink(number)"> <IconPhone size="16px" /> {{ $prismic.asText(number.number) }} </a>
-							</div>
-							<div class="location">
-								<h4>{{ $t('pages.contact.find_us') }}</h4>
-								<span> <IconLocation size="20px" />{{ $t('pages.contact.adress') }} </span>
-							</div>
-							<div class="smedias">
-								<h4>{{ $t('pages.contact.follow_us') }}</h4>
-								<div class="icons">
-									<IconFacebook />
-									<IconInstagram />
-									<IconYoutube />
-								</div>
-							</div>
-						</div>
-						<div class="for_clients">
-							<div class="numbers">
-								<h4>{{ $t('pages.contact.for_clients') }}:</h4>
-								<a v-for="(number, i) in data.office" :key="i" :href="NumberLink(number)"> <IconPhone size="16px" /> {{ $prismic.asText(number.number) }} </a>
-							</div>
-							<div class="contact">
-								<h4>{{ $t('service.form.write_us') }}</h4>
-								<span @click="openModal()"> <IconMail size="20px" /> info@danica.ua</span>
-							</div>
-							<div class="chat">
-								<h4>{{ $t('pages.contact.live_chat') }}</h4>
-								<div class="icons">
-									<IconMessenger />
-									<IconTelegram />
-									<IconViber />
-								</div>
-							</div>
-						</div>
-					</div>
-
+					<ContactInfo/>
 					<SubscribeForm />
 				</div>
 			</div>
@@ -152,88 +114,88 @@ export default {
 			display: flex;
 			flex-direction: column;
 			justify-content: space-between;
-			.wrap {
-				width: 100%;
-				height: 100%;
-				display: flex;
-				justify-content: center;
+		// 	.wrap {
+		// 		width: 100%;
+		// 		height: 100%;
+		// 		display: flex;
+		// 		justify-content: center;
 
-				.office,
-				.for_clients {
-					width: 50%;
-					display: flex;
-					flex-direction: column;
-					justify-content: space-evenly;
+		// 		.office,
+		// 		.for_clients {
+		// 			width: 50%;
+		// 			display: flex;
+		// 			flex-direction: column;
+		// 			justify-content: space-evenly;
 
-					& > * {
-						margin-bottom: 25px;
-					}
+		// 			& > * {
+		// 				margin-bottom: 25px;
+		// 			}
 
-					h4 {
-						color: $grey;
+		// 			h4 {
+		// 				color: $grey;
 
-						font-size: 0.8rem;
-						font-weight: medium;
-						margin-bottom: 15px;
-						user-select: none;
-						&::first-letter {
-							text-transform: capitalize;
-						}
-					}
-					svg {
-						fill: $primary;
-						cursor: pointer;
-						transition: opacity 0.2 ease;
+		// 				font-size: 0.8rem;
+		// 				font-weight: medium;
+		// 				margin-bottom: 15px;
+		// 				user-select: none;
+		// 				&::first-letter {
+		// 					text-transform: capitalize;
+		// 				}
+		// 			}
+		// 			svg {
+		// 				fill: $primary;
+		// 				cursor: pointer;
+		// 				transition: opacity 0.2 ease;
 
-						&:hover {
-							opacity: 0.75;
-						}
-					}
-					.numbers {
-						display: flex;
-						flex-direction: column;
+		// 				&:hover {
+		// 					opacity: 0.75;
+		// 				}
+		// 			}
+		// 			.numbers {
+		// 				display: flex;
+		// 				flex-direction: column;
 
-						a {
-							margin-bottom: 10px;
-							display: flex;
-							align-items: center;
-							svg {
-								margin-right: 10px;
-							}
-							&:last-child {
-								margin: 0;
-							}
-						}
-					}
-					.location {
-						svg {
-							align-self: flex-start;
-							margin-top: 5px;
-						}
-					}
-					span {
-						cursor: pointer;
-						transition: all 0.2s ease;
+		// 				a {
+		// 					margin-bottom: 10px;
+		// 					display: flex;
+		// 					align-items: center;
+		// 					svg {
+		// 						margin-right: 10px;
+		// 					}
+		// 					&:last-child {
+		// 						margin: 0;
+		// 					}
+		// 				}
+		// 			}
+		// 			.location {
+		// 				svg {
+		// 					align-self: flex-start;
+		// 					margin-top: 5px;
+		// 				}
+		// 			}
+		// 			span {
+		// 				cursor: pointer;
+		// 				transition: all 0.2s ease;
 
-						display: flex;
-						align-items: flex-end;
-						svg {
-							margin-right: 10px;
-						}
-						&:hover {
-							color: $grey;
-						}
-					}
-					.icons {
-						width: 150px;
-						display: flex;
-						justify-content: space-between;
-					}
-				}
-				.for_clients {
-					padding-left: 50px;
-				}
-			}
+		// 				display: flex;
+		// 				align-items: flex-end;
+		// 				svg {
+		// 					margin-right: 10px;
+		// 				}
+		// 				&:hover {
+		// 					color: $grey;
+		// 				}
+		// 			}
+		// 			.icons {
+		// 				width: 150px;
+		// 				display: flex;
+		// 				justify-content: space-between;
+		// 			}
+		// 		}
+		// 		.for_clients {
+		// 			padding-left: 50px;
+		// 		}
+		// 	}
 		}
 	}
 

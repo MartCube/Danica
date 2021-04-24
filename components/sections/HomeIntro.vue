@@ -113,7 +113,7 @@ export default {
 		left: 150px;
 		display: flex;
 		flex-direction: column;
-		z-index: 10;
+		z-index: 8;
 
 		.title {
 			width: max-content;
@@ -246,10 +246,10 @@ export default {
 			}
 		}
 		.bg_letter {
-			width: 80%;
+			width: 65%;
 			top: 8%;
 			&.second {
-				width: 110%;
+				width: 90%;
 				left: -30vw;
 			}
 		}

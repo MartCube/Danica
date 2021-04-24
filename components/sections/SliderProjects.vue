@@ -35,7 +35,7 @@ export default {
 		projects: null,
 		swiperOption: {
 			slidesPerView: 'auto',
-			loop: true,
+			// loop: true,
 			autoplay: {
 				delay: 3000,
 				disableOnInteraction: true,

@@ -37,7 +37,7 @@ export default {
 		projects: null,
 		swiperOption: {
 			slidesPerView: 'auto',
-			loop: true,
+			// loop: true,
 			breakpoints: {
 				500: {
 					spaceBetween: 60,

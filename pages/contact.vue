@@ -1,47 +1,12 @@
 <template>
 	<div class="container">
-		<Title value="contact" />
+		<Title :value="$t('pages.contact.name')" />
 
 		<div class="wrap">
 			<div class="left_content">
 				<template v-if="!$fetchState.pending">
 					<h3 class="title">{{ $t('pages.contact.title') }}</h3>
-					<div class="office">
-						<div class="numbers">
-							<h4>{{ $t('pages.contact.office') }}:</h4>
-							<a v-for="(number, i) in data.office" :key="i" :href="NumberLink(number)"> <IconPhone size="16px" /> {{ $prismic.asText(number.number) }} </a>
-						</div>
-						<div class="location">
-							<h4>{{ $t('pages.contact.find_us') }}</h4>
-							<span> <IconLocation size="20px" />{{ $t('pages.contact.adress') }}</span>
-						</div>
-						<div class="smedias">
-							<h4>{{ $t('pages.contact.follow_us') }}</h4>
-							<div class="icons">
-								<IconFacebook />
-								<IconInstagram />
-								<IconYoutube />
-							</div>
-						</div>
-					</div>
-					<div class="for_clients">
-						<div class="numbers">
-							<h4>{{ $t('pages.contact.for_clients') }}</h4>
-							<a v-for="(number, i) in data.office" :key="i" :href="NumberLink(number)"> <IconPhone size="16px" /> {{ $prismic.asText(number.number) }} </a>
-						</div>
-						<div class="contact">
-							<h4>{{ $t('service.form.write_us') }}</h4>
-							<span @click="openModal()"> <IconMail size="20px" /> info@danica.ua</span>
-						</div>
-						<div class="chat">
-							<h4>{{ $t('pages.contact.live_chat') }}</h4>
-							<div class="icons">
-								<IconMessenger />
-								<IconTelegram />
-								<IconViber />
-							</div>
-						</div>
-					</div>
+					<ContactInfo/>
 					<ContactForm />
 				</template>
 			</div>
@@ -68,7 +33,9 @@
 </template>
 
 <script>
+import ContactInfo from '~/components/local/ContactInfo.vue'
 export default {
+  components: { ContactInfo },
 	beforeRouteLeave(to, from, next) {
 		this.$store.dispatch('bindFooter', true)
 		next()
@@ -93,16 +60,8 @@ export default {
 		},
 	},
 	methods: {
-		openModal() {
-			this.$store.dispatch('bindModalContact', true)
-		},
 		ScrollToTop() {
 			window.scrollTo({ top: 0, behavior: 'smooth' })
-		},
-		NumberLink(number) {
-			number = this.$prismic.asText(number.number)
-			number = number.replace(/\D/g, '')
-			return 'tel:+' + number
 		},
 	},
 }
@@ -186,70 +145,8 @@ export default {
 			flex-wrap: wrap;
 			height: fit-content;
 
-			.office,
-			.for_clients {
-				h4 {
-					color: $white;
-					font-size: 0.8rem;
-					font-weight: medium;
-					margin-bottom: 1.5rem;
-					user-select: none;
-					&::first-letter {
-						text-transform: capitalize;
-					}
-				}
-				width: 50%;
-				display: flex;
-				flex-direction: column;
-				justify-content: space-evenly;
-
-				& > * {
-					margin-bottom: 3rem;
-				}
-
-				svg {
-					fill: $primary;
-					cursor: pointer;
-					transition: opacity 0.2s ease;
-
-					&:hover {
-						opacity: 0.75;
-					}
-				}
-				.numbers {
-					display: flex;
-					flex-direction: column;
-
-					a {
-						margin-bottom: 10px;
-						display: flex;
-						align-items: center;
-						svg {
-							margin-right: 10px;
-						}
-						&:last-child {
-							margin: 0;
-						}
-					}
-				}
-				span {
-					cursor: pointer;
-					transition: all 0.2s ease;
-
-					display: flex;
-					align-items: flex-end;
-					svg {
-						margin-right: 10px;
-					}
-					&:hover {
-						color: $grey;
-					}
-				}
-				.icons {
-					width: 150px;
-					display: flex;
-					justify-content: space-between;
-				}
+			.contact-info {
+				color: $white;
 			}
 			.for_clients {
 				padding-left: 50px;
@@ -264,7 +161,7 @@ export default {
 				left: 40px;
 				color: $black;
 				background: $primary;
-				padding-left: 1rem;
+				padding: 2px 10px;
 				z-index: 4;
 				font-weight: 500;
 			}
@@ -306,7 +203,7 @@ export default {
 			.left_content {
 				padding-left: 56px;
 				padding-bottom: 3rem;
-				width: 60%;
+				width: 100%;
 				.for_clients {
 					padding-left: 0;
 				}
@@ -316,7 +213,7 @@ export default {
 				}
 			}
 			.map {
-				width: 40%;
+				width: 100%;
 				max-height: 50vh;
 				margin-top: 4rem;
 				z-index: 6;

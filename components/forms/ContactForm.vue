@@ -2,10 +2,10 @@
 	<div class="contact_form">
 		<ValidationObserver v-if="!message" ref="contact" tag="form" autocomplete="off" @submit.prevent="Submit()">
 			<h2 class="title">{{ $t('service.form.write_us') }}</h2>
-			<InputItem name="name" rules="required" @getValue="getName" />
-			<InputItem name="number" rules="digits:3|required" @getValue="getNumber" />
-			<InputItem name="email" rules="email|required" @getValue="getEmail" />
-			<InputItem name="message" rules="required" @getValue="getMessage" />
+			<InputItem name="name" :label="$t('service.form.name')" rules="required" @getValue="getName" />
+			<InputItem name="number" :label="$t('service.form.number')" rules="digits:3|required" @getValue="getNumber" />
+			<InputItem name="email" :label="$t('service.form.email')" rules="email|required" @getValue="getEmail" />
+			<InputItem name="message" :label="$t('service.form.message')" rules="required" @getValue="getMessage" />
 			<ButtonItem white> {{ $t('service.buton_contact_form') }} <IconMail /> </ButtonItem>
 		</ValidationObserver>
 
@@ -96,7 +96,6 @@ export default {
 	display: flex;
 	form {
 		width: 100%;
-		// height: auto;
 		display: flex;
 		flex-direction: column;
 		justify-content: space-between;
@@ -130,6 +129,13 @@ export default {
 		}
 		button {
 			margin-top: 2rem;
+		}
+	}
+}
+@media (max-width: 420px) {
+	.contact_form{
+		.title{
+			font-size: 1.5rem;
 		}
 	}
 }

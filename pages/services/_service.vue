@@ -47,7 +47,7 @@ export default {
 .container {
 	padding: 0;
 	padding-bottom: 80px;
-		&::after {
+	&::after {
 		content: '';
 		position: absolute;
 		top: 0;
@@ -57,7 +57,6 @@ export default {
 		width: 1px;
 		height: 100%;
 		background: $line;
-
 	}
 }
 </style>

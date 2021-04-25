@@ -136,7 +136,7 @@ export default {
 		}
 
 		button {
-			margin: 80px 0;
+			margin: 80px 20vw 80px 0;
 			color: $black;
 		}
 	}

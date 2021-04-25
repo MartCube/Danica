@@ -15,7 +15,7 @@
 					</div>
 				</div>
 
-				<ButtonItem> All projects </ButtonItem>
+				<ButtonItem> {{ $t('service.button_all_projects') }} </ButtonItem>
 			</div>
 		</template>
 	</section>

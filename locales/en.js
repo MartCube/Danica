@@ -18,6 +18,7 @@ export default {
 	},
 	service: {
 		buton_contact_form: 'Submit',
+		button_all_projects: 'All projects',
 		form: {
 			write_us: 'Write us',
 			title: 'Message send',
@@ -28,6 +29,7 @@ export default {
 			number: 'Phone',
 			email: 'Email',
 			message: 'Message',
+			subscriptionText: 'Subscribe and keep up to date with the latest news and projects'
 		},
 		footer: {
 			all_rights_reserved: 'All rights reserved',

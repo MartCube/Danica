@@ -1,7 +1,7 @@
 <template>
 	<ValidationObserver ref="subscribe" class="subscribe" tag="form" autocomplete="off" @submit.prevent="Submit()">
-		<p>Subscribe and keep up to date with the latest news and projects</p>
-		<InputItem subscribe name="email" rules="email" @getValue="GetEmail" />
+		<p>{{ $t('service.form.subscriptionText') }}</p>
+		<InputItem subscribe name="email" rules="email" :label="$t('service.form.email')" @getValue="GetEmail" />
 	</ValidationObserver>
 </template>
 

@@ -3,7 +3,7 @@
 		<div class="text">
 			<h2>4<span>0</span>4</h2>
 			<n-link :to="localePath('index')">
-				<ButtonItem :to="localePath('index')" :animated="false"> Go home </ButtonItem>
+				<ButtonItem :to="localePath('index')" :animated="false"> {{ $t('service.form.button_tohome') }} </ButtonItem>
 			</n-link>
 		</div>
 		<ImageItem v-if="!$fetchState.pending" :src="image" alt="error" />

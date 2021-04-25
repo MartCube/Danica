@@ -18,6 +18,7 @@ export default {
 	},
 	service: {
 		buton_contact_form: 'Відправити',
+		button_all_projects: 'Сві проекти',
 		form: {
 			write_us: 'Напишiть нам',
 			title: 'Повідомлення відправлено',
@@ -28,6 +29,7 @@ export default {
 			number: 'Телефон',
 			email: 'Мейл',
 			message: 'Повідомлення',
+			subscriptionText: 'Підпишіться та будьте в курсі останніх новин та проектів'
 		},
 		footer: {
 			all_rights_reserved: 'Всi права захищенi',

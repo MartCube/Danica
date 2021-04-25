@@ -10,7 +10,7 @@
 				<span v-for="(letter, i) in lettersLeadersIn" :key="i" ref="lettersLeadersIn">{{ letter }}</span>
 			</div>
 			<TextSlider />
-			<ButtonItem @click.native="openModal"> Write us </ButtonItem>
+			<ButtonItem @click.native="openModal"> {{ $t('service.form.write_us') }} </ButtonItem>
 		</div>
 
 		<div class="collage">

@@ -95,6 +95,18 @@ export default {
 	display: flex;
 	flex-direction: column;
 	padding-bottom: 40px;
+	position: relative;
+		&::after {
+		content: '';
+		position: absolute;
+		top: 0;
+		left: 240px;
+		z-index: 5;
+
+		width: 1px;
+		height: 100%;
+		background: $line;
+	}
 
 	& > * {
 		margin-bottom: 25px;

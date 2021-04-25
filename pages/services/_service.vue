@@ -28,7 +28,8 @@ export default {
 		slices: null,
 	}),
 	async fetch() {
-		const fetch = await this.$prismic.api.getByUID('services', this.$route.params.service)
+		const lang = this.$i18n.localeProperties.prismic
+		const fetch = await this.$prismic.api.getByUID('services', this.$route.params.service, { lang })
 		this.slices = fetch.data.body
 	},
 	fetchKey(getCounter) {
@@ -46,5 +47,17 @@ export default {
 .container {
 	padding: 0;
 	padding-bottom: 80px;
+		&::after {
+		content: '';
+		position: absolute;
+		top: 0;
+		left: 240px;
+		z-index: 5;
+
+		width: 1px;
+		height: 100%;
+		background: $line;
+
+	}
 }
 </style>

@@ -1,6 +1,6 @@
 <template>
 	<div class="container">
-		<Title value="blog" />
+		<Title :value="$t('pages.blog')" />
 
 		<div class="blog">
 			<div class="filter">

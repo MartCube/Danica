@@ -16,7 +16,7 @@
 				</div>
 
 				<n-link :to="localePath('/projects')">
-					<ButtonItem> All projects </ButtonItem>
+					<ButtonItem> {{ $t('service.button_all_projects') }} </ButtonItem>
 				</n-link>
 			</div>
 		</template>

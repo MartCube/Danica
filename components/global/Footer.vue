@@ -7,7 +7,7 @@
 					<div class="text"></div>
 				</div>
 				<div class="info">
-					<ContactInfo/>
+					<ContactInfo />
 					<SubscribeForm />
 				</div>
 			</div>
@@ -73,6 +73,7 @@ export default {
 	display: flex;
 	flex-direction: column;
 	color: $white;
+	z-index: 3;
 
 	h2,
 	span,
@@ -107,95 +108,12 @@ export default {
 
 		.info {
 			width: 50%;
-			padding: 0 80px;
-			padding-top: 40px;
+			padding: 80px 80px 0 80px;
 			background: $black;
 
 			display: flex;
 			flex-direction: column;
 			justify-content: space-between;
-		// 	.wrap {
-		// 		width: 100%;
-		// 		height: 100%;
-		// 		display: flex;
-		// 		justify-content: center;
-
-		// 		.office,
-		// 		.for_clients {
-		// 			width: 50%;
-		// 			display: flex;
-		// 			flex-direction: column;
-		// 			justify-content: space-evenly;
-
-		// 			& > * {
-		// 				margin-bottom: 25px;
-		// 			}
-
-		// 			h4 {
-		// 				color: $grey;
-
-		// 				font-size: 0.8rem;
-		// 				font-weight: medium;
-		// 				margin-bottom: 15px;
-		// 				user-select: none;
-		// 				&::first-letter {
-		// 					text-transform: capitalize;
-		// 				}
-		// 			}
-		// 			svg {
-		// 				fill: $primary;
-		// 				cursor: pointer;
-		// 				transition: opacity 0.2 ease;
-
-		// 				&:hover {
-		// 					opacity: 0.75;
-		// 				}
-		// 			}
-		// 			.numbers {
-		// 				display: flex;
-		// 				flex-direction: column;
-
-		// 				a {
-		// 					margin-bottom: 10px;
-		// 					display: flex;
-		// 					align-items: center;
-		// 					svg {
-		// 						margin-right: 10px;
-		// 					}
-		// 					&:last-child {
-		// 						margin: 0;
-		// 					}
-		// 				}
-		// 			}
-		// 			.location {
-		// 				svg {
-		// 					align-self: flex-start;
-		// 					margin-top: 5px;
-		// 				}
-		// 			}
-		// 			span {
-		// 				cursor: pointer;
-		// 				transition: all 0.2s ease;
-
-		// 				display: flex;
-		// 				align-items: flex-end;
-		// 				svg {
-		// 					margin-right: 10px;
-		// 				}
-		// 				&:hover {
-		// 					color: $grey;
-		// 				}
-		// 			}
-		// 			.icons {
-		// 				width: 150px;
-		// 				display: flex;
-		// 				justify-content: space-between;
-		// 			}
-		// 		}
-		// 		.for_clients {
-		// 			padding-left: 50px;
-		// 		}
-		// 	}
 		}
 	}
 

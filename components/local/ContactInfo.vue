@@ -91,8 +91,8 @@ export default {
 		width: 50%;
 		display: flex;
 		flex-direction: column;
-		
-		div:not(.smedias):not(.chat):not(.icons){
+
+		div:not(.smedias):not(.chat):not(.icons) {
 			margin-bottom: 2.5rem;
 		}
 
@@ -101,7 +101,6 @@ export default {
 		}
 
 		h4 {
-			
 			color: inherit;
 
 			font-size: 0.8rem;
@@ -121,7 +120,7 @@ export default {
 				opacity: 0.75;
 			}
 		}
-		a{
+		a {
 			color: #fff;
 		}
 		.numbers {
@@ -132,7 +131,7 @@ export default {
 				margin-bottom: 10px;
 				display: flex;
 				align-items: center;
-				
+
 				svg {
 					margin-right: 10px;
 				}
@@ -146,7 +145,7 @@ export default {
 			color: $white;
 		}
 		.location {
-			a{
+			a {
 				display: flex;
 				align-items: flex-start;
 			}
@@ -181,10 +180,10 @@ export default {
 }
 
 @media (max-width: 500px) {
-	.contact-info{
+	.contact-info {
 		flex-wrap: wrap;
 		.office,
-		.for_clients{
+		.for_clients {
 			width: 100%;
 			padding-left: 0;
 		}

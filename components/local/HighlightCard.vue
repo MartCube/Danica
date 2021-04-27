@@ -139,6 +139,7 @@ $transition: all 0.35s ease;
 		}
 		.text {
 			padding-left: 40px;
+			width: 100%;
 			display: flex;
 			flex-direction: column;
 

@@ -26,6 +26,9 @@ body {
 			background: $primary;
 		}
 	}
+	strong{
+    background-color: hsl(44deg, 100%, 70%);
+	}
 	
 	p {
 		font-weight: 300;
@@ -55,6 +58,17 @@ body {
 	display: flex;
 	flex-direction: column;
 	position: relative;
+	&::after {
+		content: '';
+		position: absolute;
+		top: 0;
+		left: 240px;
+		z-index: 5;
+
+		width: 1px;
+		height: 100%;
+		background: $line;
+	}
 
 }
 

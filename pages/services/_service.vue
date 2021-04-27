@@ -47,16 +47,6 @@ export default {
 .container {
 	padding: 0;
 	padding-bottom: 80px;
-	&::after {
-		content: '';
-		position: absolute;
-		top: 0;
-		left: 240px;
-		z-index: 5;
 
-		width: 1px;
-		height: 100%;
-		background: $line;
-	}
 }
 </style>

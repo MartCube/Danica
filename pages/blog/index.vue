@@ -47,8 +47,6 @@ export default {
 		next_page: null,
 	}),
 	async fetch() {
-		this.ScrollToTop()
-
 		const blogPosts = await this.$prismic.api.query([this.$prismic.predicates.at('document.type', 'blog_post'), this.$prismic.predicates.at('document.tags', this.active_filter)], {
 			orderings: '[document.last_publication_date desc]',
 			pageSize: this.page_size,
@@ -89,17 +87,21 @@ export default {
 		fetchNext() {
 			if (this.next_page) {
 				this.current_page++
+
+				this.ScrollToTop()
 				this.$fetch()
 			}
 		},
 		fetchBack() {
 			if (this.prev_page) {
 				this.current_page--
+				this.ScrollToTop()
 				this.$fetch()
 			}
 		},
 		fetchPage(value) {
 			this.current_page = value
+			this.ScrollToTop()
 			this.$fetch()
 		},
 		fetchFirst() {

@@ -1,6 +1,7 @@
 <template>
 	<div class="container">
-		<template v-if="!$fetchState.pending">
+		<template v-if="$fetchState.error">error</template>
+		<template v-else-if="!$fetchState.pending">
 			<HomeIntro :data="introCollage" />
 			<Achievements :data="achievements" />
 			<ServicesList :data="serviceList" />

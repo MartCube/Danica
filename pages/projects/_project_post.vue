@@ -96,7 +96,7 @@ export default {
 	flex-direction: column;
 	padding-bottom: 40px;
 	position: relative;
-		&::after {
+	&::after {
 		content: '';
 		position: absolute;
 		top: 0;
@@ -165,14 +165,13 @@ export default {
 
 	.slice {
 		margin-left: 240px;
-		
 	}
 
 	.text {
 		.rich_text {
 			width: 75%;
 			padding-left: 1.5rem;
-			h4{
+			h4 {
 				font-size: 1.5rem;
 			}
 		}

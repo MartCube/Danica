@@ -6,7 +6,7 @@
 			<div class="left_content">
 				<template v-if="!$fetchState.pending">
 					<h3 class="title">{{ $t('pages.contact.title') }}</h3>
-					<ContactInfo/>
+					<ContactInfo />
 					<ContactForm />
 				</template>
 			</div>
@@ -35,7 +35,7 @@
 <script>
 import ContactInfo from '~/components/local/ContactInfo.vue'
 export default {
-  components: { ContactInfo },
+	components: { ContactInfo },
 	beforeRouteLeave(to, from, next) {
 		this.$store.dispatch('bindFooter', true)
 		next()

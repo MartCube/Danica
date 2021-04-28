@@ -12,7 +12,9 @@
 				<Charles v-else-if="slice.slice_type == 'charles'" :data="slice" />
 				<LatestProjects v-else-if="slice.slice_type == 'latestprojects'" />
 				<SliderProjects v-else-if="slice.slice_type == 'sliderprojects'" />
-				<prismic-rich-text v-else-if="slice.slice_type == 'text'" class="rich_text" :field="slice.primary.text" />
+				<section v-else-if="slice.slice_type == 'text'" class="rich_text">
+					<prismic-rich-text :field="slice.primary.text" />
+				</section>
 			</div>
 		</template>
 	</div>
@@ -32,6 +34,7 @@ export default {
 		const lang = this.$i18n.localeProperties.prismic
 		const fetch = await this.$prismic.api.getByUID('services', this.$route.params.service, { lang })
 		this.slices = fetch.data.body
+		console.log(this.sl);
 	},
 	fetchKey(getCounter) {
 		// getCounter is a method that can be called to get the next number in a sequence
@@ -48,6 +51,15 @@ export default {
 .container {
 	padding: 0;
 	padding-bottom: 80px;
-
+}
+.rich_text{
+	padding-right: 1rem;
+	padding-left: 255px;
+}
+@media (max-width: 900px) {
+	.rich_text{
+		padding-right: 1rem;
+		padding-left: 55px;
+	}
 }
 </style>

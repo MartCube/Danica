@@ -33,7 +33,6 @@ export default {
 		const lang = this.$i18n.localeProperties.prismic
 		const fetch = await this.$prismic.api.getByUID('services', this.$route.params.service, { lang })
 		this.slices = fetch.data.body
-		console.log(this.sl);
 	},
 	fetchKey(getCounter) {
 		// getCounter is a method that can be called to get the next number in a sequence
@@ -51,12 +50,12 @@ export default {
 	padding: 0;
 	padding-bottom: 80px;
 }
-.rich_text{
+.rich_text {
 	padding-right: 1rem;
 	padding-left: 255px;
 }
 @media (max-width: 900px) {
-	.rich_text{
+	.rich_text {
 		padding-right: 1rem;
 		padding-left: 55px;
 	}

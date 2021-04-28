@@ -18,7 +18,7 @@ export default {
 	},
 	service: {
 		buton_contact_form: 'Відправити',
-		button_all_projects: 'Сві проекти',
+		button_all_projects: 'Всі проекти',
 		form: {
 			write_us: 'Напишiть нам',
 			title: 'Повідомлення відправлено',

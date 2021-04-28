@@ -53,7 +53,7 @@ export default {
 		min-width: 500px;
 		.description {
 			max-width: 500px;
-			padding-left: 1.5rem;
+			padding-left: 1rem;
 		}
 	}
 	.image {

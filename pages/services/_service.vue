@@ -12,6 +12,7 @@
 				<Charles v-else-if="slice.slice_type == 'charles'" :data="slice" />
 				<LatestProjects v-else-if="slice.slice_type == 'latestprojects'" />
 				<SliderProjects v-else-if="slice.slice_type == 'sliderprojects'" />
+				<prismic-rich-text v-else-if="slice.slice_type == 'text'" class="rich_text" :field="slice.primary.text" />
 			</div>
 		</template>
 	</div>

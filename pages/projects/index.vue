@@ -11,7 +11,8 @@
 			</div>
 
 			<div ref="grid" class="grid">
-				<template v-if="!$fetchState.pending">
+				<template v-if="$fetchState.error">error</template>
+				<template v-else-if="!$fetchState.pending">
 					<ProjectCard v-for="(project, i) in projects" :key="i" :data="project" />
 				</template>
 				<ButtonItem v-if="current_page < total_pages" @click.native="loadMore"> Load more </ButtonItem>

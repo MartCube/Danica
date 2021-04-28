@@ -1,8 +1,7 @@
 <template keep-alive>
 	<div class="container">
-		<template v-if="$fetchState.error" class="error"> error </template>
-		<template v-else-if="$fetchState.pending" class="loading"> loading </template>
-		<template v-else>
+		<template v-if="$fetchState.error">error</template>
+		<template v-else-if="!$fetchState.pending">
 			<div v-for="slice in slices" :key="slice.slice_type">
 				<ServiceIntro v-if="slice.slice_type == 'serviceintro'" :data="slice" />
 				<Values v-else-if="slice.slice_type == 'values'" :data="slice" />
@@ -52,12 +51,12 @@ export default {
 	padding: 0;
 	padding-bottom: 80px;
 }
-.rich_text{
+.rich_text {
 	padding-right: 1rem;
 	padding-left: 255px;
 }
 @media (max-width: 900px) {
-	.rich_text{
+	.rich_text {
 		padding-right: 1rem;
 		padding-left: 55px;
 	}

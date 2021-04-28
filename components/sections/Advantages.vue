@@ -5,11 +5,7 @@
 		</div>
 		<div class="content">
 			<h2 class="title">{{ title }}</h2>
-			<div class="list">
-				<div v-for="(item, i) in data.items" :key="i" class="stage">
-					<p>{{ $prismic.asText(item.advantage) }}</p>
-				</div>
-			</div>
+			<prismic-rich-text class="rich_text" :field="data.primary.content" />
 		</div>
 	</section>
 </template>
@@ -36,32 +32,8 @@ export default {
 	flex-direction: column;
 	position: relative;
 
-	.list {
-		display: flex;
-		flex-direction: column;
-		.stage {
-			padding-left: 1rem;
-
-			p {
-				margin-bottom: 16px;
-				font-weight: 400;
-
-				display: flex;
-				align-items: center;
-				&::before {
-					content: '';
-					margin-right: 20px;
-					min-width: 20px;
-					height: 5px;
-					background: $primary;
-				}
-			}
-			&:last-child {
-				p {
-					margin: 0;
-				}
-			}
-		}
+	.rich_text {
+		padding-left: 1rem;
 	}
 }
 

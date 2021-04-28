@@ -11,7 +11,8 @@
 			</div>
 
 			<div ref="grid" class="grid">
-				<template v-if="!$fetchState.pending">
+				<template v-if="$fetchState.error">error</template>
+				<template v-else-if="!$fetchState.pending">
 					<BlogCard v-for="(post, i) in blogPosts" :key="'post' + i" :class="{ first: i == 0 }" :data="post" />
 				</template>
 			</div>

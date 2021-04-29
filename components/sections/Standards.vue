@@ -5,6 +5,9 @@
 		</div>
 		<div class="content">
 			<h2 class="title">{{ title }}</h2>
+			<template v-if="data.primary.standarts_description">
+				<prismic-rich-text class="rich_text" :field="data.primary.standarts_description" />
+			</template>
 			<div class="list">
 				<div v-for="(standard, i) in data.items" :key="i">
 					<ImageItem :src="standard.image.url" :alt="$prismic.asText(standard.title)" />
@@ -48,7 +51,11 @@ $transition: all 0.35s ease;
 .content {
 	display: flex;
 	flex-direction: column;
-
+	.rich_text{
+		padding: 0 1rem;
+    display: block;
+    margin-bottom: 60px;
+	}
 	.list {
 		width: 100%;
 		display: flex;

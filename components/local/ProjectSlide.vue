@@ -40,6 +40,7 @@ export default {
 	position: relative;
 	cursor: pointer;
 	width: 80%;
+	height: 70vh;
 
 	h2 {
 		z-index: 4;

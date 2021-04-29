@@ -93,7 +93,10 @@ export default {
 		padding-top: 20px;
 		position: relative;
 
-		text-transform: capitalize;
+		// text-transform: capitalize;
+		&::first-letter{
+			text-transform: capitalize;
+		}
 		&::after {
 			content: '';
 			position: absolute;

@@ -5,6 +5,9 @@
 		</div>
 		<div class="content">
 			<h2 class="title">{{ title }}</h2>
+			<template v-if="data.primary.stages_description">
+				<prismic-rich-text class="rich_text" :field="data.primary.stages_description" />
+			</template>
 			<div class="list">
 				<div v-for="(stage, i) in data.items" :key="i" class="stage">
 					<h2 class="number">0{{ i + 1 }}<span>/</span></h2>
@@ -27,6 +30,10 @@ export default {
 		},
 	},
 	computed: {
+		description() {
+			console.log(this.data.primary.stages_description);
+			return this.data.primary.stages_description
+		},
 		name() {
 			return this.$prismic.asText(this.data.primary.name)
 		},
@@ -41,10 +48,15 @@ export default {
 .content {
 	display: flex;
 	flex-direction: column;
+	.rich_text{
+		padding: 0 1rem;
+    display: block;
+    margin-bottom: 60px;
+	}
 	.list {
 		max-width: 1200px;
 		display: flex;
-		justify-content: space-between;
+		justify-content: flex-start;
 		flex-wrap: wrap;
 		.stage {
 			max-width: 50%;
@@ -67,11 +79,19 @@ export default {
 			}
 			.info {
 				h3 {
-					word-spacing: 450px;
+					// word-spacing: 450px;
+					line-height: 1.3;
 					margin-top: 10px;
 					margin-bottom: 20px;
-					text-transform: capitalize;
+					// text-transform: capitalize;
+					&::first-letter{
+						text-transform: capitalize;
+					}
 				}
+			}
+			.rich_text:not(empty){
+				padding: 0 1rem;
+				margin-bottom: 60px;
 			}
 		}
 	}
@@ -97,8 +117,15 @@ export default {
 							display: initial;
 						}
 					}
-					.info h3 {
-						margin-top: 0;
+					.info {
+						h3 {
+							margin-top: 0;
+							font-size: 1.4rem;
+							word-spacing: initial;
+						}
+						p{
+							padding-right: 1.5rem;
+						}
 					}
 					&:last-child {
 						margin-bottom: 0;
@@ -114,13 +141,18 @@ export default {
 			.list {
 				.stage {
 					max-width: 100%;
+					.info {
+						h3 {
+							font-size: 1.3rem;
+						}
+					}
 				}
 			}
 		}
 	}
 }
 
-@media (max-width: 360px) {
+@media (max-width: 400px) {
 	section {
 		.content {
 			.list {

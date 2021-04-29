@@ -36,7 +36,7 @@ export default {
 	position: relative;
 
 	.rich_text {
-		padding-left: 1rem;
+		padding: 0 1rem;
 	}
 }
 

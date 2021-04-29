@@ -6,7 +6,10 @@
 		<div class="content">
 			<div class="text">
 				<h2 class="title">{{ title }}</h2>
-				<p class="description">{{ description }}</p>
+				<!-- <p class="description">{{ description }}</p> -->
+				<template v-if="data.primary.description">
+					<prismic-rich-text class="rich_text" :field="data.primary.description" />
+				</template>
 			</div>
 			<div class="image">
 				<ImageItem :src="image.url" :mobile="image.mobile.url" :alt="image.alt" />
@@ -54,6 +57,10 @@ export default {
 	display: flex;
 	.text {
 		min-width: 500px;
+		max-width: 40%;
+		.rich_text{
+			padding-left: 1rem;
+		}
 		.description {
 			max-width: 500px;
 			padding-left: 1rem;
@@ -86,6 +93,7 @@ export default {
 			.text {
 				min-width: auto;
 				margin-bottom: 40px;
+				max-width: 100%;
 				.title {
 					margin-bottom: 40px;
 				}

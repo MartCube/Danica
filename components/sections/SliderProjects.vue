@@ -93,7 +93,7 @@ export default {
 
 			display: flex;
 			flex-direction: column;
-			align-items: flex-end;
+			// align-items: flex-end;
 		}
 	}
 }

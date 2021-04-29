@@ -73,7 +73,7 @@ export default {
 <style lang="scss" scoped>
 section {
 	.name {
-		min-width: 240px;
+		max-width: 240px;
 		width: 100%;
 	}
 	.content {

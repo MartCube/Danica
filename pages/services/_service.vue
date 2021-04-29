@@ -14,6 +14,14 @@
 				<section v-else-if="slice.slice_type == 'text'" class="rich_text">
 					<prismic-rich-text :field="slice.primary.text" />
 				</section>
+				<section v-else-if="slice.slice_type == 'image_text'" class="image_text">
+					<div class="image">
+						<ImageItem :src="slice.primary.image.url" :mobile="slice.primary.image.mobile.url" alt="alt" />
+					</div>
+					<template v-for="(item, key) in slice.items" >
+						<prismic-rich-text class="rich_text" :key="key" :field="item.text" />
+					</template>
+				</section>
 			</div>
 		</template>
 	</div>
@@ -50,6 +58,30 @@ export default {
 .container {
 	padding: 0;
 	padding-bottom: 80px;
+	.image_text {
+		display: flex;
+		margin: 25px 0;
+		width: 100%;
+		.rich_text {
+			display: flex;
+			flex-direction: column;
+			padding: 25px 30px 55px;
+			max-width: 100%;
+			width: 50%;
+			p {
+				margin-bottom: 25px;
+			}
+		}
+		.image{
+			width: 50%;
+			picture {
+				position: relative;
+				// max-width: 800px;
+				// height: 450px;
+				z-index: 8;
+			}
+		}
+	}
 }
 .rich_text {
 	padding-right: 1rem;
@@ -59,6 +91,27 @@ export default {
 	.rich_text {
 		padding-right: 1rem;
 		padding-left: 55px;
+	}
+	.container {
+		.image_text {
+			flex-direction: column;
+
+			.rich_text {
+				display: flex;
+				flex-direction: column;
+				padding: 30px 30px 0 55px;
+				width: 100%;
+				p {
+					margin-bottom: 25px;
+				}
+			}
+			.image{
+				width: 100%;
+				picture {
+					margin-bottom: 40px;
+				}
+			}
+		}
 	}
 }
 </style>

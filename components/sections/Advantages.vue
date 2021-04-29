@@ -1,7 +1,7 @@
 <template>
 	<section class="advantages">
 		<div class="name">
-			<span>advantages</span>
+			<span>{{ name }}</span>
 		</div>
 		<div class="content">
 			<h2 class="title">{{ title }}</h2>
@@ -19,8 +19,11 @@ export default {
 		},
 	},
 	computed: {
+		name() {
+			return this.$prismic.asText(this.data.primary.name)
+		},
 		title() {
-			return this.$prismic.asText(this.data.primary.advantage_title)
+			return this.$prismic.asText(this.data.primary.title)
 		},
 	},
 }

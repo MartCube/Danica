@@ -9,8 +9,8 @@
 				<Standards v-else-if="slice.slice_type == 'standards'" :data="slice" />
 				<Advantages v-else-if="slice.slice_type == 'advantages'" :data="slice" />
 				<Charles v-else-if="slice.slice_type == 'charles'" :data="slice" />
-				<LatestProjects v-else-if="slice.slice_type == 'latestprojects'" />
-				<SliderProjects v-else-if="slice.slice_type == 'sliderprojects'" />
+				<LatestProjects v-else-if="slice.slice_type == 'latestprojects'" :data="slice" />
+				<SliderProjects v-else-if="slice.slice_type == 'sliderprojects'" :data="slice" />
 				<section v-else-if="slice.slice_type == 'text'" class="rich_text">
 					<prismic-rich-text :field="slice.primary.text" />
 				</section>

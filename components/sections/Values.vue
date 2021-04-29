@@ -1,7 +1,7 @@
 <template>
 	<section>
 		<div class="name">
-			<span>values</span>
+			<span> {{ name }} </span>
 		</div>
 		<div class="content">
 			<div class="text">
@@ -28,6 +28,9 @@ export default {
 		},
 	},
 	computed: {
+		name() {
+			return this.$prismic.asText(this.data.primary.name)
+		},
 		title() {
 			return this.$prismic.asText(this.data.primary.title)
 		},

@@ -2,10 +2,10 @@
 	<section>
 		<template v-if="!$fetchState.pending">
 			<div class="name">
-				<span>projects</span>
+				<span>{{ name }}</span>
 			</div>
 			<div class="content">
-				<h2 class="title">Stay up to date with our latest projects</h2>
+				<h2 class="title">{{ title }}</h2>
 
 				<div class="project_slider">
 					<div v-swiper="swiperOption" class="swiper-container">
@@ -27,9 +27,9 @@
 export default {
 	name: 'LatestProjects',
 	props: {
-		tag: {
-			type: Array,
-			default: () => [],
+		data: {
+			type: Object,
+			required: true,
 		},
 	},
 	data: () => ({
@@ -49,12 +49,23 @@ export default {
 		},
 	}),
 	async fetch() {
-		const projects = await this.$prismic.api.query([this.$prismic.predicates.at('document.type', 'project_post'), this.$prismic.predicates.at('document.tags', this.tag)], {
+		const projects = await this.$prismic.api.query([this.$prismic.predicates.at('document.type', 'project_post'), this.$prismic.predicates.at('document.tags', [this.tag])], {
 			orderings: '[document.first_publication_date desc]',
 			pageSize: this.page_size,
 			lang: this.$i18n.localeProperties.prismic,
 		})
 		this.projects = projects.results
+	},
+	computed: {
+		name() {
+			return this.$prismic.asText(this.data.primary.name)
+		},
+		title() {
+			return this.$prismic.asText(this.data.primary.title)
+		},
+		tag() {
+			return this.data.primary.tag
+		},
 	},
 }
 </script>

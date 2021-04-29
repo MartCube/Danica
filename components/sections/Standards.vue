@@ -1,10 +1,10 @@
 <template>
 	<section>
 		<div class="name">
-			<span>standards</span>
+			<span> {{ name }}</span>
 		</div>
 		<div class="content">
-			<h2 class="title">The standards you set determine the life you get</h2>
+			<h2 class="title">{{ title }}</h2>
 			<div class="list">
 				<div v-for="(standard, i) in data.items" :key="i">
 					<ImageItem :src="standard.image.url" :alt="$prismic.asText(standard.title)" />
@@ -27,8 +27,11 @@ export default {
 		},
 	},
 	computed: {
+		name() {
+			return this.$prismic.asText(this.data.primary.name)
+		},
 		title() {
-			return this.$prismic.asText(this.data.primary.stages_title)
+			return this.$prismic.asText(this.data.primary.title)
 		},
 	},
 	method: {

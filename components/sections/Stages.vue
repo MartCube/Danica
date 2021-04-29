@@ -1,7 +1,7 @@
 <template>
 	<section>
 		<div class="name">
-			<span>stages</span>
+			<span>{{ name }}</span>
 		</div>
 		<div class="content">
 			<h2 class="title">{{ title }}</h2>
@@ -27,8 +27,11 @@ export default {
 		},
 	},
 	computed: {
+		name() {
+			return this.$prismic.asText(this.data.primary.name)
+		},
 		title() {
-			return this.$prismic.asText(this.data.primary.stages_title)
+			return this.$prismic.asText(this.data.primary.title)
 		},
 	},
 }
@@ -106,10 +109,10 @@ export default {
 	}
 }
 @media (max-width: 650px) {
-	section{
-		.content{
-			.list{
-				.stage{
+	section {
+		.content {
+			.list {
+				.stage {
 					max-width: 100%;
 				}
 			}

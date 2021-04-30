@@ -44,6 +44,10 @@
 							</div>
 						</div>
 					</template>
+
+					<template v-else-if="slice.slice_type == 'video'">
+						<VideoItem :video="slice.primary.video" />
+					</template>
 				</div>
 			</div>
 		</template>

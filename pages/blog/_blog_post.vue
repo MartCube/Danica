@@ -41,6 +41,10 @@
 							</div>
 						</div>
 					</template>
+
+					<template v-else-if="slice.slice_type == 'video'">
+						<VideoItem :video="slice.primary.video" />
+					</template>
 				</div>
 			</div>
 		</template>
@@ -225,6 +229,10 @@ export default {
 		picture {
 			max-width: 40%;
 		}
+	}
+
+	.video {
+		width: 100%;
 	}
 }
 

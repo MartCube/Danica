@@ -6,7 +6,6 @@
 		<div class="content">
 			<div class="text">
 				<h2 class="title">{{ title }}</h2>
-				<!-- <p class="description">{{ description }}</p> -->
 				<template v-if="data.primary.description">
 					<prismic-rich-text class="rich_text" :field="data.primary.description" />
 				</template>
@@ -17,7 +16,7 @@
 					<IconPlay />
 				</div>
 			</div>
-			<ModalVideo />
+			<ModalVideo :video="data.primary.video" />
 		</div>
 	</section>
 </template>
@@ -58,7 +57,7 @@ export default {
 	.text {
 		min-width: 500px;
 		max-width: 40%;
-		.rich_text{
+		.rich_text {
 			padding-left: 1rem;
 		}
 		.description {
@@ -69,6 +68,7 @@ export default {
 	.image {
 		margin-left: 40px;
 		position: relative;
+		width: 100%;
 		.play {
 			padding: 24px;
 			background: $primary;

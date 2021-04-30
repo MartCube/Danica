@@ -31,7 +31,6 @@ export default {
 	},
 	computed: {
 		description() {
-			console.log(this.data.primary.stages_description);
 			return this.data.primary.stages_description
 		},
 		name() {

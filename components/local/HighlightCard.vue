@@ -152,6 +152,8 @@ $transition: all 0.35s ease;
 				font-weight: 300;
 				font-size: 1.2rem;
 				line-height: 1.5rem;
+				max-height: 172px;
+				overflow: hidden;
 			}
 		}
 		img {

@@ -82,7 +82,8 @@ section{
 		padding-top: 5px;
 		padding-right: 24px;
 		display: flex;
-		text-transform: capitalize;
+		// text-transform: capitalize;
+		white-space: nowrap;
 		color: $grey;
 
 		&::before {

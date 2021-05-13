@@ -7,13 +7,13 @@ export default {
 		contact: {
 			name: 'Contact',
 			title: 'We are always glad to meet new friends',
-			office: 'Office',
-			find_us: 'Find us',
-			follow_us: 'Follow us',
-			adress: 'Naberezhno-Rybalska St, 9, Kyiv',
-			for_clients: 'For clients',
-			live_chat: 'live chat',
-			tap_to_open: 'Tap to open',
+			// office: 'Office',
+			// find_us: 'Find us',
+			// follow_us: 'Follow us',
+			// adress: 'Naberezhno-Rybalska St, 9, Kyiv',
+			// for_clients: 'For clients',
+			// live_chat: 'live chat',
+			// tap_to_open: 'Tap to open',
 		},
 	},
 	service: {
@@ -31,10 +31,10 @@ export default {
 			message: 'Message',
 			subscriptionText: 'Subscribe and keep up to date with the latest news and projects'
 		},
-		footer: {
-			all_rights_reserved: 'All rights reserved',
-			privacy_policy: 'Privacy Policy',
-			terms: 'Terms and Conditions',
-		},
+		// footer: {
+		// 	all_rights_reserved: 'All rights reserved',
+		// 	privacy_policy: 'Privacy Policy',
+		// 	terms: 'Terms and Conditions',
+		// },
 	},
 }

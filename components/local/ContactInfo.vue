@@ -2,15 +2,15 @@
 	<div class="contact-info">
 		<div class="office">
 			<div class="numbers">
-				<h4>{{ $t('pages.contact.office') }}:</h4>
+				<h4>{{ $prismic.asText(data.officeTitle) }}</h4>
 				<a v-for="(number, i) in data.office" :key="i" :href="NumberLink(number)"> <IconPhone size="16px" /> {{ $prismic.asText(number.number) }} </a>
 			</div>
 			<div class="location">
-				<h4>{{ $t('pages.contact.find_us') }}</h4>
-				<a :href="map_url" target="_blank"> <IconLocation size="20px" />{{ $t('pages.contact.adress') }}</a>
+				<h4>{{ $prismic.asText(data.adressTitle) }}</h4>
+				<a :href="map_url" target="_blank"> <IconLocation size="20px" />{{ $prismic.asText(data.adress) }}</a>
 			</div>
 			<div class="smedias">
-				<h4>{{ $t('pages.contact.follow_us') }}</h4>
+				<h4>{{ $prismic.asText(data.followUsTitle)  }}</h4>
 				<div class="icons">
 					<a href="https://facebook.com/danica.ukraine" target="_blank">
 						<IconFacebook />
@@ -26,15 +26,15 @@
 		</div>
 		<div class="for_clients">
 			<div class="numbers">
-				<h4>{{ $t('pages.contact.for_clients') }}</h4>
+				<h4>{{ $prismic.asText(data.clientsTitle) }}</h4>
 				<a v-for="(number, i) in data.office" :key="i" :href="NumberLink(number)"> <IconPhone size="16px" /> {{ $prismic.asText(number.number) }} </a>
 			</div>
 			<div class="contact">
-				<h4>{{ $t('service.form.write_us') }}</h4>
+				<h4>{{ $prismic.asText(data.emailTitle) }}</h4>
 				<span @click="openModal()"> <IconMail size="20px" /> info@danica.ua</span>
 			</div>
 			<div class="chat">
-				<h4>{{ $t('pages.contact.live_chat') }}</h4>
+				<h4>{{ $prismic.asText(data.liveChatTitle) }}</h4>
 				<div class="icons">
 					<a href="https://m.me/danica.ukraine" target="_blank">
 						<IconMessenger />
@@ -58,11 +58,20 @@ export default {
 		map_url: 'https://g.page/danica-ua?share',
 	}),
 	async fetch() {
-		const contact = await this.$prismic.api.getSingle('footer')
+		const lang = this.$i18n.localeProperties.prismic;
+		const contact = await this.$prismic.api.getSingle('footer', {lang})
 		this.data = {
 			image: contact.data.image.url,
 			office: contact.data.office,
+			officeTitle: contact.data.office_title,
+			clientsTitle: contact.data.clients_title,
+			followUsTitle: contact.data.follow_us_title,
+			adressTitle: contact.data.adress_title,
+			emailTitle: contact.data.email_title,
+			liveChatTitle: contact.data.live_chat,
 			for_clients: contact.data.for_clients,
+			adress: contact.data.adress,
+			
 		}
 	},
 	methods: {
@@ -151,7 +160,6 @@ export default {
 			}
 			svg {
 				align-self: flex-start;
-				margin-top: 5px;
 				margin-right: 10px;
 			}
 		}

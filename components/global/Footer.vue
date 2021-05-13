@@ -13,14 +13,14 @@
 			</div>
 			<div class="policy">
 				<div class="links">
-					<n-link to="/"> Danica {{ year }} <IconCopyRight size="16px" /></n-link>
+					<p> Danica {{ year }} <IconCopyRight size="16px" /></p>
 					<span>|</span>
-					<n-link to="/">{{ $t('service.footer.all_rights_reserved') }}</n-link>
+					<p>{{ $prismic.asText(data.all_rights_reserved) }}</p>
 				</div>
 				<div class="links">
-					<n-link :to="localePath('/privacy-policy')">{{ $t('service.footer.privacy_policy') }}</n-link>
-					<span>|</span>
-					<n-link :to="localePath('/privacy-policy')">{{ $t('service.footer.terms') }}</n-link>
+					<n-link :to="localePath('/privacy-policy')">{{ $prismic.asText(data.privacy_policy) }}</n-link>
+					<!-- <span>|</span> -->
+					<!-- <n-link :to="localePath('/privacy-policy')">{{ $t('service.footer.terms') }}</n-link> -->
 				</div>
 			</div>
 			<div class="to_top" @click="ScrollToTop">
@@ -36,11 +36,14 @@ export default {
 		data: Object,
 	}),
 	async fetch() {
-		const footer = await this.$prismic.api.getSingle('footer')
+		const lang = this.$i18n.localeProperties.prismic;
+		const footer = await this.$prismic.api.getSingle('footer', {lang})
 		this.data = {
 			image: footer.data.image.url,
 			office: footer.data.office,
 			for_clients: footer.data.for_clients,
+			all_rights_reserved: footer.data.all_rights_reserved,
+			privacy_policy: footer.data.privacy_policy,
 		}
 	},
 	computed: {
@@ -131,8 +134,11 @@ export default {
 		.links {
 			display: flex;
 			justify-content: space-between;
-			justify-items: center;
-
+			align-items: center;
+			p {
+				font-weight: 400;
+				font-size: 1rem;
+			}
 			a {
 				display: flex;
 				align-items: center;

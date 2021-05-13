@@ -16,7 +16,7 @@
 				</section>
 				<section v-else-if="slice.slice_type == 'image_text'" class="image_text">
 					<div class="image">
-						<ImageItem :src="slice.primary.image.url" :mobile="slice.primary.image.mobile.url"/>
+						<ImageItem :src="slice.primary.image.url" :mobile="slice.primary.image.mobile.url" :alt="slice.primary.image.alt"/>
 					</div>
 					<template v-for="(item, key) in slice.items" >
 						<prismic-rich-text class="rich_text" :key="key" :field="item.text" />

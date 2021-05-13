@@ -27,7 +27,7 @@ export default {
 	margin-top: 120px;
 	padding: 0 0 40px 1rem;
 	border-left: 1px solid $line;
-	&::after{
+	&::after {
 		display: none;
 	}
 	.slice {

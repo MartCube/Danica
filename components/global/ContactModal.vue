@@ -3,7 +3,7 @@
 		<div class="image">
 			<ImageItem v-if="!$fetchState.pending" :src="image" alt="contact" />
 		</div>
-		<ContactForm />
+		<ContactForm :data="form_data" />
 		<IconClose class="close" size="35px" @click.native="closeModal" />
 	</div>
 </template>
@@ -14,10 +14,12 @@ import { modalAnim } from '~/assets/anime'
 export default {
 	data: () => ({
 		image: '',
+		form_data: null,
 	}),
 	async fetch() {
-		const data = await this.$prismic.api.getSingle('contact_form')
-		this.image = data.data.image.url
+		const fetch = await this.$prismic.api.getSingle('contact_form')
+		this.image = fetch.data.image.url
+		this.form_data = fetch.data
 	},
 	computed: {
 		modalContact() {

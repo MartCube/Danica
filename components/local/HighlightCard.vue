@@ -18,14 +18,14 @@
 				<p>square</p>
 			</div>
 			<div class="link1">
-				<IconChevron size="35px" />
+				<IconChevron size="32px" />
 			</div>
 		</div>
 	</n-link>
 	<n-link v-else :to="link" class="highlight_card" :class="{ last: last }">
 		<ImageItem :src="image + Thumbnail_imgIX" :alt="title" />
 		<div class="link">
-			<IconChevron size="25px" />
+			<IconChevron size="32px" />
 		</div>
 		<div class="title">
 			<h3>{{ title }}</h3>
@@ -159,14 +159,14 @@ $transition: all 0.35s ease;
 			height: 500px;
 		}
 	}
-	picture{
+	picture {
 		z-index: 0;
 	}
 	&.last {
 		width: auto;
 		flex: 1;
 		margin-right: 0;
-		.title{
+		.title {
 			width: 100%;
 			height: 100%;
 			max-width: 100%;
@@ -190,19 +190,25 @@ $transition: all 0.35s ease;
 		}
 	}
 	.link {
-		z-index: 2;
 		position: absolute;
 		bottom: 0;
 		right: 0;
-		padding: 25px;
+		width: 80px;
+		height: 80px;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+
+		z-index: 2;
 		background: $primary;
+		cursor: pointer;
+
 		opacity: 0; //opacity:1
 		transition: $transition;
 	}
-	&:nth-child(even){
+	&:nth-child(even) {
 		margin-left: 150px;
 	}
-
 
 	&:hover {
 		.link {

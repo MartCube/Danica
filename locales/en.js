@@ -13,7 +13,7 @@ export default {
 			// adress: 'Naberezhno-Rybalska St, 9, Kyiv',
 			// for_clients: 'For clients',
 			// live_chat: 'live chat',
-			// tap_to_open: 'Tap to open',
+			tap_to_open: 'Tap to open',
 		},
 	},
 	service: {

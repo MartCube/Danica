@@ -1,6 +1,6 @@
 <template>
 	<ValidationObserver ref="subscribe" class="subscribe" tag="form" autocomplete="off" @submit.prevent="Submit()">
-		<p>{{ $t('service.form.subscriptionText') }}</p>
+		<p >{{ $prismic.asText(data.subscription_text) }}</p>
 		<InputItem subscribe name="email" rules="email" :label="$t('service.form.email')" @getValue="GetEmail" />
 	</ValidationObserver>
 </template>
@@ -15,11 +15,18 @@ export default {
 	data: () => ({
 		message: false,
 		loading: false,
+		data: Object,
 		form: {
 			email: '',
 			action: 'subscribe',
 		},
 	}),
+	async fetch() {
+		const contact = await this.$prismic.api.getSingle('footer')
+		this.data = {
+			subscription_text: contact.data.subscription_text,
+		}
+	},
 	methods: {
 		GetEmail(value) {
 			this.form.email = value

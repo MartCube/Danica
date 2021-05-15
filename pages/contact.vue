@@ -20,12 +20,12 @@
 				<div class="links">
 					<n-link to="/"> Danica {{ year }} <IconCopyRight size="16px" /></n-link>
 					<span>|</span>
-					<n-link to="/">{{ $t('service.footer.all_rights_reserved') }}</n-link>
+					<p>{{ $prismic.asText(data.all_rights_reserved) }}</p>
 				</div>
 				<div class="links">
-					<n-link to="/">{{ $t('service.footer.privacy_policy') }}</n-link>
-					<span>|</span>
-					<n-link to="/">{{ $t('service.footer.terms') }}</n-link>
+					<n-link :to="localePath('/privacy-policy')">{{ $prismic.asText(data.privacy_policy) }}</n-link>
+					<!-- <span>|</span>
+					<n-link to="/">{{ $t('service.footer.terms') }}</n-link> -->
 				</div>
 			</div>
 		</div>
@@ -52,6 +52,8 @@ export default {
 			image: contact.data.image.url,
 			office: contact.data.office,
 			for_clients: contact.data.for_clients,
+			all_rights_reserved: contact.data.all_rights_reserved,
+			privacy_policy: contact.data.privacy_policy,
 		}
 	},
 	computed: {
@@ -114,7 +116,12 @@ export default {
 				display: flex;
 				justify-content: space-between;
 				justify-items: center;
-
+				align-items: center;
+				p {
+					color: $white;
+					font-size: 1rem;
+					font-weight: 400;
+				}
 				a {
 					display: flex;
 					align-items: center;
@@ -225,7 +232,9 @@ export default {
 				height: auto;
 				flex-direction: column;
 				padding: 16px 16px 16px 56px;
+			
 				.links {
+				
 					width: 100%;
 					& > * {
 						margin-bottom: 15px;

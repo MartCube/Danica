@@ -1,19 +1,20 @@
 <template>
 	<div class="contact_form">
 		<ValidationObserver v-if="!message" ref="contact" tag="form" autocomplete="off" @submit.prevent="Submit()">
-			<h2 class="title">{{ $t('service.form.write_us') }}</h2>
-			<InputItem name="name" :label="$t('service.form.name')" rules="required" @getValue="getName" />
-			<InputItem name="number" :label="$t('service.form.number')" rules="digits:3|required" @getValue="getNumber" />
-			<InputItem name="email" :label="$t('service.form.email')" rules="email|required" @getValue="getEmail" />
-			<InputItem name="message" :label="$t('service.form.message')" rules="required" @getValue="getMessage" />
-			<ButtonItem white> {{ $t('service.buton_contact_form') }} <IconMail /> </ButtonItem>
+			<h2 class="title">{{contactData.title}}</h2>
+			<InputItem name="name" :label="contactData.name" rules="required" @getValue="getName" />
+			<InputItem name="number" :label="contactData.number" rules="digits:3|required" @getValue="getNumber" />
+			<InputItem name="email" :label="contactData.email" rules="email|required" @getValue="getEmail" />
+			<InputItem name="message" :label="contactData.message" rules="required" @getValue="getMessage" />
+			<ButtonItem white> {{ contactData.submit }} <IconMail /> </ButtonItem>
 		</ValidationObserver>
 
 		<div v-else class="message">
-			<h2 class="title">{{ $t('service.form.title') }}</h2>
-			<p>{{ $t('service.form.text_responce1') }}</p>
-			<p>{{ $t('service.form.text_responce2') }}</p>
-			<ButtonItem white> {{ $t('service.form.button_tohome') }} </ButtonItem>
+			<h2 class="title">{{ data.title  }}</h2>
+			<p v-for="(item, key) in data.response" :key="key">{{ item.text }}</p>
+			<!-- <p>{{ $t('service.form.text_responce1') }}</p> -->
+			<!-- <p>{{ $t('service.form.text_responce2') }}</p> -->
+			<ButtonItem white> {{ item.goback  }} </ButtonItem>
 		</div>
 	</div>
 </template>
@@ -28,7 +29,7 @@ export default {
 	data: () => ({
 		message: false,
 		loading: false,
-
+		contactData: Object,
 		form: {
 			name: '',
 			number: '',
@@ -37,6 +38,19 @@ export default {
 			action: 'contact',
 		},
 	}),
+	async fetch() {
+		const formData = await this.$prismic.api.getSingle('contact_form')
+		this.contactData = {
+			title: formData.data.title,
+			name: formData.data.name,
+			number: formData.data.number,
+			submit: formData.data.submit,
+			email: formData.data.email,
+			message: formData.data.message,
+			response: formData.data.response,
+			goback: formData.data.goback,
+		}
+	},
 	methods: {
 		closeModal() {
 			this.$emit('closeModal')

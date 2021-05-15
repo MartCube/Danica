@@ -18,13 +18,13 @@
 					<n-link to="/">{{ $t('service.footer.all_rights_reserved') }}</n-link>
 				</div>
 				<div class="links">
-					<n-link :to="localePath('/privacy-policy')">{{ $t('service.footer.privacy_policy') }}</n-link>
+					<n-link :to="localePath('/policy')">{{ $t('service.footer.privacy_policy') }}</n-link>
 					<span>|</span>
-					<n-link :to="localePath('/privacy-policy')">{{ $t('service.footer.terms') }}</n-link>
+					<n-link :to="localePath('/policy')">{{ $t('service.footer.terms') }}</n-link>
 				</div>
 			</div>
 			<div class="to_top" @click="ScrollToTop">
-				<IconChevron size="40px" top />
+				<IconChevron size="32px" top />
 			</div>
 		</template>
 	</footer>
@@ -37,6 +37,7 @@ export default {
 	}),
 	async fetch() {
 		const footer = await this.$prismic.api.getSingle('footer')
+
 		this.data = {
 			image: footer.data.image.url,
 			office: footer.data.office,

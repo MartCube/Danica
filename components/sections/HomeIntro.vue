@@ -4,33 +4,33 @@
 		<img class="bg_letter second" src="/a_letter.svg" alt="" />
 		<div class="text">
 			<div class="title">
-				<span v-for="(letter, i) in lettersWeAre" :key="i" ref="lettersWeAre">{{ letter }}</span>
+				<span v-for="(letter, i) in first_title" :key="i" ref="lettersWeAre">{{ letter }}</span>
 			</div>
 			<div class="title">
-				<span v-for="(letter, i) in lettersLeadersIn" :key="i" ref="lettersLeadersIn">{{ letter }}</span>
+				<span v-for="(letter, i) in second_title" :key="i" ref="lettersLeadersIn">{{ letter }}</span>
 			</div>
 			<TextSlider />
-			<ButtonItem @click.native="openModal"> {{ $t('service.form.write_us') }} </ButtonItem>
+			<ButtonItem @click.native="openModal"> {{ data.primary.button }} </ButtonItem>
 		</div>
 
 		<div class="collage">
 			<div class="first design">
-				<img :src="first_imgIX" alt="danica" @load="Animate" />
+				<img :src="data.items[0].collage_image1.url" alt="danica" @load="Animate" />
 			</div>
 			<div class="second design">
-				<img :src="second_imgIX" alt="danica" @load="Animate" />
+				<img :src="data.items[0].collage_image3.url" alt="danica" @load="Animate" />
 			</div>
 			<div class="third design">
-				<img :src="third_imgIX" alt="danica" @load="Animate" />
+				<img :src="data.items[0].collage_image2.url" alt="danica" @load="Animate" />
 			</div>
 			<div class="first architecture">
-				<img src="shelter_danica_ar1.jpg" alt="danica" @load="Animate" />
+				<img :src="data.items[1].collage_image1.url" alt="danica" @load="Animate" />
 			</div>
 			<div class="second architecture">
-				<img src="shelter_danica_ar2.jpg" alt="danica" @load="Animate" />
+				<img :src="data.items[1].collage_image2.url" alt="danica" @load="Animate" />
 			</div>
 			<div class="third architecture">
-				<img src="shelter_danica_ar3.jpg" alt="danica" @load="Animate" />
+				<img :src="data.items[1].collage_image3.url" alt="danica" @load="Animate" />
 			</div>
 		</div>
 	</section>
@@ -42,29 +42,19 @@ import { HomeIntroAnim } from '~/assets/anime'
 export default {
 	props: {
 		data: {
-			type: Array,
+			type: Object,
 			required: true,
 		},
 	},
 	data: () => ({
 		imagesLoaded: 0,
-		// bgLetter: document.querySelector(".bg_letter"),
 	}),
 	computed: {
-		lettersWeAre() {
-			return 'We are'.split('')
+		first_title() {
+			return this.data.primary.first_title.split('')
 		},
-		lettersLeadersIn() {
-			return 'Leaders in'.split('')
-		},
-		first_imgIX() {
-			return this.data[0].intro_image.url + `&fit=crop&w=300&h=300&dpr=1`
-		},
-		second_imgIX() {
-			return this.data[1].intro_image.url + `&fit=crop&w=800&h=1000&dpr=1`
-		},
-		third_imgIX() {
-			return this.data[2].intro_image.url + `&fit=crop&w=400&h=400&dpr=1`
+		second_title() {
+			return this.data.primary.second_title.split('')
 		},
 	},
 	methods: {
@@ -201,7 +191,6 @@ export default {
 		}
 	}
 	@media (max-width: 900px) {
-
 		.collage {
 			display: none;
 		}
@@ -241,7 +230,7 @@ export default {
 			}
 			button {
 				align-self: flex-end;
-				margin:20% 10%;
+				margin: 20% 10%;
 				text-transform: initial;
 			}
 		}
@@ -265,7 +254,7 @@ export default {
 	}
 }
 @media (max-width: 900px) {
-	.intro{
+	.intro {
 		height: calc(100vh - 60px);
 	}
 }

@@ -3,7 +3,7 @@
 		<div class="bg">
 			<ImageItem :src="image.url" :mobile="image.mobile.url" :alt="image.alt" />
 		</div>
-		<div class="content" :class="{ white: white }">
+		<div class="content" :class="{ white: data.primary.white_text }">
 			<div class="maintitle">
 				<span v-for="(letter, i) in title" :key="i" ref="maintitle">{{ letter }}</span>
 			</div>

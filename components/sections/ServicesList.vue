@@ -1,15 +1,15 @@
 <template>
 	<section>
 		<div class="name">
-			<span>services</span>
+			<span>{{ data.primary.name }}</span>
 		</div>
 		<div class="content">
-			<h2 class="title">{{ title }}</h2>
+			<h2 class="title">{{ data.primary.title }}</h2>
 			<div class="links">
-				<div v-for="(link, i) in links" :key="i" class="link">
+				<div v-for="(item, i) in data.items" :key="i" class="link">
 					<n-link to="/">
 						<span>0{{ i + 1 }}/</span>
-						{{ link }}
+						{{ item.service }}
 						<IconArrow />
 					</n-link>
 				</div>
@@ -24,14 +24,6 @@ export default {
 		data: {
 			type: Object,
 			required: true,
-		},
-	},
-	data: () => ({
-		links: [' interior design', 'passive house block', 'remont', 'architectural design', 'construction', 'other types of work'],
-	}),
-	computed: {
-		title() {
-			return this.$prismic.asText(this.data.services_list_title)
 		},
 	},
 }

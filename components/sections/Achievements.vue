@@ -1,23 +1,15 @@
 <template>
 	<section v-observe-visibility="visibilityOptions" class="achievements">
 		<div class="name">
-			<span>achievements</span>
+			<span>{{ data.primary.name }}</span>
 		</div>
 		<div class="content">
-			<h2 class="title">{{ title }}</h2>
+			<h2 class="title">{{ data.primary.title }}</h2>
 			<div class="text">
 				<p>{{ description }}</p>
-				<div class="counter">
-					<span class="number">{{ data.years_on_market }}</span>
-					<h4>years of establishment</h4>
-				</div>
-				<div class="counter">
-					<span class="number">{{ data.houses_build }}</span>
-					<h4>houses build</h4>
-				</div>
-				<div class="counter">
-					<span class="number">{{ data.projects }}</span>
-					<h4>architecture projects</h4>
+				<div v-for="item in data.items" :key="item.achievement" class="counter">
+					<span class="number">{{ item.number }}</span>
+					<h4>{{ item.achievement }}</h4>
 				</div>
 			</div>
 			<img class="lazyload" :src="image" alt="achievements" />
@@ -35,14 +27,11 @@ export default {
 		},
 	},
 	computed: {
-		title() {
-			return this.$prismic.asText(this.data.achievements_title)
-		},
 		description() {
-			return this.$prismic.asText(this.data.achievements_description)
+			return this.$prismic.asText(this.data.primary.description)
 		},
 		image() {
-			return this.data.achievements_image.url
+			return this.data.primary.image.url
 		},
 		visibilityOptions() {
 			return {

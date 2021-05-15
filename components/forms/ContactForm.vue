@@ -1,19 +1,17 @@
 <template>
 	<div class="contact_form">
 		<ValidationObserver v-if="!message" ref="contact" tag="form" autocomplete="off" @submit.prevent="Submit()">
-			<h2 class="title">{{ $t('service.form.write_us') }}</h2>
-			<InputItem name="name" :label="$t('service.form.name')" rules="required" @getValue="getName" />
-			<InputItem name="number" :label="$t('service.form.number')" rules="digits:3|required" @getValue="getNumber" />
-			<InputItem name="email" :label="$t('service.form.email')" rules="email|required" @getValue="getEmail" />
-			<InputItem name="message" :label="$t('service.form.message')" rules="required" @getValue="getMessage" />
-			<ButtonItem white> {{ $t('service.buton_contact_form') }} <IconMail /> </ButtonItem>
+			<h2 class="title">{{ data.title }}</h2>
+			<InputItem name="name" :label="data.name" rules="required" @getValue="getName" />
+			<InputItem name="number" :label="data.number" rules="digits:3|required" @getValue="getNumber" />
+			<InputItem name="email" :label="data.email" rules="email|required" @getValue="getEmail" />
+			<InputItem name="message" :label="data.message" rules="required" @getValue="getMessage" />
+			<ButtonItem white> {{ data.submit }} <IconMail /> </ButtonItem>
 		</ValidationObserver>
 
 		<div v-else class="message">
-			<h2 class="title">{{ $t('service.form.title') }}</h2>
-			<p>{{ $t('service.form.text_responce1') }}</p>
-			<p>{{ $t('service.form.text_responce2') }}</p>
-			<ButtonItem white> {{ $t('service.form.button_tohome') }} </ButtonItem>
+			<prismic-rich-text class="rich_text" :field="data.response" />
+			<ButtonItem white> {{ data.goback }} </ButtonItem>
 		</div>
 	</div>
 </template>
@@ -24,6 +22,12 @@ import { ValidationObserver } from 'vee-validate'
 export default {
 	components: {
 		ValidationObserver,
+	},
+	props: {
+		data: {
+			type: Object,
+			required: true,
+		},
 	},
 	data: () => ({
 		message: false,
@@ -89,7 +93,7 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .contact_form {
 	width: 100%;
 	height: 100%;
@@ -112,20 +116,14 @@ export default {
 	}
 
 	.message {
-		width: 50%;
-		padding: 0 15%;
 		display: flex;
 		flex-direction: column;
 		justify-content: center;
-		.title {
-			margin-bottom: 2rem;
-			font-size: 2rem;
-			width: max-content;
-			text-transform: capitalize;
-			border-bottom: 2px solid $primary;
-		}
-		p {
+
+		.rich_text p {
+			color: $white;
 			line-height: 1.5rem;
+			font-weight: 400;
 		}
 		button {
 			margin-top: 2rem;
@@ -133,8 +131,8 @@ export default {
 	}
 }
 @media (max-width: 420px) {
-	.contact_form{
-		.title{
+	.contact_form {
+		.title {
 			font-size: 1.5rem;
 		}
 	}

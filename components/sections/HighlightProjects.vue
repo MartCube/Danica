@@ -1,15 +1,15 @@
 <template>
 	<MediaQueryProvider :queries="{ mobile: '(max-width: 1100px)' }" ssr>
 		<MatchMedia v-slot="{ mobile }">
-			<LatestProjects v-if="mobile" :tag="['highlight']" />
+			<LatestProjects v-if="mobile" :data="data" />
 
 			<section v-else>
 				<template v-if="!$fetchState.pending">
 					<div class="name">
-						<span>projects</span>
+						<span>{{ data.primary.name }}</span>
 					</div>
 					<div class="content">
-						<h2 class="title">{{ title }}</h2>
+						<h2 class="title">{{ data.primary.title }}</h2>
 
 						<div ref="grid" class="grid">
 							<HighlightCard v-for="(project, i) in projects" :key="'post' + i" :first="i == 0" :last="i + 1 == projects.length" :data="project" />
@@ -48,9 +48,6 @@ export default {
 	computed: {
 		firstProject() {
 			return this.projects[0]
-		},
-		title() {
-			return this.$prismic.asText(this.data.highlight_projects_title)
 		},
 	},
 }

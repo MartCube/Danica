@@ -110,7 +110,7 @@ export default {
 		transition: 0.2s;
 		font-size: 0.8rem;
 		color: white;
-		text-transform: capitalize;
+		// text-transform: capitalize;
 	}
 	.arrow {
 		position: absolute;

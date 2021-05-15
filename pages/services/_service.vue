@@ -18,8 +18,8 @@
 					<div class="image">
 						<ImageItem :src="slice.primary.image.url" :mobile="slice.primary.image.mobile.url"/>
 					</div>
-					<template v-for="(item, key) in slice.items" >
-						<prismic-rich-text class="rich_text" :key="key" :field="item.text" />
+					<template v-for="(item, key) in slice.items">
+						<prismic-rich-text :key="key" class="rich_text" :field="item.text" />
 					</template>
 				</section>
 			</div>
@@ -41,7 +41,6 @@ export default {
 		const lang = this.$i18n.localeProperties.prismic
 		const fetch = await this.$prismic.api.getByUID('services', this.$route.params.service, { lang })
 		this.slices = fetch.data.body
-		console.log(this.sl);
 	},
 	fetchKey(getCounter) {
 		// getCounter is a method that can be called to get the next number in a sequence
@@ -73,7 +72,7 @@ export default {
 				margin-bottom: 25px;
 			}
 		}
-		.image{
+		.image {
 			width: 50%;
 			picture {
 				position: relative;
@@ -88,6 +87,7 @@ export default {
 	padding-right: 1rem;
 	padding-left: 255px;
 }
+
 @media (max-width: 900px) {
 	.rich_text {
 		padding-right: 1rem;
@@ -106,7 +106,7 @@ export default {
 					margin-bottom: 25px;
 				}
 			}
-			.image{
+			.image {
 				width: 100%;
 				picture {
 					margin-bottom: 40px;

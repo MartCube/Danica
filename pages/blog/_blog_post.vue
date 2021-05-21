@@ -53,6 +53,17 @@
 
 <script>
 export default {
+	// async asyncData({ $prismic, store, route, i18n }) {
+	// 	const lang = i18n.localeProperties.prismic
+
+	// 	const post = await $prismic.api.getByUID('blog_post', route.params.blog_post, { lang })
+	// 	console.log(post)
+	// 	await store.dispatch('i18n/setRouteParams', {
+	// 		en: { blog_post: post.uid },
+	// 		ru: { blog_post: post.alternate_languages[0].uid },
+	// 		ua: { blog_post: post.alternate_languages[1].uid },
+	// 	})
+	// },
 	data: () => ({
 		post: Object,
 		swiperOption: {
@@ -66,9 +77,8 @@ export default {
 		},
 	}),
 	async fetch() {
-		const lang = this.$i18n.localeProperties.prismic
 
-		const post = await this.$prismic.api.getByUID('blog_post', this.$route.params.blog_post, { lang })
+		const post = await this.$prismic.api.getByUID('blog_post', this.$route.params.blog_post, { lang:this.$i18n.localeProperties.prismic })
 		this.post = {
 			image: post.data.image,
 			title: this.$prismic.asText(post.data.title),

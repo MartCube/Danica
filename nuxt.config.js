@@ -60,6 +60,34 @@ export default {
 				file: 'ua.js',
 			},
 		],
+		parsePages: false, // Disable babel parsing
+		pages: {
+			'projects/index': {
+				en: '/projects',
+				ru: '/proekti',
+				ua: '/proekti',
+			},
+			'projects/_project_post': {
+				en: '/projects/:_project_post?',
+				ru: '/proekti/:_project_post?',
+				ua: '/proekti/:_project_post?',
+			},
+			'blog/index': {
+				en: '/blog',
+				ru: '/novosti',
+				ua: '/novini',
+			},
+			'blog/_blog_post': {
+				en: '/blog/:blog_post?',
+				ru: '/blog/:blog_post?',
+				ua: '/blog/:blog_post?',
+			},
+			contact: {
+				en: '/contact',
+				ru: '/kontakti',
+				ua: '/kontakti',
+			},
+		},
 	},
 
 	axios: {

@@ -60,7 +60,7 @@ export default {
 			goback: formData.data.goback,
 		}
 		const contact = await this.$prismic.api.getSingle('footer')
-		console.log(contact);
+		// console.log(contact);
 		this.data = {
 			image: contact.data.image.url,
 			office: contact.data.office,

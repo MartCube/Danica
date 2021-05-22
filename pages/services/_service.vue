@@ -36,10 +36,23 @@ export default {
 	middleware: 'navbarTransparent',
 	data: () => ({
 		slices: null,
+		altLangUid: Object
 	}),
+	watch: {
+    '$route.query': '$fetch'
+  },
 	async fetch() {
 		const lang = this.$i18n.localeProperties.prismic
-		const fetch = await this.$prismic.api.getByUID('services', this.$route.params.service, { lang })
+		const fetch = await this.$prismic.api.getByUID('services', this.$route.params.service, { lang: lang });
+		this.altLangUid[fetch.lang.slice(0,2)] = fetch.uid; 
+		fetch.alternate_languages.forEach(alternateLang => {
+				this.altLangUid[alternateLang.lang.slice(0,2)] = alternateLang.uid; 
+		});
+		this.$store.dispatch('i18n/setRouteParams', {
+			en: { service: this.altLangUid.en },
+			ru: { service: this.altLangUid.ru },
+			ua: { service: this.altLangUid.ua },
+		})
 		this.slices = fetch.data.body
 	},
 	fetchKey(getCounter) {

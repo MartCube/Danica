@@ -7,7 +7,7 @@
 				<template v-if="!$fetchState.pending">
 					<h3 class="title">{{ $t('pages.contact.title') }}</h3>
 					<ContactInfo />
-					<ContactForm />
+					<ContactForm :data="contactFormData" />
 				</template>
 			</div>
 			<div class="map">
@@ -20,12 +20,12 @@
 				<div class="links">
 					<n-link to="/"> Danica {{ year }} <IconCopyRight size="16px" /></n-link>
 					<span>|</span>
-					<n-link to="/">{{ $t('service.footer.all_rights_reserved') }}</n-link>
+					<p>{{ $prismic.asText(data.all_rights_reserved) }}</p>
 				</div>
 				<div class="links">
-					<n-link to="/">{{ $t('service.footer.privacy_policy') }}</n-link>
-					<span>|</span>
-					<n-link to="/">{{ $t('service.footer.terms') }}</n-link>
+					<n-link :to="localePath('/privacy-policy')">{{ $prismic.asText(data.privacy_policy) }}</n-link>
+					<!-- <span>|</span>
+					<n-link :to="localePath('/policy')">{{ $t('service.footer.terms') }}</n-link> -->
 				</div>
 			</div>
 		</div>
@@ -43,15 +43,30 @@ export default {
 	middleware: 'footer',
 	data: () => ({
 		data: Object,
+		contactFormData: Object,
 		map_image: '../map.png',
 		map_url: 'https://g.page/danica-ua?share',
 	}),
 	async fetch() {
+		const formData = await this.$prismic.api.getSingle('contact_form',{ lang : this.$i18n.localeProperties.prismic })
+		this.contactFormData = {
+			title: formData.data.title,
+			name: formData.data.name,
+			number: formData.data.number,
+			submit: formData.data.submit,
+			email: formData.data.email,
+			message: formData.data.message,
+			response: formData.data.response,
+			goback: formData.data.goback,
+		}
 		const contact = await this.$prismic.api.getSingle('footer')
+		console.log(contact);
 		this.data = {
 			image: contact.data.image.url,
 			office: contact.data.office,
 			for_clients: contact.data.for_clients,
+			all_rights_reserved: contact.data.all_rights_reserved,
+			privacy_policy: contact.data.privacy_policy,
 		}
 	},
 	computed: {

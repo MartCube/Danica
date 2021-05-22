@@ -2,7 +2,10 @@ export default {
 	pages: {
 		design: 'Дизайн',
 		architecture: 'архитектура',
-		projects: 'Проекты',
+		projects: {
+			name: 'Проекты',
+			load_more: 'Загрузить больше' 
+		},
 		blog: 'Новости',
 		contact: {
 			name: 'Контакты',

@@ -39,7 +39,7 @@ export default {
 	display: flex;
 	position: relative;
 	cursor: pointer;
-	width: 80%;
+	width: 800px;
 	height: 70vh;
 
 	h2 {

@@ -72,7 +72,7 @@ export default {
 			return this.$store.getters.navbarTransparent
 		},
 		availableLocales() {
-			return this.$i18n.locales.filter((locale) => locale.code !== this.currentLocale)
+			return this.$i18n.locales.filter(i => i.code !== this.$i18n.locale)
 		},
 		currentLocale() {
 			return this.$i18n.locale

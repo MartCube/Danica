@@ -62,7 +62,6 @@ export default {
 		defaultLocale: "ua",
 		lazy: true,
 		langDir: "locales/",
-		skipSettingLocaleOnNavigate: true,
 		locales: [
 			{
 				code: "en",

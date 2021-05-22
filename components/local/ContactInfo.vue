@@ -58,9 +58,8 @@ export default {
 		map_url: 'https://g.page/danica-ua?share',
 	}),
 	async fetch() {
-		const contact = await this.$prismic.api.getSingle('footer')
+		const contact = await this.$prismic.api.getSingle('footer',{ lang : this.$i18n.localeProperties.prismic })
 		this.data = {
-			image: contact.data.image.url,
 			office: contact.data.office,
 			for_clients: contact.data.for_clients,
 		}

@@ -29,7 +29,10 @@ export default {
 	watch: {
 		async modalContact() {
 			await this.$nextTick()
-			if (this.modalContact) modalAnim(this.$refs.modal)
+			if (this.modalContact){ 
+				modalAnim(this.$refs.modal)
+				this.$fetch()
+			}
 		},
 	},
 	methods: {

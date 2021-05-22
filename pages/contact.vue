@@ -59,7 +59,7 @@ export default {
 			response: formData.data.response,
 			goback: formData.data.goback,
 		}
-		const contact = await this.$prismic.api.getSingle('footer')
+		const contact = await this.$prismic.api.getSingle('footer',{ lang : this.$i18n.localeProperties.prismic })
 		// console.log(contact);
 		this.data = {
 			image: contact.data.image.url,
@@ -129,7 +129,12 @@ export default {
 				display: flex;
 				justify-content: space-between;
 				justify-items: center;
-
+				align-items: center;
+				p {
+					color: $white;
+					font-size: 1rem;
+					font-weight: 400;
+				}
 				a {
 					display: flex;
 					align-items: center;

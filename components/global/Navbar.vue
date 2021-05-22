@@ -100,11 +100,6 @@ export default {
 		this.name = to.params.name
 		next()
 	},
-	transition: {
-    beforeEnter() {
-      this.$i18n.finalizePendingLocaleChange()
-    }
-  },
 	methods: {
 		onScroll() {
 			// Get the current scroll position

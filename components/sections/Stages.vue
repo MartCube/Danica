@@ -10,7 +10,8 @@
 			</template>
 			<div class="list">
 				<div v-for="(stage, i) in data.items" :key="i" class="stage">
-					<h2 class="number">0{{ i + 1 }}<span>/</span></h2>
+					<h2 class="number" v-if="i < 9" >0{{ i + 1 }}<span>/</span></h2>
+					<h2 class="number" v-else >{{ i + 1 }}<span>/</span></h2>
 					<div class="info">
 						<h3>{{ $prismic.asText(stage.stage_title) }}</h3>
 						<p>{{ $prismic.asText(stage.stage_description) }}</p>
@@ -57,8 +58,9 @@ export default {
 		display: flex;
 		justify-content: flex-start;
 		flex-wrap: wrap;
+		padding-right: 1rem;
 		.stage {
-			max-width: 50%;
+			width: 50%;
 			margin-bottom: 40px;
 
 			display: flex;
@@ -77,6 +79,7 @@ export default {
 				}
 			}
 			.info {
+				width: calc( 100% - 120px);
 				h3 {
 					// word-spacing: 450px;
 					line-height: 1.3;

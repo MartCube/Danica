@@ -105,7 +105,7 @@ export default {
 
 			font-size: 0.8rem;
 			font-weight: medium;
-			margin-bottom: 15px;
+			margin-bottom: 14px;
 			user-select: none;
 			&::first-letter {
 				text-transform: capitalize;

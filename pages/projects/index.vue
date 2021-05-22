@@ -1,6 +1,6 @@
 <template>
 	<div class="container">
-		<Title :value="$t('pages.projects')" />
+		<Title :value="$t('pages.projects.name')" />
 
 		<div class="projects">
 			<div class="filter">
@@ -15,7 +15,7 @@
 				<template v-else-if="!$fetchState.pending">
 					<ProjectCard v-for="(project, i) in projects" :key="i" :data="project" />
 				</template>
-				<ButtonItem v-if="current_page < total_pages" @click.native="loadMore"> Load more </ButtonItem>
+				<ButtonItem v-if="current_page < total_pages" @click.native="loadMore"> {{ $t('pages.projects.load_more') }} </ButtonItem>
 			</div>
 		</div>
 	</div>

@@ -17,7 +17,7 @@ export default {
 		form_data: null,
 	}),
 	async fetch() {
-		const fetch = await this.$prismic.api.getSingle('contact_form')
+		const fetch = await this.$prismic.api.getSingle('contact_form', { lang: this.$i18n.localeProperties.prismic })
 		this.image = fetch.data.image.url
 		this.form_data = fetch.data
 	},

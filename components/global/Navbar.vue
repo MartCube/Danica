@@ -33,9 +33,9 @@
 		</div>
 
 		<div class="links" :class="{ active: isActive }" @click="CloseMenu">
-			<n-link v-for="service in services" :key="service.uid" exact :to="linkResolver(service)">{{ service.uid }}</n-link>
+			<n-link v-for="service in services" :key="service.uid" exact :to="linkResolver(service)">{{ service.data.name }}</n-link>
 
-			<n-link :to="localePath('projects')">{{ $t('pages.projects') }}</n-link>
+			<n-link :to="localePath('projects')">{{ $t('pages.projects.name') }}</n-link>
 			<n-link :to="localePath('blog')">{{ $t('pages.blog') }}</n-link>
 			<n-link :to="localePath('contact')">{{ $t('pages.contact.name') }}</n-link>
 		</div>
@@ -62,7 +62,7 @@ export default {
 		services: [],
 	}),
 	async fetch() {
-		const services = await this.$prismic.api.query(this.$prismic.predicates.at('document.type', 'services'))
+		const services = await this.$prismic.api.query(this.$prismic.predicates.at('document.type', 'services' ),{ lang : this.$i18n.localeProperties.prismic })
 
 		// console.log(services.results)
 		this.services = services.results
@@ -79,10 +79,12 @@ export default {
 		},
 	},
 	watch: {
-		// transparent() {
-		// 	if (this.transparent) window.addEventListener('scroll', this.onScroll)
-		// 	else window.removeEventListener('scroll', this.onScroll)
-		// },
+		 $route(to, from) {
+      // console.log("from", from , "to", to);
+			if(from.name !== to.name ){
+				this.$fetch()
+			}
+    },
 		async showLocales(newValue, oldValue) {
 			await this.$nextTick()
 			if (newValue) localleAnim(document.querySelectorAll('.locale'), true)
@@ -93,6 +95,16 @@ export default {
 		window.addEventListener('scroll', this.onScroll)
 		this.onScroll()
 	},
+	beforeRouteUpdate (to, from, next) {
+		// just use `this`
+		this.name = to.params.name
+		next()
+	},
+	transition: {
+    beforeEnter() {
+      this.$i18n.finalizePendingLocaleChange()
+    }
+  },
 	methods: {
 		onScroll() {
 			// Get the current scroll position

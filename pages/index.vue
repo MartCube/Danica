@@ -19,7 +19,7 @@ export default {
 		slices: null,
 	}),
 	async fetch() {
-		const fetch = await this.$prismic.api.getSingle('home_index')
+		const fetch = await this.$prismic.api.getSingle('home_index', { lang: this.$i18n.localeProperties.prismic })
 		this.slices = fetch.data.body
 	},
 }

@@ -39,6 +39,7 @@ export default {
 		// filters
 		filters: ['design', 'architecture', 'energy save', 'remont'],
 		active_filter: [],
+		metaTags: Object,
 
 		// pagination
 		current_page: 1,
@@ -47,6 +48,42 @@ export default {
 		prev_page: null,
 		next_page: null,
 	}),
+	head() {
+		let lang = this.$i18n.localeProperties.prismic;
+		switch (lang) {
+			case "ua-ua":
+				console.log(lang);
+				this.metaTags.title = "Будівельні послуги | DANICA";
+				this.metaTags.description = "【Будівельні роботи під ключ】 Послуги в області будівництва ✅ Вигідні ціни ⚡️ Відгуки + Гарантія + Якість ☎️ Телефонуйте ▻";
+				
+				break;
+			case "ru":
+				console.log(lang);
+				this.metaTags.title = "Строительные услуги | DANICA";
+				this.metaTags.description = "【Строительные работы под ключ】Услуги в области строительства ✅ Выгодные цены ⚡️ Отзывы + Гарантия + Качество ☎️ Звоните ▻";
+				
+				break;
+			case "":
+				console.log(lang);
+				this.metaTags.title = "Construction service | DANICA";
+				this.metaTags.description = "【Turnkey construction work】 Construction services ✅ Favorable prices ⚡️ Reviews + Warranty + Quality ☎️ Call ▻";
+				
+				break;
+		
+			default:
+				break;
+		}
+		return {
+			title: this.metaTags.title,
+			meta: [
+				{
+					hid: 'description',
+					name: 'description',
+					content: this.metaTags.description
+				},
+			],
+		}
+	},
 	async fetch() {
 		const blogPosts = await this.$prismic.api.query([this.$prismic.predicates.at('document.type', 'blog_post'), this.$prismic.predicates.at('document.tags', this.active_filter)], {
 			orderings: '[document.last_publication_date desc]',
@@ -64,14 +101,50 @@ export default {
 		blogPosts() {
 			return this.$store.getters.blogPosts
 		},
+		
 	},
 	watch: {
+		$route(to, from) {
+			if(from.name !== to.name ){
+				// this.$head()
+				
+			}
+    },
 		async blogPosts(newValue, oldValue) {
 			await this.$nextTick()
 			postAnim(this.$refs.grid.children, true)
 		},
 	},
 	methods: {
+		
+		defineMetaTags(){
+			let lang = this.$i18n.localeProperties.prismic;
+			switch (lang) {
+				case "ua-ua":
+					console.log(lang);
+					this.metaTags.title = "Будівельні послуги | DANICA";
+					this.metaTags.description = "【Будівельні роботи під ключ】 Послуги в області будівництва ✅ Вигідні ціни ⚡️ Відгуки + Гарантія + Якість ☎️ Телефонуйте ▻";
+					
+					break;
+				case "ru":
+					console.log(lang);
+					this.metaTags.title = "Строительные услуги | DANICA";
+					this.metaTags.description = "【Строительные работы под ключ】Услуги в области строительства ✅ Выгодные цены ⚡️ Отзывы + Гарантия + Качество ☎️ Звоните ▻";
+					
+					break;
+				case "":
+					console.log(lang);
+					this.metaTags.title = "Construction service | DANICA";
+					this.metaTags.description = "【Turnkey construction work】 Construction services ✅ Favorable prices ⚡️ Reviews + Warranty + Quality ☎️ Call ▻";
+					
+					break;
+			
+				default:
+					break;
+			}
+		
+			return metaTags
+		},
 		// filters
 		filterUpdate(filter) {
 			this.active_filter = [filter]

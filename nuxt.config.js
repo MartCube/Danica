@@ -61,6 +61,8 @@ export default {
 	i18n: {
 		defaultLocale: "ua",
 		lazy: true,
+		seo: true,
+		baseUrl: 'http://localhost:3000',
 		langDir: "locales/",
 		locales: [
 			{
@@ -68,18 +70,21 @@ export default {
 				name: "eng",
 				prismic: "",
 				file: "en.js",
+				iso: 'en-US'
 			},
 			{
 				code: "ru",
 				name: "рус",
 				prismic: "ru",
 				file: "ru.js",
+				iso: 'ru-RU'
 			},
 			{
 				code: "ua",
 				name: "укр",
 				prismic: "ua-ua",
 				file: "ua.js",
+				iso: 'ua-UA'
 			},
 		],
 		parsePages: false, // Disable babel parsing

@@ -101,6 +101,15 @@ export default {
 	padding-left: 255px;
 }
 
+@media (min-width: 2000px) {
+	.container {
+		.image_text{
+			.image{
+				height: 40vh;
+			}
+		}
+	}
+}
 @media (max-width: 900px) {
 	.rich_text {
 		padding-right: 1rem;

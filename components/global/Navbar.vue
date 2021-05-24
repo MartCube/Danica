@@ -51,6 +51,11 @@
 import { localleAnim } from '~/assets/anime'
 
 export default {
+	beforeRouteUpdate(to, from, next) {
+		// just use `this`
+		this.name = to.params.name
+		next()
+	},
 	data: () => ({
 		isActive: false,
 		showLocales: false,
@@ -62,7 +67,7 @@ export default {
 		services: [],
 	}),
 	async fetch() {
-		const services = await this.$prismic.api.query(this.$prismic.predicates.at('document.type', 'services' ),{ lang : this.$i18n.localeProperties.prismic })
+		const services = await this.$prismic.api.query(this.$prismic.predicates.at('document.type', 'services'), { lang: this.$i18n.localeProperties.prismic })
 
 		// console.log(services.results)
 		this.services = services.results
@@ -72,19 +77,19 @@ export default {
 			return this.$store.getters.navbarTransparent
 		},
 		availableLocales() {
-			return this.$i18n.locales.filter(i => i.code !== this.$i18n.locale)
+			return this.$i18n.locales.filter((i) => i.code !== this.$i18n.locale)
 		},
 		currentLocale() {
 			return this.$i18n.locale
 		},
 	},
 	watch: {
-		 $route(to, from) {
-      // console.log("from", from , "to", to);
-			if(from.name !== to.name ){
+		$route(to, from) {
+			// console.log("from", from , "to", to);
+			if (from.name !== to.name) {
 				this.$fetch()
 			}
-    },
+		},
 		async showLocales(newValue, oldValue) {
 			await this.$nextTick()
 			if (newValue) localleAnim(document.querySelectorAll('.locale'), true)
@@ -94,11 +99,6 @@ export default {
 	mounted() {
 		window.addEventListener('scroll', this.onScroll)
 		this.onScroll()
-	},
-	beforeRouteUpdate (to, from, next) {
-		// just use `this`
-		this.name = to.params.name
-		next()
 	},
 	methods: {
 		onScroll() {

@@ -69,7 +69,6 @@ export default {
 		},
 	}),
 	async fetch() {
-
 		const post = await this.$prismic.api.getByUID('project_post', this.$route.params.project_post, { lang: this.$i18n.localeProperties.prismic })
 		this.post = {
 			image: post.data.main_image,

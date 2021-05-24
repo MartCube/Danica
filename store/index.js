@@ -1,5 +1,4 @@
 export const state = (context) => ({
-	// lang: context.$i18n.localeProperties.prismic,
 	blogPosts: null,
 	projects: null,
 

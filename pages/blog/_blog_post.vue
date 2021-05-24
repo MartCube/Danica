@@ -78,12 +78,11 @@ export default {
 		},
 	}),
 	async fetch() {
-
 		const post = await this.$prismic.api.getByUID('blog_post', this.$route.params.blog_post, { lang: this.$i18n.localeProperties.prismic })
-		this.altLangUid[post.lang.slice(0,2)] = post.uid; 
-		post.alternate_languages.forEach(alternateLang => {
-				this.altLangUid[alternateLang.lang.slice(0,2)] = alternateLang.uid; 
-		});
+		this.altLangUid[post.lang.slice(0, 2)] = post.uid
+		post.alternate_languages.forEach((alternateLang) => {
+			this.altLangUid[alternateLang.lang.slice(0, 2)] = alternateLang.uid
+		})
 		this.$store.dispatch('i18n/setRouteParams', {
 			en: { blog_post: this.altLangUid.en },
 			ru: { blog_post: this.altLangUid.ru },

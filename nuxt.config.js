@@ -1,42 +1,25 @@
 export default {
 	// Target (https://go.nuxtjs.dev/config-target)
-	target: "static",
+	target: 'static',
 
 	// Auto import components (https://go.nuxtjs.dev/config-components)
 	// components: true,
-	components: [
-		"~/components/forms",
-		"~/components/icons",
-		"~/components/global",
-		"~/components/items",
-		"~/components/local",
-		"~/components/sections",
-	],
+	components: ['~/components/forms', '~/components/icons', '~/components/global', '~/components/items', '~/components/local', '~/components/sections'],
 
 	// Global page headers (https://go.nuxtjs.dev/config-head)
 	head: {
-		title: "Danica",
-		meta: [
-			{ charset: "utf-8" },
-			{ name: "viewport", content: "width=device-width, initial-scale=1" },
-			{ hid: "description", name: "description", content: "" },
-		],
-		link: [{ rel: "icon", type: "image/png", href: "/favicon.png" }],
+		title: 'Danica',
+		meta: [{ charset: 'utf-8' }, { name: 'viewport', content: 'width=device-width, initial-scale=1' }, { hid: 'description', name: 'description', content: '' }],
+		link: [{ rel: 'icon', type: 'image/png', href: '/favicon.png' }],
 	},
 
-	loading: { color: "#ffc424" },
+	loading: { color: '#ffc424' },
 
 	// Global CSS (https://go.nuxtjs.dev/config-css)
-	css: ["~/assets/main.scss", "~/assets/colors.scss"],
+	css: ['~/assets/main.scss', '~/assets/colors.scss'],
 
 	// Plugins to run before rendering page (https://go.nuxtjs.dev/config-plugins)
-	plugins: [
-		{ src: "@/plugins/vue-swiper", mode: "client" },
-		{ src: "@/plugins/vue-observe" },
-		{ src: "~/plugins/vue-plyr", mode: "client" },
-		{ src: "@/plugins/vee-validate.js" },
-		{ src: `~/plugins/lazysizes.client.js` },
-	],
+	plugins: [{ src: '@/plugins/vue-swiper', mode: 'client' }, { src: '@/plugins/vue-observe' }, { src: '~/plugins/vue-plyr', mode: 'client' }, { src: '@/plugins/vee-validate.js' }, { src: `~/plugins/lazysizes.client.js` }],
 
 	// Modules for dev and build (recommended) (https://go.nuxtjs.dev/config-modules)
 	buildModules: [
@@ -44,90 +27,89 @@ export default {
 	],
 
 	// Modules (https://go.nuxtjs.dev/config-modules)
-	modules: [
-		"@nuxtjs/prismic",
-		"@nuxtjs/axios",
-		"nuxt-i18n",
-		"@nuxtjs/style-resources",
-	],
+	modules: ['@nuxtjs/prismic', '@nuxtjs/axios', 'nuxt-i18n', '@nuxtjs/style-resources', '@nuxtjs/sitemap'],
 
 	prismic: {
-		endpoint: "https://danica.cdn.prismic.io/api/v2",
-		linkResolver: "@/plugins/link-resolver",
-		htmlSerializer: "@/plugins/html-serializer",
+		endpoint: 'https://danica.cdn.prismic.io/api/v2',
+		linkResolver: '@/plugins/link-resolver',
+		htmlSerializer: '@/plugins/html-serializer',
 		preview: false,
 	},
 
 	i18n: {
-		defaultLocale: "ua",
+		defaultLocale: 'ua',
 		lazy: true,
-		langDir: "locales/",
+		langDir: 'locales/',
 		locales: [
 			{
-				code: "en",
-				name: "eng",
-				prismic: "",
-				file: "en.js",
+				code: 'en',
+				name: 'eng',
+				prismic: '',
+				file: 'en.js',
 			},
 			{
-				code: "ru",
-				name: "рус",
-				prismic: "ru",
-				file: "ru.js",
+				code: 'ru',
+				name: 'рус',
+				prismic: 'ru',
+				file: 'ru.js',
 			},
 			{
-				code: "ua",
-				name: "укр",
-				prismic: "ua-ua",
-				file: "ua.js",
+				code: 'ua',
+				name: 'укр',
+				prismic: 'ua-ua',
+				file: 'ua.js',
 			},
 		],
 		parsePages: false, // Disable babel parsing
 		pages: {
-			"projects/index": {
-				en: "/projects",
-				ru: "/projects",
-				ua: "/projects",
+			'projects/index': {
+				en: '/projects',
+				ru: '/projects',
+				ua: '/projects',
 			},
-			"projects/project_post": {
-				en: "/projects/:project_post?",
-				ru: "/projects/:project_post?",
-				ua: "/projects/:project_post?",
+			'projects/project_post': {
+				en: '/projects/:project_post?',
+				ru: '/projects/:project_post?',
+				ua: '/projects/:project_post?',
 			},
-			"blog/index": {
-				en: "/blog",
-				ru: "/blog",
-				ua: "/blog",
+			'blog/index': {
+				en: '/blog',
+				ru: '/blog',
+				ua: '/blog',
 			},
-			"services/:service?": {
-				en: "/services/:service?",
-				ru: "/services/:service?",
-				ua: "/services/:service?",
+			'services/:service?': {
+				en: '/services/:service?',
+				ru: '/services/:service?',
+				ua: '/services/:service?',
 			},
-			"blog/_blog_post": {
-				en: "/blog/:blog_post?",
-				ru: "/blog/:blog_post?",
-				ua: "/blog/:blog_post?",
+			'blog/_blog_post': {
+				en: '/blog/:blog_post?',
+				ru: '/blog/:blog_post?',
+				ua: '/blog/:blog_post?',
 			},
 			contact: {
-				en: "/contact",
-				ru: "/kontakt",
-				ua: "/kontakt",
+				en: '/contact',
+				ru: '/kontakt',
+				ua: '/kontakt',
 			},
 			policy: {
-				en: "/privacy-policy",
-				ru: "/privacy-policy",
-				ua: "/privacy-policy",
+				en: '/privacy-policy',
+				ru: '/privacy-policy',
+				ua: '/privacy-policy',
 			},
 		},
 	},
 
+	sitemap: {
+		hostname: 'https://danica.ua',
+	},
+
 	axios: {
-		baseURL: "/",
+		baseURL: '/',
 	},
 
 	styleResources: {
-		scss: ["./assets/colors.scss", "./assets/mixins.scss"],
+		scss: ['./assets/colors.scss', './assets/mixins.scss'],
 	},
 
 	// Build Configuration (https://go.nuxtjs.dev/config-build)
@@ -137,13 +119,13 @@ export default {
 				quiet: true,
 			},
 		},
-		transpile: ["vee-validate/dist/rules"],
+		transpile: ['vee-validate/dist/rules'],
 		extend(config, { isClient, loaders: { vue } }) {
-			vue.transformAssetUrls.img = ["data-src", "src"];
+			vue.transformAssetUrls.img = ['data-src', 'src']
 		},
 	},
 
 	generate: {
-		fallback: "404.html",
+		fallback: '404.html',
 	},
-};
+}

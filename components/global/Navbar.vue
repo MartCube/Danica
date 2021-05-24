@@ -236,10 +236,11 @@ $transition: all 0.35s ease;
 		justify-content: flex-end;
 
 		a {
-			padding: 0 25px;
+			padding: 0 15px;
 			position: relative;
 			display: flex;
 			align-items: center;
+			white-space: nowrap;
 
 			text-decoration: none;
 			font-size: 1rem;
@@ -422,6 +423,12 @@ $transition: all 0.35s ease;
 	}
 }
 
+@media (max-width: 1200px) {
+	.navbar .links a:nth-last-child(2){display: none;}
+}
+@media (max-width: 1100px) {
+	.navbar .links a:last-child{display: none;}
+}
 @media (max-width: 1020px) {
 	.navbar {
 		height: 60px;

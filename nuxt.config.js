@@ -104,10 +104,10 @@ export default {
 				ru: "/blog",
 				ua: "/blog",
 			},
-			"services/:service?": {
-				en: "/services/:service?",
-				ru: "/services/:service?",
-				ua: "/services/:service?",
+			"/:service?": {
+				en: "/:service?",
+				ru: "/:service?",
+				ua: "/:service?",
 			},
 			"blog/_blog_post": {
 				en: "/blog/:blog_post?",

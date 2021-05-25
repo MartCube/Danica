@@ -423,12 +423,6 @@ $transition: all 0.35s ease;
 	}
 }
 
-@media (max-width: 1200px) {
-	.navbar .links a:nth-last-child(2){display: none;}
-}
-@media (max-width: 1100px) {
-	.navbar .links a:last-child{display: none;}
-}
 @media (max-width: 1020px) {
 	.navbar {
 		height: 60px;

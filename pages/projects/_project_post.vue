@@ -58,6 +58,7 @@
 export default {
 	data: () => ({
 		post: Object,
+		altLangUid: Object,
 		swiperOption: {
 			slidesPerView: 'auto',
 			spaceBetween: 50,
@@ -71,6 +72,15 @@ export default {
 	async fetch() {
 
 		const post = await this.$prismic.api.getByUID('project_post', this.$route.params.project_post, { lang: this.$i18n.localeProperties.prismic })
+		this.altLangUid[post.lang.slice(0,2)] = post.uid; 
+		post.alternate_languages.forEach(alternateLang => {
+				this.altLangUid[alternateLang.lang.slice(0,2)] = alternateLang.uid; 
+		});
+		this.$store.dispatch('i18n/setRouteParams', {
+			en: { project_post: this.altLangUid.en },
+			ru: { project_post: this.altLangUid.ru },
+			ua: { project_post: this.altLangUid.ua },
+		})
 		this.post = {
 			image: post.data.main_image,
 			title: this.$prismic.asText(post.data.title),

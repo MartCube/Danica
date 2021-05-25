@@ -53,20 +53,11 @@
 
 <script>
 export default {
-	// async asyncData({ $prismic, store, route, i18n }) {
-	// 	const lang = i18n.localeProperties.prismic
-
-	// 	const post = await $prismic.api.getByUID('blog_post', route.params.blog_post, { lang })
-	// 	console.log(post)
-	// 	await store.dispatch('i18n/setRouteParams', {
-	// 		en: { blog_post: post.uid },
-	// 		ru: { blog_post: post.alternate_languages[0].uid },
-	// 		ua: { blog_post: post.alternate_languages[1].uid },
-	// 	})
-	// },
 	data: () => ({
 		post: Object,
 		altLangUid: Object,
+		metaTags: Object,
+
 		swiperOption: {
 			slidesPerView: 'auto',
 			spaceBetween: 50,
@@ -78,23 +69,36 @@ export default {
 		},
 	}),
 	async fetch() {
-
 		const post = await this.$prismic.api.getByUID('blog_post', this.$route.params.blog_post, { lang: this.$i18n.localeProperties.prismic })
-		this.altLangUid[post.lang.slice(0,2)] = post.uid; 
-		post.alternate_languages.forEach(alternateLang => {
-				this.altLangUid[alternateLang.lang.slice(0,2)] = alternateLang.uid; 
-		});
+		this.altLangUid[post.lang.slice(0, 2)] = post.uid
+		post.alternate_languages.forEach((alternateLang) => {
+			this.altLangUid[alternateLang.lang.slice(0, 2)] = alternateLang.uid
+		})
 		this.$store.dispatch('i18n/setRouteParams', {
 			en: { blog_post: this.altLangUid.en },
 			ru: { blog_post: this.altLangUid.ru },
 			ua: { blog_post: this.altLangUid.ua },
 		})
+
+		// post data
 		this.post = {
 			image: post.data.image,
 			title: this.$prismic.asText(post.data.title),
 			date: post.data.date,
 			tags: post.tags,
 			slices: post.data.body,
+		}
+	},
+	head() {
+		return {
+			title: this.metaTags.title,
+			meta: [
+				{
+					hid: 'description',
+					name: 'description',
+					content: this.metaTags.description,
+				},
+			],
 		}
 	},
 	fetchKey(getCounter) {

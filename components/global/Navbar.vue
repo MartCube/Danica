@@ -236,10 +236,11 @@ $transition: all 0.35s ease;
 		justify-content: flex-end;
 
 		a {
-			padding: 0 25px;
+			padding: 0 15px;
 			position: relative;
 			display: flex;
 			align-items: center;
+			white-space: nowrap;
 
 			text-decoration: none;
 			font-size: 1rem;

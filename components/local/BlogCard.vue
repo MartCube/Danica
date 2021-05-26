@@ -132,13 +132,13 @@ export default {
 		position: relative;
 		.title {
 			position: absolute;
-			bottom: 0;
+			bottom: 30px;
 			left: 25px;
 			margin-right: 75px;
 			z-index: 4;
 
 			font-size: 2rem;
-			line-height: 2rem;
+			line-height: 2.5rem;
 			color: white;
 
 			height: 50px;
@@ -162,7 +162,7 @@ export default {
 
 			flex-direction: column-reverse;
 			& > * {
-				margin-bottom: 75px;
+				margin-bottom: 110px;
 				opacity: 1;
 				font-size: 1.2rem;
 				color: white;

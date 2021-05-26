@@ -35,10 +35,54 @@
 import { postAnim } from '~/assets/anime'
 
 export default {
+	name: 'Blog',
+	async asyncData({ $prismic, i18n }) {
+		// fetch blog page
+		const page = await $prismic.api.getSingle('blog', { lang: i18n.localeProperties.prismic })
+
+		// define meta tags
+		if (page.data.meta_title)
+			return {
+				metaTags: {
+					title: page.data.meta_title,
+					description: page.data.meta_description,
+					keywords: page.data.meta_keywords,
+				},
+			}
+		else {
+			switch (i18n.localeProperties.prismic) {
+				case 'ua-ua':
+					return {
+						metaTags: {
+							title: 'Будівельні послуги | DANICA',
+							description: '【Будівельні роботи під ключ】 Послуги в області будівництва ✅ Вигідні ціни ⚡️ Відгуки + Гарантія + Якість ☎️ Телефонуйте ▻',
+							keywords: 'default keywords',
+						},
+					}
+				case 'ru':
+					return {
+						metaTags: {
+							title: 'Строительные услуги | DANICA',
+							description: '【Строительные работы под ключ】Услуги в области строительства ✅ Выгодные цены ⚡️ Отзывы + Гарантия + Качество ☎️ Звоните ▻',
+							keywords: 'default keywords',
+						},
+					}
+				case '':
+					return {
+						metaTags: {
+							title: 'Construction service | DANICA',
+							description: '【Turnkey construction work】 Construction services ✅ Favorable prices ⚡️ Reviews + Warranty + Quality ☎️ Call ▻',
+							keywords: 'default keywords',
+						},
+					}
+			}
+		}
+	},
 	data: () => ({
 		// filters
 		filters: ['design', 'architecture', 'energy save', 'remont'],
 		active_filter: [],
+		metaTags: Object,
 
 		// pagination
 		current_page: 1,
@@ -46,13 +90,9 @@ export default {
 		total_pages: null,
 		prev_page: null,
 		next_page: null,
-
-		metaTags: {
-			title: String,
-			description: String,
-		},
 	}),
 	async fetch() {
+		// fetch blog posts
 		const blogPosts = await this.$prismic.api.query([this.$prismic.predicates.at('document.type', 'blog_post'), this.$prismic.predicates.at('document.tags', this.active_filter)], {
 			orderings: '[document.last_publication_date desc]',
 			pageSize: this.page_size,
@@ -66,25 +106,6 @@ export default {
 		this.next_page = blogPosts.next_page
 	},
 	head() {
-		const lang = this.$i18n.localeProperties.prismic
-		console.log(lang)
-		switch (lang) {
-			case 'ua-ua':
-				this.metaTags.title = 'Будівельні послуги | DANICA'
-				this.metaTags.description = '【Будівельні роботи під ключ】 Послуги в області будівництва ✅ Вигідні ціни ⚡️ Відгуки + Гарантія + Якість ☎️ Телефонуйте ▻'
-				break
-			case 'ru':
-				this.metaTags.title = 'Строительные услуги | DANICA'
-				this.metaTags.description = '【Строительные работы под ключ】Услуги в области строительства ✅ Выгодные цены ⚡️ Отзывы + Гарантия + Качество ☎️ Звоните ▻'
-				break
-			case '':
-				this.metaTags.title = 'Construction service | DANICA'
-				this.metaTags.description = '【Turnkey construction work】 Construction services ✅ Favorable prices ⚡️ Reviews + Warranty + Quality ☎️ Call ▻'
-				break
-
-			default:
-				break
-		}
 		return {
 			title: this.metaTags.title,
 			meta: [
@@ -102,6 +123,11 @@ export default {
 		},
 	},
 	watch: {
+		$route(to, from) {
+			if (from.name !== to.name) {
+				// this.$head()
+			}
+		},
 		async blogPosts(newValue, oldValue) {
 			await this.$nextTick()
 			postAnim(this.$refs.grid.children, true)

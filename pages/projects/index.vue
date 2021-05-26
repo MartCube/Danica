@@ -26,6 +26,48 @@ import { postAnim } from '~/assets/anime'
 
 export default {
 	name: 'Projects',
+	async asyncData({ $prismic, i18n }) {
+		// fetch blog page
+		const page = await $prismic.api.getSingle('projects', { lang: i18n.localeProperties.prismic })
+		console.log(page)
+		// define meta tags
+		if (page.data.meta_title)
+			return {
+				metaTags: {
+					title: page.data.meta_title,
+					description: page.data.meta_description,
+					keywords: page.data.meta_keywords,
+				},
+			}
+		else {
+			switch (i18n.localeProperties.prismic) {
+				case 'ua-ua':
+					return {
+						metaTags: {
+							title: 'Будівельні послуги | DANICA',
+							description: '【Будівельні роботи під ключ】 Послуги в області будівництва ✅ Вигідні ціни ⚡️ Відгуки + Гарантія + Якість ☎️ Телефонуйте ▻',
+							keywords: 'default keywords',
+						},
+					}
+				case 'ru':
+					return {
+						metaTags: {
+							title: 'Строительные услуги | DANICA',
+							description: '【Строительные работы под ключ】Услуги в области строительства ✅ Выгодные цены ⚡️ Отзывы + Гарантия + Качество ☎️ Звоните ▻',
+							keywords: 'default keywords',
+						},
+					}
+				case '':
+					return {
+						metaTags: {
+							title: 'Construction service | DANICA',
+							description: '【Turnkey construction work】 Construction services ✅ Favorable prices ⚡️ Reviews + Warranty + Quality ☎️ Call ▻',
+							keywords: 'default keywords',
+						},
+					}
+			}
+		}
+	},
 	data: () => ({
 		filters: ['design', 'architecture', 'remont'],
 		active_filter: [],
@@ -34,6 +76,7 @@ export default {
 		page_size: 6,
 	}),
 	async fetch() {
+		// fetch project posts
 		const projects = await this.$prismic.api.query([this.$prismic.predicates.at('document.type', 'project_post'), this.$prismic.predicates.at('document.tags', this.active_filter)], {
 			orderings: '[document.first_publication_date desc]',
 			pageSize: this.page_size,
@@ -42,6 +85,18 @@ export default {
 
 		this.$store.dispatch('bindProjects', projects.results)
 		this.total_pages = projects.total_pages
+	},
+	head() {
+		return {
+			title: this.metaTags.title,
+			meta: [
+				{
+					hid: 'description',
+					name: 'description',
+					content: this.metaTags.description,
+				},
+			],
+		}
 	},
 	computed: {
 		projects() {

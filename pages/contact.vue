@@ -41,6 +41,19 @@ export default {
 		next()
 	},
 	middleware: 'footer',
+	async asyncData({ $prismic, i18n }) {
+		// fetch  page
+		const page = await $prismic.api.getSingle('contact', { lang: i18n.localeProperties.prismic })
+
+		// define data
+		return {
+			metaTags: {
+				title: page.data.meta_title,
+				description: page.data.meta_description,
+				keywords: page.data.meta_keywords,
+			},
+		}
+	},
 	data: () => ({
 		data: Object,
 		contactFormData: Object,
@@ -48,7 +61,7 @@ export default {
 		map_url: 'https://g.page/danica-ua?share',
 	}),
 	async fetch() {
-		const formData = await this.$prismic.api.getSingle('contact_form',{ lang : this.$i18n.localeProperties.prismic })
+		const formData = await this.$prismic.api.getSingle('contact_form', { lang: this.$i18n.localeProperties.prismic })
 		this.contactFormData = {
 			title: formData.data.title,
 			name: formData.data.name,
@@ -59,7 +72,7 @@ export default {
 			response: formData.data.response,
 			goback: formData.data.goback,
 		}
-		const contact = await this.$prismic.api.getSingle('footer',{ lang : this.$i18n.localeProperties.prismic })
+		const contact = await this.$prismic.api.getSingle('footer', { lang: this.$i18n.localeProperties.prismic })
 		// console.log(contact);
 		this.data = {
 			image: contact.data.image.url,
@@ -67,6 +80,18 @@ export default {
 			for_clients: contact.data.for_clients,
 			all_rights_reserved: contact.data.all_rights_reserved,
 			privacy_policy: contact.data.privacy_policy,
+		}
+	},
+	head() {
+		return {
+			title: this.metaTags.title,
+			meta: [
+				{
+					hid: 'description',
+					name: 'description',
+					content: this.metaTags.description,
+				},
+			],
 		}
 	},
 	computed: {

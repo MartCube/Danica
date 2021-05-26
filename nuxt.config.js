@@ -27,7 +27,17 @@ export default {
 	],
 
 	// Modules (https://go.nuxtjs.dev/config-modules)
-	modules: ['@nuxtjs/prismic', '@nuxtjs/axios', 'nuxt-i18n', '@nuxtjs/style-resources', '@nuxtjs/sitemap'],
+	modules: ['@nuxtjs/prismic', '@nuxtjs/axios', 'nuxt-i18n', '@nuxtjs/style-resources', '@nuxtjs/sitemap', '@nuxtjs/gtm', 'nuxt-facebook-pixel-module'],
+
+	publicRuntimeConfig: {
+		gtm: {
+			id: process.env.GTM,
+		},
+		facebook: {
+			pixelId: process.env.PIXEL,
+			autoPageView: true,
+		},
+	},
 
 	prismic: {
 		endpoint: 'https://danica.cdn.prismic.io/api/v2',
@@ -39,6 +49,8 @@ export default {
 	i18n: {
 		defaultLocale: 'ua',
 		lazy: true,
+		seo: true,
+		baseUrl: 'http://localhost:3000',
 		langDir: 'locales/',
 		locales: [
 			{
@@ -46,18 +58,21 @@ export default {
 				name: 'eng',
 				prismic: '',
 				file: 'en.js',
+				iso: 'en-US',
 			},
 			{
 				code: 'ru',
 				name: 'рус',
 				prismic: 'ru',
 				file: 'ru.js',
+				iso: 'ru-RU',
 			},
 			{
 				code: 'ua',
 				name: 'укр',
 				prismic: 'ua-ua',
 				file: 'ua.js',
+				iso: 'ua-UA',
 			},
 		],
 		parsePages: false, // Disable babel parsing
@@ -77,10 +92,10 @@ export default {
 				ru: '/blog',
 				ua: '/blog',
 			},
-			'services/:service?': {
-				en: '/services/:service?',
-				ru: '/services/:service?',
-				ua: '/services/:service?',
+			'/:service?': {
+				en: '/:service?',
+				ru: '/:service?',
+				ua: '/:service?',
 			},
 			'blog/_blog_post': {
 				en: '/blog/:blog_post?',

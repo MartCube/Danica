@@ -107,7 +107,7 @@ export default {
 			.list {
 				width: 100%;
 				.stage {
-					// width: 100%;
+					width: 100%;
 					.number {
 						min-width: 60px;
 						margin-right: 20px;
@@ -153,7 +153,6 @@ export default {
 		}
 	}
 }
-
 @media (max-width: 400px) {
 	section {
 		.content {

@@ -69,7 +69,10 @@ export default {
 		},
 	}),
 	async fetch() {
+		// fetch blog post
 		const post = await this.$prismic.api.getByUID('blog_post', this.$route.params.blog_post, { lang: this.$i18n.localeProperties.prismic })
+
+		// store routes for all langs
 		this.altLangUid[post.lang.slice(0, 2)] = post.uid
 		post.alternate_languages.forEach((alternateLang) => {
 			this.altLangUid[alternateLang.lang.slice(0, 2)] = alternateLang.uid
@@ -88,6 +91,42 @@ export default {
 			tags: post.tags,
 			slices: post.data.body,
 		}
+
+		// define meta tags
+		if (post.data.meta_title)
+			this.metaTags = {
+				title: post.data.meta_title,
+				description: post.data.meta_description,
+				keywords: post.data.meta_keywords,
+			}
+		// default untill everything is filled
+		else
+			switch (this.$i18n.localeProperties.prismic) {
+				case 'ua-ua':
+					return {
+						metaTags: {
+							title: 'Будівельні послуги | DANICA',
+							description: '【Будівельні роботи під ключ】 Послуги в області будівництва ✅ Вигідні ціни ⚡️ Відгуки + Гарантія + Якість ☎️ Телефонуйте ▻',
+							keywords: 'default keywords',
+						},
+					}
+				case 'ru':
+					return {
+						metaTags: {
+							title: 'Строительные услуги | DANICA',
+							description: '【Строительные работы под ключ】Услуги в области строительства ✅ Выгодные цены ⚡️ Отзывы + Гарантия + Качество ☎️ Звоните ▻',
+							keywords: 'default keywords',
+						},
+					}
+				case '':
+					return {
+						metaTags: {
+							title: 'Construction service | DANICA',
+							description: '【Turnkey construction work】 Construction services ✅ Favorable prices ⚡️ Reviews + Warranty + Quality ☎️ Call ▻',
+							keywords: 'default keywords',
+						},
+					}
+			}
 	},
 	head() {
 		return {

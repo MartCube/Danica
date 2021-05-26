@@ -16,7 +16,7 @@
 				</section>
 				<section v-else-if="slice.slice_type == 'image_text'" class="image_text">
 					<div class="image">
-						<ImageItem :src="slice.primary.image.url" :mobile="slice.primary.image.mobile.url"/>
+						<ImageItem :src="slice.primary.image.url" :mobile="slice.primary.image.mobile.url" />
 					</div>
 					<template v-for="(item, key) in slice.items">
 						<prismic-rich-text :key="key" class="rich_text" :field="item.text" />
@@ -35,25 +35,77 @@ export default {
 	},
 	middleware: 'navbarTransparent',
 	data: () => ({
-		slices: null,
-		altLangUid: Object
+		slices: Array,
+		altLangUid: Object,
+		metaTags: Object,
 	}),
-	watch: {
-    '$route.query': '$fetch'
-  },
 	async fetch() {
-		const lang = this.$i18n.localeProperties.prismic
-		const fetch = await this.$prismic.api.getByUID('services', this.$route.params.service, { lang: lang });
-		this.altLangUid[fetch.lang.slice(0,2)] = fetch.uid; 
-		fetch.alternate_languages.forEach(alternateLang => {
-				this.altLangUid[alternateLang.lang.slice(0,2)] = alternateLang.uid; 
-		});
+		const fetch = await this.$prismic.api.getByUID('services', this.$route.params.service, { lang: this.$i18n.localeProperties.prismic })
+
+		// store routes for all langs
+		this.altLangUid[fetch.lang.slice(0, 2)] = fetch.uid
+		fetch.alternate_languages.forEach((alternateLang) => {
+			this.altLangUid[alternateLang.lang.slice(0, 2)] = alternateLang.uid
+		})
 		this.$store.dispatch('i18n/setRouteParams', {
 			en: { service: this.altLangUid.en },
 			ru: { service: this.altLangUid.ru },
 			ua: { service: this.altLangUid.ua },
 		})
+
+		// service data
 		this.slices = fetch.data.body
+
+		// define meta tags
+		if (fetch.data.meta_title)
+			this.metaTags = {
+				title: fetch.data.meta_title,
+				description: fetch.data.meta_description,
+				keywords: fetch.data.meta_keywords,
+			}
+		// default untill everything is filled
+		else
+			switch (this.$i18n.localeProperties.prismic) {
+				case 'ua-ua':
+					return {
+						metaTags: {
+							title: 'Будівельні послуги | DANICA',
+							description: '【Будівельні роботи під ключ】 Послуги в області будівництва ✅ Вигідні ціни ⚡️ Відгуки + Гарантія + Якість ☎️ Телефонуйте ▻',
+							keywords: 'default keywords',
+						},
+					}
+				case 'ru':
+					return {
+						metaTags: {
+							title: 'Строительные услуги | DANICA',
+							description: '【Строительные работы под ключ】Услуги в области строительства ✅ Выгодные цены ⚡️ Отзывы + Гарантия + Качество ☎️ Звоните ▻',
+							keywords: 'default keywords',
+						},
+					}
+				case '':
+					return {
+						metaTags: {
+							title: 'Construction service | DANICA',
+							description: '【Turnkey construction work】 Construction services ✅ Favorable prices ⚡️ Reviews + Warranty + Quality ☎️ Call ▻',
+							keywords: 'default keywords',
+						},
+					}
+			}
+	},
+	head() {
+		return {
+			title: this.metaTags.title,
+			meta: [
+				{
+					hid: 'description',
+					name: 'description',
+					content: this.metaTags.description,
+				},
+			],
+		}
+	},
+	watch: {
+		'$route.query': '$fetch',
 	},
 	fetchKey(getCounter) {
 		// getCounter is a method that can be called to get the next number in a sequence
@@ -103,8 +155,8 @@ export default {
 
 @media (min-width: 2000px) {
 	.container {
-		.image_text{
-			.image{
+		.image_text {
+			.image {
 				height: 40vh;
 			}
 		}

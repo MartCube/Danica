@@ -58,6 +58,13 @@ export default {
 			this.form.message = value
 		},
 		async Submit() {
+			// TEST
+			try {
+				await this.$axios.$post('.netlify/functions/sparkpost')
+			} catch (error) {
+				console.log(error)
+			}
+
 			const isValid = await this.$refs.contact.validate()
 			// validation
 			if (!isValid) return

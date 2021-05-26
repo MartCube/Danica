@@ -27,16 +27,14 @@ export default {
 	],
 
 	// Modules (https://go.nuxtjs.dev/config-modules)
-	modules: ['@nuxtjs/prismic', '@nuxtjs/axios', 'nuxt-i18n', '@nuxtjs/style-resources', '@nuxtjs/sitemap', '@nuxtjs/gtm', 'nuxt-facebook-pixel-module'],
+	modules: ['@nuxtjs/prismic', '@nuxtjs/axios', 'nuxt-i18n', '@nuxtjs/style-resources', '@nuxtjs/gtm', 'nuxt-facebook-pixel-module'],
 
-	publicRuntimeConfig: {
-		gtm: {
-			id: process.env.GTM,
-		},
-		facebook: {
-			pixelId: process.env.PIXEL,
-			autoPageView: true,
-		},
+	gtm: {
+		id: process.env.GTM,
+	},
+	facebook: {
+		pixelId: process.env.PIXEL,
+		autoPageView: true,
 	},
 
 	prismic: {

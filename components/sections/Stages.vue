@@ -69,10 +69,12 @@ export default {
 				min-width: 120px;
 				margin-right: 40px;
 				text-align: right;
-				font-size: 4rem;
+				font-size: 5rem;
 				color: $primary;
+				font-family: 'Numbers';
 				span {
 					display: none;
+					font-weight: bold;
 					font-size: inherit;
 					font-weight: inherit;
 					line-height: inherit;

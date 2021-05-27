@@ -30,7 +30,7 @@ export default {
 			button_tohome: "На головну",
 			name: "Ім'я",
 			number: "Телефон",
-			email: "Мейл",
+			email: "Email",
 			message: "Повідомлення",
 			subscriptionText:
 				"Підпишіться та будьте в курсі останніх новин та проектів",

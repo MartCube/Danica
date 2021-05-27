@@ -92,7 +92,7 @@ export default {
 		margin: 20px 40px;
 		padding-top: 20px;
 		position: relative;
-
+		font-size: 1.8rem;
 		// text-transform: capitalize;
 		&::first-letter{
 			text-transform: capitalize;

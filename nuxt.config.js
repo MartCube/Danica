@@ -27,8 +27,7 @@ export default {
 	],
 
 	// Modules (https://go.nuxtjs.dev/config-modules)
-	modules: ['@nuxtjs/prismic', '@nuxtjs/axios', 'nuxt-i18n', '@nuxtjs/style-resources', '@nuxtjs/gtm', 'nuxt-facebook-pixel-module'],
-
+	modules: ['@nuxtjs/prismic', '@nuxtjs/axios', 'nuxt-i18n', '@nuxtjs/style-resources', '@nuxtjs/gtm', 'nuxt-facebook-pixel-module', '@nuxtjs/sitemap'],
 	gtm: {
 		id: process.env.GTM,
 	},
@@ -114,7 +113,13 @@ export default {
 	},
 
 	sitemap: {
-		hostname: 'https://danica.ua',
+		hostname: 'https://vigilant-raman-92304e.netlify.app',
+		defaults: {
+      changefreq: 'daily',
+      priority: 1,
+      lastmod: new Date()
+    },
+		i18n: true
 	},
 
 	axios: {

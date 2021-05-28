@@ -48,7 +48,7 @@ export default {
 		defaultLocale: 'ua',
 		lazy: true,
 		seo: true,
-		baseUrl: 'http://localhost:3000',
+		baseUrl: 'danica.ua',
 		langDir: 'locales/',
 		locales: [
 			{

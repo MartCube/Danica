@@ -55,8 +55,8 @@ export default {
 		}
 	},
 	data: () => ({
-		data: Object,
-		contactFormData: Object,
+		data: {},
+		contactFormData: {},
 		map_image: '../map.png',
 		map_url: 'https://g.page/danica-ua?share',
 	}),

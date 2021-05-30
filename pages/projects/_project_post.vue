@@ -57,9 +57,9 @@
 <script>
 export default {
 	data: () => ({
-		post: Object,
-		altLangUid: Object,
-		metaTags: Object,
+		post: {},
+		altLangUid: {},
+		metaTags: {},
 
 		swiperOption: {
 			slidesPerView: 'auto',

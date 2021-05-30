@@ -29,7 +29,6 @@ export default {
 	async asyncData({ $prismic, i18n }) {
 		// fetch blog page
 		const page = await $prismic.api.getSingle('projects', { lang: i18n.localeProperties.prismic })
-		console.log(page)
 		// define meta tags
 		if (page.data.meta_title)
 			return {

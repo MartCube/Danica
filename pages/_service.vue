@@ -2,7 +2,7 @@
 	<div class="container">
 		<template v-if="$fetchState.error">error</template>
 		<template v-else-if="!$fetchState.pending">
-			<div v-for="slice in slices" :key="slice.slice_type">
+			<div v-for="(slice, i) in slices" :key="slice.slice_type + i">
 				<ServiceIntro v-if="slice.slice_type == 'serviceintro'" :data="slice" />
 				<Values v-else-if="slice.slice_type == 'values'" :data="slice" />
 				<Stages v-else-if="slice.slice_type == 'stages'" :data="slice" />
@@ -11,17 +11,17 @@
 				<Charles v-else-if="slice.slice_type == 'charles'" :data="slice" />
 				<LatestProjects v-else-if="slice.slice_type == 'latestprojects'" :data="slice" />
 				<SliderProjects v-else-if="slice.slice_type == 'sliderprojects'" :data="slice" />
-				<section v-else-if="slice.slice_type == 'text'" class="rich_text">
+				<!-- <section v-else-if="slice.slice_type == 'text'" class="rich_text">
 					<prismic-rich-text :field="slice.primary.text" />
 				</section>
 				<section v-else-if="slice.slice_type == 'image_text'" class="image_text">
 					<div class="image">
-						<ImageItem :src="slice.primary.image.url" :mobile="slice.primary.image.mobile.url" />
+						<ImageItem :src="slice.primary.image.url" :mobile="slice.primary.image.mobile.url" :alt="slice.primary.image.alt" />
 					</div>
 					<template v-for="(item, key) in slice.items">
 						<prismic-rich-text :key="key" class="rich_text" :field="item.text" />
 					</template>
-				</section>
+				</section> -->
 			</div>
 		</template>
 	</div>
@@ -29,6 +29,7 @@
 
 <script>
 export default {
+	name: 'Service',
 	beforeRouteLeave(to, from, next) {
 		this.$store.dispatch('bindNavbarTransparent', false)
 		next()
@@ -36,8 +37,8 @@ export default {
 	middleware: 'navbarTransparent',
 	data: () => ({
 		slices: Array,
-		altLangUid: Object,
-		metaTags: Object,
+		altLangUid: {},
+		metaTags: {},
 	}),
 	async fetch() {
 		const fetch = await this.$prismic.api.getByUID('services', this.$route.params.service, { lang: this.$i18n.localeProperties.prismic })

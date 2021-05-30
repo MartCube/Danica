@@ -82,7 +82,7 @@ export default {
 		// filters
 		filters: ['design', 'architecture', 'energy save', 'remont'],
 		active_filter: [],
-		metaTags: Object,
+		metaTags: {},
 
 		// pagination
 		current_page: 1,

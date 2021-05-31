@@ -90,7 +90,8 @@ export default {
 				rel: 'canonical',
 				href: `${domain}/${post.lang.slice(0, 2)}/projects/${post.uid}`,
 			})
-		if (post.alternate_languages.length > 0)
+		if (post.alternate_languages.length > 0){
+
 			post.alternate_languages.forEach((alterLang) => {
 				if (alterLang.lang.slice(0, 2) === 'ua')
 					this.altLinks.push({
@@ -107,6 +108,7 @@ export default {
 						hreflang: alterLang.lang.slice(0, 2),
 					})
 			})
+		}
 
 		// store routes for all langs
 		this.altLangUid[post.lang.slice(0, 2)] = post.uid
@@ -372,7 +374,9 @@ export default {
 }
 
 @media (max-width: 900px) {
+	.container::after{z-index: -1;}
 	.project_post {
+		&::after{display: none;}
 		padding: 0;
 		.intro {
 			width: 100%;

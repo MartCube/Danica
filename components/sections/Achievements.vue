@@ -118,7 +118,7 @@ export default {
 			flex-direction: column;
 			p {
 				margin-bottom: 60px;
-				margin-left: 0;
+				margin-left: 15px;
 			}
 			.counter {
 				width: max-content;

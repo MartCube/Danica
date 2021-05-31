@@ -74,6 +74,7 @@ export default {
 		const domain = this.$store.getters.domain
 
 		// alternate languages and canonical link
+
 		if (post.lang.slice(0, 2) === 'ua')
 			this.altLinks.push({
 				hid: 'canonical',
@@ -86,22 +87,24 @@ export default {
 				rel: 'canonical',
 				href: `${domain}/${post.lang.slice(0, 2)}/blog/${post.uid}`,
 			})
-		post.alternate_languages.forEach((alterLang) => {
-			if (alterLang.lang.slice(0, 2) === 'ua')
-				this.altLinks.push({
-					hid: 'alternate',
-					rel: 'alternate',
-					href: `${domain}/blog/${alterLang.uid}`,
-					hreflang: alterLang.lang.slice(0, 2),
-				})
-			else
-				this.altLinks.push({
-					hid: 'alternate',
-					rel: 'alternate',
-					href: `${domain}/${alterLang.lang.slice(0, 2)}/blog/${alterLang.uid}`,
-					hreflang: alterLang.lang.slice(0, 2),
-				})
-		})
+		if (post.alternate_languages.length > 0){
+			post.alternate_languages.forEach((alterLang) => {
+				if (alterLang.lang.slice(0, 2) === 'ua')
+					this.altLinks.push({
+						hid: 'alternate',
+						rel: 'alternate',
+						href: `${domain}/blog/${alterLang.uid}`,
+						hreflang: alterLang.lang.slice(0, 2),
+					})
+				else
+					this.altLinks.push({
+						hid: 'alternate',
+						rel: 'alternate',
+						href: `${domain}/${alterLang.lang.slice(0, 2)}/blog/${alterLang.uid}`,
+						hreflang: alterLang.lang.slice(0, 2),
+					})
+			})
+		}
 
 		// store routes for all langs
 		this.altLangUid[post.lang.slice(0, 2)] = post.uid

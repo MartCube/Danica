@@ -1,5 +1,5 @@
 import { extend } from 'vee-validate'
-import { required, email, digits } from 'vee-validate/dist/rules'
+import { required, email, min } from 'vee-validate/dist/rules'
 
 extend('required', {
 	...required,
@@ -11,8 +11,8 @@ extend('email', {
 	message: 'email not valid',
 })
 
-extend('digits', {
-	...digits,
+extend('min', {
+	...min,
 	message: 'number not valid',
 })
 

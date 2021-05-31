@@ -3,7 +3,7 @@
 		<ValidationObserver v-if="!message" ref="contact" tag="form" autocomplete="off" @submit.prevent="Submit()">
 			<h2 class="title">{{ data.title }}</h2>
 			<InputItem name="name" :label="data.name" rules="required" @getValue="getName" />
-			<InputItem name="number" :label="data.number" rules="digits:3|required" @getValue="getNumber" />
+			<InputItem mask="(+380) ###-###-###" name="number" :label="data.number" rules="min:18|required" @getValue="getNumber" />
 			<InputItem name="email" :label="data.email" rules="email|required" @getValue="getEmail" />
 			<InputItem name="message" :label="data.message" rules="required" @getValue="getMessage" />
 			<ButtonItem white> {{ data.submit }} <IconMail /> </ButtonItem>
@@ -58,13 +58,6 @@ export default {
 			this.form.message = value
 		},
 		async Submit() {
-			// TEST
-			try {
-				await this.$axios.$post('.netlify/functions/sparkpost')
-			} catch (error) {
-				console.log(error)
-			}
-
 			const isValid = await this.$refs.contact.validate()
 			// validation
 			if (!isValid) return
@@ -80,8 +73,8 @@ export default {
 				<p>${this.form.number}</p>
 				<h4>Email</h4>
 				<p>${this.form.email}</p>
-				<h4>Email</h4>
-				<p>${this.form.messagee}</p>
+				<h4>Message</h4>
+				<p>${this.form.message}</p>
 			`
 
 			// trigger netlify function

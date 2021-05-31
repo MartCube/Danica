@@ -4,7 +4,7 @@
 			{{ errors[0] }}
 		</div>
 
-		<input :id="name" v-model="input_value" :type="type" :placeholder="name" :name="name" @change="emitValue" />
+		<input :id="name" v-model="input_value" v-mask="mask" :type="type" :placeholder="name" :name="name" @change="emitValue" />
 		<IconArrow v-if="subscribe" class="arrow" />
 
 		<label :for="name" class="input_label">{{ label }}</label>
@@ -34,6 +34,10 @@ export default {
 		rules: {
 			type: [Object, String],
 			required: true,
+		},
+		mask: {
+			type: String,
+			default: '',
 		},
 		subscribe: {
 			type: Boolean,

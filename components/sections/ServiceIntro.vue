@@ -1,7 +1,7 @@
 <template>
 	<section class="intro">
 		<div class="bg">
-			<ImageItem :src="image.url" :mobile="image.mobile.url" :alt="title" />
+			<ImageItem :src="image.url" :mobile="image.mobile.url" :alt="image.alt" />
 		</div>
 		<div class="content" :class="{ white: data.primary.white_text }">
 			<div class="maintitle">

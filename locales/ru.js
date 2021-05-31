@@ -4,9 +4,9 @@ export default {
 		architecture: 'архитектура',
 		projects: {
 			name: 'Проекты',
-			load_more: 'Загрузить больше' 
+			load_more: 'Загрузить больше',
 		},
-		blog: 'Новости',
+		blog: 'Блог',
 		contact: {
 			name: 'Контакты',
 			title: 'Мы всегда рады новым знакомствам',
@@ -32,7 +32,7 @@ export default {
 			number: 'Телефон',
 			email: 'Email',
 			message: 'Сообщение',
-			subscriptionText: 'Подпишитесь и будьте в курсе последних новостей и проектов'
+			subscriptionText: 'Подпишитесь и будьте в курсе последних новостей и проектов',
 		},
 		footer: {
 			all_rights_reserved: 'Все права защищены',

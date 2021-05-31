@@ -11,17 +11,15 @@
 				<Charles v-else-if="slice.slice_type == 'charles'" :data="slice" />
 				<LatestProjects v-else-if="slice.slice_type == 'latestprojects'" :data="slice" />
 				<SliderProjects v-else-if="slice.slice_type == 'sliderprojects'" :data="slice" />
-				<!-- <section v-else-if="slice.slice_type == 'text'" class="rich_text">
+				<section v-else-if="slice.slice_type == 'text'" class="rich_text">
 					<prismic-rich-text :field="slice.primary.text" />
 				</section>
 				<section v-else-if="slice.slice_type == 'image_text'" class="image_text">
 					<div class="image">
 						<ImageItem :src="slice.primary.image.url" :mobile="slice.primary.image.mobile.url" :alt="slice.primary.image.alt" />
 					</div>
-					<template v-for="(item, key) in slice.items">
-						<prismic-rich-text :key="key" class="rich_text" :field="item.text" />
-					</template>
-				</section> -->
+					<prismic-rich-text v-for="(item, key) in slice.items" :key="key" class="rich_text" :field="item.text" />
+				</section>
 			</div>
 		</template>
 	</div>
@@ -38,13 +36,47 @@ export default {
 	data: () => ({
 		slices: Array,
 		altLangUid: {},
+
+		// head data
+		altLinks: [],
 		metaTags: {},
+		ogTags: [],
 	}),
 	async fetch() {
 		const fetch = await this.$prismic.api.getByUID('services', this.$route.params.service, { lang: this.$i18n.localeProperties.prismic })
+		const domain = this.$store.getters.domain
+
+		// alternate languages and canonical link
+		if (fetch.lang.slice(0, 2) === 'ua')
+			this.altLinks.push({
+				hid: 'canonical',
+				rel: 'canonical',
+				href: `${domain}/${fetch.uid}`,
+			})
+		else
+			this.altLinks.push({
+				hid: 'canonical',
+				rel: 'canonical',
+				href: `${domain}/${fetch.lang.slice(0, 2)}/${fetch.uid}`,
+			})
+		fetch.alternate_languages.forEach((alterLang) => {
+			if (alterLang.lang.slice(0, 2) === 'ua')
+				this.altLinks.push({
+					hid: 'alternate',
+					rel: 'alternate',
+					href: `${domain}/${alterLang.uid}`,
+					hreflang: alterLang.lang.slice(0, 2),
+				})
+			else
+				this.altLinks.push({
+					hid: 'alternate',
+					rel: 'alternate',
+					href: `${domain}/${alterLang.lang.slice(0, 2)}/${alterLang.uid}`,
+					hreflang: alterLang.lang.slice(0, 2),
+				})
+		})
 
 		// store routes for all langs
-		this.altLangUid[fetch.lang.slice(0, 2)] = fetch.uid
 		fetch.alternate_languages.forEach((alternateLang) => {
 			this.altLangUid[alternateLang.lang.slice(0, 2)] = alternateLang.uid
 		})
@@ -94,7 +126,25 @@ export default {
 			}
 	},
 	head() {
+		const datai18 = this.$nuxtI18nHead({ addSeoAttributes: true })
+		let canonicalUrl = String
+		// let alternaterUrl1 = String
+		// let alternaterUrl2 = String
+		// await this.$nextTick()
+		this.altLinks.forEach((element, i) => {
+			switch (i) {
+				case 0:
+					canonicalUrl = element.href
+					break
+
+				default:
+					break
+			}
+		})
 		return {
+			htmlAttrs: {
+				lang: datai18.htmlAttrs.lang,
+			},
 			title: this.metaTags.title,
 			meta: [
 				{
@@ -102,7 +152,38 @@ export default {
 					name: 'description',
 					content: this.metaTags.description,
 				},
+				{
+					hid: 'og:title',
+					name: 'og:title',
+					content: this.metaTags.title,
+				},
+				{
+					hid: 'og:description',
+					name: 'og:description',
+					content: this.metaTags.description,
+				},
+				{
+					hid: 'og:url',
+					name: 'og:url',
+					content: canonicalUrl,
+				},
+				// {
+				// 	hid: 'og:url',
+				// 	name: 'og:locale:alternate',
+				// 	content: canonicalUrl,
+				// },
+				// {
+				// 	hid: 'og:url',
+				// 	name: 'og:locale:alternate',
+				// 	content: canonicalUrl,
+				// },
+				// {
+				// 	hid: 'og:image',
+				// 	name: 'og:image',
+				// 	content: this.slices[0].primary.image.url,
+				// },
 			],
+			link: this.altLinks,
 		}
 	},
 	watch: {

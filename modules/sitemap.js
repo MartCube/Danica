@@ -108,7 +108,7 @@ const sitemap = async function () {
 					break
 			}
 		})
-		console.log(pages)
+		// console.log(pages)
 	}
 	return pages
 }

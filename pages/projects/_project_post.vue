@@ -60,6 +60,7 @@ export default {
 		post: {},
 		altLangUid: {},
 		metaTags: {},
+		altLinks: [],
 
 		swiperOption: {
 			slidesPerView: 'auto',
@@ -74,6 +75,38 @@ export default {
 	async fetch() {
 		// fetch project post
 		const post = await this.$prismic.api.getByUID('project_post', this.$route.params.project_post, { lang: this.$i18n.localeProperties.prismic })
+		const domain = this.$store.getters.domain
+
+		// alternate languages and canonical link
+		if (post.lang.slice(0, 2) === 'ua')
+			this.altLinks.push({
+				hid: 'canonical',
+				rel: 'canonical',
+				href: `${domain}/projects/${post.uid}`,
+			})
+		else
+			this.altLinks.push({
+				hid: 'canonical',
+				rel: 'canonical',
+				href: `${domain}/${post.lang.slice(0, 2)}/projects/${post.uid}`,
+			})
+		if (post.alternate_languages.length > 0)
+			post.alternate_languages.forEach((alterLang) => {
+				if (alterLang.lang.slice(0, 2) === 'ua')
+					this.altLinks.push({
+						hid: 'alternate',
+						rel: 'alternate',
+						href: `${domain}/projects/${alterLang.uid}`,
+						hreflang: alterLang.lang.slice(0, 2),
+					})
+				else
+					this.altLinks.push({
+						hid: 'alternate',
+						rel: 'alternate',
+						href: `${domain}/${alterLang.lang.slice(0, 2)}/projects/${alterLang.uid}`,
+						hreflang: alterLang.lang.slice(0, 2),
+					})
+			})
 
 		// store routes for all langs
 		this.altLangUid[post.lang.slice(0, 2)] = post.uid
@@ -102,7 +135,7 @@ export default {
 		}
 
 		// define meta tags
-		if (post.data.meta_title)
+		if (post.data.meta_title && post.data.meta_title != null)
 			this.metaTags = {
 				title: post.data.meta_title,
 				description: post.data.meta_description,
@@ -112,33 +145,45 @@ export default {
 		else
 			switch (this.$i18n.localeProperties.prismic) {
 				case 'ua-ua':
-					return {
-						metaTags: {
-							title: 'Будівельні послуги | DANICA',
-							description: '【Будівельні роботи під ключ】 Послуги в області будівництва ✅ Вигідні ціни ⚡️ Відгуки + Гарантія + Якість ☎️ Телефонуйте ▻',
-							keywords: 'default keywords',
-						},
+					this.metaTags = {
+						title: 'Будівельні послуги | DANICA',
+						description: '【Будівельні роботи під ключ】 Послуги в області будівництва ✅ Вигідні ціни ⚡️ Відгуки + Гарантія + Якість ☎️ Телефонуйте ▻',
+						keywords: 'default keywords',
 					}
+					break
 				case 'ru':
-					return {
-						metaTags: {
-							title: 'Строительные услуги | DANICA',
-							description: '【Строительные работы под ключ】Услуги в области строительства ✅ Выгодные цены ⚡️ Отзывы + Гарантия + Качество ☎️ Звоните ▻',
-							keywords: 'default keywords',
-						},
+					this.metaTags = {
+						title: 'Строительные услуги | DANICA',
+						description: '【Строительные работы под ключ】Услуги в области строительства ✅ Выгодные цены ⚡️ Отзывы + Гарантия + Качество ☎️ Звоните ▻',
+						keywords: 'default keywords',
 					}
+					break
 				case '':
-					return {
-						metaTags: {
-							title: 'Construction service | DANICA',
-							description: '【Turnkey construction work】 Construction services ✅ Favorable prices ⚡️ Reviews + Warranty + Quality ☎️ Call ▻',
-							keywords: 'default keywords',
-						},
+					this.metaTags = {
+						title: 'Construction service | DANICA',
+						description: '【Turnkey construction work】 Construction services ✅ Favorable prices ⚡️ Reviews + Warranty + Quality ☎️ Call ▻',
+						keywords: 'default keywords',
 					}
+					break
 			}
 	},
 	head() {
+		const datai18 = this.$nuxtI18nHead({ addSeoAttributes: true })
+		let canonicalUrl = String
+		this.altLinks.forEach((element, i) => {
+			switch (i) {
+				case 0:
+					canonicalUrl = element.href
+					break
+
+				default:
+					break
+			}
+		})
 		return {
+			htmlAttrs: {
+				lang: datai18.htmlAttrs.lang,
+			},
 			title: this.metaTags.title,
 			meta: [
 				{
@@ -146,7 +191,38 @@ export default {
 					name: 'description',
 					content: this.metaTags.description,
 				},
+				{
+					hid: 'og:title',
+					name: 'og:title',
+					content: this.metaTags.title,
+				},
+				{
+					hid: 'og:description',
+					name: 'og:description',
+					content: this.metaTags.description,
+				},
+				{
+					hid: 'og:url',
+					name: 'og:url',
+					content: canonicalUrl,
+				},
+				// {
+				// 	hid: 'og:url',
+				// 	name: 'og:locale:alternate',
+				// 	content: canonicalUrl,
+				// },
+				// {
+				// 	hid: 'og:url',
+				// 	name: 'og:locale:alternate',
+				// 	content: canonicalUrl,
+				// },
+				// {
+				// 	hid: 'og:image',
+				// 	name: 'og:image',
+				// 	content: this.slices[0].primary.image.url,
+				// },
 			],
+			link: this.altLinks,
 		}
 	},
 	fetchKey(getCounter) {

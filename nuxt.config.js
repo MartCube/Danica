@@ -11,7 +11,24 @@ export default {
 	// Global page headers (https://go.nuxtjs.dev/config-head)
 	head: {
 		title: 'Danica',
-		meta: [{ charset: 'UTF-8' }, { name: 'viewport', content: 'width=device-width, initial-scale=1' }, { hid: 'description', name: 'description', content: '' }],
+		meta: [
+			{
+				name: 'viewport',
+				content: 'width=device-width, initial-scale=1',
+			},
+			{
+				charset: 'UTF-8',
+			},
+			{
+				hid: 'robots',
+				name: 'robots',
+				content: 'follow',
+			},
+			{
+				property: 'fb:app_id',
+				content: '284462626583392',
+			},
+		],
 		link: [{ rel: 'icon', type: 'image/png', href: '/favicon.png' }],
 	},
 
@@ -36,7 +53,7 @@ export default {
 	},
 
 	facebook: {
-		pixelId: process.env.PIXEL,
+		pixelId: '284462626583392',
 		autoPageView: true,
 		debug: true,
 	},

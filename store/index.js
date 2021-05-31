@@ -7,6 +7,8 @@ export const state = (context) => ({
 
 	modalContact: false,
 	modalVideo: false,
+
+	domain: 'https://danica-dev.netlify.app',
 })
 
 // Functions that return back data contained in the state.
@@ -19,6 +21,8 @@ export const getters = {
 
 	modalContact: (state) => state.modalContact,
 	modalVideo: (state) => state.modalVideo,
+
+	domain: (state) => state.domain,
 }
 
 // Functions that directly mutate the state.

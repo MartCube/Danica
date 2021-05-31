@@ -362,7 +362,7 @@ export default {
 			p {
 				margin-bottom: 25px;
 				&:last-child {
-					margin: 0;
+					margin-bottom: 0;
 				}
 			}
 		}
@@ -383,11 +383,11 @@ export default {
 		.intro {
 			.title {
 				margin: 40px 0;
-				padding-left: 40px;
+				padding-left: 55px;
 				font-size: 1.5rem;
 			}
 			.info {
-				padding: 0 40px;
+				padding: 0 40px 0 55px;
 			}
 			picture {
 				// width: 100%;
@@ -398,7 +398,7 @@ export default {
 		.text {
 			width: 100%;
 			.rich_text {
-				padding: 0 40px;
+				padding: 0 40px 0 55px;
 			}
 		}
 
@@ -406,10 +406,12 @@ export default {
 			width: 100%;
 			margin: 0;
 		}
-
 		.image_text {
 			flex-direction: column;
 			padding: 0;
+			p {
+				padding-left: 15px;
+			}
 			picture {
 				margin-left: 40px;
 				max-width: 100%;

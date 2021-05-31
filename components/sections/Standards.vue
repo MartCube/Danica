@@ -115,4 +115,16 @@ $transition: all 0.35s ease;
 		}
 	}
 }
+@media (max-width: 900px) {
+	section {
+		.content {
+			flex-direction: column;
+			.list {
+				width: 100%;
+				padding-left: 15px;
+			
+			}
+		}
+	}
+}
 </style>

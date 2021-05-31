@@ -374,7 +374,9 @@ export default {
 }
 
 @media (max-width: 900px) {
+	.container::after{z-index: -1;}
 	.project_post {
+		&::after{display: none;}
 		padding: 0;
 		.intro {
 			width: 100%;

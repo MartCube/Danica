@@ -33,9 +33,7 @@
 </template>
 
 <script>
-import ContactInfo from '~/components/local/ContactInfo.vue'
 export default {
-	components: { ContactInfo },
 	beforeRouteLeave(to, from, next) {
 		this.$store.dispatch('bindFooter', true)
 		next()

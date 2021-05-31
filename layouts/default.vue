@@ -3,7 +3,7 @@
 		<Navbar />
 		<SideBar />
 		<main>
-			<Nuxt />
+			<Nuxt keep-alive />
 		</main>
 		<Footer />
 		<ContactModal />

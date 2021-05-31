@@ -5,31 +5,35 @@ const client = prismic.client(apiEndpoint)
 
 const sitemap = async function () {
 	const pages = []
-	let lang
-	let data
 
-	lang = '/en'
-	data = await client.query('', {
-		pageSize: 100,
-		lang: 'en-us',
-	})
-	transform(data)
+	await client
+		.query('', {
+			pageSize: 100,
+			lang: 'en-us',
+		})
+		.then((data) => {
+			transform(data, 'en')
+		})
 
-	lang = '/ru'
-	data = await client.query('', {
-		pageSize: 100,
-		lang: 'ru',
-	})
-	transform(data)
+	await client
+		.query('', {
+			pageSize: 100,
+			lang: 'ru',
+		})
+		.then((data) => {
+			transform(data, 'ru')
+		})
 
-	lang = ''
-	data = await client.query('', {
-		pageSize: 100,
-		lang: 'ua-ua',
-	})
-	transform(data)
+	await client
+		.query('', {
+			pageSize: 100,
+			lang: 'ua-ua',
+		})
+		.then((data) => {
+			transform(data, '')
+		})
 
-	function transform(data) {
+	function transform(data, lang) {
 		data.results.forEach((page) => {
 			switch (page.type) {
 				case 'home_index':
@@ -68,7 +72,7 @@ const sitemap = async function () {
 					pages.push({
 						url: `${lang}/privacy-policy`,
 						changefreq: 'monthly',
-						priority: 0.25,
+						priority: 0.3,
 						lastmod: page.last_publication_date,
 					})
 					break
@@ -76,7 +80,7 @@ const sitemap = async function () {
 					pages.push({
 						url: `${lang}/blog/${page.uid}`,
 						changefreq: 'weekly',
-						priority: 0.25,
+						priority: 0.3,
 						lastmod: page.last_publication_date,
 					})
 					break
@@ -92,15 +96,7 @@ const sitemap = async function () {
 					pages.push({
 						url: `${lang}/${page.uid}`,
 						changefreq: 'monthly',
-						priority: 0.75,
-						lastmod: page.last_publication_date,
-					})
-					break
-				case '':
-					pages.push({
-						url: `${lang}`,
-						changefreq: 'monthly',
-						priority: 0.75,
+						priority: 0.7,
 						lastmod: page.last_publication_date,
 					})
 					break

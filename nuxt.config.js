@@ -37,6 +37,11 @@ export default {
 	// Global CSS (https://go.nuxtjs.dev/config-css)
 	css: ['~/assets/main.scss', '~/assets/colors.scss'],
 
+	// router
+	router: {
+		trailingSlash: true,
+	},
+
 	// Plugins to run before rendering page (https://go.nuxtjs.dev/config-plugins)
 	plugins: [{ src: '@plugins/v-mask.js' }, { src: '@/plugins/vue-swiper', mode: 'client' }, { src: '@/plugins/vue-observe' }, { src: '~/plugins/vue-plyr', mode: 'client' }, { src: '@/plugins/vee-validate.js' }, { src: `~/plugins/lazysizes.client.js` }],
 
@@ -139,12 +144,12 @@ export default {
 	},
 
 	sitemap: {
-		hostname: 'https://danica-dev.netlify.app', // replace with danica.ua
+		hostname: 'https://danica-dev.netlify.app/', // replace with danica.ua
+		exclude: ['/ru/null'],
+		trailingSlash: true,
 		routes() {
 			return sitemap()
 		},
-		i18n: false,
-		exclude: ['/ru/null'],
 	},
 
 	axios: {

@@ -3,7 +3,7 @@
 		<ValidationObserver v-if="!message" ref="contact" tag="form" autocomplete="off" @submit.prevent="Submit()">
 			<h2 class="title">{{ data.title }}</h2>
 			<InputItem name="name" :label="data.name" rules="required" @getValue="getName" />
-			<InputItem mask="(+380) ###-###-###" name="number" :label="data.number" rules="min:18|required" @getValue="getNumber" />
+			<InputItem mask="(+380) ##-###-##-##" name="number" :label="data.number" rules="min:18|required" @getValue="getNumber" />
 			<InputItem name="email" :label="data.email" rules="email|required" @getValue="getEmail" />
 			<InputItem name="message" :label="data.message" rules="required" @getValue="getMessage" />
 			<ButtonItem white> {{ data.submit }} <IconMail /> </ButtonItem>

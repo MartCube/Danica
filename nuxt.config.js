@@ -1,3 +1,5 @@
+import sitemap from './modules/sitemap'
+
 export default {
 	// Target (https://go.nuxtjs.dev/config-target)
 	target: 'static',
@@ -9,7 +11,24 @@ export default {
 	// Global page headers (https://go.nuxtjs.dev/config-head)
 	head: {
 		title: 'Danica',
-		meta: [{ charset: 'utf-8' }, { name: 'viewport', content: 'width=device-width, initial-scale=1' }, { hid: 'description', name: 'description', content: '' }],
+		meta: [
+			{
+				name: 'viewport',
+				content: 'width=device-width, initial-scale=1',
+			},
+			{
+				charset: 'UTF-8',
+			},
+			{
+				hid: 'robots',
+				name: 'robots',
+				content: 'follow',
+			},
+			{
+				property: 'fb:app_id',
+				content: '284462626583392',
+			},
+		],
 		link: [{ rel: 'icon', type: 'image/png', href: '/favicon.png' }],
 	},
 
@@ -27,17 +46,16 @@ export default {
 	],
 
 	// Modules (https://go.nuxtjs.dev/config-modules)
-	modules: ['@nuxtjs/prismic', '@nuxtjs/axios', 'nuxt-i18n', '@nuxtjs/style-resources', '@nuxtjs/gtm', 'nuxt-facebook-pixel-module', '@nuxtjs/sitemap'],
-	sitemap: {
-    hostname: 'https://vigilant-raman-92304e.netlify.app',
-   
-  },
+	modules: ['@/modules/sitemap', '@nuxtjs/prismic', '@nuxtjs/axios', 'nuxt-i18n', '@nuxtjs/style-resources', '@nuxtjs/gtm', 'nuxt-facebook-pixel-module', '@nuxtjs/sitemap'],
+
 	gtm: {
 		id: process.env.GTM,
 	},
+
 	facebook: {
-		pixelId: process.env.PIXEL,
+		pixelId: '284462626583392',
 		autoPageView: true,
+		debug: true,
 	},
 
 	prismic: {
@@ -45,13 +63,16 @@ export default {
 		linkResolver: '@/plugins/link-resolver',
 		htmlSerializer: '@/plugins/html-serializer',
 		preview: false,
+		apiOptions: {
+			accessToken: 'MC5ZTEVkV0JVQUFDWUFYZG5W.W--_ve-_vTvvv73vv73vv73vv73vv71xcu-_vXbvv70977-9NO-_ve-_vXFV77-9Tu-_ve-_ve-_vXnvv70277-9RUY',
+		},
 	},
 
 	i18n: {
 		defaultLocale: 'ua',
 		lazy: true,
-		seo: true,
-		baseUrl: 'danica.ua',
+		seo: false,
+		baseUrl: 'https://danica-dev.netlify.app',
 		langDir: 'locales/',
 		locales: [
 			{
@@ -74,6 +95,7 @@ export default {
 				prismic: 'ua-ua',
 				file: 'ua.js',
 				iso: 'ua-UA',
+				isCatchallLocale: true,
 			},
 		],
 		parsePages: false, // Disable babel parsing
@@ -117,7 +139,12 @@ export default {
 	},
 
 	sitemap: {
-		hostname: 'https://danica.ua',
+		hostname: 'https://danica-dev.netlify.app', // replace with danica.ua
+		routes() {
+			return sitemap()
+		},
+		i18n: false,
+		exclude: ['/ru/null'],
 	},
 
 	axios: {

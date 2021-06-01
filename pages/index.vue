@@ -18,31 +18,39 @@ export default {
 		const domain = store.getters.domain
 		const altLinks = []
 		// alternate languages and canonical link
-		if (page.lang.slice(0, 2) === 'ua')
+		if (page.lang.slice(0, 2) === 'ua'){
 			altLinks.push({
 				hid: 'canonical',
 				rel: 'canonical',
-				href: `${domain}`,
+				href: `${domain}/`,
 			})
+			
+			altLinks.push({
+				hid: 'alternate',
+				rel: 'alternate',
+				href: `${domain}/`,
+				hreflang: 'x-default',
+			})
+		}
 		else
 			altLinks.push({
 				hid: 'canonical',
 				rel: 'canonical',
-				href: `${domain}/${page.lang.slice(0, 2)}`,
+				href: `${domain}/${page.lang.slice(0, 2)}/`,
 			})
 		page.alternate_languages.forEach((alterLang) => {
 			if (alterLang.lang.slice(0, 2) === 'ua')
 				altLinks.push({
 					hid: 'alternate',
 					rel: 'alternate',
-					href: `${domain}`,
+					href: `${domain}/`,
 					hreflang: alterLang.lang.slice(0, 2),
 				})
 			else
 				altLinks.push({
 					hid: 'alternate',
 					rel: 'alternate',
-					href: `${domain}/${alterLang.lang.slice(0, 2)}`,
+					href: `${domain}/${alterLang.lang.slice(0, 2)}/`,
 					hreflang: alterLang.lang.slice(0, 2),
 				})
 		})

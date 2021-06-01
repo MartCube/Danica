@@ -15,22 +15,18 @@ export default {
 		active: true,
 		link: '/services/interior-design',
 		letters: null,
+		
 	}),
-	computed: {
-		lettersArchitecture() {
-			return 'Architecture'.split('')
+	props: {
+		lettersDesign: {
+			type: Array,
+			required: true,
 		},
-		lettersDesign() {
-			return 'Design'.split('')
-		},
-		array() {
-			return [this.lettersArchitecture, this.lettersDesign]
+		lettersArchitecture: {
+			type: Array,
+			required: true,
 		},
 	},
-	mounted() {
-		this.letters = this.lettersDesign
-	},
-	methods: {},
 }
 </script>
 

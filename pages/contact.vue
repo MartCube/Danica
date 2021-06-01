@@ -13,7 +13,7 @@
 			<div class="map">
 				<a target="_blank" :href="map_url">
 					<p class="hint">{{ $t('pages.contact.tap_to_open') }}</p>
-					<ImageItem :src="map_image" alt="map" />
+					<ImageItem :src="image" alt="map" />
 				</a>
 			</div>
 			<div class="policy">
@@ -45,7 +45,8 @@ export default {
 		const domain = store.getters.domain
 		const altLinks = []
 		let metaTags = {}
-
+		let image = page.data.map.url;
+		console.log(image);
 		// alternate languages and canonical link
 		if (page.lang.slice(0, 2) === 'ua')
 			altLinks.push({
@@ -60,18 +61,25 @@ export default {
 				href: `${domain}/${page.lang.slice(0, 2)}/${page.uid}`,
 			})
 		page.alternate_languages.forEach((alterLang) => {
-			if (alterLang.lang.slice(0, 2) === 'ua')
+			if (alterLang.lang.slice(0, 2) === 'ua'){
 				altLinks.push({
 					hid: 'alternate',
 					rel: 'alternate',
-					href: `${domain}/${alterLang.uid}`,
+					href: `${domain}/${alterLang.uid}/`,
 					hreflang: alterLang.lang.slice(0, 2),
 				})
+				altLinks.push({
+					hid: 'alternate',
+					rel: 'alternate',
+					href: `${domain}/${alterLang.uid}/`,
+					hreflang: 'x-default',
+				})
+			}
 			else
 				altLinks.push({
 					hid: 'alternate',
 					rel: 'alternate',
-					href: `${domain}/${alterLang.lang.slice(0, 2)}/${alterLang.uid}`,
+					href: `${domain}/${alterLang.lang.slice(0, 2)}/${alterLang.uid}/`,
 					hreflang: alterLang.lang.slice(0, 2),
 				})
 		})
@@ -109,14 +117,13 @@ export default {
 			}
 		}
 
-		return { metaTags, altLinks }
+		return { metaTags, altLinks, image }
 	},
 	data: () => ({
 		data: {},
 		altLinks: [],
 
 		contactFormData: {},
-		map_image: '../map.png',
 		map_url: 'https://g.page/danica-ua?share',
 	}),
 	async fetch() {

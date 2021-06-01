@@ -46,18 +46,26 @@ export default {
 				href: `${domain}/${page.lang.slice(0, 2)}/${page.uid}`,
 			})
 		page.alternate_languages.forEach((alterLang) => {
-			if (alterLang.lang.slice(0, 2) === 'ua')
+			if (alterLang.lang.slice(0, 2) === 'ua'){
+
 				altLinks.push({
 					hid: 'alternate',
 					rel: 'alternate',
-					href: `${domain}/${alterLang.uid}`,
+					href: `${domain}/${alterLang.uid}/`,
 					hreflang: alterLang.lang.slice(0, 2),
 				})
+				altLinks.push({
+					hid: 'alternate',
+					rel: 'alternate',
+					href: `${domain}/${alterLang.uid}/`,
+					hreflang: 'x-default',
+				})
+			}
 			else
 				altLinks.push({
 					hid: 'alternate',
 					rel: 'alternate',
-					href: `${domain}/${alterLang.lang.slice(0, 2)}/${alterLang.uid}`,
+					href: `${domain}/${alterLang.lang.slice(0, 2)}/${alterLang.uid}/`,
 					hreflang: alterLang.lang.slice(0, 2),
 				})
 		})

@@ -92,18 +92,25 @@ export default {
 			})
 		if (post.alternate_languages.length > 0) {
 			post.alternate_languages.forEach((alterLang) => {
-				if (alterLang.lang.slice(0, 2) === 'ua')
+				if (alterLang.lang.slice(0, 2) === 'ua'){
 					this.altLinks.push({
 						hid: 'alternate',
 						rel: 'alternate',
-						href: `${domain}/projects/${alterLang.uid}`,
+						href: `${domain}/projects/${alterLang.uid}/`,
 						hreflang: alterLang.lang.slice(0, 2),
 					})
+					this.altLinks.push({
+						hid: 'alternate',
+						rel: 'alternate',
+						href: `${domain}/projects/${alterLang.uid}/`,
+						hreflang: 'x-default',
+					})
+				}
 				else
 					this.altLinks.push({
 						hid: 'alternate',
 						rel: 'alternate',
-						href: `${domain}/${alterLang.lang.slice(0, 2)}/projects/${alterLang.uid}`,
+						href: `${domain}/${alterLang.lang.slice(0, 2)}/projects/${alterLang.uid}/`,
 						hreflang: alterLang.lang.slice(0, 2),
 					})
 			})

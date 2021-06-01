@@ -79,28 +79,35 @@ export default {
 			this.altLinks.push({
 				hid: 'canonical',
 				rel: 'canonical',
-				href: `${domain}/blog/${post.uid}`,
+				href: `${domain}/blog/${post.uid}/`,
 			})
 		else
 			this.altLinks.push({
 				hid: 'canonical',
 				rel: 'canonical',
-				href: `${domain}/${post.lang.slice(0, 2)}/blog/${post.uid}`,
+				href: `${domain}/${post.lang.slice(0, 2)}/blog/${post.uid}/`,
 			})
 		if (post.alternate_languages.length > 0) {
 			post.alternate_languages.forEach((alterLang) => {
-				if (alterLang.lang.slice(0, 2) === 'ua')
+				if (alterLang.lang.slice(0, 2) === 'ua'){
 					this.altLinks.push({
 						hid: 'alternate',
 						rel: 'alternate',
-						href: `${domain}/blog/${alterLang.uid}`,
+						href: `${domain}/blog/${alterLang.uid}/`,
 						hreflang: alterLang.lang.slice(0, 2),
 					})
+					this.altLinks.push({
+						hid: 'alternate',
+						rel: 'alternate',
+						href: `${domain}/blog/${alterLang.uid}/`,
+						hreflang: 'x-default',
+					})
+				}
 				else
 					this.altLinks.push({
 						hid: 'alternate',
 						rel: 'alternate',
-						href: `${domain}/${alterLang.lang.slice(0, 2)}/blog/${alterLang.uid}`,
+						href: `${domain}/${alterLang.lang.slice(0, 2)}/blog/${alterLang.uid}/`,
 						hreflang: alterLang.lang.slice(0, 2),
 					})
 			})

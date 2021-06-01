@@ -51,27 +51,34 @@ export default {
 			this.altLinks.push({
 				hid: 'canonical',
 				rel: 'canonical',
-				href: `${domain}/${fetch.uid}`,
+				href: `${domain}/${fetch.uid}/`,
 			})
 		else
 			this.altLinks.push({
 				hid: 'canonical',
 				rel: 'canonical',
-				href: `${domain}/${fetch.lang.slice(0, 2)}/${fetch.uid}`,
+				href: `${domain}/${fetch.lang.slice(0, 2)}/${fetch.uid}/`,
 			})
 		fetch.alternate_languages.forEach((alterLang) => {
-			if (alterLang.lang.slice(0, 2) === 'ua')
+			if (alterLang.lang.slice(0, 2) === 'ua'){
 				this.altLinks.push({
 					hid: 'alternate',
 					rel: 'alternate',
-					href: `${domain}/${alterLang.uid}`,
+					href: `${domain}/${alterLang.uid}/`,
 					hreflang: alterLang.lang.slice(0, 2),
 				})
+				this.altLinks.push({
+					hid: 'alternate',
+					rel: 'alternate',
+					href: `${domain}/${alterLang.uid}/`,
+					hreflang: 'x-default',
+				})
+			}
 			else
 				this.altLinks.push({
 					hid: 'alternate',
 					rel: 'alternate',
-					href: `${domain}/${alterLang.lang.slice(0, 2)}/${alterLang.uid}`,
+					href: `${domain}/${alterLang.lang.slice(0, 2)}/${alterLang.uid}/`,
 					hreflang: alterLang.lang.slice(0, 2),
 				})
 		})

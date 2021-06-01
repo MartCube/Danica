@@ -9,28 +9,28 @@
 			<div class="title">
 				<span v-for="(letter, i) in second_title" :key="i" ref="lettersLeadersIn">{{ letter }}</span>
 			</div>
-			<TextSlider />
+			<TextSlider :lettersDesign="designWord" :lettersArchitecture="architectureWord"/>
 			<ButtonItem @click.native="openModal"> {{ data.primary.button }} </ButtonItem>
 		</div>
 
 		<div class="collage">
 			<div class="first design">
-				<img :src="data.items[0].collage_image1.url" alt="danica" @load="Animate" />
+				<img :src="data.items[0].collage_image1.url" loading="lazy" class="lazyload" alt="danica" @load="Animate" />
 			</div>
 			<div class="second design">
-				<img :src="data.items[0].collage_image3.url" alt="danica" @load="Animate" />
+				<img :src="data.items[0].collage_image3.url" loading="lazy" class="lazyload" alt="danica" @load="Animate" />
 			</div>
 			<div class="third design">
-				<img :src="data.items[0].collage_image2.url" alt="danica" @load="Animate" />
+				<img :src="data.items[0].collage_image2.url" loading="lazy" class="lazyload" alt="danica" @load="Animate" />
 			</div>
 			<div class="first architecture">
-				<img :src="data.items[1].collage_image1.url" alt="danica" @load="Animate" />
+				<img :src="data.items[1].collage_image1.url" loading="lazy" class="lazyload" alt="danica" @load="Animate" />
 			</div>
 			<div class="second architecture">
-				<img :src="data.items[1].collage_image2.url" alt="danica" @load="Animate" />
+				<img :src="data.items[1].collage_image2.url" loading="lazy" class="lazyload" alt="danica" @load="Animate" />
 			</div>
 			<div class="third architecture">
-				<img :src="data.items[1].collage_image3.url" alt="danica" @load="Animate" />
+				<img :src="data.items[1].collage_image3.url" loading="lazy" class="lazyload" alt="danica" @load="Animate" />
 			</div>
 		</div>
 	</section>
@@ -56,6 +56,12 @@ export default {
 		second_title() {
 			return this.data.primary.second_title.split('')
 		},
+		designWord() {
+			return this.data.items[0].collage_title.split('')
+		},
+		architectureWord() {
+			return this.data.items[1].collage_title.split('')
+		},
 	},
 	methods: {
 		openModal() {
@@ -63,7 +69,7 @@ export default {
 		},
 		Animate() {
 			this.imagesLoaded++
-			if (this.imagesLoaded === 3) {
+			if (this.imagesLoaded === 6) {
 				HomeIntroAnim(this.$refs.lettersWeAre, this.$refs.lettersLeadersIn)
 			}
 		},

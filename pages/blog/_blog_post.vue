@@ -87,7 +87,7 @@ export default {
 				rel: 'canonical',
 				href: `${domain}/${post.lang.slice(0, 2)}/blog/${post.uid}`,
 			})
-		if (post.alternate_languages.length > 0){
+		if (post.alternate_languages.length > 0) {
 			post.alternate_languages.forEach((alterLang) => {
 				if (alterLang.lang.slice(0, 2) === 'ua')
 					this.altLinks.push({
@@ -174,7 +174,7 @@ export default {
 		})
 		return {
 			htmlAttrs: {
-				lang: datai18.htmlAttrs.lang,
+				lang: datai18.htmlAttrs.lang.slice(0, 2),
 			},
 			title: this.metaTags.title,
 			meta: [

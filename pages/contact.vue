@@ -45,6 +45,7 @@ export default {
 		const domain = store.getters.domain
 		const altLinks = []
 		let metaTags = {}
+
 		// alternate languages and canonical link
 		if (page.lang.slice(0, 2) === 'ua')
 			altLinks.push({
@@ -74,6 +75,7 @@ export default {
 					hreflang: alterLang.lang.slice(0, 2),
 				})
 		})
+
 		// define data
 		if (page.data.meta_title && page.data.meta_title != null)
 			metaTags = {
@@ -153,7 +155,7 @@ export default {
 		})
 		return {
 			htmlAttrs: {
-				lang: datai18.htmlAttrs.lang,
+				lang: datai18.htmlAttrs.lang.slice(0, 2),
 			},
 			title: this.metaTags.title,
 			meta: [

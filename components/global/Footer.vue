@@ -44,7 +44,7 @@ export default {
 			all_rights_reserved: footer.data.all_rights_reserved,
 			privacy_policy: footer.data.privacy_policy,
 		}
-			// console.log(this.data);
+		// console.log(this.data);
 	},
 	computed: {
 		year() {

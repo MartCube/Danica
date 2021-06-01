@@ -135,7 +135,7 @@ export default {
 		})
 		return {
 			htmlAttrs: {
-				lang: datai18.htmlAttrs.lang,
+				lang: datai18.htmlAttrs.lang.slice(0, 2),
 			},
 			title: this.metaTags.title,
 			meta: [

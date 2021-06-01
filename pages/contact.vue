@@ -46,7 +46,6 @@ export default {
 		const altLinks = []
 		let metaTags = {}
 		let image = page.data.map.url;
-		console.log(image);
 		// alternate languages and canonical link
 		if (page.lang.slice(0, 2) === 'ua')
 			altLinks.push({

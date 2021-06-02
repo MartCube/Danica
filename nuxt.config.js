@@ -75,6 +75,7 @@ export default {
 
 	i18n: {
 		defaultLocale: 'ua',
+		// strategy: ,
 		vueI18n: {
       fallbackLocale: 'ua'
     },
@@ -152,7 +153,7 @@ export default {
 		hostname: 'https://danica-dev.netlify.app/', // replace with danica.ua
 		exclude: ['/ru/null'],
 		trailingSlash: true,
-		i18n: 'ua',
+		// i18n: 'ua',
 		routes() {
 			return sitemap()
 		},

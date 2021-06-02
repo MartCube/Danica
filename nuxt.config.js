@@ -146,14 +146,14 @@ export default {
 				ua: '/privacy-policy',
 			},
 		},
-		detectBrowserLanguage: { alwaysRedirect: false, fallbackLocale: 'ua',  useCookie: true, cookieCrossOrigin: true}
+		detectBrowserLanguage: { alwaysRedirect: true, fallbackLocale: 'ua', onlyOnRoot: true,}
 	},
 
 	sitemap: {
 		hostname: 'https://danica-dev.netlify.app/', // replace with danica.ua
 		exclude: ['/ru/null'],
 		trailingSlash: true,
-		// i18n: 'ua',
+		i18n: '',
 		routes() {
 			return sitemap()
 		},

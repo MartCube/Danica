@@ -141,6 +141,7 @@ export default {
 				ua: '/privacy-policy',
 			},
 		},
+		detectBrowserLanguage: { alwaysRedirect: false, fallbackLocale: 'ua',  useCookie: true, cookieCrossOrigin: true}
 	},
 
 	sitemap: {

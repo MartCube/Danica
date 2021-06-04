@@ -75,6 +75,11 @@ export default {
 
 	i18n: {
 		defaultLocale: 'ua',
+		detectBrowserLanguage: {
+			useCookie: true,
+			cookieKey: 'i18n_redirected',
+			onlyOnRoot: true, // recommended
+		},
 		lazy: true,
 		seo: false,
 		baseUrl: 'https://danica-dev.netlify.app',
@@ -83,7 +88,7 @@ export default {
 			{
 				code: 'en',
 				name: 'eng',
-				prismic: '',
+				prismic: 'en-us',
 				file: 'en.js',
 				iso: 'en-US',
 			},
@@ -120,10 +125,10 @@ export default {
 				ru: '/blog',
 				ua: '/blog',
 			},
-			'/:service?': {
-				en: '/:service?',
-				ru: '/:service?',
-				ua: '/:service?',
+			'/:services?': {
+				en: '/:services?',
+				ru: '/:services?',
+				ua: '/:services?',
 			},
 			'blog/_blog_post': {
 				en: '/blog/:blog_post?',

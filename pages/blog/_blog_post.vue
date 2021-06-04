@@ -4,27 +4,27 @@
 		<template v-else-if="!$fetchState.pending">
 			<div class="blog_post">
 				<div class="intro">
-					<h2 class="title">{{ post.title }}</h2>
+					<h2 class="title">{{ $prismic.asText(slices.title) }}</h2>
 					<div class="info">
-						<span class="date">{{ post.date }}</span>
-						<span v-for="tag in post.tags" :key="tag" class="tag">{{ tag }}</span>
+						<span class="date">{{ slices.date }}</span>
+						<span v-for="tag in slices.tags" :key="tag" class="tag">{{ tag }}</span>
 					</div>
-					<ImageItem :src="post.image.url" :mobile="post.image.mobile.url" :alt="post.title" />
+					<ImageItem :src="slices.image.url" :mobile="slices.image.mobile.url" :alt="slices.title" />
 					<!-- <n-link class="go_back" to="/blog"> <IconArrow />go back </n-link> -->
 				</div>
 
 				<!-- Slice Machine -->
-				<div v-for="(slice, i) in post.slices" :key="i" class="slice" :class="slice.slice_type">
+				<div v-for="(slice, i) in slices.body" :key="i" class="slice" :class="slices.body.slice_type">
 					<template v-if="slice.slice_type == 'text'">
 						<prismic-rich-text class="rich_text" :field="slice.primary.text" />
 					</template>
 
-					<template v-else-if="slice.slice_type == 'image'">
-						<ImageItem :src="slice.primary.image.url" :mobile="slice.primary.image.mobile.url" :alt="slice.primary.image.alt" />
-						<span class="description">"{{ slice.primary.image.alt }}"</span>
+					<template v-else-if="slices.body.slice_type == 'image'">
+						<ImageItem :src="slices.body.primary.image.url" :mobile="slices.body.primary.image.mobile.url" :alt="slices.body.primary.image.alt[0].text" />
+						<span class="description">"{{ slice.primary.image }}"</span>
 					</template>
 
-					<template v-else-if="slice.slice_type == 'image_slider'">
+					<template v-else-if="slices.body.slice_type == 'image_slider'">
 						<div v-swiper="swiperOption" class="swiper-container">
 							<div class="swiper-wrapper">
 								<ImageItem v-for="item in slice.items" :key="item.image.url" class="swiper-slide" :src="item.image.url" alt="alt" />
@@ -33,11 +33,11 @@
 						</div>
 					</template>
 
-					<template v-else-if="slice.slice_type == 'image_text'">
+					<template v-else-if="slices.body.slice_type == 'image_text'">
 						<div class="image_text">
-							<ImageItem :src="slice.primary.image.url" :mobile="slice.primary.image.mobile.url" alt="alt" />
+							<ImageItem :src="slices.body.primary.image.url" :mobile="slices.body.primary.image.mobile.url" alt="alt" />
 							<div class="text">
-								<p v-for="(item, key) in slice.items" :key="key">{{ $prismic.asText(item.text) }}</p>
+								<p v-for="(item, key) in slices.body.items" :key="key">{{ $prismic.asText(item.text) }}</p>
 							</div>
 						</div>
 					</template>
@@ -54,10 +54,6 @@
 <script>
 export default {
 	data: () => ({
-		post: {},
-		altLangUid: {},
-		metaTags: {},
-		altLinks: [],
 		swiperOption: {
 			slidesPerView: 'auto',
 			spaceBetween: 50,
@@ -69,158 +65,25 @@ export default {
 		},
 	}),
 	async fetch() {
-		// fetch blog post
-		const post = await this.$prismic.api.getByUID('blog_post', this.$route.params.blog_post, { lang: this.$i18n.localeProperties.prismic })
-		const domain = this.$store.getters.domain
-
-		// alternate languages and canonical link
-
-		if (post.lang.slice(0, 2) === 'ua')
-			this.altLinks.push({
-				hid: 'canonical',
-				rel: 'canonical',
-				href: `${domain}/blog/${post.uid}`,
-			})
-		else
-			this.altLinks.push({
-				hid: 'canonical',
-				rel: 'canonical',
-				href: `${domain}/${post.lang.slice(0, 2)}/blog/${post.uid}`,
-			})
-		if (post.alternate_languages.length > 0) {
-			post.alternate_languages.forEach((alterLang) => {
-				if (alterLang.lang.slice(0, 2) === 'ua')
-					this.altLinks.push({
-						hid: 'alternate',
-						rel: 'alternate',
-						href: `${domain}/blog/${alterLang.uid}`,
-						hreflang: alterLang.lang.slice(0, 2),
-					})
-				else
-					this.altLinks.push({
-						hid: 'alternate',
-						rel: 'alternate',
-						href: `${domain}/${alterLang.lang.slice(0, 2)}/blog/${alterLang.uid}`,
-						hreflang: alterLang.lang.slice(0, 2),
-					})
-			})
-		}
-
-		// store routes for all langs
-		this.altLangUid[post.lang.slice(0, 2)] = post.uid
-		post.alternate_languages.forEach((alternateLang) => {
-			this.altLangUid[alternateLang.lang.slice(0, 2)] = alternateLang.uid
+		await this.$store.dispatch('storeByUID', {
+			type: 'blog_post',
+			uid: this.$route.params.blog_post,
+			language: this.$i18n.localeProperties.prismic,
+			path: this.$route.fullPath,
 		})
-		this.$store.dispatch('i18n/setRouteParams', {
-			en: { blog_post: this.altLangUid.en },
-			ru: { blog_post: this.altLangUid.ru },
-			ua: { blog_post: this.altLangUid.ua },
-		})
-
-		// post data
-		this.post = {
-			image: post.data.image,
-			title: this.$prismic.asText(post.data.title),
-			date: post.data.date,
-			tags: post.tags,
-			slices: post.data.body,
-		}
-		// define meta tags
-		if (post.data.meta_title && post.data.meta_title != null)
-			this.metaTags = {
-				title: post.data.meta_title,
-				description: post.data.meta_description,
-				keywords: post.data.meta_keywords,
-			}
-		// default untill everything is filled
-		else
-			switch (this.$i18n.localeProperties.prismic) {
-				case 'ua-ua':
-					this.metaTags = {
-						title: this.$prismic.asText(post.data.title),
-						description: '【Будівельні роботи під ключ】 Послуги в області будівництва ✅ Вигідні ціни ⚡️ Відгуки + Гарантія + Якість ☎️ Телефонуйте ▻',
-						keywords: 'default keywords',
-					}
-					break
-				case 'ru':
-					this.metaTags = {
-						title: this.$prismic.asText(post.data.title),
-						description: '【Строительные работы под ключ】Услуги в области строительства ✅ Выгодные цены ⚡️ Отзывы + Гарантия + Качество ☎️ Звоните ▻',
-						keywords: 'default keywords',
-					}
-					break
-				case '':
-					this.metaTags = {
-						title: this.$prismic.asText(post.data.title),
-						description: '【Turnkey construction work】 Construction services ✅ Favorable prices ⚡️ Reviews + Warranty + Quality ☎️ Call ▻',
-						keywords: 'default keywords',
-					}
-					break
-			}
-		// return { this.metaTags, this.altLinks }
 	},
 	head() {
-		const datai18 = this.$nuxtI18nHead({ addSeoAttributes: true })
-		let canonicalUrl = String
-		this.altLinks.forEach((element, i) => {
-			switch (i) {
-				case 0:
-					canonicalUrl = element.href
-					break
-
-				default:
-					break
-			}
-		})
-		return {
-			htmlAttrs: {
-				lang: datai18.htmlAttrs.lang.slice(0, 2),
-			},
-			title: this.metaTags.title,
-			meta: [
-				{
-					hid: 'description',
-					name: 'description',
-					content: this.metaTags.description,
-				},
-				{
-					hid: 'og:title',
-					name: 'og:title',
-					content: this.metaTags.title,
-				},
-				{
-					hid: 'og:description',
-					name: 'og:description',
-					content: this.metaTags.description,
-				},
-				{
-					hid: 'og:url',
-					name: 'og:url',
-					content: canonicalUrl,
-				},
-				// {
-				// 	hid: 'og:url',
-				// 	name: 'og:locale:alternate',
-				// 	content: canonicalUrl,
-				// },
-				// {
-				// 	hid: 'og:url',
-				// 	name: 'og:locale:alternate',
-				// 	content: canonicalUrl,
-				// },
-				// {
-				// 	hid: 'og:image',
-				// 	name: 'og:image',
-				// 	content: this.slices[0].primary.image.url,
-				// },
-			],
-			link: this.altLinks,
-		}
+		return this.$store.getters.page.head
 	},
 	fetchKey(getCounter) {
 		// getCounter is a method that can be called to get the next number in a sequence
 		// as part of generating a unique fetchKey.
 		return 'blog_post' + getCounter('blog_post')
+	},
+	computed: {
+		slices() {
+			return this.$store.getters.page.data
+		},
 	},
 }
 </script>

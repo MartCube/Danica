@@ -51,16 +51,19 @@ export default {
 	],
 
 	// Modules (https://go.nuxtjs.dev/config-modules)
-	modules: ['@/modules/sitemap', '@nuxtjs/prismic', '@nuxtjs/axios', 'nuxt-i18n', '@nuxtjs/style-resources', '@nuxtjs/gtm', '@nuxtjs/sitemap'],
+	modules: ['@/modules/sitemap', '@nuxtjs/prismic', '@nuxtjs/axios', 'nuxt-i18n', '@nuxtjs/style-resources', '@nuxtjs/gtm', 'nuxt-facebook-pixel-module', '@nuxtjs/sitemap'],
 
 	gtm: {
 		id: process.env.GTM,
+		enabled: false,
+		autoInit: false,
 	},
 
-	// facebook: {
-	// 	pixelId: '284462626583392',
-	// 	autoPageView: true,
-	// },
+	facebook: {
+		pixelId: '284462626583392',
+		autoPageView: true,
+		disabled: true,
+	},
 
 	prismic: {
 		endpoint: 'https://danica.cdn.prismic.io/api/v2',

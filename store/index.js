@@ -104,19 +104,13 @@ export const actions = {
 			const altLang = alterLang.lang.slice(0, 2)
 			// path is a sting with slashes at the beggining and end , which occur empty item in array
 			// split by slash to get array
-
 			const pathAltLang = altLang === 'ua' ? '' : altLang + '/'
-
 			const altPath = path.slice(1, -1).split('/').slice(1, -1).join('/')
-
 			const uid = alterLang.uid === undefined ? '' : `${alterLang.uid}/`
 
-			if (altPath.length <= 3) {
-				href = `${state.domain}/${pathAltLang}${uid}`
-			} else {
-				href = `${state.domain}/${pathAltLang}${altPath}${uid}`
-			}
-			console.log(href)
+			if (altPath.length <= 3) href = `${state.domain}/${pathAltLang}${uid}`
+			else href = `${state.domain}/${pathAltLang}${altPath}${uid}`
+
 			// links & meta
 			head.link.push({ hid: 'alternate', rel: 'alternate', href, hreflang: altLang })
 			head.meta.push({ hid: 'og:url', name: 'og:locale:alternate', content: href })
@@ -129,9 +123,9 @@ export const actions = {
 				{ hid: 'og:url', name: 'og:url', content: canonical },
 				{ hid: 'og:title', name: 'og:title', content: fetch.data.meta_title },
 				{ hid: 'og:description', name: 'og:description', content: fetch.data.meta_description },
-				// { hid: 'og:image', name: 'og:image', content: fetch.data.meta_image === undefined ? '' : fetch.data.meta_image.url },
+				{ hid: 'og:image', name: 'og:image', content: fetch.data.meta_image === undefined ? '' : fetch.data.meta_image.url },
 				// twitter
-				// { hid: 'twitter:card', name: 'twitter:card', content: fetch.data.meta_image === undefined ? '' : fetch.data.meta_image.url },
+				{ hid: 'twitter:card', name: 'twitter:card', content: fetch.data.meta_image === undefined ? '' : fetch.data.meta_image.url },
 			],
 		)
 
@@ -155,29 +149,24 @@ export const actions = {
 
 		// the current language
 		routes[lang] = fetch.uid
-		// console.log(fetch)
+
 		// alternate languages
 		let href
 		fetch.alternate_languages.forEach((alterLang) => {
 			// store alternative language each time new variable
 			const altLang = alterLang.lang.slice(0, 2)
-
 			const pathAltLang = altLang === 'ua' ? '' : altLang + '/'
 
 			// path is a sting with slashes at the beggining and end , which occur empty item in array
 			// split by slash to get array
 			const altPath = path.slice(1, -1).split('/').slice(1, -1).join('/')
-			// console.log(altPath)
+
 			// routes
 			routes[altLang] = alterLang.uid
 
 			// links & meta
-
-			if (altPath.length <= 3) {
-				href = `${state.domain}/${pathAltLang}${alterLang.uid}/`
-			} else {
-				href = `${state.domain}/${pathAltLang}${altPath}/${alterLang.uid}`
-			}
+			if (altPath.length <= 3) href = `${state.domain}/${pathAltLang}${alterLang.uid}/`
+			else href = `${state.domain}/${pathAltLang}${altPath}/${alterLang.uid}`
 
 			head.link.push({ hid: 'alternate', rel: 'alternate', href, hreflang: altLang })
 			head.meta.push({ hid: 'og:url', name: 'og:locale:alternate', content: href })
@@ -201,9 +190,9 @@ export const actions = {
 				{ hid: 'og:url', name: 'og:url', content: canonical },
 				{ hid: 'og:title', name: 'og:title', content: fetch.data.meta_title },
 				{ hid: 'og:description', name: 'og:description', content: fetch.data.meta_description },
-				// { hid: 'og:image', name: 'og:image', content: fetch.data.meta_image === undefined ? '' : fetch.data.meta_image.url },
+				{ hid: 'og:image', name: 'og:image', content: fetch.data.meta_image === undefined ? '' : fetch.data.meta_image.url },
 				// twitter
-				// { hid: 'twitter:card', name: 'twitter:card', content: fetch.data.meta_image === undefined ? '' : fetch.data.meta_image.url },
+				{ hid: 'twitter:card', name: 'twitter:card', content: fetch.data.meta_image === undefined ? '' : fetch.data.meta_image.url },
 			],
 		)
 

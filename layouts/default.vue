@@ -15,6 +15,8 @@ export default {
 	async mounted() {
 		await this.$nextTick()
 		this.$fb.enable()
+
+		this.$gtm.init('GTM-T5X9PFF')
 	},
 }
 </script>

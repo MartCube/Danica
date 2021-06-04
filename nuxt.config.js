@@ -75,11 +75,6 @@ export default {
 
 	i18n: {
 		defaultLocale: 'ua',
-		detectBrowserLanguage: {
-			useCookie: true,
-			cookieKey: 'i18n_redirected',
-			onlyOnRoot: true,
-		},
 		lazy: true,
 		seo: false,
 		baseUrl: 'https://danica-dev.netlify.app',
@@ -108,6 +103,7 @@ export default {
 				isCatchallLocale: true,
 			},
 		],
+		detectBrowserLanguage: false,
 		parsePages: false, // Disable babel parsing
 		pages: {
 			'projects/index': {

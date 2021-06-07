@@ -7,6 +7,7 @@
 		</main>
 		<Footer />
 		<ContactModal />
+		<div class="fb-customerchat" page_id="1303536193006608"></div>
 	</div>
 </template>
 

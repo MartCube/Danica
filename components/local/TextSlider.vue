@@ -75,7 +75,8 @@ export default {
 	.text_slider {
 		span {
 			display: inline-block;
-			line-height: 5vw;
+			line-height: 4.5vw;
+			height: 5vw;
 		}
 	}
 }

@@ -148,7 +148,7 @@ export default {
 	},
 
 	sitemap: {
-		hostname: 'https://danica-dev.netlify.app/', // replace with danica.ua
+		hostname: 'https://danica-prod.netlify.app/', // replace with danica.ua
 		exclude: ['/ru/null'],
 		trailingSlash: true,
 		i18n: '',

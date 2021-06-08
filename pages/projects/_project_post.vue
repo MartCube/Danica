@@ -4,20 +4,19 @@
 		<template v-else-if="!$fetchState.pending">
 			<div class="project_post">
 				<div class="intro">
-					<h2 class="title">{{ post.title }}</h2>
-					<ImageItem :src="post.image.url" :mobile="post.image.mobile.url" :alt="post.title" />
+					<h2 class="title">{{ title }}</h2>
+					<ImageItem :src="post.main_image.url" :mobile="post.main_image.mobile.url" :alt="title" />
 				</div>
 
 				<div class="info">
-					<p><span>service:</span> {{ post.info.service }}</p>
-					<p><span>square:</span> {{ post.info.square }}&#13217;</p>
-					<p><span>date:</span> {{ post.info.date }}</p>
-					<p><span>architect:</span> {{ post.info.architect }}</p>
-					<p><span>designer:</span> {{ post.info.designer }}</p>
+					<p><span>service:</span> {{ $prismic.asText(post.info[0].service) }}</p>
+					<p><span>square:</span> {{ $prismic.asText(post.info[0].square) }}&#13217;</p>
+					<p><span>date:</span> {{ post.info[0].date }}</p>
+					<p><span>architect:</span> {{ $prismic.asText(post.info[0].architect) }}</p>
+					<p><span>designer:</span> {{ $prismic.asText(post.info[0].designer) }}</p>
 				</div>
 
-				<!-- Slice Machine -->
-				<div v-for="(slice, i) in post.slices" :key="i" class="slice" :class="slice.slice_type">
+				<div v-for="(slice, i) in post.body" :key="i" class="slice" :class="slice.slice_type">
 					<template v-if="slice.slice_type == 'text'">
 						<prismic-rich-text class="rich_text" :field="slice.primary.text" />
 					</template>
@@ -56,12 +55,8 @@
 
 <script>
 export default {
+	Name: 'Project',
 	data: () => ({
-		post: {},
-		altLangUid: {},
-		metaTags: {},
-		altLinks: [],
-
 		swiperOption: {
 			slidesPerView: 'auto',
 			spaceBetween: 50,
@@ -73,165 +68,23 @@ export default {
 		},
 	}),
 	async fetch() {
-		// fetch project post
-		const post = await this.$prismic.api.getByUID('project_post', this.$route.params.project_post, { lang: this.$i18n.localeProperties.prismic })
-		const domain = this.$store.getters.domain
-
-		// alternate languages and canonical link
-		if (post.lang.slice(0, 2) === 'ua')
-			this.altLinks.push({
-				hid: 'canonical',
-				rel: 'canonical',
-				href: `${domain}/projects/${post.uid}`,
-			})
-		else
-			this.altLinks.push({
-				hid: 'canonical',
-				rel: 'canonical',
-				href: `${domain}/${post.lang.slice(0, 2)}/projects/${post.uid}`,
-			})
-		if (post.alternate_languages.length > 0) {
-			post.alternate_languages.forEach((alterLang) => {
-				if (alterLang.lang.slice(0, 2) === 'ua'){
-					this.altLinks.push({
-						hid: 'alternate',
-						rel: 'alternate',
-						href: `${domain}/projects/${alterLang.uid}/`,
-						hreflang: alterLang.lang.slice(0, 2),
-					})
-					this.altLinks.push({
-						hid: 'alternate',
-						rel: 'alternate',
-						href: `${domain}/projects/${alterLang.uid}/`,
-						hreflang: 'x-default',
-					})
-				}
-				else
-					this.altLinks.push({
-						hid: 'alternate',
-						rel: 'alternate',
-						href: `${domain}/${alterLang.lang.slice(0, 2)}/projects/${alterLang.uid}/`,
-						hreflang: alterLang.lang.slice(0, 2),
-					})
-			})
-		}
-
-		// store routes for all langs
-		this.altLangUid[post.lang.slice(0, 2)] = post.uid
-		post.alternate_languages.forEach((alternateLang) => {
-			this.altLangUid[alternateLang.lang.slice(0, 2)] = alternateLang.uid
+		await this.$store.dispatch('storeByUID', {
+			type: 'project_post',
+			uid: this.$route.params.project_post,
+			language: this.$i18n.localeProperties.prismic,
+			path: this.$route.fullPath,
 		})
-		this.$store.dispatch('i18n/setRouteParams', {
-			en: { project_post: this.altLangUid.en },
-			ru: { project_post: this.altLangUid.ru },
-			ua: { project_post: this.altLangUid.ua },
-		})
-
-		// post data
-		this.post = {
-			image: post.data.main_image,
-			title: this.$prismic.asText(post.data.title),
-			info: {
-				service: this.$prismic.asText(post.data.info[0].service),
-				date: post.data.info[0].date,
-				square: this.$prismic.asText(post.data.info[0].square),
-				architect: this.$prismic.asText(post.data.info[0].architect),
-				designer: this.$prismic.asText(post.data.info[0].designer),
-			},
-
-			slices: post.data.body,
-		}
-
-		// define meta tags
-		if (post.data.meta_title && post.data.meta_title != null)
-			this.metaTags = {
-				title: post.data.meta_title,
-				description: post.data.meta_description,
-				keywords: post.data.meta_keywords,
-			}
-		// default untill everything is filled
-		else
-			switch (this.$i18n.localeProperties.prismic) {
-				case 'ua-ua':
-					this.metaTags = {
-						title: 'Будівельні послуги | DANICA',
-						description: '【Будівельні роботи під ключ】 Послуги в області будівництва ✅ Вигідні ціни ⚡️ Відгуки + Гарантія + Якість ☎️ Телефонуйте ▻',
-						keywords: 'default keywords',
-					}
-					break
-				case 'ru':
-					this.metaTags = {
-						title: 'Строительные услуги | DANICA',
-						description: '【Строительные работы под ключ】Услуги в области строительства ✅ Выгодные цены ⚡️ Отзывы + Гарантия + Качество ☎️ Звоните ▻',
-						keywords: 'default keywords',
-					}
-					break
-				case '':
-					this.metaTags = {
-						title: 'Construction service | DANICA',
-						description: '【Turnkey construction work】 Construction services ✅ Favorable prices ⚡️ Reviews + Warranty + Quality ☎️ Call ▻',
-						keywords: 'default keywords',
-					}
-					break
-			}
 	},
 	head() {
-		const datai18 = this.$nuxtI18nHead({ addSeoAttributes: true })
-		let canonicalUrl = String
-		this.altLinks.forEach((element, i) => {
-			switch (i) {
-				case 0:
-					canonicalUrl = element.href
-					break
-
-				default:
-					break
-			}
-		})
-		return {
-			htmlAttrs: {
-				lang: datai18.htmlAttrs.lang.slice(0, 2),
-			},
-			title: this.metaTags.title,
-			meta: [
-				{
-					hid: 'description',
-					name: 'description',
-					content: this.metaTags.description,
-				},
-				{
-					hid: 'og:title',
-					name: 'og:title',
-					content: this.metaTags.title,
-				},
-				{
-					hid: 'og:description',
-					name: 'og:description',
-					content: this.metaTags.description,
-				},
-				{
-					hid: 'og:url',
-					name: 'og:url',
-					content: canonicalUrl,
-				},
-				// {
-				// 	hid: 'og:url',
-				// 	name: 'og:locale:alternate',
-				// 	content: canonicalUrl,
-				// },
-				// {
-				// 	hid: 'og:url',
-				// 	name: 'og:locale:alternate',
-				// 	content: canonicalUrl,
-				// },
-				// {
-				// 	hid: 'og:image',
-				// 	name: 'og:image',
-				// 	content: this.slices[0].primary.image.url,
-				// },
-			],
-			link: this.altLinks,
-		}
+		return this.$store.getters.page.head
+	},
+	computed: {
+		post() {
+			return this.$store.getters.page.data
+		},
+		title() {
+			return this.$prismic.asText(this.post.title)
+		},
 	},
 	fetchKey(getCounter) {
 		// getCounter is a method that can be called to get the next number in a sequence

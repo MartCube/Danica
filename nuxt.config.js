@@ -55,12 +55,15 @@ export default {
 
 	gtm: {
 		id: process.env.GTM,
+		enabled: true,
+		pageTracking: true,
+		scriptDefer: true,
 	},
 
 	facebook: {
 		pixelId: '284462626583392',
 		autoPageView: true,
-		debug: true,
+		disabled: true,
 	},
 
 	prismic: {
@@ -83,7 +86,7 @@ export default {
 			{
 				code: 'en',
 				name: 'eng',
-				prismic: '',
+				prismic: 'en-us',
 				file: 'en.js',
 				iso: 'en-US',
 			},
@@ -103,6 +106,7 @@ export default {
 				isCatchallLocale: true,
 			},
 		],
+		detectBrowserLanguage: false,
 		parsePages: false, // Disable babel parsing
 		pages: {
 			'projects/index': {
@@ -120,10 +124,10 @@ export default {
 				ru: '/blog',
 				ua: '/blog',
 			},
-			'/:service?': {
-				en: '/:service?',
-				ru: '/:service?',
-				ua: '/:service?',
+			'/:services?': {
+				en: '/:services?',
+				ru: '/:services?',
+				ua: '/:services?',
 			},
 			'blog/_blog_post': {
 				en: '/blog/:blog_post?',
@@ -148,6 +152,7 @@ export default {
 		hostname: 'https://danica-dev.netlify.app/', // replace with danica.ua
 		exclude: ['/ru/null'],
 		trailingSlash: true,
+		i18n: '',
 		routes() {
 			return sitemap()
 		},

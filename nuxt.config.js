@@ -80,7 +80,7 @@ export default {
 		defaultLocale: 'ua',
 		lazy: true,
 		seo: false,
-		baseUrl: 'https://danica-dev.netlify.app',
+		baseUrl: 'https://danica-dev.netlify.app/',
 		langDir: 'locales/',
 		locales: [
 			{
@@ -145,7 +145,6 @@ export default {
 				ua: '/privacy-policy',
 			},
 		},
-		detectBrowserLanguage: { alwaysRedirect: false, fallbackLocale: 'ua',  useCookie: true, cookieCrossOrigin: true}
 	},
 
 	sitemap: {

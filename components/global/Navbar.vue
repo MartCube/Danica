@@ -33,9 +33,9 @@
 		</div>
 
 		<div class="links" :class="{ active: isActive }" @click="CloseMenu">
-			<n-link v-for="item in data.services" :key="item.service.uid" exact :to="linkResolver(item.service)">{{ item.name }}</n-link>
+			<!-- <n-link v-for="item in data.services" :key="item.service.uid" exact :to="linkResolver(item.service)">{{ item.name }}</n-link> -->
 
-			<n-link v-for="item in data.links" :key="item.link.uid" exact :to="localePath(item.link.slug)">{{ item.link.uid }}</n-link>
+			<n-link v-for="item in data.links" :key="item.link.uid" exact :to="linkResolver(item.link)">{{ item.name }}</n-link>
 		</div>
 
 		<div class="button" :class="{ active: isActive }" @click="ShowHideMenu">
@@ -57,11 +57,14 @@ export default {
 	data: () => ({
 		isActive: false,
 		showLocales: false,
+
 		topHeaderIconColor: 'rgb(255, 196, 36)',
 		topHeaderIconSize: '20px',
+
 		whiteNavbar: false,
 		topHeader: true,
 		lastScrollPosition: 0,
+
 		data: null,
 	}),
 	async fetch() {

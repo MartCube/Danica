@@ -6,25 +6,25 @@
 				<div class="intro">
 					<h2 class="title">{{ title }}</h2>
 					<div class="info">
-						<span class="date">{{ slices.date }}</span>
-						<span v-for="tag in slices.tags" :key="tag" class="tag">{{ tag }}</span>
+						<span class="date">{{ data.date }}</span>
+						<span v-for="tag in data.tags" :key="tag" class="tag">{{ tag }}</span>
 					</div>
-					<ImageItem :src="slices.image.url" :mobile="slices.image.mobile.url" :alt="title" />
+					<ImageItem :src="data.image.url" :mobile="data.image.mobile.url" :alt="title" />
 					<!-- <n-link class="go_back" to="/blog"> <IconArrow />go back </n-link> -->
 				</div>
 
 				<!-- Slice Machine -->
-				<div v-for="(slice, i) in slices.body" :key="i" class="slice" :class="slices.body.slice_type">
+				<div v-for="(slice, i) in data.body" :key="i" class="slice" :class="slice.slice_type">
 					<template v-if="slice.slice_type == 'text'">
 						<prismic-rich-text class="rich_text" :field="slice.primary.text" />
 					</template>
 
-					<template v-else-if="slices.body.slice_type == 'image'">
-						<ImageItem :src="slices.body.primary.image.url" :mobile="slices.body.primary.image.mobile.url" :alt="slices.body.primary.image.alt[0].text" />
+					<template v-else-if="slice.slice_type == 'image'">
+						<ImageItem :src="slice.primary.image.url" :mobile="slice.primary.image.mobile.url" :alt="slice.primary.image.alt[0].text" />
 						<span class="description">"{{ slice.primary.image }}"</span>
 					</template>
 
-					<template v-else-if="slices.body.slice_type == 'image_slider'">
+					<template v-else-if="slice.slice_type == 'image_slider'">
 						<div v-swiper="swiperOption" class="swiper-container">
 							<div class="swiper-wrapper">
 								<ImageItem v-for="item in slice.items" :key="item.image.url" class="swiper-slide" :src="item.image.url" alt="alt" />
@@ -33,11 +33,11 @@
 						</div>
 					</template>
 
-					<template v-else-if="slices.body.slice_type == 'image_text'">
+					<template v-else-if="slice.slice_type == 'image_text'">
 						<div class="image_text">
-							<ImageItem :src="slices.body.primary.image.url" :mobile="slices.body.primary.image.mobile.url" alt="alt" />
+							<ImageItem :src="slice.primary.image.url" :mobile="slice.primary.image.mobile.url" alt="alt" />
 							<div class="text">
-								<p v-for="(item, key) in slices.body.items" :key="key">{{ $prismic.asText(item.text) }}</p>
+								<p v-for="(item, key) in slice.items" :key="key">{{ $prismic.asText(item.text) }}</p>
 							</div>
 						</div>
 					</template>
@@ -53,6 +53,7 @@
 
 <script>
 export default {
+	name: 'BlogPost',
 	data: () => ({
 		swiperOption: {
 			slidesPerView: 'auto',
@@ -81,11 +82,11 @@ export default {
 		return 'blog_post' + getCounter('blog_post')
 	},
 	computed: {
-		slices() {
+		data() {
 			return this.$store.getters.page.data
 		},
 		title() {
-			return this.$prismic.asText(this.slices.title)
+			return this.$prismic.asText(this.data.title)
 		},
 	},
 }
@@ -272,6 +273,7 @@ export default {
 			width: 100%;
 			margin: 0;
 		}
+
 		.image_text {
 			flex-direction: column;
 			padding: 0;

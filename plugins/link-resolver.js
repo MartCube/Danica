@@ -8,8 +8,8 @@ export default function (doc) {
 		return '/blog/' + doc.uid
 	} else if (doc.type === 'project_post') {
 		return '/projects/' + doc.uid
+	} else {
+		// workaround for navbar links
+		return doc.slug
 	}
-
-	// Default to the root
-	return '/not-found'
 }

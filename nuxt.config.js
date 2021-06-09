@@ -129,6 +129,11 @@ export default {
 				ru: '/:services?',
 				ua: '/:services?',
 			},
+			'/:services?/:services?': {
+				en: '/:parent?/:services?',
+				ru: '/:parent?/:services?',
+				ua: '/:parent?/:services?',
+			},
 			'blog/_blog_post': {
 				en: '/blog/:blog_post?',
 				ru: '/blog/:blog_post?',

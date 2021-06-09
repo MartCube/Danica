@@ -4,12 +4,12 @@
 		<template v-else-if="!$fetchState.pending">
 			<div class="blog_post">
 				<div class="intro">
-					<h2 class="title">{{ $prismic.asText(slices.title) }}</h2>
+					<h2 class="title">{{ title }}</h2>
 					<div class="info">
 						<span class="date">{{ slices.date }}</span>
 						<span v-for="tag in slices.tags" :key="tag" class="tag">{{ tag }}</span>
 					</div>
-					<ImageItem :src="slices.image.url" :mobile="slices.image.mobile.url" :alt="slices.title" />
+					<ImageItem :src="slices.image.url" :mobile="slices.image.mobile.url" :alt="title" />
 					<!-- <n-link class="go_back" to="/blog"> <IconArrow />go back </n-link> -->
 				</div>
 
@@ -83,6 +83,9 @@ export default {
 	computed: {
 		slices() {
 			return this.$store.getters.page.data
+		},
+		title() {
+			return this.$prismic.asText(this.slices.title)
 		},
 	},
 }

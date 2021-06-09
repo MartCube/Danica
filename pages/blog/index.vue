@@ -20,10 +20,14 @@
 			<div class="pagination">
 				<IconDouble left :class="{ disable: !prev_page }" @click.native="fetchFirst" />
 				<IconChevron left :class="{ disable: !prev_page }" @click.native="fetchBack" />
-				<div class="pages">
-					<span v-for="i in total_pages" :key="i" :class="{ active: i == current_page }" class="page" @click="fetchPage(i)">{{ i }}</span>
-					<!-- <IconDots /> -->
-				</div>
+				<MediaQueryProvider :queries="{ mobile: '(max-width: 900px)' }" ssr>
+					<MatchMedia v-slot="{ mobile }">
+						<div class="pages">
+							<span v-if="mobile" class="page active">{{ current_page }}</span>
+							<span v-for="i in total_pages" v-else :key="i" :class="{ active: i == current_page }" class="page" @click="fetchPage(i)">{{ i }}</span>
+						</div>
+					</MatchMedia>
+				</MediaQueryProvider>
 				<IconChevron :class="{ disable: !next_page }" @click.native="fetchNext" />
 				<IconDouble :class="{ disable: !next_page }" @click.native="fetchLast" />
 			</div>
@@ -32,10 +36,12 @@
 </template>
 
 <script>
+import { MediaQueryProvider, MatchMedia } from 'vue-component-media-queries'
 import { postAnim } from '~/assets/anime'
 
 export default {
 	name: 'Blog',
+	components: { MediaQueryProvider, MatchMedia },
 	async asyncData({ $prismic, i18n, store }) {
 		await store.dispatch('storeSingle', {
 			type: 'blog',
@@ -309,7 +315,11 @@ export default {
 			grid-auto-rows: 350px;
 		}
 		.pagination {
-			margin: 3rem auto 0;
+			width: 100%;
+			margin: 40px 0;
+			svg {
+				margin: 0 15px;
+			}
 		}
 	}
 }

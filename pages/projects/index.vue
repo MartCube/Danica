@@ -15,9 +15,10 @@
 				<template v-else-if="!$fetchState.pending">
 					<ProjectCard v-for="(project, i) in projects" :key="i" :data="project" />
 				</template>
-				<ButtonItem v-if="current_page < total_pages" @click.native="loadMore"> {{ $t('pages.projects.load_more') }} </ButtonItem>
 			</div>
 		</div>
+
+		<ButtonItem v-show="current_page < total_pages" @click.native="loadMore"> {{ $t('pages.projects.load_more') }} </ButtonItem>
 	</div>
 </template>
 
@@ -42,6 +43,7 @@ export default {
 		total_pages: 0,
 		current_page: 1,
 		page_size: 6,
+		button: true,
 	}),
 	async fetch() {
 		// rewrite this data in to slices of blog document
@@ -81,7 +83,7 @@ export default {
 
 			this.$fetch()
 		},
-		loadMore(filter) {
+		loadMore() {
 			this.page_size += 6
 			this.current_page++
 
@@ -140,7 +142,7 @@ export default {
 		width: calc(100vw - 240px);
 		max-width: 1500px;
 		height: 100%;
-		min-height: 800px;
+		min-height: 900px;
 		border-left: 1px solid $line;
 
 		display: flex;
@@ -150,12 +152,12 @@ export default {
 		.project_card {
 			margin-right: 2rem;
 		}
-
-		button {
-			margin: 80px 20vw 80px 0;
-			color: $black;
-		}
 	}
+}
+
+button {
+	margin: 80px 0 80px 240px;
+	color: $black;
 }
 
 @media (max-width: 900px) {
@@ -180,11 +182,11 @@ export default {
 				.project_card {
 					margin-right: 0;
 				}
-				button {
-					margin: 40px 0;
-					align-self: center;
-				}
 			}
+		}
+		button {
+			margin: 40px 0;
+			align-self: center;
 		}
 	}
 }

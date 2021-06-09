@@ -33,11 +33,9 @@
 		</div>
 
 		<div class="links" :class="{ active: isActive }" @click="CloseMenu">
-			<n-link v-for="service in services" :key="service.uid" exact :to="linkResolver(service)">{{ service.data.name }}</n-link>
+			<n-link v-for="item in data.services" :key="item.service.uid" exact :to="linkResolver(item.service)">{{ item.name }}</n-link>
 
-			<n-link :to="localePath('projects')">{{ $t('pages.projects.name') }}</n-link>
-			<n-link :to="localePath('blog')">{{ $t('pages.blog') }}</n-link>
-			<n-link :to="localePath('contact')">{{ $t('pages.contact.name') }}</n-link>
+			<n-link v-for="item in data.links" :key="item.link.uid" exact :to="localePath(item.link.slug)">{{ item.link.uid }}</n-link>
 		</div>
 
 		<div class="button" :class="{ active: isActive }" @click="ShowHideMenu">
@@ -64,13 +62,11 @@ export default {
 		whiteNavbar: false,
 		topHeader: true,
 		lastScrollPosition: 0,
-		services: [],
+		data: null,
 	}),
 	async fetch() {
-		const services = await this.$prismic.api.query(this.$prismic.predicates.at('document.type', 'services'), { lang: this.$i18n.localeProperties.prismic })
-
-		// console.log(services.results)
-		this.services = services.results
+		const navbar = await this.$prismic.api.getSingle('navbar', { lang: this.$i18n.localeProperties.prismic })
+		this.data = navbar.data
 	},
 	computed: {
 		transparent() {
@@ -84,11 +80,9 @@ export default {
 		},
 	},
 	watch: {
-		$route(to, from) {
-			// console.log("from", from , "to", to);
-			if (from.name !== to.name) {
-				this.$fetch()
-			}
+		async currentLocale(to, from) {
+			await this.$nextTick()
+			this.$fetch()
 		},
 		async showLocales(newValue, oldValue) {
 			await this.$nextTick()

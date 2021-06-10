@@ -100,7 +100,11 @@ export default {
 		}
 	}
 }
-
+@media (min-width: 1700px) {
+	.content .list{
+		max-width: calc(100% - 20px);
+	}
+}
 @media (max-width: 1050px) {
 	section {
 		.content {

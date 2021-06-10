@@ -45,7 +45,7 @@ button {
 	.text {
 		font-weight: 700;
 		font-size: inherit;
-
+		line-height: 1;
 		transition: all 0.2s ease;
 		svg {
 			fill: $black;
@@ -101,22 +101,11 @@ button {
 	}
 }
 
-// @media (max-width: 900px) {
-// 	button.animated {
-// 		background: $primary;
-
-// 		.text {
-// 			opacity: 1;
-// 			color: $black;
-// 		}
-// 		svg {
-// 			fill: $black;
-// 		}
-// 		.overlay {
-// 			width: 100%;
-// 		}
-// 	}
-// }
+@media (min-width: 1700px) {
+	button{
+		font-size: 2rem;
+	}
+}
 @media (max-width: 360px) {
 	button.text {
 		font-size: 1.5rem;

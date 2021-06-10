@@ -57,10 +57,13 @@ export default {
 		padding: 40px 0;
 		position: relative;
 
-		text-transform: capitalize;
+		
 		font-size: 1.2rem;
 		line-height: 1.5rem;
 		border-top: 2px solid $black;
+		&::first-letter{
+			text-transform: capitalize;
+		}
 	}
 	.info {
 		display: flex;
@@ -213,6 +216,17 @@ export default {
 	}
 }
 
+@media (min-width: 1100px) {
+	.blog_card {
+		.info > * {
+			font-size: 1.3rem;
+		}
+		.title {
+			font-size: 1.6rem;
+			line-height: 1.3;
+		}
+	} 
+}
 @media (max-width: 1100px) {
 	.blog_card {
 		.title {

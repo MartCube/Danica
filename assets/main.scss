@@ -119,9 +119,6 @@ section{
 .rich_text{
 	p {
 		color: $black;
-		// font-weight: inherit;
-		// font-size: inherit;
-		// line-height: inherit;
 		margin-bottom: 10px;
 		word-break: break-word;
 	} 
@@ -159,8 +156,51 @@ section{
 	}
 }
 
-
-
+@media (min-width: 1700px) {
+	body {
+		a,p,span{
+			font-size: 1.5rem;
+			line-height: 2.3rem;
+		}
+		h3 {
+			font-size: 2.3rem;
+		}
+	}
+	section{
+		h2 {
+			font-size: 3.3rem;
+		}
+		h3 {
+			font-size: 2.8rem;
+		}
+		.content{
+			max-width: initial;
+			.title{
+				max-width: 1200px;
+			}
+		}
+		.name{
+			padding-right: 50px;
+			padding-top: 15px;
+			&::before{
+				margin-top: 20px;
+			}
+		}
+		ul li {
+			font-size: 1.7rem;
+			&::before{
+				margin-top: 15px;
+			}
+		}
+	}
+	.container {
+		padding-top: 130px;
+	}
+	.rich_text ul li {
+    line-height: 1;
+    font-size: 1.5rem;
+	}
+}
 
 @media (max-width: 900px) {
 	.container {

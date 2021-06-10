@@ -1,12 +1,12 @@
 <template>
 	<div class="container">
-		<Title :value="$t('pages.blog')" />
+		<Title :value="$t('pages.blog.name')" />
 
 		<div class="blog">
 			<div class="filter">
 				<span :class="{ active: active_filter[0] == null }" @click="filterUpdate('all')"> all </span>
-				<span v-for="(filter, i) in filters" :key="i" :class="{ active: active_filter[0] == filter }" @click="filterUpdate(filter)">
-					{{ filter }}
+				<span v-for="(filter, i) in filters" :key="i" :class="{ active: active_filter[0] == filter.key }" @click="filterUpdate(filter.key)">
+					{{ filter.name }}
 				</span>
 			</div>
 
@@ -54,7 +54,6 @@ export default {
 	},
 	data: () => ({
 		// filters
-		filters: ['design', 'architecture', 'energy save', 'remont'],
 		active_filter: [],
 		metaTags: {},
 		altLangUid: {},
@@ -87,6 +86,26 @@ export default {
 	computed: {
 		blogPosts() {
 			return this.$store.getters.blogPosts
+		},
+		filters() {
+			return [
+				{
+					name: this.$t('pages.blog.filters.design'),
+					key: 'design',
+				},
+				{
+					name: this.$t('pages.blog.filters.architecture'),
+					key: 'architecture',
+				},
+				{
+					name: this.$t('pages.blog.filters.energy'),
+					key: 'energy save',
+				},
+				{
+					name: this.$t('pages.blog.filters.remont'),
+					key: 'remont',
+				},
+			]
 		},
 	},
 	watch: {

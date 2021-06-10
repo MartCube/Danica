@@ -11,12 +11,6 @@
 
 <script>
 export default {
-	data: () => ({
-		active: true,
-		link: '/services/interior-design',
-		letters: null,
-		
-	}),
 	props: {
 		lettersDesign: {
 			type: Array,
@@ -27,6 +21,11 @@ export default {
 			required: true,
 		},
 	},
+	data: () => ({
+		active: true,
+		link: '/services/interior-design',
+		letters: null,
+	}),
 }
 </script>
 
@@ -54,7 +53,6 @@ export default {
 		align-items: center;
 		width: fit-content;
 		height: fit-content;
-	
 	}
 	span {
 		opacity: 0; // opacity: 1

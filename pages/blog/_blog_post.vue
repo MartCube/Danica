@@ -20,14 +20,14 @@
 					</template>
 
 					<template v-else-if="slice.slice_type == 'image'">
-						<ImageItem :src="slice.primary.image.url" :mobile="slice.primary.image.mobile.url" :alt="slice.primary.image.alt[0].text" />
-						<span class="description">"{{ slice.primary.image }}"</span>
+						<ImageItem :src="slice.primary.image.url" :mobile="slice.primary.image.mobile.url" :alt="slice.primary.image.alt" />
+						<span class="description">"{{ slice.primary.image.alt }}"</span>
 					</template>
 
 					<template v-else-if="slice.slice_type == 'image_slider'">
 						<div v-swiper="swiperOption" class="swiper-container">
 							<div class="swiper-wrapper">
-								<ImageItem v-for="item in slice.items" :key="item.image.url" class="swiper-slide" :src="item.image.url" alt="alt" />
+								<ImageItem v-for="item in slice.items" :key="item.image.url" class="swiper-slide" :src="item.image.url" :alt="title" />
 							</div>
 							<div slot="pagination" class="swiper-pagination"></div>
 						</div>
@@ -35,7 +35,7 @@
 
 					<template v-else-if="slice.slice_type == 'image_text'">
 						<div class="image_text">
-							<ImageItem :src="slice.primary.image.url" :mobile="slice.primary.image.mobile.url" alt="alt" />
+							<ImageItem :src="slice.primary.image.url" :mobile="slice.primary.image.mobile.url" :alt="title" />
 							<div class="text">
 								<p v-for="(item, key) in slice.items" :key="key">{{ $prismic.asText(item.text) }}</p>
 							</div>

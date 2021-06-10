@@ -5,7 +5,7 @@
 			<h3>{{ title }}</h3>
 			<!-- Slice Machine -->
 			<div v-for="(slice, i) in data.data.body" :key="i" class="text_slice">
-				<p v-if="slice.slice_type == 'text' && i <= 3">{{ $prismic.asText(slice.primary.text) }}</p>
+				<p v-if="slice.slice_type == 'text' && i <= 2">{{ $prismic.asText(slice.primary.text) }}</p>
 			</div>
 		</div>
 		<div class="info">
@@ -101,12 +101,15 @@ $transition: all 0.35s ease;
 		position: relative;
 
 		.info {
+			width: max-content;
+			height: 120px;
+			padding-left: 40px;
+			background: white;
+
 			position: absolute;
 			bottom: 0;
-			left: 150px;
-			padding-left: 40px;
-			height: 120px;
-			background: white;
+			right: 50%;
+			transform: translateX(50%);
 
 			display: flex;
 			align-items: center;

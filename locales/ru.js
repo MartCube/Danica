@@ -5,8 +5,22 @@ export default {
 		projects: {
 			name: 'Проекты',
 			load_more: 'Загрузить больше',
+			filters: {
+				design: 'Дизайн',
+				architecture: 'Архитектура',
+				construction: 'Строительство',
+				remont: 'Ремонт',
+			},
 		},
-		blog: 'Блог',
+		blog: {
+			name: 'Блог',
+			filters: {
+				design: 'Дизайн',
+				architecture: 'Архитектура',
+				energy: 'Энергосбережение',
+				remont: 'Ремонт',
+			},
+		},
 		contact: {
 			name: 'Контакты',
 			title: 'Мы всегда рады новым знакомствам',

@@ -9,7 +9,8 @@
 			<div class="title">
 				<span v-for="(letter, i) in second_title" :key="i" ref="lettersLeadersIn">{{ letter }}</span>
 			</div>
-			<TextSlider :lettersDesign="designWord" :lettersArchitecture="architectureWord"/>
+			<!-- eslint-disable-next-line vue/attribute-hyphenation -->
+			<TextSlider :lettersDesign="designWord" :lettersArchitecture="architectureWord" />
 			<ButtonItem @click.native="openModal"> {{ data.primary.button }} </ButtonItem>
 		</div>
 

@@ -5,8 +5,8 @@
 		<div class="projects">
 			<div class="filter">
 				<span :class="{ active: active_filter[0] == null }" @click="filterUpdate('all')"> all </span>
-				<span v-for="(filter, i) in filters" :key="i" :class="{ active: active_filter[0] == filter }" @click="filterUpdate(filter)">
-					{{ filter }}
+				<span v-for="(filter, i) in filters" :key="i" :class="{ active: active_filter[0] == filter.key }" @click="filterUpdate(filter.key)">
+					{{ filter.name }}
 				</span>
 			</div>
 
@@ -27,18 +27,14 @@ import { postAnim } from '~/assets/anime'
 
 export default {
 	name: 'Projects',
-	async asyncData({ $prismic, i18n, store }) {
+	async asyncData({ i18n, store }) {
 		await store.dispatch('storeSingle', {
 			type: 'projects',
 			language: i18n.localeProperties.prismic,
 		})
 		// rewrite data to slcies
-		// return {
-		// 	slices: store.getters.page.data.body,
-		// }
 	},
 	data: () => ({
-		filters: ['design', 'architecture', 'remont'],
 		active_filter: [],
 		total_pages: 0,
 		current_page: 1,
@@ -46,7 +42,6 @@ export default {
 		button: true,
 	}),
 	async fetch() {
-		// rewrite this data in to slices of blog document
 		// fetch project posts
 		const projects = await this.$prismic.api.query([this.$prismic.predicates.at('document.type', 'project_post'), this.$prismic.predicates.at('document.tags', this.active_filter)], {
 			orderings: '[document.first_publication_date desc]',
@@ -63,6 +58,26 @@ export default {
 	computed: {
 		projects() {
 			return this.$store.getters.projects
+		},
+		filters() {
+			return [
+				{
+					name: this.$t('pages.projects.filters.design'),
+					key: 'design',
+				},
+				{
+					name: this.$t('pages.projects.filters.architecture'),
+					key: 'architecture',
+				},
+				{
+					name: this.$t('pages.projects.filters.construction'),
+					key: 'construction',
+				},
+				{
+					name: this.$t('pages.projects.filters.remont'),
+					key: 'remont',
+				},
+			]
 		},
 	},
 	watch: {

@@ -183,15 +183,57 @@ export function charles() {
 		})
 }
 
+export function serviceIntroAnim(maintitle, subtitle, project) {
+	const StartUpTimeline = anime.timeline({
+		autoplay: true,
+	})
+
+	StartUpTimeline.add(
+		{
+			targets: maintitle,
+			opacity: [0, 1],
+			translateY: ['100%', '0%'],
+
+			easing: 'easeInOutCubic',
+			delay: anime.stagger(50, { from: 'first' }),
+			duration: 1000,
+		},
+		1000,
+	)
+		.add(
+			{
+				targets: subtitle,
+				opacity: [0, 1],
+				translateY: ['100%', '0%'],
+
+				easing: 'easeInOutCubic',
+				delay: anime.stagger(50, { from: 'first' }),
+				duration: 1000,
+			},
+			1200,
+		)
+		.add(
+			{
+				targets: project,
+				opacity: [0, 1],
+				translateY: ['-100%', '0%'],
+
+				easing: 'easeInOutCubic',
+				duration: 1000,
+			},
+			1200,
+		)
+}
+
 export function HomeIntroAnim(lettersWeAre, lettersLeadersIn) {
-	// const design = document.querySelectorAll('.intro .design')
-	// const architecture = document.querySelectorAll('.intro .architecture')
-	// const collage1 = design[0]
-	// const collage2 = design[1]
-	// const collage3 = design[2]
-	// const architecture1 = architecture[0]
-	// const architecture2 = architecture[1]
-	// const architecture3 = architecture[2]
+	const design = document.querySelectorAll('.intro .design')
+	const architecture = document.querySelectorAll('.intro .architecture')
+	const collage1 = design[0]
+	const collage2 = design[1]
+	const collage3 = design[2]
+	const architecture1 = architecture[0]
+	const architecture2 = architecture[1]
+	const architecture3 = architecture[2]
 
 	const el2 = document.querySelectorAll('.second span')
 	const el1 = document.querySelectorAll('.first span')
@@ -264,57 +306,57 @@ export function HomeIntroAnim(lettersWeAre, lettersLeadersIn) {
 			},
 			1000,
 		)
-		// .add(
-		// 	{
-		// 		targets: collage1,
-		// 		width: '16vw',
-		// 		opacity: 1,
-		// 	},
-		// 	0,
-		// )
-		// .add(
-		// 	{
-		// 		targets: collage2,
-		// 		width: '35vw',
-		// 		opacity: 1,
-		// 	},
-		// 	200,
-		// )
-		// .add(
-		// 	{
-		// 		targets: collage3,
-		// 		width: '30vw',
-		// 		opacity: 1,
-		// 	},
-		// 	300,
-		// )
-		// .add(
-		// 	{
-		// 		targets: collage3,
-		// 		duration: 500,
-		// 		width: 0,
-		// 		opacity: 0,
-		// 	},
-		// 	4500,
-		// )
-		// .add(
-		// 	{
-		// 		targets: collage2,
-		// 		duration: 500,
-		// 		width: 0,
-		// 		opacity: 0,
-		// 	},
-		// 	4500,
-		// )
-		// .add(
-		// 	{
-		// 		targets: collage1,
-		// 		duration: 500,
-		// 		width: 0,
-		// 		opacity: 0,
-		// 	},
-		// 	4500,
-		// )
+		.add(
+			{
+				targets: collage1,
+				width: '16vw',
+				opacity: 1,
+			},
+			0,
+		)
+		.add(
+			{
+				targets: collage2,
+				width: '35vw',
+				opacity: 1,
+			},
+			200,
+		)
+		.add(
+			{
+				targets: collage3,
+				width: '30vw',
+				opacity: 1,
+			},
+			300,
+		)
+		.add(
+			{
+				targets: collage3,
+				duration: 500,
+				width: 0,
+				opacity: 0,
+			},
+			4500,
+		)
+		.add(
+			{
+				targets: collage2,
+				duration: 500,
+				width: 0,
+				opacity: 0,
+			},
+			4500,
+		)
+		.add(
+			{
+				targets: collage1,
+				duration: 500,
+				width: 0,
+				opacity: 0,
+			},
+			4500,
+		)
 		.add({
 			targets: el1,
 			delay: anime.stagger(stagger, { from: 'last' }),
@@ -343,57 +385,57 @@ export function HomeIntroAnim(lettersWeAre, lettersLeadersIn) {
 			},
 			1000,
 		)
-		// .add(
-		// 	{
-		// 		targets: architecture1,
-		// 		width: '16vw',
-		// 		opacity: 1,
-		// 	},
-		// 	0,
-		// )
-		// .add(
-		// 	{
-		// 		targets: architecture2,
-		// 		width: '35vw',
-		// 		opacity: 1,
-		// 	},
-		// 	200,
-		// )
-		// .add(
-		// 	{
-		// 		targets: architecture3,
-		// 		width: '30vw',
-		// 		opacity: 1,
-		// 	},
-		// 	300,
-		// )
-		// .add(
-		// 	{
-		// 		targets: architecture3,
-		// 		duration: 500,
-		// 		width: 0,
-		// 		opacity: 0,
-		// 	},
-		// 	4500,
-		// )
-		// .add(
-		// 	{
-		// 		targets: architecture2,
-		// 		duration: 500,
-		// 		width: 0,
-		// 		opacity: 0,
-		// 	},
-		// 	4500,
-		// )
-		// .add(
-		// 	{
-		// 		targets: architecture1,
-		// 		duration: 500,
-		// 		width: 0,
-		// 		opacity: 0,
-		// 	},
-		// 	4500,
-		// )
+		.add(
+			{
+				targets: architecture1,
+				width: '16vw',
+				opacity: 1,
+			},
+			0,
+		)
+		.add(
+			{
+				targets: architecture2,
+				width: '35vw',
+				opacity: 1,
+			},
+			200,
+		)
+		.add(
+			{
+				targets: architecture3,
+				width: '30vw',
+				opacity: 1,
+			},
+			300,
+		)
+		.add(
+			{
+				targets: architecture3,
+				duration: 500,
+				width: 0,
+				opacity: 0,
+			},
+			4500,
+		)
+		.add(
+			{
+				targets: architecture2,
+				duration: 500,
+				width: 0,
+				opacity: 0,
+			},
+			4500,
+		)
+		.add(
+			{
+				targets: architecture1,
+				duration: 500,
+				width: 0,
+				opacity: 0,
+			},
+			4500,
+		)
 		.add({
 			targets: el2,
 			delay: anime.stagger(stagger, { from: 'last' }),
@@ -408,14 +450,20 @@ export function HomeIntroAnim(lettersWeAre, lettersLeadersIn) {
 		})
 }
 
-export function serviceIntroAnim(maintitle, subtitle, project) {
+export function HomeIntroMobile(lettersWeAre, lettersLeadersIn) {
+	const el1 = document.querySelectorAll('.first span')
+	const el2 = document.querySelectorAll('.second span')
+
+	const duration = 2500
+	const stagger = 50
+
 	const StartUpTimeline = anime.timeline({
 		autoplay: true,
 	})
 
 	StartUpTimeline.add(
 		{
-			targets: maintitle,
+			targets: lettersWeAre,
 			opacity: [0, 1],
 			translateY: ['100%', '0%'],
 
@@ -423,29 +471,95 @@ export function serviceIntroAnim(maintitle, subtitle, project) {
 			delay: anime.stagger(50, { from: 'first' }),
 			duration: 1000,
 		},
-		1000,
+		0,
+	).add(
+		{
+			targets: lettersLeadersIn,
+			opacity: [0, 1],
+			translateY: ['100%', '0%'],
+
+			easing: 'easeInOutCubic',
+			delay: anime.stagger(50, { from: 'first' }),
+			duration: 1000,
+		},
+		200,
 	)
+
+	const designAnimation = anime.timeline({
+		autoplay: true,
+		duration,
+		easing: 'easeOutExpo',
+		loop: 1,
+		loopComplete(anim) {
+			architectureAnimation.play()
+		},
+	})
+	const architectureAnimation = anime.timeline({
+		duration,
+		easing: 'easeOutExpo',
+		loop: 1,
+		autoplay: false,
+		loopComplete(anim) {
+			designAnimation.play()
+		},
+	})
+
+	designAnimation
 		.add(
 			{
-				targets: subtitle,
+				targets: '.bg_letter.first',
 				opacity: [0, 1],
-				translateY: ['100%', '0%'],
-
-				easing: 'easeInOutCubic',
-				delay: anime.stagger(50, { from: 'first' }),
-				duration: 1000,
 			},
-			1200,
+			0,
 		)
 		.add(
 			{
-				targets: project,
-				opacity: [0, 1],
-				translateY: ['-100%', '0%'],
-
-				easing: 'easeInOutCubic',
-				duration: 1000,
+				targets: el1,
+				delay: anime.stagger(stagger, { start: 0 }),
+				duration: 500,
+				zIndex: 10,
+				opacity: 1,
 			},
-			1200,
+			1000,
 		)
+		.add({
+			targets: el1,
+			delay: anime.stagger(stagger, { from: 'last' }),
+			duration: 500,
+			opacity: 0,
+			zIndex: 0,
+		})
+		.add({
+			targets: '.bg_letter.first',
+			opacity: 0,
+			duration: 500,
+		})
+
+	architectureAnimation
+		.add({
+			targets: '.bg_letter.second',
+			opacity: [0, 1],
+		})
+		.add(
+			{
+				targets: el2,
+				delay: anime.stagger(stagger, { start: 0 }),
+				duration: 500,
+				opacity: 1,
+				zIndex: 10,
+			},
+			1000,
+		)
+		.add({
+			targets: el2,
+			delay: anime.stagger(stagger, { from: 'last' }),
+			duration: 500,
+			opacity: [1, 0],
+			zIndex: 0,
+		})
+		.add({
+			targets: '.bg_letter.second',
+			opacity: [1, 0],
+			duration: 500,
+		})
 }

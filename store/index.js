@@ -94,10 +94,10 @@ export const actions = {
 
 		// canonical link
 		const canonical = `${state.domain}${path}`
-		head.link.push({ hid: 'canonical', rel: 'canonical', canonical })
+		head.link.push({ hid: '', rel: 'canonical', canonical })
 		head.link.push({ hid: 'alternate', rel: 'alternate', href: canonical, hreflang: 'x-default' })
 
-		// alternate languages
+		// alternate langcanonicaluages
 		fetch.alternate_languages.forEach((alterLang) => {
 			// store alternative language each time new variable
 			let href
@@ -120,6 +120,7 @@ export const actions = {
 			...[
 				{ hid: 'description', name: 'description', content: fetch.data.meta_description },
 				// facebook
+				{ hid: 'og:type', name: 'og:type', content: '' },
 				{ hid: 'og:url', name: 'og:url', content: canonical },
 				{ hid: 'og:title', name: 'og:title', content: fetch.data.meta_title },
 				{ hid: 'og:description', name: 'og:description', content: fetch.data.meta_description },

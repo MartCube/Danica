@@ -1,59 +1,67 @@
 <template>
 	<div class="container">
-		<template v-if="$fetchState.error">error</template>
-		<template v-else-if="!$fetchState.pending">
-			<div class="blog_post">
-				<div class="intro">
-					<h2 class="title">{{ title }}</h2>
-					<div class="info">
-						<span class="date">{{ data.date }}</span>
-						<span v-for="tag in data.tags" :key="tag" class="tag">{{ tag }}</span>
-					</div>
-					<ImageItem :src="data.image.url" :mobile="data.image.mobile.url" :alt="title" />
-					<!-- <n-link class="go_back" to="/blog"> <IconArrow />go back </n-link> -->
+		<div class="blog_post">
+			<div class="intro">
+				<h2 class="title">{{ title }}</h2>
+				<div class="info">
+					<span class="date">{{ data.date }}</span>
+					<span v-for="tag in data.tags" :key="tag" class="tag">{{ tag }}</span>
 				</div>
-
-				<!-- Slice Machine -->
-				<div v-for="(slice, i) in data.body" :key="i" class="slice" :class="slice.slice_type">
-					<template v-if="slice.slice_type == 'text'">
-						<prismic-rich-text class="rich_text" :field="slice.primary.text" />
-					</template>
-
-					<template v-else-if="slice.slice_type == 'image'">
-						<ImageItem :src="slice.primary.image.url" :mobile="slice.primary.image.mobile.url" :alt="slice.primary.image.alt" />
-						<span class="description">"{{ slice.primary.image.alt }}"</span>
-					</template>
-
-					<template v-else-if="slice.slice_type == 'image_slider'">
-						<div v-swiper="swiperOption" class="swiper-container">
-							<div class="swiper-wrapper">
-								<ImageItem v-for="item in slice.items" :key="item.image.url" class="swiper-slide" :src="item.image.url" :alt="title" />
-							</div>
-							<div slot="pagination" class="swiper-pagination"></div>
-						</div>
-					</template>
-
-					<template v-else-if="slice.slice_type == 'image_text'">
-						<div class="image_text">
-							<ImageItem :src="slice.primary.image.url" :mobile="slice.primary.image.mobile.url" :alt="title" />
-							<div class="text">
-								<p v-for="(item, key) in slice.items" :key="key">{{ $prismic.asText(item.text) }}</p>
-							</div>
-						</div>
-					</template>
-
-					<template v-else-if="slice.slice_type == 'video'">
-						<VideoItem :video="slice.primary.video" />
-					</template>
-				</div>
+				<ImageItem :src="data.image.url" :mobile="data.image.mobile.url" :alt="title" />
+				<!-- <n-link class="go_back" to="/blog"> <IconArrow />go back </n-link> -->
 			</div>
-		</template>
+
+			<!-- Slice Machine -->
+			<div v-for="(slice, i) in data.body" :key="i" class="slice" :class="slice.slice_type">
+				<template v-if="slice.slice_type == 'text'">
+					<prismic-rich-text class="rich_text" :field="slice.primary.text" />
+				</template>
+
+				<template v-else-if="slice.slice_type == 'image'">
+					<ImageItem :src="slice.primary.image.url" :mobile="slice.primary.image.mobile.url" :alt="slice.primary.image.alt" />
+					<span class="description">"{{ slice.primary.image.alt }}"</span>
+				</template>
+
+				<template v-else-if="slice.slice_type == 'image_slider'">
+					<div v-swiper="swiperOption" class="swiper-container">
+						<div class="swiper-wrapper">
+							<ImageItem v-for="item in slice.items" :key="item.image.url" class="swiper-slide" :src="item.image.url" :alt="title" />
+						</div>
+						<div slot="pagination" class="swiper-pagination"></div>
+					</div>
+				</template>
+
+				<template v-else-if="slice.slice_type == 'image_text'">
+					<div class="image_text">
+						<ImageItem :src="slice.primary.image.url" :mobile="slice.primary.image.mobile.url" :alt="title" />
+						<div class="text">
+							<p v-for="(item, key) in slice.items" :key="key">{{ $prismic.asText(item.text) }}</p>
+						</div>
+					</div>
+				</template>
+
+				<template v-else-if="slice.slice_type == 'video'">
+					<VideoItem :video="slice.primary.video" />
+				</template>
+			</div>
+		</div>
 	</div>
 </template>
 
 <script>
 export default {
 	name: 'BlogPost',
+	async asyncData({ i18n, store, route }) {
+		await store.dispatch('storeByUID', {
+			type: 'blog_post',
+			uid: route.params.blog_post,
+			language: i18n.localeProperties.prismic,
+			path: route.fullPath,
+		})
+		return {
+			data: store.getters.page.data,
+		}
+	},
 	data: () => ({
 		swiperOption: {
 			slidesPerView: 'auto',
@@ -65,14 +73,6 @@ export default {
 			},
 		},
 	}),
-	async fetch() {
-		await this.$store.dispatch('storeByUID', {
-			type: 'blog_post',
-			uid: this.$route.params.blog_post,
-			language: this.$i18n.localeProperties.prismic,
-			path: this.$route.fullPath,
-		})
-	},
 	head() {
 		return this.$store.getters.page.head
 	},
@@ -82,9 +82,6 @@ export default {
 		return 'blog_post' + getCounter('blog_post')
 	},
 	computed: {
-		data() {
-			return this.$store.getters.page.data
-		},
 		title() {
 			return this.$prismic.asText(this.data.title)
 		},

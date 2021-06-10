@@ -1,27 +1,24 @@
 <template>
 	<div class="container">
-		<template v-if="$fetchState.error">error</template>
-		<template v-else-if="!$fetchState.pending">
-			<div v-for="(slice, i) in slices" :key="slice.slice_type + i">
-				<ServiceIntro v-if="slice.slice_type == 'serviceintro'" :data="slice" />
-				<Values v-else-if="slice.slice_type == 'values'" :data="slice" />
-				<Stages v-else-if="slice.slice_type == 'stages'" :data="slice" />
-				<Standards v-else-if="slice.slice_type == 'standards'" :data="slice" />
-				<Advantages v-else-if="slice.slice_type == 'advantages'" :data="slice" />
-				<Charles v-else-if="slice.slice_type == 'charles'" :data="slice" />
-				<LatestProjects v-else-if="slice.slice_type == 'latestprojects'" :data="slice" />
-				<SliderProjects v-else-if="slice.slice_type == 'sliderprojects'" :data="slice" />
-				<section v-else-if="slice.slice_type == 'text'" class="rich_text">
-					<prismic-rich-text :field="slice.primary.text" />
-				</section>
-				<section v-else-if="slice.slice_type == 'image_text'" class="image_text">
-					<div class="image">
-						<ImageItem :src="slice.primary.image.url" :mobile="slice.primary.image.mobile.url" :alt="slice.primary.image.alt" />
-					</div>
-					<prismic-rich-text v-for="(item, key) in slice.items" :key="key" class="rich_text" :field="item.text" />
-				</section>
-			</div>
-		</template>
+		<div v-for="(slice, i) in slices" :key="slice.slice_type + i">
+			<ServiceIntro v-if="slice.slice_type == 'serviceintro'" :data="slice" />
+			<Values v-else-if="slice.slice_type == 'values'" :data="slice" />
+			<Stages v-else-if="slice.slice_type == 'stages'" :data="slice" />
+			<Standards v-else-if="slice.slice_type == 'standards'" :data="slice" />
+			<Advantages v-else-if="slice.slice_type == 'advantages'" :data="slice" />
+			<Charles v-else-if="slice.slice_type == 'charles'" :data="slice" />
+			<LatestProjects v-else-if="slice.slice_type == 'latestprojects'" :data="slice" />
+			<SliderProjects v-else-if="slice.slice_type == 'sliderprojects'" :data="slice" />
+			<section v-else-if="slice.slice_type == 'text'" class="rich_text">
+				<prismic-rich-text :field="slice.primary.text" />
+			</section>
+			<section v-else-if="slice.slice_type == 'image_text'" class="image_text">
+				<div class="image">
+					<ImageItem :src="slice.primary.image.url" :mobile="slice.primary.image.mobile.url" :alt="slice.primary.image.alt" />
+				</div>
+				<prismic-rich-text v-for="(item, key) in slice.items" :key="key" class="rich_text" :field="item.text" />
+			</section>
+		</div>
 	</div>
 </template>
 
@@ -33,22 +30,20 @@ export default {
 		next()
 	},
 	middleware: 'navbarTransparent',
-	data: () => ({}),
-	async fetch() {
-		await this.$store.dispatch('storeByUID', {
+	async asyncData({ i18n, store, route }) {
+		await store.dispatch('storeByUID', {
 			type: 'services',
-			uid: this.$route.params.services,
-			language: this.$i18n.localeProperties.prismic,
-			path: this.$route.fullPath,
+			uid: route.params.services,
+			language: i18n.localeProperties.prismic,
+			path: route.fullPath,
 		})
+
+		return {
+			slices: store.getters.page.data.body,
+		}
 	},
 	head() {
 		return this.$store.getters.page.head
-	},
-	computed: {
-		slices() {
-			return this.$store.getters.page.data.body
-		},
 	},
 	fetchKey(getCounter) {
 		// getCounter is a method that can be called to get the next number in a sequence

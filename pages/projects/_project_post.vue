@@ -1,61 +1,69 @@
 <template>
 	<div class="container">
-		<template v-if="$fetchState.error">error</template>
-		<template v-else-if="!$fetchState.pending">
-			<div class="project_post">
-				<div class="intro">
-					<h2 class="title">{{ title }}</h2>
-					<ImageItem :src="post.main_image.url" :mobile="post.main_image.mobile.url" :alt="title" />
-				</div>
-
-				<div class="info">
-					<p><span>service:</span> {{ $prismic.asText(post.info[0].service) }}</p>
-					<p><span>square:</span> {{ $prismic.asText(post.info[0].square) }}&#13217;</p>
-					<p><span>date:</span> {{ post.info[0].date }}</p>
-					<p><span>architect:</span> {{ $prismic.asText(post.info[0].architect) }}</p>
-					<p><span>designer:</span> {{ $prismic.asText(post.info[0].designer) }}</p>
-				</div>
-
-				<div v-for="(slice, i) in post.body" :key="i" class="slice" :class="slice.slice_type">
-					<template v-if="slice.slice_type == 'text'">
-						<prismic-rich-text class="rich_text" :field="slice.primary.text" />
-					</template>
-
-					<template v-else-if="slice.slice_type == 'image'">
-						<ImageItem :src="slice.primary.image.url" :mobile="slice.primary.image.mobile.url" :alt="slice.primary.image.alt" />
-						<span class="description">"{{ slice.primary.image.alt }}"</span>
-					</template>
-
-					<template v-else-if="slice.slice_type == 'image_slider'">
-						<div v-swiper="swiperOption" class="swiper-container">
-							<div class="swiper-wrapper">
-								<ImageItem v-for="item in slice.items" :key="item.image.url" class="swiper-slide" :src="item.image.url" alt="alt" />
-							</div>
-							<div slot="pagination" class="swiper-pagination"></div>
-						</div>
-					</template>
-
-					<template v-else-if="slice.slice_type == 'image_text'">
-						<div class="image_text">
-							<ImageItem :src="slice.primary.image.url" :mobile="slice.primary.image.mobile.url" alt="alt" />
-							<div class="text">
-								<p v-for="(item, key) in slice.items" :key="key">{{ $prismic.asText(item.text) }}</p>
-							</div>
-						</div>
-					</template>
-
-					<template v-else-if="slice.slice_type == 'video'">
-						<VideoItem :video="slice.primary.video" />
-					</template>
-				</div>
+		<div class="project_post">
+			<div class="intro">
+				<h2 class="title">{{ $prismic.asText(post.title) }}</h2>
+				<ImageItem :src="post.main_image.url" :mobile="post.main_image.mobile.url" :alt="title" />
 			</div>
-		</template>
+
+			<div class="info">
+				<p><span>service:</span> {{ $prismic.asText(post.info[0].service) }}</p>
+				<p><span>square:</span> {{ $prismic.asText(post.info[0].square) }}&#13217;</p>
+				<p><span>date:</span> {{ post.info[0].date }}</p>
+				<p><span>architect:</span> {{ $prismic.asText(post.info[0].architect) }}</p>
+				<p><span>designer:</span> {{ $prismic.asText(post.info[0].designer) }}</p>
+			</div>
+
+			<div v-for="(slice, i) in post.body" :key="i" class="slice" :class="slice.slice_type">
+				<template v-if="slice.slice_type == 'text'">
+					<prismic-rich-text class="rich_text" :field="slice.primary.text" />
+				</template>
+
+				<template v-else-if="slice.slice_type == 'image'">
+					<ImageItem :src="slice.primary.image.url" :mobile="slice.primary.image.mobile.url" :alt="slice.primary.image.alt" />
+					<span class="description">"{{ slice.primary.image.alt }}"</span>
+				</template>
+
+				<template v-else-if="slice.slice_type == 'image_slider'">
+					<div v-swiper="swiperOption" class="swiper-container">
+						<div class="swiper-wrapper">
+							<ImageItem v-for="item in slice.items" :key="item.image.url" class="swiper-slide" :src="item.image.url" alt="alt" />
+						</div>
+						<div slot="pagination" class="swiper-pagination"></div>
+					</div>
+				</template>
+
+				<template v-else-if="slice.slice_type == 'image_text'">
+					<div class="image_text">
+						<ImageItem :src="slice.primary.image.url" :mobile="slice.primary.image.mobile.url" alt="alt" />
+						<div class="text">
+							<p v-for="(item, key) in slice.items" :key="key">{{ $prismic.asText(item.text) }}</p>
+						</div>
+					</div>
+				</template>
+
+				<template v-else-if="slice.slice_type == 'video'">
+					<VideoItem :video="slice.primary.video" />
+				</template>
+			</div>
+		</div>
 	</div>
 </template>
 
 <script>
 export default {
 	Name: 'Project',
+	async asyncData({ i18n, store, route }) {
+		await store.dispatch('storeByUID', {
+			type: 'project_post',
+			uid: route.params.project_post,
+			language: i18n.localeProperties.prismic,
+			path: route.fullPath,
+		})
+		return {
+			post: store.getters.page.data,
+		}
+	},
 	data: () => ({
 		swiperOption: {
 			slidesPerView: 'auto',
@@ -67,21 +75,10 @@ export default {
 			},
 		},
 	}),
-	async fetch() {
-		await this.$store.dispatch('storeByUID', {
-			type: 'project_post',
-			uid: this.$route.params.project_post,
-			language: this.$i18n.localeProperties.prismic,
-			path: this.$route.fullPath,
-		})
-	},
 	head() {
 		return this.$store.getters.page.head
 	},
 	computed: {
-		post() {
-			return this.$store.getters.page.data
-		},
 		title() {
 			return this.$prismic.asText(this.post.title)
 		},

@@ -14,7 +14,7 @@
 			<ButtonItem @click.native="openModal"> {{ data.primary.button }} </ButtonItem>
 		</div>
 
-		<div class="collage">
+		<!-- <div class="collage">
 			<div class="first design">
 				<img :src="data.items[0].collage_image1.url" loading="lazy" class="lazyload" alt="danica" @load="Animate" />
 			</div>
@@ -33,7 +33,7 @@
 			<div class="third architecture">
 				<img :src="data.items[1].collage_image3.url" loading="lazy" class="lazyload" alt="danica" @load="Animate" />
 			</div>
-		</div>
+		</div> -->
 	</section>
 </template>
 
@@ -64,16 +64,19 @@ export default {
 			return this.data.items[1].collage_title.split('')
 		},
 	},
+	mounted() {
+		HomeIntroAnim(this.$refs.lettersWeAre, this.$refs.lettersLeadersIn)
+	},
 	methods: {
 		openModal() {
 			this.$store.dispatch('bindModalContact', true)
 		},
-		Animate() {
-			this.imagesLoaded++
-			if (this.imagesLoaded === 6) {
-				HomeIntroAnim(this.$refs.lettersWeAre, this.$refs.lettersLeadersIn)
-			}
-		},
+		// Animate() {
+		// 	this.imagesLoaded++
+		// 	if (this.imagesLoaded === 6) {
+		// 		HomeIntroAnim(this.$refs.lettersWeAre, this.$refs.lettersLeadersIn)
+		// 	}
+		// },
 	},
 }
 </script>

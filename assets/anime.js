@@ -184,14 +184,14 @@ export function charles() {
 }
 
 export function HomeIntroAnim(lettersWeAre, lettersLeadersIn) {
-	const design = document.querySelectorAll('.intro .design')
-	const architecture = document.querySelectorAll('.intro .architecture')
-	const collage1 = design[0]
-	const collage2 = design[1]
-	const collage3 = design[2]
-	const architecture1 = architecture[0]
-	const architecture2 = architecture[1]
-	const architecture3 = architecture[2]
+	// const design = document.querySelectorAll('.intro .design')
+	// const architecture = document.querySelectorAll('.intro .architecture')
+	// const collage1 = design[0]
+	// const collage2 = design[1]
+	// const collage3 = design[2]
+	// const architecture1 = architecture[0]
+	// const architecture2 = architecture[1]
+	// const architecture3 = architecture[2]
 
 	const el2 = document.querySelectorAll('.second span')
 	const el1 = document.querySelectorAll('.first span')
@@ -202,6 +202,7 @@ export function HomeIntroAnim(lettersWeAre, lettersLeadersIn) {
 	const StartUpTimeline = anime.timeline({
 		autoplay: true,
 	})
+
 	const designAnimation = anime.timeline({
 		autoplay: true,
 		duration,
@@ -263,57 +264,57 @@ export function HomeIntroAnim(lettersWeAre, lettersLeadersIn) {
 			},
 			1000,
 		)
-		.add(
-			{
-				targets: collage1,
-				width: '16vw',
-				opacity: 1,
-			},
-			0,
-		)
-		.add(
-			{
-				targets: collage2,
-				width: '35vw',
-				opacity: 1,
-			},
-			200,
-		)
-		.add(
-			{
-				targets: collage3,
-				width: '30vw',
-				opacity: 1,
-			},
-			300,
-		)
-		.add(
-			{
-				targets: collage3,
-				duration: 500,
-				width: 0,
-				opacity: 0,
-			},
-			4500,
-		)
-		.add(
-			{
-				targets: collage2,
-				duration: 500,
-				width: 0,
-				opacity: 0,
-			},
-			4500,
-		)
-		.add(
-			{
-				targets: collage1,
-				duration: 500,
-				width: 0,
-				opacity: 0,
-			},
-			4500,
-		)
+		// .add(
+		// 	{
+		// 		targets: collage1,
+		// 		width: '16vw',
+		// 		opacity: 1,
+		// 	},
+		// 	0,
+		// )
+		// .add(
+		// 	{
+		// 		targets: collage2,
+		// 		width: '35vw',
+		// 		opacity: 1,
+		// 	},
+		// 	200,
+		// )
+		// .add(
+		// 	{
+		// 		targets: collage3,
+		// 		width: '30vw',
+		// 		opacity: 1,
+		// 	},
+		// 	300,
+		// )
+		// .add(
+		// 	{
+		// 		targets: collage3,
+		// 		duration: 500,
+		// 		width: 0,
+		// 		opacity: 0,
+		// 	},
+		// 	4500,
+		// )
+		// .add(
+		// 	{
+		// 		targets: collage2,
+		// 		duration: 500,
+		// 		width: 0,
+		// 		opacity: 0,
+		// 	},
+		// 	4500,
+		// )
+		// .add(
+		// 	{
+		// 		targets: collage1,
+		// 		duration: 500,
+		// 		width: 0,
+		// 		opacity: 0,
+		// 	},
+		// 	4500,
+		// )
 		.add({
 			targets: el1,
 			delay: anime.stagger(stagger, { from: 'last' }),
@@ -342,57 +343,57 @@ export function HomeIntroAnim(lettersWeAre, lettersLeadersIn) {
 			},
 			1000,
 		)
-		.add(
-			{
-				targets: architecture1,
-				width: '16vw',
-				opacity: 1,
-			},
-			0,
-		)
-		.add(
-			{
-				targets: architecture2,
-				width: '35vw',
-				opacity: 1,
-			},
-			200,
-		)
-		.add(
-			{
-				targets: architecture3,
-				width: '30vw',
-				opacity: 1,
-			},
-			300,
-		)
-		.add(
-			{
-				targets: architecture3,
-				duration: 500,
-				width: 0,
-				opacity: 0,
-			},
-			4500,
-		)
-		.add(
-			{
-				targets: architecture2,
-				duration: 500,
-				width: 0,
-				opacity: 0,
-			},
-			4500,
-		)
-		.add(
-			{
-				targets: architecture1,
-				duration: 500,
-				width: 0,
-				opacity: 0,
-			},
-			4500,
-		)
+		// .add(
+		// 	{
+		// 		targets: architecture1,
+		// 		width: '16vw',
+		// 		opacity: 1,
+		// 	},
+		// 	0,
+		// )
+		// .add(
+		// 	{
+		// 		targets: architecture2,
+		// 		width: '35vw',
+		// 		opacity: 1,
+		// 	},
+		// 	200,
+		// )
+		// .add(
+		// 	{
+		// 		targets: architecture3,
+		// 		width: '30vw',
+		// 		opacity: 1,
+		// 	},
+		// 	300,
+		// )
+		// .add(
+		// 	{
+		// 		targets: architecture3,
+		// 		duration: 500,
+		// 		width: 0,
+		// 		opacity: 0,
+		// 	},
+		// 	4500,
+		// )
+		// .add(
+		// 	{
+		// 		targets: architecture2,
+		// 		duration: 500,
+		// 		width: 0,
+		// 		opacity: 0,
+		// 	},
+		// 	4500,
+		// )
+		// .add(
+		// 	{
+		// 		targets: architecture1,
+		// 		duration: 500,
+		// 		width: 0,
+		// 		opacity: 0,
+		// 	},
+		// 	4500,
+		// )
 		.add({
 			targets: el2,
 			delay: anime.stagger(stagger, { from: 'last' }),

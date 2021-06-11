@@ -271,11 +271,10 @@ export default {
 
 @media (min-width: 1700px) {
 	.projects {
-		.filter span{
+		.filter span {
 			font-size: 1.7rem;
 		}
 	}
-
 }
 @media (max-width: 900px) {
 	.container {

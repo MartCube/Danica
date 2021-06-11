@@ -285,7 +285,7 @@ export default {
 }
 @media (min-width: 1700px) {
 	.blog {
-		.filter span{
+		.filter span {
 			font-size: 1.5rem;
 		}
 	}

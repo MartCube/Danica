@@ -4,7 +4,7 @@
 
 		<div class="blog">
 			<div class="filter">
-				<span :class="{ active: active_filter[0] == null }" @click="filterUpdate('all')"> all </span>
+				<span :class="{ active: active_filter[0] == null }" @click="filterUpdate('all')"> {{ $t('pages.projects.filters.all') }} </span>
 				<span v-for="(filter, i) in filters" :key="i" :class="{ active: active_filter[0] == filter.key }" @click="filterUpdate(filter.key)">
 					{{ filter.name }}
 				</span>
@@ -55,8 +55,6 @@ export default {
 	data: () => ({
 		// filters
 		active_filter: [],
-		metaTags: {},
-		altLangUid: {},
 
 		// pagination
 		current_page: 1,

@@ -6,6 +6,7 @@ export default {
 			name: 'projects',
 			load_more: 'Load more',
 			filters: {
+				all: 'all',
 				design: 'design',
 				architecture: 'architecture',
 				construction: 'construction',

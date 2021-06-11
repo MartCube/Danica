@@ -6,6 +6,7 @@ export default {
 			name: 'Проекты',
 			load_more: 'Загрузить больше',
 			filters: {
+				all: 'Все',
 				design: 'Дизайн',
 				architecture: 'Архитектура',
 				construction: 'Строительство',

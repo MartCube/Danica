@@ -4,7 +4,7 @@
 
 		<div class="projects">
 			<div class="filter">
-				<span :class="{ active: active_filter[0] == null }" @click="filterUpdate('all')"> all </span>
+				<span :class="{ active: active_filter[0] == null }" @click="filterUpdate('all')"> {{ $t('pages.projects.filters.all') }} </span>
 				<span v-for="(filter, i) in filters" :key="i" :class="{ active: active_filter[0] == filter.key }" @click="filterUpdate(filter.key)">
 					{{ filter.name }}
 				</span>
@@ -16,17 +16,32 @@
 					<ProjectCard v-for="(project, i) in projects" :key="i" :data="project" />
 				</template>
 			</div>
-		</div>
 
-		<ButtonItem v-show="current_page < total_pages" @click.native="loadMore"> {{ $t('pages.projects.load_more') }} </ButtonItem>
+			<div class="pagination">
+				<IconDouble left :class="{ disable: !prev_page }" @click.native="fetchFirst" />
+				<IconChevron left :class="{ disable: !prev_page }" @click.native="fetchBack" />
+				<MediaQueryProvider :queries="{ mobile: '(max-width: 900px)' }" ssr>
+					<MatchMedia v-slot="{ mobile }">
+						<div class="pages">
+							<span v-if="mobile" class="page active">{{ current_page }}</span>
+							<span v-for="i in total_pages" v-else :key="i" :class="{ active: i == current_page }" class="page" @click="fetchPage(i)">{{ i }}</span>
+						</div>
+					</MatchMedia>
+				</MediaQueryProvider>
+				<IconChevron :class="{ disable: !next_page }" @click.native="fetchNext" />
+				<IconDouble :class="{ disable: !next_page }" @click.native="fetchLast" />
+			</div>
+		</div>
 	</div>
 </template>
 
 <script>
+import { MediaQueryProvider, MatchMedia } from 'vue-component-media-queries'
 import { postAnim } from '~/assets/anime'
 
 export default {
 	name: 'Projects',
+	components: { MediaQueryProvider, MatchMedia },
 	async asyncData({ i18n, store }) {
 		await store.dispatch('storeSingle', {
 			type: 'projects',
@@ -35,22 +50,29 @@ export default {
 		// rewrite data to slcies
 	},
 	data: () => ({
+		// filters
 		active_filter: [],
-		total_pages: 0,
+
+		// pagination
 		current_page: 1,
 		page_size: 6,
-		button: true,
+		total_pages: null,
+		prev_page: null,
+		next_page: null,
 	}),
 	async fetch() {
 		// fetch project posts
 		const projects = await this.$prismic.api.query([this.$prismic.predicates.at('document.type', 'project_post'), this.$prismic.predicates.at('document.tags', this.active_filter)], {
 			orderings: '[document.first_publication_date desc]',
 			pageSize: this.page_size,
+			page: this.current_page,
 			lang: this.$i18n.localeProperties.prismic,
 		})
 
 		this.$store.dispatch('bindProjects', projects.results)
 		this.total_pages = projects.total_pages
+		this.prev_page = projects.prev_page
+		this.next_page = projects.next_page
 	},
 	head() {
 		return this.$store.getters.page.head
@@ -98,11 +120,36 @@ export default {
 
 			this.$fetch()
 		},
-		loadMore() {
-			this.page_size += 6
-			this.current_page++
+		// pagination
+		fetchNext() {
+			if (this.next_page) {
+				this.current_page++
 
+				this.ScrollToTop()
+				this.$fetch()
+			}
+		},
+		fetchBack() {
+			if (this.prev_page) {
+				this.current_page--
+				this.ScrollToTop()
+				this.$fetch()
+			}
+		},
+		fetchPage(value) {
+			this.current_page = value
+			this.ScrollToTop()
 			this.$fetch()
+		},
+		fetchFirst() {
+			this.fetchPage(1)
+		},
+		fetchLast() {
+			this.fetchPage(this.total_pages)
+		},
+
+		ScrollToTop() {
+			window.scrollTo({ top: 0, behavior: 'smooth' })
 		},
 	},
 }
@@ -111,6 +158,8 @@ export default {
 <style lang="scss" scoped>
 .projects {
 	display: flex;
+	flex-wrap: wrap;
+	margin-bottom: 80px;
 	.filter {
 		min-width: 240px;
 		padding-right: 1.5rem;
@@ -154,10 +203,9 @@ export default {
 	}
 
 	.grid {
-		width: calc(100vw - 240px);
-		max-width: 1500px;
-		height: 100%;
+		flex: 1;
 		min-height: 900px;
+
 		border-left: 1px solid $line;
 
 		display: flex;
@@ -168,11 +216,57 @@ export default {
 			margin-right: 2rem;
 		}
 	}
-}
 
-button {
-	margin: 80px 0 80px 240px;
-	color: $black;
+	.pagination {
+		width: calc(100% - 240px);
+		margin-top: 40px;
+		margin-left: auto;
+
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		align-content: center;
+		.pages {
+			max-width: 300px;
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			align-content: center;
+			.page {
+				cursor: pointer;
+				user-select: none;
+				width: 35px;
+				height: 35px;
+				margin-right: 35px;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				align-content: center;
+				border: 1px solid transparent;
+				color: $black;
+				transition: all 0.2s ease;
+				&:last-child {
+					margin-right: 0;
+				}
+				&.active {
+					color: $primary;
+					background: $black;
+				}
+				&:hover {
+					border: 1px solid $black;
+				}
+			}
+		}
+		svg {
+			margin: 0 35px;
+			cursor: pointer;
+			transition: all 0.2 ease-in-out;
+			&.disable {
+				cursor: initial;
+				opacity: 0.5;
+			}
+		}
+	}
 }
 
 @media (max-width: 900px) {
@@ -190,7 +284,7 @@ button {
 			}
 			.grid {
 				width: 93%;
-				min-height: auto;
+				min-height: 450px;
 				padding-left: 40px;
 
 				justify-content: space-between;
@@ -199,9 +293,11 @@ button {
 				}
 			}
 		}
-		button {
-			margin: 40px 0;
-			align-self: center;
+		.pagination {
+			width: 100%;
+			svg {
+				margin: 0 15px;
+			}
 		}
 	}
 }

@@ -123,11 +123,13 @@ $transition: all 0.35s ease;
 				h3 {
 					margin-bottom: 20px;
 					line-height: 60px;
-					text-transform: capitalize;
 					border-bottom: 2px solid $primary;
+					&::first-letter {
+						text-transform: uppercase;
+					}
 				}
-				p {
-					text-transform: capitalize;
+				p::first-letter {
+					text-transform: uppercase;
 				}
 			}
 			.link1 {
@@ -221,7 +223,21 @@ $transition: all 0.35s ease;
 		}
 	}
 }
-
+@media (min-width: 1700px) {
+	.highlight_card{
+		&.first .info {
+			height: 150px;
+			margin-bottom: -1px;
+			.service, .square{
+				padding-top: 10px;
+			}
+			.link1{
+				width: 150px;
+				height: inherit;
+			}
+		} 
+	}
+}
 @media (max-width: 1200px) {
 	.highlight_card {
 		width: 30%;

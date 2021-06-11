@@ -419,6 +419,35 @@ $transition: all 0.35s ease;
 		transform: translateX(0px);
 	}
 }
+@media (min-width: 1700px) {
+	.navbar {
+		padding-left: 40px;
+		padding-right: 20px;
+		max-height: 150px;
+		.links{
+			height: 100px;
+			a {
+				font-size: 1.5rem;
+			}
+		}
+		.lang {
+			margin-right: 10px;
+			margin-top: 45px;
+		}
+		.logo{
+			margin-top: 15px;
+		}
+		.top-content{
+			.email,
+			.phone,
+			button,
+			.schedule{
+				font-size: 19px;
+				line-height: 1;
+			}
+		}
+	}
+}
 
 @media (max-width: 1020px) {
 	.navbar {

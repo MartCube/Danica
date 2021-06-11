@@ -149,6 +149,20 @@ export default {
 		}
 	}
 }
+@media (min-width: 1700px) {
+	.intro {
+		.content {
+			.maintitle span{
+				font-size: 8rem;
+				line-height: normal;
+			}
+			.subtitle span{
+				font-size: 5rem;
+				line-height: normal;
+			}
+		}
+	}
+}
 @media (max-width: 1300px) {
 	.intro {
 		.content {

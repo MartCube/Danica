@@ -96,6 +96,17 @@ $transition: all 0.35s ease;
 		}
 	}
 }
+@media (min-width: 1700px) {
+	.content .links {
+		width: 100%;
+		.link a {
+			font-size: 2rem;
+			span {
+				font-size: 2.3rem;
+			}
+		}
+	}
+}
 
 @media (max-width: 900px) {
 	.content .links {

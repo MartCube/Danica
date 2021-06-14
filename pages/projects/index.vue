@@ -192,6 +192,7 @@ export default {
 	.grid {
 		flex: 1;
 		min-height: 900px;
+
 		border-left: 1px solid $line;
 		display: flex;
 		justify-content: flex-start;

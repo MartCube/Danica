@@ -113,18 +113,18 @@ export const actions = {
 
 			// links & meta
 			head.link.push({ hid: 'alternate', rel: 'alternate', href, hreflang: altLang })
-			head.meta.push({ hid: 'og:url', name: 'og:locale:alternate', content: href })
+			// head.meta.push({ hid: 'og:url', name: 'og:locale:alternate', content: href })
 		})
 
 		head.meta.push(
 			...[
 				{ hid: 'description', name: 'description', content: fetch.data.meta_description },
 				// facebook
-				{ hid: 'og:type', name: 'og:type', content: '' },
-				{ hid: 'og:url', name: 'og:url', content: canonical },
-				{ hid: 'og:title', name: 'og:title', content: fetch.data.meta_title },
-				{ hid: 'og:description', name: 'og:description', content: fetch.data.meta_description },
-				{ hid: 'og:image', name: 'og:image', content: fetch.data.meta_image === undefined ? '' : fetch.data.meta_image.url },
+				{ hid: 'og:type', property: 'og:type', content: '' },
+				{ hid: 'og:url', property: 'og:url', content: canonical },
+				{ hid: 'og:title', property: 'og:title', content: fetch.data.meta_title },
+				{ hid: 'og:description', property: 'og:description', content: fetch.data.meta_description },
+				{ hid: 'og:image', property: 'og:image', content: fetch.data.meta_image === undefined ? '' : fetch.data.meta_image.url },
 				// twitter
 				{ hid: 'twitter:card', name: 'twitter:card', content: fetch.data.meta_image === undefined ? '' : fetch.data.meta_image.url },
 			],

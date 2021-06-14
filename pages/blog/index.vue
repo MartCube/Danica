@@ -4,7 +4,7 @@
 
 		<div class="blog">
 			<div class="filter">
-				<span :class="{ active: active_filter[0] == null }" @click="filterUpdate('all')"> all </span>
+				<span :class="{ active: active_filter[0] == null }" @click="filterUpdate('all')"> {{ $t('pages.blog.filters.all') }} </span>
 				<span v-for="(filter, i) in filters" :key="i" :class="{ active: active_filter[0] == filter.key }" @click="filterUpdate(filter.key)">
 					{{ filter.name }}
 				</span>
@@ -38,7 +38,6 @@
 <script>
 import { MediaQueryProvider, MatchMedia } from 'vue-component-media-queries'
 import { postAnim } from '~/assets/anime'
-
 export default {
 	name: 'Blog',
 	components: { MediaQueryProvider, MatchMedia },
@@ -55,9 +54,6 @@ export default {
 	data: () => ({
 		// filters
 		active_filter: [],
-		metaTags: {},
-		altLangUid: {},
-
 		// pagination
 		current_page: 1,
 		page_size: 6,
@@ -74,7 +70,6 @@ export default {
 			page: this.current_page,
 			lang: this.$i18n.localeProperties.prismic,
 		})
-
 		this.$store.dispatch('bindBlogPosts', blogPosts.results)
 		this.total_pages = blogPosts.total_pages
 		this.prev_page = blogPosts.prev_page
@@ -119,19 +114,15 @@ export default {
 		filterUpdate(filter) {
 			this.active_filter = [filter]
 			if (filter === 'all') this.active_filter = []
-
 			// restart results
 			this.current_page = 1
 			this.next_page = 6
-
 			this.$fetch()
 		},
-
 		// pagination
 		fetchNext() {
 			if (this.next_page) {
 				this.current_page++
-
 				this.ScrollToTop()
 				this.$fetch()
 			}
@@ -154,7 +145,6 @@ export default {
 		fetchLast() {
 			this.fetchPage(this.total_pages)
 		},
-
 		ScrollToTop() {
 			window.scrollTo({ top: 0, behavior: 'smooth' })
 		},
@@ -167,7 +157,6 @@ export default {
 	display: flex;
 	flex-wrap: wrap;
 	margin-bottom: 80px;
-
 	.filter {
 		min-width: 240px;
 		padding-right: 1.5rem;
@@ -175,22 +164,18 @@ export default {
 		height: fit-content;
 		position: relative;
 		z-index: 6;
-
 		display: flex;
 		flex-direction: column;
-
 		span {
 			margin: 10px 0;
 			text-transform: capitalize;
 			white-space: nowrap;
 			font-weight: 500;
 			font-size: 1.2rem;
-
 			display: flex;
 			align-items: center;
 			cursor: pointer;
 			transition: all 0.1s ease;
-
 			&::before {
 				content: '';
 				width: 100%;
@@ -199,7 +184,6 @@ export default {
 				background: $black;
 				transition: all 0.2s ease;
 			}
-
 			&.active,
 			&:hover {
 				color: $primary;
@@ -209,11 +193,9 @@ export default {
 			}
 		}
 	}
-
 	.grid {
 		flex: 1;
 		min-height: 1040px;
-
 		display: grid;
 		grid-template-columns: repeat(4, 1fr);
 		gap: 40px;
@@ -227,12 +209,10 @@ export default {
 			}
 		}
 	}
-
 	.pagination {
 		width: calc(100% - 240px);
 		margin-top: 80px;
 		margin-left: auto;
-
 		display: flex;
 		justify-content: center;
 		align-items: center;
@@ -279,7 +259,6 @@ export default {
 		}
 	}
 }
-
 @media (min-width: 1900px) {
 	.blog .grid {
 		grid-template-columns: repeat(5, 1fr);
@@ -287,7 +266,7 @@ export default {
 }
 @media (min-width: 1700px) {
 	.blog {
-		.filter span{
+		.filter span {
 			font-size: 1.5rem;
 		}
 	}
@@ -328,7 +307,6 @@ export default {
 	.blog {
 		flex-direction: column;
 		margin-bottom: 40px;
-
 		.filter {
 			margin-left: 0;
 			width: 50%;

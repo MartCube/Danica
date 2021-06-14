@@ -54,4 +54,9 @@ export default {
 			terms: 'Terms and Conditions',
 		},
 	},
+	cookie: {
+		message: 'By being on our site, you agree to our',
+		policy: 'privacy policy.',
+		button: 'I Agree',
+	},
 }

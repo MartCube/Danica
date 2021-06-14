@@ -92,7 +92,7 @@ button {
 			opacity: 1;
 			fill: $black;
 		}
-		.text.white{
+		.text.white {
 			color: $black;
 			svg {
 				fill: $black;
@@ -102,7 +102,7 @@ button {
 }
 
 @media (min-width: 1700px) {
-	button{
+	button {
 		font-size: 2rem;
 	}
 }

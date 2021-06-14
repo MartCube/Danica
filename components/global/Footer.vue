@@ -181,7 +181,7 @@ export default {
 	}
 }
 @media (min-width: 1700px) {
-	.footer .policy .links p{
+	.footer .policy .links p {
 		font-size: 1.5rem;
 	}
 }

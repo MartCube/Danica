@@ -7,11 +7,14 @@
 		</main>
 		<Footer />
 		<ContactModal />
+		<CookieBox />
 	</div>
 </template>
 
 <script>
+import CookieBox from '~/components/global/CookieBox.vue'
 export default {
+	components: { CookieBox },
 	data: () => ({}),
 	async mounted() {
 		await this.$nextTick()

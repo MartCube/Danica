@@ -1,6 +1,6 @@
 <template>
 	<picture>
-		<source :data-srcset="mobile" media="(max-width: 600px)" />
+		<source :data-srcset="mobile" media="(max-width:500px)" />
 		<img :data-src="src" loading="lazy" class="lazyload" :alt="alt" />
 	</picture>
 </template>

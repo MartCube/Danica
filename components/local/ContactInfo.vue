@@ -7,18 +7,18 @@
 			</div>
 			<div class="location">
 				<h4>{{ $t('pages.contact.find_us') }}</h4>
-				<a :href="map_url" target="_blank"> <IconLocation size="20px" />{{ $t('pages.contact.adress') }}</a>
+				<a :href="map_url" rel="nofollow" target="_blank"> <IconLocation size="20px" />{{ $t('pages.contact.adress') }}</a>
 			</div>
 			<div class="smedias">
 				<h4>{{ $t('pages.contact.follow_us') }}</h4>
 				<div class="icons">
-					<a href="https://facebook.com/danica.ukraine" target="_blank">
+					<a href="https://facebook.com/danica.ukraine" rel="nofollow" target="_blank">
 						<IconFacebook />
 					</a>
-					<a href="https://www.instagram.com/danica.ua" target="_blank">
+					<a href="https://www.instagram.com/danica.ua" rel="nofollow" target="_blank">
 						<IconInstagram />
 					</a>
-					<a href="https://www.youtube.com/channel/UCfA8wYre6FEfokmx3wbxfBA" target="_blank">
+					<a href="https://www.youtube.com/channel/UCfA8wYre6FEfokmx3wbxfBA" rel="nofollow" target="_blank">
 						<IconYoutube />
 					</a>
 				</div>
@@ -36,13 +36,13 @@
 			<div class="chat">
 				<h4>{{ $t('pages.contact.live_chat') }}</h4>
 				<div class="icons">
-					<a href="https://m.me/danica.ukraine" target="_blank">
+					<a href="https://m.me/danica.ukraine" rel="nofollow" target="_blank">
 						<IconMessenger />
 					</a>
-					<a href="https://t.me/andreybukin" target="_blank">
+					<a href="https://t.me/andreybukin" rel="nofollow" target="_blank">
 						<IconTelegram />
 					</a>
-					<a href="viber://chat/?number=%2B380674011181" target="_blank">
+					<a href="viber://chat/?number=%2B380674011181" rel="nofollow" target="_blank">
 						<IconViber />
 					</a>
 				</div>
@@ -58,7 +58,7 @@ export default {
 		map_url: 'https://g.page/danica-ua?share',
 	}),
 	async fetch() {
-		const contact = await this.$prismic.api.getSingle('footer',{ lang : this.$i18n.localeProperties.prismic })
+		const contact = await this.$prismic.api.getSingle('footer', { lang: this.$i18n.localeProperties.prismic })
 		this.data = {
 			office: contact.data.office,
 			for_clients: contact.data.for_clients,
@@ -178,8 +178,9 @@ export default {
 	}
 }
 @media (min-width: 1700px) {
-	.contact-info{
-		.office ,  .for_clients{
+	.contact-info {
+		.office,
+		.for_clients {
 			h4 {
 				font-size: 1.3rem;
 			}
@@ -187,15 +188,15 @@ export default {
 				margin-bottom: 3.5rem;
 			}
 		}
-		svg{
+		svg {
 			width: 25px;
 			height: 25px;
 		}
-		.for_clients{
-			span{
-				align-items:center;
+		.for_clients {
+			span {
+				align-items: center;
 			}
-			.location svg{
+			.location svg {
 				margin-top: 10px;
 			}
 		}

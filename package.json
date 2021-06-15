@@ -26,6 +26,7 @@
 		"vee-validate": "^3.4.5",
 		"vue-awesome-swiper": "^4.1.1",
 		"vue-component-media-queries": "^1.0.0",
+		"vue-fb-customer-chat": "^0.2.0",
 		"vue-observe-visibility": "^1.0.0",
 		"vue-plyr": "^7.0.0"
 	},

@@ -55,12 +55,11 @@ export default {
 
 <style lang="scss" scoped>
 section {
-	margin: 0;
+	margin: 0 0 2rem 0;
 }
 .content {
 	display: flex;
 	flex-direction: column;
-
 	.grid {
 		width: calc(100% - 100px);
 		display: flex;

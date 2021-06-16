@@ -89,21 +89,21 @@ aside {
 		}
 	}
 }
-@media (min-width: 1700px) {
-	aside {
-		left: 197px;
-		ul.messengers li {
-			&:last-child a svg {
-				width: 28px;
-				height: 28px;
-			}
-			a svg {
-				width: 30px;
-				height: 30px;
-			}
-		}
-	}
-}
+// @media (min-width: 1700px) {
+// 	aside {
+// 		left: 197px;
+// 		ul.messengers li {
+// 			&:last-child a svg {
+// 				width: 28px;
+// 				height: 28px;
+// 			}
+// 			a svg {
+// 				width: 30px;
+// 				height: 30px;
+// 			}
+// 		}
+// 	}
+// }
 @media (max-width: 900px) {
 	aside {
 		left: 0;

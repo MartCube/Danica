@@ -29,11 +29,11 @@ svg {
 	}
 }
 
-@media (min-width: 1700px) {
-	svg {
-		height: 80px;
-	}
-}
+// @media (min-width: 1700px) {
+// 	svg {
+// 		height: 80px;
+// 	}
+// }
 @media (max-width: 900px) {
 	svg {
 		height: 50px;

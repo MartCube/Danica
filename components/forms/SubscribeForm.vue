@@ -69,12 +69,12 @@ export default {
 		}
 	}
 }
-@media (min-width: 1700px) {
-	.subscribe p{
-		font-size: 1.5rem;
-		margin-bottom: 30px;
-	}
-}
+// @media (min-width: 1700px) {
+// 	.subscribe p{
+// 		font-size: 1.5rem;
+// 		margin-bottom: 30px;
+// 	}
+// }
 @media (max-width: 900px) {
 	.subscribe {
 		width: calc(100vw - 80px);

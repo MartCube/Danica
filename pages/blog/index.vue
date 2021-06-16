@@ -264,13 +264,13 @@ export default {
 		grid-template-columns: repeat(5, 1fr);
 	}
 }
-@media (min-width: 1700px) {
-	.blog {
-		.filter span {
-			font-size: 1.5rem;
-		}
-	}
-}
+// @media (min-width: 1700px) {
+// 	.blog {
+// 		.filter span {
+// 			font-size: 1.5rem;
+// 		}
+// 	}
+// }
 @media (max-width: 1100px) {
 	.blog .grid {
 		grid-template-columns: repeat(3, 1fr);

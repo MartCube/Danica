@@ -229,18 +229,18 @@ export default {
 	}
 }
 
-@media (min-width: 1700px) {
-	.project_post{
-		.intro .title{
-			font-size: 4rem;
-			bottom: -1px;
+// @media (min-width: 1700px) {
+// 	.project_post{
+// 		.intro .title{
+// 			font-size: 4rem;
+// 			bottom: -1px;
 
-		}
-		.info p {
-			font-size: 1.8rem;
-		}
-	}
-}
+// 		}
+// 		.info p {
+// 			font-size: 1.8rem;
+// 		}
+// 	}
+// }
 @media (max-width: 900px) {
 	.container::after {
 		z-index: -1;

@@ -63,6 +63,8 @@ export default {
 		align-items: flex-start;
 		padding: 10px 40px;
 		height: auto;
+		bottom: initial;
+		top: 60px;
 		span {
 			display: flex;
 			flex-direction: column;

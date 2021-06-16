@@ -240,22 +240,22 @@ export default {
 	}
 }
 
-@media (min-width: 1700px) {
-	.blog_post {
-		&.first {
-			.info > * {
-				font-size: 1.5rem;
-			}
-			.title{
-				font-size: 3rem;
-			}
-		}
-		.intro .title{
-			font-size: 3rem;
-		}
-	} 
+// @media (min-width: 1700px) {
+// 	.blog_post {
+// 		&.first {
+// 			.info > * {
+// 				font-size: 1.5rem;
+// 			}
+// 			.title{
+// 				font-size: 3rem;
+// 			}
+// 		}
+// 		.intro .title{
+// 			font-size: 3rem;
+// 		}
+// 	} 
 	
-}
+// }
 
 @media (max-width: 900px) {
 	.blog_post {

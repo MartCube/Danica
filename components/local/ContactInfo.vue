@@ -177,31 +177,31 @@ export default {
 		padding-left: 50px;
 	}
 }
-@media (min-width: 1700px) {
-	.contact-info {
-		.office,
-		.for_clients {
-			h4 {
-				font-size: 1.3rem;
-			}
-			div:not(.smedias):not(.chat):not(.icons) {
-				margin-bottom: 3.5rem;
-			}
-		}
-		svg {
-			width: 25px;
-			height: 25px;
-		}
-		.for_clients {
-			span {
-				align-items: center;
-			}
-			.location svg {
-				margin-top: 10px;
-			}
-		}
-	}
-}
+// @media (min-width: 1700px) {
+// 	.contact-info {
+// 		.office,
+// 		.for_clients {
+// 			h4 {
+// 				font-size: 1.3rem;
+// 			}
+// 			div:not(.smedias):not(.chat):not(.icons) {
+// 				margin-bottom: 3.5rem;
+// 			}
+// 		}
+// 		svg {
+// 			width: 25px;
+// 			height: 25px;
+// 		}
+// 		.for_clients {
+// 			span {
+// 				align-items: center;
+// 			}
+// 			.location svg {
+// 				margin-top: 10px;
+// 			}
+// 		}
+// 	}
+// }
 @media (max-width: 500px) {
 	.contact-info {
 		flex-wrap: wrap;

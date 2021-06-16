@@ -101,11 +101,11 @@ button {
 	}
 }
 
-@media (min-width: 1700px) {
-	button {
-		font-size: 2rem;
-	}
-}
+// @media (min-width: 1700px) {
+// 	button {
+// 		font-size: 2rem;
+// 	}
+// }
 @media (max-width: 360px) {
 	button.text {
 		font-size: 1.5rem;

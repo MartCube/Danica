@@ -48,7 +48,7 @@ $transition: all 0.35s ease;
 
 			a {
 				padding: 0.5rem 1rem;
-				text-transform: capitalize;
+				
 				font-size: 1.5rem;
 
 				width: max-content;
@@ -62,6 +62,9 @@ $transition: all 0.35s ease;
 					font-size: 1.5rem;
 					margin-right: 20px;
 					transition: $transition;
+				}
+				&::first-letter{
+					text-transform: capitalize;
 				}
 				&::after {
 					content: '';
@@ -112,11 +115,19 @@ $transition: all 0.35s ease;
 	.content .links {
 		width: min-content;
 		flex-direction: column;
-		.link a svg {
-			display: none;
-		}
-		.link:last-child {
-			margin: 0;
+		.link {
+			width: 100%;
+			a {
+				white-space: normal;
+				width: 100%;
+				align-items: flex-start;
+				svg {
+					display: none;
+				}
+			}
+			&:last-child {
+				margin: 0;
+			}
 		}
 	}
 }

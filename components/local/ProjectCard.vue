@@ -120,11 +120,11 @@ export default {
 	}
 }
 
-@media (min-width: 1700px) {
-	.project_card h2{
-		font-size: 2rem;
-	}
-}
+// @media (min-width: 1700px) {
+// 	.project_card h2{
+// 		font-size: 2rem;
+// 	}
+// }
 
 @media (max-width: 900px) {
 	.project_card {

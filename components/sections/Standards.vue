@@ -78,10 +78,11 @@ $transition: all 0.35s ease;
 			.standard {
 				padding-right: 2rem;
 				h3 {
-					word-spacing: 450px;
 					margin-bottom: 20px;
 
-					text-transform: capitalize;
+					&::first-letter{
+						text-transform: capitalize;
+					}
 				}
 			}
 			&:last-child {

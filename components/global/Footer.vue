@@ -180,11 +180,11 @@ export default {
 		}
 	}
 }
-@media (min-width: 1700px) {
-	.footer .policy .links p {
-		font-size: 1.5rem;
-	}
-}
+// @media (min-width: 1700px) {
+// 	.footer .policy .links p {
+// 		font-size: 1.5rem;
+// 	}
+// }
 @media (max-width: 900px) {
 	.footer {
 		.wrap {

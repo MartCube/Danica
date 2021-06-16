@@ -109,17 +109,17 @@ export default {
 		}
 	}
 }
-@media (min-width: 1700px){
-	.content .text .counter{
-		width: 250px;
-		.number{
-			font-size: 6rem;
-		}
-		h4{
-			font-size: 1.6rem;
-		}
-	}
-}
+// @media (min-width: 1700px){
+// 	.content .text .counter{
+// 		width: 250px;
+// 		.number{
+// 			font-size: 6rem;
+// 		}
+// 		h4{
+// 			font-size: 1.6rem;
+// 		}
+// 	}
+// }
 @media (max-width: 900px) {
 	.content {
 		height: auto;

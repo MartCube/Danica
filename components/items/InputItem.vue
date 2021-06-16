@@ -130,34 +130,34 @@ export default {
 		}
 	}
 }
-@media (min-width: 1700px) {
-	.input_item {
-		height: 70px;
-		input{
-			height: 55px;
-			font-size: 1.3rem;
-			&:placeholder-shown ~ label {
-				font-size: 1.2rem;
-			}
-			&:focus {
-				~ label {
-					font-size: 1.2rem;
-				}
-			}
-		}
-		.error{
-			font-size: 1.2rem;
-		}
-		label{
-			font-size: 1.5rem;
-		}
-		.arrow{
-			bottom: 10px;
-			width: 30px;
-			height: 30px;
-		}
-	} 
-}
+// @media (min-width: 1700px) {
+// 	.input_item {
+// 		height: 70px;
+// 		input{
+// 			height: 55px;
+// 			font-size: 1.3rem;
+// 			&:placeholder-shown ~ label {
+// 				font-size: 1.2rem;
+// 			}
+// 			&:focus {
+// 				~ label {
+// 					font-size: 1.2rem;
+// 				}
+// 			}
+// 		}
+// 		.error{
+// 			font-size: 1.2rem;
+// 		}
+// 		label{
+// 			font-size: 1.5rem;
+// 		}
+// 		.arrow{
+// 			bottom: 10px;
+// 			width: 30px;
+// 			height: 30px;
+// 		}
+// 	} 
+// }
 @media (max-width: 1200px) {
 }
 </style>

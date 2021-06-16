@@ -79,124 +79,135 @@ export const actions = {
 	},
 
 	async storeSingle({ state, commit, dispatch }, { type, language }) {
-		const fetch = await this.$prismic.api.getSingle(type, { lang: language })
+		await this.$prismic.api
+			.getSingle(type, { lang: language })
+			.then(async (fetch) => {
+				const lang = fetch.lang.slice(0, 2)
+				const path = this.$router.currentRoute.fullPath
 
-		const lang = fetch.lang.slice(0, 2)
-		const path = this.$router.currentRoute.fullPath
+				// component page head data *****
+				const head = {
+					htmlAttrs: { lang },
+					title: fetch.data.meta_title,
+					link: [],
+					meta: [],
+				}
 
-		// component page head data *****
-		const head = {
-			htmlAttrs: { lang },
-			title: fetch.data.meta_title,
-			link: [],
-			meta: [],
-		}
+				// canonical link
+				const canonical = `${state.domain}${path}`
+				head.link.push({ hid: '', rel: 'canonical', canonical })
+				head.link.push({ hid: 'alternate', rel: 'alternate', href: canonical, hreflang: 'x-default' })
 
-		// canonical link
-		const canonical = `${state.domain}${path}`
-		head.link.push({ hid: '', rel: 'canonical', canonical })
-		head.link.push({ hid: 'alternate', rel: 'alternate', href: canonical, hreflang: 'x-default' })
+				// alternate langcanonicaluages
+				fetch.alternate_languages.forEach((alterLang) => {
+					// store alternative language each time new variable
+					let href
+					const altLang = alterLang.lang.slice(0, 2)
+					// path is a sting with slashes at the beggining and end , which occur empty item in array
+					// split by slash to get array
+					const pathAltLang = altLang === 'ua' ? '' : altLang + '/'
+					const altPath = path.slice(1, -1).split('/').slice(1, -1).join('/')
+					const uid = alterLang.uid === undefined ? '' : `${alterLang.uid}/`
 
-		// alternate langcanonicaluages
-		fetch.alternate_languages.forEach((alterLang) => {
-			// store alternative language each time new variable
-			let href
-			const altLang = alterLang.lang.slice(0, 2)
-			// path is a sting with slashes at the beggining and end , which occur empty item in array
-			// split by slash to get array
-			const pathAltLang = altLang === 'ua' ? '' : altLang + '/'
-			const altPath = path.slice(1, -1).split('/').slice(1, -1).join('/')
-			const uid = alterLang.uid === undefined ? '' : `${alterLang.uid}/`
+					if (altPath.length <= 3) href = `${state.domain}/${pathAltLang}${uid}`
+					else href = `${state.domain}/${pathAltLang}${altPath}${uid}`
 
-			if (altPath.length <= 3) href = `${state.domain}/${pathAltLang}${uid}`
-			else href = `${state.domain}/${pathAltLang}${altPath}${uid}`
+					// links & meta
+					head.link.push({ hid: 'alternate', rel: 'alternate', href, hreflang: altLang })
+					// head.meta.push({ hid: 'og:url', name: 'og:locale:alternate', content: href })
+				})
 
-			// links & meta
-			head.link.push({ hid: 'alternate', rel: 'alternate', href, hreflang: altLang })
-			head.meta.push({ hid: 'og:url', name: 'og:locale:alternate', content: href })
-		})
+				head.meta.push(
+					...[
+						{ hid: 'description', name: 'description', content: fetch.data.meta_description },
+						// facebook
+						{ hid: 'og:type', property: 'og:type', content: '' },
+						{ hid: 'og:url', property: 'og:url', content: canonical },
+						{ hid: 'og:title', property: 'og:title', content: fetch.data.meta_title },
+						{ hid: 'og:description', property: 'og:description', content: fetch.data.meta_description },
+						{ hid: 'og:image', property: 'og:image', content: fetch.data.meta_image === undefined ? '' : fetch.data.meta_image.url },
+						// twitter
+						{ hid: 'twitter:card', name: 'twitter:card', content: fetch.data.meta_image === undefined ? '' : fetch.data.meta_image.url },
+					],
+				)
 
-		head.meta.push(
-			...[
-				{ hid: 'description', name: 'description', content: fetch.data.meta_description },
-				// facebook
-				{ hid: 'og:type', name: 'og:type', content: '' },
-				{ hid: 'og:url', name: 'og:url', content: canonical },
-				{ hid: 'og:title', name: 'og:title', content: fetch.data.meta_title },
-				{ hid: 'og:description', name: 'og:description', content: fetch.data.meta_description },
-				{ hid: 'og:image', name: 'og:image', content: fetch.data.meta_image === undefined ? '' : fetch.data.meta_image.url },
-				// twitter
-				{ hid: 'twitter:card', name: 'twitter:card', content: fetch.data.meta_image === undefined ? '' : fetch.data.meta_image.url },
-			],
-		)
-
-		await commit('setPage', { head, data: fetch.data, tags: fetch.tags })
+				await commit('setPage', { head, data: fetch.data, tags: fetch.tags })
+			})
+			.catch((error) => {
+				console.log(error)
+			})
 	},
 
 	async storeByUID({ state, commit, dispatch }, { type, uid, language, path }) {
-		const fetch = await this.$prismic.api.getByUID(type, uid, { lang: language })
-		const lang = fetch.lang.slice(0, 2)
+		await this.$prismic.api
+			.getByUID(type, uid, { lang: language })
+			.then(async (fetch) => {
+				const lang = fetch.lang.slice(0, 2)
 
-		// for dynamic pages store routes for i18n *****
-		const routes = {}
+				// for dynamic pages store routes for i18n *****
+				const routes = {}
 
-		// component page head data *****
-		const head = {
-			htmlAttrs: { lang },
-			title: fetch.data.meta_title,
-			link: [],
-			meta: [],
-		}
+				// component page head data *****
+				const head = {
+					htmlAttrs: { lang },
+					title: fetch.data.meta_title,
+					link: [],
+					meta: [],
+				}
 
-		// the current language
-		routes[lang] = fetch.uid
+				// the current language
+				routes[lang] = fetch.uid
 
-		// alternate languages
-		let href
-		fetch.alternate_languages.forEach((alterLang) => {
-			// store alternative language each time new variable
-			const altLang = alterLang.lang.slice(0, 2)
-			const pathAltLang = altLang === 'ua' ? '' : altLang + '/'
+				// alternate languages
+				let href
+				fetch.alternate_languages.forEach((alterLang) => {
+					// store alternative language each time new variable
+					const altLang = alterLang.lang.slice(0, 2)
+					const pathAltLang = altLang === 'ua' ? '' : altLang + '/'
 
-			// path is a sting with slashes at the beggining and end , which occur empty item in array
-			// split by slash to get array
-			const altPath = path.slice(1, -1).split('/').slice(1, -1).join('/')
+					// path is a sting with slashes at the beggining and end , which occur empty item in array
+					// split by slash to get array
+					const altPath = path.slice(1, -1).split('/').slice(1, -1).join('/')
 
-			// routes
-			routes[altLang] = alterLang.uid
+					// routes
+					routes[altLang] = alterLang.uid
 
-			// links & meta
-			if (altPath.length <= 3) href = `${state.domain}/${pathAltLang}${alterLang.uid}/`
-			else href = `${state.domain}/${pathAltLang}${altPath}/${alterLang.uid}`
+					// links & meta
+					if (altPath.length <= 3) href = `${state.domain}/${pathAltLang}${alterLang.uid}/`
+					else href = `${state.domain}/${pathAltLang}${altPath}/${alterLang.uid}`
 
-			head.link.push({ hid: 'alternate', rel: 'alternate', href, hreflang: altLang })
-			head.meta.push({ hid: 'og:url', name: 'og:locale:alternate', content: href })
-		})
+					head.link.push({ hid: 'alternate', rel: 'alternate', href, hreflang: altLang })
+					head.meta.push({ hid: 'og:url', name: 'og:locale:alternate', content: href })
+				})
 
-		await dispatch('i18n/setRouteParams', {
-			en: { [type]: routes.en },
-			ru: { [type]: routes.ru },
-			ua: { [type]: routes.ua },
-		})
+				await dispatch('i18n/setRouteParams', {
+					en: { [type]: routes.en },
+					ru: { [type]: routes.ru },
+					ua: { [type]: routes.ua },
+				})
 
-		// canonical link
-		const canonical = `${state.domain}${path}`
-		head.link.push({ hid: 'canonical', rel: 'canonical', canonical })
-		head.link.push({ hid: 'alternate', rel: 'alternate', href: canonical, hreflang: 'x-default' })
+				// canonical link
+				const canonical = `${state.domain}${path}`
+				head.link.push({ hid: 'canonical', rel: 'canonical', canonical })
+				head.link.push({ hid: 'alternate', rel: 'alternate', href: canonical, hreflang: 'x-default' })
 
-		head.meta.push(
-			...[
-				{ hid: 'description', name: 'description', content: fetch.data.meta_description },
-				// facebook
-				{ hid: 'og:url', name: 'og:url', content: canonical },
-				{ hid: 'og:title', name: 'og:title', content: fetch.data.meta_title },
-				{ hid: 'og:description', name: 'og:description', content: fetch.data.meta_description },
-				{ hid: 'og:image', name: 'og:image', content: fetch.data.meta_image === undefined ? '' : fetch.data.meta_image.url },
-				// twitter
-				{ hid: 'twitter:card', name: 'twitter:card', content: fetch.data.meta_image === undefined ? '' : fetch.data.meta_image.url },
-			],
-		)
+				head.meta.push(
+					...[
+						{ hid: 'description', name: 'description', content: fetch.data.meta_description },
+						// facebook
+						{ hid: 'og:url', name: 'og:url', content: canonical },
+						{ hid: 'og:title', name: 'og:title', content: fetch.data.meta_title },
+						{ hid: 'og:description', name: 'og:description', content: fetch.data.meta_description },
+						{ hid: 'og:image', name: 'og:image', content: fetch.data.meta_image === undefined ? '' : fetch.data.meta_image.url },
+						// twitter
+						{ hid: 'twitter:card', name: 'twitter:card', content: fetch.data.meta_image === undefined ? '' : fetch.data.meta_image.url },
+					],
+				)
 
-		await commit('setPage', { head, data: fetch.data, tags: fetch.tags })
+				await commit('setPage', { head, data: fetch.data, tags: fetch.tags })
+			})
+			.catch((error) => {
+				console.log(error)
+			})
 	},
 }

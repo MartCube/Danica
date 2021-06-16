@@ -100,3 +100,4 @@
 /services/construction/cottages /ru/stroitelstvo-domov/ 301
 /en/services/construction/passive-house/passive-house-block /en/house-construction/	301
 /blog/advise/bunker /ru/stroitelstvo-bynkerov/ 301
+/ru/dizayin-iterera/index.html/  /ru/dizayin-iterera/

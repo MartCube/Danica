@@ -2,23 +2,28 @@
 	<aside>
 		<ul class="messengers">
 			<li>
-				<a href="https://facebook.com/danica.ukraine" target="_blank">
-					<IconFacebook :fill="messengersIconColor" />
+				<a href="https://t.me/andreybukin" rel="nofollow" target="_blank">
+					<IconTelegram :fill="color" />
 				</a>
 			</li>
 			<li>
-				<a href="https://www.instagram.com/danica.ua" target="_blank">
-					<IconInstagram :fill="messengersIconColor" />
+				<a href="https://facebook.com/danica.ukraine" rel="nofollow" target="_blank">
+					<IconFacebook :fill="color" />
 				</a>
 			</li>
 			<li>
-				<a href="viber://chat/?number=%2B380674011181" target="_blank">
-					<IconViber :fill="messengersIconColor" />
+				<a href="https://www.instagram.com/danica.ua" rel="nofollow" target="_blank">
+					<IconInstagram :fill="color" />
 				</a>
 			</li>
 			<li>
-				<a href="tel:tel:+380973591111" target="_blank">
-					<IconPhone :fill="messengersIconColor" />
+				<a href="viber://chat/?number=%2B380674011181" rel="nofollow" target="_blank">
+					<IconViber :fill="color" />
+				</a>
+			</li>
+			<li>
+				<a href="tel:tel:+380973591111" rel="nofollow" target="_blank">
+					<IconPhone :fill="color" />
 				</a>
 			</li>
 		</ul>
@@ -30,7 +35,7 @@ import { messengersAnim } from '~/assets/anime'
 
 export default {
 	data: () => ({
-		messengersIconColor: 'hsl(44deg 100% 47%)',
+		color: 'hsl(44deg 100% 47%)',
 	}),
 	mounted() {
 		messengersAnim(document.querySelectorAll('.messengers li'))
@@ -49,7 +54,7 @@ aside {
 
 	z-index: 2;
 	ul.messengers {
-		width: 40px;
+		width: 45px;
 		display: flex;
 		flex-direction: column;
 		justify-content: center;
@@ -87,17 +92,16 @@ aside {
 @media (min-width: 1700px) {
 	aside {
 		left: 197px;
-		ul.messengers li{
-			&:last-child a svg{
+		ul.messengers li {
+			&:last-child a svg {
 				width: 28px;
 				height: 28px;
 			}
-			a svg{
+			a svg {
 				width: 30px;
 				height: 30px;
 			}
 		}
-	
 	}
 }
 @media (max-width: 900px) {

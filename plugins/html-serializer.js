@@ -7,8 +7,11 @@ export default function (type, element, content, children) {
 	// Generate links to Prismic Documents as <router-link> components
 	if (type === Elements.hyperlink) {
 		const url = prismicDOM.Link.url(element.data, linkResolver)
-		if (element.data.link_type === 'Document') {
+
+		if (url.includes('danica')) {
 			return `<a href="${url}" data-nuxt-link>${content}</a>`
+		} else {
+			return `<a href="${url}" rel="nofollow">${content}</a>`
 		}
 	}
 

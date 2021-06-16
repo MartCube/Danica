@@ -12,7 +12,7 @@
 			</div>
 			<ButtonItem :white="data.primary.white_text" @click.native="openModal"> {{ $t('service.form.write_us') }} </ButtonItem>
 			<div class="project">
-				<span ref="project"> Project - {{ image.alt }} </span>
+				<span ref="project"> {{ image.alt }} </span>
 			</div>
 		</div>
 	</section>
@@ -152,11 +152,11 @@ export default {
 @media (min-width: 1700px) {
 	.intro {
 		.content {
-			.maintitle span{
+			.maintitle span {
 				font-size: 8rem;
 				line-height: normal;
 			}
-			.subtitle span{
+			.subtitle span {
 				font-size: 5rem;
 				line-height: normal;
 			}

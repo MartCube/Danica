@@ -43,7 +43,7 @@ export default {
 	},
 
 	// Plugins to run before rendering page (https://go.nuxtjs.dev/config-plugins)
-	plugins: [{ src: '@/plugins/vue-cookie', mode: 'client' }, { src: '@/plugins/vue-swiper', mode: 'client' }, { src: '@/plugins/vue-observe' }, { src: '~/plugins/vue-plyr', mode: 'client' }, { src: '@/plugins/vee-validate.js' }, { src: `~/plugins/lazysizes.client.js` }],
+	plugins: [{ src: '@/plugins/vue-cookie', mode: 'client' }, { src: '@/plugins/fb-chat', mode: 'client', ssr: false }, { src: '@/plugins/vue-swiper', mode: 'client' }, { src: '@/plugins/vue-observe' }, { src: '~/plugins/vue-plyr', mode: 'client' }, { src: '@/plugins/vee-validate.js' }, { src: `~/plugins/lazysizes.client.js` }],
 
 	// Modules for dev and build (recommended) (https://go.nuxtjs.dev/config-modules)
 	buildModules: [

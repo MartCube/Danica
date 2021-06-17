@@ -10,37 +10,22 @@
 				</span>
 			</div>
 
-			<div ref="grid" class="grid">
+			<div ref="grid" class="grid" :style="`min-height: ${gridHeight}px;`">
 				<template v-if="$fetchState.error">error</template>
 				<template v-else-if="!$fetchState.pending">
 					<ProjectCard v-for="(project, i) in projects" :key="i" :data="project" />
 				</template>
 			</div>
 
-			<div class="pagination">
-				<IconDouble left :class="{ disable: !prev_page }" @click.native="fetchFirst" />
-				<IconChevron left :class="{ disable: !prev_page }" @click.native="fetchBack" />
-				<MediaQueryProvider :queries="{ mobile: '(max-width: 900px)' }" ssr>
-					<MatchMedia v-slot="{ mobile }">
-						<div class="pages">
-							<span v-if="mobile" class="page active">{{ current_page }}</span>
-							<span v-for="i in total_pages" v-else :key="i" :class="{ active: i == current_page }" class="page" @click="fetchPage(i)">{{ i }}</span>
-						</div>
-					</MatchMedia>
-				</MediaQueryProvider>
-				<IconChevron :class="{ disable: !next_page }" @click.native="fetchNext" />
-				<IconDouble :class="{ disable: !next_page }" @click.native="fetchLast" />
-			</div>
+			<ButtonItem v-if="next_page" :animated="false" @click.native="loadMore">load more</ButtonItem>
 		</div>
 	</div>
 </template>
 
 <script>
-import { MediaQueryProvider, MatchMedia } from 'vue-component-media-queries'
 import { postAnim } from '~/assets/anime'
 export default {
 	name: 'Projects',
-	components: { MediaQueryProvider, MatchMedia },
 	async asyncData({ i18n, store }) {
 		await store.dispatch('storeSingle', {
 			type: 'projects',
@@ -57,6 +42,7 @@ export default {
 		total_pages: null,
 		prev_page: null,
 		next_page: null,
+		gridHeight: 825,
 	}),
 	async fetch() {
 		// fetch project posts
@@ -66,6 +52,7 @@ export default {
 			page: this.current_page,
 			lang: this.$i18n.localeProperties.prismic,
 		})
+		// console.log(projects)
 		this.$store.dispatch('bindProjects', projects.results)
 		this.total_pages = projects.total_pages
 		this.prev_page = projects.prev_page
@@ -109,40 +96,20 @@ export default {
 		filterUpdate(filter) {
 			this.active_filter = [filter]
 			if (filter === 'all') this.active_filter = []
+
 			// restart results
 			this.total_pages = 0
 			this.current_page = 1
 			this.page_size = 6
+			this.gridHeight = 825
+
 			this.$fetch()
 		},
-		// pagination
-		fetchNext() {
-			if (this.next_page) {
-				this.current_page++
-				this.ScrollToTop()
-				this.$fetch()
-			}
-		},
-		fetchBack() {
-			if (this.prev_page) {
-				this.current_page--
-				this.ScrollToTop()
-				this.$fetch()
-			}
-		},
-		fetchPage(value) {
-			this.current_page = value
-			this.ScrollToTop()
+
+		loadMore() {
+			this.page_size += 6
+			this.gridHeight += 825
 			this.$fetch()
-		},
-		fetchFirst() {
-			this.fetchPage(1)
-		},
-		fetchLast() {
-			this.fetchPage(this.total_pages)
-		},
-		ScrollToTop() {
-			window.scrollTo({ top: 0, behavior: 'smooth' })
 		},
 	},
 }
@@ -190,8 +157,7 @@ export default {
 		}
 	}
 	.grid {
-		flex: 1;
-		min-height: 900px;
+		width: calc(100% - 240px);
 
 		border-left: 1px solid $line;
 		display: flex;
@@ -202,54 +168,9 @@ export default {
 			margin-right: 2rem;
 		}
 	}
-	.pagination {
-		width: calc(100% - 240px);
-		margin-top: 40px;
-		margin-left: auto;
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		align-content: center;
-		.pages {
-			max-width: 300px;
-			display: flex;
-			justify-content: space-between;
-			align-items: center;
-			align-content: center;
-			.page {
-				cursor: pointer;
-				user-select: none;
-				width: 35px;
-				height: 35px;
-				margin-right: 35px;
-				display: flex;
-				justify-content: center;
-				align-items: center;
-				align-content: center;
-				border: 1px solid transparent;
-				color: $black;
-				transition: all 0.2s ease;
-				&:last-child {
-					margin-right: 0;
-				}
-				&.active {
-					color: $primary;
-					background: $black;
-				}
-				&:hover {
-					border: 1px solid $black;
-				}
-			}
-		}
-		svg {
-			margin: 0 35px;
-			cursor: pointer;
-			transition: all 0.2 ease-in-out;
-			&.disable {
-				cursor: initial;
-				opacity: 0.5;
-			}
-		}
+	button {
+		margin: 80px 30vw 80px 240px;
+		color: $black;
 	}
 }
 // @media (min-width: 1700px) {
@@ -274,18 +195,15 @@ export default {
 			}
 			.grid {
 				width: 93%;
-				min-height: 450px;
+				// min-height: 450px;
 				padding-left: 40px;
 				justify-content: space-between;
 				.project_card {
 					margin-right: 0;
 				}
 			}
-		}
-		.pagination {
-			width: 100%;
-			svg {
-				margin: 0 15px;
+			button {
+				margin: 0 auto;
 			}
 		}
 	}

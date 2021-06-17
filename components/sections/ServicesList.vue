@@ -7,9 +7,9 @@
 			<h2 class="title">{{ data.primary.title }}</h2>
 			<div class="links">
 				<div v-for="(item, i) in data.items" :key="i" class="link">
-					<n-link to="/">
+					<n-link :to="linkResolver(item.link)">
 						<span>0{{ i + 1 }}/</span>
-						{{ item.service }}
+						{{ item.name }}
 						<IconArrow />
 					</n-link>
 				</div>
@@ -24,6 +24,11 @@ export default {
 		data: {
 			type: Object,
 			required: true,
+		},
+	},
+	methods: {
+		linkResolver(value) {
+			return this.localePath(this.$prismic.linkResolver(value))
 		},
 	},
 }
@@ -48,7 +53,7 @@ $transition: all 0.35s ease;
 
 			a {
 				padding: 0.5rem 1rem;
-				
+
 				font-size: 1.5rem;
 
 				width: max-content;
@@ -63,7 +68,7 @@ $transition: all 0.35s ease;
 					margin-right: 20px;
 					transition: $transition;
 				}
-				&::first-letter{
+				&::first-letter {
 					text-transform: capitalize;
 				}
 				&::after {

@@ -129,6 +129,11 @@ export default {
 				ru: '/:services?',
 				ua: '/:services?',
 			},
+			'/:services/:service_second?': {
+				en: '/:services/:service_second?',
+				ru: '/:services/:service_second?',
+				ua: '/:services/:service_second?',
+			},
 			'blog/_blog_post': {
 				en: '/blog/:blog_post?',
 				ru: '/blog/:blog_post?',

@@ -78,6 +78,42 @@ export const actions = {
 		context.commit('setModalVideo', value)
 	},
 
+	// async storeRoutes({ state, commit, dispatch }, { fetch, path }) {
+	// 	// for dynamic pages store routes for i18n *****
+	// 	const routes = {}
+	// 	const lang = fetch.lang.slice(0, 2)
+
+	// 	// the current route
+	// 	routes[lang] = fetch.uid
+
+	// 	let href
+	// 	fetch.alternate_languages.forEach((alterLang) => {
+	// 		// store alternative language each time new variable
+	// 		const altLang = alterLang.lang.slice(0, 2)
+	// 		const pathAltLang = altLang === 'ua' ? '' : altLang + '/'
+
+	// 		// path is a sting with slashes at the beggining and end , which occur empty item in array
+	// 		// split by slash to get array
+	// 		const altPath = path.slice(1, -1).split('/').slice(1, -1).join('/')
+
+	// 		// routes
+	// 		routes[altLang] = alterLang.uid
+
+	// 		// links & meta
+	// 		if (altPath.length <= 3) href = `${state.domain}/${pathAltLang}${alterLang.uid}/`
+	// 		else href = `${state.domain}/${pathAltLang}${altPath}/${alterLang.uid}`
+
+	// 		head.link.push({ hid: 'alternate', rel: 'alternate', href, hreflang: altLang })
+	// 		head.meta.push({ hid: 'og:url', name: 'og:locale:alternate', content: href })
+	// 	})
+
+	// 	await dispatch('i18n/setRouteParams', {
+	// 		en: { [type]: routes.en },
+	// 		ru: { [type]: routes.ru },
+	// 		ua: { [type]: routes.ua },
+	// 	})
+	// },
+
 	async storeSingle({ state, commit, dispatch }, { type, language }) {
 		await this.$prismic.api
 			.getSingle(type, { lang: language })
@@ -155,7 +191,7 @@ export const actions = {
 					meta: [],
 				}
 
-				// the current language
+				// the current route
 				routes[lang] = fetch.uid
 
 				// alternate languages

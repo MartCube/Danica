@@ -43,6 +43,9 @@ button {
 	font-size: 1.5rem;
 
 	.text {
+		&::first-letter {
+			text-transform: uppercase;
+		}
 		font-weight: 700;
 		font-size: inherit;
 		line-height: 1;

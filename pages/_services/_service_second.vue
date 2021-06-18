@@ -32,8 +32,9 @@ export default {
 	middleware: 'navbarTransparent',
 	async asyncData({ i18n, $prismic, route }) {
 		const fetch = await $prismic.api.getByUID('service_second', route.params.service_second, { lang: i18n.localeProperties.prismic })
+		const parent = await $prismic.api.getByUID('services', fetch.data.parent_page.uid, { lang: i18n.localeProperties.prismic })
 		console.log(route.fullPath)
-		console.log(fetch)
+		console.log(parent)
 	},
 
 	mounted() {

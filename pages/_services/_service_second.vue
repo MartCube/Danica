@@ -1,6 +1,6 @@
 <template>
 	<div class="container">
-		<!-- <div v-for="(slice, i) in slices" :key="slice.slice_type + i">
+		<div v-for="(slice, i) in slices" :key="slice.slice_type + i">
 			<ServiceIntro v-if="slice.slice_type == 'serviceintro'" :data="slice" />
 			<Values v-else-if="slice.slice_type == 'values'" :data="slice" />
 			<Stages v-else-if="slice.slice_type == 'stages'" :data="slice" />
@@ -18,7 +18,7 @@
 				</div>
 				<prismic-rich-text v-for="(item, key) in slice.items" :key="key" class="rich_text" :field="item.text" />
 			</section>
-		</div> -->
+		</div>
 	</div>
 </template>
 
@@ -29,13 +29,6 @@ export default {
 		this.$store.dispatch('bindNavbarTransparent', false)
 		next()
 	},
-	// nuxtI18n: {
-	// 	paths: {
-	// 		en: '/architecture-design/demo-en', 
-	// 		ru: '/arhitekturnoe-proektirovanie/demo-ru', 
-	// 		ua: '/arhitekturne-proektyvannya/demo-ua'  
-	// 	}
-	// },
 	middleware: 'navbarTransparent',
 	async asyncData({ i18n, $prismic, route, store }) {
 		i18n.setLocale(i18n.localeProperties.prismic)
@@ -60,7 +53,6 @@ export default {
 		return 'service' + getCounter('service')
 	},
 	computed: {
-		// console.log(),
 		routes() {
 			return this.$store.getters.routes
 		}

@@ -292,7 +292,7 @@ export const actions = {
 
 			if (altLang === 'ua') {
 				let currentParentUid = parent.alternate_languages.filter( el => {
-					return el.lang === 'ua-ua'
+					return el.lang === alterLang.lang
 				})
 				routesChild[altLang] = `${alterLang.uid}`
 				routesParent[altLang] = `${currentParentUid[0].uid}`
@@ -300,9 +300,7 @@ export const actions = {
 			}
 			else  {
 				let currentParentUid = parent.alternate_languages.filter( el => { 
-					if(el.lang.includes(altLang)) {
-						return el
-					}
+					return el.lang === alterLang.lang
 				})
 				routesChild[altLang] = `${alterLang.uid}`
 				routesParent[altLang] = `${currentParentUid[0].uid}`

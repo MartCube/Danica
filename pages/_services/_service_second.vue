@@ -1,6 +1,6 @@
 <template>
 	<div class="container">
-		<div v-for="(slice, i) in slices" :key="slice.slice_type + i">
+		<!-- <div v-for="(slice, i) in slices" :key="slice.slice_type + i">
 			<ServiceIntro v-if="slice.slice_type == 'serviceintro'" :data="slice" />
 			<Values v-else-if="slice.slice_type == 'values'" :data="slice" />
 			<Stages v-else-if="slice.slice_type == 'stages'" :data="slice" />
@@ -18,26 +18,56 @@
 				</div>
 				<prismic-rich-text v-for="(item, key) in slice.items" :key="key" class="rich_text" :field="item.text" />
 			</section>
-		</div>
+		</div> -->
 	</div>
 </template>
 
 <script>
 export default {
-	name: 'ServiceLvl2',
+	name: 'serviceSecond',
 	beforeRouteLeave(to, from, next) {
 		this.$store.dispatch('bindNavbarTransparent', false)
 		next()
 	},
+	// nuxtI18n: {
+	// 	paths: {
+	// 		en: '/architecture-design/demo-en', 
+	// 		ru: '/arhitekturnoe-proektirovanie/demo-ru', 
+	// 		ua: '/arhitekturne-proektyvannya/demo-ua'  
+	// 	}
+	// },
 	middleware: 'navbarTransparent',
-	async asyncData({ i18n, $prismic, route }) {
-		const fetch = await $prismic.api.getByUID('service_second', route.params.service_second, { lang: i18n.localeProperties.prismic })
-		const parent = await $prismic.api.getByUID('services', fetch.data.parent_page.uid, { lang: i18n.localeProperties.prismic })
-		console.log(route.fullPath)
-		console.log(parent)
+	async asyncData({ i18n, $prismic, route, store }) {
+		i18n.setLocale(i18n.localeProperties.prismic)
+		await store.dispatch('storeSecondLevel', {
+			type: 'service_second',
+			parentUid: route.params.services,
+			parentType: 'services',
+			uid: route.params.service_second,
+			language: i18n.localeProperties.prismic,
+			path: route.fullPath,
+		})
+		return {
+			slices: store.getters.page.data.body,
+		}
+	},
+	head() {
+		return this.$store.getters.page.head
+	},
+	fetchKey(getCounter) {
+		// getCounter is a method that can be called to get the next number in a sequence
+		// as part of generating a unique fetchKey.
+		return 'service' + getCounter('service')
+	},
+	computed: {
+		// console.log(),
+		routes() {
+			return this.$store.getters.routes
+		}
 	},
 
 	mounted() {
+
 		this.$store.dispatch('bindNavbarTransparent', true)
 	},
 }

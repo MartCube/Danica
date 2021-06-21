@@ -15,6 +15,8 @@ export const state = (context) => ({
 		data: {},
 		tags: {},
 	},
+
+	routes: {}
 })
 
 // Functions that return back data contained in the state.
@@ -30,6 +32,7 @@ export const getters = {
 
 	domain: (state) => state.domain,
 	page: (state) => state.page,
+	routes: (state) => state.routes,
 }
 
 // Functions that directly mutate the state.
@@ -58,6 +61,9 @@ export const mutations = {
 	setHeadLink(state, value) {
 		state.page.head.link.push(value)
 	},
+	setRoutes(state, value) {
+		state.routes = value
+	},
 }
 
 // Functions that call mutations on the state. They can call multiple mutations, can call other actions, and they support asynchronous operations.
@@ -81,21 +87,32 @@ export const actions = {
 		context.commit('setModalVideo', value)
 	},
 
-	async storeRoutes({ state, commit, dispatch }, { fetch, type }) {
-		// for dynamic pages store routes for i18n *****
-		const routes = {}
-		const lang = fetch.lang.slice(0, 2)
+	async storeRoutes({commit, dispatch },{ fetch, canonical, lang, routes, type}) {
+		// canonical link
+	console.log(routes);
+		const head = {
+				htmlAttrs: { lang },
+				title: fetch.data.meta_title,
+				link: [],
+				meta: [],
+			}
+		head.link.push({ hid: 'canonical', rel: 'canonical', canonical })
+		head.link.push({ hid: 'alternate', rel: 'alternate', href: canonical, hreflang: 'x-default' })
 
-		// the current route
-		routes[lang] = fetch.uid
+		head.meta.push(
+			...[
+				{ hid: 'description', name: 'description', content: fetch.data.meta_description },
+				// facebook
+				{ hid: 'og:url', name: 'og:url', content: canonical },
+				{ hid: 'og:title', name: 'og:title', content: fetch.data.meta_title },
+				{ hid: 'og:description', name: 'og:description', content: fetch.data.meta_description },
+				{ hid: 'og:image', name: 'og:image', content: fetch.data.meta_image === undefined ? '' : fetch.data.meta_image.url },
+				// twitter
+				{ hid: 'twitter:card', name: 'twitter:card', content: fetch.data.meta_image === undefined ? '' : fetch.data.meta_image.url },
+			],
+		)
 
-		fetch.alternate_languages.forEach((alterLang) => {
-			// store alternative language each time new variable
-			const altLang = alterLang.lang.slice(0, 2)
-
-			// routes
-			routes[altLang] = alterLang.uid
-		})
+		await commit('setPage', { head, data: fetch.data, tags: fetch.tags })
 
 		await dispatch('i18n/setRouteParams', {
 			en: { [type]: routes.en },
@@ -206,34 +223,105 @@ export const actions = {
 					head.meta.push({ hid: 'og:url', name: 'og:locale:alternate', content: href })
 				})
 
-				await dispatch('i18n/setRouteParams', {
-					en: { [type]: routes.en },
-					ru: { [type]: routes.ru },
-					ua: { [type]: routes.ua },
-				})
-
-				// canonical link
 				const canonical = `${state.domain}${path}`
-				head.link.push({ hid: 'canonical', rel: 'canonical', canonical })
-				head.link.push({ hid: 'alternate', rel: 'alternate', href: canonical, hreflang: 'x-default' })
 
-				head.meta.push(
-					...[
-						{ hid: 'description', name: 'description', content: fetch.data.meta_description },
-						// facebook
-						{ hid: 'og:url', name: 'og:url', content: canonical },
-						{ hid: 'og:title', name: 'og:title', content: fetch.data.meta_title },
-						{ hid: 'og:description', name: 'og:description', content: fetch.data.meta_description },
-						{ hid: 'og:image', name: 'og:image', content: fetch.data.meta_image === undefined ? '' : fetch.data.meta_image.url },
-						// twitter
-						{ hid: 'twitter:card', name: 'twitter:card', content: fetch.data.meta_image === undefined ? '' : fetch.data.meta_image.url },
-					],
-				)
 
+				// await dispatch('i18n/setRouteParams', {
+				// 	en: { [type]: routes.en },
+				// 	ru: { [type]: routes.ru },
+				// 	ua: { [type]: routes.ua },
+				// })
+
+				// // canonical link
+				
+				// head.link.push({ hid: 'canonical', rel: 'canonical', canonical })
+				// head.link.push({ hid: 'alternate', rel: 'alternate', href: canonical, hreflang: 'x-default' })
+
+				// head.meta.push(
+				// 	...[
+				// 		{ hid: 'description', name: 'description', content: fetch.data.meta_description },
+				// 		// facebook
+				// 		{ hid: 'og:url', name: 'og:url', content: canonical },
+				// 		{ hid: 'og:title', name: 'og:title', content: fetch.data.meta_title },
+				// 		{ hid: 'og:description', name: 'og:description', content: fetch.data.meta_description },
+				// 		{ hid: 'og:image', name: 'og:image', content: fetch.data.meta_image === undefined ? '' : fetch.data.meta_image.url },
+				// 		// twitter
+				// 		{ hid: 'twitter:card', name: 'twitter:card', content: fetch.data.meta_image === undefined ? '' : fetch.data.meta_image.url },
+				// 	],
+				// )
+				await dispatch('storeRoutes', { fetch, canonical, lang, routes })
 				await commit('setPage', { head, data: fetch.data, tags: fetch.tags })
+				
 			})
 			.catch((error) => {
 				console.log(error)
 			})
+	},
+	async storeSecondLevel({ state, commit, dispatch }, {type, parentType, parentUid, uid, language, path }) {
+
+		const fetch = await this.$prismic.api.getByUID(type, uid, { lang: language })
+		const parent = await this.$prismic.api.getByUID(parentType, parentUid, { lang: language })
+
+		if (!fetch && !parent){	return undefined } 
+		const lang = fetch.lang.slice(0, 2)
+
+		// for dynamic pages store routes for i18n *****
+		const routesChild = {}
+		const routesParent = {}
+
+		// component page head data *****
+		const head = {
+			htmlAttrs: { lang },
+			title: fetch.data.meta_title,
+			link: [],
+			meta: [],
+		}
+
+		// the current route
+		routesChild[lang] = `${fetch.uid}`
+		routesParent[lang] = `${parentUid}`
+
+		// alternate languages
+		let href
+		fetch.alternate_languages.forEach((alterLang, i) => {
+			// store alternative language each time new variable
+			const altLang = alterLang.lang.slice(0, 2)
+
+			// path is a sting with slashes at the beggining and end , which occur empty item in array
+			// split by slash to get array
+
+			if (altLang === 'ua') {
+				let currentParentUid = parent.alternate_languages.filter( el => {
+					return el.lang === 'ua-ua'
+				})
+				routesChild[altLang] = `${alterLang.uid}`
+				routesParent[altLang] = `${currentParentUid[0].uid}`
+				href = `${currentParentUid[0].uid}/${alterLang.uid}/`
+			}
+			else  {
+				let currentParentUid = parent.alternate_languages.filter( el => { 
+					if(el.lang.includes(altLang)) {
+						return el
+					}
+				})
+				routesChild[altLang] = `${alterLang.uid}`
+				routesParent[altLang] = `${currentParentUid[0].uid}`
+				href = `${altLang}/${currentParentUid[0].uid}/${alterLang.uid}/`
+			}
+			// links & meta
+
+			head.link.push({ hid: 'alternate', rel: 'alternate', href, hreflang: altLang })
+			head.meta.push({ hid: 'og:url', name: 'og:locale:alternate', content: href })
+		})
+		console.log(type);
+		const canonical = `${state.domain}${path}`
+
+		await commit('setPage', { head, data: fetch.data, tags: fetch.tags })
+		await dispatch('storeRoutes', { fetch, canonical, lang, routes })
+		await dispatch('i18n/setRouteParams', {
+			en: { [parentType]: routesParent.en, [type]: routesChild.en},
+			ru: { [parentType]: routesParent.ru, [type]: routesChild.ru },
+			ua: { [parentType]: routesParent.ua, [type]: routesChild.ua },
+		})
 	},
 }

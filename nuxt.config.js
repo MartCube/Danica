@@ -124,12 +124,12 @@ export default {
 				ru: '/blog',
 				ua: '/blog',
 			},
-			'/:services?': {
-				en: '/:services?',
-				ru: '/:services?',
-				ua: '/:services?',
+			'_services': {
+				en: '/:services',
+				ru: '/:services',
+				ua: '/:services',
 			},
-			'/:services/:service_second?': {
+			'_services/_service_second': {
 				en: '/:services/:service_second?',
 				ru: '/:services/:service_second?',
 				ua: '/:services/:service_second?',

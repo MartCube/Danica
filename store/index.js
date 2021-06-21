@@ -317,7 +317,7 @@ export const actions = {
 		const canonical = `${state.domain}${path}`
 
 		await commit('setPage', { head, data: fetch.data, tags: fetch.tags })
-		await dispatch('storeRoutes', { fetch, canonical, lang, routes })
+		// await dispatch('storeRoutes', { fetch, canonical, lang, routes })
 		await dispatch('i18n/setRouteParams', {
 			en: { [parentType]: routesParent.en, [type]: routesChild.en},
 			ru: { [parentType]: routesParent.ru, [type]: routesChild.ru },

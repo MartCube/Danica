@@ -30,20 +30,24 @@ export default {
 		next()
 	},
 	middleware: 'navbarTransparent',
-	async asyncData({ i18n, $prismic, route, store }) {
-		i18n.setLocale(i18n.localeProperties.prismic)
-		await store.dispatch('storeSecondLevel', {
+	async fetch() {
+		// console.log(route);
+		await this.$store.dispatch('storeSecondLevel', {
+			uid: this.$route.params.service_second,
+			language: this.$i18n.localeProperties.prismic,
+			path: this.$route.fullPath,
 			type: 'service_second',
-			parentUid: route.params.services,
+			parentUid: this.$route.params.services,
 			parentType: 'services',
-			uid: route.params.service_second,
-			language: i18n.localeProperties.prismic,
-			path: route.fullPath,
 		})
-		return {
-			slices: store.getters.page.data.body,
-		}
+		this.slices = this.$store.getters.page.data.body
 	},
+	watch: {
+		'$route.query':'$fetch',
+	},
+	data: () => ({
+		slices: []
+	}),
 	head() {
 		return this.$store.getters.page.head
 	},

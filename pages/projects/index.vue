@@ -58,6 +58,9 @@ export default {
 		this.prev_page = projects.prev_page
 		this.next_page = projects.next_page
 	},
+	watch: {
+		'$route.query':'$fetch',
+	},
 	head() {
 		return this.$store.getters.page.head
 	},

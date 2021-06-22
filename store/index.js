@@ -58,12 +58,9 @@ export const mutations = {
 	setPage(state, value) {
 		state.page = value
 	},
-	setHeadLink(state, value) {
-		state.page.head.link.push(value)
-	},
-	setRoutes(state, value) {
-		state.routes = value
-	},
+	// setHeadLink(state, value) {
+	// 	state.page.head.link.push(value)
+	// },
 }
 
 // Functions that call mutations on the state. They can call multiple mutations, can call other actions, and they support asynchronous operations.
@@ -85,40 +82,6 @@ export const actions = {
 	},
 	bindModalVideo(context, value) {
 		context.commit('setModalVideo', value)
-	},
-
-	async storeRoutes({commit, dispatch },{ fetch, canonical, lang, routes, type}) {
-		// canonical link
-	console.log(routes);
-		const head = {
-				htmlAttrs: { lang },
-				title: fetch.data.meta_title,
-				link: [],
-				meta: [],
-			}
-		head.link.push({ hid: 'canonical', rel: 'canonical', canonical })
-		head.link.push({ hid: 'alternate', rel: 'alternate', href: canonical, hreflang: 'x-default' })
-
-		head.meta.push(
-			...[
-				{ hid: 'description', name: 'description', content: fetch.data.meta_description },
-				// facebook
-				{ hid: 'og:url', name: 'og:url', content: canonical },
-				{ hid: 'og:title', name: 'og:title', content: fetch.data.meta_title },
-				{ hid: 'og:description', name: 'og:description', content: fetch.data.meta_description },
-				{ hid: 'og:image', name: 'og:image', content: fetch.data.meta_image === undefined ? '' : fetch.data.meta_image.url },
-				// twitter
-				{ hid: 'twitter:card', name: 'twitter:card', content: fetch.data.meta_image === undefined ? '' : fetch.data.meta_image.url },
-			],
-		)
-
-		await commit('setPage', { head, data: fetch.data, tags: fetch.tags })
-
-		await dispatch('i18n/setRouteParams', {
-			en: { [type]: routes.en },
-			ru: { [type]: routes.ru },
-			ua: { [type]: routes.ua },
-		})
 	},
 
 	async storeSingle({ state, commit, dispatch }, { type, language }) {
@@ -226,30 +189,29 @@ export const actions = {
 				const canonical = `${state.domain}${path}`
 
 
-				// await dispatch('i18n/setRouteParams', {
-				// 	en: { [type]: routes.en },
-				// 	ru: { [type]: routes.ru },
-				// 	ua: { [type]: routes.ua },
-				// })
+				await dispatch('i18n/setRouteParams', {
+					en: { [type]: routes.en },
+					ru: { [type]: routes.ru },
+					ua: { [type]: routes.ua },
+				})
 
-				// // canonical link
+				// canonical link
 				
-				// head.link.push({ hid: 'canonical', rel: 'canonical', canonical })
-				// head.link.push({ hid: 'alternate', rel: 'alternate', href: canonical, hreflang: 'x-default' })
+				head.link.push({ hid: 'canonical', rel: 'canonical', canonical })
+				head.link.push({ hid: 'alternate', rel: 'alternate', href: canonical, hreflang: 'x-default' })
 
-				// head.meta.push(
-				// 	...[
-				// 		{ hid: 'description', name: 'description', content: fetch.data.meta_description },
-				// 		// facebook
-				// 		{ hid: 'og:url', name: 'og:url', content: canonical },
-				// 		{ hid: 'og:title', name: 'og:title', content: fetch.data.meta_title },
-				// 		{ hid: 'og:description', name: 'og:description', content: fetch.data.meta_description },
-				// 		{ hid: 'og:image', name: 'og:image', content: fetch.data.meta_image === undefined ? '' : fetch.data.meta_image.url },
-				// 		// twitter
-				// 		{ hid: 'twitter:card', name: 'twitter:card', content: fetch.data.meta_image === undefined ? '' : fetch.data.meta_image.url },
-				// 	],
-				// )
-				await dispatch('storeRoutes', { fetch, canonical, lang, routes })
+				head.meta.push(
+					...[
+						{ hid: 'description', name: 'description', content: fetch.data.meta_description },
+						// facebook
+						{ hid: 'og:url', name: 'og:url', content: canonical },
+						{ hid: 'og:title', name: 'og:title', content: fetch.data.meta_title },
+						{ hid: 'og:description', name: 'og:description', content: fetch.data.meta_description },
+						{ hid: 'og:image', name: 'og:image', content: fetch.data.meta_image === undefined ? '' : fetch.data.meta_image.url },
+						// twitter
+						{ hid: 'twitter:card', name: 'twitter:card', content: fetch.data.meta_image === undefined ? '' : fetch.data.meta_image.url },
+					],
+				)
 				await commit('setPage', { head, data: fetch.data, tags: fetch.tags })
 				
 			})
@@ -257,6 +219,7 @@ export const actions = {
 				console.log(error)
 			})
 	},
+
 	async storeSecondLevel({ state, commit, dispatch }, {type, parentType, parentUid, uid, language, path }) {
 
 		const fetch = await this.$prismic.api.getByUID(type, uid, { lang: language })
@@ -311,11 +274,26 @@ export const actions = {
 			head.link.push({ hid: 'alternate', rel: 'alternate', href, hreflang: altLang })
 			head.meta.push({ hid: 'og:url', name: 'og:locale:alternate', content: href })
 		})
-		console.log(type);
+		// console.log(type);
+
 		const canonical = `${state.domain}${path}`
 
+		head.link.push({ hid: 'canonical', rel: 'canonical', canonical })
+		head.link.push({ hid: 'alternate', rel: 'alternate', href: canonical, hreflang: 'x-default' })
+
+		head.meta.push(
+			...[
+				{ hid: 'description', name: 'description', content: fetch.data.meta_description },
+				// facebook
+				{ hid: 'og:url', name: 'og:url', content: canonical },
+				{ hid: 'og:title', name: 'og:title', content: fetch.data.meta_title },
+				{ hid: 'og:description', name: 'og:description', content: fetch.data.meta_description },
+				{ hid: 'og:image', name: 'og:image', content: fetch.data.meta_image === undefined ? '' : fetch.data.meta_image.url },
+				// twitter
+				{ hid: 'twitter:card', name: 'twitter:card', content: fetch.data.meta_image === undefined ? '' : fetch.data.meta_image.url },
+			],
+		)
 		await commit('setPage', { head, data: fetch.data, tags: fetch.tags })
-		// await dispatch('storeRoutes', { fetch, canonical, lang, routes })
 		await dispatch('i18n/setRouteParams', {
 			en: { [parentType]: routesParent.en, [type]: routesChild.en},
 			ru: { [parentType]: routesParent.ru, [type]: routesChild.ru },

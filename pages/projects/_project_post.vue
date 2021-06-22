@@ -20,8 +20,10 @@
 				</template>
 
 				<template v-else-if="slice.slice_type == 'image'">
-					<ImageItem :src="slice.primary.image.url" :mobile="slice.primary.image.mobile.url" :alt="slice.primary.image.alt" />
-					<span class="description">"{{ slice.primary.image.alt }}"</span>
+					<template v-if="slice.primary.image.url">
+						<ImageItem :src="slice.primary.image.url" :mobile="slice.primary.image.mobile.url" :alt="slice.primary.image.alt" />
+						<span class="description">"{{ slice.primary.image.alt }}"</span>
+					</template>
 				</template>
 
 				<template v-else-if="slice.slice_type == 'image_slider'">
@@ -35,7 +37,9 @@
 
 				<template v-else-if="slice.slice_type == 'image_text'">
 					<div class="image_text">
-						<ImageItem :src="slice.primary.image.url" :mobile="slice.primary.image.mobile.url" alt="alt" />
+						<template v-if="slice.primary.image.url">
+							<ImageItem :src="slice.primary.image.url" :mobile="slice.primary.image.mobile.url" alt="alt" />
+						</template>
 						<div class="text">
 							<p v-for="(item, key) in slice.items" :key="key">{{ $prismic.asText(item.text) }}</p>
 						</div>

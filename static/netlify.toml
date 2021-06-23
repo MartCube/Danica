@@ -399,3 +399,159 @@
 	to = "/ru/stroitelstvo-bynkerov/"
 	status = 301
 	force = true
+
+[[redirects]]
+	from = "/blog/advise/minimalizm-kak-est"
+	to = "/ru/blog/minimalizm-kak-est/"
+	status = 301
+	force = true
+
+[[redirects]]
+	from = "/blog/vse-o-dizajne/besedka-dlya-beverli-hillz"
+	to = "/ru/blog/besedka-dlya-beverli-hillz/"
+	status = 301
+	force = true
+
+[[redirects]]
+	from = "/blog/energosberegayushie-tehnologii/perspektiva-razvitiya-alternativnoj-energii"
+	to = "/ru/blog/perspektiva-razvitiya-alternativnoj-energii/"
+	status = 301
+	force = true
+
+[[redirects]]
+	from = "/blog/energosberegayushie-tehnologii/no-sustainable-no-future"
+	to = "/ru/blog/no-sustainable-no-future/"
+	status = 301
+	force = true
+
+[[redirects]]
+	from = "/blog/energosberegayushie-tehnologii/energoeffektivnost-i-ustojchivaya-arhitektura-kak-vektory-razvitiya"
+	to = "/ru/blog/energoeffektivnost-i-ustoychivaya-arhitektyra-kak-vektory-razvitiya/"
+	status = 301
+	force = true
+
+[[redirects]]
+	from = "/blog/advise/montazh-nulevogo-cikla-kanalizacii-v-chastnom-dome"
+	to = "/ru/blog/montazh-nulevogo-cikla-v-chastnom-dome/"
+	status = 301
+	force = true
+
+[[redirects]]
+	from = "/blog/vse-o-dizajne/nepreryvnoe-prostranstvo-i-oshutimyj-svet-v-interere-kvartiry-tadao-ando"
+	to = "/ru/blog/nepreryvnoe-prostranstvo-i-oshutimyj-svet-v-interere-kvartiry-tadao-ando/"
+	status = 301
+	force = true
+
+[[redirects]]
+	from = "/blog/vse-o-dizajne/kreativnyj-penthaus-iz-kazahstana"
+	to = "/ru/blog/kreatiniy-penthaus-iz-kazahstana/"
+	status = 301
+	force = true
+
+[[redirects]]
+	from = "/blog/advise/s-chego-nachat-stroitelstvo-sobstvennogo-doma"
+	to = "/ru/blog/s-chego-nashat-stroitelstvo-sobstvennogo-doma/"
+	status = 301
+	force = true
+
+[[redirects]]
+	from = "/ua/blog/advise/s-chego-nachat-stroitelstvo-sobstvennogo-doma"
+	to = "/blog/z-chogo-pochaty-bydivnuzctvo-vlasnogo-bydunky/"
+	status = 301
+	force = true
+
+[[redirects]]
+	from = "/blog/vse-o-dizajne/novyj-ambicioznyj-sportivnyj-centr-v-midlendse"
+	to = "/ru/blog/novyj-ambicioznyj-sportivnyj-centr-v-midlendse/"
+	status = 301
+	force = true
+
+[[redirects]]
+	from = "/blog/vse-o-dizajne/chto-takoe-dizajn-vabi-sabi-novyj-trend-2018-goda"
+	to = "/ru/blog/chto-takoe-dizajn-vabi-sabi/"
+	status = 301
+	force = true
+
+[[redirects]]
+	from = "/blog/vse-o-dizajne/prihod-ikea-v-ukrainu-i-primenenie-tovarov-v-ukraine"
+	to = "/ru/blog/prihod-ikea-v-ukrainu/"
+	status = 301
+	force = true
+
+[[redirects]]
+	from = "/blog/advise/vannaya-komnata-pravilnaya-organizaciya-prostranstva"
+	to = "/ru/blog/vannaya-komnata-pravilnaya-organizaciya-prostranstva/"
+	status = 301
+	force = true
+
+[[redirects]]
+	from = "/blog/vse-o-dizajne/quest-dom-na-meste-starogo-bungalo"
+	to = "/ru/blog/quest-dom-na-meste-starogo-bungalo/"
+	status = 301
+	force = true
+
+[[redirects]]
+	from = "/blog/vse-o-dizajne/sovremennaya-novaya-shkola-v-kieve"
+	to = "/ru/blog/sovremennaya-novaya-shkola-v-kieve/"
+	status = 301
+	force = true
+
+[[redirects]]
+	from = "/blog/vse-o-dizajne/otel-manshausen-island-v-norvegii"
+	to = "/ru/blog/otel-manshausen-island-v-norvegii/"
+	status = 301
+	force = true
+
+[[redirects]]
+	from = "/blog/vse-o-dizajne/varianty-ispolzovaniya-betona-v-sovremennom-interere"
+	to = "/ru/blog/varianty-ispolzovaniya-betona-v-sovremennom-interere/"
+	status = 301
+	force = true
+
+[[redirects]]
+	from = "/blog/vse-o-dizajne/nalivnoj-pol-razbiraemsya-v-melochah"
+	to = "/ru/blog/nalivnoj-pol-razbiraemsya-v-melochah/"
+	status = 301
+	force = true
+
+[[redirects]]
+	from = "/blog/vse-o-dizajne/akvapark-akvatoriya-franciya"
+	to = "/ru/blog/akvapark-akvatoriya-franciya/"
+	status = 301
+	force = true
+
+[[redirects]]
+	from = "/blog/energosberegayushie-tehnologii/dinamicheskij-fasad"
+	to = "/ru/blog/dinamicheskij-fasad/"
+	status = 301
+	force = true
+
+[[redirects]]
+	from = "/blog/energosberegayushie-tehnologii/zelenaya-arhitektura"
+	to = "/ru/blog/zelenaya-arhitektura/"
+	status = 301
+	force = true
+
+[[redirects]]
+	from = "/blog/energosberegayushie-tehnologii/dyshashij-dom-chto-eto"
+	to = "/ru/blog/dyshashij-dom-chto-eto/"
+	status = 301
+	force = true
+
+[[redirects]]
+	from = "/blog/news/cresta-dom-iz-betona"
+	to = "/ru/blog/cresta-dom-iz-betona/"
+	status = 301
+	force = true
+
+[[redirects]]
+	from = "/blog/vse-o-dizajne/sovremennyj-roznichnyj-interer-v-ukraine-univermag-cum-v-kieve"
+	to = "/ru/blog/sovremennyj-roznichnyj-interer-v-ukraine-univermag-cum-v-kieve/"
+	status = 301
+	force = true
+
+[[redirects]]
+	from = "/blog/vse-o-dizajne/oteli-kotorye-voshli-v-top-50-luchshih-otelej-mira"
+	to = "/ru/blog/oteli-kotorye-voshli-v-top-50-luchshih-otelej-mira/"
+	status = 301
+	force = true

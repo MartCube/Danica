@@ -1,6 +1,1 @@
-/blog/advise/minimalizm-kak-est/  							 																														/ru/blog/minimalizm-kak-est/ 				 																								301
-/blog/vse-o-dizajne/besedka-dlya-beverli-hillz/ 																														/ru/blog/besedka-dlya-beverli-hillz/  																								301
-/blog/energosberegayushie-tehnologii/perspektiva-razvitiya-alternativnoj-energii/  												/ru/blog/perspektiva-razvitiya-alternativnoj-energii/																301
-/blog/energosberegayushie-tehnologii/no-sustainable-no-future/  																						/ru/blog/energosberegayushie-tehnologii/no-sustainable-no-future/										301
-/blog/energosberegayushie-tehnologii/energoeffektivnost-i-ustojchivaya-arhitektura-kak-vektory-razvitiya/  /blog/energoeffektivnost-i-ustojchivaya-arhitektura-kak-vektory-razvitiya/						301
-/blog/advise/montazh-nulevogo-cikla-kanalizacii-v-chastnom-dome/  																					/ru/blog/montazh-nulevogo-ctekla-kanalizacii-v-chastnom-dome/												301
+/blog/advise/minimalizm-kak-est/ /ru/blog/minimalizm-kak-est/ 301

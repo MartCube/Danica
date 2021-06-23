@@ -1,0 +1,5 @@
+[[redirects]]
+	from = "/blog/advise/minimalizm-kak-est"
+	to = "/ru/blog/minimalizm-kak-est/"
+	status = 301
+	force = true

@@ -3,3 +3,399 @@
 	to = "/ru/blog/minimalizm-kak-est/"
 	status = 301
 	force = true
+
+[[redirects]]
+	from = "/projects/dizajn-interera/project-dizajn-proekt-odnoetazhnogo-kottedzha"
+	to = "/ru/projects/a-proyekt/"
+	status = 301
+	force = true
+
+[[redirects]]
+	from = "/projects/dizajn-interera/fox-kottedzh-v-sovremennom-stile"
+	to = "/ru/projects/lisa/"
+	status = 301
+	force = true
+
+[[redirects]]
+	from = "/projects/dizajn-interera/skyup"
+	to = "/ru/projects/letchiki-semya-dom/"
+	status = 301
+	force = true
+
+[[redirects]]
+	from = "/ua/proekti/dizajn/skyup"
+	to = "/projects/piloty-simya-budynok/"
+	status = 301
+	force = true
+
+[[redirects]]
+	from = "/projects/gotovye-proekty/america"
+	to = "/ru/projects/amerika/"
+	status = 301
+	force = true
+
+[[redirects]]
+	from = "/ua/proekti/gotovye-proekty-domov/america"
+	to = "/projects/ameryka/"
+	status = 301
+	force = true
+
+[[redirects]]
+	from = "/projects/dizajn-interera/twins"
+	to = "/ru/projects/dvoynyashki/"
+	status = 301
+	force = true
+
+[[redirects]]
+	from = "/en/projects/design/twins"
+	to = "/en/projects/twins/"
+	status = 301
+	force = true
+
+[[redirects]]
+	from = "/ua/proekti/dizajn/twins"
+	to = "/projects/blyznyuky/"
+	status = 301
+	force = true
+
+[[redirects]]
+	from = "/projects/dizajn-interera/freedom"
+	to = "/ru/projects/liberty/"
+	status = 301
+	force = true
+
+[[redirects]]
+	from = "/en/projects/design/freedom"
+	to = "/en/projects/freedom/"
+	status = 301
+	force = true
+
+[[redirects]]
+	from = "/ua/proekti/dizajn/freedom"
+	to = "/projects/svoboda/"
+	status = 301
+	force = true
+
+[[redirects]]
+	from = "/projects/dizajn-interera/rajt"
+	to = "/ru/projects/write-dom/"
+	status = 301
+	force = true
+
+[[redirects]]
+	from = "/en/projects/design/rajt"
+	to = "/en/projects/write-house/"
+	status = 301
+	force = true
+
+[[redirects]]
+	from = "/ua/proekti/dizajn/rajt"
+	to = "/projects/write-budynok/"
+	status = 301
+	force = true
+
+[[redirects]]
+	from = "/projects/dizajn-interera/the-garden"
+	to = "/ru/projects/garden/"
+	status = 301
+	force = true
+
+[[redirects]]
+	from = "/en/projects/design/the-garden"
+	to = "/en/projects/the-garden/"
+	status = 301
+	force = true
+
+[[redirects]]
+	from = "/ua/proekti/dizajn/the-garden-1"
+	to = "/projects/house-garden/"
+	status = 301
+	force = true
+
+[[redirects]]
+	from = "/projects/dizajn-interera/shelter"
+	to = "/ru/projects/priyut/"
+	status = 301
+	force = true
+
+[[redirects]]
+	from = "/en/projects/design/shelter"
+	to = "/en/projects/shelter/"
+	status = 301
+	force = true
+
+[[redirects]]
+	from = "/projects/dizajn-interera/leon-kottedzh-v-stile-loft"
+	to = "/ru/projects/leon-dom/"
+	status = 301
+	force = true
+
+[[redirects]]
+	from = "/projects/dizajn-interera/lipki"
+	to = "/ru/projects/lipki/"
+	status = 301
+	force = true
+
+[[redirects]]
+	from = "/en/projects/design/lipki"
+	to = "/en/projects/lipki-home/"
+	status = 301
+	force = true
+
+[[redirects]]
+	from = "/ua/proekti/dizajn/lipki"
+	to = "/projects/lypky/"
+	status = 301
+	force = true
+
+[[redirects]]
+	from = "/projects/dizajn-interera/grand-burzhe"
+	to = "/ru/projects/velykoburzhuaznyy/"
+	status = 301
+	force = true
+
+[[redirects]]
+	from = "/ua/proekti/dizajn/grand-burzhe"
+	to = "/projects/burzhuaznyy/"
+	status = 301
+	force = true
+
+[[redirects]]
+	from = "/en/projects/design/la-progect"
+	to = "/en/projects/la-project/"
+	status = 301
+	force = true
+
+[[redirects]]
+	from = "/projects/dizajn-interera/graal-shale"
+	to = "/ru/projects/graal-shale-dom/"
+	status = 301
+	force = true
+
+[[redirects]]
+	from = "/projects/dizajn-interera/garbuz-active-house"
+	to = "/ru/projects/garbuz-active-home/"
+	status = 301
+	force = true
+
+[[redirects]]
+	from = "/en/projects/design/garbuz-active-house"
+	to = "/en/projects/garbuz-active-house/"
+	status = 301
+	force = true
+
+[[redirects]]
+	from = "/projects/gotovye-proekty/avtonomnyj-taunhaus-na-batyevoj-gore-g-kiev"
+	to = "/ru/projects/avtonomnyy-taynkhaus/"
+	status = 301
+	force = true
+
+[[redirects]]
+	from = "/ua/proekti/gotovye-proekty-domov/avtonomnyj-taunhaus-na-batyevoj-gore-g-kiev"
+	to = "/projects/avtonomnyy-taunkhaus/"
+	status = 301
+	force = true
+
+[[redirects]]
+	from = "/projects/gotovye-proekty/soul"
+	to = "/ru/projects/dusha/"
+	status = 301
+	force = true
+
+[[redirects]]
+	from = "/projects/gotovye-proekty/provans"
+	to = "/ru/projects/provans-dom/"
+	status = 301
+	force = true
+
+[[redirects]]
+	from = "/services/offices/portfolio/project-1"
+	to = "/ru/projects/chernika/"
+	status = 301
+	force = true
+
+[[redirects]]
+	from = "/projects/dizajn-interera/blueberry"
+	to = "/ru/projects/chernika/"
+	status = 301
+	force = true
+
+[[redirects]]
+	from = "/en/projects/design/blueberry"
+	to = "/en/projects/blueberry/"
+	status = 301
+	force = true
+
+[[redirects]]
+	from = "/ua/proekti/dizajn/blueberry"
+	to = "/projects/chornytsya/"
+	status = 301
+	force = true
+
+[[redirects]]
+	from = "/services/offices/portfolio/project-2"
+	to = "/ru/projects/apelsin-mandarin/"
+	status = 301
+	force = true
+
+[[redirects]]
+	from = "/projects/dizajn-interera/orange-tangerine"
+	to = "/ru/projects/apelsin-mandarin/"
+	status = 301
+	force = true
+
+[[redirects]]
+	from = "/ua/proekti/dizajn/orange-tangerine"
+	to = "/projects/apelsynovo-mandarynovyy/"
+	status = 301
+	force = true
+
+[[redirects]]
+	from = "/services/offices/portfolio/novoe-art-prostranstvo-amd-design-club"
+	to = "/ru/projects/amd-duzain-klub/"
+	status = 301
+	force = true
+
+[[redirects]]
+	from = "/en/projects/portfolio/novoe-art-prostranstvo-amd-design-club"
+	to = "/en/projects/amd-design-club/"
+	status = 301
+	force = true
+
+[[redirects]]
+	from = "/ua/proekti/komercini-obyekti/novoe-art-prostranstvo-amd-design-club"
+	to = "/projects/amd-dizain-club/"
+	status = 301
+	force = true
+
+[[redirects]]
+	from = "/services/offices/portfolio/avtosalon-id-autogroup"
+	to = "/ru/projects/autosalon-id-autogroup/"
+	status = 301
+	force = true
+
+[[redirects]]
+	from = "/services/offices/portfolio/project-4"
+	to = "/ru/projects/lesnaya-pesnya/"
+	status = 301
+	force = true
+
+[[redirects]]
+	from = "/services/offices/portfolio/project-3"
+	to = "/ru/projects/florentsiya/"
+	status = 301
+	force = true
+
+[[redirects]]
+	from = "/services/offices/portfolio/project-5"
+	to = "/ru/projects/babochka/"
+	status = 301
+	force = true
+
+[[redirects]]
+	from = "/services/offices/portfolio/vorzel-stroitelstvo-doma-po-tehnologii-nesemnoj-opalubki"
+	to = "/ru/projects/vorzel-home/"
+	status = 301
+	force = true
+
+[[redirects]]
+	from = "/ua/poslugi/construction/passive-house"
+	to = "/bydivnutstvo-bydunkiv/"
+	status = 301
+	force = true
+
+[[redirects]]
+	from = "/services/construction/passive-house"
+	to = "/ru/stroitelstvo-domov/"
+	status = 301
+	force = true
+
+[[redirects]]
+	from = "/services/construction/cottages"
+	to = "/ru/stroitelstvo-domov/"
+	status = 301
+	force = true
+
+[[redirects]]
+	from = "/en/services/construction/passive-house/passive-house-block"
+	to = "/en/house-construction/"
+	status = 301
+	force = true
+
+[[redirects]]
+	from = "/services/interior-design"
+	to = "/ru/dizayin-iterera/"
+	status = 301
+	force = true
+
+[[redirects]]
+	from = "/en/services/interior-design"
+	to = "/en/interior-design/"
+	status = 301
+	force = true
+
+[[redirects]]
+	from = "/ua/poslugi/dizajn-intereru"
+	to = "/dizayin-iterery/"
+	status = 301
+	force = true
+
+[[redirects]]
+	from = "/services/arhitekturnoe-proektirovanie"
+	to = "/ru/arhitekturnoe-proektirovanie/"
+	status = 301
+	force = true
+
+[[redirects]]
+	from = "/en/services/arhitekturnoe-proektirovanie"
+	to = "/en/architectural-design/"
+	status = 301
+	force = true
+
+[[redirects]]
+	from = "/ua/poslugi/arhitekturnoe-proektirovanie"
+	to = "/arhitekturne-proektyvannya/"
+	status = 301
+	force = true
+
+[[redirects]]
+	from = "/services/construction"
+	to = "/ru/stroitelstvo-domov/"
+	status = 301
+	force = true
+
+[[redirects]]
+	from = "/en/services/construction"
+	to = "/en/house-construction/"
+	status = 301
+	force = true
+
+[[redirects]]
+	from = "/ua/poslugi/construction"
+	to = "/bydivnutstvo-bydunkiv/"
+	status = 301
+	force = true
+
+[[redirects]]
+	from = "/services/construction/cottages"
+	to = "/ru/proektirovanie-domov/"
+	status = 301
+	force = true
+
+[[redirects]]
+	from = "/en/services/construction/cottages"
+	to = "/en/house-design/"
+	status = 301
+	force = true
+
+[[redirects]]
+	from = "/ua/poslugi/construction/cottages"
+	to = "/proektuvannya-bydunkiv/"
+	status = 301
+	force = true
+
+[[redirects]]
+	from = "/blog/advise/bunker"
+	to = "/ru/stroitelstvo-bynkerov/"
+	status = 301
+	force = true

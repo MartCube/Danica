@@ -92,12 +92,3 @@
 /services/offices/portfolio/project-3																																			/ru/projects/florentsiya 																														301
 /services/offices/portfolio/project-2																																			/ru/projects/apelsin-mandarin 																											301
 /services/offices/portfolio/project-1																																			/ru/projects/chernika																																301
-/ua/poslugi																																																/																																										301
-/en/services																																															/en																																								301
-/services																																																	/ru	
-/ua/poslugi/construction/passive-house /bydivnutstvo-bydunkiv/	301
-/services/construction/passive-house /ru/stroitelstvo-domov/ 301
-/services/construction/cottages /ru/stroitelstvo-domov/ 301
-/en/services/construction/passive-house/passive-house-block /en/house-construction/	301
-/blog/advise/bunker /ru/stroitelstvo-bynkerov/ 301
-/ru/dizayin-iterera/index.html/  /ru/dizayin-iterera/

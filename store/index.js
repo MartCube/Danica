@@ -8,7 +8,7 @@ export const state = (context) => ({
 	modalContact: false,
 	modalVideo: false,
 
-	domain: 'https://danica-dev.netlify.app',
+	domain: 'https://danica.ua',
 
 	page: {
 		head: {},

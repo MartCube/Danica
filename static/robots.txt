@@ -1,12 +1,20 @@
 User-agent: *
-Allow: https://danica.ua/
-Allow: https://danica.ua/en/
-Allow: https://danica.ua/ru/
-Disallow: https://danica-dev.netlify.app/
-Disallow: https://danica-prod.netlify.app/
+Allow: https://danica.ua/*
+Allow: https://danica.ua/en/*
+Allow: https://danica.ua/ru/*
+Disallow: https://danica-dev.netlify.app/*
+Disallow: https://danica-prod.netlify.app/*
 Disallow: https://danica.ua/privacy-policy/ 
 Disallow: https://danica.ua/ru/privacy-policy/ 
 Disallow: https://danica.ua/en/privacy-policy/ 
+Disallow: https://danica.ua/index.html
+Disallow: https://danica.ua/projects/garbuz-aktiv-khaus/
+Disallow: https://danica.ua/projects/garbuz-aktiv-khaus/
+Disallow: https://danica.ua/projects/%D0%B0-proekt/ 
+Disallow: https://danica.ua/projects/graal-shale/ 
+Disallow: https://danica.ua/projects/vorzel-dom/ 
+Disallow: https://danica.ua/projects/write-budynok/ 
+Disallow: https://danica.ua/projects/piloty-simya-budynok/ 
 
 Host: https://danica.ua/
 Sitemap: https://danica.ua/sitemap.xml/

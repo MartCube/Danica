@@ -80,7 +80,7 @@ export default {
 		defaultLocale: 'ua',
 		lazy: true,
 		seo: false,
-		baseUrl: 'https://danica-dev.netlify.app/',
+		baseUrl: 'https://danica.ua/',
 		langDir: 'locales/',
 		locales: [
 			{
@@ -153,7 +153,7 @@ export default {
 	},
 
 	sitemap: {
-		hostname: 'https://danica-prod.netlify.app/', // replace with danica.ua
+		hostname: 'https://danica.ua/', // replace with danica.ua
 		exclude: ['/ru/null'],
 		trailingSlash: true,
 		i18n: '',

@@ -1,0 +1,4 @@
+User-agent: *
+
+Host: https://danica.ua/
+Sitemap: https://danica.ua/sitemap.xml/

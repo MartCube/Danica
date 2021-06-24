@@ -555,3 +555,9 @@
 	to = "/ru/blog/oteli-kotorye-voshli-v-top-50-luchshih-otelej-mira/"
 	status = 301
 	force = true
+
+[[redirects]]
+	from = "/ua"
+	to = "/"
+	status = 301
+	force = true

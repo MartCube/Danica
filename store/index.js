@@ -147,8 +147,8 @@ export const actions = {
 	async storeByUID({ state, commit, dispatch }, { type, uid, language, path }) {
 		await this.$prismic.api
 			.getByUID(type, uid, { lang: language })
-			.then(async (fetchData) => {
-				let fetch = await fetchDtata
+			.then(async (fetch) => {
+				// let fetch = await fetchDtata
 				// console.log(fetchData);
 				// if(fetch)
 				const lang = fetch.lang.slice(0, 2)

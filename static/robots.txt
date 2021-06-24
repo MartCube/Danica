@@ -4,6 +4,9 @@ Allow: https://danica.ua/en/
 Allow: https://danica.ua/ru/
 Disallow: https://danica-dev.netlify.app/
 Disallow: https://danica-prod.netlify.app/
+Disallow: https://danica.ua/privacy-policy/ 
+Disallow: https://danica.ua/ru/privacy-policy/ 
+Disallow: https://danica.ua/en/privacy-policy/ 
 
 Host: https://danica.ua/
 Sitemap: https://danica.ua/sitemap.xml/

@@ -112,7 +112,8 @@ export const actions = {
 					// path is a sting with slashes at the beggining and end , which occur empty item in array
 					// split by slash to get array
 					const pathAltLang = altLang === 'ua' ? '' : altLang + '/'
-					const altPath = path.slice(1, -1).split('/').slice(1, -1).join('/')
+					let altPath = path.slice(1, -1)
+					altPath = altPath.split('/')
 					const uid = alterLang.uid === undefined ? '' : `${alterLang.uid}/`
 
 					if (altPath.length <= 3) href = `${state.domain}/${pathAltLang}${uid}`
@@ -149,7 +150,7 @@ export const actions = {
 			.getByUID(type, uid, { lang: language })
 			.then(async (fetch) => {
 				// let fetch = await fetchDtata
-				// console.log(fetchData);
+				console.log(path);
 				// if(fetch)
 				const lang = fetch.lang.slice(0, 2)
 
@@ -172,21 +173,26 @@ export const actions = {
 				fetch.alternate_languages.forEach((alterLang) => {
 					// store alternative language each time new variable
 					const altLang = alterLang.lang.slice(0, 2)
-					const pathAltLang = altLang === 'ua' ? '' : altLang + '/'
 
 					// path is a sting with slashes at the beggining and end , which occur empty item in array
 					// split by slash to get array
-					const altPath = path.slice(1, -1).split('/').slice(1, -1).join('/')
+					let altPath = path.slice(1, -1)
+					altPath = altPath.split('/')
 
 					// routes
 					routes[altLang] = alterLang.uid
 
 					// links & meta
-					if (altPath.length <= 3) href = `${state.domain}/${pathAltLang}${alterLang.uid}/`
-					else href = `${state.domain}/${pathAltLang}${altPath}/${alterLang.uid}`
+
+					if (altLang === 'ua') {
+						href = `${state.domain}/${altPath[0]}/${alterLang.uid}/`
+					}
+					else  {
+						href = `${state.domain}/${altLang}/${altPath[0]}/${alterLang.uid}/`
+					}
 
 					head.link.push({ hid: 'alternate', rel: 'alternate', href, hreflang: altLang })
-					head.meta.push({ hid: 'og:url', name: 'og:locale:alternate', content: href })
+					head.meta.push({ hid: 'og:url', name: 'og:url', content: href })
 				})
 
 				const canonical = `${state.domain}${path}`
@@ -200,8 +206,8 @@ export const actions = {
 
 				// canonical link
 				
-				head.link.push({ hid: 'canonical', rel: 'canonical', canonical })
-				head.link.push({ hid: 'alternate', rel: 'alternate', href: canonical, hreflang: 'x-default' })
+				head.link.push({ hid: 'canonical', rel: 'canonical', href: canonical })
+				head.link.push({ hid: 'alternate', rel: 'alternate', href: canonical, hreflang: 'x-default' }) //ua
 
 				head.meta.push(
 					...[

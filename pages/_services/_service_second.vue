@@ -30,10 +30,36 @@ export default {
 		next()
 	},
 	middleware: 'navbarTransparent',
-	async asyncData({ i18n, $prismic, route }) {
-		const fetch = await $prismic.api.getByUID('service_second', route.params.service_second, { lang: i18n.localeProperties.prismic })
-		console.log(route.fullPath)
-		console.log(fetch)
+	async fetch() {
+		// console.log(route);
+		await this.$store.dispatch('storeSecondLevel', {
+			uid: this.$route.params.service_second,
+			language: this.$i18n.localeProperties.prismic,
+			path: this.$route.fullPath,
+			type: 'service_second',
+			parentUid: this.$route.params.services,
+			parentType: 'services',
+		})
+		this.slices = this.$store.getters.page.data.body
+	},
+	// watch: {
+	// 	'$route.query':'$fetch',
+	// },
+	data: () => ({
+		slices: []
+	}),
+	head() {
+		return this.$store.getters.page.head
+	},
+	fetchKey(getCounter) {
+		// getCounter is a method that can be called to get the next number in a sequence
+		// as part of generating a unique fetchKey.
+		return 'service' + getCounter('service')
+	},
+	computed: {
+		routes() {
+			return this.$store.getters.routes
+		}
 	},
 
 	mounted() {

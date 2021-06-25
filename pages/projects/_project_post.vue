@@ -75,6 +75,9 @@ export default {
 			},
 		},
 	}),
+	// watch: {
+	// 	'$route.path':'$fetch',
+	// },
 	head() {
 		return this.$store.getters.page.head
 	},

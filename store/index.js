@@ -119,8 +119,8 @@ export const actions = {
 					altPath = altPath.split('/')
 					const uid = alterLang.uid === undefined ? '' : `${alterLang.uid}/`
 
-					if (altPath.length <= 3) href = `${state.domain}/${pathAltLang}${uid}/`
-					else href = `${state.domain}/${pathAltLang}${altPath}${uid}/`
+					if (altPath.length <= 3) href = `${state.domain}/${pathAltLang}${uid}`
+					else href = `${state.domain}/${pathAltLang}${altPath}${uid}`
 
 					// links & meta
 					head.link.push({ hid: 'alternate', rel: 'alternate', href, hreflang: altLang })

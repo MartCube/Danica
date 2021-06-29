@@ -69,7 +69,7 @@ export default {
 			return this.$prismic.asText(this.data.data.info[0].square)
 		},
 		link() {
-			return this.$prismic.linkResolver(this.data)
+			return this.localePath(this.$prismic.linkResolver(this.data))
 		},
 	},
 }

@@ -101,7 +101,7 @@ export const actions = {
 
 				// canonical link
 				const canonical = `${state.domain}${path}`
-				head.link.push({ hid: '', rel: 'canonical', canonical })
+				head.link.push({ hid: '', rel: 'canonical',href: canonical })
 				head.meta.push({ hid: 'og:url', name: 'og:url', content: canonical })
 				// x-default needs to be always ua
 				if (lang === 'ua') head.link.push({ hid: 'alternate', rel: 'alternate', href: canonical, hreflang: 'x-default' })
@@ -197,7 +197,7 @@ export const actions = {
 				// canonical link
 				const canonical = `${state.domain}${path}`
 				if (lang === 'ua') head.link.push({ hid: 'alternate', rel: 'alternate', href: canonical, hreflang: 'x-default' })
-				head.link.push({ hid: 'canonical', rel: 'canonical', canonical })
+				head.link.push({ hid: 'canonical', rel: 'canonical', href: canonical })
 				head.meta.push({ hid: 'og:url', name: 'og:url', content: canonical })
 
 				await dispatch('i18n/setRouteParams', {

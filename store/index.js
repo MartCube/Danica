@@ -115,7 +115,8 @@ export const actions = {
 					// path is a sting with slashes at the beggining and end , which occur empty item in array
 					// split by slash to get array
 					const pathAltLang = altLang === 'ua' ? '' : altLang + '/'
-					const altPath = path.slice(1, -1).split('/').slice(1, -1).join('/')
+					let altPath = path.slice(1, -1)
+					altPath = altPath.split('/')
 					const uid = alterLang.uid === undefined ? '' : `${alterLang.uid}/`
 
 					if (altPath.length <= 3) href = `${state.domain}/${pathAltLang}${uid}/`
@@ -152,7 +153,7 @@ export const actions = {
 			.getByUID(type, uid, { lang: language })
 			.then(async (fetch) => {
 				// let fetch = await fetchDtata
-				// console.log(fetchData);
+				console.log(path)
 				// if(fetch)
 				const lang = fetch.lang.slice(0, 2)
 
@@ -175,10 +176,10 @@ export const actions = {
 				fetch.alternate_languages.forEach((alterLang) => {
 					// store alternative language each time new variable
 					const altLang = alterLang.lang.slice(0, 2)
-					const pathAltLang = altLang === 'ua' ? '' : altLang + '/'
 
 					// path is a sting with slashes at the beggining and end , which occur empty item in array
 					// split by slash to get array
+					const pathAltLang = altLang === 'ua' ? '' : altLang + '/'
 					const altPath = path.slice(1, -1).split('/').slice(1, -1).join('/')
 
 					// routes

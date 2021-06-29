@@ -16,7 +16,7 @@ export const state = (context) => ({
 		tags: {},
 	},
 
-	routes: {}
+	routes: {},
 })
 
 // Functions that return back data contained in the state.
@@ -88,7 +88,7 @@ export const actions = {
 		await this.$prismic.api
 			.getSingle(type, { lang: language })
 			.then(async (fetch) => {
-				const lang = fetch.lang.slice(0, 2)
+				const lang = await fetch.lang.slice(0, 2)
 				const path = this.$router.currentRoute.fullPath
 
 				// component page head data *****
@@ -102,25 +102,28 @@ export const actions = {
 				// canonical link
 				const canonical = `${state.domain}${path}`
 				head.link.push({ hid: '', rel: 'canonical', canonical })
-				head.link.push({ hid: 'alternate', rel: 'alternate', href: canonical, hreflang: 'x-default' })
+				head.meta.push({ hid: 'og:url', name: 'og:url', content: canonical })
+				// x-default needs to be always ua
+				if (lang === 'ua') head.link.push({ hid: 'alternate', rel: 'alternate', href: canonical, hreflang: 'x-default' })
 
 				// alternate langcanonicaluages
 				fetch.alternate_languages.forEach((alterLang) => {
 					// store alternative language each time new variable
 					let href
 					const altLang = alterLang.lang.slice(0, 2)
+
 					// path is a sting with slashes at the beggining and end , which occur empty item in array
 					// split by slash to get array
 					const pathAltLang = altLang === 'ua' ? '' : altLang + '/'
 					const altPath = path.slice(1, -1).split('/').slice(1, -1).join('/')
 					const uid = alterLang.uid === undefined ? '' : `${alterLang.uid}/`
 
-					if (altPath.length <= 3) href = `${state.domain}/${pathAltLang}${uid}`
-					else href = `${state.domain}/${pathAltLang}${altPath}${uid}`
+					if (altPath.length <= 3) href = `${state.domain}/${pathAltLang}${uid}/`
+					else href = `${state.domain}/${pathAltLang}${altPath}${uid}/`
 
 					// links & meta
 					head.link.push({ hid: 'alternate', rel: 'alternate', href, hreflang: altLang })
-					// head.meta.push({ hid: 'og:url', name: 'og:locale:alternate', content: href })
+					if (altLang === 'ua') head.link.push({ hid: 'alternate', rel: 'alternate', href, hreflang: 'x-default' })
 				})
 
 				head.meta.push(
@@ -183,14 +186,18 @@ export const actions = {
 
 					// links & meta
 					if (altPath.length <= 3) href = `${state.domain}/${pathAltLang}${alterLang.uid}/`
-					else href = `${state.domain}/${pathAltLang}${altPath}/${alterLang.uid}`
+					else href = `${state.domain}/${pathAltLang}${altPath}/${alterLang.uid}/`
 
 					head.link.push({ hid: 'alternate', rel: 'alternate', href, hreflang: altLang })
-					head.meta.push({ hid: 'og:url', name: 'og:locale:alternate', content: href })
+
+					if (altLang === 'ua') head.link.push({ hid: 'alternate', rel: 'alternate', href, hreflang: 'x-default' })
 				})
 
+				// canonical link
 				const canonical = `${state.domain}${path}`
-
+				if (lang === 'ua') head.link.push({ hid: 'alternate', rel: 'alternate', href: canonical, hreflang: 'x-default' })
+				head.link.push({ hid: 'canonical', rel: 'canonical', canonical })
+				head.meta.push({ hid: 'og:url', name: 'og:url', content: canonical })
 
 				await dispatch('i18n/setRouteParams', {
 					en: { [type]: routes.en },
@@ -198,10 +205,7 @@ export const actions = {
 					ua: { [type]: routes.ua },
 				})
 
-				// canonical link
-				
-				head.link.push({ hid: 'canonical', rel: 'canonical', canonical })
-				head.link.push({ hid: 'alternate', rel: 'alternate', href: canonical, hreflang: 'x-default' })
+				// head.link.push({ hid: 'alternate', rel: 'alternate', href: canonical, hreflang: 'x-default' })
 
 				head.meta.push(
 					...[
@@ -217,19 +221,19 @@ export const actions = {
 					],
 				)
 				await commit('setPage', { head, data: fetch.data, tags: fetch.tags })
-				
 			})
 			.catch((error) => {
 				console.log(error)
 			})
 	},
 
-	async storeSecondLevel({ state, commit, dispatch }, {type, parentType, parentUid, uid, language, path }) {
-
+	async storeSecondLevel({ state, commit, dispatch }, { type, parentType, parentUid, uid, language, path }) {
 		const fetch = await this.$prismic.api.getByUID(type, uid, { lang: language })
 		const parent = await this.$prismic.api.getByUID(parentType, parentUid, { lang: language })
 
-		if (!fetch && !parent){	return undefined } 
+		if (!fetch && !parent) {
+			return undefined
+		}
 		const lang = fetch.lang.slice(0, 2)
 
 		// for dynamic pages store routes for i18n *****
@@ -258,15 +262,14 @@ export const actions = {
 			// split by slash to get array
 
 			if (altLang === 'ua') {
-				let currentParentUid = parent.alternate_languages.filter( el => {
+				const currentParentUid = parent.alternate_languages.filter((el) => {
 					return el.lang === alterLang.lang
 				})
 				routesChild[altLang] = `${alterLang.uid}`
 				routesParent[altLang] = `${currentParentUid[0].uid}`
 				href = `${currentParentUid[0].uid}/${alterLang.uid}/`
-			}
-			else  {
-				let currentParentUid = parent.alternate_languages.filter( el => { 
+			} else {
+				const currentParentUid = parent.alternate_languages.filter((el) => {
 					return el.lang === alterLang.lang
 				})
 				routesChild[altLang] = `${alterLang.uid}`
@@ -300,7 +303,7 @@ export const actions = {
 		)
 		await commit('setPage', { head, data: fetch.data, tags: fetch.tags })
 		await dispatch('i18n/setRouteParams', {
-			en: { [parentType]: routesParent.en, [type]: routesChild.en},
+			en: { [parentType]: routesParent.en, [type]: routesChild.en },
 			ru: { [parentType]: routesParent.ru, [type]: routesChild.ru },
 			ua: { [parentType]: routesParent.ua, [type]: routesChild.ua },
 		})

@@ -579,3 +579,9 @@
 	to = "/ru/projects/"
 	status = 301
 	force = true
+
+[[redirects]]
+	from = "/projects/vorzel/"
+	to = "/projects/vorzel-dom/"
+	status = 301
+	force = true

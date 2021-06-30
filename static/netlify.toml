@@ -579,39 +579,3 @@
 	to = "/ru/projects/"
 	status = 301
 	force = true
-
-[[redirects]]
-	from = "/projects/garbuz-aktiv-khaus/"
-	to = "/projects/garbuz-active-house/"
-	status = 301
-	force = true
-
-[[redirects]]
-	from = "/projects/%D0%B0-proekt/"
-	to = "/projects/a-project/"
-	status = 301
-	force = true
-
-[[redirects]]
-	from = "/projects/graal-shale/"
-	to = "/projects/graal-shale-home/"
-	status = 301
-	force = true
-
-[[redirects]]
-	from = "/projects/vorzel-dom/"
-	to = "/projects/vorzel/"
-	status = 301
-	force = true
-
-[[redirects]]
-	from = "/projects/write-budynok/"
-	to = "/projects/write-house/"
-	status = 301
-	force = true
-
-[[redirects]]
-	from = "/projects/piloty-simya-budynok/"
-	to = "/projects/pilots-family-home/"
-	status = 301
-	force = true

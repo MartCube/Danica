@@ -1,6 +1,6 @@
 <template>
 	<div class="container">
-		<div class="blog_post">
+		<div v-if="!$fetchState.pending" class="blog_post">
 			<div class="intro">
 				<h2 class="title">{{ title }}</h2>
 				<div class="info">
@@ -51,18 +51,17 @@
 <script>
 export default {
 	name: 'BlogPost',
-	async asyncData({ i18n, store, route }) {
-		await store.dispatch('storeByUID', {
+	async fetch() {
+		await this.$store.dispatch('storeByUID', {
 			type: 'blog_post',
-			uid: route.params.blog_post,
-			language: i18n.localeProperties.prismic,
-			path: route.fullPath,
+			uid: this.$route.params.blog_post,
+			language: this.$i18n.localeProperties.prismic,
+			path: this.$route.fullPath,
 		})
-		return {
-			data: store.getters.page.data,
-		}
+	
 	},
 	data: () => ({
+		// data: [],
 		swiperOption: {
 			slidesPerView: 'auto',
 			spaceBetween: 50,
@@ -85,6 +84,9 @@ export default {
 		title() {
 			return this.$prismic.asText(this.data.title)
 		},
+		data() {
+			return this.$store.getters.page.data
+		}
 	},
 }
 </script>

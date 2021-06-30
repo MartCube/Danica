@@ -171,6 +171,12 @@ export const actions = {
 				// the current route
 				routes[lang] = fetch.uid
 
+				// check for type of path 
+				let pathType
+				if(type === "blog_post")  pathType = 'blog/'
+				else if(type === "project_post") pathType = 'project/'
+				else pathType = ''
+
 				// alternate languages
 				let href
 				fetch.alternate_languages.forEach((alterLang) => {
@@ -179,15 +185,12 @@ export const actions = {
 
 					// path is a sting with slashes at the beggining and end , which occur empty item in array
 					// split by slash to get array
-					const pathAltLang = altLang === 'ua' ? '' : altLang + '/'
-					const altPath = path.slice(1, -1).split('/').slice(1, -1).join('/')
-
+					const pathAltLang = altLang === 'ua' ? '' : `${altLang}/`
 					// routes
 					routes[altLang] = alterLang.uid
 
 					// links & meta
-					if (altPath.length <= 3) href = `${state.domain}/${pathAltLang}${alterLang.uid}/`
-					else href = `${state.domain}/${pathAltLang}${altPath}/${alterLang.uid}/`
+					href = `${state.domain}/${pathAltLang}${pathType}${alterLang.uid}/`
 
 					head.link.push({ hid: 'alternate', rel: 'alternate', href, hreflang: altLang })
 

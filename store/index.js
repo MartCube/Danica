@@ -174,7 +174,7 @@ export const actions = {
 				// check for type of path 
 				let pathType
 				if(type === "blog_post")  pathType = 'blog/'
-				else if(type === "project_post") pathType = 'project/'
+				else if(type === "project_post") pathType = 'projects/'
 				else pathType = ''
 
 				// alternate languages

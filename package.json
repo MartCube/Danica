@@ -21,7 +21,7 @@
 		"lazysizes": "^5.3.2",
 		"nuxt": "^2.15.4",
 		"nuxt-facebook-pixel-module": "^1.5.0",
-		"nuxt-i18n": "^6.26.0",
+		"nuxt-i18n": "^6.27.2",
 		"swiper": "^5.4.5",
 		"vee-validate": "^3.4.5",
 		"vue-awesome-swiper": "^4.1.1",

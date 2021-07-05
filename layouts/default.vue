@@ -17,9 +17,13 @@ export default {
 	components: { CookieBox },
 	data: () => ({}),
 	async mounted() {
+		
 		await this.$nextTick()
-		this.$fb.enable()
-		this.$gtm.init('GTM-T5X9PFF')
+		setTimeout(function(){
+			this.$fb.enable()
+			this.$gtm.init('GTM-T5X9PFF')
+		}, 3500)
+	
 	},
 }
 </script>

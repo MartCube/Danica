@@ -21,7 +21,7 @@ const sitemap = async function () {
 			lang: 'ru',
 		})
 		.then((data) => {
-			transform(data, 'ru')
+			transform(data, '')
 		})
 
 	await client
@@ -30,7 +30,7 @@ const sitemap = async function () {
 			lang: 'ua-ua',
 		})
 		.then((data) => {
-			transform(data, '')
+			transform(data, 'ua')
 		})
 
 	function transform(data, lang) {

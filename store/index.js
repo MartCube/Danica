@@ -9,6 +9,7 @@ export const state = (context) => ({
 	modalVideo: false,
 
 	domain: 'https://danica.ua',
+	defaultLanguage: 'ru',
 
 	page: {
 		head: {},
@@ -104,7 +105,7 @@ export const actions = {
 				head.link.push({ hid: '', rel: 'canonical',href: canonical })
 				head.meta.push({ hid: 'og:url', name: 'og:url', content: canonical })
 				// x-default needs to be always ua
-				if (lang === 'ua') head.link.push({ hid: 'alternate', rel: 'alternate', href: canonical, hreflang: 'x-default' })
+				if (lang === state.defaultLanguage) head.link.push({ hid: 'alternate', rel: 'alternate', href: canonical, hreflang: 'x-default' })
 
 				// alternate langcanonicaluages
 				fetch.alternate_languages.forEach((alterLang) => {
@@ -114,7 +115,7 @@ export const actions = {
 
 					// path is a sting with slashes at the beggining and end , which occur empty item in array
 					// split by slash to get array
-					const pathAltLang = altLang === 'ua' ? '' : altLang + '/'
+					const pathAltLang = altLang === state.defaultLanguage ? '' : altLang + '/'
 					let altPath = path.slice(1, -1)
 					altPath = altPath.split('/')
 					const uid = alterLang.uid === undefined ? '' : `${alterLang.uid}/`
@@ -124,7 +125,7 @@ export const actions = {
 
 					// links & meta
 					head.link.push({ hid: 'alternate', rel: 'alternate', href, hreflang: altLang })
-					if (altLang === 'ua') head.link.push({ hid: 'alternate', rel: 'alternate', href, hreflang: 'x-default' })
+					if (altLang === state.defaultLanguage) head.link.push({ hid: 'alternate', rel: 'alternate', href, hreflang: 'x-default' })
 				})
 
 				head.meta.push(
@@ -185,7 +186,7 @@ export const actions = {
 
 					// path is a sting with slashes at the beggining and end , which occur empty item in array
 					// split by slash to get array
-					const pathAltLang = altLang === 'ua' ? '' : `${altLang}/`
+					const pathAltLang = altLang === state.defaultLanguage ? '' : `${altLang}/`
 					// routes
 					routes[altLang] = alterLang.uid
 
@@ -194,12 +195,12 @@ export const actions = {
 
 					head.link.push({ hid: 'alternate', rel: 'alternate', href, hreflang: altLang })
 
-					if (altLang === 'ua') head.link.push({ hid: 'alternate', rel: 'alternate', href, hreflang: 'x-default' })
+					if (altLang === state.defaultLanguage) head.link.push({ hid: 'alternate', rel: 'alternate', href, hreflang: 'x-default' })
 				})
 
 				// canonical link
 				const canonical = `${state.domain}${path}`
-				if (lang === 'ua') head.link.push({ hid: 'alternate', rel: 'alternate', href: canonical, hreflang: 'x-default' })
+				if (lang === state.defaultLanguage) head.link.push({ hid: 'alternate', rel: 'alternate', href: canonical, hreflang: 'x-default' })
 				head.link.push({ hid: 'canonical', rel: 'canonical', href: canonical })
 				head.meta.push({ hid: 'og:url', name: 'og:url', content: canonical })
 
@@ -265,7 +266,7 @@ export const actions = {
 			// path is a sting with slashes at the beggining and end , which occur empty item in array
 			// split by slash to get array
 
-			if (altLang === 'ua') {
+			if (altLang === state.defaultLanguage) {
 				const currentParentUid = parent.alternate_languages.filter((el) => {
 					return el.lang === alterLang.lang
 				})
@@ -283,7 +284,7 @@ export const actions = {
 			// links & meta
 
 			head.link.push({ hid: 'alternate', rel: 'alternate', href, hreflang: altLang })
-			head.meta.push({ hid: 'og:url', name: 'og:locale:alternate', content: href })
+			head.meta.push({ hid: 'og:url', name: 'og:url', content: href })
 		})
 		// console.log(type);
 

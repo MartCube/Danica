@@ -4,8 +4,8 @@ setTimeout(() => {
 	// import VueFbCustomerChat from 'vue-fb-customer-chat'
 	// import Vue from 'vue'
 
-		const Vue = () => import('~/vue')
-	const VueFbCustomerChat = () => import('~/vue-fb-customer-chat')
+		const Vue = () => import('vue')
+	const VueFbCustomerChat = () => import('vue-fb-customer-chat')
 	// import VueFbCustomerChat from 'vue-fb-customer-chat'
 	console.log(VueFbCustomerChat, Vue);
 	Vue.use(VueFbCustomerChat, {

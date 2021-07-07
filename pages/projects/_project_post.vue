@@ -1,6 +1,6 @@
 <template>
 	<div class="container">
-		<div class="project_post">
+		<div v-if="!$fetchState.pending" class="project_post">
 			<div class="intro">
 				<h2 class="title">{{ $prismic.asText(post.title) }}</h2>
 				<ImageItem :src="post.main_image.url" :mobile="post.main_image.mobile.url" :alt="title" />
@@ -57,16 +57,13 @@
 <script>
 export default {
 	Name: 'Project',
-	async asyncData({ i18n, store, route }) {
-		await store.dispatch('storeByUID', {
+	async fetch() {
+		await this.$store.dispatch('storeByUID', {
 			type: 'project_post',
-			uid: route.params.project_post,
-			language: i18n.localeProperties.prismic,
-			path: route.fullPath,
+			uid: this.$route.params.project_post,
+			language: this.$i18n.localeProperties.prismic,
+			path: this.$route.fullPath,
 		})
-		return {
-			post: store.getters.page.data,
-		}
 	},
 	data: () => ({
 		swiperOption: {
@@ -79,6 +76,9 @@ export default {
 			},
 		},
 	}),
+	// watch: {
+	// 	'$route.path':'$fetch',
+	// },
 	head() {
 		return this.$store.getters.page.head
 	},
@@ -86,6 +86,9 @@ export default {
 		title() {
 			return this.$prismic.asText(this.post.title)
 		},
+		post() {
+			return this.$store.getters.page.data
+		}
 	},
 	fetchKey(getCounter) {
 		// getCounter is a method that can be called to get the next number in a sequence

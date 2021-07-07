@@ -43,7 +43,7 @@ export default {
 	},
 
 	// Plugins to run before rendering page (https://go.nuxtjs.dev/config-plugins)
-	plugins: [{ src: '@/plugins/vue-cookie', mode: 'client' }, { src: '@/plugins/fb-chat', mode: 'client', ssr: false }, { src: '@/plugins/vue-swiper', mode: 'client' }, { src: '@/plugins/vue-observe' }, { src: '~/plugins/vue-plyr', mode: 'client' }, { src: '@/plugins/vee-validate.js' }, { src: `~/plugins/lazysizes.client.js` }],
+	plugins: [{ src: '@/plugins/vue-cookie', mode: 'client' }, { src: '@/plugins/vue-swiper', mode: 'client' }, { src: '@/plugins/vue-observe' }, { src: '~/plugins/vue-plyr', mode: 'client' }, { src: '@/plugins/vee-validate.js' }, { src: `~/plugins/lazysizes.client.js` }],
 
 	// Modules for dev and build (recommended) (https://go.nuxtjs.dev/config-modules)
 	buildModules: [
@@ -77,7 +77,7 @@ export default {
 	},
 
 	i18n: {
-		defaultLocale: 'ua',
+		defaultLocale: 'ru',
 		lazy: true,
 		seo: false,
 		baseUrl: 'https://danica.ua/',
@@ -96,6 +96,7 @@ export default {
 				prismic: 'ru',
 				file: 'ru.js',
 				iso: 'ru-RU',
+				isCatchallLocale: true,
 			},
 			{
 				code: 'ua',
@@ -103,7 +104,6 @@ export default {
 				prismic: 'ua-ua',
 				file: 'ua.js',
 				iso: 'ua-UA',
-				isCatchallLocale: true,
 			},
 		],
 		detectBrowserLanguage: false,
@@ -156,7 +156,7 @@ export default {
 		hostname: 'https://danica.ua/', // replace with danica.ua
 		exclude: ['/ru/null'],
 		trailingSlash: true,
-		i18n: '',
+		// i18n: ,
 		routes() {
 			return sitemap()
 		},

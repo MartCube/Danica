@@ -57,6 +57,7 @@ export default {
 		this.total_pages = projects.total_pages
 		this.prev_page = projects.prev_page
 		this.next_page = projects.next_page
+		console.log(this.$route);
 	},
 	watch: {
 		'$route.query':'$fetch',

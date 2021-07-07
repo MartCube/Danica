@@ -62,13 +62,10 @@ export default {
 			language: this.$i18n.localeProperties.prismic,
 			path: this.$route.fullPath,
 		})
-		this.data = this.$store.getters.page.data
-	},
-	watch: {
-		'$route.query':'$fetch',
+	
 	},
 	data: () => ({
-		data: [],
+		// data: [],
 		swiperOption: {
 			slidesPerView: 'auto',
 			spaceBetween: 50,
@@ -91,6 +88,9 @@ export default {
 		title() {
 			return this.$prismic.asText(this.data.title)
 		},
+		data() {
+			return this.$store.getters.page.data
+		}
 	},
 }
 </script>

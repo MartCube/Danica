@@ -42,9 +42,9 @@ export default {
 		})
 		this.slices = this.$store.getters.page.data.body
 	},
-	watch: {
-		'$route.query':'$fetch',
-	},
+	// watch: {
+	// 	'$route.query':'$fetch',
+	// },
 	data: () => ({
 		slices: []
 	}),

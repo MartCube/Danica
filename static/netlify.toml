@@ -5,7 +5,19 @@
 	force = true
 
 [[redirects]]
+	from = "/ru/blog/minimalizm-kak-est/"
+	to = "/blog/minimalizm-kak-est/"
+	status = 301
+	force = true
+
+[[redirects]]
 	from = "/projects/dizajn-interera/project-dizajn-proekt-odnoetazhnogo-kottedzha"
+	to = "/projects/a-proyekt/"
+	status = 301
+	force = true
+
+[[redirects]]
+	from = "/ru/projects/a-proyekt/"
 	to = "/projects/a-proyekt/"
 	status = 301
 	force = true
@@ -17,7 +29,19 @@
 	force = true
 
 [[redirects]]
+	from = "/ru/projects/lisa/"
+	to = "/projects/lisa/"
+	status = 301
+	force = true
+
+[[redirects]]
 	from = "/projects/dizajn-interera/skyup"
+	to = "/projects/letchiki-semya-dom/"
+	status = 301
+	force = true
+
+[[redirects]]
+	from = "/ru/projects/letchiki-semya-dom/"
 	to = "/projects/letchiki-semya-dom/"
 	status = 301
 	force = true
@@ -35,6 +59,12 @@
 	force = true
 
 [[redirects]]
+	from = "/ru/projects/amerika/"
+	to = "/projects/amerika/"
+	status = 301
+	force = true
+
+[[redirects]]
 	from = "/ua/proekti/gotovye-proekty-domov/america"
 	to = "/ua/projects/ameryka/"
 	status = 301
@@ -42,6 +72,12 @@
 
 [[redirects]]
 	from = "/projects/dizajn-interera/twins"
+	to = "/projects/dvoynyashki/"
+	status = 301
+	force = true
+
+[[redirects]]
+	from = "/ru/projects/dvoynyashki/"
 	to = "/projects/dvoynyashki/"
 	status = 301
 	force = true
@@ -65,6 +101,12 @@
 	force = true
 
 [[redirects]]
+	from = "/ru/projects/liberty/"
+	to = "/projects/liberty/"
+	status = 301
+	force = true
+
+[[redirects]]
 	from = "/en/projects/design/freedom"
 	to = "/en/projects/freedom/"
 	status = 301
@@ -78,6 +120,12 @@
 
 [[redirects]]
 	from = "/projects/dizajn-interera/rajt"
+	to = "/projects/write-dom/"
+	status = 301
+	force = true
+
+[[redirects]]
+	from = "/ru/projects/write-dom/"
 	to = "/projects/write-dom/"
 	status = 301
 	force = true
@@ -101,6 +149,12 @@
 	force = true
 
 [[redirects]]
+	from = "/ru/projects/garden/"
+	to = "/projects/garden/"
+	status = 301
+	force = true
+
+[[redirects]]
 	from = "/en/projects/design/the-garden"
 	to = "/en/projects/the-garden/"
 	status = 301
@@ -119,6 +173,12 @@
 	force = true
 
 [[redirects]]
+	from = "/ru/projects/priyut/"
+	to = "/projects/priyut/"
+	status = 301
+	force = true
+
+[[redirects]]
 	from = "/en/projects/design/shelter"
 	to = "/en/projects/shelter/"
 	status = 301
@@ -131,7 +191,19 @@
 	force = true
 
 [[redirects]]
+	from = "/ru/projects/leon-dom/"
+	to = "/projects/leon-dom/"
+	status = 301
+	force = true
+
+[[redirects]]
 	from = "/projects/dizajn-interera/lipki"
+	to = "/projects/lipki/"
+	status = 301
+	force = true
+
+[[redirects]]
+	from = "/ru/projects/lipki/"
 	to = "/projects/lipki/"
 	status = 301
 	force = true
@@ -155,6 +227,12 @@
 	force = true
 
 [[redirects]]
+	from = "/ru/projects/velykoburzhuaznyy/"
+	to = "/projects/velykoburzhuaznyy/"
+	status = 301
+	force = true
+
+[[redirects]]
 	from = "/ua/proekti/dizajn/grand-burzhe"
 	to = "/ua/projects/burzhuaznyy/"
 	status = 301
@@ -173,7 +251,19 @@
 	force = true
 
 [[redirects]]
+	from = "/ru/projects/graal-shale-dom/"
+	to = "/projects/graal-shale-dom/"
+	status = 301
+	force = true
+
+[[redirects]]
 	from = "/projects/dizajn-interera/garbuz-active-house"
+	to = "/projects/garbuz-active-home/"
+	status = 301
+	force = true
+
+[[redirects]]
+	from = "/ru/projects/garbuz-active-home/"
 	to = "/projects/garbuz-active-home/"
 	status = 301
 	force = true
@@ -191,6 +281,12 @@
 	force = true
 
 [[redirects]]
+	from = "/ru/projects/avtonomnyy-taynkhaus/"
+	to = "/projects/avtonomnyy-taynkhaus/"
+	status = 301
+	force = true
+
+[[redirects]]
 	from = "/ua/proekti/gotovye-proekty-domov/avtonomnyj-taunhaus-na-batyevoj-gore-g-kiev"
 	to = "/ua/projects/avtonomnyy-taunkhaus/"
 	status = 301
@@ -203,7 +299,19 @@
 	force = true
 
 [[redirects]]
+	from = "/ru/projects/dusha/"
+	to = "/projects/dusha/"
+	status = 301
+	force = true
+
+[[redirects]]
 	from = "/projects/gotovye-proekty/provans"
+	to = "/projects/provans-dom/"
+	status = 301
+	force = true
+
+[[redirects]]
+	from = "/ru/projects/provans-dom/"
 	to = "/projects/provans-dom/"
 	status = 301
 	force = true
@@ -216,6 +324,12 @@
 
 [[redirects]]
 	from = "/projects/dizajn-interera/blueberry"
+	to = "/projects/chernika/"
+	status = 301
+	force = true
+
+[[redirects]]
+	from = "/ru/projects/chernika/"
 	to = "/projects/chernika/"
 	status = 301
 	force = true
@@ -237,9 +351,15 @@
 	to = "/projects/apelsin-mandarin/"
 	status = 301
 	force = true
-
+	
 [[redirects]]
 	from = "/projects/dizajn-interera/orange-tangerine"
+	to = "/projects/apelsin-mandarin/"
+	status = 301
+	force = true
+
+[[redirects]]
+	from = "/ru/projects/apelsin-mandarin/"
 	to = "/projects/apelsin-mandarin/"
 	status = 301
 	force = true
@@ -252,6 +372,12 @@
 
 [[redirects]]
 	from = "/services/offices/portfolio/novoe-art-prostranstvo-amd-design-club"
+	to = "/projects/amd-duzain-klub/"
+	status = 301
+	force = true
+
+[[redirects]]
+	from = "/ru/projects/amd-duzain-klub/"
 	to = "/projects/amd-duzain-klub/"
 	status = 301
 	force = true
@@ -275,7 +401,19 @@
 	force = true
 
 [[redirects]]
+	from = "/ru/projects/autosalon-id-autogroup/"
+	to = "/projects/autosalon-id-autogroup/"
+	status = 301
+	force = true
+
+[[redirects]]
 	from = "/services/offices/portfolio/project-4"
+	to = "/projects/lesnaya-pesnya/"
+	status = 301
+	force = true
+
+[[redirects]]
+	from = "/ru/projects/lesnaya-pesnya/"
 	to = "/projects/lesnaya-pesnya/"
 	status = 301
 	force = true
@@ -287,13 +425,31 @@
 	force = true
 
 [[redirects]]
+	from = "/ru/projects/florentsiya/"
+	to = "/projects/florentsiya/"
+	status = 301
+	force = true
+
+[[redirects]]
 	from = "/services/offices/portfolio/project-5"
 	to = "/projects/babochka/"
 	status = 301
 	force = true
 
 [[redirects]]
+	from = "/ru/projects/babochka/"
+	to = "/projects/babochka/"
+	status = 301
+	force = true
+
+[[redirects]]
 	from = "/services/offices/portfolio/vorzel-stroitelstvo-doma-po-tehnologii-nesemnoj-opalubki"
+	to = "/projects/vorzel-home/"
+	status = 301
+	force = true
+
+[[redirects]]
+	from = "/ru/projects/vorzel-home/"
 	to = "/projects/vorzel-home/"
 	status = 301
 	force = true
@@ -306,6 +462,18 @@
 
 [[redirects]]
 	from = "/services/construction/passive-house"
+	to = "/stroitelstvo-domov/"
+	status = 301
+	force = true
+
+[[redirects]]
+	from = "/services/construction/passive-house"
+	to = "/stroitelstvo-domov/"
+	status = 301
+	force = true
+
+[[redirects]]
+	from = "/ru/stroitelstvo-domov/"
 	to = "/stroitelstvo-domov/"
 	status = 301
 	force = true
@@ -329,6 +497,12 @@
 	force = true
 
 [[redirects]]
+	from = "/ru/dizayin-iterera/"
+	to = "/dizayin-iterera/"
+	status = 301
+	force = true
+
+[[redirects]]
 	from = "/en/services/interior-design"
 	to = "/en/interior-design/"
 	status = 301
@@ -342,6 +516,12 @@
 
 [[redirects]]
 	from = "/services/arhitekturnoe-proektirovanie"
+	to = "/arhitekturnoe-proektirovanie/"
+	status = 301
+	force = true
+
+[[redirects]]
+	from = "/ru/arhitekturnoe-proektirovanie/"
 	to = "/arhitekturnoe-proektirovanie/"
 	status = 301
 	force = true
@@ -383,6 +563,12 @@
 	force = true
 
 [[redirects]]
+	from = "/ru/proektirovanie-domov/"
+	to = "/proektirovanie-domov/"
+	status = 301
+	force = true
+
+[[redirects]]
 	from = "/en/services/construction/cottages"
 	to = "/en/house-design/"
 	status = 301
@@ -401,13 +587,19 @@
 	force = true
 
 [[redirects]]
-	from = "/blog/advise/minimalizm-kak-est"
-	to = "/blog/minimalizm-kak-est/"
+	from = "/ru/stroitelstvo-bynkerov/"
+	to = "/stroitelstvo-bynkerov/"
 	status = 301
 	force = true
 
 [[redirects]]
 	from = "/blog/vse-o-dizajne/besedka-dlya-beverli-hillz"
+	to = "/blog/besedka-dlya-beverli-hillz/"
+	status = 301
+	force = true
+
+[[redirects]]
+	from = "/ru/blog/besedka-dlya-beverli-hillz/"
 	to = "/blog/besedka-dlya-beverli-hillz/"
 	status = 301
 	force = true
@@ -419,7 +611,19 @@
 	force = true
 
 [[redirects]]
+	from = "/ru/blog/perspektiva-razvitiya-alternativnoj-energii/"
+	to = "/blog/perspektiva-razvitiya-alternativnoj-energii/"
+	status = 301
+	force = true
+
+[[redirects]]
 	from = "/blog/energosberegayushie-tehnologii/no-sustainable-no-future"
+	to = "/blog/no-sustainable-no-future/"
+	status = 301
+	force = true
+
+[[redirects]]
+	from = "/ru/blog/no-sustainable-no-future/"
 	to = "/blog/no-sustainable-no-future/"
 	status = 301
 	force = true
@@ -431,7 +635,19 @@
 	force = true
 
 [[redirects]]
+	from = "/ru/blog/energoeffektivnost-i-ustoychivaya-arhitektyra-kak-vektory-razvitiya/"
+	to = "/blog/energoeffektivnost-i-ustoychivaya-arhitektyra-kak-vektory-razvitiya/"
+	status = 301
+	force = true
+
+[[redirects]]
 	from = "/blog/advise/montazh-nulevogo-cikla-kanalizacii-v-chastnom-dome"
+	to = "/blog/montazh-nulevogo-cikla-v-chastnom-dome/"
+	status = 301
+	force = true
+
+[[redirects]]
+	from = "/ru/blog/montazh-nulevogo-cikla-v-chastnom-dome/"
 	to = "/blog/montazh-nulevogo-cikla-v-chastnom-dome/"
 	status = 301
 	force = true
@@ -443,13 +659,31 @@
 	force = true
 
 [[redirects]]
+	from = "/ru/blog/nepreryvnoe-prostranstvo-i-oshutimyj-svet-v-interere-kvartiry-tadao-ando/"
+	to = "/blog/nepreryvnoe-prostranstvo-i-oshutimyj-svet-v-interere-kvartiry-tadao-ando/"
+	status = 301
+	force = true
+
+[[redirects]]
 	from = "/blog/vse-o-dizajne/kreativnyj-penthaus-iz-kazahstana"
 	to = "/blog/kreatiniy-penthaus-iz-kazahstana/"
 	status = 301
 	force = true
 
 [[redirects]]
+	from = "/ru/blog/kreatiniy-penthaus-iz-kazahstana/"
+	to = "/blog/kreatiniy-penthaus-iz-kazahstana/"
+	status = 301
+	force = true
+
+[[redirects]]
 	from = "/blog/advise/s-chego-nachat-stroitelstvo-sobstvennogo-doma"
+	to = "/blog/s-chego-nashat-stroitelstvo-sobstvennogo-doma/"
+	status = 301
+	force = true
+
+[[redirects]]
+	from = "/ru/blog/s-chego-nashat-stroitelstvo-sobstvennogo-doma/"
 	to = "/blog/s-chego-nashat-stroitelstvo-sobstvennogo-doma/"
 	status = 301
 	force = true
@@ -467,19 +701,31 @@
 	force = true
 
 [[redirects]]
+	from = "/ru/blog/novyj-ambicioznyj-sportivnyj-centr-v-midlendse/"
+	to = "/blog/novyj-ambicioznyj-sportivnyj-centr-v-midlendse/"
+	status = 301
+	force = true
+
+[[redirects]]
 	from = "/blog/vse-o-dizajne/chto-takoe-dizajn-vabi-sabi-novyj-trend-2018-goda"
 	to = "/blog/chto-takoe-dizajn-vabi-sabi/"
 	status = 301
 	force = true
 
 [[redirects]]
-	from = "/blog/vse-o-dizajne/prihod-ikea-v-ukrainu-i-primenenie-tovarov-v-ukraine"
-	to = "/blog/prihod-ikea-v-ukrainu/"
+	from = "/ru/blog/chto-takoe-dizajn-vabi-sabi/"
+	to = "/blog/chto-takoe-dizajn-vabi-sabi/"
 	status = 301
 	force = true
 
 [[redirects]]
 	from = "/blog/advise/vannaya-komnata-pravilnaya-organizaciya-prostranstva"
+	to = "/blog/vannaya-komnata-pravilnaya-organizaciya-prostranstva/"
+	status = 301
+	force = true
+
+[[redirects]]
+	from = "/ru/blog/vannaya-komnata-pravilnaya-organizaciya-prostranstva/"
 	to = "/blog/vannaya-komnata-pravilnaya-organizaciya-prostranstva/"
 	status = 301
 	force = true
@@ -491,7 +737,19 @@
 	force = true
 
 [[redirects]]
+	from = "/ru/blog/quest-dom-na-meste-starogo-bungalo/"
+	to = "/blog/quest-dom-na-meste-starogo-bungalo/"
+	status = 301
+	force = true
+
+[[redirects]]
 	from = "/blog/vse-o-dizajne/sovremennaya-novaya-shkola-v-kieve"
+	to = "/blog/sovremennaya-novaya-shkola-v-kieve/"
+	status = 301
+	force = true
+
+[[redirects]]
+	from = "/ru/blog/sovremennaya-novaya-shkola-v-kieve/"
 	to = "/blog/sovremennaya-novaya-shkola-v-kieve/"
 	status = 301
 	force = true
@@ -503,7 +761,19 @@
 	force = true
 
 [[redirects]]
+	from = "/ru/blog/otel-manshausen-island-v-norvegii/"
+	to = "/blog/otel-manshausen-island-v-norvegii/"
+	status = 301
+	force = true
+
+[[redirects]]
 	from = "/blog/vse-o-dizajne/varianty-ispolzovaniya-betona-v-sovremennom-interere"
+	to = "/blog/varianty-ispolzovaniya-betona-v-sovremennom-interere/"
+	status = 301
+	force = true
+
+[[redirects]]
+	from = "/ru/blog/varianty-ispolzovaniya-betona-v-sovremennom-interere/"
 	to = "/blog/varianty-ispolzovaniya-betona-v-sovremennom-interere/"
 	status = 301
 	force = true
@@ -515,7 +785,19 @@
 	force = true
 
 [[redirects]]
+	from = "/ru/blog/nalivnoj-pol-razbiraemsya-v-melochah/"
+	to = "/blog/nalivnoj-pol-razbiraemsya-v-melochah/"
+	status = 301
+	force = true
+
+[[redirects]]
 	from = "/blog/vse-o-dizajne/akvapark-akvatoriya-franciya"
+	to = "/blog/akvapark-akvatoriya-franciya/"
+	status = 301
+	force = true
+
+[[redirects]]
+	from = "/ru/blog/akvapark-akvatoriya-franciya/"
 	to = "/blog/akvapark-akvatoriya-franciya/"
 	status = 301
 	force = true
@@ -527,7 +809,19 @@
 	force = true
 
 [[redirects]]
+	from = "/ru/blog/dinamicheskij-fasad/"
+	to = "/blog/dinamicheskij-fasad/"
+	status = 301
+	force = true
+
+[[redirects]]
 	from = "/blog/energosberegayushie-tehnologii/zelenaya-arhitektura"
+	to = "/blog/zelenaya-arhitektura/"
+	status = 301
+	force = true
+
+[[redirects]]
+	from = "/ru/blog/zelenaya-arhitektura/"
 	to = "/blog/zelenaya-arhitektura/"
 	status = 301
 	force = true
@@ -539,7 +833,19 @@
 	force = true
 
 [[redirects]]
+	from = "/ru/blog/dyshashij-dom-chto-eto/"
+	to = "/blog/dyshashij-dom-chto-eto/"
+	status = 301
+	force = true
+
+[[redirects]]
 	from = "/blog/news/cresta-dom-iz-betona"
+	to = "/blog/cresta-dom-iz-betona/"
+	status = 301
+	force = true
+
+[[redirects]]
+	from = "/ru/blog/cresta-dom-iz-betona/"
 	to = "/blog/cresta-dom-iz-betona/"
 	status = 301
 	force = true
@@ -551,13 +857,31 @@
 	force = true
 
 [[redirects]]
+	from = "/ru/blog/sovremennyj-roznichnyj-interer-v-ukraine-univermag-cum-v-kieve/"
+	to = "/blog/sovremennyj-roznichnyj-interer-v-ukraine-univermag-cum-v-kieve/"
+	status = 301
+	force = true
+
+[[redirects]]
 	from = "/blog/vse-o-dizajne/oteli-kotorye-voshli-v-top-50-luchshih-otelej-mira"
 	to = "/blog/oteli-kotorye-voshli-v-top-50-luchshih-otelej-mira/"
 	status = 301
 	force = true
 
 [[redirects]]
+	from = "/ru/blog/oteli-kotorye-voshli-v-top-50-luchshih-otelej-mira/"
+	to = "/blog/oteli-kotorye-voshli-v-top-50-luchshih-otelej-mira/"
+	status = 301
+	force = true
+
+[[redirects]]
 	from = "/projects/gotovye-proekty/"
+	to = "/projects/"
+	status = 301
+	force = true
+
+[[redirects]]
+	from = "/ru/projects/"
 	to = "/projects/"
 	status = 301
 	force = true
@@ -575,7 +899,19 @@
 	force = true
 
 [[redirects]]
+	from = "/ru/projects/"
+	to = "/projects/"
+	status = 301
+	force = true
+
+[[redirects]]
 	from = "/projects/vorzel/"
+	to = "/projects/vorzel-dom/"
+	status = 301
+	force = true
+
+[[redirects]]
+	from = "/ru/projects/vorzel-dom/"
 	to = "/projects/vorzel-dom/"
 	status = 301
 	force = true

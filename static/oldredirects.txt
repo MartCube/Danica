@@ -919,28 +919,3 @@
 [[redirects]]
 	from = "/ru/"
 	to = "/"
-
-[[redirects]]
-	from = "/bydivnutstvo-bydunkiv/"
-	to = "/ua/bydivnutstvo-bydunkiv/"
-	status = 301
-	force = true
-
-[[redirects]]
-	from = "/dizayin-iterery/"
-	to = "/ua/dizayin-iterery/"
-	status = 301
-	force = true	
-
-[[redirects]]
-	from = "/budivnytstvo-bunkeriv/"
-	to = "/ua/budivnytstvo-bunkeriv/"
-	status = 301
-	force = true		
-
-[[redirects]]
-	from = "/arhitekturne-proektyvannya/"
-	to = "/ua/arhitekturne-proektyvannya/"
-	status = 301
-	force = true	
-

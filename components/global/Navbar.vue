@@ -554,6 +554,8 @@ $transition: all 0.35s ease;
 		}
 		.links {
 			display: none;
+			li{height: 60px;}
+		  li:hover ul{display: none !important;}
 		}
 		.button {
 			display: flex;

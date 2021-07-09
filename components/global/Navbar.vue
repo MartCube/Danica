@@ -32,11 +32,35 @@
 			</n-link>
 		</div>
 
-		<div class="links" :class="{ active: isActive }" @click="CloseMenu">
+		<ul class="links" :class="{ active: isActive }" @click="CloseMenu">
 			<!-- <n-link v-for="item in data.services" :key="item.service.uid" exact :to="linkResolver(item.service)">{{ item.name }}</n-link> -->
+			<li v-for="item in data.links" :key="item.link.uid">
+				<n-link exact :to="localePath(`/${item.link.uid}/`)">{{ item.name }}</n-link>
 
-			<n-link v-for="item in data.links" :key="item.link.uid" exact :to="linkResolver(item.link)">{{ item.name }}</n-link>
-		</div>
+				<template v-if="item.list_binding_name === 'architecture_links'">
+					<ul>
+						<li v-for="sublink in data.architecture_links" :key="sublink.uid">
+							<n-link exact :to="localePath(`/${item.link.uid}/${sublink.link.uid}/`)">{{ sublink.name }} </n-link>
+						</li>
+					</ul>
+				</template>
+				<template v-if="item.list_binding_name === 'design_links'">
+					<ul>
+						<li v-for="sublink in data.design_links" :key="sublink.uid">
+							<n-link exact :to="localePath(`/${item.link.uid}/${sublink.link.uid}/`)">{{ sublink.name }} </n-link>
+						</li>
+					</ul>
+				</template>
+				<template v-if="item.list_binding_name === 'construction_links'">
+					<ul>
+						<li v-for="sublink in data.construction_links" :key="sublink.uid">
+							<n-link exact :to="localePath(`/${item.link.uid}/${sublink.link.uid}/`)">{{ sublink.name }} </n-link>
+						</li>
+					</ul>
+				</template>
+
+			</li>
+		</ul>
 
 		<div class="button" :class="{ active: isActive }" @click="ShowHideMenu">
 			<span class="top" />
@@ -154,6 +178,10 @@ $transition: all 0.35s ease;
 			background: rgba(255, 255, 255, 0.2);
 			backdrop-filter: blur(10px) saturate(100%) contrast(45%) brightness(130%);
 		}
+		.links li ul {
+				background: rgba(255, 255, 255, 0.2);
+				backdrop-filter: blur(10px) saturate(100%) contrast(45%) brightness(130%);
+		}
 	}
 	&.transparent_to_white {
 		background: white;
@@ -231,46 +259,77 @@ $transition: all 0.35s ease;
 		display: flex;
 		flex-direction: row;
 		justify-content: flex-end;
-
-		a {
-			padding: 0 15px;
-			position: relative;
+		list-style-type: none;
+		li{
 			display: flex;
-			align-items: center;
-			white-space: nowrap;
-
-			text-decoration: none;
-			font-size: 1rem;
-			text-transform: capitalize;
-			font-weight: 400;
-			color: $black;
-			outline: none;
-			transition: all 0.2s ease;
-			&:hover {
-				background: $primary;
-			}
-			&.nuxt-link-active,
-			&:hover {
-				background: $primary;
-			}
-			&::after {
-				content: '';
-				display: block;
-				width: 0;
-				right: 0;
-				position: absolute;
-				height: 100%;
-				z-index: 1;
-				background-color: $primary;
-			}
-			span {
+			height: 100%;
+			a {
+				padding: 0 15px;
 				position: relative;
-				z-index: 3;
-				font-size: inherit;
-				font-weight: inherit;
-				color: inherit;
-				outline: inherit;
-				transition: inherit;
+				display: flex;
+				align-items: center;
+				white-space: nowrap;
+
+				text-decoration: none;
+				font-size: 1rem;
+				text-transform: capitalize;
+				font-weight: 400;
+				color: $black;
+				outline: none;
+				transition: all 0.2s ease;
+				&:hover {
+					background: $primary;
+				}
+				&.nuxt-link-active,
+				&:hover {
+					background: $primary;
+				}
+				&::after {
+					content: '';
+					display: block;
+					width: 0;
+					right: 0;
+					position: absolute;
+					height: 100%;
+					z-index: 1;
+					background-color: $primary;
+				}
+				span {
+					position: relative;
+					z-index: 3;
+					font-size: inherit;
+					font-weight: inherit;
+					color: inherit;
+					outline: inherit;
+					transition: inherit;
+				}
+			}
+			position: relative;
+			ul{
+				position: absolute;
+				display: none;
+				opacity: 0;
+				top: 80px;
+				left: 0;
+				width: fit-content;
+				list-style-type:none;
+				border-left: 5px solid $primary;
+				background-color: $white;
+				transition: opacity .3s linear;
+				li {
+					a{
+						height: 40px;
+						display: flex;
+						align-items:center;
+					}
+				}
+			}
+			&:hover{
+				ul {
+					// animation: menuFadeiIn .3s linear forwards;
+					opacity: 1;
+					display: block;
+				}
 			}
 		}
 
@@ -408,7 +467,20 @@ $transition: all 0.35s ease;
 		}
 	}
 }
-
+@keyframes menuFadeiIn {
+	0%{
+		display: none;
+		opacity: 0;
+	}
+	1%{
+		display: block;
+	}
+	100%{
+		display: block;
+		opacity: 1;
+	}
+	
+}
 @keyframes fadeInRight {
 	0% {
 		opacity: 0;

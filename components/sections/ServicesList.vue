@@ -7,7 +7,7 @@
 			<h2 class="title">{{ data.primary.title }}</h2>
 			<div class="links">
 				<div v-for="(item, i) in data.items" :key="i" class="link">
-					<n-link :to="linkResolver(item.link)">
+					<n-link :to="linkResolver(item)">
 						<span>0{{ i + 1 }}/</span>
 						{{ item.name }}
 						<IconArrow />
@@ -25,10 +25,11 @@ export default {
 			type: Object,
 			required: true,
 		},
+		// parent: String
 	},
 	methods: {
 		linkResolver(value) {
-			return this.localePath(this.$prismic.linkResolver(value))
+			return this.localePath(`${this.$route.fullPath}${value.link.uid}/`)
 		},
 	},
 }

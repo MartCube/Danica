@@ -154,9 +154,9 @@ export default {
 
 	sitemap: {
 		hostname: 'https://danica.ua/', // replace with danica.ua
-		exclude: ['/ru/null'],
+		// exclude: ['/ru/null'],
 		trailingSlash: true,
-		// i18n: ,
+		// i18n: 'ru',
 		routes() {
 			return sitemap()
 		},

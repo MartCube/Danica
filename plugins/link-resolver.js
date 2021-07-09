@@ -10,9 +10,12 @@ export default function (doc, parent) {
 	else if (doc.type === 'project_post') {
 		return '/projects/' + doc.uid
 	} 
-	else if (doc.type === 'service_second') {
-		return `/${parent.uid}/${doc.uid}`
-	} 
+	// else if (doc.type === 'service_second') {
+	// 	// console.log(doc, parent);
+	// 	if (parent !== undefined) return `/${ parent.uid }/${ doc.uid }`
+	// 	else return `/${doc.uid}`
+		
+	// } 
 	else {
 		// workaround for navbar links
 		return doc.slug

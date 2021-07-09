@@ -210,8 +210,6 @@ export const actions = {
 					ua: { [type]: routes.ua },
 				})
 
-				// head.link.push({ hid: 'alternate', rel: 'alternate', href: canonical, hreflang: 'x-default' })
-
 				head.meta.push(
 					...[
 						{ hid: 'description', name: 'description', content: fetch.data.meta_description },
@@ -272,33 +270,38 @@ export const actions = {
 				})
 				routesChild[altLang] = `${alterLang.uid}`
 				routesParent[altLang] = `${currentParentUid[0].uid}`
-				href = `${currentParentUid[0].uid}/${alterLang.uid}/`
+				href = `${state.domain}/${currentParentUid[0].uid}/${alterLang.uid}/`
 			} else {
 				const currentParentUid = parent.alternate_languages.filter((el) => {
 					return el.lang === alterLang.lang
 				})
 				routesChild[altLang] = `${alterLang.uid}`
 				routesParent[altLang] = `${currentParentUid[0].uid}`
-				href = `${altLang}/${currentParentUid[0].uid}/${alterLang.uid}/`
+				href = `${state.domain}/${altLang}/${currentParentUid[0].uid}/${alterLang.uid}/`
 			}
 			// links & meta
+			if (altLang === state.defaultLanguage) head.link.push({ hid: 'alternate', rel: 'alternate', href, hreflang: 'x-default' })
 
 			head.link.push({ hid: 'alternate', rel: 'alternate', href, hreflang: altLang })
-			head.meta.push({ hid: 'og:url', name: 'og:url', content: href })
 		})
-		// console.log(type);
+
+		await dispatch('i18n/setRouteParams', {
+			en: { [parentType]: routesParent.en, [type]: routesChild.en },
+			ru: { [parentType]: routesParent.ru, [type]: routesChild.ru },
+			ua: { [parentType]: routesParent.ua, [type]: routesChild.ua },
+		})
 
 		const canonical = `${state.domain}${path}`
-
+		if (lang === state.defaultLanguage) head.link.push({ hid: 'alternate', rel: 'alternate', href: canonical, hreflang: 'x-default' })
 		head.link.push({ hid: 'canonical', rel: 'canonical', canonical })
-		head.link.push({ hid: 'alternate', rel: 'alternate', href: canonical, hreflang: 'x-default' })
-
+		head.link.push({ hid: 'og:url', property: 'og:url', content: canonical })
+		
 		head.meta.push(
 			...[
 				{ hid: 'description', name: 'description', content: fetch.data.meta_description },
 				// facebook
 				{ hid: 'og:type', property: 'og:type', content: '' },
-				{ hid: 'og:url', property: 'og:url', content: canonical },
+				// { hid: 'og:url', property: 'og:url', content: canonical },
 				{ hid: 'og:title', property: 'og:title', content: fetch.data.meta_title },
 				{ hid: 'og:description', property: 'og:description', content: fetch.data.meta_description },
 				{ hid: 'og:image', property: 'og:image', content: fetch.data.meta_image === undefined ? '' : fetch.data.meta_image.url },
@@ -306,11 +309,8 @@ export const actions = {
 				{ hid: 'twitter:card', name: 'twitter:card', content: fetch.data.meta_image === undefined ? '' : fetch.data.meta_image.url },
 			],
 		)
+
 		await commit('setPage', { head, data: fetch.data, tags: fetch.tags })
-		await dispatch('i18n/setRouteParams', {
-			en: { [parentType]: routesParent.en, [type]: routesChild.en },
-			ru: { [parentType]: routesParent.ru, [type]: routesChild.ru },
-			ua: { [parentType]: routesParent.ua, [type]: routesChild.ua },
-		})
+
 	},
 }

@@ -5,7 +5,7 @@
 			<Values v-else-if="slice.slice_type == 'values'" :data="slice" />
 			<Stages v-else-if="slice.slice_type == 'stages'" :data="slice" />
 			<Standards v-else-if="slice.slice_type == 'standards'" :data="slice" />
-			<Advantages v-else-if="slice.slice_type == 'advantages'" :data="slice" :parent="parentRoute"/>
+			<Advantages v-else-if="slice.slice_type == 'advantages'" :data="slice"/>
 			<Charles v-else-if="slice.slice_type == 'charles'" :data="slice" />
 			<!-- <ServicesList v-else-if="slice.slice_type == 'services_list'" :data="slice" /> -->
 			<LatestProjects v-else-if="slice.slice_type == 'latestprojects'" :data="slice" />

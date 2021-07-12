@@ -593,6 +593,12 @@
 	force = true
 
 [[redirects]]
+	from = "/stroitelstvo-bynkerov/"
+	to = "/stroitelstvo-domov/stroitelstvo-bynkerov/"
+	status = 301
+	force = true
+
+[[redirects]]
 	from = "/blog/vse-o-dizajne/besedka-dlya-beverli-hillz"
 	to = "/blog/besedka-dlya-beverli-hillz/"
 	status = 301

@@ -22,7 +22,7 @@
 				</a>
 			</li>
 			<li>
-				<a href="tel:tel:+380973591111" rel="nofollow" target="_blank">
+				<a href="tel:+380973591111" rel="nofollow" target="_blank">
 					<IconPhone :fill="color" />
 				</a>
 			</li>

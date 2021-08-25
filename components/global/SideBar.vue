@@ -17,7 +17,7 @@
 				</a>
 			</li>
 			<li>
-				<a href="viber://chat/?number=%2B380674011181" rel="nofollow" target="_blank">
+				<a href="viber://chat/?number=%2B380973591111" rel="nofollow" target="_blank">
 					<IconViber :fill="color" />
 				</a>
 			</li>

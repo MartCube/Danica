@@ -42,7 +42,7 @@
 					<a href="https://t.me/andreybukin" rel="nofollow" target="_blank">
 						<IconTelegram />
 					</a>
-					<a href="viber://chat/?number=%2B380674011181" rel="nofollow" target="_blank">
+					<a href="viber://chat/?number=%2B380973591111" rel="nofollow" target="_blank">
 						<IconViber />
 					</a>
 				</div>

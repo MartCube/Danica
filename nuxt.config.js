@@ -30,18 +30,18 @@ export default {
 			},
 		],
 		link: [{ rel: 'icon', type: 'image/png', href: '/favicon.png' }],
-		script: [
-			{
-				src: '//code-eu1.jivosite.com/widget/hJiAnsQxXU',
-				async: true,
-				body: true,
-			},
-			{
-				src: '//widgets.binotel.com/getcall/widgets/wxsbr5l1at0qrtlacjzf.js',
-				async: true,
-				body: true,
-			},
-		],
+		// script: [
+		// 	{
+		// 		src: '//code-eu1.jivosite.com/widget/hJiAnsQxXU',
+		// 		async: true,
+		// 		body: true,
+		// 	},
+		// 	{
+		// 		src: '//widgets.binotel.com/getcall/widgets/wxsbr5l1at0qrtlacjzf.js',
+		// 		async: true,
+		// 		body: true,
+		// 	},
+		// ],
 	},
 
 	loading: { color: '#ffc424' },
@@ -55,7 +55,7 @@ export default {
 	},
 
 	// Plugins to run before rendering page (https://go.nuxtjs.dev/config-plugins)
-	plugins: [{ src: '@/plugins/vue-cookie', mode: 'client' }, { src: '@/plugins/vue-swiper', mode: 'client' }, { src: '@/plugins/vue-observe' }, { src: '~/plugins/vue-plyr', mode: 'client' }, { src: '@/plugins/vee-validate.js' }, { src: `~/plugins/lazysizes.client.js` }],
+	plugins: [{ src: '@/plugins/apollo.js' }, { src: '@/plugins/vue-cookie', mode: 'client' }, { src: '@/plugins/vue-swiper', mode: 'client' }, { src: '@/plugins/vue-observe' }, { src: '~/plugins/vue-plyr', mode: 'client' }, { src: '@/plugins/vee-validate.js' }, { src: `~/plugins/lazysizes.client.js` }],
 
 	// Modules for dev and build (recommended) (https://go.nuxtjs.dev/config-modules)
 	buildModules: [
@@ -85,6 +85,11 @@ export default {
 		preview: false,
 		apiOptions: {
 			accessToken: 'MC5ZTEVkV0JVQUFDWUFYZG5W.W--_ve-_vTvvv73vv73vv73vv73vv71xcu-_vXbvv70977-9NO-_ve-_vXFV77-9Tu-_ve-_ve-_vXnvv70277-9RUY',
+		},
+	},
+	apollo: {
+		clientConfigs: {
+			default: '@/plugins/apollo.js',
 		},
 	},
 

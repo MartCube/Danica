@@ -59,9 +59,9 @@ export const mutations = {
 	setPage(state, value) {
 		state.page = value
 	},
-	// setHeadLink(state, value) {
-	// 	state.page.head.link.push(value)
-	// },
+	setMeta(state, value) {
+		state.page.head.link.push(value)
+	},
 }
 
 // Functions that call mutations on the state. They can call multiple mutations, can call other actions, and they support asynchronous operations.
@@ -85,6 +85,31 @@ export const actions = {
 		context.commit('setModalVideo', value)
 	},
 
+	setMeta(lang, metatitle, description, image, canonical) {
+		const head = {
+			htmlAttrs: { lang },
+			title: metatitle,
+			link: [], //	canonicals
+			meta: [],
+		}
+		head.link.push({ hid: '', rel: 'canonical', href: canonical })
+		// head.link.push({ hid: 'alternate', rel: 'alternate', href: canonical, hreflang: 'x-default' })
+		// head.link.push({ hid: 'alternate', rel: 'alternate', href: canonical, hreflang: altLang  })
+		head.meta.push(
+			...[
+				{ hid: 'description', name: 'description', content: description },
+				// facebook
+				{ hid: 'og:type', property: 'og:type', content: '' },
+				{ hid: 'og:url', property: 'og:url', content: canonical },
+				{ hid: 'og:title', property: 'og:title', content: metatitle },
+				{ hid: 'og:description', property: 'og:description', content: description },
+				{ hid: 'og:image', property: 'og:image', content: image === undefined ? '' : image.url },
+				// twitter
+				{ hid: 'twitter:card', name: 'twitter:card', content: image === undefined ? '' : image.url },
+			],
+		)
+	},
+
 	async storeSingle({ state, commit, dispatch }, { type, language }) {
 		await this.$prismic.api
 			.getSingle(type, { lang: language })
@@ -101,8 +126,9 @@ export const actions = {
 				}
 
 				// canonical link
-				const canonical = `${state.domain}${path}`
-				head.link.push({ hid: '', rel: 'canonical',href: canonical })
+				// eslint-disable-next-line prettier/prettier
+				const canonical = `${ state.domain }${ path }`
+				head.link.push({ hid: '', rel: 'canonical', href: canonical })
 				head.meta.push({ hid: 'og:url', name: 'og:url', content: canonical })
 				// x-default needs to be always ua
 				if (lang === state.defaultLanguage) head.link.push({ hid: 'alternate', rel: 'alternate', href: canonical, hreflang: 'x-default' })
@@ -118,10 +144,10 @@ export const actions = {
 					const pathAltLang = altLang === state.defaultLanguage ? '' : altLang + '/'
 					let altPath = path.slice(1, -1)
 					altPath = altPath.split('/')
-					const uid = alterLang.uid === undefined ? '' : `${alterLang.uid}/`
+					const uid = alterLang.uid === undefined ? '' : `${ alterLang.uid }/`
 
-					if (altPath.length <= 3) href = `${state.domain}/${pathAltLang}${uid}`
-					else href = `${state.domain}/${pathAltLang}${altPath}${uid}`
+					if (altPath.length <= 3) href = `${ state.domain }/${ pathAltLang }${ uid }`
+					else href = `${ state.domain }/${ pathAltLang }${ altPath }${ uid }`
 
 					// links & meta
 					head.link.push({ hid: 'alternate', rel: 'alternate', href, hreflang: altLang })
@@ -172,10 +198,10 @@ export const actions = {
 				// the current route
 				routes[lang] = fetch.uid
 
-				// check for type of path 
+				// check for type of path
 				let pathType
-				if(type === "blog_post")  pathType = 'blog/'
-				else if(type === "project_post") pathType = 'projects/'
+				if (type === 'blog_post') pathType = 'blog/'
+				else if (type === 'project_post') pathType = 'projects/'
 				else pathType = ''
 
 				// alternate languages
@@ -186,12 +212,12 @@ export const actions = {
 
 					// path is a sting with slashes at the beggining and end , which occur empty item in array
 					// split by slash to get array
-					const pathAltLang = altLang === state.defaultLanguage ? '' : `${altLang}/`
+					const pathAltLang = altLang === state.defaultLanguage ? '' : `${ altLang }/`
 					// routes
 					routes[altLang] = alterLang.uid
 
 					// links & meta
-					href = `${state.domain}/${pathAltLang}${pathType}${alterLang.uid}/`
+					href = `${ state.domain }/${ pathAltLang }${ pathType }${ alterLang.uid }/`
 
 					head.link.push({ hid: 'alternate', rel: 'alternate', href, hreflang: altLang })
 
@@ -199,7 +225,7 @@ export const actions = {
 				})
 
 				// canonical link
-				const canonical = `${state.domain}${path}`
+				const canonical = `${ state.domain }${ path }`
 				if (lang === state.defaultLanguage) head.link.push({ hid: 'alternate', rel: 'alternate', href: canonical, hreflang: 'x-default' })
 				head.link.push({ hid: 'canonical', rel: 'canonical', href: canonical })
 				head.meta.push({ hid: 'og:url', name: 'og:url', content: canonical })
@@ -252,8 +278,8 @@ export const actions = {
 		}
 
 		// the current route
-		routesChild[lang] = `${fetch.uid}`
-		routesParent[lang] = `${parentUid}`
+		routesChild[lang] = `${ fetch.uid }`
+		routesParent[lang] = `${ parentUid }`
 
 		// alternate languages
 		let href
@@ -268,16 +294,16 @@ export const actions = {
 				const currentParentUid = parent.alternate_languages.filter((el) => {
 					return el.lang === alterLang.lang
 				})
-				routesChild[altLang] = `${alterLang.uid}`
-				routesParent[altLang] = `${currentParentUid[0].uid}`
-				href = `${state.domain}/${currentParentUid[0].uid}/${alterLang.uid}/`
+				routesChild[altLang] = `${ alterLang.uid }`
+				routesParent[altLang] = `${ currentParentUid[0].uid }`
+				href = `${ state.domain }/${ currentParentUid[0].uid }/${ alterLang.uid }/`
 			} else {
 				const currentParentUid = parent.alternate_languages.filter((el) => {
 					return el.lang === alterLang.lang
 				})
-				routesChild[altLang] = `${alterLang.uid}`
-				routesParent[altLang] = `${currentParentUid[0].uid}`
-				href = `${state.domain}/${altLang}/${currentParentUid[0].uid}/${alterLang.uid}/`
+				routesChild[altLang] = `${ alterLang.uid }`
+				routesParent[altLang] = `${ currentParentUid[0].uid }`
+				href = `${ state.domain }/${ altLang }/${ currentParentUid[0].uid }/${ alterLang.uid }/`
 			}
 			// links & meta
 			if (altLang === state.defaultLanguage) head.link.push({ hid: 'alternate', rel: 'alternate', href, hreflang: 'x-default' })
@@ -291,11 +317,11 @@ export const actions = {
 			ua: { [parentType]: routesParent.ua, [type]: routesChild.ua },
 		})
 
-		const canonical = `${state.domain}${path}`
+		const canonical = `${ state.domain }${ path }`
 		if (lang === state.defaultLanguage) head.link.push({ hid: 'alternate', rel: 'alternate', href: canonical, hreflang: 'x-default' })
 		head.link.push({ hid: 'canonical', rel: 'canonical', canonical })
 		head.link.push({ hid: 'og:url', property: 'og:url', content: canonical })
-		
+
 		head.meta.push(
 			...[
 				{ hid: 'description', name: 'description', content: fetch.data.meta_description },
@@ -311,6 +337,5 @@ export const actions = {
 		)
 
 		await commit('setPage', { head, data: fetch.data, tags: fetch.tags })
-
 	},
 }

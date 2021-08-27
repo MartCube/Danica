@@ -33,6 +33,7 @@ export const getters = {
 
 	domain: (state) => state.domain,
 	page: (state) => state.page,
+	head: (state) => state.page.head,
 	routes: (state) => state.routes,
 }
 
@@ -60,7 +61,7 @@ export const mutations = {
 		state.page = value
 	},
 	setMeta(state, value) {
-		state.page.head.link.push(value)
+		state.page.head = value
 	},
 }
 
@@ -84,30 +85,8 @@ export const actions = {
 	bindModalVideo(context, value) {
 		context.commit('setModalVideo', value)
 	},
-
-	setMeta(lang, metatitle, description, image, canonical) {
-		const head = {
-			htmlAttrs: { lang },
-			title: metatitle,
-			link: [], //	canonicals
-			meta: [],
-		}
-		head.link.push({ hid: '', rel: 'canonical', href: canonical })
-		// head.link.push({ hid: 'alternate', rel: 'alternate', href: canonical, hreflang: 'x-default' })
-		// head.link.push({ hid: 'alternate', rel: 'alternate', href: canonical, hreflang: altLang  })
-		head.meta.push(
-			...[
-				{ hid: 'description', name: 'description', content: description },
-				// facebook
-				{ hid: 'og:type', property: 'og:type', content: '' },
-				{ hid: 'og:url', property: 'og:url', content: canonical },
-				{ hid: 'og:title', property: 'og:title', content: metatitle },
-				{ hid: 'og:description', property: 'og:description', content: description },
-				{ hid: 'og:image', property: 'og:image', content: image === undefined ? '' : image.url },
-				// twitter
-				{ hid: 'twitter:card', name: 'twitter:card', content: image === undefined ? '' : image.url },
-			],
-		)
+	async bindMeta(context, value) {
+		await context.commit('setMeta', value)
 	},
 
 	async storeSingle({ state, commit, dispatch }, { type, language }) {
@@ -180,7 +159,7 @@ export const actions = {
 			.getByUID(type, uid, { lang: language })
 			.then(async (fetch) => {
 				// let fetch = await fetchDtata
-				console.log(path)
+				// console.log(path)
 				// if(fetch)
 				const lang = fetch.lang.slice(0, 2)
 

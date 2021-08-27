@@ -1,10 +1,12 @@
 <template>
-  <div class="container">
-    <div v-for="(slice, i) in slices" :key="i" class="slice" :class="slice.slice_type">
-			<h3 class="title">{{ $prismic.asText(slice.primary.title) }}</h3>
-			<prismic-rich-text class="rich_text" :field="slice.primary.text" />
-		</div>
-  </div>
+	<div class="container">
+		<template  v-if="!$fetchState.pending">
+			<div v-for="(slice, i) in slices" :key="i" class="slice" :class="slice.slice_type">
+				<h3 class="title">{{ $prismic.asText(slice.primary.title) }}</h3>
+				<prismic-rich-text class="rich_text" :field="slice.primary.text" />
+			</div>
+		</template>
+	</div>
 </template>
 
 <script>
@@ -13,14 +15,11 @@ import gql from "graphql-tag";
 import client from "@/plugins/apollo.js";
 
 export default {
+	name: 'Policy',
 	data: () => ({
-		// slices: [],
 		data: [],
-
-		
 	}),
   async fetch() {
-		// console.log(route, this.$i18n.localeProperties.prismic);
 		await client
       .query({
         /* eslint-disable prettier/prettier */
@@ -52,25 +51,27 @@ export default {
       })
       .then((data) => {
 				this.data = data;
-				console.log(this.data.data.policy._meta);
-      })
-      .catch((e) => {
-				console.log(e);
-      });
-
-			// this.$store.dispatch('setMeta', {})
-  },
-	head() {
-		// await this.$nextTick()
-		return this.headData
-  },
-	computed: {
-		headData() {
-			return {
+				const meta = {
 					htmlAttrs: { lang: this.$i18n.localeProperties.code },
 					title: this.data.data.policy.meta_title,
 					link: [
-						{ hid: 'alternate', rel: 'alternate', href: this.$i18n.localeProperties.code === 'ru' ? `${this.$store.getters.domain}${this.$route.fullPath}` : `${this.$store.getters.domain}/${this.getRoutePart}/`, hreflang: 'x-default' }
+						{ hid: 'alternate', rel: 'alternate', 
+							href: this.$i18n.localeProperties.code === 'ru' ? 
+							`${this.$store.getters.domain}${this.$route.fullPath}` : 
+							`${this.$store.getters.domain}/${this.getRoutePart}/`, 
+							hreflang: 'x-default' },
+						{ hid: 'alternate', rel: 'alternate', 
+							href: this.data.data.policy._meta.alternateLanguages[0].lang.slice(0, 2) === 'ru' ? 
+							`${this.$store.getters.domain}/${this.data.data.policy._meta.alternateLanguages[0].uid}/` :
+							`${this.$store.getters.domain}/${this.data.data.policy._meta.alternateLanguages[0].lang.slice(0, 2)}/${this.data.data.policy._meta.alternateLanguages[0].uid}/`, 
+							hreflang: this.data.data.policy._meta.alternateLanguages[0].lang.slice(0, 2) 
+						},
+						{ hid: 'alternate', rel: 'alternate', 
+							href: this.data.data.policy._meta.alternateLanguages[1].lang.slice(0, 2) === 'ru' ? 
+							`${this.$store.getters.domain}/${this.data.data.policy._meta.alternateLanguages[1].uid}/` :
+							`${this.$store.getters.domain}/${this.data.data.policy._meta.alternateLanguages[1].lang.slice(0, 2)}/${this.data.data.policy._meta.alternateLanguages[1].uid}/` 
+							, 
+							hreflang: this.data.data.policy._meta.alternateLanguages[1].lang.slice(0, 2) },
 					], 
 					meta: [
 						{ hid: '', rel: 'canonical', href: `${this.$store.getters.domain}${this.$route.fullPath}` },
@@ -85,7 +86,17 @@ export default {
 						{ hid: 'twitter:card', name: 'twitter:card', content: this.data.data.policy.meta_image === null ? '' : this.data.data.policy.meta_image.url },
 					],
 				}
-		},
+				this.$store.dispatch('bindMeta', meta)
+      })
+      .catch((e) => {
+				console.log(e);
+      });
+
+  },
+	head() {
+		return this.$store.getters.page.head
+	},
+	computed: {
 		slices() {
 			return [...this.data.data.policy.body];
 		},
@@ -94,6 +105,9 @@ export default {
 			route = route[route.length - 2]
 			return route
 		}
+	},
+	watch: {
+		'$route.path': '$fetch'
 	},
  
 };

@@ -31,7 +31,7 @@ export default {
 		this.slices = this.$store.getters.page.data.body
 	},
 	watch: {
-		'$route.query':'$fetch',
+		'$route.path':'$fetch',
 	},
 	data: () => ({
 		slices: []

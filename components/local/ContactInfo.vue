@@ -39,7 +39,7 @@
 					<a href="https://m.me/danica.ukraine" rel="nofollow" target="_blank">
 						<IconMessenger />
 					</a>
-					<a href="https://t.me/andreybukin" rel="nofollow" target="_blank">
+					<a href="https://t.me/danicasales" rel="nofollow" target="_blank">
 						<IconTelegram />
 					</a>
 					<a href="viber://chat/?number=%2B380973591111" rel="nofollow" target="_blank">

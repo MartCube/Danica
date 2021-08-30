@@ -7,9 +7,9 @@
 				<IconMail :size="topHeaderIconSize" :fill="topHeaderIconColor" />
 				info@danica.ua
 			</a>
-			<a href="tel:+380673591111" class="phone">
+			<a href="tel:+380973591111" class="phone">
 				<IconPhone :size="topHeaderIconSize" :fill="topHeaderIconColor" />
-				+38067-359-11-11
+				 +38(097)-359-11-11
 			</a>
 			<span class="schedule">
 				<IconClock :size="topHeaderIconSize" :fill="topHeaderIconColor" />

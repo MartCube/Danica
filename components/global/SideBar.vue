@@ -2,7 +2,7 @@
 	<aside>
 		<ul class="messengers">
 			<li>
-				<a href="https://t.me/andreybukin" rel="nofollow" target="_blank">
+				<a href="https://t.me/danicasales" rel="nofollow" target="_blank">
 					<IconTelegram :fill="color" />
 				</a>
 			</li>

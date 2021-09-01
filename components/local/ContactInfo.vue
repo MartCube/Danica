@@ -101,9 +101,7 @@ export default {
 
 		h4 {
 			color: inherit;
-
 			font-size: 0.8rem;
-			font-weight: medium;
 			margin-bottom: 14px;
 			user-select: none;
 			&::first-letter {

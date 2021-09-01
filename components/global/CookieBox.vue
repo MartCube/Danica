@@ -44,7 +44,6 @@ export default {
 	a {
 		color: inherit;
 		text-decoration: underline;
-		font-weight: 400;
 	}
 
 	section {

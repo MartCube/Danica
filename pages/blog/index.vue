@@ -170,8 +170,8 @@ export default {
 			margin: 10px 0;
 			text-transform: capitalize;
 			white-space: nowrap;
-			font-weight: 500;
 			font-size: 1.2rem;
+			font-weight: bold;
 			display: flex;
 			align-items: center;
 			cursor: pointer;

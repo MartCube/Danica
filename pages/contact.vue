@@ -106,7 +106,6 @@ export default {
 		width: 100%;
 		padding-right: 50%;
 		margin-bottom: 3rem;
-		font-weight: 500;
 	}
 	.wrap {
 		width: 100%;
@@ -183,7 +182,6 @@ export default {
 				background: $primary;
 				padding: 2px 10px;
 				z-index: 4;
-				font-weight: 500;
 			}
 			img {
 				width: 100%;

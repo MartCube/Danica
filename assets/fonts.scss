@@ -1,37 +1,7 @@
-@font-face {
-    font-family: 'MyFont';
-    src: url('/fonts/Verdana.woff2') format('woff2');
-    font-weight: 300;
-    font-style: normal;
-    font-display: swap;
-}
-
-@font-face {
-    font-family: 'MyFont';
-    src: url('/fonts/Ubuntu.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
-    font-display: swap;
-}
-
-@font-face {
-    font-family: 'MyFont';
-    src: url('/fonts/Ubuntu-Medium.woff') format('woff');
-    font-weight: 500;
-    font-style: normal;
-    font-display: swap;
-}
-
-@font-face {
-    font-family: 'MyFont';
-    src: url('/fonts/Ubuntu-Bold.woff') format('woff');
-    font-weight: bold;
-    font-style: normal;
-    font-display: swap;
-}
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;700&display=swap');
 @font-face {
     font-family: 'Numbers';
-    src: url('/fonts/bold.woff2') format('woff2');
+    src: url('/fonts/numbers.woff2') format('woff2');
     font-weight: bold;
     font-style: normal;
     font-display: swap;

@@ -132,7 +132,7 @@ export default {
 				min-width: 1rem;
 				text-transform: none;
 				line-height: initial;
-				font-weight: 400;
+				// font-weight: 400;
 				font-size: 4vw;
 			}
 		}

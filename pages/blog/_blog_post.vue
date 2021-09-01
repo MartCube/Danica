@@ -55,15 +55,6 @@
 <script>
 export default {
 	name: 'BlogPost',
-	async fetch() {
-		await this.$store.dispatch('storeByUID', {
-			type: 'blog_post',
-			uid: this.$route.params.blog_post,
-			language: this.$i18n.localeProperties.prismic,
-			path: this.$route.fullPath,
-		})
-	
-	},
 	data: () => ({
 		// data: [],
 		swiperOption: {
@@ -76,6 +67,14 @@ export default {
 			},
 		},
 	}),
+	async fetch() {
+		await this.$store.dispatch('storeByUID', {
+			type: 'blog_post',
+			uid: this.$route.params.blog_post,
+			language: this.$i18n.localeProperties.prismic,
+			path: this.$route.fullPath,
+		})
+	},
 	head() {
 		return this.$store.getters.page.head
 	},
@@ -154,7 +153,6 @@ export default {
 			align-items: center;
 
 			text-transform: capitalize;
-			font-weight: 500;
 			font-size: 1.2rem;
 			line-height: 1.5rem;
 
@@ -183,7 +181,6 @@ export default {
 		width: 75%;
 
 		.rich_text {
-			font-weight: 300;
 			font-size: 1.2rem;
 			line-height: 1.5rem;
 		}

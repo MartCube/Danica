@@ -58,8 +58,6 @@ export default {
 	width: 100%;
 	height: 51px;
 
-	font-weight: 500;
-
 	input {
 		font-family: inherit;
 		width: 100%;

@@ -57,7 +57,6 @@ export default {
 	width: 50%;
 
 	p {
-		font-weight: normal;
 		font-size: 1rem;
 		line-height: 1.5rem;
 

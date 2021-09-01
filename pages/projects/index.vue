@@ -136,7 +136,7 @@ export default {
 			margin: 10px 0;
 			text-transform: capitalize;
 			white-space: nowrap;
-			font-weight: 500;
+			font-weight: bold;
 			font-size: 1.2rem;
 			display: flex;
 			align-items: center;

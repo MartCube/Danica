@@ -123,7 +123,6 @@ export default {
 		.rich_text p {
 			color: $white;
 			line-height: 1.5rem;
-			font-weight: 400;
 		}
 		button {
 			margin-top: 2rem;

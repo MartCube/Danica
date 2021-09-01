@@ -77,15 +77,18 @@ export default {
 			display: flex;
 			flex-direction: column;
 			.number {
-				font-size: 3rem;
+				font-size: 4rem;
 				line-height: initial;
-				font-weight: 700;
+				font-family: 'Numbers';
 				margin: 0;
 			}
 			h4 {
 				margin: 0;
-				text-transform: capitalize;
 				word-spacing: 1px;
+				font-size: 1.2rem;
+				&::first-letter {
+					text-transform: capitalize;
+				}
 			}
 		}
 	}

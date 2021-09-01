@@ -139,7 +139,6 @@ export default {
 				padding: 15px 0;
 				writing-mode: vertical-rl;
 				text-orientation: mixed;
-				font-weight: 500;
 				color: $black;
 			}
 		}

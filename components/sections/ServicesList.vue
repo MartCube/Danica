@@ -61,7 +61,6 @@ $transition: all 0.35s ease;
 				display: flex;
 				align-items: center;
 				position: relative;
-				font-weight: 500;
 
 				span {
 					color: $primary;

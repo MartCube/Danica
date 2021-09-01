@@ -223,7 +223,6 @@ $transition: all 0.35s ease;
 			cursor: pointer;
 			span {
 				line-height: 12px;
-				font-weight: 400;
 			}
 			&:hover {
 				background: $primary;
@@ -245,7 +244,6 @@ $transition: all 0.35s ease;
 			align-items: center;
 			text-decoration: none;
 			line-height: 12px;
-			font-weight: 400;
 			color: $black;
 			outline: none;
 			position: relative;
@@ -273,7 +271,6 @@ $transition: all 0.35s ease;
 				text-decoration: none;
 				font-size: 1rem;
 				text-transform: capitalize;
-				font-weight: 400;
 				color: $black;
 				outline: none;
 				transition: all 0.2s ease;
@@ -298,7 +295,6 @@ $transition: all 0.35s ease;
 					position: relative;
 					z-index: 3;
 					font-size: inherit;
-					font-weight: inherit;
 					color: inherit;
 					outline: inherit;
 					transition: inherit;
@@ -355,7 +351,6 @@ $transition: all 0.35s ease;
 				padding: 0 10px;
 				position: relative;
 
-				font-weight: 400;
 				font-size: 1.5rem;
 				color: $black;
 

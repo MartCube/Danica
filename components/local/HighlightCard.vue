@@ -154,7 +154,6 @@ $transition: all 0.35s ease;
 			}
 			.text_slice p {
 				margin-bottom: 20px;
-				font-weight: 300;
 				font-size: 1.2rem;
 				line-height: 1.5rem;
 				max-height: 172px;

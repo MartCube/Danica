@@ -87,7 +87,6 @@ export default {
 		}
 	}
 	a {
-		font-weight: 400;
 		transition: opacity 0.2 ease;
 		&:hover {
 			color: $grey;
@@ -139,7 +138,6 @@ export default {
 			p {
 				color: $white;
 				font-size: 1rem;
-				font-weight: 400;
 			}
 			a {
 				display: flex;

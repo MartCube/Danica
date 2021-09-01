@@ -158,10 +158,9 @@ export default {
 		flex-direction: column;
 		p {
 			padding: 10px 0;
-
+			font-weight: bold;
 			text-transform: capitalize;
 			color: $black;
-			font-weight: 500;
 			font-size: 1.5rem;
 			line-height: 1.2rem;
 			span {

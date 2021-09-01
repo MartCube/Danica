@@ -30,18 +30,6 @@ export default {
 			},
 		],
 		link: [{ rel: 'icon', type: 'image/png', href: '/favicon.png' }],
-		script: [
-			{
-				src: '//code-eu1.jivosite.com/widget/hJiAnsQxXU',
-				async: true,
-				body: true,
-			},
-			{
-				src: '//widgets.binotel.com/getcall/widgets/wxsbr5l1at0qrtlacjzf.js',
-				async: true,
-				body: true,
-			},
-		],
 	},
 
 	loading: { color: '#ffc424' },

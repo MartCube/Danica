@@ -56,12 +56,10 @@ export default {
 	.title {
 		padding: 40px 0;
 		position: relative;
-
-		
 		font-size: 1.2rem;
 		line-height: 1.5rem;
 		border-top: 2px solid $black;
-		&::first-letter{
+		&::first-letter {
 			text-transform: capitalize;
 		}
 	}
@@ -74,7 +72,6 @@ export default {
 			font-size: 0.8rem;
 			// opacity: 0.5;
 			color: rgba(0, 0, 0, 0.4);
-			font-weight: 500;
 		}
 		.tag {
 			color: darken($primary, 5%);
@@ -172,7 +169,6 @@ export default {
 			}
 			.tag {
 				color: $primary;
-				font-weight: 500;
 			}
 		}
 

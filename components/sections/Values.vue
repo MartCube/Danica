@@ -16,7 +16,7 @@
 					<Icon name="play" />
 				</div>
 			</div>
-			<ModalVideo :video="data.primary.video" />
+			<LazyModalVideo :video="data.primary.video" />
 		</div>
 	</section>
 </template>

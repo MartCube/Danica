@@ -6,7 +6,7 @@
 			<Nuxt keep-alive />
 		</main>
 		<Footer />
-		<ContactModal />
+		<LazyContactModal />
 		<CookieBox />
 	</div>
 </template>
@@ -21,7 +21,7 @@ export default {
 		setTimeout(() =>{
 			this.$fb.enable();
 			this.$gtm.init('GTM-T5X9PFF')
-		}, 5500)
+		}, 15000)
 	},
 }
 </script>

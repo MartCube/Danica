@@ -21,7 +21,7 @@ export default {
 		setTimeout(() =>{
 			this.$fb.enable();
 			this.$gtm.init('GTM-T5X9PFF')
-		}, 15000)
+		}, 1000)
 	},
 }
 </script>

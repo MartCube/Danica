@@ -4,8 +4,8 @@
 			<h2 class="title">{{ data.title }}</h2>
 			<InputItem name="name" :label="data.name" rules="required" @getValue="getName" />
 			<InputItem name="number" :label="data.number" rules="min:9|required" @getValue="getNumber" />
-			<InputItem name="email" :label="data.email" rules="email|required" @getValue="getEmail" />
-			<InputItem name="message" :label="data.message" rules="required" @getValue="getMessage" />
+			<InputItem name="email" :label="data.email" rules="email" @getValue="getEmail" />
+			<InputItem name="message" :label="data.message" @getValue="getMessage" />
 			<ButtonItem white> {{ data.submit }} <Icon name="mail" /> </ButtonItem>
 		</ValidationObserver>
 

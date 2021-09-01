@@ -18,14 +18,14 @@
 				<p>square</p>
 			</div>
 			<div class="link1">
-				<IconChevron size="32px" />
+				<Icon name="chevron" size="32px" />
 			</div>
 		</div>
 	</n-link>
 	<n-link v-else :to="link" class="highlight_card" :class="{ last: last }">
 		<ImageItem :src="image + Thumbnail_imgIX" :alt="title" />
 		<div class="link">
-			<IconChevron size="32px" />
+			<Icon name="chevron" size="32px" />
 		</div>
 		<div class="title">
 			<h3>{{ title }}</h3>
@@ -235,7 +235,7 @@ $transition: all 0.35s ease;
 // 				width: 150px;
 // 				height: inherit;
 // 			}
-// 		} 
+// 		}
 // 	}
 // }
 @media (max-width: 1200px) {

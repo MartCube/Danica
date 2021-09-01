@@ -3,23 +3,23 @@
 		<div class="office">
 			<div class="numbers">
 				<h4>{{ $t('pages.contact.office') }}:</h4>
-				<a v-for="(number, i) in data.office" :key="i" :href="NumberLink(number)"> <IconPhone size="16px" /> {{ $prismic.asText(number.number) }} </a>
+				<a v-for="(number, i) in data.office" :key="i" :href="NumberLink(number)"> <Icon name="phone" size="16px" /> {{ $prismic.asText(number.number) }} </a>
 			</div>
 			<div class="location">
 				<h4>{{ $t('pages.contact.find_us') }}</h4>
-				<a :href="map_url" rel="nofollow" target="_blank"> <IconLocation size="20px" />{{ $t('pages.contact.adress') }}</a>
+				<a :href="map_url" rel="nofollow" target="_blank"> <Icon name="location" size="20px" />{{ $t('pages.contact.adress') }}</a>
 			</div>
 			<div class="smedias">
 				<h4>{{ $t('pages.contact.follow_us') }}</h4>
 				<div class="icons">
 					<a href="https://facebook.com/danica.ukraine" rel="nofollow" target="_blank">
-						<IconFacebook />
+						<Icon name="facebook" />
 					</a>
 					<a href="https://www.instagram.com/danica.ua" rel="nofollow" target="_blank">
-						<IconInstagram />
+						<Icon name="instagram" />
 					</a>
 					<a href="https://www.youtube.com/channel/UCfA8wYre6FEfokmx3wbxfBA" rel="nofollow" target="_blank">
-						<IconYoutube />
+						<Icon name="youtube" />
 					</a>
 				</div>
 			</div>
@@ -27,23 +27,23 @@
 		<div class="for_clients">
 			<div class="numbers">
 				<h4>{{ $t('pages.contact.for_clients') }}</h4>
-				<a v-for="(number, i) in data.office" :key="i" :href="NumberLink(number)"> <IconPhone size="16px" /> {{ $prismic.asText(number.number) }} </a>
+				<a v-for="(number, i) in data.office" :key="i" :href="NumberLink(number)"> <Icon name="phone" size="16px" /> {{ $prismic.asText(number.number) }} </a>
 			</div>
 			<div class="contact">
 				<h4>{{ $t('service.form.write_us') }}</h4>
-				<span @click="openModal()"> <IconMail size="20px" /> info@danica.ua</span>
+				<span @click="openModal()"> <Icon name="mail" size="20px" /> info@danica.ua</span>
 			</div>
 			<div class="chat">
 				<h4>{{ $t('pages.contact.live_chat') }}</h4>
 				<div class="icons">
 					<a href="https://m.me/danica.ukraine" rel="nofollow" target="_blank">
-						<IconMessenger />
+						<Icon name="messenger" />
 					</a>
 					<a href="https://t.me/danicasales" rel="nofollow" target="_blank">
-						<IconTelegram />
+						<Icon name="telegram" />
 					</a>
 					<a href="viber://chat/?number=%2B380973591111" rel="nofollow" target="_blank">
-						<IconViber />
+						<Icon name="viber" />
 					</a>
 				</div>
 			</div>

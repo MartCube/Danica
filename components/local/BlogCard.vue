@@ -8,7 +8,7 @@
 		<div class="image">
 			<ImageItem :src="image.card.url" :mobile="image.mobileCard.url" :alt="title" />
 			<div class="link">
-				<IconChevron size="25px" />
+				<Icon name="chevron" size="25px" />
 			</div>
 		</div>
 	</n-link>
@@ -57,11 +57,10 @@ export default {
 		padding: 40px 0;
 		position: relative;
 
-		
 		font-size: 1.2rem;
 		line-height: 1.5rem;
 		border-top: 2px solid $black;
-		&::first-letter{
+		&::first-letter {
 			text-transform: capitalize;
 		}
 	}
@@ -225,7 +224,7 @@ export default {
 			font-size: 1.6rem;
 			line-height: 1.3;
 		}
-	} 
+	}
 }
 @media (max-width: 1100px) {
 	.blog_card {

@@ -3,7 +3,7 @@
 		<div class="image">
 			<ImageItem :src="image" :alt="title" />
 			<div class="link">
-				<IconChevron size="25px" />
+				<Icon name="chevron" size="25px" />
 			</div>
 		</div>
 		<h2>{{ title }}</h2>
@@ -94,7 +94,7 @@ export default {
 		position: relative;
 		font-size: 1.8rem;
 		// text-transform: capitalize;
-		&::first-letter{
+		&::first-letter {
 			text-transform: capitalize;
 		}
 		&::after {

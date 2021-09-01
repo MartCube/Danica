@@ -16,7 +16,7 @@
 			</div>
 			<div class="policy">
 				<div class="links">
-					<n-link to="/"> Danica {{ year }} <IconCopyRight size="16px" /></n-link>
+					<n-link to="/"> Danica {{ year }} <Icon name="copyright" size="16px" /></n-link>
 					<span>|</span>
 					<p>{{ $prismic.asText(data.all_rights_reserved) }}</p>
 				</div>

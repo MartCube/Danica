@@ -11,7 +11,7 @@
 					<template v-if="data.image.url">
 						<ImageItem :src="data.image.url" :mobile="data.image.mobile.url" :alt="title" />
 					</template>
-					<!-- <n-link class="go_back" to="/blog"> <IconArrow />go back </n-link> -->
+					<!-- <n-link class="go_back" to="/blog"> <Icon name="arrow" />go back </n-link> -->
 				</div>
 
 				<!-- Slice Machine -->
@@ -55,15 +55,6 @@
 <script>
 export default {
 	name: 'BlogPost',
-	async fetch() {
-		await this.$store.dispatch('storeByUID', {
-			type: 'blog_post',
-			uid: this.$route.params.blog_post,
-			language: this.$i18n.localeProperties.prismic,
-			path: this.$route.fullPath,
-		})
-	
-	},
 	data: () => ({
 		// data: [],
 		swiperOption: {
@@ -76,6 +67,14 @@ export default {
 			},
 		},
 	}),
+	async fetch() {
+		await this.$store.dispatch('storeByUID', {
+			type: 'blog_post',
+			uid: this.$route.params.blog_post,
+			language: this.$i18n.localeProperties.prismic,
+			path: this.$route.fullPath,
+		})
+	},
 	head() {
 		return this.$store.getters.page.head
 	},
@@ -90,7 +89,7 @@ export default {
 		},
 		data() {
 			return this.$store.getters.page.data
-		}
+		},
 	},
 }
 </script>
@@ -259,8 +258,8 @@ export default {
 // 		.intro .title{
 // 			font-size: 3rem;
 // 		}
-// 	} 
-	
+// 	}
+
 // }
 
 @media (max-width: 900px) {

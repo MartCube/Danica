@@ -5,8 +5,7 @@ export default {
 	target: 'static',
 
 	// Auto import components (https://go.nuxtjs.dev/config-components)
-	// components: true,
-	components: ['~/components/forms', '~/components/icons', '~/components/global', '~/components/items', '~/components/local', '~/components/sections'],
+	components: ['~/components/forms', '~/components/global', '~/components/items', '~/components/local', '~/components/sections'],
 
 	// Global page headers (https://go.nuxtjs.dev/config-head)
 	head: {
@@ -30,18 +29,6 @@ export default {
 			},
 		],
 		link: [{ rel: 'icon', type: 'image/png', href: '/favicon.png' }],
-		script: [
-			{
-				src: '//code-eu1.jivosite.com/widget/hJiAnsQxXU',
-				async: true,
-				body: true,
-			},
-			{
-				src: '//widgets.binotel.com/getcall/widgets/wxsbr5l1at0qrtlacjzf.js',
-				async: true,
-				body: true,
-			},
-		],
 	},
 
 	loading: { color: '#ffc424' },
@@ -136,7 +123,7 @@ export default {
 				ru: '/blog',
 				ua: '/blog',
 			},
-			'_services': {
+			_services: {
 				en: '/:services',
 				ru: '/:services',
 				ua: '/:services',

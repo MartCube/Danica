@@ -18,8 +18,8 @@
 			</div>
 
 			<div class="pagination">
-				<IconDouble left :class="{ disable: !prev_page }" @click.native="fetchFirst" />
-				<IconChevron left :class="{ disable: !prev_page }" @click.native="fetchBack" />
+				<Icon name="double" direction="left" :class="{ disable: !prev_page }" @click.native="fetchFirst" />
+				<Icon name="chevron" direction="left" :class="{ disable: !prev_page }" @click.native="fetchBack" />
 				<MediaQueryProvider :queries="{ mobile: '(max-width: 900px)' }" ssr>
 					<MatchMedia v-slot="{ mobile }">
 						<div class="pages">
@@ -28,8 +28,8 @@
 						</div>
 					</MatchMedia>
 				</MediaQueryProvider>
-				<IconChevron :class="{ disable: !next_page }" @click.native="fetchNext" />
-				<IconDouble :class="{ disable: !next_page }" @click.native="fetchLast" />
+				<Icon name="chevron" :class="{ disable: !next_page }" @click.native="fetchNext" />
+				<Icon name="double" :class="{ disable: !next_page }" @click.native="fetchLast" />
 			</div>
 		</div>
 	</div>

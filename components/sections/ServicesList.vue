@@ -10,7 +10,7 @@
 					<n-link :to="linkResolver(item)">
 						<span>0{{ i + 1 }}/</span>
 						{{ item.name }}
-						<IconArrow />
+						<Icon name="arrow" />
 					</n-link>
 				</div>
 			</div>

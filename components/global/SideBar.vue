@@ -3,27 +3,27 @@
 		<ul class="messengers">
 			<li>
 				<a href="https://t.me/danicasales" rel="nofollow" target="_blank">
-					<IconTelegram :fill="color" />
+					<Icon name="telegram" :fill="color" />
 				</a>
 			</li>
 			<li>
 				<a href="https://facebook.com/danica.ukraine" rel="nofollow" target="_blank">
-					<IconFacebook :fill="color" />
+					<Icon name="facebook" :fill="color" />
 				</a>
 			</li>
 			<li>
 				<a href="https://www.instagram.com/danica.ua" rel="nofollow" target="_blank">
-					<IconInstagram :fill="color" />
+					<Icon name="instagram" :fill="color" />
 				</a>
 			</li>
 			<li>
 				<a href="viber://chat/?number=%2B380973591111" rel="nofollow" target="_blank">
-					<IconViber :fill="color" />
+					<Icon name="viber" :fill="color" />
 				</a>
 			</li>
 			<li>
 				<a href="tel:+380973591111" rel="nofollow" target="_blank">
-					<IconPhone :fill="color" />
+					<Icon name="phone" :fill="color" />
 				</a>
 			</li>
 		</ul>

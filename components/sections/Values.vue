@@ -13,7 +13,7 @@
 			<div class="image">
 				<ImageItem :src="image.url" :mobile="image.mobile.url" :alt="image.alt" />
 				<div class="play" @click="openModal">
-					<IconPlay />
+					<Icon name="play" />
 				</div>
 			</div>
 			<ModalVideo :video="data.primary.video" />

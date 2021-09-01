@@ -5,8 +5,7 @@ export default {
 	target: 'static',
 
 	// Auto import components (https://go.nuxtjs.dev/config-components)
-	// components: true,
-	components: ['~/components/forms', '~/components/icons', '~/components/global', '~/components/items', '~/components/local', '~/components/sections'],
+	components: ['~/components/forms', '~/components/global', '~/components/items', '~/components/local', '~/components/sections'],
 
 	// Global page headers (https://go.nuxtjs.dev/config-head)
 	head: {
@@ -124,7 +123,7 @@ export default {
 				ru: '/blog',
 				ua: '/blog',
 			},
-			'_services': {
+			_services: {
 				en: '/:services',
 				ru: '/:services',
 				ua: '/:services',

@@ -5,7 +5,7 @@
 		</div>
 
 		<input :id="name" v-model="input_value" :type="type" :placeholder="name" :name="name" @change="emitValue" />
-		<IconArrow v-if="subscribe" class="arrow" />
+		<Icon v-if="subscribe" name="arrow" class="arrow" />
 
 		<label :for="name" class="input_label">{{ label }}</label>
 	</ValidationProvider>
@@ -154,7 +154,7 @@ export default {
 // 			width: 30px;
 // 			height: 30px;
 // 		}
-// 	} 
+// 	}
 // }
 @media (max-width: 1200px) {
 }

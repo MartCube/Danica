@@ -4,7 +4,7 @@
 			<ImageItem v-if="!$fetchState.pending" :src="image" alt="contact" />
 		</div>
 		<ContactForm :data="form_data" />
-		<IconClose class="close" size="35px" @click.native="closeModal" />
+		<Icon name="close" class="close" size="35px" @click.native="closeModal" />
 	</div>
 </template>
 
@@ -29,7 +29,7 @@ export default {
 	watch: {
 		async modalContact() {
 			await this.$nextTick()
-			if (this.modalContact){ 
+			if (this.modalContact) {
 				modalAnim(this.$refs.modal)
 				this.$fetch()
 			}

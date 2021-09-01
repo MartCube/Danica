@@ -13,7 +13,7 @@
 			</div>
 			<div class="policy">
 				<div class="links">
-					<n-link to="/"> Danica {{ year }} <IconCopyRight size="16px" /></n-link>
+					<n-link to="/"> Danica {{ year }} <Icon name="copyright" size="16px" /></n-link>
 					<span>|</span>
 					<p>{{ $prismic.asText(data.all_rights_reserved) }}</p>
 				</div>
@@ -24,7 +24,7 @@
 				</div>
 			</div>
 			<div class="to_top" @click="ScrollToTop">
-				<IconChevron size="32px" top />
+				<Icon name="chevron" size="32px" direction="top" />
 			</div>
 		</template>
 	</footer>
@@ -168,9 +168,6 @@ export default {
 		background: $primary;
 		cursor: pointer;
 
-		svg {
-			transition: all 0.35s ease;
-		}
 		&:hover {
 			svg {
 				transform: rotate(-90deg) scale(1.2);

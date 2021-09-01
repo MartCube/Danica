@@ -4,15 +4,15 @@
 			<ButtonItem @click.native="openModal"> {{ $t('service.form.write_us') }} </ButtonItem>
 			<!-- <address> -->
 			<a href="mailto:info@danica.ua" class="email">
-				<IconMail :size="topHeaderIconSize" :fill="topHeaderIconColor" />
+				<Icon name="mail" :size="topHeaderIconSize" :fill="topHeaderIconColor" />
 				info@danica.ua
 			</a>
 			<a href="tel:+380973591111" class="phone">
-				<IconPhone :size="topHeaderIconSize" :fill="topHeaderIconColor" />
-				 +38(097)-359-11-11
+				<Icon name="phone" :size="topHeaderIconSize" :fill="topHeaderIconColor" />
+				+38(097)-359-11-11
 			</a>
 			<span class="schedule">
-				<IconClock :size="topHeaderIconSize" :fill="topHeaderIconColor" />
+				<Icon name="clock" :size="topHeaderIconSize" :fill="topHeaderIconColor" />
 				пн-пт 10:00 -18:00
 			</span>
 			<!-- </address> -->
@@ -58,7 +58,6 @@
 						</li>
 					</ul>
 				</template>
-
 			</li>
 		</ul>
 
@@ -179,8 +178,8 @@ $transition: all 0.35s ease;
 			backdrop-filter: blur(10px) saturate(100%) contrast(45%) brightness(130%);
 		}
 		.links li ul {
-				background: rgba(255, 255, 255, 0.2);
-				backdrop-filter: blur(10px) saturate(100%) contrast(45%) brightness(130%);
+			background: rgba(255, 255, 255, 0.2);
+			backdrop-filter: blur(10px) saturate(100%) contrast(45%) brightness(130%);
 		}
 	}
 	&.transparent_to_white {
@@ -258,7 +257,7 @@ $transition: all 0.35s ease;
 		flex-direction: row;
 		justify-content: flex-end;
 		list-style-type: none;
-		li{
+		li {
 			display: flex;
 			height: 100%;
 			a {
@@ -301,26 +300,26 @@ $transition: all 0.35s ease;
 				}
 			}
 			position: relative;
-			ul{
+			ul {
 				position: absolute;
 				display: none;
 				opacity: 0;
 				top: 80px;
 				left: 0;
 				width: fit-content;
-				list-style-type:none;
+				list-style-type: none;
 				border-left: 5px solid $primary;
 				background-color: $white;
-				transition: opacity .3s linear;
+				transition: opacity 0.3s linear;
 				li {
-					a{
+					a {
 						height: 40px;
 						display: flex;
-						align-items:center;
+						align-items: center;
 					}
 				}
 			}
-			&:hover{
+			&:hover {
 				ul {
 					// animation: menuFadeiIn .3s linear forwards;
 					opacity: 1;
@@ -463,18 +462,17 @@ $transition: all 0.35s ease;
 	}
 }
 @keyframes menuFadeiIn {
-	0%{
+	0% {
 		display: none;
 		opacity: 0;
 	}
-	1%{
+	1% {
 		display: block;
 	}
-	100%{
+	100% {
 		display: block;
 		opacity: 1;
 	}
-	
 }
 @keyframes fadeInRight {
 	0% {
@@ -549,8 +547,12 @@ $transition: all 0.35s ease;
 		}
 		.links {
 			display: none;
-			li{height: 60px;}
-		  li:hover ul{display: none !important;}
+			li {
+				height: 60px;
+			}
+			li:hover ul {
+				display: none !important;
+			}
 		}
 		.button {
 			display: flex;

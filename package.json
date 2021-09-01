@@ -28,7 +28,6 @@
 		"vue-component-media-queries": "^1.0.0",
 		"vue-cookieconsent-component": "^1.2.0",
 		"vue-if-bot": "^1.2.0",
-		"vue-fb-customer-chat": "^0.2.0",
 		"vue-observe-visibility": "^1.0.0",
 		"vue-plyr": "^7.0.0"
 	},

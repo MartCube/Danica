@@ -1,7 +1,7 @@
-<template>
+<template functional>
 	<picture>
-		<source :data-srcset="mobile" media="(max-width:500px)" />
-		<img :data-src="src" loading="lazy" class="lazyload" :alt="alt" />
+		<source :data-srcset="props.mobile" media="(max-width:500px)" />
+		<img :data-src="props.src" loading="lazy" class="lazyload" :alt="props.alt" />
 	</picture>
 </template>
 

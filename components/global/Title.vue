@@ -1,6 +1,6 @@
-<template>
+<template functional>
 	<h1 class="title">
-		{{ value }}
+		{{ props.value }}
 	</h1>
 </template>
 

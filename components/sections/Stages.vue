@@ -10,8 +10,8 @@
 			</template>
 			<div class="list">
 				<div v-for="(stage, i) in data.items" :key="i" class="stage">
-					<h2 class="number" v-if="i < 9" >0{{ i + 1 }}<span>/</span></h2>
-					<h2 class="number" v-else >{{ i + 1 }}<span>/</span></h2>
+					<h2 v-if="i < 9" class="number">0{{ i + 1 }}<span>/</span></h2>
+					<h2 v-else class="number">{{ i + 1 }}<span>/</span></h2>
 					<div class="info">
 						<h3>{{ $prismic.asText(stage.stage_title) }}</h3>
 						<p>{{ $prismic.asText(stage.stage_description) }}</p>
@@ -48,10 +48,10 @@ export default {
 .content {
 	display: flex;
 	flex-direction: column;
-	.rich_text{
+	.rich_text {
 		padding: 0 1rem;
-    display: block;
-    margin-bottom: 60px;
+		display: block;
+		margin-bottom: 60px;
 	}
 	.list {
 		max-width: 1200px;
@@ -81,19 +81,19 @@ export default {
 				}
 			}
 			.info {
-				width: calc( 100% - 120px);
+				width: calc(100% - 120px);
 				h3 {
 					// word-spacing: 450px;
 					line-height: 1.3;
 					margin-top: 10px;
 					margin-bottom: 20px;
 					// text-transform: capitalize;
-					&::first-letter{
+					&::first-letter {
 						text-transform: capitalize;
 					}
 				}
 			}
-			.rich_text:not(empty){
+			.rich_text:not(empty) {
 				padding: 0 1rem;
 				margin-bottom: 60px;
 			}
@@ -101,7 +101,7 @@ export default {
 	}
 }
 @media (min-width: 1700px) {
-	.content .list{
+	.content .list {
 		max-width: calc(100% - 20px);
 	}
 }
@@ -131,7 +131,7 @@ export default {
 							font-size: 1.4rem;
 							word-spacing: initial;
 						}
-						p{
+						p {
 							padding-right: 1.5rem;
 						}
 					}

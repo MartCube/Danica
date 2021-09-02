@@ -78,24 +78,11 @@ export default {
 			`
 
 			// trigger netlify function
-			// try {
-			// 	await this.$axios.$post('.netlify/functions/sendmail', this.form)
-			// } catch (error) {
-			// 	console.log(error)
-			// }
-
-			const url = '/functions/sendmail'
-			const options = {
-				method: 'POST',
-				headers: {
-					'Content-type': 'multipart/form-data',
-				},
-				body: JSON.stringify(this.form),
+			try {
+				await this.$axios.$post('.netlify/functions/sendmail', this.form)
+			} catch (error) {
+				console.log(error)
 			}
-
-			fetch(url, options).then((response) => {
-				console.log(response.status)
-			})
 
 			this.loading = false
 			console.log('submited')

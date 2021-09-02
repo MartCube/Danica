@@ -13,13 +13,13 @@
 				<h4>{{ $t('pages.contact.follow_us') }}</h4>
 				<div class="icons">
 					<a href="https://facebook.com/danica.ukraine" rel="nofollow" target="_blank">
-						<Icon name="facebook" />
+						<Icon fill="rgb(255, 196, 36)" name="facebook" />
 					</a>
 					<a href="https://www.instagram.com/danica.ua" rel="nofollow" target="_blank">
-						<Icon name="instagram" />
+						<Icon fill="rgb(255, 196, 36)" name="instagram" />
 					</a>
 					<a href="https://www.youtube.com/channel/UCfA8wYre6FEfokmx3wbxfBA" rel="nofollow" target="_blank">
-						<Icon name="youtube" />
+						<Icon fill="rgb(255, 196, 36)" name="youtube" />
 					</a>
 				</div>
 			</div>
@@ -37,13 +37,13 @@
 				<h4>{{ $t('pages.contact.live_chat') }}</h4>
 				<div class="icons">
 					<a href="https://m.me/danica.ukraine" rel="nofollow" target="_blank">
-						<Icon name="messenger" />
+						<Icon fill="rgb(255, 196, 36)" name="messenger" />
 					</a>
 					<a href="https://t.me/danicasales" rel="nofollow" target="_blank">
-						<Icon name="telegram" />
+						<Icon fill="rgb(255, 196, 36)" name="telegram" />
 					</a>
 					<a href="viber://chat/?number=%2B380973591111" rel="nofollow" target="_blank">
-						<Icon name="viber" />
+						<Icon fill="rgb(255, 196, 36)" name="viber" />
 					</a>
 				</div>
 			</div>

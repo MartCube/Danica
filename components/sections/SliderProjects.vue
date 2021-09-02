@@ -7,12 +7,12 @@
 			<div class="content">
 				<h2 class="title">{{ title }}</h2>
 				<div class="project_slider">
-					<div v-swiper="swiperOption" class="swiper-container">
-						<div class="swiper-wrapper">
-							<ProjectSlide v-for="(project, i) in projects" :key="i" :data="project" class="swiper-slide" />
-						</div>
-						<div slot="pagination" class="swiper-pagination"></div>
+					<!-- <div class="swiper-container"> -->
+					<div class="project_slider_wrapper">
+						<ProjectSlide v-for="(project, i) in projects" :key="i" :data="project" class="swiper-slide" />
 					</div>
+						<!-- <div slot="pagination" class="swiper-pagination"></div> -->
+					<!-- </div> -->
 				</div>
 
 				<ButtonItem> {{ $t('service.button_all_projects') }} </ButtonItem>
@@ -33,27 +33,27 @@ export default {
 	data: () => ({
 		page_size: 5,
 		projects: null,
-		swiperOption: {
-			slidesPerView: 'auto',
-			loop: true,
-			autoplay: {
-				delay: 3000,
-				disableOnInteraction: true,
-			},
-			pagination: {
-				el: '.swiper-pagination',
-				clickable: true,
-			},
-			breakpoints: {
-				500: {
-					spaceBetween: 60,
-					autoplay: false,
-				},
-				320: {
-					spaceBetween: 20,
-				},
-			},
-		},
+		// swiperOption: {
+		// 	slidesPerView: 'auto',
+		// 	loop: true,
+		// 	autoplay: {
+		// 		delay: 3000,
+		// 		disableOnInteraction: true,
+		// 	},
+		// 	pagination: {
+		// 		el: '.swiper-pagination',
+		// 		clickable: true,
+		// 	},
+		// 	breakpoints: {
+		// 		500: {
+		// 			spaceBetween: 60,
+		// 			autoplay: false,
+		// 		},
+		// 		320: {
+		// 			spaceBetween: 20,
+		// 		},
+		// 	},
+		// },
 	}),
 	async fetch() {
 		const projects = await this.$prismic.api.query([this.$prismic.predicates.at('document.type', 'project_post'), this.$prismic.predicates.at('document.tags', [this.tag])], {
@@ -82,18 +82,29 @@ export default {
 	display: flex;
 	flex-direction: column;
 	.project_slider {
-		width: 100;
-		overflow: hidden;
-
-		.swiper-container {
-			width: inherit;
+		width: 100%;
+		overflow-x: auto;
+		margin-bottom: 2rem;
+		padding-bottom: 2rem;
+		&::-webkit-scrollbar {
+			height: 3px;
+		}
+		&::-webkit-scrollbar-track {
+			background-color: hsl(0deg, 0%, 99%);
+		}
+		&::-webkit-scrollbar-thumb {
+			background-color: #fdeab7;
+		}
+		.project_slider_wrapper {
+			width: auto;
 			height: inherit;
 			margin: 0;
 			overflow: initial;
 
-			display: flex;
-			flex-direction: column;
-			// align-items: flex-end;
+			display: inline-flex;
+			.project_slide {
+				margin-right: 2rem;
+			}
 		}
 	}
 }

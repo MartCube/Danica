@@ -86,6 +86,9 @@ export default {
 .container {
 	background: $black;
 	margin-bottom: 0;
+	.title {
+		color: $white;
+	}
 	h2,
 	span,
 	a {

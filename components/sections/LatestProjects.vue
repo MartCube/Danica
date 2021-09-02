@@ -8,11 +8,11 @@
 				<h2 class="title">{{ title }}</h2>
 
 				<div class="project_slider">
-					<div v-swiper="swiperOption" class="swiper-container">
-						<div class="swiper-wrapper">
-							<ProjectCard v-for="(project, i) in projects" :key="i" :data="project" class="swiper-slide" />
-						</div>
+					<!-- <div class="swiper-container"> -->
+					<div class="project_slider_wrapper">
+						<ProjectCard v-for="(project, i) in projects" :key="i" :data="project" />
 					</div>
+					<!-- </div> -->
 				</div>
 
 				<n-link :to="localePath('/projects')">
@@ -35,18 +35,18 @@ export default {
 	data: () => ({
 		page_size: 6,
 		projects: null,
-		swiperOption: {
-			slidesPerView: 'auto',
-			loop: true,
-			breakpoints: {
-				500: {
-					spaceBetween: 60,
-				},
-				350: {
-					spaceBetween: 20,
-				},
-			},
-		},
+		// swiperOption: {
+		// 	slidesPerView: 'auto',
+		// 	loop: true,
+		// 	breakpoints: {
+		// 		500: {
+		// 			spaceBetween: 60,
+		// 		},
+		// 		350: {
+		// 			spaceBetween: 20,
+		// 		},
+		// 	},
+		// },
 	}),
 	async fetch() {
 		const projects = await this.$prismic.api.query([this.$prismic.predicates.at('document.type', 'project_post'), this.$prismic.predicates.at('document.tags', [this.tag])], {
@@ -81,21 +81,38 @@ section {
 		flex-direction: column;
 
 		.project_slider {
-			width: 100vw;
-			margin-bottom: 40px;
-			.swiper-container {
-				width: auto;
-				margin: 0;
+			width: 100%;
+			overflow-x: auto;
+			margin-bottom: 2rem;
+			padding-bottom: 2rem;
+			&::-webkit-scrollbar {
+				height: 3px;
 			}
-			position: relative;
+			&::-webkit-scrollbar-track {
+				background-color: hsl(0deg, 0%, 99%);
+			}
+			&::-webkit-scrollbar-thumb {
+				background-color: #fdeab7;
+			}
+			.project_slider_wrapper {
+				width: auto;
+				height: inherit;
+				margin: 0;
+				overflow: initial;
+
+				display: inline-flex;
+				.project_card {
+					margin-right: 2rem;
+				}
+			}
 		}
 	}
 }
 
-::v-deep .swiper-wrapper {
-	.image {
-		max-width: 300px;
-		max-height: 300px;
-	}
-}
+// ::v-deep .swiper-wrapper {
+// 	.image {
+// 		max-width: 300px;
+// 		max-height: 300px;
+// 	}
+// }
 </style>

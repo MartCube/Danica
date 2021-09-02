@@ -5,7 +5,7 @@
 			<InputItem name="name" :label="data.name" rules="required" @getValue="getName" />
 			<InputItem name="number" :label="data.number" rules="min:9|required" @getValue="getNumber" />
 			<InputItem name="email" :label="data.email" rules="email" @getValue="getEmail" />
-			<InputItem name="message" :label="data.message" @getValue="getMessage" />
+			<InputItem name="message" :label="data.message" rules="" @getValue="getMessage" />
 			<ButtonItem white> {{ data.submit }} <Icon name="mail" /> </ButtonItem>
 		</ValidationObserver>
 

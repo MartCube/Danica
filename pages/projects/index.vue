@@ -58,9 +58,6 @@ export default {
 		this.prev_page = projects.prev_page
 		this.next_page = projects.next_page
 	},
-	watch: {
-		'$route.query':'$fetch',
-	},
 	head() {
 		return this.$store.getters.page.head
 	},
@@ -90,6 +87,7 @@ export default {
 		},
 	},
 	watch: {
+		'$route.path': '$fetch',
 		async projects(newValue, oldValue) {
 			await this.$nextTick()
 			postAnim(this.$refs.grid.children, true)

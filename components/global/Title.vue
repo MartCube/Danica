@@ -1,5 +1,5 @@
 <template functional>
-	<h1 class="title">
+	<h1 :style="{ color: props.color }" class="title">
 		{{ props.value }}
 	</h1>
 </template>
@@ -10,6 +10,10 @@ export default {
 		value: {
 			type: String,
 			required: true,
+		},
+		color: {
+			type: String,
+			default: 'hsl(0, 0%, 10%)',
 		},
 	},
 }

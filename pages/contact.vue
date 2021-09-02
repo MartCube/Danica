@@ -1,6 +1,6 @@
 <template>
 	<div class="container">
-		<Title :value="$t('pages.contact.name')" />
+		<Title color="#fff" :value="$t('pages.contact.name')" />
 
 		<div class="wrap">
 			<div class="left_content">
@@ -87,12 +87,12 @@ export default {
 	background: $black;
 	margin-bottom: 0;
 
-	.title {
-		color: $white;
-		&::selection {
-			color: $black;
-		}
-	}
+	// .title {
+	// 	color: $white;
+	// 	&::selection {
+	// 		color: $black;
+	// 	}
+	// }
 	h2,
 	span,
 	a {

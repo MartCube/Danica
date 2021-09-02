@@ -1,7 +1,7 @@
 <template functional>
 	<picture>
 		<source :data-srcset="props.mobile" media="(max-width:500px)" />
-		<img :data-src="props.src" loading="lazy" class="lazyload" :alt="props.alt" />
+		<img :width="props.width" :height="height" :data-src="props.src" loading="lazy" class="lazyload" :alt="props.alt" />
 	</picture>
 </template>
 
@@ -11,6 +11,14 @@ export default {
 		src: {
 			type: String,
 			required: true,
+		},
+		width: {
+			type: String,
+			default: '100',
+		},
+		height: {
+			type: String,
+			default: '100',
 		},
 		mobile: {
 			type: String,

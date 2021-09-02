@@ -84,9 +84,12 @@ export default {
 			// 	console.log(error)
 			// }
 
-			const url = '.netlify/functions/sendmail'
+			const url = '/functions/sendmail'
 			const options = {
 				method: 'POST',
+				headers: {
+					'Content-type': 'multipart/form-data',
+				},
 				body: JSON.stringify(this.form),
 			}
 

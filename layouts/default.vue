@@ -19,9 +19,9 @@ export default {
 	async mounted() {
 		await this.$nextTick()
 		setTimeout(() =>{
-			// this.$fb.enable();
+			this.$fb.enable();
 			this.$gtm.init('GTM-T5X9PFF')
-		}, 10000)
+		}, 15000)
 	},
 }
 </script>

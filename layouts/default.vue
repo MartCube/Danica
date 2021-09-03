@@ -14,6 +14,7 @@
 <script>
 import CookieBox from '~/components/global/CookieBox.vue'
 export default {
+	name: 'Default',
 	components: { CookieBox },
 	data: () => ({}),
 	async mounted() {

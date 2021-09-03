@@ -27,12 +27,16 @@
 
 <script>
 export default {
-	name: 'Service',
+	name: 'Services',
 	beforeRouteLeave(to, from, next) {
 		this.$store.dispatch('bindNavbarTransparent', false)
 		next()
 	},
 	middleware: 'navbarTransparent',
+	data: () => ({
+		slices: [],
+		parent: String,
+	}),
 	async fetch() {
 		// console.log(route);
 		await this.$store.dispatch('storeByUID', {
@@ -43,15 +47,11 @@ export default {
 		})
 		this.slices = this.$store.getters.page.data.body
 	},
-	watch: {
-		'$route.query':'$fetch',
-	},
-	data: () => ({
-		slices: [],
-		parent: String
-	}),
 	head() {
 		return this.$store.getters.page.head
+	},
+	watch: {
+		'$route.path': '$fetch',
 	},
 	fetchKey(getCounter) {
 		// getCounter is a method that can be called to get the next number in a sequence

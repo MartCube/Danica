@@ -91,9 +91,9 @@ export default {
 		data: null,
 	}),
 	async fetch() {
-		const navbar = await this.$prismic.api.getSingle('navbar', { lang: this.$i18n.localeProperties.prismic })
-		this.data = navbar.data
-		console.log(this.data)
+		// const navbar = await this.$prismic.api.getSingle('navbar', { lang: this.$i18n.localeProperties.prismic })
+		// this.data = navbar.data
+		// console.log(this.data)
 	},
 	computed: {
 		transparent() {

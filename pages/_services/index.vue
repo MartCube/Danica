@@ -1,6 +1,6 @@
 <template>
 	<div class="container">
-		<!-- <template v-if="!$fetchState.pending">
+		<template v-if="!$fetchState.pending">
 			<div v-for="(slice, i) in slices" :key="slice.slice_type + i">
 				<ServiceIntro v-if="slice.slice_type == 'serviceintro'" :data="slice" />
 				<Values v-else-if="slice.slice_type == 'values'" :data="slice" />
@@ -21,7 +21,7 @@
 					<prismic-rich-text v-for="(item, key) in slice.items" :key="key" class="rich_text" :field="item.text" />
 				</section>
 			</div>
-		</template> -->
+		</template>
 	</div>
 </template>
 
@@ -39,21 +39,16 @@ export default {
 	}),
 	async fetch() {
 		// console.log(route);
-		await this.$prismic.api.getByUID('services', this.$route.params.services, { lang: this.$i18n.localeProperties.prismic })
-		.then((fetch) => {
-			// let fetch = await fetchDtata
-			console.log(fetch)
+		await this.$store.dispatch('storeByUID', {
+			type: 'services',
+			uid: this.$route.params.services,
+			language: this.$i18n.localeProperties.prismic,
+			path: this.$route.fullPath,
 		})
-		// await this.$store.dispatch('storeByUID', {
-		// 	type: 'services',
-		// 	uid: this.$route.params.services,
-		// 	language: this.$i18n.localeProperties.prismic,
-		// 	path: this.$route.fullPath,
-		// })
-		// this.slices = this.$store.getters.page.data.body
+		this.slices = this.$store.getters.page.data.body
 	},
 	head() {
-		// return this.$store.getters.page.head
+		return this.$store.getters.page.head
 	},
 	watch: {
 		'$route.path': '$fetch',

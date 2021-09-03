@@ -226,7 +226,7 @@ export const actions = {
 				await commit('setPage', { head, data: fetch.data, tags: fetch.tags })
 			})
 			.catch((error) => {
-				console.log('storeByUID', error, { type, uid, language, path })
+				console.log(error)
 			})
 	},
 

@@ -39,6 +39,11 @@ export default {
 	}),
 	async fetch() {
 		// console.log(route);
+		await this.$prismic.api.getByUID('services', this.$route.params.services, { lang: this.$i18n.localeProperties.prismic })
+		.then((fetch) => {
+			// let fetch = await fetchDtata
+			console.log(fetch)
+		})
 		// await this.$store.dispatch('storeByUID', {
 		// 	type: 'services',
 		// 	uid: this.$route.params.services,

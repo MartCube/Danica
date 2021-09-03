@@ -48,7 +48,7 @@ export default {
 		this.slices = this.$store.getters.page.data.body
 	},
 	head() {
-		return this.$store.getters.page.head
+		// return this.$store.getters.page.head
 	},
 	watch: {
 		'$route.path': '$fetch',

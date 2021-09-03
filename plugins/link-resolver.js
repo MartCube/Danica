@@ -15,8 +15,8 @@ export default function (doc, parent) {
 	// 	else return `/${doc.uid}`
 
 	// }
-	else {
-		// workaround for navbar links
-		return doc.slug
-	}
+	// else {
+	// 	// workaround for navbar links
+	// 	return doc.slug
+	// }
 }

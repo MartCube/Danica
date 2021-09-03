@@ -32,8 +32,7 @@
 			</n-link>
 		</div>
 
-		<ul class="links" :class="{ active: isActive }" @click="CloseMenu">
-			<!-- <n-link v-for="item in data.services" :key="item.service.uid" exact :to="linkResolver(item.service)">{{ item.name }}</n-link> -->
+		<!-- <ul v-if="!$fetchState.pending" class="links" :class="{ active: isActive }" @click="CloseMenu">
 			<li v-for="item in data.links" :key="item.link.uid">
 				<n-link exact :to="localePath(`/${item.link.uid}/`)">{{ item.name }}</n-link>
 
@@ -59,7 +58,7 @@
 					</ul>
 				</template>
 			</li>
-		</ul>
+		</ul> -->
 
 		<div class="button" :class="{ active: isActive }" @click="ShowHideMenu">
 			<span class="top" />
@@ -75,8 +74,8 @@ export default {
 	name: 'Navbar',
 	beforeRouteUpdate(to, from, next) {
 		// just use `this`
-		this.name = to.params.name
-		next()
+		// this.name = to.params.name
+		// next()
 	},
 	data: () => ({
 		isActive: false,
@@ -94,7 +93,7 @@ export default {
 	async fetch() {
 		const navbar = await this.$prismic.api.getSingle('navbar', { lang: this.$i18n.localeProperties.prismic })
 		this.data = navbar.data
-		console.log(this.data);
+		console.log(this.data)
 	},
 	computed: {
 		transparent() {

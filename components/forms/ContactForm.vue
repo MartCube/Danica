@@ -79,7 +79,9 @@ export default {
 
 			// trigger netlify function
 			try {
-				await this.$axios.$post('.netlify/functions/sendmail', this.form)
+				await this.$axios.$post('.netlify/functions/sendmail', this.form).then((res) => {
+					console.log(res)
+				})
 			} catch (error) {
 				console.log(error)
 			}

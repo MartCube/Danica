@@ -72,11 +72,6 @@ import { localleAnim } from '~/assets/anime'
 
 export default {
 	name: 'Navbar',
-	beforeRouteUpdate(to, from, next) {
-		// just use `this`
-		// this.name = to.params.name
-		// next()
-	},
 	data: () => ({
 		isActive: false,
 		showLocales: false,

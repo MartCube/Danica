@@ -38,7 +38,7 @@ export default {
 		active_filter: [],
 		// pagination
 		current_page: 1,
-		page_size: 6,
+		page_size: 23,
 		total_pages: null,
 		prev_page: null,
 		next_page: null,
@@ -52,14 +52,11 @@ export default {
 			page: this.current_page,
 			lang: this.$i18n.localeProperties.prismic,
 		})
-		// console.log(projects)
+		console.log(projects)
 		this.$store.dispatch('bindProjects', projects.results)
 		this.total_pages = projects.total_pages
 		this.prev_page = projects.prev_page
 		this.next_page = projects.next_page
-	},
-	watch: {
-		'$route.query':'$fetch',
 	},
 	head() {
 		return this.$store.getters.page.head
@@ -90,6 +87,7 @@ export default {
 		},
 	},
 	watch: {
+		'$route.query': '$fetch',
 		async projects(newValue, oldValue) {
 			await this.$nextTick()
 			postAnim(this.$refs.grid.children, true)

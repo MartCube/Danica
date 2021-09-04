@@ -18,14 +18,14 @@
 				<p>square</p>
 			</div>
 			<div class="link1">
-				<Icon name="chevron" size="32px" />
+				<Icon fill="hsl(0, 0%, 10%)" name="chevron" size="32px" />
 			</div>
 		</div>
 	</n-link>
 	<n-link v-else :to="link" class="highlight_card" :class="{ last: last }">
 		<ImageItem :src="image + Thumbnail_imgIX" :alt="title" />
 		<div class="link">
-			<Icon name="chevron" size="32px" />
+			<Icon fill="hsl(0, 0%, 10%)" name="chevron" size="32px" />
 		</div>
 		<div class="title">
 			<h3>{{ title }}</h3>

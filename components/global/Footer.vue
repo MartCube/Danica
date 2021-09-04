@@ -19,12 +19,10 @@
 				</div>
 				<div class="links">
 					<n-link :to="localePath('/privacy-policy')">{{ $prismic.asText(data.privacy_policy) }}</n-link>
-					<!-- <span>|</span>
-					<n-link :to="localePath('/policy')">{{ $t('service.footer.terms') }}</n-link> -->
 				</div>
 			</div>
 			<div class="to_top" @click="ScrollToTop">
-				<Icon name="chevron" size="32px" direction="top" />
+				<Icon name="chevron" fill="hsl(0, 0%, 10%)" size="32px" direction="top" />
 			</div>
 		</template>
 	</footer>
@@ -145,7 +143,6 @@ export default {
 				display: flex;
 				align-items: center;
 				svg {
-					fill: $primary;
 					margin-left: 10px;
 				}
 			}

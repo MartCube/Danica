@@ -3,7 +3,7 @@
 		<div class="image">
 			<ImageItem :src="image" :alt="title" />
 			<div class="link">
-				<Icon name="chevron" size="25px" />
+				<Icon name="chevron" fill="hsl(0, 0%, 10%)" size="25px" />
 			</div>
 		</div>
 		<h2>{{ title }}</h2>

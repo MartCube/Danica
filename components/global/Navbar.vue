@@ -72,11 +72,6 @@ import { localleAnim } from '~/assets/anime'
 
 export default {
 	name: 'Navbar',
-	beforeRouteUpdate(to, from, next) {
-		// just use `this`
-		// this.name = to.params.name
-		// next()
-	},
 	data: () => ({
 		isActive: false,
 		showLocales: false,
@@ -93,7 +88,6 @@ export default {
 	async fetch() {
 		const navbar = await this.$prismic.api.getSingle('navbar', { lang: this.$i18n.localeProperties.prismic })
 		this.data = navbar.data
-		console.log(this.data)
 	},
 	computed: {
 		transparent() {

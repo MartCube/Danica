@@ -80,7 +80,7 @@ export default {
 
 			// trigger netlify function
 			try {
-				await axios.$post('.netlify/functions/sendmail', this.form)
+				await axios.post('.netlify/functions/sendmail', this.form)
 			} catch (error) {
 				console.log(error)
 			}

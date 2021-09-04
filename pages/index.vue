@@ -37,7 +37,7 @@ export default {
 		return this.$store.getters.page.head
 	},
 	watch: {
-		'$route.query': '$fetch',
+		'$route.path': '$fetch',
 	},
 }
 </script>

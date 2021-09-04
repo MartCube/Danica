@@ -76,9 +76,6 @@ export default {
 			path: this.$route.fullPath,
 		})
 	},
-	// watch: {
-	// 	'$route.path':'$fetch',
-	// },
 	head() {
 		return this.$store.getters.page.head
 	},
@@ -89,6 +86,9 @@ export default {
 		post() {
 			return this.$store.getters.page.data
 		},
+	},
+	watch: {
+		'$route.path': '$fetch',
 	},
 	fetchKey(getCounter) {
 		// getCounter is a method that can be called to get the next number in a sequence

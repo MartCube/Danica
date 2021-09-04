@@ -51,7 +51,7 @@ export default {
 	],
 
 	// Modules (https://go.nuxtjs.dev/config-modules)
-	modules: ['@/modules/sitemap', '@nuxtjs/prismic', '@nuxtjs/axios', 'nuxt-i18n', '@nuxtjs/style-resources', '@nuxtjs/gtm', '@nuxtjs/sitemap'],
+	modules: ['@/modules/sitemap', '@nuxtjs/prismic', 'nuxt-i18n', '@nuxtjs/style-resources', '@nuxtjs/gtm', '@nuxtjs/sitemap'],
 
 	gtm: {
 		id: process.env.GTM,

@@ -18,6 +18,7 @@
 
 <script>
 import { ValidationObserver } from 'vee-validate'
+const axios = require('axios')
 
 export default {
 	components: {
@@ -79,7 +80,7 @@ export default {
 
 			// trigger netlify function
 			try {
-				await this.$axios.$post('.netlify/functions/sendmail', this.form)
+				await axios.$post('.netlify/functions/sendmail', this.form)
 			} catch (error) {
 				console.log(error)
 			}

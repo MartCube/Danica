@@ -4,8 +4,8 @@
 			<h2 class="title">{{ data.title }}</h2>
 			<InputItem name="name" :label="data.name" rules="required" @getValue="getName" />
 			<InputItem name="number" :label="data.number" rules="min:9|required" @getValue="getNumber" />
-			<InputItem name="email" :label="data.email" rules="email|required" @getValue="getEmail" />
-			<InputItem name="message" :label="data.message" rules="required" @getValue="getMessage" />
+			<InputItem name="email" :label="data.email" rules="email" @getValue="getEmail" />
+			<InputItem name="message" :label="data.message" rules="" @getValue="getMessage" />
 			<ButtonItem white> {{ data.submit }} <Icon name="mail" /> </ButtonItem>
 		</ValidationObserver>
 
@@ -18,6 +18,7 @@
 
 <script>
 import { ValidationObserver } from 'vee-validate'
+const axios = require('axios')
 
 export default {
 	components: {
@@ -32,7 +33,6 @@ export default {
 	data: () => ({
 		message: false,
 		loading: false,
-
 		form: {
 			name: '',
 			number: '',
@@ -61,10 +61,8 @@ export default {
 			const isValid = await this.$refs.contact.validate()
 			// validation
 			if (!isValid) return
-
 			this.loading = true
 			console.log('loading')
-
 			// compose email template
 			this.form.emailTemplate = `
 				<h4>Name</h4>
@@ -76,19 +74,14 @@ export default {
 				<h4>Message</h4>
 				<p>${this.form.message}</p>
 			`
-
 			// trigger netlify function
 			try {
-				await this.$axios.$post('.netlify/functions/sendmail', this.form).then((res) => {
-					console.log(res)
-				})
+				await axios.post('.netlify/functions/sendmail', this.form)
 			} catch (error) {
 				console.log(error)
 			}
-
 			this.loading = false
 			console.log('submited')
-
 			this.message = !this.message
 		},
 	},
@@ -109,23 +102,19 @@ export default {
 	.title {
 		width: max-content;
 		border-bottom: 2px solid $primary;
-
 		font-size: 2rem;
 		color: $white;
 		&::selection {
 			color: $black;
 		}
 	}
-
 	.message {
 		display: flex;
 		flex-direction: column;
 		justify-content: center;
-
 		.rich_text p {
 			color: $white;
 			line-height: 1.5rem;
-			font-weight: 400;
 		}
 		button {
 			margin-top: 2rem;

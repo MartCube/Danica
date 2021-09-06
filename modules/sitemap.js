@@ -103,7 +103,7 @@ const sitemap = async function () {
 				case 'service_second':
 					// console.log(page);
 					pages.push({
-						url: `${ lang }/${ page.data.parent_page.uid}/${page.uid}`,
+						url: `${lang}/${page.data.parent_page.uid}/${page.uid}`,
 						changefreq: 'monthly',
 						priority: 0.7,
 						lastmod: page.last_publication_date,

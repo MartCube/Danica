@@ -86,13 +86,6 @@ export default {
 .container {
 	background: $black;
 	margin-bottom: 0;
-
-	// .title {
-	// 	color: $white;
-	// 	&::selection {
-	// 		color: $black;
-	// 	}
-	// }
 	h2,
 	span,
 	a {

@@ -102,7 +102,7 @@ export const actions = {
 
 				// canonical link
 				const canonical = `${state.domain}${path}`
-				head.link.push({ hid: '', rel: 'canonical',href: canonical })
+				head.link.push({ hid: '', rel: 'canonical', href: canonical })
 				head.meta.push({ hid: 'og:url', name: 'og:url', content: canonical })
 				// x-default needs to be always ua
 				if (lang === state.defaultLanguage) head.link.push({ hid: 'alternate', rel: 'alternate', href: canonical, hreflang: 'x-default' })
@@ -172,10 +172,10 @@ export const actions = {
 				// the current route
 				routes[lang] = fetch.uid
 
-				// check for type of path 
+				// check for type of path
 				let pathType
-				if(type === "blog_post")  pathType = 'blog/'
-				else if(type === "project_post") pathType = 'projects/'
+				if (type === 'blog_post') pathType = 'blog/'
+				else if (type === 'project_post') pathType = 'projects/'
 				else pathType = ''
 
 				// alternate languages
@@ -295,7 +295,7 @@ export const actions = {
 		if (lang === state.defaultLanguage) head.link.push({ hid: 'alternate', rel: 'alternate', href: canonical, hreflang: 'x-default' })
 		head.link.push({ hid: 'canonical', rel: 'canonical', canonical })
 		head.link.push({ hid: 'og:url', property: 'og:url', content: canonical })
-		
+
 		head.meta.push(
 			...[
 				{ hid: 'description', name: 'description', content: fetch.data.meta_description },
@@ -311,6 +311,5 @@ export const actions = {
 		)
 
 		await commit('setPage', { head, data: fetch.data, tags: fetch.tags })
-
 	},
 }

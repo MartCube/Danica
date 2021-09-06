@@ -5,7 +5,7 @@
 			<Values v-else-if="slice.slice_type == 'values'" :data="slice" />
 			<Stages v-else-if="slice.slice_type == 'stages'" :data="slice" />
 			<Standards v-else-if="slice.slice_type == 'standards'" :data="slice" />
-			<Advantages v-else-if="slice.slice_type == 'advantages'" :data="slice"/>
+			<Advantages v-else-if="slice.slice_type == 'advantages'" :data="slice" />
 			<Charles v-else-if="slice.slice_type == 'charles'" :data="slice" />
 			<!-- <ServicesList v-else-if="slice.slice_type == 'services_list'" :data="slice" /> -->
 			<LatestProjects v-else-if="slice.slice_type == 'latestprojects'" :data="slice" />
@@ -25,12 +25,16 @@
 
 <script>
 export default {
-	name: 'serviceSecond',
+	name: 'ServiceSecond',
 	beforeRouteLeave(to, from, next) {
 		this.$store.dispatch('bindNavbarTransparent', false)
 		next()
 	},
 	middleware: 'navbarTransparent',
+	data: () => ({
+		slices: [],
+		// parentRoute: this.$route.params.services
+	}),
 	async fetch() {
 		// console.log(route);
 		await this.$store.dispatch('storeSecondLevel', {
@@ -43,29 +47,24 @@ export default {
 		})
 		this.slices = this.$store.getters.page.data.body
 	},
-	// watch: {
-	// 	'$route.query':'$fetch',
-	// },
-	data: () => ({
-		slices: [],
-		// parentRoute: this.$route.params.services
-	}),
 	head() {
 		return this.$store.getters.page.head
+	},
+	computed: {
+		routes() {
+			return this.$store.getters.routes
+		},
+	},
+	watch: {
+		'$route.query': '$fetch',
 	},
 	fetchKey(getCounter) {
 		// getCounter is a method that can be called to get the next number in a sequence
 		// as part of generating a unique fetchKey.
 		return 'service' + getCounter('service')
 	},
-	computed: {
-		routes() {
-			return this.$store.getters.routes
-		}
-	},
 
 	mounted() {
-
 		this.$store.dispatch('bindNavbarTransparent', true)
 	},
 }

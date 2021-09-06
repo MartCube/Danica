@@ -102,7 +102,7 @@ export const actions = {
 
 				// canonical link
 				const canonical = `${state.domain}${path}`
-				head.link.push({ hid: '', rel: 'canonical',href: canonical })
+				head.link.push({ hid: '', rel: 'canonical', href: canonical })
 				head.meta.push({ hid: 'og:url', name: 'og:url', content: canonical })
 				// x-default needs to be always ua
 				if (lang === state.defaultLanguage) head.link.push({ hid: 'alternate', rel: 'alternate', href: canonical, hreflang: 'x-default' })
@@ -145,89 +145,86 @@ export const actions = {
 				await commit('setPage', { head, data: fetch.data, tags: fetch.tags })
 			})
 			.catch((error) => {
-				console.log(error)
+				console.log('log', error)
+				// set status code on server and
+				if (process.server) {
+					this.$nuxt.context.res.statusCode = 404
+				}
+				// use throw new Error()
+				throw new Error('Post not found')
 			})
 	},
 
-	async storeByUID({ state, commit, dispatch }, { type, uid, language, path }) {
-		await this.$prismic.api
-			.getByUID(type, uid, { lang: language })
-			.then(async (fetch) => {
-				// let fetch = await fetchDtata
-				console.log(path)
-				// if(fetch)
-				const lang = fetch.lang.slice(0, 2)
+	async storeByUID({ state, commit, dispatch }, { type, path, fetch }) {
+		// if(fetch)
+		const lang = fetch.lang.slice(0, 2)
 
-				// for dynamic pages store routes for i18n *****
-				const routes = {}
+		// for dynamic pages store routes for i18n *****
+		const routes = {}
 
-				// component page head data *****
-				const head = {
-					htmlAttrs: { lang },
-					title: fetch.data.meta_title,
-					link: [],
-					meta: [],
-				}
+		// component page head data *****
+		const head = {
+			htmlAttrs: { lang },
+			title: fetch.data.meta_title,
+			link: [],
+			meta: [],
+		}
 
-				// the current route
-				routes[lang] = fetch.uid
+		// the current route
+		routes[lang] = fetch.uid
 
-				// check for type of path 
-				let pathType
-				if(type === "blog_post")  pathType = 'blog/'
-				else if(type === "project_post") pathType = 'projects/'
-				else pathType = ''
+		// check for type of path
+		let pathType
+		if (type === 'blog_post') pathType = 'blog/'
+		else if (type === 'project_post') pathType = 'projects/'
+		else pathType = ''
 
-				// alternate languages
-				let href
-				fetch.alternate_languages.forEach((alterLang) => {
-					// store alternative language each time new variable
-					const altLang = alterLang.lang.slice(0, 2)
+		// alternate languages
+		let href
+		fetch.alternate_languages.forEach((alterLang) => {
+			// store alternative language each time new variable
+			const altLang = alterLang.lang.slice(0, 2)
 
-					// path is a sting with slashes at the beggining and end , which occur empty item in array
-					// split by slash to get array
-					const pathAltLang = altLang === state.defaultLanguage ? '' : `${altLang}/`
-					// routes
-					routes[altLang] = alterLang.uid
+			// path is a sting with slashes at the beggining and end , which occur empty item in array
+			// split by slash to get array
+			const pathAltLang = altLang === state.defaultLanguage ? '' : `${altLang}/`
+			// routes
+			routes[altLang] = alterLang.uid
 
-					// links & meta
-					href = `${state.domain}/${pathAltLang}${pathType}${alterLang.uid}/`
+			// links & meta
+			href = `${state.domain}/${pathAltLang}${pathType}${alterLang.uid}/`
 
-					head.link.push({ hid: 'alternate', rel: 'alternate', href, hreflang: altLang })
+			head.link.push({ hid: 'alternate', rel: 'alternate', href, hreflang: altLang })
 
-					if (altLang === state.defaultLanguage) head.link.push({ hid: 'alternate', rel: 'alternate', href, hreflang: 'x-default' })
-				})
+			if (altLang === state.defaultLanguage) head.link.push({ hid: 'alternate', rel: 'alternate', href, hreflang: 'x-default' })
+		})
 
-				// canonical link
-				const canonical = `${state.domain}${path}`
-				if (lang === state.defaultLanguage) head.link.push({ hid: 'alternate', rel: 'alternate', href: canonical, hreflang: 'x-default' })
-				head.link.push({ hid: 'canonical', rel: 'canonical', href: canonical })
-				head.meta.push({ hid: 'og:url', name: 'og:url', content: canonical })
+		// canonical link
+		const canonical = `${state.domain}${path}`
+		if (lang === state.defaultLanguage) head.link.push({ hid: 'alternate', rel: 'alternate', href: canonical, hreflang: 'x-default' })
+		head.link.push({ hid: 'canonical', rel: 'canonical', href: canonical })
+		head.meta.push({ hid: 'og:url', name: 'og:url', content: canonical })
 
-				await dispatch('i18n/setRouteParams', {
-					en: { [type]: routes.en },
-					ru: { [type]: routes.ru },
-					ua: { [type]: routes.ua },
-				})
+		await dispatch('i18n/setRouteParams', {
+			en: { [type]: routes.en },
+			ru: { [type]: routes.ru },
+			ua: { [type]: routes.ua },
+		})
 
-				head.meta.push(
-					...[
-						{ hid: 'description', name: 'description', content: fetch.data.meta_description },
-						// facebook
-						{ hid: 'og:type', property: 'og:type', content: '' },
-						{ hid: 'og:url', property: 'og:url', content: canonical },
-						{ hid: 'og:title', property: 'og:title', content: fetch.data.meta_title },
-						{ hid: 'og:description', property: 'og:description', content: fetch.data.meta_description },
-						{ hid: 'og:image', property: 'og:image', content: fetch.data.meta_image === undefined ? '' : fetch.data.meta_image.url },
-						// twitter
-						{ hid: 'twitter:card', name: 'twitter:card', content: fetch.data.meta_image === undefined ? '' : fetch.data.meta_image.url },
-					],
-				)
-				await commit('setPage', { head, data: fetch.data, tags: fetch.tags })
-			})
-			.catch((error) => {
-				console.log(error)
-			})
+		head.meta.push(
+			...[
+				{ hid: 'description', name: 'description', content: fetch.data.meta_description },
+				// facebook
+				{ hid: 'og:type', property: 'og:type', content: '' },
+				{ hid: 'og:url', property: 'og:url', content: canonical },
+				{ hid: 'og:title', property: 'og:title', content: fetch.data.meta_title },
+				{ hid: 'og:description', property: 'og:description', content: fetch.data.meta_description },
+				{ hid: 'og:image', property: 'og:image', content: fetch.data.meta_image === undefined ? '' : fetch.data.meta_image.url },
+				// twitter
+				{ hid: 'twitter:card', name: 'twitter:card', content: fetch.data.meta_image === undefined ? '' : fetch.data.meta_image.url },
+			],
+		)
+		await commit('setPage', { head, data: fetch.data, tags: fetch.tags })
 	},
 
 	async storeSecondLevel({ state, commit, dispatch }, { type, parentType, parentUid, uid, language, path }) {
@@ -295,7 +292,7 @@ export const actions = {
 		if (lang === state.defaultLanguage) head.link.push({ hid: 'alternate', rel: 'alternate', href: canonical, hreflang: 'x-default' })
 		head.link.push({ hid: 'canonical', rel: 'canonical', canonical })
 		head.link.push({ hid: 'og:url', property: 'og:url', content: canonical })
-		
+
 		head.meta.push(
 			...[
 				{ hid: 'description', name: 'description', content: fetch.data.meta_description },
@@ -311,6 +308,5 @@ export const actions = {
 		)
 
 		await commit('setPage', { head, data: fetch.data, tags: fetch.tags })
-
 	},
 }

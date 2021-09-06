@@ -1,5 +1,8 @@
 <template>
 	<div class="container">
+		<template v-if="$fetchState.error">
+			<Error />
+		</template>
 		<template v-if="!$fetchState.pending">
 			<div v-for="(slice, i) in slices" :key="slice.slice_type + i">
 				<ServiceIntro v-if="slice.slice_type == 'serviceintro'" :data="slice" />
@@ -33,25 +36,36 @@ export default {
 		next()
 	},
 	middleware: 'navbarTransparent',
-	async fetch() {
-		// console.log(route);
-		await this.$store.dispatch('storeByUID', {
-			type: 'services',
-			uid: this.$route.params.services,
-			language: this.$i18n.localeProperties.prismic,
-			path: this.$route.fullPath,
-		})
-		this.slices = this.$store.getters.page.data.body
-	},
-	watch: {
-		'$route.query':'$fetch',
-	},
 	data: () => ({
 		slices: [],
-		parent: String
 	}),
+	async fetch() {
+		await this.$prismic.api
+			.getByUID('services', this.$route.params.services, { lang: this.$i18n.localeProperties.prismic })
+			.then(async (fetch) => {
+				// send data to store
+				await this.$store.dispatch('storeByUID', {
+					type: 'services',
+					path: this.$route.fullPath,
+					fetch,
+				})
+				this.slices = fetch.data.body
+			})
+			.catch((error) => {
+				console.log(error)
+				// set status code on server and
+				if (process.server) {
+					this.$nuxt.context.res.statusCode = 404
+				}
+				// use throw new Error()
+				throw new Error('service not found')
+			})
+	},
 	head() {
 		return this.$store.getters.page.head
+	},
+	watch: {
+		'$route.query': '$fetch',
 	},
 	fetchKey(getCounter) {
 		// getCounter is a method that can be called to get the next number in a sequence

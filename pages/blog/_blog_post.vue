@@ -49,6 +49,9 @@
 				</div>
 			</div>
 		</template>
+		<template v-if="$fetchState.error">
+			<h1>error</h1>
+		</template>
 	</div>
 </template>
 

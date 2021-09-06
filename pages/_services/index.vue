@@ -65,11 +65,7 @@ export default {
 		return this.$store.getters.page.head
 	},
 	watch: {
-<<<<<<< HEAD
 		'$route.query': '$fetch',
-=======
-		'$route.path': '$fetch',
->>>>>>> 26b2bf2fe2187a14fcace032a55484fda287bf01
 	},
 	fetchKey(getCounter) {
 		// getCounter is a method that can be called to get the next number in a sequence

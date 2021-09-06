@@ -1,4 +1,5 @@
 import sitemap from './modules/sitemap'
+import routes from './modules/router'
 
 export default {
 	// Target (https://go.nuxtjs.dev/config-target)
@@ -149,17 +150,23 @@ export default {
 				ru: '/privacy-policy',
 				ua: '/privacy-policy',
 			},
+			sitemap: {
+				en: '/sitemap',
+				ru: '/sitemap',
+				ua: '/sitemap',
+			},
 		},
 	},
 
 	sitemap: {
 		hostname: 'https://danica.ua/', // replace with danica.ua
-		// exclude: ['/ru/null'],
+		// exclude: ['sitemap'],
 		trailingSlash: true,
 		// i18n: 'ru',
 		routes() {
 			return sitemap()
 		},
+		// subFolders: false,
 	},
 
 	axios: {
@@ -185,5 +192,9 @@ export default {
 
 	generate: {
 		fallback: '404.html',
+		crawler: false,
+		routes() {
+			return routes()
+		},
 	},
 }

@@ -57,14 +57,6 @@
 <script>
 export default {
 	Name: 'Project',
-	async fetch() {
-		await this.$store.dispatch('storeByUID', {
-			type: 'project_post',
-			uid: this.$route.params.project_post,
-			language: this.$i18n.localeProperties.prismic,
-			path: this.$route.fullPath,
-		})
-	},
 	data: () => ({
 		swiperOption: {
 			slidesPerView: 'auto',
@@ -76,9 +68,14 @@ export default {
 			},
 		},
 	}),
-	// watch: {
-	// 	'$route.path':'$fetch',
-	// },
+	async fetch() {
+		await this.$store.dispatch('storeByUID', {
+			type: 'project_post',
+			uid: this.$route.params.project_post,
+			language: this.$i18n.localeProperties.prismic,
+			path: this.$route.fullPath,
+		})
+	},
 	head() {
 		return this.$store.getters.page.head
 	},
@@ -88,7 +85,10 @@ export default {
 		},
 		post() {
 			return this.$store.getters.page.data
-		}
+		},
+	},
+	watch: {
+		'$route.path': '$fetch',
 	},
 	fetchKey(getCounter) {
 		// getCounter is a method that can be called to get the next number in a sequence

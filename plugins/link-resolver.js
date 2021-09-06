@@ -6,18 +6,17 @@ export default function (doc, parent) {
 		return '/' + doc.uid
 	} else if (doc.type === 'blog_post') {
 		return '/blog/' + doc.uid
-	} 
-	else if (doc.type === 'project_post') {
+	} else if (doc.type === 'project_post') {
 		return '/projects/' + doc.uid
-	} 
+	}
 	// else if (doc.type === 'service_second') {
 	// 	// console.log(doc, parent);
 	// 	if (parent !== undefined) return `/${ parent.uid }/${ doc.uid }`
 	// 	else return `/${doc.uid}`
-		
-	// } 
-	else {
-		// workaround for navbar links
-		return doc.slug
-	}
+
+	// }
+	// else {
+	// 	// workaround for navbar links
+	// 	return doc.slug
+	// }
 }

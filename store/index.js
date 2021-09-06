@@ -173,11 +173,19 @@ export const actions = {
 		// the current route
 		routes[lang] = fetch.uid
 
+<<<<<<< HEAD
 		// check for type of path
 		let pathType
 		if (type === 'blog_post') pathType = 'blog/'
 		else if (type === 'project_post') pathType = 'projects/'
 		else pathType = ''
+=======
+				// check for type of path
+				let pathType
+				if (type === 'blog_post') pathType = 'blog/'
+				else if (type === 'project_post') pathType = 'projects/'
+				else pathType = ''
+>>>>>>> 26b2bf2fe2187a14fcace032a55484fda287bf01
 
 		// alternate languages
 		let href

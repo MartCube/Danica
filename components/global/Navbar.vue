@@ -32,8 +32,7 @@
 			</n-link>
 		</div>
 
-		<ul class="links" :class="{ active: isActive }" @click="CloseMenu">
-			<!-- <n-link v-for="item in data.services" :key="item.service.uid" exact :to="linkResolver(item.service)">{{ item.name }}</n-link> -->
+		<ul v-if="!$fetchState.pending" class="links" :class="{ active: isActive }" @click="CloseMenu">
 			<li v-for="item in data.links" :key="item.link.uid">
 				<n-link exact :to="localePath(`/${item.link.uid}/`)">{{ item.name }}</n-link>
 
@@ -72,11 +71,7 @@
 import { localleAnim } from '~/assets/anime'
 
 export default {
-	beforeRouteUpdate(to, from, next) {
-		// just use `this`
-		this.name = to.params.name
-		next()
-	},
+	name: 'Navbar',
 	data: () => ({
 		isActive: false,
 		showLocales: false,

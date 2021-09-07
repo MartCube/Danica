@@ -86,10 +86,12 @@ export default {
 		data: null,
 	}),
 	async fetch() {
+		console.log(this.$i18n.localeProperties.prismic)
 		await this.$prismic.api
 			.getSingle('navbar', { lang: this.$i18n.localeProperties.prismic })
 			.then((fetch) => {
 				// set data
+				console.log('navbar', fetch.data)
 				if (fetch) this.data = fetch.data
 			})
 			.catch((error) => {
@@ -121,6 +123,9 @@ export default {
 	mounted() {
 		window.addEventListener('scroll', this.onScroll)
 		this.onScroll()
+	},
+	destroyed() {
+		window.removeEventListener('scroll', this.onScroll)
 	},
 	methods: {
 		onScroll() {

@@ -112,25 +112,25 @@ export default {
 		},
 	},
 	mounted() {
-		window.addEventListener('scroll', this.onScroll)
-		this.onScroll()
+		// window.addEventListener('scroll', this.onScroll)
+		// this.onScroll()
 	},
 	methods: {
-		onScroll() {
-			// Get the current scroll position
-			const currentScrollPosition = window.pageYOffset || document.documentElement.scrollTop
+		// onScroll() {
+		// 	// Get the current scroll position
+		// 	const currentScrollPosition = window.pageYOffset || document.documentElement.scrollTop
 
-			this.topHeader = currentScrollPosition < screen.height - 200
+		// 	this.topHeader = currentScrollPosition < screen.height - 200
 
-			// Because of momentum scrolling on mobiles, we shouldn't continue if it is less than zero
-			if (Math.abs(currentScrollPosition - this.lastScrollPosition) < 80) {
-				return
-			} // Here we determine whether we need to show or hide the navbar
-			this.lastScrollPosition = currentScrollPosition
-			if (this.transparent) {
-				this.whiteNavbar = currentScrollPosition > screen.height - 200
-			}
-		},
+		// 	// Because of momentum scrolling on mobiles, we shouldn't continue if it is less than zero
+		// 	if (Math.abs(currentScrollPosition - this.lastScrollPosition) < 80) {
+		// 		return
+		// 	} // Here we determine whether we need to show or hide the navbar
+		// 	this.lastScrollPosition = currentScrollPosition
+		// 	if (this.transparent) {
+		// 		this.whiteNavbar = currentScrollPosition > screen.height - 200
+		// 	}
+		// },
 		ShowHideMenu() {
 			this.isActive = !this.isActive
 		},

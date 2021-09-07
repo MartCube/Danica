@@ -4,7 +4,9 @@
 			<ImageItem v-if="!$fetchState.pending" :src="image" alt="contact" />
 		</div>
 		<ContactForm :data="form_data" />
-		<Icon name="close" size="35px" @click.native="closeModal" />
+		<div class="close">
+			<Icon name="close" fill="#fafafa" size="35px" @click.native="closeModal" />
+		</div>
 	</div>
 </template>
 
@@ -70,11 +72,10 @@ export default {
 		padding: 5% 10%;
 	}
 
-	svg {
+	.close {
 		position: absolute;
 		top: 25px;
 		right: 25px;
-		fill: $white;
 		transition: all 0.2s ease;
 		cursor: pointer;
 		&:hover {

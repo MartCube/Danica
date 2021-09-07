@@ -52,7 +52,7 @@ export default {
 	],
 
 	// Modules (https://go.nuxtjs.dev/config-modules)
-	modules: ['@/modules/sitemap', '@nuxtjs/prismic', 'nuxt-i18n', '@nuxtjs/style-resources', '@nuxtjs/gtm', '@nuxtjs/sitemap'],
+	modules: ['@nuxtjs/prismic', 'nuxt-i18n', '@nuxtjs/style-resources', '@nuxtjs/gtm', '@nuxtjs/sitemap'],
 
 	gtm: {
 		id: process.env.GTM,
@@ -150,16 +150,11 @@ export default {
 				ru: '/privacy-policy',
 				ua: '/privacy-policy',
 			},
-			sitemap: {
-				en: '/sitemap',
-				ru: '/sitemap',
-				ua: '/sitemap',
-			},
 		},
 	},
 
 	sitemap: {
-		hostname: 'https://danica.ua/', // replace with danica.ua
+		hostname: 'https://danica.ua/',
 		// exclude: ['sitemap'],
 		trailingSlash: true,
 		// i18n: 'ru',
@@ -167,10 +162,6 @@ export default {
 			return sitemap()
 		},
 		// subFolders: false,
-	},
-
-	axios: {
-		baseURL: '/',
 	},
 
 	styleResources: {

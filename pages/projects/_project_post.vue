@@ -1,20 +1,24 @@
 <template>
 	<div class="container">
-		<div v-if="!$fetchState.pending" class="project_post">
+		<template v-if="$fetchState.error">
+			<Error />
+		</template>
+		<div v-else-if="!$fetchState.pending" class="project_post">
 			<div class="intro">
-				<h2 class="title">{{ $prismic.asText(post.title) }}</h2>
-				<ImageItem :src="post.main_image.url" :mobile="post.main_image.mobile.url" :alt="title" />
+				<h2 class="title">{{ $prismic.asText(data.title) }}</h2>
+				<ImageItem :src="data.main_image.url" :mobile="data.main_image.mobile.url" :alt="$prismic.asText(data.title)" />
 			</div>
 
 			<div class="info">
-				<p><span>service:</span> {{ $prismic.asText(post.info[0].service) }}</p>
-				<p><span>square:</span> {{ $prismic.asText(post.info[0].square) }}&#13217;</p>
-				<p><span>date:</span> {{ post.info[0].date }}</p>
-				<p><span>architect:</span> {{ $prismic.asText(post.info[0].architect) }}</p>
-				<p><span>designer:</span> {{ $prismic.asText(post.info[0].designer) }}</p>
+				<p><span>service:</span> {{ $prismic.asText(data.info[0].service) }}</p>
+				<p><span>square:</span> {{ $prismic.asText(data.info[0].square) }}&#13217;</p>
+				<p><span>date:</span> {{ data.info[0].date }}</p>
+				<p><span>architect:</span> {{ $prismic.asText(data.info[0].architect) }}</p>
+				<p><span>designer:</span> {{ $prismic.asText(data.info[0].designer) }}</p>
 			</div>
 
-			<div v-for="(slice, i) in post.body" :key="i" class="slice" :class="slice.slice_type">
+			<!-- Slice Machine -->
+			<div v-for="(slice, i) in data.body" :key="i" class="slice" :class="slice.slice_type">
 				<template v-if="slice.slice_type == 'text'">
 					<prismic-rich-text class="rich_text" :field="slice.primary.text" />
 				</template>
@@ -27,11 +31,10 @@
 				</template>
 
 				<template v-else-if="slice.slice_type == 'image_slider'">
-					<div v-swiper="swiperOption" class="swiper-container">
+					<div class="swiper-container">
 						<div class="swiper-wrapper">
 							<ImageItem v-for="item in slice.items" :key="item.image.url" class="swiper-slide" :src="item.image.url" alt="alt" />
 						</div>
-						<div slot="pagination" class="swiper-pagination"></div>
 					</div>
 				</template>
 
@@ -56,45 +59,45 @@
 
 <script>
 export default {
-	Name: 'Project',
+	Name: 'ProjectPost',
 	data: () => ({
-		swiperOption: {
-			slidesPerView: 'auto',
-			spaceBetween: 50,
-			loop: true,
-			pagination: {
-				el: '.swiper-pagination',
-				clickable: true,
-			},
-		},
+		data: null,
 	}),
 	async fetch() {
-		await this.$store.dispatch('storeByUID', {
-			type: 'project_post',
-			uid: this.$route.params.project_post,
-			language: this.$i18n.localeProperties.prismic,
-			path: this.$route.fullPath,
-		})
+		await this.$prismic.api
+			.getByUID('project_post', this.$route.params.project_post, { lang: this.$i18n.localeProperties.prismic })
+			.then(async (fetch) => {
+				// send data to store
+				await this.$store.dispatch('storeByUID', {
+					type: 'project_post',
+					path: this.$route.fullPath,
+					fetch,
+				})
+				// data to component
+				this.data = fetch.data
+			})
+			.catch((error) => {
+				console.log(error)
+				// set status code on server and
+				if (process.server) {
+					this.$nuxt.context.res.statusCode = 404
+				}
+				// use throw new Error()
+				throw new Error('project post not found')
+			})
 	},
 	head() {
 		return this.$store.getters.page.head
 	},
-	computed: {
-		title() {
-			return this.$prismic.asText(this.post.title)
-		},
-		post() {
-			return this.$store.getters.page.data
-		},
-	},
-	watch: {
-		'$route.path': '$fetch',
-	},
-	fetchKey(getCounter) {
-		// getCounter is a method that can be called to get the next number in a sequence
-		// as part of generating a unique fetchKey.
-		return 'project_post' + getCounter('project_post')
-	},
+
+	// watch: {
+	// 	'$route.path': '$fetch',
+	// },
+	// fetchKey(getCounter) {
+	// 	// getCounter is a method that can be called to get the next number in a sequence
+	// 	// as part of generating a unique fetchKey.
+	// 	return 'project_post' + getCounter('project_post')
+	// },
 }
 </script>
 

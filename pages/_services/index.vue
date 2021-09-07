@@ -3,7 +3,7 @@
 		<template v-if="$fetchState.error">
 			<Error />
 		</template>
-		<template v-if="!$fetchState.pending">
+		<template v-if="!$fetchState.pending && !$fetchState.error">
 			<div v-for="(slice, i) in slices" :key="slice.slice_type + i">
 				<ServiceIntro v-if="slice.slice_type == 'serviceintro'" :data="slice" />
 				<Values v-else-if="slice.slice_type == 'values'" :data="slice" />
@@ -64,14 +64,15 @@ export default {
 	head() {
 		return this.$store.getters.page.head
 	},
-	watch: {
-		'$route.query': '$fetch',
-	},
-	fetchKey(getCounter) {
-		// getCounter is a method that can be called to get the next number in a sequence
-		// as part of generating a unique fetchKey.
-		return 'service' + getCounter('service')
-	},
+	// watch: {
+	// 	// (exp) when language changes, fetch again
+	// 	'$route.path': '$fetch',
+	// },
+	// fetchKey(getCounter) {
+	// 	// getCounter is a method that can be called to get the next number in a sequence
+	// 	// as part of generating a unique fetchKey.
+	// 	return 'service' + getCounter('service')
+	// },
 	mounted() {
 		this.$store.dispatch('bindNavbarTransparent', true)
 	},

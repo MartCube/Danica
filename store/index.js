@@ -59,9 +59,6 @@ export const mutations = {
 	setPage(state, value) {
 		state.page = value
 	},
-	// setHeadLink(state, value) {
-	// 	state.page.head.link.push(value)
-	// },
 }
 
 // Functions that call mutations on the state. They can call multiple mutations, can call other actions, and they support asynchronous operations.
@@ -85,74 +82,61 @@ export const actions = {
 		context.commit('setModalVideo', value)
 	},
 
-	async storeSingle({ state, commit, dispatch }, { type, language }) {
-		await this.$prismic.api
-			.getSingle(type, { lang: language })
-			.then(async (fetch) => {
-				const lang = await fetch.lang.slice(0, 2)
-				const path = this.$router.currentRoute.fullPath
+	async storeSingle({ state, commit, dispatch }, fetch) {
+		const lang = await fetch.lang.slice(0, 2)
+		const path = this.$router.currentRoute.fullPath
 
-				// component page head data *****
-				const head = {
-					htmlAttrs: { lang },
-					title: fetch.data.meta_title,
-					link: [],
-					meta: [],
-				}
+		// component page head data *****
+		const head = {
+			htmlAttrs: { lang },
+			title: fetch.data.meta_title,
+			link: [],
+			meta: [],
+		}
 
-				// canonical link
-				const canonical = `${state.domain}${path}`
-				head.link.push({ hid: '', rel: 'canonical', href: canonical })
-				head.meta.push({ hid: 'og:url', name: 'og:url', content: canonical })
-				// x-default needs to be always ua
-				if (lang === state.defaultLanguage) head.link.push({ hid: 'alternate', rel: 'alternate', href: canonical, hreflang: 'x-default' })
+		// canonical link
+		const canonical = `${state.domain}${path}`
+		head.link.push({ hid: '', rel: 'canonical', href: canonical })
+		head.meta.push({ hid: 'og:url', name: 'og:url', content: canonical })
+		// x-default needs to be always ua
+		if (lang === state.defaultLanguage) head.link.push({ hid: 'alternate', rel: 'alternate', href: canonical, hreflang: 'x-default' })
 
-				// alternate langcanonicaluages
-				fetch.alternate_languages.forEach((alterLang) => {
-					// store alternative language each time new variable
-					let href
-					const altLang = alterLang.lang.slice(0, 2)
+		// alternate langcanonicaluages
+		fetch.alternate_languages.forEach((alterLang) => {
+			// store alternative language each time new variable
+			let href
+			const altLang = alterLang.lang.slice(0, 2)
 
-					// path is a sting with slashes at the beggining and end , which occur empty item in array
-					// split by slash to get array
-					const pathAltLang = altLang === state.defaultLanguage ? '' : altLang + '/'
-					let altPath = path.slice(1, -1)
-					altPath = altPath.split('/')
-					const uid = alterLang.uid === undefined ? '' : `${alterLang.uid}/`
+			// path is a sting with slashes at the beggining and end , which occur empty item in array
+			// split by slash to get array
+			const pathAltLang = altLang === state.defaultLanguage ? '' : altLang + '/'
+			let altPath = path.slice(1, -1)
+			altPath = altPath.split('/')
+			const uid = alterLang.uid === undefined ? '' : `${alterLang.uid}/`
 
-					if (altPath.length <= 3) href = `${state.domain}/${pathAltLang}${uid}`
-					else href = `${state.domain}/${pathAltLang}${altPath}${uid}`
+			if (altPath.length <= 3) href = `${state.domain}/${pathAltLang}${uid}`
+			else href = `${state.domain}/${pathAltLang}${altPath}${uid}`
 
-					// links & meta
-					head.link.push({ hid: 'alternate', rel: 'alternate', href, hreflang: altLang })
-					if (altLang === state.defaultLanguage) head.link.push({ hid: 'alternate', rel: 'alternate', href, hreflang: 'x-default' })
-				})
+			// links & meta
+			head.link.push({ hid: 'alternate', rel: 'alternate', href, hreflang: altLang })
+			if (altLang === state.defaultLanguage) head.link.push({ hid: 'alternate', rel: 'alternate', href, hreflang: 'x-default' })
+		})
 
-				head.meta.push(
-					...[
-						{ hid: 'description', name: 'description', content: fetch.data.meta_description },
-						// facebook
-						{ hid: 'og:type', property: 'og:type', content: '' },
-						{ hid: 'og:url', property: 'og:url', content: canonical },
-						{ hid: 'og:title', property: 'og:title', content: fetch.data.meta_title },
-						{ hid: 'og:description', property: 'og:description', content: fetch.data.meta_description },
-						{ hid: 'og:image', property: 'og:image', content: fetch.data.meta_image === undefined ? '' : fetch.data.meta_image.url },
-						// twitter
-						{ hid: 'twitter:card', name: 'twitter:card', content: fetch.data.meta_image === undefined ? '' : fetch.data.meta_image.url },
-					],
-				)
+		head.meta.push(
+			...[
+				{ hid: 'description', name: 'description', content: fetch.data.meta_description },
+				// facebook
+				{ hid: 'og:type', property: 'og:type', content: '' },
+				{ hid: 'og:url', property: 'og:url', content: canonical },
+				{ hid: 'og:title', property: 'og:title', content: fetch.data.meta_title },
+				{ hid: 'og:description', property: 'og:description', content: fetch.data.meta_description },
+				{ hid: 'og:image', property: 'og:image', content: fetch.data.meta_image === undefined ? '' : fetch.data.meta_image.url },
+				// twitter
+				{ hid: 'twitter:card', name: 'twitter:card', content: fetch.data.meta_image === undefined ? '' : fetch.data.meta_image.url },
+			],
+		)
 
-				await commit('setPage', { head, data: fetch.data, tags: fetch.tags })
-			})
-			.catch((error) => {
-				console.log('log', error)
-				// set status code on server and
-				if (process.server) {
-					this.$nuxt.context.res.statusCode = 404
-				}
-				// use throw new Error()
-				throw new Error('Post not found')
-			})
+		await commit('setPage', { head, data: fetch.data, tags: fetch.tags })
 	},
 
 	async storeByUID({ state, commit, dispatch }, { type, path, fetch }) {

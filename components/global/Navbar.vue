@@ -509,7 +509,7 @@ $transition: all 0.35s ease;
 // 	}
 // }
 
-@media (max-width: 1020px) {
+@media (max-width: 1120px) {
 	.navbar {
 		height: 60px;
 		padding: 0 40px;

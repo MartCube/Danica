@@ -212,7 +212,7 @@ export default {
 	}
 }
 
-@media (min-width: 1100px) {
+@media (min-width: 1300px) {
 	.blog_card {
 		.info > * {
 			font-size: 1.3rem;
@@ -223,7 +223,7 @@ export default {
 		}
 	}
 }
-@media (max-width: 1100px) {
+@media (max-width: 1300px) {
 	.blog_card {
 		.title {
 			font-size: 1.2rem;

@@ -30,7 +30,7 @@
 				<template v-else-if="slice.slice_type == 'image_slider'">
 					<div class="image_slider">
 						<div class="image_slider_wrapper">
-							<ImageItem v-for="item in slice.items" :key="item.image.url" class="swiper-slide" :src="item.image.url" />
+							<ImageItem v-for="item in slice.items" :key="item.image.url" :src="item.image.url" />
 						</div>
 					</div>
 				</template>
@@ -213,6 +213,7 @@ export default {
 			picture {
 				height: 70vh;
 				width: auto;
+				margin-right: 10px;
 			}
 		}
 	}
@@ -302,37 +303,5 @@ export default {
 			}
 		}
 	}
-
-	::v-deep .swiper-pagination {
-		margin-right: 40px;
-	}
-	::v-deep .swiper-wrapper {
-		max-width: 100vw;
-	}
-}
-
-::v-deep {
-	--swiper-theme-color: rgb(255, 196, 36);
-}
-::v-deep .swiper-pagination-bullet {
-	width: 12px;
-	height: 12px;
-	border-radius: 10px;
-	transition: width 0.3s ease;
-	&.swiper-pagination-bullet-active {
-		width: 40px;
-	}
-}
-::v-deep .swiper-pagination {
-	position: initial;
-	margin-top: 35px;
-
-	width: max-content;
-	height: 20px;
-	display: flex;
-	align-self: flex-end;
-}
-::v-deep .swiper-wrapper {
-	max-width: 900px;
 }
 </style>

@@ -8,7 +8,7 @@
 				<h2 class="title">{{ title }}</h2>
 				<div class="project_slider">
 					<div class="project_slider_wrapper">
-						<ProjectSlide v-for="(project, i) in projects" :key="i" :data="project" class="swiper-slide" />
+						<ProjectSlide v-for="(project, i) in projects" :key="i" :data="project"/>
 					</div>
 				</div>
 
@@ -75,45 +75,5 @@ export default {
 			}
 		}
 	}
-}
-
-@media (max-width: 900px) {
-	.content {
-		.project_slider {
-			// width: 350px;
-			.swiper-container {
-				align-items: flex-start;
-			}
-			.swiper-container-horizontal > .swiper-pagination-bullets {
-				align-self: flex-end;
-			}
-		}
-	}
-}
-
-::v-deep {
-	--swiper-theme-color: rgb(255, 196, 36);
-}
-::v-deep .swiper-pagination-bullet {
-	width: 12px;
-	height: 12px;
-	border-radius: 10px;
-	transition: width 0.3s ease;
-	&.swiper-pagination-bullet-active {
-		width: 40px;
-	}
-}
-
-::v-deep .swiper-pagination {
-	position: initial;
-	margin: 25px 0;
-	width: max-content;
-	height: 20px;
-	display: flex;
-}
-
-::v-deep .swiper-wrapper {
-	// max-width: 900px;
-	height: 100%;
 }
 </style>

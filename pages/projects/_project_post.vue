@@ -31,9 +31,9 @@
 				</template>
 
 				<template v-else-if="slice.slice_type == 'image_slider'">
-					<div class="swiper-container">
-						<div class="swiper-wrapper">
-							<ImageItem v-for="item in slice.items" :key="item.image.url" class="swiper-slide" :src="item.image.url" alt="alt" />
+					<div class="image_slider">
+						<div class="image_slider_wrapper">
+							<ImageItem v-for="item in slice.items" :key="item.image.url" :src="item.image.url" alt="alt" />
 						</div>
 					</div>
 				</template>
@@ -89,15 +89,6 @@ export default {
 	head() {
 		return this.$store.getters.page.head
 	},
-
-	// watch: {
-	// 	'$route.path': '$fetch',
-	// },
-	// fetchKey(getCounter) {
-	// 	// getCounter is a method that can be called to get the next number in a sequence
-	// 	// as part of generating a unique fetchKey.
-	// 	return 'project_post' + getCounter('project_post')
-	// },
 }
 </script>
 
@@ -200,20 +191,23 @@ export default {
 	}
 
 	.image_slider {
-		width: 100vw;
-
-		margin-top: 10px;
-		margin-bottom: 25px;
-		z-index: 3;
-
-		.swiper-container {
-			width: inherit;
+		width: 100%;
+		overflow-x: auto;
+		margin-bottom: 2rem;
+		padding-bottom: 2rem;
+		@include scrollbar;
+		.image_slider_wrapper {
+			width: auto;
 			height: inherit;
 			margin: 0;
+			overflow: initial;
 
-			display: flex;
-			flex-direction: column;
-			align-items: flex-start;
+			display: inline-flex;
+			picture {
+				height: 70vh;
+				width: auto;
+				margin-right: 10px;
+			}
 		}
 	}
 
@@ -310,35 +304,5 @@ export default {
 			}
 		}
 	}
-
-	::v-deep .swiper-pagination {
-		margin-left: 40px;
-	}
-	::v-deep .swiper-wrapper {
-		max-width: 100vw;
-	}
-}
-
-::v-deep {
-	--swiper-theme-color: rgb(255, 196, 36);
-}
-::v-deep .swiper-pagination-bullet {
-	width: 12px;
-	height: 12px;
-	border-radius: 10px;
-	transition: width 0.3s ease;
-	&.swiper-pagination-bullet-active {
-		width: 40px;
-	}
-}
-::v-deep .swiper-pagination {
-	position: initial;
-	margin-top: 35px;
-	width: max-content;
-	height: 20px;
-	display: flex;
-}
-::v-deep .swiper-wrapper {
-	max-width: 900px;
 }
 </style>

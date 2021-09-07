@@ -3,7 +3,7 @@
 		<template v-if="$fetchState.error">
 			<Error />
 		</template>
-		<template v-if="!$fetchState.pending && !$fetchState.error">
+		<template v-else-if="!$fetchState.pending">
 			<div v-for="(slice, i) in slices" :key="slice.slice_type + i">
 				<ServiceIntro v-if="slice.slice_type == 'serviceintro'" :data="slice" />
 				<Values v-else-if="slice.slice_type == 'values'" :data="slice" />

@@ -32,7 +32,7 @@
 			</n-link>
 		</div>
 
-		<ul v-if="!$fetchState.pending" class="links" :class="{ active: isActive }" @click="CloseMenu">
+		<ul v-if="!$fetchState.pending && !$fetchState.error" class="links" :class="{ active: isActive }" @click="CloseMenu">
 			<li v-for="item in data.links" :key="item.link.uid">
 				<n-link exact :to="localePath(`/${item.link.uid}/`)">{{ item.name }}</n-link>
 
@@ -86,8 +86,15 @@ export default {
 		data: null,
 	}),
 	async fetch() {
-		const navbar = await this.$prismic.api.getSingle('navbar', { lang: this.$i18n.localeProperties.prismic })
-		this.data = navbar.data
+		await this.$prismic.api
+			.getSingle('navbar', { lang: this.$i18n.localeProperties.prismic })
+			.then((fetch) => {
+				// set data
+				if (fetch) this.data = fetch.data
+			})
+			.catch((error) => {
+				console.log('log error', error)
+			})
 	},
 	computed: {
 		transparent() {

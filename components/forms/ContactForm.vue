@@ -33,7 +33,6 @@ export default {
 	data: () => ({
 		message: false,
 		loading: false,
-
 		form: {
 			name: '',
 			number: '',
@@ -62,10 +61,8 @@ export default {
 			const isValid = await this.$refs.contact.validate()
 			// validation
 			if (!isValid) return
-
 			this.loading = true
 			console.log('loading')
-
 			// compose email template
 			this.form.emailTemplate = `
 				<h4>Name</h4>
@@ -77,17 +74,14 @@ export default {
 				<h4>Message</h4>
 				<p>${this.form.message}</p>
 			`
-
 			// trigger netlify function
 			try {
 				await axios.post('.netlify/functions/sendmail', this.form)
 			} catch (error) {
 				console.log(error)
 			}
-
 			this.loading = false
 			console.log('submited')
-
 			this.message = !this.message
 		},
 	},
@@ -108,19 +102,16 @@ export default {
 	.title {
 		width: max-content;
 		border-bottom: 2px solid $primary;
-
 		font-size: 2rem;
 		color: $white;
 		&::selection {
 			color: $black;
 		}
 	}
-
 	.message {
 		display: flex;
 		flex-direction: column;
 		justify-content: center;
-
 		.rich_text p {
 			color: $white;
 			line-height: 1.5rem;

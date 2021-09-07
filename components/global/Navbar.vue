@@ -87,16 +87,20 @@ export default {
 	}),
 	async fetch() {
 		console.log(this.$i18n.localeProperties.prismic)
-		await this.$prismic.api
-			.getSingle('navbar')
-			.then((fetch) => {
-				// set data
-				console.log('navbar', fetch)
-				if (fetch) this.data = fetch.data
-			})
-			.catch((error) => {
-				console.log('log error', error)
-			})
+		try {
+			await this.$prismic.api
+				.getSingle('navbar', { lang: this.$i18n.localeProperties.prismic })
+				.then((fetch) => {
+					// set data
+					console.log('navbar', fetch)
+					if (fetch) this.data = fetch.data
+				})
+				.catch((error) => {
+					console.log('log error', error)
+				})
+		} catch (error) {
+			console.log(error)
+		}
 	},
 	computed: {
 		transparent() {

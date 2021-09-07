@@ -64,10 +64,10 @@ export default {
 	head() {
 		return this.$store.getters.page.head
 	},
-	// watch: {
-	// 	// (exp) when language changes, fetch again
-	// 	'$route.path': '$fetch',
-	// },
+	watch: {
+		// (exp) when language changes, fetch again
+		'$route.path': '$fetch',
+	},
 	// fetchKey(getCounter) {
 	// 	// getCounter is a method that can be called to get the next number in a sequence
 	// 	// as part of generating a unique fetchKey.

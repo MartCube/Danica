@@ -28,8 +28,8 @@
 				</template>
 
 				<template v-else-if="slice.slice_type == 'image_slider'">
-					<div class="swiper-container">
-						<div class="swiper-wrapper">
+					<div class="image_slider">
+						<div class="image_slider_wrapper">
 							<ImageItem v-for="item in slice.items" :key="item.image.url" class="swiper-slide" :src="item.image.url" />
 						</div>
 					</div>
@@ -198,21 +198,22 @@ export default {
 	}
 
 	.image_slider {
-		align-self: flex-start;
 		width: 100%;
-		z-index: 3;
-		margin-top: 10px;
-		margin-bottom: 25px;
-		z-index: 6;
-
-		.swiper-container {
-			width: inherit;
+		overflow-x: auto;
+		margin-bottom: 2rem;
+		padding-bottom: 2rem;
+		@include scrollbar;
+		.image_slider_wrapper {
+			width: auto;
 			height: inherit;
 			margin: 0;
+			overflow: initial;
 
-			display: flex;
-			flex-direction: column;
-			align-items: flex-start;
+			display: inline-flex;
+			picture {
+				height: 70vh;
+				width: auto;
+			}
 		}
 	}
 

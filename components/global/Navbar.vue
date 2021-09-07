@@ -108,10 +108,7 @@ export default {
 		},
 	},
 	watch: {
-		async currentLocale(to, from) {
-			await this.$nextTick()
-			this.$fetch()
-		},
+		'$route.path': '$fetch',
 		async showLocales(newValue, oldValue) {
 			await this.$nextTick()
 			if (newValue) localleAnim(document.querySelectorAll('.locale'), true)

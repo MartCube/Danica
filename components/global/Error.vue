@@ -25,22 +25,31 @@ export default {
 <style lang="scss" scoped>
 .error {
 	width: 100%;
-	height: 1200px;
-	display: flex;
-	align-items: center;
-	justify-content: center;
+	height: 100vh;
+	margin-bottom: -100px;
+	// max-height: 100vh;
+
+	// display: flex;
+	// align-items: center;
+	// justify-content: center;
 
 	position: relative;
-	max-height: 100vh;
 	picture {
 		position: absolute;
 		z-index: 1;
+		width: 100%;
+		height: 100%;
+		top: 0;
 	}
 	.text {
-		max-width: 400px;
+		width: 100%;
+		height: 100%;
+		justify-content: center;
+		align-items: center;
 		display: flex;
 		flex-direction: column;
 		z-index: 4;
+		position: relative;
 
 		h2 {
 			font-size: 8rem;
@@ -53,6 +62,13 @@ export default {
 
 		a {
 			margin: 40px auto;
+			display: flex;
+			width: fit-content;
+			background-color: $primary;
+			padding: 1rem 2rem;
+			&:hover {
+				background-color: lighten($primary, 5%);
+			}
 		}
 	}
 }

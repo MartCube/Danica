@@ -41,17 +41,9 @@ import { postAnim } from '~/assets/anime'
 export default {
 	name: 'Blog',
 	components: { MediaQueryProvider, MatchMedia },
-	async asyncData({ $prismic, i18n, store }) {
-		await store.dispatch('storeSingle', {
-			type: 'blog',
-			language: i18n.localeProperties.prismic,
-		})
-		// rewrite data to slcies
-		// return {
-		// 	slices: store.getters.page.data.body,
-		// }
-	},
+
 	data: () => ({
+		data: [],
 		// filters
 		active_filter: [],
 		// pagination
@@ -62,6 +54,24 @@ export default {
 		next_page: null,
 	}),
 	async fetch() {
+		await this.$prismic.api
+			.getSingle('blog', { lang: this.$i18n.localeProperties.prismic })
+			.then(async (fetch) => {
+				// send data to store
+				await this.$store.dispatch('storeSingle', fetch)
+				// save data to component
+				this.data = fetch.data
+			})
+			.catch((error) => {
+				console.log(error)
+				// set status code on server and
+				if (process.server) {
+					this.$nuxt.context.res.statusCode = 404
+				}
+				// use throw new Error()
+				throw new Error('single page not found')
+			})
+
 		// rewrite this data in to slices of blog document
 		// fetch blog posts
 		const blogPosts = await this.$prismic.api.query([this.$prismic.predicates.at('document.type', 'blog_post'), this.$prismic.predicates.at('document.tags', this.active_filter)], {

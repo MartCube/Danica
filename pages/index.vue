@@ -2,8 +2,8 @@
 	<div class="container">
 		<template v-if="!$fetchState.pending">
 			<div v-for="slice in data.body" :key="slice.slice_type">
-				<LazyHomeIntro v-if="slice.slice_type == 'home_intro'" :data="slice" />
-				<LazyAchievements v-else-if="slice.slice_type == 'achievements'" :data="slice" />
+				<HomeIntro v-if="slice.slice_type == 'home_intro'" :data="slice" />
+				<Achievements v-else-if="slice.slice_type == 'achievements'" :data="slice" />
 				<LazyServicesList v-else-if="slice.slice_type == 'services_list'" :data="slice" />
 				<LazyHighlightProjects v-else-if="slice.slice_type == 'highlight_projects'" :data="slice" />
 			</div>
@@ -15,7 +15,7 @@
 export default {
 	name: 'Index',
 	data: () => ({
-		slices: [],
+		data: [],
 	}),
 	async fetch() {
 		await this.$prismic.api
@@ -24,7 +24,7 @@ export default {
 				// send data to store
 				await this.$store.dispatch('storeSingle', fetch)
 				// save data to component
-				this.slices = fetch.data.body
+				this.data = fetch.data
 			})
 			.catch((error) => {
 				console.log(error)
@@ -33,14 +33,14 @@ export default {
 					this.$nuxt.context.res.statusCode = 404
 				}
 				// use throw new Error()
-				throw new Error('single page not found')
+				throw new Error('home page not found')
 			})
 	},
 	head() {
 		return this.$store.getters.page.head
 	},
-	watch: {
-		'$route.path': '$fetch',
-	},
+	// watch: {
+	// 	'$route.path': '$fetch',
+	// },
 }
 </script>

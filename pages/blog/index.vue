@@ -43,7 +43,6 @@ export default {
 	components: { MediaQueryProvider, MatchMedia },
 
 	data: () => ({
-		data: [],
 		// filters
 		active_filter: [],
 		// pagination
@@ -59,8 +58,6 @@ export default {
 			.then(async (fetch) => {
 				// send data to store
 				await this.$store.dispatch('storeSingle', fetch)
-				// save data to component
-				this.data = fetch.data
 			})
 			.catch((error) => {
 				console.log(error)
@@ -69,7 +66,7 @@ export default {
 					this.$nuxt.context.res.statusCode = 404
 				}
 				// use throw new Error()
-				throw new Error('single page not found')
+				throw new Error('blog page not found')
 			})
 
 		// rewrite this data in to slices of blog document

@@ -9,14 +9,22 @@
 
 <script>
 export default {
-	async asyncData({ i18n, store }) {
-		await store.dispatch('storeSingle', {
-			type: 'policy',
-			language: i18n.localeProperties.prismic,
-		})
-		return {
-			slices: store.getters.page.data.body,
-		}
+	async fetch() {
+		await this.$prismic.api
+			.getSingle('policy', { lang: this.$i18n.localeProperties.prismic })
+			.then(async (fetch) => {
+				// send data to store
+				await this.$store.dispatch('storeSingle', fetch)
+			})
+			.catch((error) => {
+				console.log(error)
+				// set status code on server and
+				if (process.server) {
+					this.$nuxt.context.res.statusCode = 404
+				}
+				// use throw new Error()
+				throw new Error('policy page not found')
+			})
 	},
 	head() {
 		return this.$store.getters.page.head

@@ -26,13 +26,6 @@
 import { postAnim } from '~/assets/anime'
 export default {
 	name: 'Projects',
-	async asyncData({ i18n, store }) {
-		await store.dispatch('storeSingle', {
-			type: 'projects',
-			language: i18n.localeProperties.prismic,
-		})
-		// rewrite data to slcies
-	},
 	data: () => ({
 		// filters
 		active_filter: [],
@@ -45,6 +38,22 @@ export default {
 		gridHeight: 825,
 	}),
 	async fetch() {
+		await this.$prismic.api
+			.getSingle('projects', { lang: this.$i18n.localeProperties.prismic })
+			.then(async (fetch) => {
+				// send data to store
+				await this.$store.dispatch('storeSingle', fetch)
+			})
+			.catch((error) => {
+				console.log(error)
+				// set status code on server and
+				if (process.server) {
+					this.$nuxt.context.res.statusCode = 404
+				}
+				// use throw new Error()
+				throw new Error('policy page not found')
+			})
+
 		// fetch project posts
 		const projects = await this.$prismic.api.query([this.$prismic.predicates.at('document.type', 'project_post'), this.$prismic.predicates.at('document.tags', this.active_filter)], {
 			orderings: '[document.first_publication_date desc]',
@@ -57,6 +66,7 @@ export default {
 		this.prev_page = projects.prev_page
 		this.next_page = projects.next_page
 	},
+
 	head() {
 		return this.$store.getters.page.head
 	},
@@ -86,7 +96,7 @@ export default {
 		},
 	},
 	watch: {
-		'$route.path': '$fetch',
+		// '$route.path': '$fetch',
 		async projects(newValue, oldValue) {
 			await this.$nextTick()
 			postAnim(this.$refs.grid.children, true)

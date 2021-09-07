@@ -35,37 +35,51 @@ export default {
 		next()
 	},
 	middleware: 'footer',
-	async asyncData({ $prismic, i18n, store }) {
-		await store.dispatch('storeSingle', {
-			type: 'contact',
-			language: i18n.localeProperties.prismic,
-		})
-		// rewrite this data in to slices of contact document
-		const formData = await $prismic.api.getSingle('contact_form', { lang: i18n.localeProperties.prismic })
-		const footer = await $prismic.api.getSingle('footer', { lang: i18n.localeProperties.prismic })
-		return {
-			contactFormData: {
-				title: formData.data.title,
-				name: formData.data.name,
-				number: formData.data.number,
-				submit: formData.data.submit,
-				email: formData.data.email,
-				message: formData.data.message,
-				response: formData.data.response,
-				goback: formData.data.goback,
-			},
-			data: {
-				map: store.getters.page.data.map.url,
-				office: footer.data.office,
-				for_clients: footer.data.for_clients,
-				all_rights_reserved: footer.data.all_rights_reserved,
-				privacy_policy: footer.data.privacy_policy,
-			},
-		}
-	},
 	data: () => ({
 		map_url: 'https://g.page/danica-ua?share',
+		contactFormData: {},
+		data: {},
 	}),
+	async fetch() {
+		await this.$prismic.api
+			.getSingle('contact', { lang: this.$i18n.localeProperties.prismic })
+			.then(async (fetch) => {
+				// send data to store
+				await this.$store.dispatch('storeSingle', fetch)
+				// save data to component
+				this.data = fetch.data
+			})
+			.catch((error) => {
+				console.log(error)
+				// set status code on server and
+				if (process.server) {
+					this.$nuxt.context.res.statusCode = 404
+				}
+				// use throw new Error()
+				throw new Error('home page not found')
+			})
+		// rewrite this data in to slices of contact document
+		const formData = await this.$prismic.api.getSingle('contact_form', { lang: this.$i18n.localeProperties.prismic })
+		const footer = await this.$prismic.api.getSingle('footer', { lang: this.$i18n.localeProperties.prismic })
+
+		this.contactFormData = {
+			title: formData.data.title,
+			name: formData.data.name,
+			number: formData.data.number,
+			submit: formData.data.submit,
+			email: formData.data.email,
+			message: formData.data.message,
+			response: formData.data.response,
+			goback: formData.data.goback,
+		}
+		this.data = {
+			map: this.$store.getters.page.data.map.url,
+			office: footer.data.office,
+			for_clients: footer.data.for_clients,
+			all_rights_reserved: footer.data.all_rights_reserved,
+			privacy_policy: footer.data.privacy_policy,
+		}
+	},
 	head() {
 		return this.$store.getters.page.head
 	},

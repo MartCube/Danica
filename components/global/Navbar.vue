@@ -86,10 +86,9 @@ export default {
 		data: null,
 	}),
 	async fetch() {
-		console.log(this.$i18n.localeProperties.prismic)
 		try {
 			await this.$prismic.api
-				.getSingle('navbar')
+				.getSingle('navbar', { lang: this.$i18n.localeProperties.prismic })
 				.then((fetch) => {
 					// set data
 					// console.log('navbar', fetch)
@@ -114,8 +113,8 @@ export default {
 		},
 	},
 	watch: {
-		currentLocale(newValue, oldValue) {
-			// if language changes then re-fetch
+		$route(to, from) {
+			console.log('watch route', to, from)
 			this.$fetch()
 		},
 		async showLocales(newValue, oldValue) {

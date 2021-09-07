@@ -88,10 +88,10 @@ export default {
 	async fetch() {
 		console.log(this.$i18n.localeProperties.prismic)
 		await this.$prismic.api
-			.getSingle('navbar', { lang: this.$i18n.localeProperties.prismic })
+			.getSingle('navbar')
 			.then((fetch) => {
 				// set data
-				console.log('navbar', fetch.data)
+				console.log('navbar', fetch)
 				if (fetch) this.data = fetch.data
 			})
 			.catch((error) => {

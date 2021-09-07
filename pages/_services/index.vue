@@ -49,7 +49,6 @@ export default {
 					path: this.$route.fullPath,
 					fetch,
 				})
-				console.log('service', fetch.data)
 				this.slices = fetch.data.body
 			})
 			.catch((error) => {

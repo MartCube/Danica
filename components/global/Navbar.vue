@@ -110,7 +110,7 @@ export default {
 		},
 	},
 	watch: {
-		'$route.path': '$fetch',
+		// '$route.path': '$fetch',
 		async showLocales(newValue, oldValue) {
 			await this.$nextTick()
 			if (newValue) localleAnim(document.querySelectorAll('.locale'), true)
@@ -122,7 +122,7 @@ export default {
 		// this.onScroll()
 	},
 	destroyed() {
-		window.removeEventListener('scroll', this.onScroll)
+		// window.removeEventListener('scroll', this.onScroll)
 	},
 	methods: {
 		// onScroll() {

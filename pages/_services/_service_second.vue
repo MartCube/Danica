@@ -1,25 +1,30 @@
 <template>
 	<div class="container">
-		<div v-for="(slice, i) in slices" :key="slice.slice_type + i">
-			<ServiceIntro v-if="slice.slice_type == 'serviceintro'" :data="slice" />
-			<Values v-else-if="slice.slice_type == 'values'" :data="slice" />
-			<Stages v-else-if="slice.slice_type == 'stages'" :data="slice" />
-			<Standards v-else-if="slice.slice_type == 'standards'" :data="slice" />
-			<Advantages v-else-if="slice.slice_type == 'advantages'" :data="slice" />
-			<Charles v-else-if="slice.slice_type == 'charles'" :data="slice" />
-			<!-- <ServicesList v-else-if="slice.slice_type == 'services_list'" :data="slice" /> -->
-			<LatestProjects v-else-if="slice.slice_type == 'latestprojects'" :data="slice" />
-			<SliderProjects v-else-if="slice.slice_type == 'sliderprojects'" :data="slice" />
-			<section v-else-if="slice.slice_type == 'text'" class="rich_text">
-				<prismic-rich-text :field="slice.primary.text" />
-			</section>
-			<section v-else-if="slice.slice_type == 'image_text'" class="image_text">
-				<div class="image">
-					<ImageItem :src="slice.primary.image.url" :mobile="slice.primary.image.mobile.url" :alt="slice.primary.image.alt" />
-				</div>
-				<prismic-rich-text v-for="(item, key) in slice.items" :key="key" class="rich_text" :field="item.text" />
-			</section>
-		</div>
+		<template v-if="$fetchState.error">
+			<Error />
+		</template>
+		<template v-if="!$fetchState.pending">
+			<div v-for="(slice, i) in slices" :key="slice.slice_type + i">
+				<ServiceIntro v-if="slice.slice_type == 'serviceintro'" :data="slice" />
+				<Values v-else-if="slice.slice_type == 'values'" :data="slice" />
+				<Stages v-else-if="slice.slice_type == 'stages'" :data="slice" />
+				<Standards v-else-if="slice.slice_type == 'standards'" :data="slice" />
+				<Advantages v-else-if="slice.slice_type == 'advantages'" :data="slice" />
+				<Charles v-else-if="slice.slice_type == 'charles'" :data="slice" />
+				<ServicesList v-else-if="slice.slice_type == 'services_list'" :data="slice" />
+				<LatestProjects v-else-if="slice.slice_type == 'latestprojects'" :data="slice" />
+				<SliderProjects v-else-if="slice.slice_type == 'sliderprojects'" :data="slice" />
+				<section v-else-if="slice.slice_type == 'text'" class="rich_text">
+					<prismic-rich-text :field="slice.primary.text" />
+				</section>
+				<section v-else-if="slice.slice_type == 'image_text'" class="image_text">
+					<div class="image">
+						<ImageItem :src="slice.primary.image.url" :mobile="slice.primary.image.mobile.url" :alt="slice.primary.image.alt" />
+					</div>
+					<prismic-rich-text v-for="(item, key) in slice.items" :key="key" class="rich_text" :field="item.text" />
+				</section>
+			</div>
+		</template>
 	</div>
 </template>
 
@@ -37,15 +42,30 @@ export default {
 	}),
 	async fetch() {
 		// console.log(route);
-		await this.$store.dispatch('storeSecondLevel', {
-			uid: this.$route.params.service_second,
-			language: this.$i18n.localeProperties.prismic,
-			path: this.$route.fullPath,
-			type: 'service_second',
-			parentUid: this.$route.params.services,
-			parentType: 'services',
-		})
-		this.slices = this.$store.getters.page.data.body
+		const fetch = await this.$prismic.api.getByUID('service_second', this.$route.params.service_second, { lang: this.$i18n.localeProperties.prismic })
+		const parent = await this.$prismic.api.getByUID('services', this.$route.params.services, { lang: this.$i18n.localeProperties.prismic })
+		await Promise.allSettled([fetch, parent])
+			.then(async (data) => {
+				await console.log(data[1].value)
+				await this.$store.dispatch('storeSecondLevel', {
+					type: 'service_second',
+					parentType: 'services',
+					parentUid: this.$route.params.services,
+					fetch: data[0].value,
+					parent: data[1].value,
+					path: this.$route.fullPath,
+				})
+				this.slices = data[0].value.data.body
+			})
+			.catch((error) => {
+				console.log(error)
+				// set status code on server and
+				if (process.server) {
+					this.$nuxt.context.res.statusCode = 404
+				}
+				// use throw new Error()
+				throw new Error('service not found')
+			})
 	},
 	head() {
 		return this.$store.getters.page.head

@@ -227,13 +227,7 @@ export const actions = {
 		await commit('setPage', { head, data: fetch.data, tags: fetch.tags })
 	},
 
-	async storeSecondLevel({ state, commit, dispatch }, { type, parentType, parentUid, uid, language, path }) {
-		const fetch = await this.$prismic.api.getByUID(type, uid, { lang: language })
-		const parent = await this.$prismic.api.getByUID(parentType, parentUid, { lang: language })
-
-		if (!fetch && !parent) {
-			return undefined
-		}
+	async storeSecondLevel({ state, commit, dispatch }, { type, parentType, parentUid, path, fetch, parent }) {
 		const lang = fetch.lang.slice(0, 2)
 
 		// for dynamic pages store routes for i18n *****

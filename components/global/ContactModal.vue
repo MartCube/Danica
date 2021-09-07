@@ -4,8 +4,8 @@
 			<ImageItem v-if="!$fetchState.pending" :src="image" alt="contact" />
 		</div>
 		<ContactForm :data="form_data" />
-		<div class="close">
-			<Icon name="close" fill="#fafafa" size="35px" @click.native="closeModal" />
+		<div class="close" @click="closeModal">
+			<Icon name="close" fill="#fafafa" size="35px" />
 		</div>
 	</div>
 </template>

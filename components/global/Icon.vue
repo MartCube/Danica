@@ -37,7 +37,7 @@ export default {
 }
 </script>
 
-<style scoped>
+<style>
 svg {
 	transition: all 0.35s ease;
 }

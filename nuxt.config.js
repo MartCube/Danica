@@ -55,10 +55,9 @@ export default {
 
 	gtm: {
 		id: process.env.GTM,
-		enabled: false,
+		enabled: true,
 		pageTracking: true,
 		scriptDefer: true,
-		autoInit: false,
 	},
 
 	// facebook: {

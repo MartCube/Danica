@@ -123,8 +123,10 @@ export default {
 		},
 	},
 	mounted() {
-		window.addEventListener('scroll', this.onScroll)
-		this.onScroll()
+		if (this.data) {
+			window.addEventListener('scroll', this.onScroll)
+			this.onScroll()
+		}
 	},
 	destroyed() {
 		window.removeEventListener('scroll', this.onScroll)

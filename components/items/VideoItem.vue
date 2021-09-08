@@ -1,12 +1,12 @@
 <template>
-	<client-only>
-		<div class="plyr_video">
+	<div class="plyr_video">
+		<client-only>
 			<vue-plyr>
 				<!-- <div data-plyr-provider="vimeo" :data-plyr-embed-id="video"></div> -->
 				<div data-plyr-provider="youtube" :data-plyr-embed-id="video"></div>
 			</vue-plyr>
-		</div>
-	</client-only>
+		</client-only>
+	</div>
 </template>
 
 <script>

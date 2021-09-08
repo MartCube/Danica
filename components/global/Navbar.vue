@@ -32,33 +32,35 @@
 			</n-link>
 		</div>
 
-		<ul v-if="!$fetchState.pending && !$fetchState.error" class="links" :class="{ active: isActive }" @click="CloseMenu">
-			<li v-for="item in data.links" :key="item.link.uid">
-				<n-link exact :to="localePath(`/${item.link.uid}/`)">{{ item.name }}</n-link>
+		<template v-if="!$fetchState.pending && !$fetchState.error">
+			<ul class="links" :class="{ active: isActive }" @click="CloseMenu">
+				<li v-for="item in data.links" :key="item.link.uid">
+					<n-link exact :to="localePath(`/${item.link.uid}/`)">{{ item.name }}</n-link>
 
-				<template v-if="item.list_binding_name === 'architecture_links'">
-					<ul>
-						<li v-for="sublink in data.architecture_links" :key="sublink.uid">
-							<n-link exact :to="localePath(`/${item.link.uid}/${sublink.link.uid}/`)">{{ sublink.name }} </n-link>
-						</li>
-					</ul>
-				</template>
-				<template v-if="item.list_binding_name === 'design_links'">
-					<ul>
-						<li v-for="sublink in data.design_links" :key="sublink.uid">
-							<n-link exact :to="localePath(`/${item.link.uid}/${sublink.link.uid}/`)">{{ sublink.name }} </n-link>
-						</li>
-					</ul>
-				</template>
-				<template v-if="item.list_binding_name === 'construction_links'">
-					<ul>
-						<li v-for="sublink in data.construction_links" :key="sublink.uid">
-							<n-link exact :to="localePath(`/${item.link.uid}/${sublink.link.uid}/`)">{{ sublink.name }} </n-link>
-						</li>
-					</ul>
-				</template>
-			</li>
-		</ul>
+					<template v-if="item.list_binding_name === 'architecture_links'">
+						<ul>
+							<li v-for="sublink in data.architecture_links" :key="sublink.uid">
+								<n-link exact :to="localePath(`/${item.link.uid}/${sublink.link.uid}/`)">{{ sublink.name }} </n-link>
+							</li>
+						</ul>
+					</template>
+					<template v-if="item.list_binding_name === 'design_links'">
+						<ul>
+							<li v-for="sublink in data.design_links" :key="sublink.uid">
+								<n-link exact :to="localePath(`/${item.link.uid}/${sublink.link.uid}/`)">{{ sublink.name }} </n-link>
+							</li>
+						</ul>
+					</template>
+					<template v-if="item.list_binding_name === 'construction_links'">
+						<ul>
+							<li v-for="sublink in data.construction_links" :key="sublink.uid">
+								<n-link exact :to="localePath(`/${item.link.uid}/${sublink.link.uid}/`)">{{ sublink.name }} </n-link>
+							</li>
+						</ul>
+					</template>
+				</li>
+			</ul>
+		</template>
 
 		<div class="button" :class="{ active: isActive }" @click="ShowHideMenu">
 			<span class="top" />
@@ -87,20 +89,15 @@ export default {
 	}),
 	async fetch() {
 		console.log('navbar fetch')
-		try {
-			await this.$prismic.api
-				.getSingle('navbar', { lang: this.$i18n.localeProperties.prismic })
-				.then((fetch) => {
-					// set data
-					// console.log('navbar', fetch)
-					if (fetch) this.data = fetch.data
-				})
-				.catch((error) => {
-					console.log('log error', error)
-				})
-		} catch (error) {
-			console.log(error)
-		}
+		await this.$prismic.api
+			.getSingle('navbar', { lang: this.$i18n.localeProperties.prismic })
+			.then((fetch) => {
+				// set data
+				this.data = fetch.data
+			})
+			.catch((error) => {
+				console.log('log error', error)
+			})
 	},
 	computed: {
 		transparent() {
@@ -114,10 +111,14 @@ export default {
 		},
 	},
 	watch: {
-		$route(to, from) {
-			console.log('watch route', from.path, to.path)
+		currentLocale(newValue, oldValue) {
+			console.log('currentLocale changed')
 			this.$fetch()
 		},
+		// $route(to, from) {
+		// 	console.log('watch route', from.path, to.path)
+		// 	this.$fetch()
+		// },
 		async showLocales(newValue, oldValue) {
 			await this.$nextTick()
 			if (newValue) localleAnim(document.querySelectorAll('.locale'), true)

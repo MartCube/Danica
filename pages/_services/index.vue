@@ -69,11 +69,11 @@ export default {
 		// (exp) when language changes, fetch again
 		'$route.path': '$fetch',
 	},
-	// fetchKey(getCounter) {
-	// 	// getCounter is a method that can be called to get the next number in a sequence
-	// 	// as part of generating a unique fetchKey.
-	// 	return 'service' + getCounter('service')
-	// },
+	fetchKey(getCounter) {
+		// getCounter is a method that can be called to get the next number in a sequence
+		// as part of generating a unique fetchKey.
+		return 'service' + getCounter('service')
+	},
 	mounted() {
 		this.$store.dispatch('bindNavbarTransparent', true)
 	},

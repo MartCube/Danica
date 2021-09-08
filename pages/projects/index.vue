@@ -66,7 +66,11 @@ export default {
 		this.prev_page = projects.prev_page
 		this.next_page = projects.next_page
 	},
-
+	fetchKey(getCounter) {
+		// getCounter is a method that can be called to get the next number in a sequence
+		// as part of generating a unique fetchKey.
+		return 'project' + getCounter('project')
+	},
 	head() {
 		return this.$store.getters.page.head
 	},
@@ -96,7 +100,6 @@ export default {
 		},
 	},
 	watch: {
-		// '$route.path': '$fetch',
 		async projects(newValue, oldValue) {
 			await this.$nextTick()
 			postAnim(this.$refs.grid.children, true)

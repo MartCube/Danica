@@ -55,19 +55,15 @@ export default {
 				console.log('service error', error)
 
 				// set status code on server and
-				// if (process.server) {
-				// 	this.$nuxt.context.res.statusCode = 404
-				// }
+				if (process.server) {
+					this.$nuxt.context.res.statusCode = 404
+				}
 				// use throw new Error()
 				throw new Error('service not found')
 			})
 	},
 	head() {
 		return this.$store.getters.page.head
-	},
-	watch: {
-		// (exp) when language changes, fetch again
-		'$route.path': '$fetch',
 	},
 	fetchKey(getCounter) {
 		// getCounter is a method that can be called to get the next number in a sequence

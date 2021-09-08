@@ -99,7 +99,7 @@ export default {
 				console.log('log error', error)
 			})
 	},
-	fetchkey: 'navbar',
+	fetchKey: 'navbar',
 	computed: {
 		transparent() {
 			return this.$store.getters.navbarTransparent
@@ -116,10 +116,6 @@ export default {
 			console.log('currentLocale changed')
 			this.$fetch()
 		},
-		// $route(to, from) {
-		// 	console.log('watch route', from.path, to.path)
-		// 	this.$fetch()
-		// },
 		async showLocales(newValue, oldValue) {
 			await this.$nextTick()
 			if (newValue) localleAnim(document.querySelectorAll('.locale'), true)

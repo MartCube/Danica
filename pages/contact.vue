@@ -80,6 +80,7 @@ export default {
 			privacy_policy: footer.data.privacy_policy,
 		}
 	},
+	fetchKey: 'contact',
 	head() {
 		return this.$store.getters.page.head
 	},

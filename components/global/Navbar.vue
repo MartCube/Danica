@@ -99,6 +99,7 @@ export default {
 				console.log('log error', error)
 			})
 	},
+	fetchkey: 'navbar',
 	computed: {
 		transparent() {
 			return this.$store.getters.navbarTransparent

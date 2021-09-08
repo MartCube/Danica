@@ -7,6 +7,7 @@
 
 <script>
 export default {
+	name: 'ImageItem',
 	props: {
 		src: {
 			type: String,

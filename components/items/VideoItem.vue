@@ -12,6 +12,7 @@
 <script>
 import '~/plugins/vue-plyr'
 export default {
+	name: 'VideoItem',
 	props: {
 		video: {
 			type: String,

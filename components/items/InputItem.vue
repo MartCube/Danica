@@ -15,6 +15,7 @@
 import { ValidationProvider } from 'vee-validate'
 
 export default {
+	name: 'InputItem',
 	components: {
 		ValidationProvider,
 	},

@@ -3,7 +3,7 @@
 		<template v-if="$fetchState.error">
 			<Error />
 		</template>
-		<template v-else-if="!$fetchState.pending">
+		<template v-if="!$fetchState.pending">
 			<div v-for="(slice, i) in slices" :key="slice.slice_type + i">
 				<ServiceIntro v-if="slice.slice_type == 'serviceintro'" :data="slice" />
 				<Values v-else-if="slice.slice_type == 'values'" :data="slice" />
@@ -52,11 +52,12 @@ export default {
 				this.slices = fetch.data.body
 			})
 			.catch((error) => {
-				console.log(error)
+				console.log('service error', error)
+
 				// set status code on server and
-				if (process.server) {
-					this.$nuxt.context.res.statusCode = 404
-				}
+				// if (process.server) {
+				// 	this.$nuxt.context.res.statusCode = 404
+				// }
 				// use throw new Error()
 				throw new Error('service not found')
 			})

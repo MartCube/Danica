@@ -86,6 +86,7 @@ export default {
 		data: null,
 	}),
 	async fetch() {
+		console.log('navbar fetch')
 		try {
 			await this.$prismic.api
 				.getSingle('navbar', { lang: this.$i18n.localeProperties.prismic })
@@ -114,7 +115,7 @@ export default {
 	},
 	watch: {
 		$route(to, from) {
-			console.log('watch route', to, from)
+			console.log('watch route', from.path, to.path)
 			this.$fetch()
 		},
 		async showLocales(newValue, oldValue) {
@@ -128,7 +129,7 @@ export default {
 		this.onScroll()
 	},
 	destroyed() {
-		 window.removeEventListener('scroll', this.onScroll)
+		window.removeEventListener('scroll', this.onScroll)
 	},
 	methods: {
 		onScroll() {

@@ -186,7 +186,7 @@ export default {
 	},
 
 	generate: {
-		fallback: '404.html',
+		fallback: false,
 		crawler: false,
 		routes() {
 			return routes()

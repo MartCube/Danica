@@ -34,7 +34,7 @@
 
 		<template v-if="!$fetchState.pending && !$fetchState.error && data !== null">
 			<ul class="links" :class="{ active: isActive }" @click="CloseMenu">
-				<li v-for="item in data.links" :key="item.link.uid">
+				<li v-for="item in data[0].data.links" :key="item.link.uid">
 					<n-link exact :to="localePath(`/${item.link.uid}/`)">{{ item.name }}</n-link>
 
 					<template v-if="item.list_binding_name === 'architecture_links'">
@@ -63,8 +63,8 @@
 		</template>
 
 		<div class="button" :class="{ active: isActive }" @click="ShowHideMenu">
-			<span class="top" />
-			<span class="bot" />
+			<span class="top_line" />
+			<span class="bot_line" />
 		</div>
 	</header>
 </template>
@@ -88,19 +88,27 @@ export default {
 		data: null,
 	}),
 	async fetch() {
-		console.log('navbar fetch')
-		await this.$prismic.api
-			.getSingle('navbar', { lang: this.$i18n.localeProperties.prismic })
-			.then((fetch) => {
-				// set data
-				console.log(fetch.data);
-				this.data = fetch.data
-			})
-			.catch((error) => {
-				console.log('log error', error)
-			})
+		const uaNavbarData = await this.$prismic.api.getSingle('navbar', { lang: 'ua-ua' })
+		const ruNavbarData = await this.$prismic.api.getSingle('navbar', { lang: 'ru' })
+		const enNavbarData = await this.$prismic.api.getSingle('navbar', { lang: 'en-us' })
+
+		Promise.allSettled([uaNavbarData, ruNavbarData, enNavbarData]).then((results) => {
+			this.$store.dispatch('bindNavbar', [
+				{
+					language: 'ua',
+					data: results[0].value.data,
+				},
+				{
+					language: 'ru',
+					data: results[1].value.data,
+				},
+				{
+					language: 'en',
+					data: results[2].value.data,
+				},
+			])
+		})
 	},
-	fetchKey: 'navbar',
 	computed: {
 		transparent() {
 			return this.$store.getters.navbarTransparent
@@ -115,7 +123,7 @@ export default {
 	watch: {
 		currentLocale(newValue, oldValue) {
 			console.log('currentLocale changed')
-			this.$fetch()
+			this.getNavbarLinks()
 		},
 		async showLocales(newValue, oldValue) {
 			await this.$nextTick()
@@ -128,11 +136,23 @@ export default {
 			window.addEventListener('scroll', this.onScroll)
 			this.onScroll()
 		}
+		this.getNavbarLinks()
 	},
 	destroyed() {
 		window.removeEventListener('scroll', this.onScroll)
 	},
 	methods: {
+		getNavbarLinks() {
+			const links = this.$store.getters.navbar_links
+			this.data = links.filter((el) => {
+				// console.log(el)
+				// if (el.language === this.$i18n.localeProperties.code) {
+				// 	console.log(el)
+				// }
+				// return el
+				return el.language === this.$i18n.localeProperties.code ? el.data : false
+			})
+		},
 		onScroll() {
 			// Get the current scroll position
 			const currentScrollPosition = window.pageYOffset || document.documentElement.scrollTop

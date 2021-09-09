@@ -18,6 +18,7 @@ export const state = (context) => ({
 	},
 
 	routes: {},
+	navbar_links: [],
 })
 
 // Functions that return back data contained in the state.
@@ -34,6 +35,7 @@ export const getters = {
 	domain: (state) => state.domain,
 	page: (state) => state.page,
 	routes: (state) => state.routes,
+	navbar_links: (state) => state.navbar_links,
 }
 
 // Functions that directly mutate the state.
@@ -59,10 +61,16 @@ export const mutations = {
 	setPage(state, value) {
 		state.page = value
 	},
+	setNavbar(state, value) {
+		state.navbar_links = value
+	},
 }
 
 // Functions that call mutations on the state. They can call multiple mutations, can call other actions, and they support asynchronous operations.
 export const actions = {
+	bindNavbar(context, value) {
+		context.commit('setNavbar', value)
+	},
 	bindBlogPosts(context, value) {
 		context.commit('setBlogPosts', value)
 	},

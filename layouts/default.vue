@@ -19,9 +19,9 @@ export default {
 	data: () => ({}),
 	async mounted() {
 		await this.$nextTick()
-		setTimeout(() => {
-			this.initGTM()
-		}, 5000)
+		// setTimeout(() => {
+		// 	this.initGTM()
+		// }, 5000)
 	},
 	methods: {
 		initGTM() {

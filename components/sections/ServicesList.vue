@@ -10,7 +10,7 @@
 					<n-link :to="linkResolver(item)">
 						<span>0{{ i + 1 }}/</span>
 						{{ item.name }}
-						<Icon fill="hsl(0, 0%, 10%)" name="arrow" />
+						<Icon name="arrow" fill="hsl(0, 0%, 10%)" />
 					</n-link>
 				</div>
 			</div>

@@ -64,6 +64,7 @@ export default {
 		data: null,
 	}),
 	async fetch() {
+		console.log('project post fetch')
 		await this.$prismic.api
 			.getByUID('project_post', this.$route.params.project_post, { lang: this.$i18n.localeProperties.prismic })
 			.then(async (fetch) => {

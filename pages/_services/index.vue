@@ -3,7 +3,7 @@
 		<template v-if="$fetchState.error">
 			<Error />
 		</template>
-		<template v-else-if="!$fetchState.pending">
+		<template v-if="!$fetchState.pending">
 			<div v-for="(slice, i) in slices" :key="slice.slice_type + i">
 				<ServiceIntro v-if="slice.slice_type == 'serviceintro'" :data="slice" />
 				<Values v-else-if="slice.slice_type == 'values'" :data="slice" />
@@ -52,7 +52,8 @@ export default {
 				this.slices = fetch.data.body
 			})
 			.catch((error) => {
-				console.log(error)
+				console.log('service error', error)
+
 				// set status code on server and
 				if (process.server) {
 					this.$nuxt.context.res.statusCode = 404
@@ -64,15 +65,11 @@ export default {
 	head() {
 		return this.$store.getters.page.head
 	},
-	watch: {
-		// (exp) when language changes, fetch again
-		'$route.path': '$fetch',
+	fetchKey(getCounter) {
+		// getCounter is a method that can be called to get the next number in a sequence
+		// as part of generating a unique fetchKey.
+		return 'service' + getCounter('service')
 	},
-	// fetchKey(getCounter) {
-	// 	// getCounter is a method that can be called to get the next number in a sequence
-	// 	// as part of generating a unique fetchKey.
-	// 	return 'service' + getCounter('service')
-	// },
 	mounted() {
 		this.$store.dispatch('bindNavbarTransparent', true)
 	},

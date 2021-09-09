@@ -12,6 +12,7 @@
 import { buttonAnim } from '~/assets/anime'
 
 export default {
+	name: 'ButtonItem',
 	props: {
 		animated: {
 			type: Boolean,

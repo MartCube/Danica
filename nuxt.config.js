@@ -55,7 +55,7 @@ export default {
 
 	gtm: {
 		id: process.env.GTM,
-		enabled: true,
+		enabled: false,
 		pageTracking: true,
 		scriptDefer: true,
 	},

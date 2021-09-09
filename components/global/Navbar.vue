@@ -108,6 +108,17 @@ export default {
 				},
 			])
 		})
+		// console.log('navbar fetch')
+		// await this.$prismic.api
+		// 	.getSingle('navbar', { lang: this.$i18n.localeProperties.prismic })
+		// 	.then((fetch) => {
+		// 		// set data
+		// 		console.log(fetch.data)
+		// 		this.data = fetch.data
+		// 	})
+		// 	.catch((error) => {
+		// 		console.log('log error', error)
+		// 	})
 	},
 	computed: {
 		transparent() {

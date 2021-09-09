@@ -32,7 +32,7 @@
 			</n-link>
 		</div>
 
-		<template v-if="!$fetchState.pending && !$fetchState.error">
+		<template v-if="!$fetchState.pending && !$fetchState.error && data !== null">
 			<ul class="links" :class="{ active: isActive }" @click="CloseMenu">
 				<li v-for="item in data.links" :key="item.link.uid">
 					<n-link exact :to="localePath(`/${item.link.uid}/`)">{{ item.name }}</n-link>
@@ -93,6 +93,7 @@ export default {
 			.getSingle('navbar', { lang: this.$i18n.localeProperties.prismic })
 			.then((fetch) => {
 				// set data
+				console.log(fetch.data);
 				this.data = fetch.data
 			})
 			.catch((error) => {

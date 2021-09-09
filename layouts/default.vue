@@ -1,6 +1,5 @@
 <template>
 	<div>
-		{{gtmFrame}}
 		<Navbar />
 		<SideBar />
 		<main>
@@ -17,23 +16,15 @@ import CookieBox from '~/components/global/CookieBox.vue'
 export default {
 	name: 'Default',
 	components: { CookieBox },
-	data: () => ({
-		gtmFrame: '',
-	}),
+	data: () => ({}),
 	async mounted() {
 		await this.$nextTick()
 		setTimeout(() => {
-			// this.$fb.enable();
 			this.initGTM()
-			// this.$gtm.init('GTM-T5X9PFF')
-			// document.addEventListener('scroll', this.initGTM)
-			// document.addEventListener('mousemove', this.initGTM)
-			// document.addEventListener('touchstart', this.initGTM)
 		}, 5000)
 	},
 	methods: {
 		initGTM() {
-			this.gtmFrame = '<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-T5X9PFF" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>'
 			;(function (w, d, s, l, i) {
 				w[l] = w[l] || []
 				w[l].push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' })

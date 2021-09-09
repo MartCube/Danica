@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import '~/plugins/vue-plyr'
+import '@/plugins/vue-plyr'
 export default {
 	name: 'VideoItem',
 	props: {

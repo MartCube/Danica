@@ -149,11 +149,6 @@ export default {
 				ru: '/privacy-policy',
 				ua: '/privacy-policy',
 			},
-			404: {
-				en: '/404',
-				ru: '/404',
-				ua: '/404',
-			},
 		},
 	},
 

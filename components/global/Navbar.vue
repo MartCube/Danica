@@ -39,21 +39,21 @@
 
 					<template v-if="item.list_binding_name === 'architecture_links'">
 						<ul>
-							<li v-for="sublink in data.architecture_links" :key="sublink.uid">
+							<li v-for="sublink in data[0].data.architecture_links" :key="sublink.uid">
 								<n-link exact :to="localePath(`/${item.link.uid}/${sublink.link.uid}/`)">{{ sublink.name }} </n-link>
 							</li>
 						</ul>
 					</template>
 					<template v-if="item.list_binding_name === 'design_links'">
 						<ul>
-							<li v-for="sublink in data.design_links" :key="sublink.uid">
+							<li v-for="sublink in data[0].data.design_links" :key="sublink.uid">
 								<n-link exact :to="localePath(`/${item.link.uid}/${sublink.link.uid}/`)">{{ sublink.name }} </n-link>
 							</li>
 						</ul>
 					</template>
 					<template v-if="item.list_binding_name === 'construction_links'">
 						<ul>
-							<li v-for="sublink in data.construction_links" :key="sublink.uid">
+							<li v-for="sublink in data[0].data.construction_links" :key="sublink.uid">
 								<n-link exact :to="localePath(`/${item.link.uid}/${sublink.link.uid}/`)">{{ sublink.name }} </n-link>
 							</li>
 						</ul>

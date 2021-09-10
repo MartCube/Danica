@@ -1,6 +1,7 @@
 <template functional>
 	<picture>
 		<source :data-srcset="props.mobile" media="(max-width:500px)" />
+		<source :data-srcset="props.retina" media="(min-width:1600px)" />
 		<img :width="props.width" :height="props.height" :data-src="props.src" loading="lazy" class="lazyload" :alt="props.alt" />
 	</picture>
 </template>
@@ -23,6 +24,10 @@ export default {
 			default: 100,
 		},
 		mobile: {
+			type: String,
+			default: '',
+		},
+		retina: {
 			type: String,
 			default: '',
 		},

@@ -149,6 +149,11 @@ export default {
 				ru: '/privacy-policy',
 				ua: '/privacy-policy',
 			},
+			about_us: {
+				en: '/about-us',
+				ru: '/o-nas',
+				ua: '/pro-nas',
+			},
 		},
 	},
 

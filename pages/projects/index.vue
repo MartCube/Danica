@@ -17,7 +17,7 @@
 				</template>
 			</div>
 
-			<ButtonItem v-if="next_page" :animated="false" @click.native="loadMore">load more</ButtonItem>
+			<!-- <ButtonItem v-if="next_page" :animated="false" @click.native="loadMore">load more</ButtonItem> -->
 		</div>
 	</div>
 </template>
@@ -31,7 +31,7 @@ export default {
 		active_filter: [],
 		// pagination
 		current_page: 1,
-		page_size: 6,
+		page_size: 100,
 		total_pages: null,
 		prev_page: null,
 		next_page: null,
@@ -119,11 +119,11 @@ export default {
 			this.$fetch()
 		},
 
-		loadMore() {
-			this.page_size += 6
-			this.gridHeight += 825
-			this.$fetch()
-		},
+		// loadMore() {
+		// 	this.page_size += 6
+		// 	this.gridHeight += 825
+		// 	this.$fetch()
+		// },
 	},
 }
 </script>

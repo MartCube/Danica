@@ -45,7 +45,20 @@
 				</template>
 
 				<template v-else-if="slice.slice_type == 'video'">
-					<VideoItem :video="slice.primary.video" />
+					<div class="video_container">
+						<template v-if="slice.primary.image.url !== undefined">
+							<ImageItem :src="slice.primary.image.url" :mobile="slice.primary.image.mobile.url" :width="slice.primary.image.dimensions.width" :height="slice.primary.image.dimensions.height" :alt="slice.primary.image.alt" />
+						</template>
+						<template v-else>
+							<div class="video_default_preview">
+								<ImageItem :width="data.image.dimensions.width" :height="data.image1.dimensions.height" :src="data.main_image.url" :mobile="data.main_image.mobile.url" :alt="$prismic.asText(data.title)" />
+							</div>
+						</template>
+						<div class="play" @click="openModal">
+							<Icon name="play" />
+						</div>
+					</div>
+					<LazyModalVideo :video="slice.primary.video" />
 				</template>
 			</div>
 		</div>
@@ -83,7 +96,11 @@ export default {
 	head() {
 		return this.$store.getters.page.head
 	},
-
+	methods: {
+		openModal() {
+			this.$store.dispatch('bindModalVideo', true)
+		},
+	},
 	// fetchKey(getCounter) {
 	// 	// getCounter is a method that can be called to get the next number in a sequence
 	// 	// as part of generating a unique fetchKey.
@@ -194,6 +211,44 @@ export default {
 			margin: 25px 0;
 			opacity: 0.75;
 			font-style: italic;
+		}
+	}
+
+	.video_container {
+		position: relative;
+		width: 100%;
+		.video_default_preview {
+			width: 100%;
+			max-height: 70vh;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			position: relative;
+			z-index: 1;
+			overflow: hidden;
+			picture {
+				width: 100%;
+				height: 100%;
+				object-fit: cover;
+				object-position: center;
+				display: block;
+				filter: grayscale(100%) brightness(130%);
+				opacity: 0.8;
+			}
+		}
+		.play {
+			padding: 24px;
+			background: $primary;
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+			border-radius: 50%;
+			cursor: pointer;
+			z-index: 3;
+			svg {
+				fill: $white;
+			}
 		}
 	}
 

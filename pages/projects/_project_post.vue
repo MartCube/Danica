@@ -6,7 +6,7 @@
 		<div v-else-if="!$fetchState.pending" class="project_post">
 			<div class="intro">
 				<h2 class="title">{{ $prismic.asText(data.title) }}</h2>
-				<ImageItem :src="data.main_image.url" :mobile="data.main_image.mobile.url" :alt="$prismic.asText(data.title)" />
+				<ImageItem :width="data.main_image.dimensions.width" :height="data.main_image.dimensions.height" :src="data.main_image.url" :mobile="data.main_image.mobile.url" :alt="$prismic.asText(data.title)" />
 			</div>
 
 			<div class="info">
@@ -18,14 +18,14 @@
 			</div>
 
 			<!-- Slice Machine -->
-			<div v-for="(slice, i) in data.body" :key="i" class="slice" :class="slice.slice_type">
+			<div v-for="(slice, i) in data.body" :key="i + slice.slice_type" class="slice" :class="slice.slice_type">
 				<template v-if="slice.slice_type == 'text'">
 					<prismic-rich-text class="rich_text" :field="slice.primary.text" />
 				</template>
 
 				<template v-else-if="slice.slice_type == 'image'">
 					<template v-if="slice.primary.image.url">
-						<ImageItem :src="slice.primary.image.url" :mobile="slice.primary.image.mobile.url" :alt="slice.primary.image.alt" />
+						<ImageItem :width="slice.primary.image.dimensions.width" :height="slice.primary.image.dimensions.height" :src="slice.primary.image.url" :mobile="slice.primary.image.mobile.url" :alt="slice.primary.image.alt" />
 						<span class="description">"{{ slice.primary.image.alt }}"</span>
 					</template>
 				</template>
@@ -33,7 +33,7 @@
 				<template v-else-if="slice.slice_type == 'image_slider'">
 					<div class="image_slider">
 						<div class="image_slider_wrapper">
-							<ImageItem v-for="item in slice.items" :key="item.image.url" :src="item.image.url" alt="alt" />
+							<ImageItem v-for="(item, y) in slice.items" :key="y + item.image.url" :src="item.image.url" :mobile="item.image.mobile.url" :width="item.image.dimensions.width" :height="item.image.dimensions.height" :alt="item.image.alt !== null ? item.image.alt : 'alt'" />
 						</div>
 					</div>
 				</template>
@@ -41,7 +41,7 @@
 				<template v-else-if="slice.slice_type == 'image_text'">
 					<div class="image_text">
 						<template v-if="slice.primary.image.url">
-							<ImageItem :src="slice.primary.image.url" :mobile="slice.primary.image.mobile.url" alt="alt" />
+							<ImageItem :src="slice.primary.image.url" :mobile="slice.primary.image.mobile.url" :width="item.image.dimensions.width" :height="item.image.dimensions.height" :alt="item.image.alt !== null ? item.image.alt : 'alt'" />
 						</template>
 						<div class="text">
 							<p v-for="(item, key) in slice.items" :key="key">{{ $prismic.asText(item.text) }}</p>
@@ -50,7 +50,20 @@
 				</template>
 
 				<template v-else-if="slice.slice_type == 'video'">
-					<VideoItem :video="slice.primary.video" />
+					<div class="video_container">
+						<template v-if="slice.primary.image.url !== undefined">
+							<ImageItem :src="slice.primary.image.url" :mobile="slice.primary.image.mobile.url" :width="slice.primary.image.dimensions.width" :height="slice.primary.image.dimensions.height" :alt="slice.primary.image.alt" />
+						</template>
+						<template v-else>
+							<div class="video_default_preview">
+								<ImageItem :width="data.main_image.dimensions.width" :height="data.main_image.dimensions.height" :src="data.main_image.url" :mobile="data.main_image.mobile.url" :alt="$prismic.asText(data.title)" />
+							</div>
+						</template>
+						<div class="play" @click="openModal">
+							<Icon name="play" />
+						</div>
+					</div>
+					<LazyModalVideo :video="slice.primary.video" />
 				</template>
 			</div>
 		</div>
@@ -89,6 +102,11 @@ export default {
 	},
 	head() {
 		return this.$store.getters.page.head
+	},
+	methods: {
+		openModal() {
+			this.$store.dispatch('bindModalVideo', true)
+		},
 	},
 }
 </script>
@@ -191,6 +209,44 @@ export default {
 		}
 	}
 
+	.video_container {
+		position: relative;
+		width: 100%;
+		.video_default_preview {
+			width: 100%;
+			max-height: 70vh;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			position: relative;
+			z-index: 1;
+			overflow: hidden;
+			picture {
+				width: 100%;
+				height: 100%;
+				object-fit: cover;
+				object-position: center;
+				display: block;
+				filter: grayscale(100%) brightness(130%);
+				opacity: 0.8;
+			}
+		}
+		.play {
+			padding: 24px;
+			background: $primary;
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+			border-radius: 50%;
+			cursor: pointer;
+			z-index: 3;
+			svg {
+				fill: $white;
+			}
+		}
+	}
+
 	.image_slider {
 		width: 100%;
 		overflow-x: auto;
@@ -201,8 +257,6 @@ export default {
 			width: auto;
 			height: inherit;
 			margin: 0;
-			overflow: initial;
-
 			display: inline-flex;
 			picture {
 				height: 70vh;

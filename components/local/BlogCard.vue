@@ -47,10 +47,8 @@ export default {
 	width: 100%;
 	height: 100%;
 	cursor: pointer;
-
 	display: flex;
 	flex-direction: column;
-
 	color: $black;
 
 	.title {
@@ -208,6 +206,20 @@ export default {
 			.link {
 				opacity: 1;
 			}
+		}
+	}
+}
+.slider_posts {
+	.blog_card {
+		width: 15rem;
+		.title {
+			font-size: 1.2rem;
+			line-height: 1.3;
+			margin-bottom: 0;
+			padding-bottom: 20px;
+		}
+		.info > * {
+			font-size: 1rem;
 		}
 	}
 }

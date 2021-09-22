@@ -8,11 +8,12 @@
 			<div class="main_text">
 				<p>{{ data.summary[0].text }}</p>
 			</div>
-			<div v-for="slice in data.body" :key="slice.slice_type">
+			<div v-for="(slice, i) in data.body" :key="i + slice.slice_type">
 				<Quote v-if="slice.slice_type == 'quote'" :data="slice" />
-				<!-- <Achievements v-else-if="slice.slice_type == 'achievements'" :data="slice" />
-				<LazyServicesList v-else-if="slice.slice_type == 'services_list'" :data="slice" />
-				<LazyHighlightProjects v-else-if="slice.slice_type == 'highlight_projects'" :data="slice" /> -->
+				<LazyLatestProjects v-else-if="slice.slice_type == 'sliderprojects'" :data="slice" />
+				<TitleText v-else-if="slice.slice_type == 'TitlePlainText'" :data="slice" />
+				<TitlePlainTextImage v-else-if="slice.slice_type == 'TitlePlainTextImage'" :data="slice" />
+				<LazySliderBlogPost v-else-if="slice.slice_type == 'SliderBlogPost'" :data="slice" />
 			</div>
 		</template>
 	</div>
@@ -31,9 +32,9 @@ export default {
 			.getSingle('about_us', { lang: this.$i18n.localeProperties.prismic })
 			.then(async (fetch) => {
 				// send data to store
-				await console.log(fetch.data.body)
+				// await console.log(fetch.data.body)
 				await this.$store.dispatch('storeSingle', fetch)
-				this.data = fetch.data
+				this.data = await fetch.data
 				// this.slices = fetch.body
 			})
 			.catch((error) => {
@@ -66,19 +67,23 @@ export default {
 
 <style lang="scss" scoped>
 .about_us {
-	.main_text{
+	.main_text {
 		margin-left: 256px;
 		max-width: 40vw;
+	}
+	.latest_projects {
+		padding-bottom: 80px;
 	}
 }
 @media (min-width: 1900px) {
 }
 // @media (min-width: 1700px) {}
-@media (max-width: 1300px) {}
+@media (max-width: 1300px) {
+}
 @media (max-width: 960px) {
-
 }
 @media (max-width: 900px) {
-
+	.about_us {
+	}
 }
 </style>

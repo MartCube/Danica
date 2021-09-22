@@ -38,6 +38,7 @@ export default {
 	service: {
 		buton_contact_form: 'Submit',
 		button_all_projects: 'All projects',
+		button_all_posts: ' Blog',
 		form: {
 			write_us: 'Write us',
 			title: 'Message send',

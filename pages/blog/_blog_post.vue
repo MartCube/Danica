@@ -46,14 +46,10 @@
 
 				<template v-else-if="slice.slice_type == 'video'">
 					<div class="video_container">
-						<template v-if="slice.primary.image.url !== undefined">
-							<ImageItem :src="slice.primary.image.url" :mobile="slice.primary.image.mobile.url" :width="slice.primary.image.dimensions.width" :height="slice.primary.image.dimensions.height" :alt="slice.primary.image.alt" />
-						</template>
-						<template v-else>
-							<div class="video_default_preview">
-								<ImageItem :width="data.image.dimensions.width" :height="data.image1.dimensions.height" :src="data.main_image.url" :mobile="data.main_image.mobile.url" :alt="$prismic.asText(data.title)" />
-							</div>
-						</template>
+						<div class="video_default_preview">
+							<ImageItem v-if="slice.primary.video_image.url !== undefined" :src="slice.primary.video_image.url" :mobile="slice.primary.video_image.mobile.url" :width="slice.primary.video_image.dimensions.width" :height="slice.primary.video_image.dimensions.height" :alt="slice.primary.video_image.alt" />
+							<ImageItem v-else :width="data.image.dimensions.width" :height="data.image.dimensions.height" :src="data.image.url" :mobile="data.image.mobile.url" :alt="$prismic.asText(data.title)" />
+						</div>
 						<div class="play" @click="openModal">
 							<Icon name="play" />
 						</div>
@@ -226,15 +222,15 @@ export default {
 			position: relative;
 			z-index: 1;
 			overflow: hidden;
-			picture {
-				width: 100%;
-				height: 100%;
-				object-fit: cover;
-				object-position: center;
-				display: block;
-				filter: grayscale(100%) brightness(130%);
-				opacity: 0.8;
-			}
+		}
+		picture {
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+			object-position: center;
+			display: block;
+			filter: grayscale(100%) brightness(130%);
+			opacity: 0.8;
 		}
 		.play {
 			padding: 24px;

@@ -211,7 +211,7 @@ export default {
 
 	.video_container {
 		position: relative;
-		width: 100%;
+		width: 85%;
 		.video_default_preview {
 			width: 100%;
 			max-height: 70vh;
@@ -357,6 +357,10 @@ export default {
 			picture {
 				margin-bottom: 40px;
 			}
+		}
+
+		.video_container {
+			width: 95%;
 		}
 	}
 }

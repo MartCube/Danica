@@ -1,12 +1,12 @@
 <template>
 	<section class="quote">
-		<div class="image">
-			<ImageItem :src="data.primary.image.url" :mobile="data.primary.image.mobile.url" :retina="data.primary.image.retina.url" :width="data.primary.image.dimensions.width" :height="data.primary.image.dimensions.height" :alt="data.primary.image.alt" />
-		</div>
 		<div class="content">
 			<blockquote>{{ data.primary.quote }}</blockquote>
 			<h4>{{ data.primary.name }}</h4>
-			<span class="description">{{ data.primary.description }}</span>
+			<span class="description">{{ data.primary.descrition }}</span>
+		</div>
+		<div class="image">
+			<ImageItem :src="data.primary.image.url" :mobile="data.primary.image.mobile.url" :retina="data.primary.image.retina.url" :width="data.primary.image.dimensions.width" :height="data.primary.image.dimensions.height" :alt="data.primary.image.alt" />
 		</div>
 	</section>
 </template>
@@ -43,95 +43,47 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.intro {
-	width: 100%;
-	height: 100vh;
-	padding: 0;
-
+.quote {
 	display: flex;
-	align-items: center;
-	justify-content: flex-start;
-	position: relative;
-	.bg {
-		position: absolute;
-		top: 0;
-		width: 100%;
-		height: inherit;
+	padding-left: 255px;
+	margin-bottom: 4rem;
+	.image,
+	.content {
+		width: 50%;
+	}
+	.image {
+		// padding-right: 180px;
 		picture {
-			z-index: 2;
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+			object-position: center;
+			display: block;
 		}
 	}
-
 	.content {
-		width: inherit;
-		height: inherit;
-		padding-left: 1rem;
-		margin: 0 240px;
-		position: relative;
-
 		display: flex;
-		flex: 1;
 		flex-direction: column;
-		justify-content: center;
-
-		color: $black;
-		z-index: 5;
-
-		.maintitle {
-			width: max-content;
+		justify-content: flex-end;
+		align-items: flex-end;
+		padding: 2rem;
+		box-sizing: border-box;
+		blockquote {
 			display: flex;
+			flex-grow: 1;
+			width: 100%;
+			justify-content: center;
 			align-items: center;
-			overflow: hidden;
-
-			span {
-				font-size: 5rem;
-				font-weight: bold;
-				color: inherit;
-				will-change: opacity;
-				will-change: transform;
-				opacity: 0;
-			}
+			font-size: 3.3rem;
+			font-weight: 700;
+			padding-right: 10%;
+			text-align: end;
 		}
-		.subtitle {
-			width: max-content;
-			display: flex;
-			align-items: center;
-			overflow: hidden;
-			span {
-				font-size: 4rem;
-				font-weight: bold;
-				color: inherit;
-				will-change: opacity;
-				will-change: transform;
-				opacity: 0;
-			}
+		h4 {
+			font-size: 1.5rem;
 		}
-		button {
-			margin-top: 3rem;
-		}
-		.project {
-			overflow: hidden;
-
-			position: absolute;
-			top: 120px;
-			left: -30px;
-			cursor: pointer;
-
-			span {
-				width: 30px;
-				display: flex;
-				align-items: center;
-				opacity: 0; // opacity: 1
-				background-color: $primary;
-				padding: 15px 0;
-				writing-mode: vertical-rl;
-				text-orientation: mixed;
-				color: $black;
-			}
-		}
-
-		&.white {
-			color: $white;
+		span {
+			color: $grey;
 		}
 	}
 }
@@ -150,63 +102,11 @@ export default {
 // 	}
 // }
 @media (max-width: 1300px) {
-	.intro {
-		.content {
-			margin-right: 10%;
-		}
-	}
 }
 @media (max-width: 1100px) {
-	.intro {
-		flex-direction: row;
-
-		.content {
-			.maintitle {
-				margin-top: 4vh;
-			}
-			.maintitle span {
-				font-size: 4rem;
-			}
-			.subtitle span {
-				font-size: 3.5rem;
-			}
-			button {
-				margin-top: 2rem;
-			}
-		}
-	}
 }
 @media (max-width: 900px) {
-	.intro {
-		.content {
-			margin: 0;
-			padding-left: 40px;
-			.project {
-				top: 60px;
-				left: 0;
-			}
-			.maintitle span {
-				font-size: 3rem;
-			}
-			.subtitle span {
-				font-size: 2.5rem;
-			}
-		}
-	}
 }
 @media (max-width: 500px) {
-	.intro {
-		.content {
-			.maintitle {
-				margin-top: 6vh;
-				span {
-					font-size: 5vh;
-				}
-			}
-			.subtitle span {
-				font-size: 5vh;
-			}
-		}
-	}
 }
 </style>

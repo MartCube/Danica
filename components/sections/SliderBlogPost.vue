@@ -1,22 +1,22 @@
 <template>
-	<section class="latest_projects">
+	<section class="slider_posts">
 		<template v-if="!$fetchState.pending">
 			<div class="name">
 				<span>{{ name }}</span>
 			</div>
 			<div class="content">
 				<h2 class="title">{{ title }}</h2>
-				<template v-if="data.primary.text">
-					<prismic-rich-text class="rich_text" :field="data.primary.text" />
+				<template v-if="data.primary.description">
+					<prismic-rich-text class="rich_text" :field="data.primary.description" />
 				</template>
-				<div class="project_slider">
-					<div class="project_slider_wrapper">
-						<ProjectCard v-for="(project, i) in projects" :key="i" :data="project" />
+				<div class="post_slider">
+					<div class="post_slider_wrapper">
+						<BlogCard v-for="(post, i) in posts" :key="i" :data="post" />
 					</div>
 				</div>
 
-				<n-link :to="localePath('/projects')">
-					<ButtonItem> {{ $t('service.button_all_projects') }} </ButtonItem>
+				<n-link :to="localePath('/blog')">
+					<ButtonItem> {{ $t('service.button_all_posts') }} </ButtonItem>
 				</n-link>
 			</div>
 		</template>
@@ -25,7 +25,7 @@
 
 <script>
 export default {
-	name: 'LatestProjects',
+	name: 'SliderBlogPost',
 	props: {
 		data: {
 			type: Object,
@@ -34,15 +34,15 @@ export default {
 	},
 	data: () => ({
 		page_size: 6,
-		projects: null,
+		posts: null,
 	}),
 	async fetch() {
-		const projects = await this.$prismic.api.query([this.$prismic.predicates.at('document.type', 'project_post'), this.$prismic.predicates.at('document.tags', [this.tag])], {
+		const posts = await this.$prismic.api.query([this.$prismic.predicates.at('document.type', 'blog_post'), this.$prismic.predicates.at('document.tags', [this.tag])], {
 			orderings: '[document.first_publication_date desc]',
 			pageSize: this.page_size,
 			lang: this.$i18n.localeProperties.prismic,
 		})
-		this.projects = projects.results
+		this.posts = posts.results
 	},
 	computed: {
 		name() {
@@ -71,20 +71,20 @@ section {
 			margin: 0 15px 3rem 15px;
 			max-width: 40%;
 		}
-		.project_slider {
-			width: 100%;
+		.post_slider {
+			width: calc(100% - 220px);
 			overflow-x: auto;
 			margin-bottom: 2rem;
 			padding-bottom: 2rem;
 			@include scrollbar;
-			.project_slider_wrapper {
+			.post_slider_wrapper {
 				width: auto;
 				height: inherit;
 				margin: 0;
 				overflow: initial;
 
 				display: inline-flex;
-				.project_card {
+				.blog_card {
 					margin-right: 2rem;
 				}
 			}
@@ -95,6 +95,9 @@ section {
 	.content {
 		.rich_text {
 			max-width: 80%;
+		}
+		.post_slider {
+			width: calc(100% - 40px);
 		}
 	}
 }

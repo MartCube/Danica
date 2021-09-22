@@ -1,14 +1,17 @@
 <template>
-	<section>
+	<section class="slider_projects">
 		<template v-if="!$fetchState.pending">
 			<div class="name">
 				<span>{{ name }}</span>
 			</div>
 			<div class="content">
 				<h2 class="title">{{ title }}</h2>
+				<template v-if="data.primary.text">
+					<prismic-rich-text class="rich_text" :field="data.primary.text" />
+				</template>
 				<div class="project_slider">
 					<div class="project_slider_wrapper">
-						<ProjectSlide v-for="(project, i) in projects" :key="i" :data="project"/>
+						<ProjectSlide v-for="(project, i) in projects" :key="i" :data="project" />
 					</div>
 				</div>
 
@@ -46,6 +49,9 @@ export default {
 		title() {
 			return this.$prismic.asText(this.data.primary.title)
 		},
+		text() {
+			return this.data.primary.text
+		},
 		tag() {
 			return this.data.primary.tag
 		},
@@ -57,6 +63,10 @@ export default {
 .content {
 	display: flex;
 	flex-direction: column;
+	.rich_text {
+		margin: 0 15px 3rem 15px;
+		max-width: 40%;
+	}
 	.project_slider {
 		width: 100%;
 		overflow-x: auto;
@@ -73,6 +83,13 @@ export default {
 			.project_slide {
 				margin-right: 2rem;
 			}
+		}
+	}
+}
+@media (max-width: 900px) {
+	.content {
+		.rich_text {
+			max-width: 80%;
 		}
 	}
 }

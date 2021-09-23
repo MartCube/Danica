@@ -40,8 +40,8 @@
 
 				<template v-else-if="slice.slice_type == 'image_text'">
 					<div class="image_text">
-						<template v-if="slice.primary.image.url">
-							<ImageItem :src="slice.primary.image.url" :mobile="slice.primary.image.mobile.url" :width="item.image.dimensions.width" :height="item.image.dimensions.height" :alt="item.image.alt !== null ? item.image.alt : 'alt'" />
+						<template v-if="slice.primary.image !== undefined">
+							<ImageItem :src="slice.primary.image.url" :mobile="slice.primary.image.mobile.url" :width="item.primary.image.dimensions.width" :height="item.primary.image.dimensions.height" :alt="item.primary.image.alt !== null ? item.image.alt : 'alt'" />
 						</template>
 						<div class="text">
 							<p v-for="(item, key) in slice.items" :key="key">{{ $prismic.asText(item.text) }}</p>
@@ -51,7 +51,7 @@
 
 				<template v-else-if="slice.slice_type == 'video'">
 					<div class="video_container">
-						<template v-if="slice.primary.image.url !== undefined">
+						<template v-if="slice.primary.image !== undefined">
 							<ImageItem :src="slice.primary.image.url" :mobile="slice.primary.image.mobile.url" :width="slice.primary.image.dimensions.width" :height="slice.primary.image.dimensions.height" :alt="slice.primary.image.alt" />
 						</template>
 						<template v-else>

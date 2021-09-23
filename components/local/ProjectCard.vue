@@ -12,6 +12,7 @@
 
 <script>
 export default {
+	name: 'ProjectCard',
 	props: {
 		data: {
 			type: Object,

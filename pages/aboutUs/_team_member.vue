@@ -3,8 +3,8 @@
 		<template v-if="$fetchState.error">
 			<Error />
 		</template>
-		<div v-else-if="!$fetchState.pending" class="blog_post">
-			<div class="intro">
+		<div v-else-if="!$fetchState.pending" class="member">
+			<!-- <div class="intro">
 				<h2 class="title">{{ $prismic.asText(data.title) }}</h2>
 				<div class="info">
 					<span class="date">{{ data.date }}</span>
@@ -12,12 +12,12 @@
 				</div>
 				<template v-if="data">
 					<ImageItem :src="data.image.url" :mobile="data.image.mobile.url" :alt="$prismic.asText(data.title)" />
-				</template>
+				</template> -->
 				<!-- <n-link class="go_back" to="/blog"> <Icon name="arrow" />go back </n-link> -->
-			</div>
+			<!-- </div> -->
 
 			<!-- Slice Machine -->
-			<div v-for="(slice, i) in data.body" :key="i" class="slice" :class="slice.slice_type">
+			<!-- <div v-for="(slice, i) in data.body" :key="i" class="slice" :class="slice.slice_type">
 				<template v-if="slice.slice_type == 'text'">
 					<prismic-rich-text class="rich_text" :field="slice.primary.text" />
 				</template>
@@ -47,28 +47,29 @@
 				<template v-else-if="slice.slice_type == 'video'">
 					<VideoItem :video="slice.primary.video" />
 				</template>
-			</div>
+			</div> -->
 		</div>
 	</div>
 </template>
 
 <script>
 export default {
-	name: 'BlogPost',
+	name: 'TeamMember',
 	data: () => ({
 		data: null,
 	}),
 	async fetch() {
 		await this.$prismic.api
-			.getByUID('blog_post', this.$route.params.blog_post, { lang: this.$i18n.localeProperties.prismic })
+			.getByUID('team_member', this.$route.params.team_member, { lang: this.$i18n.localeProperties.prismic })
 			.then(async (fetch) => {
 				// send data to store
-				await this.$store.dispatch('storeByUID', {
-					type: 'blog_post',
-					path: this.$route.fullPath,
-					fetch,
-				})
-				this.data = fetch.data
+				// await this.$store.dispatch('storeByUID', {
+				// 	type: 'team_member',
+				// 	path: this.$route.fullPath,
+				// 	fetch,
+				// })
+				this.data = await fetch.data
+				console.log(this.data);
 			})
 			.catch((error) => {
 				console.log(error)
@@ -77,11 +78,11 @@ export default {
 					this.$nuxt.context.res.statusCode = 404
 				}
 				// use throw new Error()
-				throw new Error('blog post not found')
+				throw new Error('member not found')
 			})
 	},
 	head() {
-		return this.$store.getters.page.head
+		// return this.$store.getters.page.head
 	},
 
 	// fetchKey(getCounter) {
@@ -93,19 +94,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.blog_post {
-	margin: 0 50px 0 240px;
-	padding-bottom: 40px;
-	overflow-x: hidden;
-	border-left: 1px solid $line;
-
-	display: flex;
-	flex-direction: column;
-	align-items: flex-end;
-
-	& > * {
-		margin-bottom: 25px;
-	}
+.member {
 
 	.intro {
 		width: 100%;
@@ -168,13 +157,6 @@ export default {
 		}
 	}
 
-	.slice {
-		display: flex;
-		&:last-child {
-			margin-bottom: 0;
-		}
-	}
-
 	.text {
 		width: 75%;
 
@@ -194,27 +176,6 @@ export default {
 			margin: 25px 0;
 			opacity: 0.75;
 			font-style: italic;
-		}
-	}
-
-	.image_slider {
-		width: 100%;
-		overflow-x: auto;
-		margin-bottom: 2rem;
-		padding-bottom: 2rem;
-		@include scrollbar;
-		.image_slider_wrapper {
-			width: auto;
-			height: inherit;
-			margin: 0;
-			overflow: initial;
-
-			display: inline-flex;
-			picture {
-				height: 70vh;
-				width: auto;
-				margin-right: 10px;
-			}
 		}
 	}
 
@@ -238,9 +199,6 @@ export default {
 		}
 	}
 
-	.video {
-		width: 100%;
-	}
 }
 
 // @media (min-width: 1700px) {
@@ -262,46 +220,6 @@ export default {
 
 @media (max-width: 900px) {
 	.blog_post {
-		margin: 0;
-
-		.intro {
-			.title {
-				margin: 40px 0;
-				padding-left: 55px;
-				font-size: 1.5rem;
-			}
-			.info {
-				padding: 0 40px 0 55px;
-			}
-			picture {
-				// width: 100%;
-				height: auto;
-			}
-		}
-
-		.text {
-			width: 100%;
-			.rich_text {
-				padding: 0 40px 0 55px;
-			}
-		}
-
-		.image {
-			width: 100%;
-			margin: 0;
-		}
-
-		.image_text {
-			flex-direction: column;
-			padding: 0;
-			p {
-				padding-left: 15px;
-			}
-			picture {
-				margin-left: 40px;
-				max-width: 100%;
-			}
-		}
 	}
 }
 </style>

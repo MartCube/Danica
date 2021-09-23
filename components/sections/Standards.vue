@@ -10,7 +10,7 @@
 			</template>
 			<div class="list">
 				<div v-for="(standard, i) in data.items" :key="i">
-					<ImageItem :width="standard.image.dimensions.width" :height="standard.image.dimensions.height" :src="standard.image.url" :alt="$prismic.asText(standard.title)" />
+					<ImageItem :width="standard.image.dimensions !== undefined ? standard.image.dimensions.width : 100" :height="standard.image.dimensions !== undefined ? standard.image.dimensions.height : 100" :src="standard.image.url" :alt="$prismic.asText(standard.title)" />
 					<div class="standard">
 						<h3>{{ $prismic.asText(standard.title) }}</h3>
 						<p>{{ $prismic.asText(standard.description) }}</p>

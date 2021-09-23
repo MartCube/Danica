@@ -48,6 +48,9 @@ const routes = async function () {
 				case 'contact':
 					pages.push(`${lang}/${page.uid}`)
 					break
+				case 'about_us':
+					pages.push(`${lang}/${page.uid}`)
+					break
 				case 'policy':
 					pages.push(`${lang}/privacy-policy`)
 					break
@@ -57,11 +60,14 @@ const routes = async function () {
 				case 'project_post':
 					pages.push(`${lang}/projects/${page.uid}`)
 					break
+				case 'team_member':
+					console.log(page);
+					pages.push(`${lang}/o-nas/${page.uid}`)
+					break
 				case 'services':
 					pages.push(`${lang}/${page.uid}`)
 					break
 				case 'service_second':
-					// console.log(page);
 					pages.push(`${lang}/${page.data.parent_page.uid}/${page.uid}`)
 					break
 				default:

@@ -114,7 +114,7 @@ export default {
 				ru: '/projects',
 				ua: '/projects',
 			},
-			'projects/project_post': {
+			'projects/_project_post': {
 				en: '/projects/:project_post?',
 				ru: '/projects/:project_post?',
 				ua: '/projects/:project_post?',
@@ -124,7 +124,17 @@ export default {
 				ru: '/blog',
 				ua: '/blog',
 			},
-			_services: {
+			'aboutUs/index': {
+				en: '/about-us',
+				ru: '/o-nas',
+				ua: '/pro-nas',
+			},
+			'aboutUs/_team_member': {
+				en: '/about-us/:team_member?',
+				ru: '/o-nas/:team_member?',
+				ua: '/pro-nas/:team_member?',
+			},
+			'_services/index': {
 				en: '/:services',
 				ru: '/:services',
 				ua: '/:services',
@@ -149,11 +159,7 @@ export default {
 				ru: '/privacy-policy',
 				ua: '/privacy-policy',
 			},
-			'aboutUs/index': {
-				en: '/about-us',
-				ru: '/o-nas',
-				ua: '/pro-nas',
-			},
+			
 		},
 	},
 

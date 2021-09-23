@@ -10,8 +10,8 @@
 			</template>
 			<div class="list">
 				<div v-for="(stage, i) in data.items" :key="i" class="stage">
-					<h2 v-if="i < 9" class="number">0{{ i + 1 }}<span>/</span></h2>
-					<h2 v-else class="number">{{ i + 1 }}<span>/</span></h2>
+					<div v-if="i < 9" class="number">0{{ i + 1 }}<span>/</span></div>
+					<div v-else class="number">{{ i + 1 }}<span>/</span></div>
 					<div class="info">
 						<h3>{{ $prismic.asText(stage.stage_title) }}</h3>
 						<p>{{ $prismic.asText(stage.stage_description) }}</p>

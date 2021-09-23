@@ -14,8 +14,9 @@
 						<ProjectSlide v-for="(project, i) in projects" :key="i" :data="project" />
 					</div>
 				</div>
-
-				<ButtonItem> {{ $t('service.button_all_projects') }} </ButtonItem>
+				<n-link :to="localePath('/projects')">
+					<ButtonItem > {{ $t('service.button_all_projects') }} </ButtonItem>
+				</n-link>
 			</div>
 		</template>
 	</section>

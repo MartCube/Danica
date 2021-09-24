@@ -1,8 +1,10 @@
 <template>
-	<div v-if="modalVideo" ref="modal" class="video_modal">
-		<VideoItem :video="$attrs.video" />
-		<Icon name="close" class="close" size="35px" @click.native="closeModal" />
-	</div>
+	<client-only>
+		<div v-if="modalVideo" ref="modal" class="video_modal">
+			<VideoItem :video="$attrs.video" />
+			<Icon name="close" class="close" size="35px" @click.native="closeModal" />
+		</div>
+	</client-only>
 </template>
 
 <script>

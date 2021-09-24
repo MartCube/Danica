@@ -69,7 +69,7 @@ export default {
 				// 	fetch,
 				// })
 				this.data = await fetch.data
-				console.log(this.data);
+				// console.log(this.data);
 			})
 			.catch((error) => {
 				console.log(error)

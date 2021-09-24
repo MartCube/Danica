@@ -48,10 +48,11 @@ export default {
 	// Modules for dev and build (recommended) (https://go.nuxtjs.dev/config-modules)
 	buildModules: [
 		// '@nuxtjs/eslint-module',
+		'@nuxtjs/sitemap',
 	],
 
 	// Modules (https://go.nuxtjs.dev/config-modules)
-	modules: ['@nuxtjs/prismic', 'nuxt-i18n', '@nuxtjs/style-resources', '@nuxtjs/sitemap'],
+	modules: ['@nuxtjs/prismic', 'nuxt-i18n', '@nuxtjs/style-resources', ],
 
 	// gtm: {
 	// 	id: process.env.GTM,

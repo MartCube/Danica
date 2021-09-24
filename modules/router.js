@@ -61,7 +61,7 @@ const routes = async function () {
 					pages.push(`${lang}/projects/${page.uid}`)
 					break
 				case 'team_member':
-					console.log(page);
+					// console.log(page);
 					pages.push(`${lang}/${aboutUs}/${page.uid}`)
 					break
 				case 'services':
@@ -74,7 +74,7 @@ const routes = async function () {
 					break
 			}
 		})
-		console.log(pages)
+		// console.log(pages)
 	}
 	return pages
 }

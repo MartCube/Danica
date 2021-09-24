@@ -12,7 +12,7 @@ const routes = async function () {
 			lang: 'en-us',
 		})
 		.then((data) => {
-			transform(data, 'en')
+			transform(data, 'en', 'about-us')
 		})
 
 	await client
@@ -21,7 +21,7 @@ const routes = async function () {
 			lang: 'ru',
 		})
 		.then((data) => {
-			transform(data, '')
+			transform(data, '', 'o-nas')
 		})
 
 	await client
@@ -30,10 +30,10 @@ const routes = async function () {
 			lang: 'ua-ua',
 		})
 		.then((data) => {
-			transform(data, 'ua')
+			transform(data, 'ua', 'pro-nas')
 		})
 
-	function transform(data, lang) {
+	function transform(data, lang, aboutUs) {
 		data.results.forEach((page) => {
 			switch (page.type) {
 				case 'home_index':
@@ -62,7 +62,7 @@ const routes = async function () {
 					break
 				case 'team_member':
 					console.log(page);
-					pages.push(`${lang}/o-nas/${page.uid}`)
+					pages.push(`${lang}/${aboutUs}/${page.uid}`)
 					break
 				case 'services':
 					pages.push(`${lang}/${page.uid}`)

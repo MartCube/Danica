@@ -51,7 +51,7 @@
 				
 				<template v-else-if="slice.slice_type == 'video'">
 					<div class="video_container">
-						<template v-if="slice.primary.image !== undefined">
+						<template v-if="'url' in slice.primary.image">
 							<ImageItem :src="slice.primary.image.url" :mobile="slice.primary.image.mobile.url" :width="slice.primary.image.dimensions.width" :height="slice.primary.image.dimensions.height" :alt="slice.primary.image.alt" />
 						</template>
 						<template v-else>

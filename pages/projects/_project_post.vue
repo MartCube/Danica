@@ -24,12 +24,12 @@
 				</template>
 
 				<template v-else-if="slice.slice_type == 'image'">
-					<template v-if="slice.primary.image.url">
+					<template v-if="slice.primary.image !== undefined">
 						<ImageItem :width="slice.primary.image.dimensions.width" :height="slice.primary.image.dimensions.height" :src="slice.primary.image.url" :mobile="slice.primary.image.mobile.url" :alt="slice.primary.image.alt" />
 						<span class="description">"{{ slice.primary.image.alt }}"</span>
 					</template>
 				</template>
-
+				
 				<template v-else-if="slice.slice_type == 'image_slider'">
 					<div class="image_slider">
 						<div class="image_slider_wrapper">
@@ -37,18 +37,18 @@
 						</div>
 					</div>
 				</template>
-
+				
 				<template v-else-if="slice.slice_type == 'image_text'">
 					<div class="image_text">
-						<template v-if="slice.primary.image !== undefined">
-							<ImageItem :src="slice.primary.image.url" :mobile="slice.primary.image.mobile.url" :width="item.primary.image.dimensions.width" :height="item.primary.image.dimensions.height" :alt="item.primary.image.alt !== null ? item.image.alt : 'alt'" />
+						<template v-if="slice.primary.image !== 'undefined'">
+							<ImageItem :src="slice.primary.image.url" :mobile="slice.primary.image.mobile.url" :width="slice.primary.image.dimensions.width" :height="slice.primary.image.dimensions.height" :alt="slice.primary.image.alt !== null ? slice.primary.image.alt : 'alt'" />
 						</template>
 						<div class="text">
 							<p v-for="(item, key) in slice.items" :key="key">{{ $prismic.asText(item.text) }}</p>
 						</div>
 					</div>
 				</template>
-
+				
 				<template v-else-if="slice.slice_type == 'video'">
 					<div class="video_container">
 						<template v-if="slice.primary.image !== undefined">
@@ -64,7 +64,7 @@
 						</div>
 					</div>
 					<LazyModalVideo :video="slice.primary.video" />
-				</template>
+				</template> 
 			</div>
 		</div>
 	</div>
@@ -88,7 +88,7 @@ export default {
 					fetch,
 				})
 				// data to component
-				this.data = fetch.data
+				this.data = await fetch.data
 			})
 			.catch((error) => {
 				console.log(error)

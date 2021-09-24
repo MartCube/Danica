@@ -92,12 +92,15 @@ section {
 	}
 }
 @media (max-width: 900px) {
-	.content {
-		.rich_text {
-			max-width: 80%;
-		}
-		.post_slider {
-			width: calc(100% - 40px);
+	section {
+		.content {
+			.rich_text {
+				max-width: 100%;
+				margin-right: 0;
+			}
+			.post_slider {
+				width: 100%;
+			}
 		}
 	}
 }

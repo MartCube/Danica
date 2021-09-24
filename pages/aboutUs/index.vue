@@ -77,13 +77,28 @@ export default {
 }
 @media (min-width: 1900px) {
 }
-// @media (min-width: 1700px) {}
 @media (max-width: 1300px) {
 }
 @media (max-width: 960px) {
 }
 @media (max-width: 900px) {
 	.about_us {
+		padding-bottom: 4rem;
+		.main_text {
+			margin-left: 100px;
+			max-width: 100%;
+			margin-right: 20px;
+		}
+		.latest_projects {
+			padding-bottom: 0;
+		}
+	}
+}
+@media (max-width: 400px) {
+	.about_us {
+		.main_text {
+			margin-left: 50px;
+		}
 	}
 }
 </style>

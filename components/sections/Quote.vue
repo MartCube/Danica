@@ -106,6 +106,24 @@ export default {
 @media (max-width: 1100px) {
 }
 @media (max-width: 900px) {
+	.quote {
+		padding-left: 40px;
+		flex-wrap: wrap;
+		margin-bottom: 0;
+		.image {
+			width: 100%;
+			order: 1;
+		}
+		.content {
+			width: 100%;
+			order: 2;
+			blockquote {
+				font-size: 2.5rem;
+				padding-right: 10%;
+				margin-bottom: 4rem;
+			}
+		}
+	}
 }
 @media (max-width: 500px) {
 }

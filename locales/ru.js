@@ -23,6 +23,12 @@ export default {
 				remont: 'Ремонт',
 			},
 		},
+		team_member: {
+			name: 'Имя',
+			responsibilities: 'Обязаности',
+			role: 'Должность',
+			tools: 'Программы',
+		},
 		contact: {
 			name: 'Контакты',
 			title: 'Мы всегда рады новым знакомствам',

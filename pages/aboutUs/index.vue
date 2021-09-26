@@ -12,6 +12,13 @@
 				<Quote v-if="slice.slice_type == 'quote'" :data="slice" />
 				<LazyLatestProjects v-else-if="slice.slice_type == 'sliderprojects'" :data="slice" />
 				<TitleText v-else-if="slice.slice_type == 'TitlePlainText'" :data="slice" />
+				<template v-else-if="slice.slice_type == 'team'">
+					<div class="team_grid">
+						<div class="team_grid_wrapper">
+							<MemberCard v-for="(member, y) in slice.items" :key="y" :data="member" :parent="$route.path.slice(1, $route.path.length - 1)" />
+						</div>
+					</div>
+				</template>
 				<TitlePlainTextImage v-else-if="slice.slice_type == 'TitlePlainTextImage'" :data="slice" />
 				<LazySliderBlogPost v-else-if="slice.slice_type == 'SliderBlogPost'" :data="slice" />
 			</div>
@@ -73,6 +80,14 @@ export default {
 	}
 	.latest_projects {
 		padding-bottom: 80px;
+	}
+	.team_grid {
+		padding-left: 240px;
+		width: 100%;
+		.team_grid_wrapper {
+			display: flex;
+			flex-wrap: wrap;
+		}
 	}
 }
 @media (min-width: 1900px) {

@@ -49,8 +49,8 @@ picture {
 		width: inherit;
 		height: inherit;
 		position: relative;
-		object-fit: cover;
-		object-position: center;
+		object-fit: inherit;
+		object-position: inherit;
 
 		&::before {
 			display: none;

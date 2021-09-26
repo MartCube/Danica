@@ -47,12 +47,10 @@ export default {
 	display: flex;
 	padding-left: 255px;
 	margin-bottom: 4rem;
-	.image,
-	.content {
-		width: 50%;
-	}
 	.image {
-		// padding-right: 180px;
+		width: 52%;
+		// padding-right: 130px;
+		min-height: 30rem;
 		picture {
 			width: 100%;
 			height: 100%;
@@ -62,6 +60,7 @@ export default {
 		}
 	}
 	.content {
+		width: 48%;
 		display: flex;
 		flex-direction: column;
 		justify-content: flex-end;

@@ -1,7 +1,7 @@
 <template>
 	<n-link :to="localePath(`/${parent}/${data.member_link.uid}`)" class="member_card">
 		<div class="image">
-			<ImageItem :width="image.dimensions.width" :height="image.dimensions.height" :mobile="image.mobile.url" :src="image.url" :retina="image.url" :alt="title" />
+			<ImageItem :width="image.dimensions.width" :height="image.dimensions.height" :mobile="image.mobile.url" :src="image.url" :retina="image.url" :alt="name" />
 			<!-- <div class="link">
 				<Icon name="chevron" fill="hsl(0, 0%, 10%)" size="25px" />
 			</div> -->
@@ -52,6 +52,7 @@ export default {
 		margin-left: 0;
 		.image {
 			order: 2;
+			border-right: 5px solid transparent;
 		}
 		.content {
 			order: 1;
@@ -65,6 +66,7 @@ export default {
 		height: 100%;
 		min-height: 300px;
 		overflow: hidden;
+		border-left: 5px solid transparent;
 		picture {
 			width: 100%;
 			height: 100%;
@@ -73,6 +75,8 @@ export default {
 			transition: all 0.75s ease;
 			object-fit: cover;
 			object-position: top;
+			display: block;
+			object-fit: cover;
 			&.lazyload,
 			&.lazyloading {
 				opacity: 0;
@@ -104,12 +108,22 @@ export default {
 	}
 
 	&:hover {
-		.image {
-			img {
-				transform: scale(1.1);
+		&:nth-child(odd) {
+			.image{
+				border-right-color: $primary;
+				border-left-color: transparent;
 			}
-			.link {
-				opacity: 1;
+		}
+		.image {
+			border-left-color: $primary;
+			picture {
+				transform: scale(1.05);
+			}
+		}
+		.content {
+			h2 {
+				text-decoration: underline;
+				text-decoration-color: $primary;
 			}
 		}
 	}
@@ -121,24 +135,15 @@ export default {
 // 	}
 // }
 
-@media (max-width: 900px) {
+@media (max-width: 800px) {
 	.member_card {
-		width: 40vw;
+		width: 100%;
 		.image {
-			height: auto;
-			.link {
-				width: 100%;
-				height: 100%;
-				padding: 0;
-
-				display: flex;
-				justify-content: center;
-				align-items: center;
-				svg {
-					width: 2rem;
-					height: 2rem;
-				}
-			}
+			height: 100%;
+			width: 100%;
+		}
+		.content {
+			width: 100%;
 		}
 		h2 {
 			margin: 20px;
@@ -147,15 +152,5 @@ export default {
 	}
 }
 @media (max-width: 500px) {
-	.projects .grid {
-		width: 90%;
-	}
-	.member_card {
-		width: 37vw;
-		h2 {
-			margin: 20px;
-			font-size: 1.1rem;
-		}
-	}
 }
 </style>

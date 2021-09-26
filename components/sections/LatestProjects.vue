@@ -46,10 +46,10 @@ export default {
 	},
 	computed: {
 		name() {
-			return this.$prismic.asText(this.data.primary.name)
+			return this.data.primary.name
 		},
 		title() {
-			return this.$prismic.asText(this.data.primary.title)
+			return this.data.primary.title
 		},
 		tag() {
 			return this.data.primary.tag

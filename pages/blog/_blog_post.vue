@@ -54,7 +54,9 @@
 							<Icon name="play" />
 						</div>
 					</div>
-					<LazyModalVideo :video="slice.primary.video" />
+					<div>
+						<LazyModalVideo :video="slice.primary.video" />
+					</div>
 				</template>
 			</div>
 		</div>

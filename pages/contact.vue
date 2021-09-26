@@ -198,9 +198,10 @@ export default {
 				padding: 2px 10px;
 				z-index: 4;
 			}
-			img {
+			picture {
 				width: 100%;
 				height: 100%;
+				object-fit: cover;
 			}
 		}
 	}

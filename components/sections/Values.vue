@@ -16,7 +16,9 @@
 					<Icon name="play" />
 				</div>
 			</div>
-			<LazyModalVideo :video="data.primary.video" />
+			<div>
+				<LazyModalVideo :video="data.primary.video" />
+			</div>
 		</div>
 	</section>
 </template>
@@ -69,6 +71,9 @@ export default {
 		margin-left: 40px;
 		position: relative;
 		width: 100%;
+		picture {
+			object-fit: cover;
+		}
 		.play {
 			padding: 24px;
 			background: $primary;

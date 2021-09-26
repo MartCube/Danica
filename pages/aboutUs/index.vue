@@ -4,7 +4,7 @@
 			<Error />
 		</template>
 		<template v-if="!$fetchState.pending">
-			<Title :value="data.title" />
+			<Title :value="data.main_title" />
 			<div class="main_text">
 				<p>{{ data.summary[0].text }}</p>
 			</div>
@@ -31,7 +31,7 @@ export default {
 	name: 'AboutUs',
 
 	data: () => ({
-		data: [],
+		data: null,
 		slices: [],
 	}),
 	async fetch() {
@@ -106,6 +106,9 @@ export default {
 		}
 		.latest_projects {
 			padding-bottom: 0;
+		}
+		.team_grid {
+			padding-left: 40px;
 		}
 	}
 }

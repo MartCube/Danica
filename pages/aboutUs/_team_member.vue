@@ -3,44 +3,46 @@
 		<template v-if="$fetchState.error">
 			<Error />
 		</template>
-		<section v-else-if="!$fetchState.pending" class="member">
-			<div class="image">
-				<ImageItem :src="data.member_image.url" :height="data.member_image.dimensions.height" :width="data.member_image.dimensions.width" :mobile="data.member_image.mobile.url" :retina="data.member_image.retina.url" :alt="data.name" />
-			</div>
-			<div class="data">
-				<div class="row">
-					<span class="label">{{ $t('pages.team_member.name') }}</span>
-					<h2>{{ data.name }}</h2>
+		<template  v-else-if="!$fetchState.pending" >
+			<section class="member">
+				<div class="image">
+					<ImageItem :src="data.member_image.url" :height="data.member_image.dimensions.height" :width="data.member_image.dimensions.width" :mobile="data.member_image.mobile.url" :retina="data.member_image.retina.url" :alt="data.name" />
 				</div>
-				<div class="row">
-					<span class="label">{{ $t('pages.team_member.role') }}</span>
-					<p>{{ data.role }}</p>
+				<div class="data">
+					<div class="row">
+						<span class="label">{{ $t('pages.team_member.name') }}</span>
+						<h2>{{ data.name }}</h2>
+					</div>
+					<div class="row">
+						<span class="label">{{ $t('pages.team_member.role') }}</span>
+						<p>{{ data.role }}</p>
+					</div>
+					<div class="row">
+						<span class="label">{{ $t('pages.team_member.tools') }}</span>
+						<p>{{ data.tools }}</p>
+					</div>
+					<div class="row">
+						<span class="label">{{ $t('pages.team_member.responsibilities') }}</span>
+						<prismic-rich-text class="rich_text" :field="data.responsibilities" />
+					</div>
+					<!-- <h2 class="title">{{ $prismic.asText(data.title) }}</h2>
+					<div class="info">
+						<span class="date">{{ data.date }}</span>
+						<span v-for="tag in data.tags" :key="tag" class="tag">{{ tag }}</span>
+					</div> -->
+					<!-- <template v-if="data">
+						<ImageItem :src="data.image.url" :mobile="data.image.mobile.url" :alt="$prismic.asText(data.title)" />
+					</template> -->
+					<!-- <n-link class="go_back" to="/blog"> <Icon name="arrow" />go back </n-link> -->
 				</div>
-				<div class="row">
-					<span class="label">{{ $t('pages.team_member.tools') }}</span>
-					<p>{{ data.tools }}</p>
-				</div>
-				<div class="row">
-					<span class="label">{{ $t('pages.team_member.responsibilities') }}</span>
-					<prismic-rich-text class="rich_text" :field="data.responsibilities" />
-				</div>
-				<!-- <h2 class="title">{{ $prismic.asText(data.title) }}</h2>
-				<div class="info">
-					<span class="date">{{ data.date }}</span>
-					<span v-for="tag in data.tags" :key="tag" class="tag">{{ tag }}</span>
-				</div> -->
-				<!-- <template v-if="data">
-					<ImageItem :src="data.image.url" :mobile="data.image.mobile.url" :alt="$prismic.asText(data.title)" />
-				</template> -->
-				<!-- <n-link class="go_back" to="/blog"> <Icon name="arrow" />go back </n-link> -->
-			</div>
 
-		</section>
-		<!-- Slice Machine -->
-		<div v-for="(slice, i) in data.body" :key="i" class="slice" :class="slice.slice_type">
-			<TitleText v-if="slice.slice_type == 'TitlePlainText'" :data="slice" />
-			<TitlePlainTextImage v-else :data="slice" />
-		</div>
+			</section>
+			<!-- Slice Machine -->
+			<div v-for="(slice, i) in data.body" :key="i" class="slice" :class="slice.slice_type">
+				<TitleText v-if="slice.slice_type == 'TitlePlainText'" :data="slice" />
+				<TitlePlainTextImage v-else :data="slice" />
+			</div>
+		</template>
 	</div>
 </template>
 
@@ -104,6 +106,7 @@ export default {
 		picture {
 			width: 100%;
 			height: 100%;
+			object-fit: cover;
 		}
 	}
 	.data {
@@ -161,6 +164,7 @@ export default {
 		padding-right: 40px;
 		padding-left: 40px;
 		padding-top: 0;
+		width: 100%;
 		.image {
 			width: 100%;
 			height: 100%;

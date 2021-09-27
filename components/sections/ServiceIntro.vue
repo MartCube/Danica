@@ -10,7 +10,7 @@
 			<div class="subtitle">
 				<span v-for="(letter, i) in subtitle" :key="i" ref="subtitle">{{ letter }}</span>
 			</div>
-			<ButtonItem :white="data.primary.white_text" @click.native="openModal"> {{ $t('service.form.write_us') }} </ButtonItem>
+			<ButtonItem :white="data.primary.white_text" @click.native="openModal"> {{ data.primary.button }} </ButtonItem>
 			<div class="project">
 				<span ref="project"> {{ image.alt }} </span>
 			</div>

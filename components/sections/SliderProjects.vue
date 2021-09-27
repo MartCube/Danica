@@ -15,7 +15,7 @@
 					</div>
 				</div>
 				<n-link :to="localePath('/projects')">
-					<ButtonItem > {{ $t('service.button_all_projects') }} </ButtonItem>
+					<ButtonItem> {{ $t('service.button_all_projects') }} </ButtonItem>
 				</n-link>
 			</div>
 		</template>
@@ -69,7 +69,7 @@ export default {
 		max-width: 40%;
 	}
 	.project_slider {
-		width: 100%;
+		width: calc(100vw - 240px);
 		overflow-x: auto;
 		margin-bottom: 2rem;
 		padding-bottom: 2rem;

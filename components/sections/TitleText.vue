@@ -118,7 +118,8 @@ $transition: all 0.35s ease;
 				padding-left: 15px;
 			}
 			.rich_text {
-				max-width: 90%;
+				max-width: 100%;
+				margin-bottom: 0;
 			}
 		}
 	}

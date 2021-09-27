@@ -158,6 +158,24 @@ section{
 	}
 }
 
+.member {
+	.rich_text{
+		p {
+			font-size: 1rem;
+		}
+		ul {
+			margin: 0px 0 10px 20px;
+			li {
+				list-style-type: disc;
+				display: list-item;
+				font-size: 1rem;
+				line-height: 1.4;
+				margin-top: 0;
+			}
+		}
+	}
+}
+
 @media (min-width: 1700px) {
 // 	body {
 // 		a,p,span{
@@ -210,6 +228,10 @@ section{
 	}
 }
 @media (max-width: 900px) {
+	body p {
+		font-size: 1rem;
+		line-height: 1.5;
+	}
 	.container {
 		&::after {
 			left: 40px;

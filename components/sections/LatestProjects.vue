@@ -2,10 +2,10 @@
 	<section class="latest_projects">
 		<template v-if="!$fetchState.pending">
 			<div class="name">
-				<span>{{ data.primary.name }}</span>
+				<span>{{ name }}</span>
 			</div>
 			<div class="content">
-				<h2 class="title">{{ data.primary.title }}</h2>
+				<h2 class="title">{{ title }}</h2>
 				<template v-if="data.primary.text !== undefined">
 					<prismic-rich-text class="rich_text" :field="data.primary.text" />
 				</template>
@@ -46,10 +46,10 @@ export default {
 	},
 	computed: {
 		name() {
-			return this.$prismic.asText(this.data.primary.name)
+			return this.data.primary.name
 		},
 		title() {
-			return this.$prismic.asText(this.data.primary.title)
+			return this.data.primary.title
 		},
 		tag() {
 			return this.data.primary.tag
@@ -92,9 +92,11 @@ section {
 	}
 }
 @media (max-width: 900px) {
-	.content {
-		.rich_text {
-			max-width: 80%;
+	section {
+		.content {
+			.rich_text {
+				max-width: 100%;
+			}
 		}
 	}
 }

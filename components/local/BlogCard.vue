@@ -6,7 +6,7 @@
 			<span class="tag">{{ tag }}</span>
 		</div>
 		<div class="image">
-			<ImageItem :src="image.card.url" :mobile="image.mobileCard.url" :alt="title" />
+			<ImageItem :src="image.card.url" :width="image.card.dimensions.width" :height="image.card.dimensions.height" :mobile="image.mobileCard.url" :alt="title" />
 			<div class="link">
 				<Icon name="chevron" fill="hsl(0, 0%, 10%)" size="25px" />
 			</div>

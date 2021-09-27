@@ -90,7 +90,7 @@ export default {
 @media (max-width: 900px) {
 	.content {
 		.rich_text {
-			max-width: 80%;
+			max-width: 100%;
 		}
 	}
 }

@@ -11,12 +11,14 @@
 				</template>
 			</div>
 			<div class="image">
-				<ImageItem :src="image.url" :mobile="image.mobile.url" :alt="image.alt" />
+				<ImageItem :src="image.url" :width="image.dimensions.width" :height="image.dimensions.height" :mobile="image.mobile.url" :alt="image.alt" />
 				<div class="play" @click="openModal">
 					<Icon name="play" />
 				</div>
 			</div>
-			<LazyModalVideo :video="data.primary.video" />
+			<div>
+				<LazyModalVideo :video="data.primary.video" />
+			</div>
 		</div>
 	</section>
 </template>
@@ -69,6 +71,9 @@ export default {
 		margin-left: 40px;
 		position: relative;
 		width: 100%;
+		picture {
+			object-fit: cover;
+		}
 		.play {
 			padding: 24px;
 			background: $primary;

@@ -23,6 +23,12 @@ export default {
 				remont: 'remont',
 			},
 		},
+		team_member: {
+			name: 'Name',
+			responsibilities: 'Responsibilities',
+			role: 'Role',
+			tools: 'Tools',
+		},
 		contact: {
 			name: 'Contact',
 			title: 'We are always glad to meet new friends',

@@ -3,52 +3,36 @@
 		<template v-if="$fetchState.error">
 			<Error />
 		</template>
-		<div v-else-if="!$fetchState.pending" class="member">
-			<!-- <div class="intro">
-				<h2 class="title">{{ $prismic.asText(data.title) }}</h2>
-				<div class="info">
-					<span class="date">{{ data.date }}</span>
-					<span v-for="tag in data.tags" :key="tag" class="tag">{{ tag }}</span>
+		<template v-else-if="!$fetchState.pending">
+			<section class="member">
+				<div class="image">
+					<ImageItem :src="data.member_image.url" :height="data.member_image.dimensions.height" :width="data.member_image.dimensions.width" :mobile="data.member_image.mobile.url" :retina="data.member_image.retina.url" :alt="data.name" />
 				</div>
-				<template v-if="data">
-					<ImageItem :src="data.image.url" :mobile="data.image.mobile.url" :alt="$prismic.asText(data.title)" />
-				</template> -->
-				<!-- <n-link class="go_back" to="/blog"> <Icon name="arrow" />go back </n-link> -->
-			<!-- </div> -->
-
+				<div class="data">
+					<div class="row">
+						<span class="label">{{ $t('pages.team_member.name') }}</span>
+						<h2>{{ data.name }}</h2>
+					</div>
+					<div class="row">
+						<span class="label">{{ $t('pages.team_member.role') }}</span>
+						<p>{{ data.role }}</p>
+					</div>
+					<div class="row">
+						<span class="label">{{ $t('pages.team_member.tools') }}</span>
+						<p>{{ data.tools }}</p>
+					</div>
+					<div class="row">
+						<span class="label">{{ $t('pages.team_member.responsibilities') }}</span>
+						<prismic-rich-text class="rich_text" :field="data.responsibilities" />
+					</div>
+				</div>
+			</section>
 			<!-- Slice Machine -->
-			<!-- <div v-for="(slice, i) in data.body" :key="i" class="slice" :class="slice.slice_type">
-				<template v-if="slice.slice_type == 'text'">
-					<prismic-rich-text class="rich_text" :field="slice.primary.text" />
-				</template>
-
-				<template v-else-if="slice.slice_type == 'image'">
-					<ImageItem :src="slice.primary.image.url" :mobile="slice.primary.image.mobile.url" :alt="slice.primary.image.alt" />
-					<span class="description">"{{ slice.primary.image.alt }}"</span>
-				</template>
-
-				<template v-else-if="slice.slice_type == 'image_slider'">
-					<div class="image_slider">
-						<div class="image_slider_wrapper">
-							<ImageItem v-for="item in slice.items" :key="item.image.url" :src="item.image.url" />
-						</div>
-					</div>
-				</template>
-
-				<template v-else-if="slice.slice_type == 'image_text'">
-					<div class="image_text">
-						<ImageItem :src="slice.primary.image.url" :mobile="slice.primary.image.mobile.url" :alt="slice.primary.image.alt" />
-						<div class="text">
-							<p v-for="(item, key) in slice.items" :key="key">{{ $prismic.asText(item.text) }}</p>
-						</div>
-					</div>
-				</template>
-
-				<template v-else-if="slice.slice_type == 'video'">
-					<VideoItem :video="slice.primary.video" />
-				</template>
-			</div> -->
-		</div>
+			<div v-for="(slice, i) in data.body" :key="i" class="slice" :class="slice.slice_type">
+				<TitleText v-if="slice.slice_type == 'TitlePlainText'" :data="slice" />
+				<TitlePlainTextImage v-else :data="slice" />
+			</div>
+		</template>
 	</div>
 </template>
 
@@ -59,15 +43,20 @@ export default {
 		data: null,
 	}),
 	async fetch() {
-		await this.$prismic.api
-			.getByUID('team_member', this.$route.params.team_member, { lang: this.$i18n.localeProperties.prismic })
-			.then(async (fetch) => {
+		const parentUid = this.$route.fullPath.split('/')[1]
+		const fetch = await this.$prismic.api.getByUID('team_member', this.$route.params.team_member, { lang: this.$i18n.localeProperties.prismic })
+		const parent = await this.$prismic.api.getByUID('about_us', parentUid, { lang: this.$i18n.localeProperties.prismic })
+		await Promise.allSettled([fetch, parent])
+			.then(async (data) => {
 				// send data to store
-				// await this.$store.dispatch('storeByUID', {
-				// 	type: 'team_member',
-				// 	path: this.$route.fullPath,
-				// 	fetch,
-				// })
+				await this.$store.dispatch('storeSecondLevel', {
+					type: 'team_member',
+					parentType: 'about_us',
+					parentUid,
+					fetch: data[0].value,
+					parent: data[1].value,
+					path: this.$route.fullPath,
+				})
 				this.data = await fetch.data
 				// console.log(this.data);
 			})
@@ -82,123 +71,60 @@ export default {
 			})
 	},
 	head() {
-		// return this.$store.getters.page.head
+		return this.$store.getters.page.head
 	},
-
-	// fetchKey(getCounter) {
-	// 	// getCounter is a method that can be called to get the next number in a sequence
-	// 	// as part of generating a unique fetchKey.
-	// 	return 'blog_post' + getCounter('blog_post')
-	// },
 }
 </script>
 
 <style lang="scss" scoped>
 .member {
-
-	.intro {
-		width: 100%;
-		margin: 0;
-		padding-bottom: 40px;
-
-		display: flex;
-		flex-direction: column;
-		position: relative;
-
-		.title {
-			margin: 40px 0;
-			padding-left: 1rem;
-			font-size: 2rem;
-		}
-
-		.info {
-			margin-bottom: 20px;
-			padding-left: 1rem;
-
-			.tag {
-				float: right;
-				color: $primary;
-			}
-		}
-
-		picture {
-			height: 100vh;
-			z-index: 6;
-		}
-
-		.go_back {
-			position: absolute;
-			bottom: -100px;
-			left: -240px;
-			padding: 0 20px 0 260px;
-			background: $primary;
-			cursor: pointer;
-			z-index: 4;
-
-			height: 50px;
-			display: flex;
-			align-items: center;
-
-			text-transform: capitalize;
-			font-size: 1.2rem;
-			line-height: 1.5rem;
-
-			svg {
-				transition: all 0.2s ease;
-				margin-right: 20px;
-				transform: rotate(180deg);
-			}
-
-			&:hover {
-				svg {
-					transform: rotate(180deg) translateX(10px);
-				}
-			}
-		}
-	}
-
-	.text {
-		width: 75%;
-
-		.rich_text {
-			font-size: 1.2rem;
-			line-height: 1.5rem;
-		}
-	}
-
+	display: flex;
+	justify-content: center;
+	padding-right: 240px;
+	padding-left: 240px;
+	align-items: stretch;
 	.image {
-		width: 85%;
-		flex-direction: column;
-		align-items: flex-end;
-		z-index: 6;
-
-		.description {
-			margin: 25px 0;
-			opacity: 0.75;
-			font-style: italic;
-		}
-	}
-
-	.image_text {
-		display: flex;
-		padding: 20px 0;
-		margin: 0;
-		.text {
-			display: flex;
-			flex-direction: column;
-			padding: 40px;
-			p {
-				margin-bottom: 25px;
-				&:last-child {
-					margin-bottom: 0;
-				}
-			}
-		}
+		width: 50%;
+		height: 100%;
+		border-right: 5px solid $primary;
+		max-height: 700px;
 		picture {
-			max-width: 40%;
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
 		}
 	}
-
+	.data {
+		width: 50%;
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+		justify-content: flex-end;
+		padding-left: 2rem;
+		span {
+			font-size: 1rem;
+			color: $grey;
+		}
+		h2 {
+			font-size: 2rem;
+			margin-bottom: 2rem;
+			margin-top: 10px;
+		}
+		p {
+			margin-bottom: 2rem;
+			font-size: 1rem;
+			line-height: 1;
+			margin-top: 10px;
+		}
+		.row {
+		}
+		.rich_text {
+			margin-top: 10px;
+		}
+	}
+}
+.container {
+	padding-bottom: 5rem;
 }
 
 // @media (min-width: 1700px) {
@@ -219,7 +145,47 @@ export default {
 // }
 
 @media (max-width: 900px) {
-	.blog_post {
+	.member {
+		padding-right: 40px;
+		padding-left: 40px;
+		padding-top: 0;
+		width: 100%;
+		.image {
+			width: 100%;
+			height: 100%;
+			border-bottom: 5px solid #ffc424;
+			border-right: none;
+		}
+		.data {
+			margin-top: 3rem;
+			width: 100%;
+			padding-left: 3rem;
+			padding-right: 3rem;
+			p {
+				font-size: 1rem;
+			}
+		}
+	}
+}
+@media (max-width: 500px) {
+	.member {
+		padding-right: 0;
+		// padding-left: 40px;
+		.image {
+			// width: 100%;
+			// height: 100%;
+			// border-bottom: 5px solid #ffc424;
+			// border-right: none;
+		}
+		.data {
+			// margin-top: 3rem;
+			// width: 100%;
+			padding-left: 10px;
+			padding-right: 40px;
+			p {
+				// font-size: 1.2rem;
+			}
+		}
 	}
 }
 </style>

@@ -11,7 +11,7 @@
 					<span v-for="tag in data.tags" :key="tag" class="tag">{{ tag }}</span>
 				</div>
 				<template v-if="data">
-					<ImageItem :src="data.image.url" :mobile="data.image.mobile.url" :alt="$prismic.asText(data.title)" />
+					<ImageItem :src="data.image.url" :mobile="data.image.mobile.url" :alt="$prismic.asText(data.title)" :height="data.image.dimensions.height" :width="data.image.dimensions.width" />
 				</template>
 				<!-- <n-link class="go_back" to="/blog"> <Icon name="arrow" />go back </n-link> -->
 			</div>
@@ -23,21 +23,21 @@
 				</template>
 
 				<template v-else-if="slice.slice_type == 'image'">
-					<ImageItem :src="slice.primary.image.url" :mobile="slice.primary.image.mobile.url" :alt="slice.primary.image.alt" />
+					<ImageItem :src="slice.primary.image.url" :mobile="slice.primary.image.mobile.url" :alt="slice.primary.image.alt" :height="slice.primary.image.dimensions.height" :width="slice.primary.image.dimensions.width"/>
 					<span class="description">"{{ slice.primary.image.alt }}"</span>
 				</template>
 
 				<template v-else-if="slice.slice_type == 'image_slider'">
 					<div class="image_slider">
 						<div class="image_slider_wrapper">
-							<ImageItem v-for="item in slice.items" :key="item.image.url" :src="item.image.url" />
+							<ImageItem v-for="item in slice.items" :key="item.image.url" :src="item.image.url" :height="item.image.dimensions.height" :width="item.image.dimensions.width" />
 						</div>
 					</div>
 				</template>
 
 				<template v-else-if="slice.slice_type == 'image_text'">
 					<div class="image_text">
-						<ImageItem :src="slice.primary.image.url" :mobile="slice.primary.image.mobile.url" :alt="slice.primary.image.alt" />
+						<ImageItem :src="slice.primary.image.url" :height="slice.primary.image.dimensions.height" :width="slice.primary.image.dimensions.width" :mobile="slice.primary.image.mobile.url" :alt="slice.primary.image.alt" />
 						<div class="text">
 							<p v-for="(item, key) in slice.items" :key="key">{{ $prismic.asText(item.text) }}</p>
 						</div>

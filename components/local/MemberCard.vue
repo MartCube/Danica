@@ -138,12 +138,32 @@ export default {
 @media (max-width: 800px) {
 	.member_card {
 		width: 100%;
+		margin-left: 0;
+		flex-direction: column;
+		margin-bottom: 4rem;
 		.image {
+			order: 1;
 			height: 100%;
 			width: 100%;
+			border: none;
 		}
 		.content {
+			order: 2;
 			width: 100%;
+			h2 {
+				margin-left: 0;
+			}
+		}
+		&:nth-child(odd) {
+			.image {
+				border: none;
+				order: 1;
+			}
+			.content {
+				text-align: left;
+				align-items: flex-start;
+				order: 2;
+			}
 		}
 		h2 {
 			margin: 20px;

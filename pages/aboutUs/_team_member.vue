@@ -3,7 +3,7 @@
 		<template v-if="$fetchState.error">
 			<Error />
 		</template>
-		<template  v-else-if="!$fetchState.pending" >
+		<template v-else-if="!$fetchState.pending">
 			<section class="member">
 				<div class="image">
 					<ImageItem :src="data.member_image.url" :height="data.member_image.dimensions.height" :width="data.member_image.dimensions.width" :mobile="data.member_image.mobile.url" :retina="data.member_image.retina.url" :alt="data.name" />
@@ -25,17 +25,7 @@
 						<span class="label">{{ $t('pages.team_member.responsibilities') }}</span>
 						<prismic-rich-text class="rich_text" :field="data.responsibilities" />
 					</div>
-					<!-- <h2 class="title">{{ $prismic.asText(data.title) }}</h2>
-					<div class="info">
-						<span class="date">{{ data.date }}</span>
-						<span v-for="tag in data.tags" :key="tag" class="tag">{{ tag }}</span>
-					</div> -->
-					<!-- <template v-if="data">
-						<ImageItem :src="data.image.url" :mobile="data.image.mobile.url" :alt="$prismic.asText(data.title)" />
-					</template> -->
-					<!-- <n-link class="go_back" to="/blog"> <Icon name="arrow" />go back </n-link> -->
 				</div>
-
 			</section>
 			<!-- Slice Machine -->
 			<div v-for="(slice, i) in data.body" :key="i" class="slice" :class="slice.slice_type">
@@ -83,12 +73,6 @@ export default {
 	head() {
 		return this.$store.getters.page.head
 	},
-
-	// fetchKey(getCounter) {
-	// 	// getCounter is a method that can be called to get the next number in a sequence
-	// 	// as part of generating a unique fetchKey.
-	// 	return 'blog_post' + getCounter('blog_post')
-	// },
 }
 </script>
 
@@ -103,6 +87,7 @@ export default {
 		width: 50%;
 		height: 100%;
 		border-right: 5px solid $primary;
+		max-height: 700px;
 		picture {
 			width: 100%;
 			height: 100%;

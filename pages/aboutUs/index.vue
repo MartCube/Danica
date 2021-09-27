@@ -100,8 +100,8 @@ export default {
 	.about_us {
 		padding-bottom: 4rem;
 		.main_text {
-			margin-left: 100px;
-			max-width: 100%;
+			margin-left: 15vw;
+			max-width: 80%;
 			margin-right: 20px;
 		}
 		.latest_projects {

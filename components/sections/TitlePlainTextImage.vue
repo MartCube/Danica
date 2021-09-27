@@ -61,6 +61,10 @@ export default {
 		margin-left: 40px;
 		position: relative;
 		width: 100%;
+		picture {
+			object-fit: cover;
+			object-position: center;
+		}
 	}
 }
 

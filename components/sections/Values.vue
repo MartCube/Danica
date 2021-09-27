@@ -11,7 +11,7 @@
 				</template>
 			</div>
 			<div class="image">
-				<ImageItem :src="image.url" :mobile="image.mobile.url" :alt="image.alt" />
+				<ImageItem :src="image.url" :width="image.dimensions.width" :height="image.dimensions.height" :mobile="image.mobile.url" :alt="image.alt" />
 				<div class="play" @click="openModal">
 					<Icon name="play" />
 				</div>

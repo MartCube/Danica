@@ -1,7 +1,7 @@
 <template>
 	<n-link :to="link" class="project_card">
 		<div class="image">
-			<ImageItem :width="image.dimensions.width" :height="image.dimensions.height" :src="image.url" :alt="title" />
+			<ImageItem :width="image.dimensions.width" :height="image.dimensions.height" :mobile="image.thumbnail.url" :src="image.url" :retina="image.url" :alt="title" />
 			<div class="link">
 				<Icon name="chevron" fill="hsl(0, 0%, 10%)" size="25px" />
 			</div>
@@ -12,6 +12,7 @@
 
 <script>
 export default {
+	name: 'ProjectCard',
 	props: {
 		data: {
 			type: Object,
@@ -20,7 +21,7 @@ export default {
 	},
 	computed: {
 		image() {
-			return this.data.data.main_image.thumbnail
+			return this.data.data.main_image
 		},
 		title() {
 			return this.$prismic.asText(this.data.data.title)

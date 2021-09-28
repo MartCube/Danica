@@ -23,6 +23,12 @@ export default {
 				remont: 'remont',
 			},
 		},
+		team_member: {
+			name: 'Name',
+			responsibilities: 'Responsibilities',
+			role: 'Role',
+			tools: 'Tools',
+		},
 		contact: {
 			name: 'Contact',
 			title: 'We are always glad to meet new friends',
@@ -38,6 +44,7 @@ export default {
 	service: {
 		buton_contact_form: 'Submit',
 		button_all_projects: 'All projects',
+		button_all_posts: ' Blog',
 		form: {
 			write_us: 'Write us',
 			title: 'Message send',

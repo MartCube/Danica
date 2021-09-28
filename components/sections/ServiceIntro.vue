@@ -1,7 +1,7 @@
 <template>
 	<section class="intro">
 		<div class="bg">
-			<ImageItem :src="image.url" :mobile="image.mobile.url" :alt="image.alt" />
+			<ImageItem :src="image.url" :width="image.dimensions.width" :height="image.dimensions.height" :mobile="image.mobile.url" :alt="image.alt" />
 		</div>
 		<div class="content" :class="{ white: data.primary.white_text }">
 			<div class="maintitle">
@@ -10,7 +10,7 @@
 			<div class="subtitle">
 				<span v-for="(letter, i) in subtitle" :key="i" ref="subtitle">{{ letter }}</span>
 			</div>
-			<ButtonItem :white="data.primary.white_text" @click.native="openModal"> {{ $t('service.form.write_us') }} </ButtonItem>
+			<ButtonItem :white="data.primary.white_text" @click.native="openModal"> {{ button }} </ButtonItem>
 			<div class="project">
 				<span ref="project"> {{ image.alt }} </span>
 			</div>
@@ -41,6 +41,10 @@ export default {
 		},
 		image() {
 			return this.data.primary.image
+		},
+		button() {
+			if (this.data.primary.button) return this.data.primary.button
+			else return this.$t('service.form.write_us')
 		},
 	},
 	async mounted() {

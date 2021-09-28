@@ -6,18 +6,12 @@
 		<div class="content">
 			<div class="text">
 				<h2 class="title">{{ title }}</h2>
-				<template v-if="data.primary.description">
-					<prismic-rich-text class="rich_text" :field="data.primary.description" />
+				<template v-if="description">
+					<prismic-rich-text class="rich_text" :field="description" />
 				</template>
 			</div>
 			<div class="image">
-				<ImageItem :src="image.url" :width="image.dimensions.width" :height="image.dimensions.height" :mobile="image.mobile.url" :alt="image.alt" />
-				<div class="play" @click="openModal">
-					<Icon name="play" />
-				</div>
-			</div>
-			<div>
-				<LazyModalVideo :video="data.primary.video" />
+				<ImageItem :width="image.dimensions.width" :height="image.dimensions.height" :src="image.url" :mobile="image.mobile.url" :retina="image.retina.url" :alt="image.alt" />
 			</div>
 		</div>
 	</section>
@@ -25,6 +19,7 @@
 
 <script>
 export default {
+	name: 'TitlePlainTextImage',
 	props: {
 		data: {
 			type: Object,
@@ -33,21 +28,16 @@ export default {
 	},
 	computed: {
 		name() {
-			return this.$prismic.asText(this.data.primary.name)
+			return this.data.primary.name
 		},
 		title() {
-			return this.$prismic.asText(this.data.primary.title)
+			return this.data.primary.title1
 		},
 		description() {
-			return this.$prismic.asText(this.data.primary.description)
+			return this.data.primary.description
 		},
 		image() {
 			return this.data.primary.image
-		},
-	},
-	methods: {
-		openModal() {
-			this.$store.dispatch('bindModalVideo', true)
 		},
 	},
 }
@@ -73,20 +63,7 @@ export default {
 		width: 100%;
 		picture {
 			object-fit: cover;
-		}
-		.play {
-			padding: 24px;
-			background: $primary;
-			position: absolute;
-			top: 50%;
-			left: 50%;
-			transform: translate(-50%, -50%);
-			border-radius: 50%;
-			cursor: pointer;
-
-			svg {
-				fill: $white;
-			}
+			object-position: center;
 		}
 	}
 }

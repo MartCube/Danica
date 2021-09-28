@@ -12,7 +12,7 @@ const sitemap = async function () {
 			lang: 'en-us',
 		})
 		.then((data) => {
-			transform(data, 'en')
+			transform(data, 'en', 'about-us')
 		})
 
 	await client
@@ -21,7 +21,7 @@ const sitemap = async function () {
 			lang: 'ru',
 		})
 		.then((data) => {
-			transform(data, '')
+			transform(data, '', 'o-nas')
 		})
 
 	await client
@@ -30,10 +30,10 @@ const sitemap = async function () {
 			lang: 'ua-ua',
 		})
 		.then((data) => {
-			transform(data, 'ua')
+			transform(data, 'ua', 'pro-nas')
 		})
 
-	function transform(data, lang) {
+	function transform(data, lang, aboutus) {
 		data.results.forEach((page) => {
 			switch (page.type) {
 				case 'home_index':
@@ -95,6 +95,22 @@ const sitemap = async function () {
 				case 'project_post':
 					pages.push({
 						url: `${lang}/projects/${page.uid}`,
+						changefreq: 'monthly',
+						priority: 0.5,
+						lastmod: page.last_publication_date,
+					})
+					break
+				case 'about_us':
+					pages.push({
+						url: `${lang}/${page.uid}`,
+						changefreq: 'monthly',
+						priority: 0.5,
+						lastmod: page.last_publication_date,
+					})
+					break
+				case 'team_member':
+					pages.push({
+						url: `${lang}/${aboutus}/${page.uid}`,
 						changefreq: 'monthly',
 						priority: 0.5,
 						lastmod: page.last_publication_date,

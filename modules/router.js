@@ -12,7 +12,7 @@ const routes = async function () {
 			lang: 'en-us',
 		})
 		.then((data) => {
-			transform(data, 'en')
+			transform(data, 'en', 'about-us')
 		})
 
 	await client
@@ -21,7 +21,7 @@ const routes = async function () {
 			lang: 'ru',
 		})
 		.then((data) => {
-			transform(data, '')
+			transform(data, '', 'o-nas')
 		})
 
 	await client
@@ -30,10 +30,10 @@ const routes = async function () {
 			lang: 'ua-ua',
 		})
 		.then((data) => {
-			transform(data, 'ua')
+			transform(data, 'ua', 'pro-nas')
 		})
 
-	function transform(data, lang) {
+	function transform(data, lang, aboutUs) {
 		data.results.forEach((page) => {
 			switch (page.type) {
 				case 'home_index':
@@ -48,6 +48,9 @@ const routes = async function () {
 				case 'contact':
 					pages.push(`${lang}/${page.uid}`)
 					break
+				case 'about_us':
+					pages.push(`${lang}/${page.uid}`)
+					break
 				case 'policy':
 					pages.push(`${lang}/privacy-policy`)
 					break
@@ -57,18 +60,21 @@ const routes = async function () {
 				case 'project_post':
 					pages.push(`${lang}/projects/${page.uid}`)
 					break
+				case 'team_member':
+					// console.log(page);
+					pages.push(`${lang}/${aboutUs}/${page.uid}`)
+					break
 				case 'services':
 					pages.push(`${lang}/${page.uid}`)
 					break
 				case 'service_second':
-					// console.log(page);
 					pages.push(`${lang}/${page.data.parent_page.uid}/${page.uid}`)
 					break
 				default:
 					break
 			}
 		})
-		console.log(pages)
+		// console.log(pages)
 	}
 	return pages
 }

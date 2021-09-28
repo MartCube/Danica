@@ -1,6 +1,6 @@
 <template>
 	<n-link :to="link" class="project_slide">
-		<ImageItem :src="image + imgIX" :mobile="image + imgIXmobile" :alt="title" />
+		<ImageItem :width="900" :height="350" :src="image + imgIX" :mobile="image + imgIXmobile" :alt="title" />
 
 		<h2>{{ title }}</h2>
 	</n-link>

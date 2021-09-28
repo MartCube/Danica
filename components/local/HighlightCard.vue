@@ -1,6 +1,6 @@
 <template>
 	<n-link v-if="first" :to="link" class="highlight_card first">
-		<ImageItem :src="image + first_imgIX" :alt="title" />
+		<ImageItem :src="image + first_imgIX" :alt="title" width="600" height="500" />
 		<div class="text">
 			<h3>{{ title }}</h3>
 			<!-- Slice Machine -->
@@ -23,7 +23,7 @@
 		</div>
 	</n-link>
 	<n-link v-else :to="link" class="highlight_card" :class="{ last: last }">
-		<ImageItem :src="image + Thumbnail_imgIX" :alt="title" />
+		<ImageItem width="600" height="500" :src="image + Thumbnail_imgIX" :alt="title" />
 		<div class="link">
 			<Icon fill="hsl(0, 0%, 10%)" name="chevron" size="32px" />
 		</div>

@@ -11,7 +11,7 @@
 					<span v-for="tag in data.tags" :key="tag" class="tag">{{ tag }}</span>
 				</div>
 				<template v-if="data">
-					<ImageItem :src="data.image.url" :mobile="data.image.mobile.url" :alt="$prismic.asText(data.title)" />
+					<ImageItem :src="data.image.url" :mobile="data.image.mobile.url" :alt="$prismic.asText(data.title)" :height="data.image.dimensions.height" :width="data.image.dimensions.width" />
 				</template>
 				<!-- <n-link class="go_back" to="/blog"> <Icon name="arrow" />go back </n-link> -->
 			</div>
@@ -23,21 +23,21 @@
 				</template>
 
 				<template v-else-if="slice.slice_type == 'image'">
-					<ImageItem :src="slice.primary.image.url" :mobile="slice.primary.image.mobile.url" :alt="slice.primary.image.alt" />
+					<ImageItem :src="slice.primary.image.url" :mobile="slice.primary.image.mobile.url" :alt="slice.primary.image.alt" :height="slice.primary.image.dimensions.height" :width="slice.primary.image.dimensions.width"/>
 					<span class="description">"{{ slice.primary.image.alt }}"</span>
 				</template>
 
 				<template v-else-if="slice.slice_type == 'image_slider'">
 					<div class="image_slider">
 						<div class="image_slider_wrapper">
-							<ImageItem v-for="item in slice.items" :key="item.image.url" :src="item.image.url" />
+							<ImageItem v-for="item in slice.items" :key="item.image.url" :src="item.image.url" :height="item.image.dimensions.height" :width="item.image.dimensions.width" />
 						</div>
 					</div>
 				</template>
 
 				<template v-else-if="slice.slice_type == 'image_text'">
 					<div class="image_text">
-						<ImageItem :src="slice.primary.image.url" :mobile="slice.primary.image.mobile.url" :alt="slice.primary.image.alt" />
+						<ImageItem :src="slice.primary.image.url" :height="slice.primary.image.dimensions.height" :width="slice.primary.image.dimensions.width" :mobile="slice.primary.image.mobile.url" :alt="slice.primary.image.alt" />
 						<div class="text">
 							<p v-for="(item, key) in slice.items" :key="key">{{ $prismic.asText(item.text) }}</p>
 						</div>
@@ -45,7 +45,18 @@
 				</template>
 
 				<template v-else-if="slice.slice_type == 'video'">
-					<VideoItem :video="slice.primary.video" />
+					<div class="video_container">
+						<div class="video_default_preview">
+							<ImageItem v-if="slice.primary.video_image.url !== undefined" :src="slice.primary.video_image.url" :mobile="slice.primary.video_image.mobile.url" :width="slice.primary.video_image.dimensions.width" :height="slice.primary.video_image.dimensions.height" :alt="slice.primary.video_image.alt" />
+							<ImageItem v-else :width="data.image.dimensions.width" :height="data.image.dimensions.height" :src="data.image.url" :mobile="data.image.mobile.url" :alt="$prismic.asText(data.title)" />
+						</div>
+						<div class="play" @click="openModal">
+							<Icon name="play" />
+						</div>
+					</div>
+					<div>
+						<LazyModalVideo :video="slice.primary.video" />
+					</div>
 				</template>
 			</div>
 		</div>
@@ -83,7 +94,11 @@ export default {
 	head() {
 		return this.$store.getters.page.head
 	},
-
+	methods: {
+		openModal() {
+			this.$store.dispatch('bindModalVideo', true)
+		},
+	},
 	// fetchKey(getCounter) {
 	// 	// getCounter is a method that can be called to get the next number in a sequence
 	// 	// as part of generating a unique fetchKey.
@@ -194,6 +209,44 @@ export default {
 			margin: 25px 0;
 			opacity: 0.75;
 			font-style: italic;
+		}
+	}
+
+	.video_container {
+		position: relative;
+		width: 100%;
+		.video_default_preview {
+			width: 100%;
+			max-height: 70vh;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			position: relative;
+			z-index: 1;
+			overflow: hidden;
+		}
+		picture {
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+			object-position: center;
+			display: block;
+			filter: grayscale(100%) brightness(130%);
+			opacity: 0.8;
+		}
+		.play {
+			padding: 24px;
+			background: $primary;
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+			border-radius: 50%;
+			cursor: pointer;
+			z-index: 3;
+			svg {
+				fill: $white;
+			}
 		}
 	}
 

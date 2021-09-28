@@ -23,6 +23,12 @@ export default {
 				remont: 'Ремонт',
 			},
 		},
+		team_member: {
+			name: 'Имя',
+			responsibilities: 'Обязаности',
+			role: 'Должность',
+			tools: 'Программы',
+		},
 		contact: {
 			name: 'Контакты',
 			title: 'Мы всегда рады новым знакомствам',
@@ -38,6 +44,7 @@ export default {
 	service: {
 		buton_contact_form: 'Оправить',
 		button_all_projects: 'все проекты',
+		button_all_posts: 'Блог',
 		form: {
 			write_us: 'Напишите нам',
 			title: 'Сообщение отправлено',

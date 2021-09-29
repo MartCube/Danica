@@ -104,7 +104,7 @@ export default {
 			console.log('currentLocale changed')
 			// this.projects()
 			this.$nextTick()
-			postAnim(this.$refs.grid.children, true)
+			this.fetch()
 		},
 		async projects(newValue, oldValue) {
 			await this.$nextTick()

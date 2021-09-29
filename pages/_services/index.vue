@@ -101,7 +101,7 @@ export default {
 				position: relative;
 				// max-width: 800px;
 				// height: 450px;
-				z-index: 8;
+				z-index: 9;
 			}
 		}
 	}

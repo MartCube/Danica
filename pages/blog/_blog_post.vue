@@ -150,6 +150,7 @@ export default {
 		picture {
 			height: 100vh;
 			z-index: 6;
+			object-fit: cover;
 		}
 
 		.go_back {
@@ -288,6 +289,7 @@ export default {
 		}
 		picture {
 			max-width: 40%;
+			object-fit: cover;
 		}
 	}
 

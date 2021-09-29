@@ -258,7 +258,6 @@ $transition: all 0.35s ease;
 		.locale {
 			opacity: 0; //opacity:1
 			padding-bottom: 2px;
-
 			&:hover {
 				background: $primary;
 			}

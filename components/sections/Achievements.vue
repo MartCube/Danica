@@ -7,9 +7,11 @@
 			<h2 class="title">{{ data.primary.title }}</h2>
 			<div class="text">
 				<p>{{ description }}</p>
-				<div v-for="item in data.items" :key="item.achievement" class="counter">
-					<span class="number">{{ item.number }}</span>
-					<h4>{{ item.achievement }}</h4>
+				<div class="counter-wrapper">
+					<div v-for="item in data.items" :key="item.achievement" class="counter">
+						<span class="number">{{ item.number }}</span>
+						<h4>{{ item.achievement }}</h4>
+					</div>
 				</div>
 			</div>
 			<img class="lazyload" :src="image" alt="achievements" />
@@ -68,12 +70,17 @@ export default {
 		p {
 			max-width: 500px;
 			margin-left: 1.5rem;
+			margin-right: 3rem;
+		}
+		.counter-wrapper {
+			display: flex;
+			flex: 1;
 		}
 		.counter {
 			padding-left: 20px;
 			border-left: 4px solid $primary;
-			width: 150px;
-			height: 100%;
+			min-width: 150px;
+			height: max-content;
 			display: flex;
 			flex-direction: column;
 			.number {
@@ -123,6 +130,43 @@ export default {
 // 		}
 // 	}
 // }
+@media (max-width: 1300px){
+	.content {
+		.text {
+			flex-wrap: wrap;
+			p {
+				margin-top: 3rem;
+				order: 2;
+			}
+			.counter-wrapper {
+				order: 1;
+				width: 100%;
+				.counter {
+					margin-right: 1rem;
+				}
+			}
+		}
+	}
+}
+@media (max-width: 500px){
+	.content {
+		.text {
+			flex-wrap: wrap;
+			p {
+				margin-top: 3rem;
+				order: 2;
+			}
+			.counter-wrapper {
+				order: 1;
+				width: 100%;
+				flex-direction: column;
+				.counter {
+					margin-right: 1rem;
+				}
+			}
+		}
+	}
+}
 @media (max-width: 900px) {
 	.content {
 		height: auto;

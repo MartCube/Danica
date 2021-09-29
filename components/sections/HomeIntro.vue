@@ -150,6 +150,8 @@ export default {
 			height: 101%;
 			margin: 0;
 			padding: 0;
+			object-fit: cover;
+			display: block;
 		}
 		div {
 			overflow: hidden;

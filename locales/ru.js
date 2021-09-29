@@ -28,6 +28,7 @@ export default {
 			responsibilities: 'Обязаности',
 			role: 'Должность',
 			tools: 'Программы',
+			education: 'Образование',
 		},
 		contact: {
 			name: 'Контакты',

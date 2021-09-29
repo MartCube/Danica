@@ -51,7 +51,7 @@ picture {
 		position: relative;
 		object-fit: inherit;
 		object-position: inherit;
-
+		display: block;
 		&::before {
 			display: none;
 		}

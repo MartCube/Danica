@@ -389,6 +389,108 @@
 	force = true
 
 [[redirects]]
+	from = "/en/projects/letchiki-semya-dom/"
+	to = "/en/projects/pilots-family-home/"
+	status = 301
+	force = true
+
+[[redirects]]
+	from = "/en/projects/priyut/"
+	to = "/en/projects/shelter/"
+	status = 301
+	force = true
+
+[[redirects]]
+	from = "/ua/projects/priyut/"
+	to = "/ua/projects/prytulok/"
+	status = 301
+	force = true
+
+[[redirects]]
+	from = "/ua/projects/a-proyekt/"
+	to = "/ua/projects/а-proekt/"
+	status = 301
+	force = true
+
+[[redirects]]
+	from = "/en/projects/a-proyekt/"
+	to = "/en/projects/a-project/"
+	status = 301
+	force = true
+
+[[redirects]]
+	from = "/en/projects/%D0%B0-proekt/"
+	to = "/en/projects/a-project/"
+	status = 301
+	force = true
+
+[[redirects]]
+	from = "/projects/vorzel-dom/"
+	to = "/projects/vorzel-home/"
+	status = 301
+	force = true
+
+[[redirects]]
+	from = "/en/projects/write-dom/"
+	to = "/en/projects/write-house/"
+	status = 301
+	force = true
+
+[[redirects]]
+	from = "/ua/projects/write-dom/"
+	to = "/ua/projects/write-budynok/"
+	status = 301
+	force = true
+
+[[redirects]]
+	from = "/ua/dizayin-iterera/"
+	to = "/ua/dizayin-iterery/"
+	status = 301
+	force = true
+
+[[redirects]]
+	from = "/en/dizayin-iterera/"
+	to = "/en/iterior-design/"
+	status = 301
+	force = true
+
+[[redirects]]
+	from = "/en/projects/lisa/"
+	to = "/en/projects/fox/"
+	status = 301
+	force = true
+
+[[redirects]]
+	from = "/en/projects/lysytsya/"
+	to = "/en/projects/fox/"
+	status = 301
+	force = true
+
+[[redirects]]
+	from = "/ua/projects/lisa/"
+	to = "/ua/projects/lysytsya/"
+	status = 301
+	force = true
+
+[[redirects]]
+	from = "/ua/stroitelstvo-domov/"
+	to = "/ua/bydivnutstvo-bydunkiv/"
+	status = 301
+	force = true
+
+[[redirects]]
+	from = "/en/stroitelstvo-domov/"
+	to = "/en/house-construction/"
+	status = 301
+	force = true
+
+[[redirects]]
+	from = "/ua/projects/rezidentsiya-lesniki/"
+	to = "/ua/projects/rezydentsiya-lisnyky/"
+	status = 301
+	force = true
+
+[[redirects]]
 	from = "/ua/proekti/komercini-obyekti/novoe-art-prostranstvo-amd-design-club"
 	to = "/ua/projects/amd-dizain-club/"
 	status = 301

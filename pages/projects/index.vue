@@ -100,6 +100,12 @@ export default {
 		},
 	},
 	watch: {
+		currentLocale(newValue, oldValue) {
+			console.log('currentLocale changed')
+			// this.projects()
+			this.$nextTick()
+			postAnim(this.$refs.grid.children, true)
+		},
 		async projects(newValue, oldValue) {
 			await this.$nextTick()
 			postAnim(this.$refs.grid.children, true)

@@ -73,7 +73,7 @@ export default {
 			width: 100%;
 			justify-content: center;
 			align-items: center;
-			font-size: 3.3rem;
+			font-size: 2rem;
 			font-weight: 700;
 			padding-right: 10%;
 			text-align: end;

@@ -130,58 +130,58 @@ export function localleAnim(locales, show) {
 		})
 }
 
-export function charles() {
-	const duration = 2500
-	const charlesTop = document.querySelector('.charles .top')
-	const charlesBottom = document.querySelector('.charles .bottom')
+// export function charles() {
+// 	const duration = 2500
+// 	const charlesTop = document.querySelector('.charles .top')
+// 	const charlesBottom = document.querySelector('.charles .bottom')
 
-	const StartUpTimeline = anime.timeline({
-		autoplay: true,
-	})
+// 	const StartUpTimeline = anime.timeline({
+// 		autoplay: true,
+// 	})
 
-	StartUpTimeline.add({
-		duration,
-		autoplay: true,
-		easing: 'easeOutExpo',
-		endDelay: 200,
-		loop: 1,
-		loopComplete(anim) {
-			StartUpTimeline1.play()
-		},
-	})
-		.add(
-			{
-				targets: charlesBottom,
-				opacity: [0, 1],
-				translateY: ['-30%', '0'],
-				duration: 700,
-			},
-			0,
-		)
-		.add(
-			{
-				targets: charlesTop,
-				easing: 'cubicBezier(0.25, 0.46, 0.45, 0.94)',
-				keyframes: [{ opacity: 0, translateY: '-100%' }, { opacity: 0 }, { translateY: '20px', opacity: 1 }, { translateY: '10px', rotate: '6deg', translateX: '25px', duration: 600 }],
-			},
-			100,
-		)
+// 	StartUpTimeline.add({
+// 		duration,
+// 		autoplay: true,
+// 		easing: 'easeOutExpo',
+// 		endDelay: 200,
+// 		loop: 1,
+// 		loopComplete(anim) {
+// 			StartUpTimeline1.play()
+// 		},
+// 	})
+// 		.add(
+// 			{
+// 				targets: charlesBottom,
+// 				opacity: [0, 1],
+// 				translateY: ['-30%', '0'],
+// 				duration: 700,
+// 			},
+// 			0,
+// 		)
+// 		.add(
+// 			{
+// 				targets: charlesTop,
+// 				easing: 'cubicBezier(0.25, 0.46, 0.45, 0.94)',
+// 				keyframes: [{ opacity: 0, translateY: '-100%' }, { opacity: 0 }, { translateY: '20px', opacity: 1 }, { translateY: '10px', rotate: '6deg', translateX: '25px', duration: 600 }],
+// 			},
+// 			100,
+// 		)
 
-	const StartUpTimeline1 = anime
-		.timeline({
-			targets: charlesTop,
-			duration,
-			direction: 'alternate',
-			autoplay: false,
-			easing: 'easeOutExpo',
-			loop: true,
-		})
-		.add({
-			rotate: ['6deg', '-6deg'],
-			translateX: ['25px', '-18px'],
-			translateY: ['10px', '9px'],
-		})
-}
+// 	const StartUpTimeline1 = anime
+// 		.timeline({
+// 			targets: charlesTop,
+// 			duration,
+// 			direction: 'alternate',
+// 			autoplay: false,
+// 			easing: 'easeOutExpo',
+// 			loop: true,
+// 		})
+// 		.add({
+// 			rotate: ['6deg', '-6deg'],
+// 			translateX: ['25px', '-18px'],
+// 			translateY: ['10px', '9px'],
+// 		})
+// }
 
 export function serviceIntroAnim(maintitle, subtitle, project) {
 	const StartUpTimeline = anime.timeline({

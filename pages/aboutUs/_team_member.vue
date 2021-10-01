@@ -18,6 +18,10 @@
 						<p>{{ data.role }}</p>
 					</div>
 					<div class="row">
+						<span class="label">{{ $t('pages.team_member.education') }}</span>
+						<p>{{ data.education }}</p>
+					</div>
+					<div class="row">
 						<span class="label">{{ $t('pages.team_member.tools') }}</span>
 						<p>{{ data.tools }}</p>
 					</div>
@@ -30,6 +34,7 @@
 			<!-- Slice Machine -->
 			<div v-for="(slice, i) in data.body" :key="i" class="slice" :class="slice.slice_type">
 				<TitleText v-if="slice.slice_type == 'TitlePlainText'" :data="slice" />
+				<LazyLatestProjects v-else-if="slice.slice_type == 'sliderprojects'" :data="slice" />
 				<TitlePlainTextImage v-else :data="slice" />
 			</div>
 		</template>
@@ -112,8 +117,8 @@ export default {
 		}
 		p {
 			margin-bottom: 2rem;
-			font-size: 1rem;
-			line-height: 1;
+			font-size: 1.2rem;
+			line-height: 1.8rem;
 			margin-top: 10px;
 		}
 		.row {

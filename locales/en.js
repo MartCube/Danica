@@ -28,6 +28,7 @@ export default {
 			responsibilities: 'Responsibilities',
 			role: 'Role',
 			tools: 'Tools',
+			education: 'Education',
 		},
 		contact: {
 			name: 'Contact',

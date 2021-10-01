@@ -48,6 +48,8 @@ export default {
 	display: flex;
 	justify-content: center;
 	margin-left: 5px;
+	// margin-top: 0.5rem;
+	margin-bottom: 1rem;
 	&:nth-child(odd) {
 		margin-left: 0;
 		.image {

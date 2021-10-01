@@ -68,6 +68,14 @@ const sitemap = async function () {
 						lastmod: page.last_publication_date,
 					})
 					break
+				case 'about_us':
+					// pages.push({
+					// 	url: `${lang}/${page.uid}`,
+					// 	changefreq: 'monthly',
+					// 	priority: 1,
+					// 	lastmod: page.last_publication_date,
+					// })
+					break
 				case 'policy':
 					pages.push({
 						url: `${lang}/privacy-policy`,

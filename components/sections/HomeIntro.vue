@@ -1,7 +1,7 @@
 <template>
 	<section class="intro">
-		<img class="bg_letter first" src="/d_letter.svg" alt="" />
-		<img class="bg_letter second" src="/a_letter.svg" alt="" />
+		<span class="bg_letter first">{{ designWord[0] }}</span>
+		<span class="bg_letter second">{{ architectureWord[0] }}</span>
 		<div class="text">
 			<div class="title">
 				<span v-for="(letter, i) in first_title" :key="i" ref="lettersWeAre">{{ letter }}</span>
@@ -92,23 +92,22 @@ export default {
 .intro {
 	width: 100%;
 	height: calc(100vh - 120px);
-
+	background-color: hsl(0, 0%, 100%);
 	justify-content: flex-end;
 	position: relative;
 	// overflow: hidden;
 
 	.bg_letter {
 		position: absolute;
-		left: 0;
-		top: 7%;
 		opacity: 0;
-		width: 23vw;
+		left: 0;
 		z-index: 6;
-
-		&.second {
-			width: 31vw;
-			left: -5vw;
-		}
+		font-size: 35vw;
+		font-family: 'Home';
+		font-weight: bold;
+		color: hsl(0, 0%, 98%);
+		filter: drop-shadow(10px 10px 10px hsl(0, 0%, 90%)) drop-shadow(0px 0px 1px hsl(0, 0%, 98%));
+		line-height: 1;
 	}
 
 	.text {
@@ -150,6 +149,8 @@ export default {
 			height: 101%;
 			margin: 0;
 			padding: 0;
+			object-fit: cover;
+			display: block;
 		}
 		div {
 			overflow: hidden;

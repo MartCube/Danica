@@ -92,33 +92,26 @@ export default {
 		const ruNavbarData = await this.$prismic.api.getSingle('navbar', { lang: 'ru' })
 		const enNavbarData = await this.$prismic.api.getSingle('navbar', { lang: 'en-us' })
 
-		Promise.allSettled([uaNavbarData, ruNavbarData, enNavbarData]).then((results) => {
-			this.$store.dispatch('bindNavbar', [
-				{
-					language: 'ua',
-					data: results[0].value.data,
-				},
-				{
-					language: 'ru',
-					data: results[1].value.data,
-				},
-				{
-					language: 'en',
-					data: results[2].value.data,
-				},
-			])
-		})
-		// console.log('navbar fetch')
-		// await this.$prismic.api
-		// 	.getSingle('navbar', { lang: this.$i18n.localeProperties.prismic })
-		// 	.then((fetch) => {
-		// 		// set data
-		// 		console.log(fetch.data)
-		// 		this.data = fetch.data
-		// 	})
-		// 	.catch((error) => {
-		// 		console.log('log error', error)
-		// 	})
+		Promise.allSettled([uaNavbarData, ruNavbarData, enNavbarData])
+			.then((results) => {
+				this.$store.dispatch('bindNavbar', [
+					{
+						language: 'ua',
+						data: results[0].value.data,
+					},
+					{
+						language: 'ru',
+						data: results[1].value.data,
+					},
+					{
+						language: 'en',
+						data: results[2].value.data,
+					},
+				])
+			})
+			.catch((error) => {
+				console.log('log error', error)
+			})
 	},
 	computed: {
 		transparent() {
@@ -153,14 +146,9 @@ export default {
 		window.removeEventListener('scroll', this.onScroll)
 	},
 	methods: {
-		getNavbarLinks() {
-			const links = this.$store.getters.navbar_links
+		async getNavbarLinks() {
+			const links = await this.$store.getters.navbar_links
 			this.data = links.filter((el) => {
-				// console.log(el)
-				// if (el.language === this.$i18n.localeProperties.code) {
-				// 	console.log(el)
-				// }
-				// return el
 				return el.language === this.$i18n.localeProperties.code ? el.data : false
 			})
 		},
@@ -184,9 +172,6 @@ export default {
 		},
 		CloseMenu() {
 			this.isActive = false
-		},
-		linkResolver(value) {
-			return this.localePath(this.$prismic.linkResolver(value))
 		},
 		openModal() {
 			this.$store.dispatch('bindModalContact', true)
@@ -273,7 +258,6 @@ $transition: all 0.35s ease;
 		.locale {
 			opacity: 0; //opacity:1
 			padding-bottom: 2px;
-
 			&:hover {
 				background: $primary;
 			}

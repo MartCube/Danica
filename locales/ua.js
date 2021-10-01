@@ -27,6 +27,7 @@ export default {
 			name: "Ім'я",
 			responsibilities: "Обов'язки",
 			role: 'Посада',
+			education: 'Освіта',
 			tools: 'Програми',
 		},
 		contact: {

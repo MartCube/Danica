@@ -4,12 +4,14 @@
 			<ImageItem :src="image.url" :width="image.dimensions.width" :height="image.dimensions.height" :mobile="image.mobile.url" :alt="image.alt" />
 		</div>
 		<div class="content" :class="{ white: data.primary.white_text }">
-			<div class="maintitle">
-				<span v-for="(letter, i) in title" :key="i" ref="maintitle">{{ letter }}</span>
-			</div>
-			<div class="subtitle">
-				<span v-for="(letter, i) in subtitle" :key="i" ref="subtitle">{{ letter }}</span>
-			</div>
+			<h2>
+				<div class="maintitle">
+					<span v-for="(letter, i) in title" :key="i" ref="maintitle">{{ letter }}</span>
+				</div>
+				<div class="subtitle">
+					<span v-for="(letter, i) in subtitle" :key="i" ref="subtitle">{{ letter }}</span>
+				</div>
+			</h2>
 			<ButtonItem :white="data.primary.white_text" @click.native="openModal"> {{ button }} </ButtonItem>
 			<div class="project">
 				<span ref="project"> {{ image.alt }} </span>

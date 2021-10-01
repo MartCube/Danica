@@ -1,10 +1,8 @@
 <template>
-	<client-only>
-		<div v-if="modalVideo" ref="modal" class="video_modal">
-			<VideoItem :video="$attrs.video" />
-			<Icon name="close" class="close" size="35px" @click.native="closeModal" />
-		</div>
-	</client-only>
+	<div v-if="modalVideo.data" ref="modal" class="video_modal">
+		<VideoItem :video="modalVideo.data" />
+		<Icon name="close" class="close" size="35px" @click.native="closeModal" />
+	</div>
 </template>
 
 <script>
@@ -24,7 +22,7 @@ export default {
 	},
 	methods: {
 		closeModal() {
-			this.$store.dispatch('bindModalVideo', false)
+			this.$store.dispatch('bindModalVideo', { data: null, open: false })
 		},
 	},
 }

@@ -12,12 +12,9 @@
 			</div>
 			<div class="image">
 				<ImageItem :src="image.url" :width="image.dimensions.width" :height="image.dimensions.height" :mobile="image.mobile.url" :alt="image.alt" />
-				<div class="play" @click="openModal">
+				<div class="play" @click="openModal(data.primary.video)">
 					<Icon name="play" />
 				</div>
-			</div>
-			<div>
-				<LazyModalVideo :video="data.primary.video" />
 			</div>
 		</div>
 	</section>
@@ -46,8 +43,8 @@ export default {
 		},
 	},
 	methods: {
-		openModal() {
-			this.$store.dispatch('bindModalVideo', true)
+		openModal(video) {
+			this.$store.dispatch('bindModalVideo', { data: video, open: true })
 		},
 	},
 }

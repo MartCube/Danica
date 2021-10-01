@@ -6,7 +6,7 @@ export const state = (context) => ({
 	footer: true,
 
 	modalContact: false,
-	modalVideo: false,
+	modalVideo: {},
 
 	domain: 'https://danica.ua',
 	defaultLanguage: 'ru',
@@ -56,7 +56,10 @@ export const mutations = {
 		state.modalContact = value
 	},
 	setModalVideo(state, value) {
-		state.modalVideo = value
+		state.modalVideo = {
+			open: value.open,
+			data: value.data,
+		}
 	},
 	setPage(state, value) {
 		state.page = value
@@ -89,7 +92,6 @@ export const actions = {
 	bindModalVideo(context, value) {
 		context.commit('setModalVideo', value)
 	},
-
 	async storeSingle({ state, commit, dispatch }, fetch) {
 		const lang = await fetch.lang.slice(0, 2)
 		const path = this.$router.currentRoute.fullPath
@@ -146,7 +148,6 @@ export const actions = {
 
 		await commit('setPage', { head, data: fetch.data, tags: fetch.tags })
 	},
-
 	async storeByUID({ state, commit, dispatch }, { type, path, fetch }) {
 		// if(fetch)
 		const lang = fetch.lang.slice(0, 2)
@@ -218,7 +219,6 @@ export const actions = {
 		)
 		await commit('setPage', { head, data: fetch.data, tags: fetch.tags })
 	},
-
 	async storeSecondLevel({ state, commit, dispatch }, { type, parentType, parentUid, path, fetch, parent }) {
 		const lang = fetch.lang.slice(0, 2)
 

@@ -46,7 +46,7 @@ export default {
 		const parent = await this.$prismic.api.getByUID('services', this.$route.params.services, { lang: this.$i18n.localeProperties.prismic })
 		await Promise.allSettled([fetch, parent])
 			.then(async (data) => {
-				await console.log(data[1].value)
+				// console.log(data[1].value)
 				await this.$store.dispatch('storeSecondLevel', {
 					type: 'service_second',
 					parentType: 'services',

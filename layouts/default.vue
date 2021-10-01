@@ -7,6 +7,7 @@
 		</main>
 		<Footer />
 		<LazyContactModal />
+		<LazyModalVideo />
 		<CookieBox />
 	</div>
 </template>

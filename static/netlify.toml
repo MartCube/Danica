@@ -137,6 +137,24 @@
 	force = true
 
 [[redirects]]
+	from = "/en/projects/wright-2/"
+	to = "/en/projects/write-house/"
+	status = 301
+	force = true
+
+[[redirects]]
+	from = "/ua/projects/wright-2/"
+	to = "/ua/projects/write-budynok/"
+	status = 301
+	force = true
+
+[[redirects]]
+	from = "/en/projects/verona/"
+	to = "/en/projects/verona-project/"
+	status = 301
+	force = true
+
+[[redirects]]
 	from = "/ua/proekti/dizajn/rajt"
 	to = "/ua/projects/write-budynok/"
 	status = 301

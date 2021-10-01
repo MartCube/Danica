@@ -10,7 +10,7 @@
 				<Stages v-else-if="slice.slice_type == 'stages'" :data="slice" />
 				<Standards v-else-if="slice.slice_type == 'standards'" :data="slice" />
 				<Advantages v-else-if="slice.slice_type == 'advantages'" :data="slice" />
-				<Charles v-else-if="slice.slice_type == 'charles'" :data="slice" />
+				<!-- <Charles v-else-if="slice.slice_type == 'charles'" :data="slice" /> -->
 				<LatestProjects v-else-if="slice.slice_type == 'latestprojects'" :data="slice" />
 				<ServicesList v-else-if="slice.slice_type == 'services_list'" :data="slice" />
 				<SliderProjects v-else-if="slice.slice_type == 'sliderprojects'" :data="slice" />

@@ -52,7 +52,7 @@ export default {
 	],
 
 	// Modules (https://go.nuxtjs.dev/config-modules)
-	modules: ['@nuxtjs/prismic', 'nuxt-i18n', '@nuxtjs/style-resources', ],
+	modules: ['@nuxtjs/prismic', 'nuxt-i18n', '@nuxtjs/style-resources'],
 
 	// gtm: {
 	// 	id: process.env.GTM,
@@ -160,7 +160,6 @@ export default {
 				ru: '/privacy-policy',
 				ua: '/privacy-policy',
 			},
-			
 		},
 	},
 

@@ -29,7 +29,7 @@
 						<span class="description">"{{ slice.primary.image.alt }}"</span>
 					</template>
 				</template>
-				
+
 				<template v-else-if="slice.slice_type == 'image_slider'">
 					<div class="image_slider">
 						<div class="image_slider_wrapper">
@@ -37,7 +37,7 @@
 						</div>
 					</div>
 				</template>
-				
+
 				<template v-else-if="slice.slice_type == 'image_text'">
 					<div class="image_text">
 						<template v-if="slice.primary.image !== 'undefined'">
@@ -48,25 +48,15 @@
 						</div>
 					</div>
 				</template>
-				
+
 				<template v-else-if="slice.slice_type == 'video'">
 					<div class="video_container">
-						<template v-if="'url' in slice.primary.image">
-							<ImageItem :src="slice.primary.image.url" :mobile="slice.primary.image.mobile.url" :width="slice.primary.image.dimensions.width" :height="slice.primary.image.dimensions.height" :alt="slice.primary.image.alt" />
-						</template>
-						<template v-else>
-							<div class="video_default_preview">
-								<ImageItem :width="data.main_image.dimensions.width" :height="data.main_image.dimensions.height" :src="data.main_image.url" :mobile="data.main_image.mobile.url" :alt="$prismic.asText(data.title)" />
-							</div>
-						</template>
-						<div class="play" @click="openModal">
+						<ImageItem :src="slice.primary.image.url" :mobile="slice.primary.image.mobile.url" :width="slice.primary.image.dimensions.width" :height="slice.primary.image.dimensions.height" :alt="slice.primary.image.alt" />
+						<div class="play" @click="openModal(slice.primary.video)">
 							<Icon name="play" />
 						</div>
 					</div>
-					<div>
-						<LazyModalVideo :video="slice.primary.video" />
-					</div>
-				</template> 
+				</template>
 			</div>
 		</div>
 	</div>
@@ -106,8 +96,8 @@ export default {
 		return this.$store.getters.page.head
 	},
 	methods: {
-		openModal() {
-			this.$store.dispatch('bindModalVideo', true)
+		openModal(video) {
+			this.$store.dispatch('bindModalVideo', { data: video, open: true })
 		},
 	},
 }

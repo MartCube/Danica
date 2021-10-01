@@ -23,7 +23,7 @@
 				</template>
 
 				<template v-else-if="slice.slice_type == 'image'">
-					<ImageItem :src="slice.primary.image.url" :mobile="slice.primary.image.mobile.url" :alt="slice.primary.image.alt" :height="slice.primary.image.dimensions.height" :width="slice.primary.image.dimensions.width"/>
+					<ImageItem :src="slice.primary.image.url" :mobile="slice.primary.image.mobile.url" :alt="slice.primary.image.alt" :height="slice.primary.image.dimensions.height" :width="slice.primary.image.dimensions.width" />
 					<span class="description">"{{ slice.primary.image.alt }}"</span>
 				</template>
 
@@ -46,16 +46,10 @@
 
 				<template v-else-if="slice.slice_type == 'video'">
 					<div class="video_container">
-						<div class="video_default_preview">
-							<ImageItem v-if="slice.primary.video_image.url !== undefined" :src="slice.primary.video_image.url" :mobile="slice.primary.video_image.mobile.url" :width="slice.primary.video_image.dimensions.width" :height="slice.primary.video_image.dimensions.height" :alt="slice.primary.video_image.alt" />
-							<ImageItem v-else :width="data.image.dimensions.width" :height="data.image.dimensions.height" :src="data.image.url" :mobile="data.image.mobile.url" :alt="$prismic.asText(data.title)" />
-						</div>
-						<div class="play" @click="openModal">
+						<ImageItem :src="slice.primary.video_image.url" :mobile="slice.primary.video_image.mobile.url" :width="slice.primary.video_image.dimensions.width" :height="slice.primary.video_image.dimensions.height" :alt="slice.primary.video_image.alt" />
+						<div class="play" @click="openModal(slice.primary.video)">
 							<Icon name="play" />
 						</div>
-					</div>
-					<div>
-						<LazyModalVideo :video="slice.primary.video" />
 					</div>
 				</template>
 			</div>
@@ -95,15 +89,10 @@ export default {
 		return this.$store.getters.page.head
 	},
 	methods: {
-		openModal() {
-			this.$store.dispatch('bindModalVideo', true)
+		openModal(video) {
+			this.$store.dispatch('bindModalVideo', { data: video, open: true })
 		},
 	},
-	// fetchKey(getCounter) {
-	// 	// getCounter is a method that can be called to get the next number in a sequence
-	// 	// as part of generating a unique fetchKey.
-	// 	return 'blog_post' + getCounter('blog_post')
-	// },
 }
 </script>
 

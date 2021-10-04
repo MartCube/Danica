@@ -51,7 +51,10 @@
 
 				<template v-else-if="slice.slice_type == 'video'">
 					<div class="video_container">
-						<ImageItem :src="slice.primary.image.url" :mobile="slice.primary.image.mobile.url" :width="slice.primary.image.dimensions.width" :height="slice.primary.image.dimensions.height" :alt="slice.primary.image.alt" />
+						<div class="video_default_preview">
+							<ImageItem v-if="slice.primary.image.hasOwnProperty(url)" :src="slice.primary.image.url" :mobile="slice.primary.image.mobile.url" :width="slice.primary.image.dimensions.width" :height="slice.primary.image.dimensions.height" :alt="slice.primary.image.alt" />
+							<ImageItem :width="data.main_image.dimensions.width" :height="data.main_image.dimensions.height" :src="data.main_image.url" :mobile="data.main_image.mobile.url" :alt="$prismic.asText(data.title)" />
+						</div>
 						<div class="play" @click="openModal(slice.primary.video)">
 							<Icon name="play" />
 						</div>

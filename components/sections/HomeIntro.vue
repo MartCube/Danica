@@ -102,7 +102,7 @@ export default {
 		opacity: 0;
 		left: 0;
 		z-index: 6;
-		font-size: 35vw;
+		font-size: 30rem;
 		font-family: 'Home';
 		font-weight: bold;
 		color: hsl(0, 0%, 98%);
@@ -184,29 +184,29 @@ export default {
 		.text {
 			padding-top: 17vh;
 		}
-		.bg_letter {
-			width: 26vw;
-			.second {
-				width: 36vw;
-				left: -10vw;
-			}
-		}
+		// .bg_letter {
+		// 	width: 26vw;
+		// 	.second {
+		// 		width: 36vw;
+		// 		left: -10vw;
+		// 	}
+		// }
 	}
 	@media (max-width: 1220px) {
 		.collage .first {
 			height: 21vw;
 		}
-		.bg_letter {
-			width: 25vw;
-		}
+		// .bg_letter {
+		// 	width: 25vw;
+		// }
 	}
 	@media (max-width: 1084px) {
 		.collage .second {
 			left: 12vw;
 		}
-		.bg_letter {
-			width: 28vw;
-		}
+		// .bg_letter {
+		// 	width: 28vw;
+		// }
 	}
 	@media (max-width: 900px) {
 		.collage {
@@ -225,13 +225,13 @@ export default {
 				text-transform: initial;
 			}
 		}
-		.bg_letter {
-			width: 40vw;
-			&.second {
-				width: 60vw;
-				left: -20vw;
-			}
-		}
+		// .bg_letter {
+		// 	width: 40vw;
+		// 	&.second {
+		// 		width: 60vw;
+		// 		left: -20vw;
+		// 	}
+		// }
 	}
 	@media (max-width: 600px) {
 		.text {
@@ -252,14 +252,14 @@ export default {
 				text-transform: initial;
 			}
 		}
-		.bg_letter {
-			width: 65%;
-			top: 8%;
-			&.second {
-				width: 90%;
-				left: -30vw;
-			}
-		}
+		// .bg_letter {
+		// 	width: 65%;
+		// 	top: 8%;
+		// 	&.second {
+		// 		width: 90%;
+		// 		left: -30vw;
+		// 	}
+		// }
 	}
 	@media (max-width: 400px) {
 		.text {
@@ -274,6 +274,20 @@ export default {
 @media (max-width: 900px) {
 	.intro {
 		height: calc(100vh - 60px);
+		justify-content: center;
+	}
+}
+@media (max-width: 600px) {
+	.intro {
+		justify-content: flex-start;
+		.bg_letter {
+			top: 20%;
+			left: 15px;
+			font-size: 20rem;
+		}
+		.text {
+			padding-left: 5rem;
+		}
 	}
 }
 </style>

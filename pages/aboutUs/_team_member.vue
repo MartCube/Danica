@@ -48,7 +48,8 @@ export default {
 		data: null,
 	}),
 	async fetch() {
-		const parentUid = this.$route.fullPath.split('/')[1]
+		const parentUid = this.$i18n.localeProperties.code === 'ru' ? this.$route.fullPath.split('/')[1] : this.$route.fullPath.split('/')[2]
+		// console.log(parentUid);
 		const fetch = await this.$prismic.api.getByUID('team_member', this.$route.params.team_member, { lang: this.$i18n.localeProperties.prismic })
 		const parent = await this.$prismic.api.getByUID('about_us', parentUid, { lang: this.$i18n.localeProperties.prismic })
 		await Promise.allSettled([fetch, parent])

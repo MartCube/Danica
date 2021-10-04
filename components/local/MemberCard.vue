@@ -1,5 +1,5 @@
 <template>
-	<n-link :to="localePath(`/${parent}/${data.member_link.uid}`)" class="member_card">
+	<n-link :to="localePath(`/${parent}/${data.member_link.uid}/`)" class="member_card">
 		<div class="image">
 			<ImageItem :width="image.dimensions.width" :height="image.dimensions.height" :mobile="image.mobile.url" :src="image.url" :retina="image.url" :alt="name" />
 			<!-- <div class="link">

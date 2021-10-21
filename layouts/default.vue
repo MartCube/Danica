@@ -22,6 +22,7 @@ export default {
 		await this.$nextTick()
 		setTimeout(() => {
 			this.initGTM()
+			// this.security()
 		}, 5000)
 	},
 	methods: {
@@ -37,6 +38,12 @@ export default {
 				f.parentNode.insertBefore(j, f)
 			})(window, document, 'script', 'dataLayer', 'GTM-T5X9PFF')
 		},
+		security() {
+			const script = document.createElement('script')
+			script.async = true
+			script.src = 'https://images.dmca.com/Badges/DMCABadgeHelper.min.js'
+			document.querySelector('#security').appendChild(script)
+		}
 	},
 }
 </script>

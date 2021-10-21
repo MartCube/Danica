@@ -112,12 +112,13 @@ export default {
 		.image {
 			width: 100%;
 			order: 1;
+			min-height: initial;
 		}
 		.content {
 			width: 100%;
 			order: 2;
 			blockquote {
-				font-size: 2.5rem;
+				font-size: 1.5rem;
 				padding-right: 10%;
 				margin-bottom: 4rem;
 			}

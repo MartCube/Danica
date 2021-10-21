@@ -134,6 +134,7 @@ export const actions = {
 
 		head.meta.push(
 			...[
+				{ hid: 'robots', name: 'robots', content: 'follow' },
 				{ hid: 'description', name: 'description', content: fetch.data.meta_description },
 				// facebook
 				{ hid: 'og:type', property: 'og:type', content: '' },
@@ -206,6 +207,7 @@ export const actions = {
 
 		head.meta.push(
 			...[
+				{ hid: 'robots', name: 'robots', content: 'follow' },
 				{ hid: 'description', name: 'description', content: fetch.data.meta_description },
 				// facebook
 				{ hid: 'og:type', property: 'og:type', content: '' },
@@ -281,6 +283,7 @@ export const actions = {
 
 		head.meta.push(
 			...[
+				{ hid: 'robots', name: 'robots', content: 'follow' },
 				{ hid: 'description', name: 'description', content: fetch.data.meta_description },
 				// facebook
 				{ hid: 'og:type', property: 'og:type', content: '' },

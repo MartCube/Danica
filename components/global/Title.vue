@@ -33,11 +33,15 @@ export default {
 }
 @media (max-width: 900px) {
 	.title {
-		height: auto;
+		height: initial;
 		margin: 40px 0;
+		margin-left: 0px;
 		font-size: 2rem;
 		padding: 0;
-		align-self: center;
+		margin-left: 60px;
+		display: inline;
+		width: calc(100% - 60px);
+		text-align: left;
 	}
 }
 @media (max-width: 320px) {

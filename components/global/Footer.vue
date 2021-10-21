@@ -17,7 +17,12 @@
 					<span>|</span>
 					<p>{{ $prismic.asText(data.all_rights_reserved) }}</p>
 				</div>
+
 				<div class="links">
+					<!-- <div id="security">
+						<a href="//www.dmca.com/Protection/Status.aspx?ID=f14b3ba7-8215-40f1-af85-e8cbfc89f1a2" title="DMCA.com Protection Status" class="dmca-badge"> <img src ="https://images.dmca.com/Badges/dmca-badge-w150-5x1-09.png?ID=f14b3ba7-8215-40f1-af85-e8cbfc89f1a2"  alt="DMCA.com Protection Status" /></a>  <script src="https://images.dmca.com/Badges/DMCABadgeHelper.min.js"> </script>
+					</div> -->
+					<!-- <span>|</span> -->
 					<n-link :to="localePath('/privacy-policy')">{{ $prismic.asText(data.privacy_policy) }}</n-link>
 				</div>
 			</div>
@@ -64,6 +69,18 @@ export default {
 			number = number.replace(/\D/g, '')
 			return 'tel:+' + number
 		},
+		// security() {
+		// 	// return new Promise((resolve, reject) => {
+		// 	// 	// const img = '<a href="//www.dmca.com/Protection/Status.aspx?ID=f14b3ba7-8215-40f1-af85-e8cbfc89f1a2" title="DMCA.com Protection Status" class="dmca-badge"> <img src ="https://images.dmca.com/Badges/dmca-badge-w150-5x1-09.png?ID=f14b3ba7-8215-40f1-af85-e8cbfc89f1a2"  alt="DMCA.com Protection Status" /></a>'
+		// 	// })
+		// 	// script.onload = () => {
+		// 	// 	resolve(import(someComponent))
+		// 	// }
+		// 	const script = document.createElement('script')
+		// 	script.async = true
+		// 	script.src = 'https://images.dmca.com/Badges/DMCABadgeHelper.min.js'
+		// 	document.querySelector('#security').appendChild(script)
+		// },
 	},
 }
 </script>
@@ -213,6 +230,14 @@ export default {
 				}
 				span {
 					display: none;
+				}
+				&:last-child {
+					div {
+						order: 2;
+					}
+					a {
+						order: 1;
+					}
 				}
 			}
 		}

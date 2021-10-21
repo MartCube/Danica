@@ -5,7 +5,7 @@
 		</template>
 		<div v-else-if="!$fetchState.pending" class="blog_post">
 			<div class="intro">
-				<h2 class="title">{{ $prismic.asText(data.title) }}</h2>
+				<h1 class="title">{{ $prismic.asText(data.title) }}</h1>
 				<div class="info">
 					<span class="date">{{ data.date }}</span>
 					<span v-for="tag in data.tags" :key="tag" class="tag">{{ tag }}</span>

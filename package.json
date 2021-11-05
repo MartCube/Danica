@@ -24,8 +24,8 @@
 		"vue-component-media-queries": "^1.0.0",
 		"vue-cookieconsent-component": "^1.2.0",
 		"vue-if-bot": "^1.2.0",
-		"vue-observe-visibility": "^1.0.0",
-		"vue-plyr": "^7.0.0"
+		"vue-lazytube": "^1.0.2",
+		"vue-observe-visibility": "^1.0.0"
 	},
 	"devDependencies": {
 		"@nuxtjs/eslint-config": "^5.0.0",
@@ -34,10 +34,10 @@
 		"babel-eslint": "^10.1.0",
 		"eslint": "^7.24.0",
 		"eslint-config-prettier": "^7.1.0",
-		"eslint-plugin-nuxt": "^2.0.0",
+		"eslint-plugin-nuxt": "^3.0.0",
 		"eslint-plugin-prettier": "^3.4.0",
 		"eslint-plugin-vue": "^7.9.0",
-		"node-sass": "^5.0.0",
+		"node-sass": "^6.0.1",
 		"prettier": "^2.2.1",
 		"sass-loader": "^10.1.1"
 	}

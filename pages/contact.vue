@@ -1,30 +1,36 @@
 <template>
 	<div class="container">
-		<Title color="#fff" :value="$t('pages.contact.name')" />
+		<template v-if="$fetchState.error">
+			<Error />
+		</template>
+		<template v-else-if="!$fetchState.pending">
+			<Title color="#fff" :value="$t('pages.contact.name')" />
 
-		<div class="wrap">
-			<div class="left_content">
-				<h3 class="title">{{ $t('pages.contact.title') }}</h3>
-				<ContactInfo />
-				<ContactForm :data="contactFormData" />
-			</div>
-			<div class="map">
-				<a target="_blank" :href="map_url">
-					<p class="hint">{{ $t('pages.contact.tap_to_open') }}</p>
-					<ImageItem :src="data.map" alt="map" />
-				</a>
-			</div>
-			<div class="policy">
-				<div class="links">
-					<n-link to="/"> Danica {{ year }} <Icon name="copyright" size="16px" /></n-link>
-					<span>|</span>
-					<p>{{ $prismic.asText(data.all_rights_reserved) }}</p>
+			<div class="wrap">
+				<div class="left_content">
+					<h3 class="title">{{ $t('pages.contact.title') }}</h3>
+					<ContactInfo />
+					<ContactForm :data="contactFormData" />
 				</div>
-				<div class="links">
-					<n-link :to="localePath('/privacy-policy')">{{ $prismic.asText(data.privacy_policy) }}</n-link>
+				<div class="map">
+					<a target="_blank" :href="map_url">
+						<p class="hint">{{ $t('pages.contact.tap_to_open') }}</p>
+						<ImageItem :src="data.map" alt="map" />
+						<!-- <ImageItem :src="data.map.url" alt="map" /> -->
+					</a>
+				</div>
+				<div class="policy">
+					<div class="links">
+						<n-link to="/"> Danica {{ year }} <Icon name="copyright" size="16px" /></n-link>
+						<span>|</span>
+						<p>{{ $prismic.asText(data.all_rights_reserved) }}</p>
+					</div>
+					<div class="links">
+						<n-link :to="localePath('/privacy-policy')">{{ $prismic.asText(data.privacy_policy) }}</n-link>
+					</div>
 				</div>
 			</div>
-		</div>
+		</template>
 	</div>
 </template>
 
@@ -48,6 +54,7 @@ export default {
 				await this.$store.dispatch('storeSingle', fetch)
 				// save data to component
 				this.data = fetch.data
+				// console.log(this.data)
 			})
 			.catch((error) => {
 				console.log(error)

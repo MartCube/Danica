@@ -17,7 +17,23 @@
 </template>
 
 <script>
-import { ValidationObserver } from 'vee-validate'
+import { ValidationObserver, extend } from 'vee-validate'
+import { required, email, min } from 'vee-validate/dist/rules'
+
+extend('required', {
+	...required,
+	message: ' empty field', // the error message
+})
+
+extend('email', {
+	...email,
+	message: 'email not valid',
+})
+
+extend('min', {
+	...min,
+	message: 'number not valid',
+})
 const axios = require('axios')
 
 export default {
@@ -77,6 +93,7 @@ export default {
 			// trigger netlify function
 			try {
 				await axios.post('.netlify/functions/sendmail', this.form)
+				// console.log(this.form)
 			} catch (error) {
 				console.log(error)
 			}

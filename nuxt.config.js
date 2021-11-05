@@ -43,7 +43,7 @@ export default {
 	},
 
 	// Plugins to run before rendering page (https://go.nuxtjs.dev/config-plugins)
-	plugins: [{ src: '@/plugins/vue-cookie', mode: 'client' }, { src: '@/plugins/vue-observe' }, { src: '@/plugins/vee-validate.js' }, { src: `~/plugins/lazysizes.client.js` }],
+	plugins: [{ src: '@/plugins/vue-cookie', mode: 'client' }, { src: '@/plugins/vue-observe' }, { src: `~/plugins/lazysizes.client.js` }],
 
 	// Modules for dev and build (recommended) (https://go.nuxtjs.dev/config-modules)
 	buildModules: [
@@ -54,18 +54,12 @@ export default {
 	// Modules (https://go.nuxtjs.dev/config-modules)
 	modules: ['@nuxtjs/prismic', 'nuxt-i18n', '@nuxtjs/style-resources'],
 
-	// gtm: {
-	// 	id: process.env.GTM,
-	// 	enabled: false,
-	// 	pageTracking: true,
-	// 	scriptDefer: true,
-	// },
-
-	// facebook: {
-	// 	pixelId: '284462626583392',
-	// 	autoPageView: true,
-	// 	disabled: true,
-	// },
+	vue: {
+		config: {
+			// productionTip: false,
+			devtools: true,
+		},
+	},
 
 	prismic: {
 		endpoint: 'https://danica.cdn.prismic.io/api/v2',

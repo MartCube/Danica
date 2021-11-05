@@ -6,7 +6,13 @@
 </template>
 
 <script>
-import { ValidationObserver } from 'vee-validate'
+import { ValidationObserver, extend } from 'vee-validate'
+import { email } from 'vee-validate/dist/rules'
+
+extend('email', {
+	...email,
+	message: 'email not valid',
+})
 
 export default {
 	components: {

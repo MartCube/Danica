@@ -1,29 +1,39 @@
 <template>
-	<div class="plyr_video">
+	<div class="video_wrapper">
 		<client-only>
-			<vue-plyr>
-				<!-- <div data-plyr-provider="vimeo" :data-plyr-embed-id="video"></div> -->
-				<div data-plyr-provider="youtube" :data-plyr-embed-id="video"></div>
-			</vue-plyr>
+			<LazyYoutube :src="videolink" />
 		</client-only>
 	</div>
 </template>
 
 <script>
-import '@/plugins/vue-plyr'
+import { LazyYoutube } from 'vue-lazytube'
 export default {
 	name: 'VideoItem',
+	components: {
+		LazyYoutube,
+		// LazyVimeo,
+	},
 	props: {
 		video: {
 			type: String,
 			required: true,
 		},
 	},
+
+	computed: {
+		videolink() {
+			return `https://www.youtube.com/watch?v=${this.video}`
+		},
+	},
+	// data: () => ({
+	// 	plyr: {},
+	// }),
 }
 </script>
 
 <style lang="scss">
-.plyr_video {
+.video_wrapper {
 	width: 70%;
 }
 
@@ -31,8 +41,12 @@ export default {
 	--plyr-color-main: rgb(255, 196, 36);
 }
 
+.ipOhDr {
+	max-width: 100% !important;
+}
+
 @media (max-width: 900px) {
-	.plyr_video {
+	.video_wrapper {
 		width: 100%;
 	}
 }

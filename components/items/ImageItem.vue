@@ -44,13 +44,14 @@ picture {
 	width: 100%;
 	height: 100%;
 	z-index: 3;
-
+	
 	img {
 		width: inherit;
 		height: inherit;
 		position: relative;
 		object-fit: inherit;
 		object-position: inherit;
+		filter: inherit;
 		display: block;
 		&::before {
 			display: none;

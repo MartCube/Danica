@@ -110,15 +110,9 @@ export default {
 		picture{ 
 			width: 100%;
 			height: 100%;
-			img {
-				filter: grayscale(1);
-				object-fit: cover;
-				&.lazyloaded {
-					opacity: 0.1;
-				}
-			}
+			filter: grayscale(1) opacity(0.1);
+			object-fit: cover;
 		}
-
 	}
 }
 // @media (min-width: 1700px){

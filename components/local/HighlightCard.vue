@@ -23,7 +23,7 @@
 		</div>
 	</n-link>
 	<n-link v-else :to="link" class="highlight_card" :class="{ last: last }">
-		<ImageItem :width="600" :height="500" :src="image + Thumbnail_imgIX" :alt="title" />
+		<ImageItem :width="300" :height="400" :src="image + Thumbnail_imgIX" :alt="title" />
 		<div class="link">
 			<Icon fill="hsl(0, 0%, 10%)" name="chevron" size="32px" />
 		</div>
@@ -54,7 +54,7 @@ export default {
 			return `&fit=crop&w=600&h=500&dpr=1`
 		},
 		Thumbnail_imgIX() {
-			return `&fit=crop&w=400&h=500&dpr=1`
+			return `&fit=crop&w=300&h=400&dpr=1`
 		},
 		image() {
 			return this.data.data.main_image.url

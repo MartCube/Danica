@@ -23,7 +23,7 @@
 		</div>
 	</n-link>
 	<n-link v-else :to="link" class="highlight_card" :class="{ last: last }">
-		<ImageItem :width="300" :height="400" :src="image + Thumbnail_imgIX" :alt="title" />
+		<ImageItem :width="600" :height="500" :src="image + Thumbnail_imgIX" :alt="title" />
 		<div class="link">
 			<Icon fill="hsl(0, 0%, 10%)" name="chevron" size="32px" />
 		</div>

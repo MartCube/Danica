@@ -14,7 +14,9 @@
 					</div>
 				</div>
 			</div>
-			<img class="lazyload" :src="image" alt="achievements" />
+			<div class="image">
+				<ImageItem :width="image.dimensions.width" :height="image.dimensions.height" :src="image.url" :mobile="image.mobile.url" :alt="title" />
+			</div>
 		</div>
 	</section>
 </template>
@@ -33,7 +35,7 @@ export default {
 			return this.$prismic.asText(this.data.primary.description)
 		},
 		image() {
-			return this.data.primary.image.url
+			return this.data.primary.image
 		},
 		visibilityOptions() {
 			return {
@@ -99,24 +101,24 @@ export default {
 			}
 		}
 	}
-	img {
+	.image {
 		position: absolute;
 		width: 75%;
 		top: 0;
 		right: 0;
 		z-index: -1;
-		&::before {
-			display: none;
+		picture{ 
+			width: 100%;
+			height: 100%;
+			img {
+				filter: grayscale(1);
+				object-fit: cover;
+				&.lazyloaded {
+					opacity: 0.1;
+				}
+			}
 		}
 
-		&.lazyload,
-		&.lazyloading {
-			opacity: 0;
-		}
-		&.lazyloaded {
-			opacity: 0.1;
-			transition: all 2s cubic-bezier(0.215, 0.61, 0.355, 1);
-		}
 	}
 }
 // @media (min-width: 1700px){

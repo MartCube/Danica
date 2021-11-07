@@ -1,5 +1,5 @@
 <template>
-	<section>
+	<section class="stages">
 		<div class="name">
 			<span>{{ name }}</span>
 		</div>
@@ -45,68 +45,72 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.content {
-	display: flex;
-	flex-direction: column;
-	.rich_text {
-		padding: 0 1rem;
-		display: block;
-		margin-bottom: 60px;
-	}
-	.list {
-		max-width: 1200px;
+.stages {
+	max-width: $container_max_width;
+	.content {
 		display: flex;
-		justify-content: flex-start;
-		flex-wrap: wrap;
-		padding-right: 1rem;
-		.stage {
-			width: 50%;
-			margin-bottom: 40px;
-
+		flex-direction: column;
+		.rich_text {
+			padding: 0 1rem;
+			display: block;
+			margin-bottom: 60px;
+		}
+		.list {
+			// max-width: 1200px;
 			display: flex;
+			justify-content: flex-start;
+			flex-wrap: wrap;
+			padding-right: 1rem;
+			.stage {
+				width: 50%;
+				margin-bottom: 40px;
 
-			.number {
-				min-width: 120px;
-				margin-right: 40px;
-				text-align: right;
-				font-size: 5rem;
-				color: $primary;
-				font-family: 'Numbers';
-				span {
-					display: none;
-					font-weight: bold;
-					font-size: inherit;
-					font-weight: inherit;
-					line-height: inherit;
-				}
-			}
-			.info {
-				width: calc(100% - 120px);
-				h3 {
-					// word-spacing: 450px;
-					line-height: 1.3;
-					margin-top: 10px;
-					margin-bottom: 20px;
-					// text-transform: capitalize;
-					&::first-letter {
-						text-transform: capitalize;
+				display: flex;
+
+				.number {
+					min-width: 120px;
+					margin-right: 40px;
+					text-align: right;
+					font-size: 5rem;
+					color: $primary;
+					font-family: 'Numbers';
+					span {
+						display: none;
+						font-weight: bold;
+						font-size: inherit;
+						font-weight: inherit;
+						line-height: inherit;
 					}
 				}
-			}
-			.rich_text:not(empty) {
-				padding: 0 1rem;
-				margin-bottom: 60px;
+				.info {
+					width: calc(100% - 120px);
+					h3 {
+						// word-spacing: 450px;
+						line-height: 1.3;
+						margin-top: 10px;
+						margin-bottom: 20px;
+						// text-transform: capitalize;
+						&::first-letter {
+							text-transform: capitalize;
+						}
+					}
+				}
+				.rich_text:not(empty) {
+					padding: 0 1rem;
+					margin-bottom: 60px;
+				}
 			}
 		}
 	}
 }
+
 @media (min-width: 1700px) {
 	.content .list {
 		max-width: calc(100% - 20px);
 	}
 }
 @media (max-width: 1050px) {
-	section {
+	.stages {
 		.content {
 			flex-direction: column;
 			padding-right: 0;
@@ -144,7 +148,7 @@ export default {
 	}
 }
 @media (max-width: 650px) {
-	section {
+	.stages {
 		.content {
 			.list {
 				.stage {
@@ -160,7 +164,7 @@ export default {
 	}
 }
 @media (max-width: 400px) {
-	section {
+	.stages {
 		.content {
 			.list {
 				.stage {

@@ -164,6 +164,7 @@ export default {
 	display: flex;
 	flex-wrap: wrap;
 	margin-bottom: 80px;
+	max-width: $container_max_width;
 	.filter {
 		min-width: 240px;
 		padding-right: 1.5rem;

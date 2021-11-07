@@ -177,7 +177,7 @@ export default {
 	}
 	.grid {
 		width: calc(100% - 240px);
-
+		max-width: $container_max_width;
 		border-left: 1px solid $line;
 		display: flex;
 		justify-content: flex-start;

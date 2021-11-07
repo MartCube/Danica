@@ -74,6 +74,7 @@ export default {
 
 <style lang="scss" scoped>
 .about_us {
+	max-width: $container_max_width;
 	.main_text {
 		margin-left: 256px;
 		max-width: 40vw;

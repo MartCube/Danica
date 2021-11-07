@@ -1,5 +1,5 @@
 <template>
-	<section>
+	<section class="values">
 		<div class="name">
 			<span> {{ name }} </span>
 		</div>
@@ -51,45 +51,48 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.content {
-	display: flex;
-	.text {
-		min-width: 500px;
-		max-width: 40%;
-		.rich_text {
-			padding-left: 1rem;
+.values {
+	max-width: $container_max_width;
+	.content {
+		display: flex;
+		.text {
+			min-width: 500px;
+			max-width: 40%;
+			.rich_text {
+				padding-left: 1rem;
+			}
+			.description {
+				max-width: 500px;
+				padding-left: 1rem;
+			}
 		}
-		.description {
-			max-width: 500px;
-			padding-left: 1rem;
-		}
-	}
-	.image {
-		margin-left: 40px;
-		position: relative;
-		width: 100%;
-		picture {
-			object-fit: cover;
-		}
-		.play {
-			padding: 24px;
-			background: $primary;
-			position: absolute;
-			top: 50%;
-			left: 50%;
-			transform: translate(-50%, -50%);
-			border-radius: 50%;
-			cursor: pointer;
-
-			svg {
-				fill: $white;
+		.image {
+			margin-left: 40px;
+			position: relative;
+			width: 100%;
+			picture {
+				object-fit: cover;
+			}
+			.play {
+				padding: 24px;
+				background: $primary;
+				position: absolute;
+				top: 50%;
+				left: 50%;
+				transform: translate(-50%, -50%);
+				border-radius: 50%;
+				cursor: pointer;
+	
+				svg {
+					fill: $white;
+				}
 			}
 		}
 	}
 }
 
 @media (max-width: 900px) {
-	section {
+	.values {
 		.content {
 			flex-direction: column;
 			.text {

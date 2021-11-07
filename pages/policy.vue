@@ -9,12 +9,16 @@
 
 <script>
 export default {
+	data: () => ({
+		slices: [],
+	}),
 	async fetch() {
 		await this.$prismic.api
 			.getSingle('policy', { lang: this.$i18n.localeProperties.prismic })
 			.then(async (fetch) => {
 				// send data to store
 				await this.$store.dispatch('storeSingle', fetch)
+				this.slices = fetch.data.body
 			})
 			.catch((error) => {
 				console.log(error)

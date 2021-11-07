@@ -30,24 +30,29 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.content {
-	display: flex;
-	flex-direction: column;
-	position: relative;
+.advantages {
+	max-width: $container_max_width;
+	.content {
+		display: flex;
+		flex-direction: column;
+		position: relative;
 
-	.rich_text {
-		padding: 0 1rem;
+		.rich_text {
+			padding: 0 1rem;
+		}
 	}
 }
 
 @media (max-width: 900px) {
-	.content .list .stage {
-		padding: 0;
-		p {
-			display: flex;
-			align-items: flex-start;
-			&::before {
-				margin-top: 15px;
+	.advantages {
+		.content .list .stage {
+			padding: 0;
+			p {
+				display: flex;
+				align-items: flex-start;
+				&::before {
+					margin-top: 15px;
+				}
 			}
 		}
 	}

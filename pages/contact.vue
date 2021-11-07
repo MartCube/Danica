@@ -4,29 +4,31 @@
 			<Error />
 		</template>
 		<template v-else-if="!$fetchState.pending">
-			<Title color="#fff" :value="$t('pages.contact.name')" />
+			<div class="contact_wrapper">
+				<Title color="#fff" :value="$t('pages.contact.name')" />
 
-			<div class="wrap">
-				<div class="left_content">
-					<h3 class="title">{{ $t('pages.contact.title') }}</h3>
-					<ContactInfo />
-					<ContactForm :data="contactFormData" />
-				</div>
-				<div class="map">
-					<a target="_blank" :href="map_url">
-						<p class="hint">{{ $t('pages.contact.tap_to_open') }}</p>
-						<ImageItem :src="data.map" alt="map" />
-						<!-- <ImageItem :src="data.map.url" alt="map" /> -->
-					</a>
-				</div>
-				<div class="policy">
-					<div class="links">
-						<n-link to="/"> Danica {{ year }} <Icon name="copyright" size="16px" /></n-link>
-						<span>|</span>
-						<p>{{ $prismic.asText(data.all_rights_reserved) }}</p>
+				<div class="wrap">
+					<div class="left_content">
+						<h3 class="title">{{ $t('pages.contact.title') }}</h3>
+						<ContactInfo />
+						<ContactForm :data="contactFormData" />
 					</div>
-					<div class="links">
-						<n-link :to="localePath('/privacy-policy')">{{ $prismic.asText(data.privacy_policy) }}</n-link>
+					<div class="map">
+						<a target="_blank" :href="map_url">
+							<p class="hint">{{ $t('pages.contact.tap_to_open') }}</p>
+							<ImageItem :src="data.map" alt="map" />
+							<!-- <ImageItem :src="data.map.url" alt="map" /> -->
+						</a>
+					</div>
+					<div class="policy">
+						<div class="links">
+							<n-link to="/"> Danica {{ year }} <Icon name="copyright" size="16px" /></n-link>
+							<span>|</span>
+							<p>{{ $prismic.asText(data.all_rights_reserved) }}</p>
+						</div>
+						<div class="links">
+							<n-link :to="localePath('/privacy-policy')">{{ $prismic.asText(data.privacy_policy) }}</n-link>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -36,6 +38,7 @@
 
 <script>
 export default {
+	name: 'Contact',
 	beforeRouteLeave(to, from, next) {
 		this.$store.dispatch('bindFooter', true)
 		next()
@@ -108,6 +111,9 @@ export default {
 .container {
 	background: $black;
 	margin-bottom: 0;
+	.contact_wrapper{
+		// max-width: $container_max_width;
+	}
 	h2,
 	span,
 	a {

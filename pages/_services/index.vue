@@ -86,6 +86,7 @@ export default {
 		margin: 25px 0;
 		width: 100%;
 		align-items: center;
+		max-width: $container_max_width;
 		.rich_text {
 			display: flex;
 			flex-direction: column;
@@ -110,6 +111,7 @@ export default {
 .rich_text {
 	padding-right: 1rem;
 	padding-left: 255px;
+	max-width: $container_max_width;
 }
 
 @media (min-width: 2000px) {

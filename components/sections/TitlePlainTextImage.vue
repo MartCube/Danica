@@ -1,5 +1,5 @@
 <template>
-	<section>
+	<section class="title_plaintext_image">
 		<div class="name">
 			<span> {{ name }} </span>
 		</div>
@@ -44,32 +44,35 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.content {
-	display: flex;
-	.text {
-		min-width: 500px;
-		max-width: 40%;
-		.rich_text {
-			padding-left: 1rem;
+.title_plaintext_image{
+	max-width: $container_max_width;
+	.content {
+		display: flex;
+		.text {
+			min-width: 500px;
+			max-width: 40%;
+			.rich_text {
+				padding-left: 1rem;
+			}
+			.description {
+				max-width: 500px;
+				padding-left: 1rem;
+			}
 		}
-		.description {
-			max-width: 500px;
-			padding-left: 1rem;
-		}
-	}
-	.image {
-		margin-left: 40px;
-		position: relative;
-		width: 100%;
-		picture {
-			object-fit: cover;
-			object-position: center;
+		.image {
+			margin-left: 40px;
+			position: relative;
+			width: 100%;
+			picture {
+				object-fit: cover;
+				object-position: center;
+			}
 		}
 	}
 }
 
 @media (max-width: 900px) {
-	section {
+	.title_plaintext_image {
 		.content {
 			flex-direction: column;
 			.text {

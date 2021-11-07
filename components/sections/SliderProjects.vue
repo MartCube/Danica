@@ -61,36 +61,40 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.content {
-	display: flex;
-	flex-direction: column;
-	.rich_text {
-		margin: 0 15px 3rem 15px;
-		max-width: 40%;
-	}
-	.project_slider {
-		width: calc(100vw - 240px);
-		overflow-x: auto;
-		margin-bottom: 2rem;
-		padding-bottom: 2rem;
-		@include scrollbar;
-		.project_slider_wrapper {
-			width: auto;
-			height: inherit;
-			margin: 0;
-			overflow: initial;
-
-			display: inline-flex;
-			.project_slide {
-				margin-right: 2rem;
+.slider_projects {
+	.content {
+		display: flex;
+		flex-direction: column;
+		.rich_text {
+			margin: 0 15px 3rem 15px;
+			max-width: 40%;
+		}
+		.project_slider {
+			width: calc(100vw - 240px);
+			overflow-x: auto;
+			margin-bottom: 2rem;
+			padding-bottom: 2rem;
+			@include scrollbar;
+			.project_slider_wrapper {
+				width: auto;
+				height: inherit;
+				margin: 0;
+				overflow: initial;
+	
+				display: inline-flex;
+				.project_slide {
+					margin-right: 2rem;
+				}
 			}
 		}
 	}
 }
 @media (max-width: 900px) {
-	.content {
-		.rich_text {
-			max-width: 100%;
+	.slider_projects{
+		.content {
+			.rich_text {
+				max-width: 100%;
+			}
 		}
 	}
 }

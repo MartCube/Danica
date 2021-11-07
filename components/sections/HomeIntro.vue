@@ -90,49 +90,41 @@ export default {
 
 <style lang="scss" scoped>
 .intro {
-	width: 100%;
-	height: calc(100vh - 120px);
 	background-color: hsl(0, 0%, 100%);
-	justify-content: flex-end;
-	position: relative;
-	// overflow: hidden;
+	overflow: hidden;
+	padding-top: 0;
+	display: grid;
+	grid-template-columns: repeat(8, 1fr);
+	grid-template-rows: repeat(8, 10vh);
 
 	.bg_letter {
-		position: absolute;
+		grid-column: 1 / 4;
+		grid-row: 1 / 5;
+		display: grid;
 		opacity: 0;
-		left: 0;
 		z-index: 6;
 		font-size: 30rem;
 		font-family: 'Home';
 		font-weight: bold;
 		color: hsl(0, 0%, 98%);
 		filter: drop-shadow(10px 10px 10px hsl(0, 0%, 90%)) drop-shadow(0px 0px 1px hsl(0, 0%, 98%));
-		line-height: 1;
 	}
 
 	.text {
-		width: min-content;
-		padding-top: 7vh;
-		width: 40%;
-		position: absolute;
-		top: 0;
-		left: 150px;
-		display: flex;
-		flex-direction: column;
+		grid-column: 2 / 6;
+		grid-row: 2 / 6;
 		z-index: 8;
 
 		.title {
 			width: max-content;
-			display: flex;
 			align-items: center;
-			overflow: hidden;
 			span {
 				opacity: 0; // opacity: 1
 				min-width: 1rem;
 				text-transform: none;
-				line-height: initial;
-				// font-weight: 400;
-				font-size: 4vw;
+				line-height: 1;
+				font-size: 4rem;
+				line-height: 1.2;
 			}
 		}
 
@@ -142,11 +134,12 @@ export default {
 	}
 
 	.collage {
-		width: 57vw;
+		grid-column: 4 / 9;
+		grid-row: 1 / 9;
 		position: relative;
 		img {
-			width: 101%;
-			height: 101%;
+			width: 100%;
+			height: 100%;
 			margin: 0;
 			padding: 0;
 			object-fit: cover;
@@ -160,6 +153,9 @@ export default {
 			opacity: 0;
 		}
 		.first {
+			&.design {
+				z-index: 4;
+			}
 			z-index: 3;
 			height: 16vw;
 			bottom: 0;
@@ -167,46 +163,34 @@ export default {
 		}
 		.second {
 			z-index: 2;
+			&.design {
+				z-index: 6;
+			}
 			bottom: 0;
 			height: 90vh;
-			left: 8vw;
+			left: 12vw;
 		}
 		.third {
 			z-index: 1;
+			&.design {
+				z-index: 5;
+			}
 			bottom: 100px;
 			height: 30vw;
 			bottom: 10vh;
-			left: 27vw;
+			left: 32vw;
 		}
 	}
 
-	@media (min-width: 1900px) {
-		.text {
-			padding-top: 17vh;
-		}
-		// .bg_letter {
-		// 	width: 26vw;
-		// 	.second {
-		// 		width: 36vw;
-		// 		left: -10vw;
-		// 	}
-		// }
-	}
 	@media (max-width: 1220px) {
 		.collage .first {
 			height: 21vw;
 		}
-		// .bg_letter {
-		// 	width: 25vw;
-		// }
 	}
 	@media (max-width: 1084px) {
 		.collage .second {
 			left: 12vw;
 		}
-		// .bg_letter {
-		// 	width: 28vw;
-		// }
 	}
 	@media (max-width: 900px) {
 		.collage {
@@ -214,10 +198,11 @@ export default {
 		}
 		.text {
 			width: 100%;
-			left: 0;
-			padding-left: 2rem;
+			grid-column: 2 / 8;
+			grid-row: 2 / 7;
 			.title span {
-				font-size: 11vw;
+				font-size: 10vw;
+				line-height: 1.2;
 			}
 			button {
 				align-self: flex-end;
@@ -225,26 +210,16 @@ export default {
 				text-transform: initial;
 			}
 		}
-		// .bg_letter {
-		// 	width: 40vw;
-		// 	&.second {
-		// 		width: 60vw;
-		// 		left: -20vw;
-		// 	}
-		// }
 	}
 	@media (max-width: 600px) {
 		.text {
 			width: 100%;
-			left: 0;
-			padding-top: 20vh;
+			grid-column: 3 / 10;
+			grid-row: 2 /6;
 			.title {
 				span {
 					font-size: 3rem;
 				}
-			}
-			.text_slider {
-				margin-top: 2rem;
 			}
 			button {
 				align-self: flex-end;
@@ -252,14 +227,11 @@ export default {
 				text-transform: initial;
 			}
 		}
-		// .bg_letter {
-		// 	width: 65%;
-		// 	top: 8%;
-		// 	&.second {
-		// 		width: 90%;
-		// 		left: -30vw;
-		// 	}
-		// }
+		.bg_letter {
+			grid-column: 1 / 5;
+			grid-row: 1 / 4;
+			font-size: 25rem;
+		}
 	}
 	@media (max-width: 400px) {
 		.text {
@@ -269,24 +241,8 @@ export default {
 				}
 			}
 		}
-	}
-}
-@media (max-width: 900px) {
-	.intro {
-		height: calc(100vh - 60px);
-		justify-content: center;
-	}
-}
-@media (max-width: 600px) {
-	.intro {
-		justify-content: flex-start;
 		.bg_letter {
-			top: 20%;
-			left: 15px;
 			font-size: 20rem;
-		}
-		.text {
-			padding-left: 5rem;
 		}
 	}
 }

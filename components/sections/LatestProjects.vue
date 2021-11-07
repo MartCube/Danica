@@ -59,7 +59,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-section {
+.latest_projects {
+	// max-width: ;
 	.name {
 		max-width: 240px;
 		width: 100%;
@@ -92,7 +93,7 @@ section {
 	}
 }
 @media (max-width: 900px) {
-	section {
+	.latest_projects {
 		.content {
 			.rich_text {
 				max-width: 100%;

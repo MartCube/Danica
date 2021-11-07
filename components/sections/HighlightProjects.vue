@@ -56,6 +56,7 @@ export default {
 <style lang="scss" scoped>
 section {
 	margin: 0 0 2rem 0;
+	max-width: $container_max_width;
 }
 .content {
 	display: flex;

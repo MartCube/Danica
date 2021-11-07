@@ -1,5 +1,5 @@
 <template>
-	<section>
+	<section class="services_list">
 		<div class="name">
 			<span>{{ data.primary.name }}</span>
 		</div>
@@ -38,66 +38,69 @@ export default {
 <style lang="scss" scoped>
 $transition: all 0.35s ease;
 
-.content {
-	display: flex;
-	flex-direction: column;
-
-	.links {
-		width: 1000px;
+.services_list {
+	max-width: $container_max_width;
+	.content {
 		display: flex;
-		justify-content: space-between;
-		flex-wrap: wrap;
-		.link {
-			width: 50%;
-			padding: 10px 0;
-			margin-bottom: 20px;
+		flex-direction: column;
 
-			a {
-				padding: 0.5rem 1rem;
+		.links {
+			width: 1000px;
+			display: flex;
+			justify-content: space-between;
+			flex-wrap: wrap;
+			.link {
+				width: 50%;
+				padding: 10px 0;
+				margin-bottom: 20px;
 
-				font-size: 1.5rem;
+				a {
+					padding: 0.5rem 1rem;
 
-				width: max-content;
-				display: flex;
-				align-items: center;
-				position: relative;
-
-				span {
-					color: $primary;
 					font-size: 1.5rem;
-					margin-right: 20px;
-					transition: $transition;
-				}
-				&::first-letter {
-					text-transform: capitalize;
-				}
-				&::after {
-					content: '';
-					top: 0;
-					left: 0;
-					position: absolute;
-					width: 0;
-					height: 100%;
-					z-index: -1;
-					background: $primary;
-					transition: $transition;
-				}
-				svg {
-					margin-left: 20px;
-					opacity: 0;
-					transform: translateX(-20px);
-					transition: $transition;
-				}
-				&:hover {
+
+					width: max-content;
+					display: flex;
+					align-items: center;
+					position: relative;
+
 					span {
-						color: $black;
+						color: $primary;
+						font-size: 1.5rem;
+						margin-right: 20px;
+						transition: $transition;
+					}
+					&::first-letter {
+						text-transform: capitalize;
 					}
 					&::after {
-						width: 100%;
+						content: '';
+						top: 0;
+						left: 0;
+						position: absolute;
+						width: 0;
+						height: 100%;
+						z-index: -1;
+						background: $primary;
+						transition: $transition;
 					}
 					svg {
-						opacity: 1;
-						transform: translateX(0);
+						margin-left: 20px;
+						opacity: 0;
+						transform: translateX(-20px);
+						transition: $transition;
+					}
+					&:hover {
+						span {
+							color: $black;
+						}
+						&::after {
+							width: 100%;
+						}
+						svg {
+							opacity: 1;
+							transform: translateX(0);
+						}
 					}
 				}
 			}
@@ -105,43 +108,49 @@ $transition: all 0.35s ease;
 	}
 }
 @media (min-width: 1700px) {
-	.content .links {
-		width: 100%;
-		.link a {
-			font-size: 2rem;
-			span {
-				font-size: 2.3rem;
+	.services_list {
+		.content .links {
+			width: 100%;
+			.link a {
+				font-size: 2rem;
+				span {
+					font-size: 2.3rem;
+				}
 			}
 		}
 	}
 }
 
 @media (max-width: 900px) {
-	.content .links {
-		width: min-content;
-		flex-direction: column;
-		.link {
-			width: 100%;
-			a {
-				white-space: normal;
+	.services_list {
+		.content .links {
+			width: min-content;
+			flex-direction: column;
+			.link {
 				width: 100%;
-				align-items: flex-start;
-				svg {
-					display: none;
+				a {
+					white-space: normal;
+					width: 100%;
+					align-items: flex-start;
+					svg {
+						display: none;
+					}
 				}
-			}
-			&:last-child {
-				margin: 0;
+				&:last-child {
+					margin: 0;
+				}
 			}
 		}
 	}
 }
 
 @media (max-width: 360px) {
-	.content .links {
-		flex-direction: column;
-		.link a {
-			font-size: 1.2rem;
+	.services_list {
+		.content .links {
+			flex-direction: column;
+			.link a {
+				font-size: 1.2rem;
+			}
 		}
 	}
 }

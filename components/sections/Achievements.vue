@@ -15,7 +15,7 @@
 				</div>
 			</div>
 			<div class="image">
-				<ImageItem :width="image.dimensions.width" :height="image.dimensions.height" :src="image.url" :mobile="image.mobile.url" :alt="title" />
+				<ImageItem :width="image.dimensions.width" :height="image.dimensions.height" :src="image.url" :mobile="image.mobile.url" :alt="data.primary.title" />
 			</div>
 		</div>
 	</section>
@@ -59,139 +59,139 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.content {
-	height: 500px;
-	display: flex;
-	flex-direction: column;
-	position: relative;
-
-	.text {
+.achievements {
+	max-width: $container_max_width;
+	.content {
+		height: 500px;
 		display: flex;
-		justify-content: space-between;
-		padding-right: 50px;
-		p {
-			max-width: 500px;
-			margin-left: 1.5rem;
-			margin-right: 3rem;
-		}
-		.counter-wrapper {
-			display: flex;
-			flex: 1;
-		}
-		.counter {
-			padding-left: 20px;
-			border-left: 4px solid $primary;
-			min-width: 150px;
-			height: max-content;
-			display: flex;
-			flex-direction: column;
-			.number {
-				font-size: 4rem;
-				line-height: initial;
-				font-family: 'Numbers';
-				margin: 0;
-			}
-			h4 {
-				margin: 0;
-				word-spacing: 1px;
-				font-size: 1.2rem;
-				&::first-letter {
-					text-transform: capitalize;
-				}
-			}
-		}
-	}
-	.image {
-		position: absolute;
-		width: 75%;
-		top: 0;
-		right: 0;
-		z-index: -1;
-		picture{ 
-			width: 100%;
-			height: 100%;
-			filter: grayscale(1) opacity(0.1);
-			object-fit: cover;
-		}
-	}
-}
-// @media (min-width: 1700px){
-// 	.content .text .counter{
-// 		width: 250px;
-// 		.number{
-// 			font-size: 6rem;
-// 		}
-// 		h4{
-// 			font-size: 1.6rem;
-// 		}
-// 	}
-// }
-@media (max-width: 1300px){
-	.content {
+		flex-direction: column;
+		position: relative;
+
 		.text {
-			flex-wrap: wrap;
+			display: flex;
+			justify-content: space-between;
+			padding-right: 50px;
 			p {
-				margin-top: 3rem;
-				order: 2;
+				max-width: 500px;
+				margin-left: 1.5rem;
+				margin-right: 3rem;
 			}
 			.counter-wrapper {
-				order: 1;
-				width: 100%;
-				.counter {
-					margin-right: 1rem;
-				}
+				display: flex;
+				flex: 1;
 			}
-		}
-	}
-}
-@media (max-width: 500px){
-	.content {
-		.text {
-			flex-wrap: wrap;
-			p {
-				margin-top: 3rem;
-				order: 2;
-			}
-			.counter-wrapper {
-				order: 1;
-				width: 100%;
+			.counter {
+				margin-right: 2rem;
+				padding-left: 20px;
+				border-left: 4px solid $primary;
+				min-width: 150px;
+				height: max-content;
+				display: flex;
 				flex-direction: column;
-				.counter {
-					margin-right: 1rem;
+				.number {
+					font-size: 4rem;
+					line-height: initial;
+					font-family: 'Numbers';
+					margin: 0;
+				}
+				h4 {
+					margin: 0;
+					word-spacing: 1px;
+					font-size: 1.2rem;
+					&::first-letter {
+						text-transform: capitalize;
+					}
+				}
+			}
+		}
+		.image {
+			position: absolute;
+			width: 75%;
+			top: 0;
+			right: 0;
+			z-index: -1;
+			picture {
+				width: 100%;
+				height: 100%;
+				filter: grayscale(1) opacity(0.1);
+				object-fit: cover;
+			}
+		}
+	}
+}
+
+@media (max-width: 1300px) {
+	.achievements {
+		.content {
+			.text {
+				flex-wrap: wrap;
+				p {
+					margin-top: 3rem;
+					order: 2;
+				}
+				.counter-wrapper {
+					order: 1;
+					width: 100%;
+					.counter {
+						margin-right: 1rem;
+					}
+				}
+			}
+		}
+	}
+}
+@media (max-width: 500px) {
+	.achievements {
+		.content {
+			.text {
+				flex-wrap: wrap;
+				p {
+					margin-top: 3rem;
+					order: 2;
+				}
+				.counter-wrapper {
+					order: 1;
+					width: 100%;
+					flex-direction: column;
+					.counter {
+						margin-right: 1rem;
+					}
 				}
 			}
 		}
 	}
 }
 @media (max-width: 900px) {
-	.content {
-		height: auto;
-		.text {
-			padding: 0;
-			flex-direction: column;
-			p {
-				margin-bottom: 60px;
-				margin-left: 15px;
-			}
-			.counter {
-				width: max-content;
-				height: 60px;
-				margin-bottom: 20px;
+	.achievements {
+		.content {
+			height: auto;
+			.text {
+				padding: 0;
+				flex-direction: column;
+				p {
+					margin-bottom: 60px;
+					margin-left: 15px;
+				}
+				.counter {
+					width: max-content;
+					height: 60px;
+					margin-bottom: 20px;
 
-				.number {
-					font-size: 1.5rem;
-				}
-				h4 {
-					font-size: 1rem;
-					word-spacing: initial;
+					.number {
+						font-size: 1.5rem;
+					}
+					h4 {
+						font-size: 1rem;
+						word-spacing: initial;
+					}
 				}
 			}
-		}
-		img {
-			width: 100%;
-			height: 260px;
-			top: initial;
-			bottom: 0;
+			img {
+				width: 100%;
+				height: 260px;
+				top: initial;
+				bottom: 0;
+			}
 		}
 	}
 }

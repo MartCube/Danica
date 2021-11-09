@@ -30,6 +30,37 @@ export default {
 			},
 		],
 		link: [{ rel: 'icon', type: 'image/png', href: '/favicon.png' }],
+		script: [
+			{
+				json: {
+					'@context': 'http://schema.org',
+					'@type': 'LocalBusiness',
+					name: 'Danica',
+					image: 'https://danica.ua/favicon.png',
+					telephone: '+38(097) 359 11 11',
+					address: {
+						'@type': 'PostalAddress',
+						streetAddress: 'Naberezhno-Rybalska St, 9, Kyiv, 04176',
+						addressLocality: 'Kyiv',
+					},
+					priceRange: '$$',
+					openingHoursSpecification: {
+						'@type': 'OpeningHoursSpecification',
+						dayOfWeek: { '@type': 'DayOfWeek', name: 'пн, вт, ср ,чт, пт' },
+						opens: '09:00',
+						closes: '19.00',
+					},
+					url: 'https://danica.ua/',
+					aggregateRating: {
+						'@type': 'AggregateRating',
+						worstRating: '4',
+						ratingCount: '4',
+						ratingValue: '4',
+					},
+				},
+				type: 'application/ld+json',
+			},
+		],
 	},
 
 	loading: { color: '#ffc424' },

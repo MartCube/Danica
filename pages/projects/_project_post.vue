@@ -6,15 +6,71 @@
 		<div v-else-if="!$fetchState.pending" class="project_post">
 			<div class="intro">
 				<h2 class="title">{{ $prismic.asText(data.title) }}</h2>
-				<ImageItem :width="data.main_image.dimensions.width" :height="data.main_image.dimensions.height" :src="data.main_image.url" :mobile="data.main_image.mobile.url" :alt="$prismic.asText(data.title)" />
+				<ImageItem :width="data.main_image.dimensions.width" :height="data.main_image.dimensions.height" :src="data.main_image.url" :mobile="data.main_image.mobile.url" :retina="data.main_image.hasOwnProperty('retina') ? data.main_image.retina.url : ''" :alt="$prismic.asText(data.title)" />
 			</div>
 
 			<div class="info">
-				<p><span>service:</span> {{ $prismic.asText(data.info[0].service) }}</p>
-				<p><span>square:</span> {{ $prismic.asText(data.info[0].square) }}&#13217;</p>
-				<p><span>date:</span> {{ data.info[0].date }}</p>
-				<p><span>architect:</span> {{ $prismic.asText(data.info[0].architect) }}</p>
-				<p><span>designer:</span> {{ $prismic.asText(data.info[0].designer) }}</p>
+				<!-- Название ссылка на услугу -->
+				<p>
+					<span>{{ $t('pages.project_post.service') }}:</span> 
+					<!-- {{ $prismic.asText(data.info[0].service) }} -->
+				</p>
+				<!-- Ссылка на карточку сотрудника -->
+				<p>
+					<span>{{ $t('pages.project_post.architect') }}:</span> 
+					<!-- {{ $prismic.asText(data.info[0].architect) }} -->
+				</p>
+				<!-- Ссылка на карточку сотрудника -->
+				<p>
+					<span>{{ $t('pages.project_post.designer') }}:</span> 
+					<!-- {{ $prismic.asText(data.info[0].designer) }} -->
+				</p>
+				<!-- Ссылка на карточку сотрудника -->
+				<p>
+					<span>{{ $t('pages.project_post.builder') }}:</span> Ссылка на карточку сотрудника
+				</p>
+				<p>
+					<span>{{ $t('pages.project_post.total_square') }}:</span> 
+					<!-- {{ $prismic.asText(data.info[0].square) }}&#13217; -->
+				</p>
+				<p>
+					<span>{{ $t('pages.project_post.date') }}:</span> 
+					<!-- {{ data.info[0].date }} -->
+				</p>
+				<p>
+					<span>{{ $t('pages.project_post.location') }}:</span> Lorem ipsum dolor sit amet.
+				</p>
+				<p>
+					<span>{{ $t('pages.project_post.living_square') }}:</span> 12
+				</p>
+				<p>
+					<span>{{ $t('pages.project_post.rooms') }}:</span> 12
+				</p>
+				<p>
+					<span>{{ $t('pages.project_post.ovelap') }}:</span> Lorem, ipsum dolor.
+				</p>
+				<p>
+					<span>{{ $t('pages.project_post.garage') }}:</span> Yes
+				</p>
+				<!-- (ссылка на пасив хаус) -->
+				<p>
+					<span>{{ $t('pages.project_post.material') }}:</span> Lorem, ipsum dolor.
+				</p>
+				<p>
+					<span>{{ $t('pages.project_post.architecture_cost') }}:</span>5 000 000 000грн
+				</p>
+				<p>
+					<span>{{ $t('pages.project_post.house_cost') }}:</span>5 000 000 000грн
+				</p>
+				<p>
+					<span>{{ $t('pages.project_post.design_cost') }}:</span>5 000 000 000грн
+				</p>
+				<p>
+					<span>{{ $t('pages.project_post.renovation_cost') }}:</span>5 000 000 000грн
+				</p>
+				<p>
+					<span>{{ $t('pages.project_post.total_price') }}:</span>5 000 000 000грн
+				</p>
 			</div>
 
 			<!-- Slice Machine -->
@@ -25,7 +81,7 @@
 
 				<template v-else-if="slice.slice_type == 'image'">
 					<template v-if="slice.primary.image !== undefined">
-						<ImageItem :width="slice.primary.image.dimensions.width" :height="slice.primary.image.dimensions.height" :src="slice.primary.image.url" :mobile="slice.primary.image.mobile.url" :alt="slice.primary.image.alt" />
+						<ImageItem :width="slice.primary.image.dimensions.width" :height="slice.primary.image.dimensions.height" :src="slice.primary.image.url" :mobile="slice.primary.image.mobile.url" :retina="slice.primary.image.hasOwnProperty('retina') ? slice.primary.image.retina.url : ''" :alt="slice.primary.image.alt" />
 						<span class="description">"{{ slice.primary.image.alt }}"</span>
 					</template>
 				</template>
@@ -33,7 +89,7 @@
 				<template v-else-if="slice.slice_type == 'image_slider'">
 					<div class="image_slider">
 						<div class="image_slider_wrapper">
-							<ImageItem v-for="(item, y) in slice.items" :key="y + item.image.url" :src="item.image.url" :mobile="item.image.mobile.url" :width="item.image.dimensions.width" :height="item.image.dimensions.height" :alt="item.image.alt !== null ? item.image.alt : 'alt'" />
+							<ImageItem v-for="(item, y) in slice.items" :key="y + item.image.url" :src="item.image.url" :mobile="item.image.mobile.url" :width="item.image.dimensions.width" :retina="item.image.hasOwnProperty('retina') ? item.image.retina.url : ''" :height="item.image.dimensions.height" :alt="item.image.alt !== null ? item.image.alt : 'alt'" />
 						</div>
 					</div>
 				</template>
@@ -41,7 +97,7 @@
 				<template v-else-if="slice.slice_type == 'image_text'">
 					<div class="image_text">
 						<template v-if="slice.primary.image !== 'undefined'">
-							<ImageItem :src="slice.primary.image.url" :mobile="slice.primary.image.mobile.url" :width="slice.primary.image.dimensions.width" :height="slice.primary.image.dimensions.height" :alt="slice.primary.image.alt !== null ? slice.primary.image.alt : 'alt'" />
+							<ImageItem :src="slice.primary.image.url" :mobile="slice.primary.image.mobile.url" :width="slice.primary.image.dimensions.width" :height="slice.primary.image.dimensions.height" :retina="slice.primary.image.hasOwnProperty('retina') ? slice.primary.image.retina.url : ''" :alt="slice.primary.image.alt !== null ? slice.primary.image.alt : 'alt'" />
 						</template>
 						<div class="text">
 							<p v-for="(item, key) in slice.items" :key="key">{{ $prismic.asText(item.text) }}</p>
@@ -52,8 +108,8 @@
 				<template v-else-if="slice.slice_type == 'video'">
 					<div class="video_container">
 						<div class="video_default_preview">
-							<ImageItem v-if="slice.primary.image.hasOwnProperty(url)" :src="slice.primary.image.url" :mobile="slice.primary.image.mobile.url" :width="slice.primary.image.dimensions.width" :height="slice.primary.image.dimensions.height" :alt="slice.primary.image.alt" />
-							<ImageItem :width="data.main_image.dimensions.width" :height="data.main_image.dimensions.height" :src="data.main_image.url" :mobile="data.main_image.mobile.url" :alt="$prismic.asText(data.title)" />
+							<ImageItem v-if="slice.primary.image.hasOwnProperty(url)" :src="slice.primary.image.url" :mobile="slice.primary.image.mobile.url" :width="slice.primary.image.dimensions.width" :height="slice.primary.image.dimensions.height" :retina="slice.primary.image.hasOwnProperty('retina') ? slice.primary.image.retina.url : ''" :alt="slice.primary.image.alt" />
+							<ImageItem :width="data.main_image.dimensions.width" :height="data.main_image.dimensions.height" :src="data.main_image.url" :mobile="data.main_image.mobile.url" :retina="slice.primary.image.hasOwnProperty('retina') ? slice.primary.image.retina.url : ''" :alt="$prismic.asText(data.title)" />
 						</div>
 						<div class="play" @click="openModal(slice.primary.video)">
 							<Icon name="play" />
@@ -70,6 +126,7 @@ export default {
 	Name: 'ProjectPost',
 	data: () => ({
 		data: null,
+		url: '',
 	}),
 	async fetch() {
 		console.log('project post fetch')
@@ -143,6 +200,7 @@ export default {
 			width: inherit;
 			height: inherit;
 			z-index: 7;
+			object-fit: cover;
 		}
 
 		.title {
@@ -163,17 +221,21 @@ export default {
 		margin: 50px 0 50px 260px;
 		// max-width: 400px;
 		display: flex;
-		flex-direction: column;
+		flex-wrap: wrap;
 		p {
 			padding: 10px 0;
 			font-weight: bold;
 			text-transform: capitalize;
 			color: $black;
 			font-size: 1.5rem;
-			line-height: 1.2rem;
+			line-height: 1;
+			width: 50%;
 			span {
 				font-size: inherit;
 				margin-right: 1rem;
+				font-weight: normal;
+				border-left: 5px solid $primary;
+				padding-left: 0.5rem;
 			}
 		}
 	}
@@ -197,6 +259,9 @@ export default {
 		display: flex;
 		flex-direction: column;
 		align-items: center;
+		picture {
+			object-fit: cover;
+		}
 		.description {
 			margin: 25px 0;
 			opacity: 0.75;
@@ -320,6 +385,7 @@ export default {
 
 			p {
 				font-size: 1rem;
+				width: 100%;
 			}
 		}
 

@@ -51,6 +51,11 @@ export default {
 		background: white;
 		text-transform: capitalize;
 	}
+	picture {
+		object-fit: cover;
+		width: 100%;
+		height: 100%;
+	}
 }
 @media (max-width: 900px) {
 	.content .project_slide h2 {

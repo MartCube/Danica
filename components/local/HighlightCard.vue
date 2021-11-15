@@ -160,13 +160,16 @@ $transition: all 0.35s ease;
 				overflow: hidden;
 			}
 		}
-		img {
-			width: 600px;
-			height: 500px;
+		// img {
+		// 	width: 600px;
+		// 	height: 500px;
+		// }
+		picture {
+			z-index: 0;
+			object-fit: cover;
+			width: 100%;
+			height: 100%;
 		}
-	}
-	picture {
-		z-index: 0;
 	}
 	&.last {
 		width: auto;

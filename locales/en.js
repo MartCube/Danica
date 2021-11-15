@@ -15,7 +15,7 @@ export default {
 		},
 		project_post: {
 			service: 'Service',
-			architect: 'Archtect',
+			architect: 'Architect',
 			designer: 'Designer',
 			builder: 'Строитель',
 			total_square: 'Total space',

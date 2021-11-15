@@ -19,7 +19,7 @@
 				</section>
 				<section v-else-if="slice.slice_type == 'image_text'" class="image_text">
 					<div class="image">
-						<ImageItem :src="slice.primary.image.url" :mobile="slice.primary.image.mobile.url" :alt="slice.primary.image.alt" :width="Number(slice.primary.image.dimensions.width)" :height="Number(slice.primary.image.dimensions.height)" />
+						<ImageItem :src="slice.primary.image.url" :mobile="slice.primary.image.mobile.url" :alt="slice.primary.image.alt" :width="slice.primary.image.dimensions.width" :height="slice.primary.image.dimensions.height" :retina="slice.primary.image.hasOwnProperty('retina') ? slice.primary.image.retina.url : ''" />
 					</div>
 					<prismic-rich-text v-for="(item, key) in slice.items" :key="key" class="rich_text" :field="item.text" />
 				</section>
@@ -104,6 +104,9 @@ export default {
 				// max-width: 800px;
 				// height: 450px;
 				z-index: 9;
+				width: 100%;
+				height: 100%;
+				object-fit: cover;
 			}
 		}
 	}

@@ -1,7 +1,7 @@
 <template>
 	<section class="intro">
 		<div class="bg">
-			<ImageItem :src="image.url" :width="image.dimensions.width" :height="image.dimensions.height" :mobile="image.mobile.url" :alt="image.alt" />
+			<ImageItem :src="image.url" :width="image.dimensions.width" :height="image.dimensions.height" :mobile="image.mobile.url" :alt="image.alt" :retina="image.hasOwnProperty('retina') ? image.retina.url : ''" />
 		</div>
 		<div class="content" :class="{ white: data.primary.white_text }">
 			<h2>
@@ -78,6 +78,9 @@ export default {
 		height: inherit;
 		picture {
 			z-index: 2;
+			object-fit: cover;
+			width: 100%;
+			height: 100%;
 		}
 	}
 

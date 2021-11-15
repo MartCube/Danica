@@ -9,74 +9,85 @@
 				<ImageItem :width="data.main_image.dimensions.width" :height="data.main_image.dimensions.height" :src="data.main_image.url" :mobile="data.main_image.mobile.url" :retina="data.main_image.hasOwnProperty('retina') ? data.main_image.retina.url : ''" :alt="$prismic.asText(data.title)" />
 			</div>
 
-			<div class="info">
-				<!-- Название ссылка на услугу -->
-				<p>
-					<span>{{ $t('pages.project_post.service') }}:</span> 
-					<!-- {{ $prismic.asText(data.info[0].service) }} -->
-				</p>
-				<!-- Ссылка на карточку сотрудника -->
-				<p>
-					<span>{{ $t('pages.project_post.architect') }}:</span> 
-					<!-- {{ $prismic.asText(data.info[0].architect) }} -->
-				</p>
-				<!-- Ссылка на карточку сотрудника -->
-				<p>
-					<span>{{ $t('pages.project_post.designer') }}:</span> 
-					<!-- {{ $prismic.asText(data.info[0].designer) }} -->
-				</p>
-				<!-- Ссылка на карточку сотрудника -->
-				<p>
-					<span>{{ $t('pages.project_post.builder') }}:</span> Ссылка на карточку сотрудника
-				</p>
-				<p>
-					<span>{{ $t('pages.project_post.total_square') }}:</span> 
-					<!-- {{ $prismic.asText(data.info[0].square) }}&#13217; -->
-				</p>
-				<p>
-					<span>{{ $t('pages.project_post.date') }}:</span> 
-					<!-- {{ data.info[0].date }} -->
-				</p>
-				<p>
-					<span>{{ $t('pages.project_post.location') }}:</span> Lorem ipsum dolor sit amet.
-				</p>
-				<p>
-					<span>{{ $t('pages.project_post.living_square') }}:</span> 12
-				</p>
-				<p>
-					<span>{{ $t('pages.project_post.rooms') }}:</span> 12
-				</p>
-				<p>
-					<span>{{ $t('pages.project_post.ovelap') }}:</span> Lorem, ipsum dolor.
-				</p>
-				<p>
-					<span>{{ $t('pages.project_post.garage') }}:</span> Yes
-				</p>
-				<!-- (ссылка на пасив хаус) -->
-				<p>
-					<span>{{ $t('pages.project_post.material') }}:</span> Lorem, ipsum dolor.
-				</p>
-				<p>
-					<span>{{ $t('pages.project_post.architecture_cost') }}:</span>5 000 000 000грн
-				</p>
-				<p>
-					<span>{{ $t('pages.project_post.house_cost') }}:</span>5 000 000 000грн
-				</p>
-				<p>
-					<span>{{ $t('pages.project_post.design_cost') }}:</span>5 000 000 000грн
-				</p>
-				<p>
-					<span>{{ $t('pages.project_post.renovation_cost') }}:</span>5 000 000 000грн
-				</p>
-				<p>
-					<span>{{ $t('pages.project_post.total_price') }}:</span>5 000 000 000грн
-				</p>
-			</div>
-
 			<!-- Slice Machine -->
 			<div v-for="(slice, i) in data.body" :key="i + slice.slice_type" class="slice" :class="slice.slice_type">
 				<template v-if="slice.slice_type == 'text'">
 					<prismic-rich-text class="rich_text" :field="slice.primary.text" />
+				</template>
+
+				<template v-else-if="slice.slice_type == 'project_info'">
+					<div class="info">
+						<p>
+							<span>{{ $t('pages.project_post.service') }}:</span>
+							<n-link v-if="slice.primary.service.type === 'service_second'" :to="localePath(`/${service_link.parentUid}/${slice.primary.service.uid}`)">{{ service_link.name }}</n-link>
+							<n-link v-else :to="localePath(`/${slice.primary.service.uid}/`)">{{ service_link.name }}</n-link>
+						</p>
+						<p>
+							<span>{{ $t('pages.project_post.architect') }}:</span>
+							<n-link :to="`${localePath('aboutUs')}${slice.primary.architect.uid}/`">{{ slice.primary.architect_name }}</n-link>
+						</p>
+						<p>
+							<span>{{ $t('pages.project_post.designer') }}:</span>
+							<n-link :to="`${localePath('aboutUs')}${slice.primary.designer.uid}/`">{{ slice.primary.designer_name }}</n-link>
+						</p>
+						<p>
+							<span>{{ $t('pages.project_post.builder') }}:</span>
+							<n-link :to="`${localePath('aboutUs')}${slice.primary.builder.uid}/`">{{ slice.primary.builder_name }}</n-link>
+						</p>
+						<p>
+							<span>{{ $t('pages.project_post.total_square') }}:</span>
+							{{ slice.primary.square }}
+						</p>
+						<p>
+							<span>{{ $t('pages.project_post.date') }}:</span>
+							{{ slice.primary.date }}
+						</p>
+						<p>
+							<span>{{ $t('pages.project_post.location') }}:</span>
+							{{ slice.primary.location }}
+						</p>
+						<p>
+							<span>{{ $t('pages.project_post.living_square') }}:</span>
+							{{ slice.primary.living_area }}
+						</p>
+						<p>
+							<span>{{ $t('pages.project_post.rooms') }}:</span>
+							{{ slice.primary.rooms }}
+						</p>
+						<p>
+							<span>{{ $t('pages.project_post.ovelap') }}:</span>
+							{{ slice.primary.overlap }}
+						</p>
+						<p>
+							<span>{{ $t('pages.project_post.garage') }}:</span>
+							{{ slice.primary.garage }}
+						</p>
+						<p>
+							<span>{{ $t('pages.project_post.material') }}:</span>
+							<n-link v-if="slice.primary.material.link_type === 'Web'" :to="slice.primary.material.url"></n-link>
+							{{ slice.primary.material_name }}
+						</p>
+						<p>
+							<span>{{ $t('pages.project_post.architecture_cost') }}:</span>
+							{{ slice.primary.architecture_price }}
+						</p>
+						<p>
+							<span>{{ $t('pages.project_post.house_cost') }}:</span>
+							{{ slice.primary.house_price }}
+						</p>
+						<p>
+							<span>{{ $t('pages.project_post.design_cost') }}:</span>
+							{{ slice.primary.design_price }}
+						</p>
+						<p>
+							<span>{{ $t('pages.project_post.renovation_cost') }}:</span>
+							{{ slice.primary.renovation_price }}
+						</p>
+						<p>
+							<span>{{ $t('pages.project_post.total_cost') }}:</span>
+							{{ slice.primary.turnkey_price }}
+						</p>
+					</div>
 				</template>
 
 				<template v-else-if="slice.slice_type == 'image'">
@@ -127,9 +138,15 @@ export default {
 	data: () => ({
 		data: null,
 		url: '',
+		service_link: {
+			name: String,
+			parentUid: String,
+			// currentUid: String,
+		},
+		projectInfo: {},
 	}),
 	async fetch() {
-		console.log('project post fetch')
+		// console.log('project post fetch')
 		await this.$prismic.api
 			.getByUID('project_post', this.$route.params.project_post, { lang: this.$i18n.localeProperties.prismic })
 			.then(async (fetch) => {
@@ -141,6 +158,13 @@ export default {
 				})
 				// data to component
 				this.data = await fetch.data
+				this.projectInfo = await this.data.body.filter((section) => {
+					if (section.slice_type === 'project_info') {
+						this.service_url()
+						return section
+					}
+					return false
+				})
 			})
 			.catch((error) => {
 				console.log(error)
@@ -155,7 +179,53 @@ export default {
 	head() {
 		return this.$store.getters.page.head
 	},
+	computed: {},
 	methods: {
+		service_url() {
+			const lang = this.$store.getters.navbar_links.filter((language) => {
+				if (language.language === this.$i18n.localeProperties.code) {
+					return language.data
+				}
+				return false
+			})
+
+			if (this.projectInfo[0].primary.service.type === 'service_second') {
+				this.getParentUid(lang[0].data.links, lang[0].data.architecture_links, 'architecture_links')
+				this.getParentUid(lang[0].data.links, lang[0].data.design_links, 'design_links')
+				this.getParentUid(lang[0].data.links, lang[0].data.construction_links, 'construction_links')
+			} else {
+				this.getServiceName(lang[0].data.links)
+			}
+		},
+		getParentUid(navigationLinksArray, secondLvlServiceArray, listBindingName) {
+			// console.log(secondLvlServiceArray);
+			secondLvlServiceArray.filter((link) => {
+				if (link.link.uid === this.projectInfo[0].primary.service.uid) {
+					console.log(link.link.uid)
+					// 2 level
+					this.service_link.name = link.name
+					navigationLinksArray.filter((parentItem) => {
+						if (parentItem.list_binding_name === listBindingName) {
+							// parentItem
+							this.service_link.parentUid = parentItem.link.uid
+							return false
+						}
+						return false
+					})
+				}
+				return false
+			})
+		},
+		getServiceName(navigationLinksArray) {
+			navigationLinksArray.filter((link) => {
+				if (link.link.uid === this.projectInfo[0].primary.service.uid) {
+					this.service_link.name = link.name
+				}
+				console.log(link.name)
+				return false
+			})
+		},
+
 		openModal(video) {
 			this.$store.dispatch('bindModalVideo', { data: video, open: true })
 		},
@@ -218,11 +288,12 @@ export default {
 	}
 
 	.info {
-		margin: 50px 0 50px 260px;
+		margin: 50px 20px;
 		// max-width: 400px;
 		display: flex;
 		flex-wrap: wrap;
-		p {
+		p,
+		a {
 			padding: 10px 0;
 			font-weight: bold;
 			text-transform: capitalize;
@@ -237,6 +308,10 @@ export default {
 				border-left: 5px solid $primary;
 				padding-left: 0.5rem;
 			}
+		}
+		a {
+			text-decoration: underline;
+			color: $primary;
 		}
 	}
 
@@ -383,7 +458,7 @@ export default {
 			margin: 40px 0;
 			padding-left: 55px;
 
-			p {
+			p, a {
 				font-size: 1rem;
 				width: 100%;
 			}

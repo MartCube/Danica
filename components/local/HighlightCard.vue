@@ -10,11 +10,11 @@
 		</div>
 		<div class="info">
 			<div class="service">
-				<h3>{{ service }}</h3>
+				<!-- <h3>{{ service }}</h3> -->
 				<p>service</p>
 			</div>
 			<div class="square">
-				<h3>{{ square }}&#13217;</h3>
+				<!-- <h3>{{ square }}&#13217;</h3> -->
 				<p>square</p>
 			</div>
 			<div class="link1">
@@ -62,12 +62,13 @@ export default {
 		title() {
 			return this.$prismic.asText(this.data.data.title)
 		},
-		service() {
-			return this.$prismic.asText(this.data.data.info[0].service)
-		},
-		square() {
-			return this.$prismic.asText(this.data.data.info[0].square)
-		},
+		// service() {
+		// 	return this.$prismic.asText(this.data.data.info[0].service)
+		// 	// return this.$prismic.asText(this.data.data.info[0].service)
+		// },
+		// square() {
+		// 	return this.$prismic.asText(this.data.data.info[0].square)
+		// },
 		link() {
 			return this.localePath(this.$prismic.linkResolver(this.data))
 		},

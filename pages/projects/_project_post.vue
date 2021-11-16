@@ -134,7 +134,7 @@
 
 <script>
 export default {
-	Name: 'ProjectPost',
+	name: 'ProjectPost',
 	data: () => ({
 		data: null,
 		url: '',

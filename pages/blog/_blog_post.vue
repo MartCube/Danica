@@ -11,7 +11,7 @@
 					<span v-for="tag in data.tags" :key="tag" class="tag">{{ tag }}</span>
 				</div>
 				<template v-if="data">
-					<ImageItem :src="data.image.url" :mobile="data.image.mobile.url" :alt="$prismic.asText(data.title)" :height="data.image.dimensions.height" :width="data.image.dimensions.width" />
+					<ImageItem :src="data.image.url" :mobile="data.image.mobile.url" :alt="$prismic.asText(data.title)" :height="data.image.dimensions.height" :width="data.image.dimensions.width" :retina="data.image.hasOwnProperty('retina') ? data.image.retina.url : ''" />
 				</template>
 				<!-- <n-link class="go_back" to="/blog"> <Icon name="arrow" />go back </n-link> -->
 			</div>
@@ -23,7 +23,7 @@
 				</template>
 
 				<template v-else-if="slice.slice_type == 'image'">
-					<ImageItem :src="slice.primary.image.url" :mobile="slice.primary.image.mobile.url" :alt="slice.primary.image.alt" :height="slice.primary.image.dimensions.height" :width="slice.primary.image.dimensions.width"/>
+					<ImageItem :src="slice.primary.image.url" :mobile="slice.primary.image.mobile.url" :alt="slice.primary.image.alt" :height="slice.primary.image.dimensions.height" :width="slice.primary.image.dimensions.width" :retina="slice.primary.image.hasOwnProperty('retina') ? slice.primary.image.retina.url : ''"/>
 					<span class="description">"{{ slice.primary.image.alt }}"</span>
 				</template>
 
@@ -37,7 +37,7 @@
 
 				<template v-else-if="slice.slice_type == 'image_text'">
 					<div class="image_text">
-						<ImageItem :src="slice.primary.image.url" :height="slice.primary.image.dimensions.height" :width="slice.primary.image.dimensions.width" :mobile="slice.primary.image.mobile.url" :alt="slice.primary.image.alt" />
+						<ImageItem :src="slice.primary.image.url" :height="slice.primary.image.dimensions.height" :width="slice.primary.image.dimensions.width" :mobile="slice.primary.image.mobile.url" :alt="slice.primary.image.alt" :retina="slice.primary.image.hasOwnProperty('retina') ? slice.primary.image.retina.url : ''" />
 						<div class="text">
 							<p v-for="(item, key) in slice.items" :key="key">{{ $prismic.asText(item.text) }}</p>
 						</div>
@@ -47,8 +47,8 @@
 				<template v-else-if="slice.slice_type == 'video'">
 					<div class="video_container">
 						<div class="video_default_preview">
-							<ImageItem v-if="slice.primary.video_image.url !== undefined" :src="slice.primary.video_image.url" :mobile="slice.primary.video_image.mobile.url" :width="slice.primary.video_image.dimensions.width" :height="slice.primary.video_image.dimensions.height" :alt="slice.primary.video_image.alt" />
-							<ImageItem v-else :width="data.image.dimensions.width" :height="data.image.dimensions.height" :src="data.image.url" :mobile="data.image.mobile.url" :alt="$prismic.asText(data.title)" />
+							<ImageItem v-if="slice.primary.video_image.url !== undefined" :src="slice.primary.video_image.url" :mobile="slice.primary.video_image.mobile.url" :width="slice.primary.video_image.dimensions.width" :height="slice.primary.video_image.dimensions.height" :alt="slice.primary.video_image.alt" :retina="slice.primary.video_image.hasOwnProperty('retina') ? slice.primary.video_image.retina.url : ''" />
+							<ImageItem v-else :width="data.image.dimensions.width" :height="data.image.dimensions.height" :src="data.image.url" :mobile="data.image.mobile.url" :alt="$prismic.asText(data.title)" :retina="data.image.hasOwnProperty('retina') ? data.image.retina.url : ''" />
 						</div>
 						<div class="play" @click="openModal">
 							<Icon name="play" />

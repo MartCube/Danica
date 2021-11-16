@@ -6,15 +6,7 @@
 		<div v-else-if="!$fetchState.pending" class="project_post">
 			<div class="intro">
 				<h2 class="title">{{ $prismic.asText(data.title) }}</h2>
-				<ImageItem :width="data.main_image.dimensions.width" :height="data.main_image.dimensions.height" :src="data.main_image.url" :mobile="data.main_image.mobile.url" :alt="$prismic.asText(data.title)" />
-			</div>
-
-			<div class="info">
-				<p><span>service:</span> {{ $prismic.asText(data.info[0].service) }}</p>
-				<p><span>square:</span> {{ $prismic.asText(data.info[0].square) }}&#13217;</p>
-				<p><span>date:</span> {{ data.info[0].date }}</p>
-				<p><span>architect:</span> {{ $prismic.asText(data.info[0].architect) }}</p>
-				<p><span>designer:</span> {{ $prismic.asText(data.info[0].designer) }}</p>
+				<ImageItem :width="data.main_image.dimensions.width" :height="data.main_image.dimensions.height" :src="data.main_image.url" :mobile="data.main_image.mobile.url" :retina="data.main_image.hasOwnProperty('retina') ? data.main_image.retina.url : ''" :alt="$prismic.asText(data.title)" />
 			</div>
 
 			<!-- Slice Machine -->
@@ -23,9 +15,84 @@
 					<prismic-rich-text class="rich_text" :field="slice.primary.text" />
 				</template>
 
+				<template v-else-if="slice.slice_type == 'project_info'">
+					<div class="info">
+						<p>
+							<span>{{ $t('pages.project_post.service') }}:</span>
+							<n-link v-if="slice.primary.service.type === 'service_second'" :to="localePath(`/${service_link.parentUid}/${slice.primary.service.uid}`)">{{ service_link.name }}</n-link>
+							<n-link v-else :to="localePath(`/${slice.primary.service.uid}/`)">{{ service_link.name }}</n-link>
+						</p>
+						<p>
+							<span>{{ $t('pages.project_post.architect') }}:</span>
+							<n-link :to="`${localePath('aboutUs')}${slice.primary.architect.uid}/`">{{ slice.primary.architect_name }}</n-link>
+						</p>
+						<p>
+							<span>{{ $t('pages.project_post.designer') }}:</span>
+							<n-link :to="`${localePath('aboutUs')}${slice.primary.designer.uid}/`">{{ slice.primary.designer_name }}</n-link>
+						</p>
+						<p>
+							<span>{{ $t('pages.project_post.builder') }}:</span>
+							<n-link :to="`${localePath('aboutUs')}${slice.primary.builder.uid}/`">{{ slice.primary.builder_name }}</n-link>
+						</p>
+						<p>
+							<span>{{ $t('pages.project_post.total_square') }}:</span>
+							{{ slice.primary.square }}
+						</p>
+						<p>
+							<span>{{ $t('pages.project_post.date') }}:</span>
+							{{ slice.primary.date }}
+						</p>
+						<p>
+							<span>{{ $t('pages.project_post.location') }}:</span>
+							{{ slice.primary.location }}
+						</p>
+						<p>
+							<span>{{ $t('pages.project_post.living_square') }}:</span>
+							{{ slice.primary.living_area }}
+						</p>
+						<p>
+							<span>{{ $t('pages.project_post.rooms') }}:</span>
+							{{ slice.primary.rooms }}
+						</p>
+						<p>
+							<span>{{ $t('pages.project_post.ovelap') }}:</span>
+							{{ slice.primary.overlap }}
+						</p>
+						<p>
+							<span>{{ $t('pages.project_post.garage') }}:</span>
+							{{ slice.primary.garage }}
+						</p>
+						<p>
+							<span>{{ $t('pages.project_post.material') }}:</span>
+							<n-link v-if="slice.primary.material.link_type === 'Web'" :to="slice.primary.material.url"></n-link>
+							{{ slice.primary.material_name }}
+						</p>
+						<p>
+							<span>{{ $t('pages.project_post.architecture_cost') }}:</span>
+							{{ slice.primary.architecture_price }}
+						</p>
+						<p>
+							<span>{{ $t('pages.project_post.house_cost') }}:</span>
+							{{ slice.primary.house_price }}
+						</p>
+						<p>
+							<span>{{ $t('pages.project_post.design_cost') }}:</span>
+							{{ slice.primary.design_price }}
+						</p>
+						<p>
+							<span>{{ $t('pages.project_post.renovation_cost') }}:</span>
+							{{ slice.primary.renovation_price }}
+						</p>
+						<p>
+							<span>{{ $t('pages.project_post.total_price') }}:</span>
+							{{ slice.primary.turnkey_price }}
+						</p>
+					</div>
+				</template>
+
 				<template v-else-if="slice.slice_type == 'image'">
 					<template v-if="slice.primary.image !== undefined">
-						<ImageItem :width="slice.primary.image.dimensions.width" :height="slice.primary.image.dimensions.height" :src="slice.primary.image.url" :mobile="slice.primary.image.mobile.url" :alt="slice.primary.image.alt" />
+						<ImageItem :width="slice.primary.image.dimensions.width" :height="slice.primary.image.dimensions.height" :src="slice.primary.image.url" :mobile="slice.primary.image.mobile.url" :retina="slice.primary.image.hasOwnProperty('retina') ? slice.primary.image.retina.url : ''" :alt="slice.primary.image.alt" />
 						<span class="description">"{{ slice.primary.image.alt }}"</span>
 					</template>
 				</template>
@@ -33,7 +100,7 @@
 				<template v-else-if="slice.slice_type == 'image_slider'">
 					<div class="image_slider">
 						<div class="image_slider_wrapper">
-							<ImageItem v-for="(item, y) in slice.items" :key="y + item.image.url" :src="item.image.url" :mobile="item.image.mobile.url" :width="item.image.dimensions.width" :height="item.image.dimensions.height" :alt="item.image.alt !== null ? item.image.alt : 'alt'" />
+							<ImageItem v-for="(item, y) in slice.items" :key="y + item.image.url" :src="item.image.url" :mobile="item.image.mobile.url" :width="item.image.dimensions.width" :retina="item.image.hasOwnProperty('retina') ? item.image.retina.url : ''" :height="item.image.dimensions.height" :alt="item.image.alt !== null ? item.image.alt : 'alt'" />
 						</div>
 					</div>
 				</template>
@@ -41,7 +108,7 @@
 				<template v-else-if="slice.slice_type == 'image_text'">
 					<div class="image_text">
 						<template v-if="slice.primary.image !== 'undefined'">
-							<ImageItem :src="slice.primary.image.url" :mobile="slice.primary.image.mobile.url" :width="slice.primary.image.dimensions.width" :height="slice.primary.image.dimensions.height" :alt="slice.primary.image.alt !== null ? slice.primary.image.alt : 'alt'" />
+							<ImageItem :src="slice.primary.image.url" :mobile="slice.primary.image.mobile.url" :width="slice.primary.image.dimensions.width" :height="slice.primary.image.dimensions.height" :retina="slice.primary.image.hasOwnProperty('retina') ? slice.primary.image.retina.url : ''" :alt="slice.primary.image.alt !== null ? slice.primary.image.alt : 'alt'" />
 						</template>
 						<div class="text">
 							<p v-for="(item, key) in slice.items" :key="key">{{ $prismic.asText(item.text) }}</p>
@@ -52,8 +119,8 @@
 				<template v-else-if="slice.slice_type == 'video'">
 					<div class="video_container">
 						<div class="video_default_preview">
-							<ImageItem v-if="slice.primary.image.hasOwnProperty(url)" :src="slice.primary.image.url" :mobile="slice.primary.image.mobile.url" :width="slice.primary.image.dimensions.width" :height="slice.primary.image.dimensions.height" :alt="slice.primary.image.alt" />
-							<ImageItem :width="data.main_image.dimensions.width" :height="data.main_image.dimensions.height" :src="data.main_image.url" :mobile="data.main_image.mobile.url" :alt="$prismic.asText(data.title)" />
+							<ImageItem v-if="slice.primary.image.hasOwnProperty(url)" :src="slice.primary.image.url" :mobile="slice.primary.image.mobile.url" :width="slice.primary.image.dimensions.width" :height="slice.primary.image.dimensions.height" :retina="slice.primary.image.hasOwnProperty('retina') ? slice.primary.image.retina.url : ''" :alt="slice.primary.image.alt" />
+							<ImageItem :width="data.main_image.dimensions.width" :height="data.main_image.dimensions.height" :src="data.main_image.url" :mobile="data.main_image.mobile.url" :retina="slice.primary.image.hasOwnProperty('retina') ? slice.primary.image.retina.url : ''" :alt="$prismic.asText(data.title)" />
 						</div>
 						<div class="play" @click="openModal(slice.primary.video)">
 							<Icon name="play" />
@@ -67,12 +134,19 @@
 
 <script>
 export default {
-	Name: 'ProjectPost',
+	name: 'ProjectPost',
 	data: () => ({
 		data: null,
+		url: '',
+		service_link: {
+			name: String,
+			parentUid: String,
+			// currentUid: String,
+		},
+		projectInfo: [],
 	}),
 	async fetch() {
-		console.log('project post fetch')
+		// console.log('project post fetch')
 		await this.$prismic.api
 			.getByUID('project_post', this.$route.params.project_post, { lang: this.$i18n.localeProperties.prismic })
 			.then(async (fetch) => {
@@ -84,6 +158,16 @@ export default {
 				})
 				// data to component
 				this.data = await fetch.data
+				this.projectInfo = await this.data.body.filter((section) => {
+					if (section.slice_type === 'project_info') {
+						return section
+					}
+					return false
+				})
+				// console.log(this.projectInfo.length);
+				if (this.projectInfo.length > 0) {
+					this.service_url()
+				}
 			})
 			.catch((error) => {
 				console.log(error)
@@ -98,7 +182,54 @@ export default {
 	head() {
 		return this.$store.getters.page.head
 	},
+	computed: {},
 	methods: {
+		async service_url() {
+			const lang = await this.$store.getters.navbar_links.filter((language) => {
+				if (language.language === this.$i18n.localeProperties.code) {
+					return language.data
+				}
+				return false
+			})
+			// console.log(lang);
+
+			if (this.projectInfo[0].primary.service.type === 'service_second') {
+				this.getParentUid(lang[0].data.links, lang[0].data.architecture_links, 'architecture_links')
+				this.getParentUid(lang[0].data.links, lang[0].data.design_links, 'design_links')
+				this.getParentUid(lang[0].data.links, lang[0].data.construction_links, 'construction_links')
+			} else {
+				this.getServiceName(lang[0].data.links)
+			}
+		},
+		getParentUid(navigationLinksArray, secondLvlServiceArray, listBindingName) {
+			// console.log(secondLvlServiceArray);
+			secondLvlServiceArray.filter((secondLvlServiceItem) => {
+				if (secondLvlServiceItem.link.uid === this.projectInfo[0].primary.service.uid) {
+					console.log(secondLvlServiceItem.link.uid)
+					// 2 level
+					this.service_link.name = secondLvlServiceItem.name
+					navigationLinksArray.filter((parentItem) => {
+						if (parentItem.list_binding_name === listBindingName) {
+							// parentItem
+							this.service_link.parentUid = parentItem.link.uid
+							return false
+						}
+						return false
+					})
+				}
+				return false
+			})
+		},
+		getServiceName(navigationLinksArray) {
+			navigationLinksArray.filter((link) => {
+				if (link.link.uid === this.projectInfo[0].primary.service.uid) {
+					this.service_link.name = link.name
+				}
+				// console.log(link.name)
+				return false
+			})
+		},
+
 		openModal(video) {
 			this.$store.dispatch('bindModalVideo', { data: video, open: true })
 		},
@@ -143,6 +274,7 @@ export default {
 			width: inherit;
 			height: inherit;
 			z-index: 7;
+			object-fit: cover;
 		}
 
 		.title {
@@ -160,21 +292,30 @@ export default {
 	}
 
 	.info {
-		margin: 50px 0 50px 260px;
+		margin: 50px 20px;
 		// max-width: 400px;
 		display: flex;
-		flex-direction: column;
-		p {
+		flex-wrap: wrap;
+		p,
+		a {
 			padding: 10px 0;
 			font-weight: bold;
 			text-transform: capitalize;
 			color: $black;
 			font-size: 1.5rem;
-			line-height: 1.2rem;
+			line-height: 1;
+			width: 50%;
 			span {
 				font-size: inherit;
 				margin-right: 1rem;
+				font-weight: normal;
+				border-left: 5px solid $primary;
+				padding-left: 0.5rem;
 			}
+		}
+		a {
+			text-decoration: underline;
+			color: $primary;
 		}
 	}
 
@@ -197,6 +338,9 @@ export default {
 		display: flex;
 		flex-direction: column;
 		align-items: center;
+		picture {
+			object-fit: cover;
+		}
 		.description {
 			margin: 25px 0;
 			opacity: 0.75;
@@ -318,8 +462,9 @@ export default {
 			margin: 40px 0;
 			padding-left: 55px;
 
-			p {
+			p, a {
 				font-size: 1rem;
+				width: 100%;
 			}
 		}
 

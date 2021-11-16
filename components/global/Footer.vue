@@ -118,8 +118,10 @@ export default {
 			display: flex;
 			position: relative;
 			picture {
-				width: 100%;
 				user-select: none;
+				object-fit: cover;
+				width: 100%;
+				height: 100%;
 			}
 		}
 

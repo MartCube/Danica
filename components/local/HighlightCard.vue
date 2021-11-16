@@ -1,6 +1,6 @@
 <template>
 	<n-link v-if="first" :to="link" class="highlight_card first">
-		<ImageItem :src="image + first_imgIX" :alt="title" :width="600" :height="500" />
+		<ImageItem :src="image.url" :alt="title" :width="image.dimensions.width" :height="image.dimensions.height" />
 		<div class="text">
 			<h3>{{ title }}</h3>
 			<!-- Slice Machine -->
@@ -10,12 +10,12 @@
 		</div>
 		<div class="info">
 			<div class="service">
-				<h3>{{ service }}</h3>
-				<p>service</p>
+				<h3>service</h3>
+				<p>{{ service_data.name }}</p>
 			</div>
 			<div class="square">
-				<h3>{{ square }}&#13217;</h3>
-				<p>square</p>
+				<h3>square</h3>
+				<p>{{ service_data.square }}</p>
 			</div>
 			<div class="link1">
 				<Icon fill="hsl(0, 0%, 10%)" name="chevron" size="32px" />
@@ -23,7 +23,7 @@
 		</div>
 	</n-link>
 	<n-link v-else :to="link" class="highlight_card" :class="{ last: last }">
-		<ImageItem :width="600" :height="500" :src="image + Thumbnail_imgIX" :alt="title" />
+		<ImageItem :width="image.dimensions.width" :height="image.dimensions.height" :src="image.url" :alt="title" />
 		<div class="link">
 			<Icon fill="hsl(0, 0%, 10%)" name="chevron" size="32px" />
 		</div>
@@ -49,6 +49,12 @@ export default {
 			default: false,
 		},
 	},
+	data: () => ({
+		service_data: {
+			name: '',
+			square: '',
+		},
+	}),
 	computed: {
 		first_imgIX() {
 			return `&fit=crop&w=600&h=500&dpr=1`
@@ -57,19 +63,37 @@ export default {
 			return `&fit=crop&w=300&h=400&dpr=1`
 		},
 		image() {
-			return this.data.data.main_image.url
+			return this.data.data.main_image
 		},
 		title() {
 			return this.$prismic.asText(this.data.data.title)
 		},
-		service() {
-			return this.$prismic.asText(this.data.data.info[0].service)
-		},
-		square() {
-			return this.$prismic.asText(this.data.data.info[0].square)
-		},
 		link() {
 			return this.localePath(this.$prismic.linkResolver(this.data))
+		},
+	},
+	created() {
+		if (this.first) {
+			// console.log('first')
+			this.serviceData()
+		}
+	},
+	methods: {
+		serviceData() {
+			const project = this.data.data.body.filter((section) => {
+				if (section.slice_type === 'project_info') {
+					// return section
+				}
+				return section
+			})
+			this.serviceSquare(project)
+			this.serviceName(project)
+		},
+		serviceName(project) {
+			this.service_data.name = project[0].primary.material_name
+		},
+		serviceSquare(project) {
+			this.service_data.square = project[0].primary.square
 		},
 	},
 }
@@ -107,7 +131,7 @@ $transition: all 0.35s ease;
 			background: white;
 
 			position: absolute;
-			bottom: 0;
+			bottom: -1px;
 			right: 50%;
 			transform: translateX(50%);
 
@@ -160,13 +184,6 @@ $transition: all 0.35s ease;
 				overflow: hidden;
 			}
 		}
-		img {
-			width: 600px;
-			height: 500px;
-		}
-	}
-	picture {
-		z-index: 0;
 	}
 	&.last {
 		width: auto;
@@ -176,12 +193,18 @@ $transition: all 0.35s ease;
 			width: 100%;
 			height: 100%;
 			max-width: 100%;
+			z-index: 4;
 		}
 		.link {
 			opacity: 1;
 		}
 	}
-
+	picture {
+		z-index: 0;
+		object-fit: cover;
+		width: 100%;
+		height: 100%;
+	}
 	.title {
 		position: absolute;
 		top: 0;

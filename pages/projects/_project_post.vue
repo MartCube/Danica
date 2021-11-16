@@ -84,7 +84,7 @@
 							{{ slice.primary.renovation_price }}
 						</p>
 						<p>
-							<span>{{ $t('pages.project_post.total_cost') }}:</span>
+							<span>{{ $t('pages.project_post.total_price') }}:</span>
 							{{ slice.primary.turnkey_price }}
 						</p>
 					</div>
@@ -143,7 +143,7 @@ export default {
 			parentUid: String,
 			// currentUid: String,
 		},
-		projectInfo: {},
+		projectInfo: [],
 	}),
 	async fetch() {
 		// console.log('project post fetch')
@@ -160,11 +160,14 @@ export default {
 				this.data = await fetch.data
 				this.projectInfo = await this.data.body.filter((section) => {
 					if (section.slice_type === 'project_info') {
-						this.service_url()
 						return section
 					}
 					return false
 				})
+				// console.log(this.projectInfo.length);
+				if (this.projectInfo.length > 0) {
+					this.service_url()
+				}
 			})
 			.catch((error) => {
 				console.log(error)
@@ -181,13 +184,14 @@ export default {
 	},
 	computed: {},
 	methods: {
-		service_url() {
-			const lang = this.$store.getters.navbar_links.filter((language) => {
+		async service_url() {
+			const lang = await this.$store.getters.navbar_links.filter((language) => {
 				if (language.language === this.$i18n.localeProperties.code) {
 					return language.data
 				}
 				return false
 			})
+			// console.log(lang);
 
 			if (this.projectInfo[0].primary.service.type === 'service_second') {
 				this.getParentUid(lang[0].data.links, lang[0].data.architecture_links, 'architecture_links')
@@ -199,11 +203,11 @@ export default {
 		},
 		getParentUid(navigationLinksArray, secondLvlServiceArray, listBindingName) {
 			// console.log(secondLvlServiceArray);
-			secondLvlServiceArray.filter((link) => {
-				if (link.link.uid === this.projectInfo[0].primary.service.uid) {
-					console.log(link.link.uid)
+			secondLvlServiceArray.filter((secondLvlServiceItem) => {
+				if (secondLvlServiceItem.link.uid === this.projectInfo[0].primary.service.uid) {
+					console.log(secondLvlServiceItem.link.uid)
 					// 2 level
-					this.service_link.name = link.name
+					this.service_link.name = secondLvlServiceItem.name
 					navigationLinksArray.filter((parentItem) => {
 						if (parentItem.list_binding_name === listBindingName) {
 							// parentItem
@@ -221,7 +225,7 @@ export default {
 				if (link.link.uid === this.projectInfo[0].primary.service.uid) {
 					this.service_link.name = link.name
 				}
-				console.log(link.name)
+				// console.log(link.name)
 				return false
 			})
 		},

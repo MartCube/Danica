@@ -21,7 +21,7 @@ export default {
 			total_square: 'Total space',
 			living_square: 'Living space',
 			date: 'Date',
-			location: 'Lication',
+			location: 'Location',
 			floors: 'Floors',
 			rooms: 'Number of rooms',
 			ovelap: 'Overlaps',

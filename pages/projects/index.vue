@@ -1,15 +1,14 @@
 <template>
 	<div class="container">
+		<div class="filter">
+			<span :class="{ active: active_filter[0] == null }" @click="filterUpdate('all')"> {{ $t('pages.projects.filters.all') }} </span>
+			<span v-for="(filter, i) in filters" :key="i" :class="{ active: active_filter[0] == filter.key }" @click="filterUpdate(filter.key)">
+				{{ filter.name }}
+			</span>
+		</div>
 		<Title :value="$t('pages.projects.name')" />
 
 		<div class="projects">
-			<div class="filter">
-				<span :class="{ active: active_filter[0] == null }" @click="filterUpdate('all')"> {{ $t('pages.projects.filters.all') }} </span>
-				<span v-for="(filter, i) in filters" :key="i" :class="{ active: active_filter[0] == filter.key }" @click="filterUpdate(filter.key)">
-					{{ filter.name }}
-				</span>
-			</div>
-
 			<div ref="grid" class="grid" :style="`min-height: ${gridHeight}px;`">
 				<template v-if="$fetchState.error">error</template>
 				<template v-else-if="!$fetchState.pending">
@@ -35,7 +34,7 @@ export default {
 		total_pages: null,
 		prev_page: null,
 		next_page: null,
-		gridHeight: 825,
+		// gridHeight: 3600,
 	}),
 	async fetch() {
 		await this.$prismic.api
@@ -77,6 +76,24 @@ export default {
 	computed: {
 		projects() {
 			return this.$store.getters.projects
+		},
+		gridHeight() {
+			let height = 0
+			let portrait = 0
+
+			this.projects.forEach((element) => {
+				if (Object.keys(element.data.thumbnail_image).length > 0 && element.data.thumbnail_image.dimensions.width < element.data.thumbnail_image.dimensions.height) {
+					// 600px
+					height += 600
+					portrait++
+				} else {
+					// 300px
+					height += 300
+				}
+			})
+			console.log(portrait)
+			height = height / 4 + 300
+			return height
 		},
 		filters() {
 			return [
@@ -135,56 +152,36 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.container {
+	flex-direction: row;
+	flex-wrap: wrap;
+	&::after {
+		display: none;
+	}
+	.title {
+		padding-left: 70px;
+	}
+}
 .projects {
 	display: flex;
 	flex-wrap: wrap;
 	margin-bottom: 80px;
-	.filter {
-		min-width: 240px;
-		padding-right: 1.5rem;
-		background: white;
-		height: fit-content;
-		position: relative;
-		z-index: 6;
-		display: flex;
-		flex-direction: column;
-		span {
-			margin: 10px 0;
-			text-transform: capitalize;
-			white-space: nowrap;
-			font-weight: bold;
-			font-size: 1.2rem;
-			display: flex;
-			align-items: center;
-			cursor: pointer;
-			transition: all 0.1s ease;
-			&::before {
-				content: '';
-				width: 100%;
-				height: 1px;
-				margin-right: 10px;
-				background: $black;
-				transition: all 0.2s ease;
-			}
-			&.active,
-			&:hover {
-				color: $primary;
-				&::before {
-					background: $primary;
-				}
-			}
-		}
-	}
+	width: 100%;
+
 	.grid {
-		width: calc(100% - 240px);
-		max-width: $container_max_width;
-		border-left: 1px solid $line;
+		width: 100%;
+		// max-width: $container_max_width;
+		// border-left: 1px solid $line;
+		// columns: 4 15vw;
+		// column-gap: 0;
 		display: flex;
-		justify-content: flex-start;
-		align-items: flex-start;
-		flex-wrap: wrap;
+		flex-flow: column wrap;
+		// flex-direction: column;
+		// flex-wrap: wrap;
+		max-height: 200vh;
 		.project_card {
-			margin-right: 2rem;
+			// margin-right: 2rem;
+			float: left;
 		}
 	}
 	button {
@@ -192,6 +189,43 @@ export default {
 		color: $black;
 	}
 }
+.filter {
+	width: 240px;
+	padding-right: 1.5rem;
+	background: white;
+	height: fit-content;
+	position: relative;
+	z-index: 6;
+	display: flex;
+	flex-direction: column;
+	span {
+		margin: 10px 0;
+		text-transform: capitalize;
+		white-space: nowrap;
+		font-weight: bold;
+		font-size: 1.2rem;
+		display: flex;
+		align-items: center;
+		cursor: pointer;
+		transition: all 0.1s ease;
+		&::before {
+			content: '';
+			width: 100%;
+			height: 1px;
+			margin-right: 10px;
+			background: $black;
+			transition: all 0.2s ease;
+		}
+		&.active,
+		&:hover {
+			color: $primary;
+			&::before {
+				background: $primary;
+			}
+		}
+	}
+}
+
 // @media (min-width: 1700px) {
 // 	.projects {
 // 		.filter span {

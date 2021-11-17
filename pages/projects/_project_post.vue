@@ -258,7 +258,7 @@ export default {
 	& > * {
 		margin-bottom: 25px;
 	}
-	overflow-x: hidden;
+	// overflow-x: hidden;
 
 	.intro {
 		width: 100%;
@@ -387,7 +387,7 @@ export default {
 	}
 
 	.image_slider {
-		width: 100%;
+		width: -webkit-fill-available;
 		overflow-x: auto;
 		margin-bottom: 2rem;
 		padding-bottom: 2rem;

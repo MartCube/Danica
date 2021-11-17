@@ -1,12 +1,13 @@
 <template>
-	<n-link :to="link" class="project_card">
+	<n-link :to="link" class="project_card" :class="{ portrait: thumbnailClass }">
 		<div class="image">
-			<ImageItem :width="image.dimensions.width" :height="image.dimensions.height" :mobile="image.thumbnail.url" :src="image.url" :retina="image.url" :alt="title" />
+			<ImageItem v-if="thumbnailImage.hasOwnProperty('url')" :width="thumbnailImage.dimensions.width" :height="thumbnailImage.dimensions.height" :mobile="image.thumbnail.url" :src="thumbnailImage.url" :retina="thumbnailImage.url" :alt="title" />
+			<ImageItem v-else :width="image.dimensions.width" :height="image.dimensions.height" :mobile="image.thumbnail.url" :src="image.url" :retina="image.url" :alt="title" />
 			<div class="link">
 				<Icon name="chevron" fill="hsl(0, 0%, 10%)" size="25px" />
 			</div>
 		</div>
-		<h2>{{ title }}</h2>
+		<!-- <h2>{{ title }}</h2> -->
 	</n-link>
 </template>
 
@@ -23,6 +24,15 @@ export default {
 		image() {
 			return this.data.data.main_image
 		},
+		thumbnailImage() {
+			return this.data.data.thumbnail_image
+		},
+		thumbnailClass() {
+			if (Object.keys(this.data.data.thumbnail_image).length > 0 && this.data.data.thumbnail_image.dimensions.width < this.data.data.thumbnail_image.dimensions.height) {
+				return true
+			}
+			return false
+		},
 		title() {
 			return this.$prismic.asText(this.data.data.title)
 		},
@@ -35,20 +45,28 @@ export default {
 
 <style lang="scss" scoped>
 .project_card {
-	width: 300px;
+	// width: 100%;
+	width: 25%;
+//  display: grid;
+  // grid-template-rows: 1fr auto;
+	// max-height: 50vh;
 	cursor: pointer;
+	position: relative;
 
 	display: flex;
 	flex-direction: column;
+	height: 300px;
+	&.portrait {
+		height: 600px;
+	}
 
 	.image {
-		width: inherit;
-		height: 300px;
-
+		width: 100%;
+		height: 100%;
 		user-select: none;
 		position: relative;
 		overflow: hidden;
-
+		display: block;
 		.overlay {
 			position: absolute;
 			top: 0;

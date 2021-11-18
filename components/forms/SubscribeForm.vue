@@ -86,4 +86,10 @@ export default {
 		margin-bottom: 15px;
 	}
 }
+@media (max-width: 600px) {
+	.input_item {
+		display: flex;
+		justify-content: space-between;
+	}
+}
 </style>

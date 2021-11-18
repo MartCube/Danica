@@ -1,5 +1,5 @@
 <template>
-	<div class="container">
+	<div class="container projects">
 		<div class="filter">
 			<span :class="{ active: active_filter[0] == null }" @click="filterUpdate('all')"> {{ $t('pages.projects.filters.all') }} </span>
 			<span v-for="(filter, i) in filters" :key="i" :class="{ active: active_filter[0] == filter.key }" @click="filterUpdate(filter.key)">
@@ -8,16 +8,16 @@
 		</div>
 		<Title :value="$t('pages.projects.name')" />
 
-		<div class="projects">
-			<div ref="grid" class="grid" :style="`min-height: ${gridHeight}px;`">
-				<template v-if="$fetchState.error">error</template>
-				<template v-else-if="!$fetchState.pending">
-					<ProjectCard v-for="(project, i) in projects" :key="i" :data="project" />
-				</template>
-			</div>
-
-			<!-- <ButtonItem v-if="next_page" :animated="false" @click.native="loadMore">load more</ButtonItem> -->
+		<!-- <div class="projects"> -->
+		<div ref="grid" class="grid" :style="`max-height: ${gridHeight}px;`">
+			<template v-if="$fetchState.error">error</template>
+			<template v-else-if="!$fetchState.pending">
+				<ProjectCard v-for="(project, i) in currentProjects" :key="i" :data="project" />
+			</template>
 		</div>
+
+		<!-- <ButtonItem v-if="next_page" :animated="false" @click.native="loadMore">load more</ButtonItem> -->
+		<!-- </div> -->
 	</div>
 </template>
 
@@ -34,7 +34,10 @@ export default {
 		total_pages: null,
 		prev_page: null,
 		next_page: null,
-		// gridHeight: 3600,
+		display: null,
+		gridHeight: 0,
+		allProjects: [],
+		currentProjects: [],
 	}),
 	async fetch() {
 		await this.$prismic.api
@@ -61,9 +64,13 @@ export default {
 			lang: this.$i18n.localeProperties.prismic,
 		})
 		this.$store.dispatch('bindProjects', projects.results)
-		this.total_pages = projects.total_pages
-		this.prev_page = projects.prev_page
-		this.next_page = projects.next_page
+		this.currentProjects = projects.results
+		this.allProjects = projects.results
+
+		// this.onResize()
+		// this.total_pages = projects.total_pages
+		// this.prev_page = projects.prev_page
+		// this.next_page = projects.next_page
 	},
 	fetchKey(getCounter) {
 		// getCounter is a method that can be called to get the next number in a sequence
@@ -74,27 +81,14 @@ export default {
 		return this.$store.getters.page.head
 	},
 	computed: {
-		projects() {
-			return this.$store.getters.projects
-		},
-		gridHeight() {
-			let height = 0
-			let portrait = 0
-
-			this.projects.forEach((element) => {
-				if (Object.keys(element.data.thumbnail_image).length > 0 && element.data.thumbnail_image.dimensions.width < element.data.thumbnail_image.dimensions.height) {
-					// 600px
-					height += 600
-					portrait++
-				} else {
-					// 300px
-					height += 300
-				}
-			})
-			console.log(portrait)
-			height = height / 4 + 300
-			return height
-		},
+		// projects: {
+		// 	get() {
+		// 		return this.$store.getters.projects
+		// 	},
+		// 	set(value) {
+		// 		return value
+		// 	},
+		// },
 		filters() {
 			return [
 				{
@@ -122,26 +116,77 @@ export default {
 			// this.projects()
 			this.$nextTick()
 			this.fetch()
+			this.getGridHeight()
 		},
 		async projects(newValue, oldValue) {
 			await this.$nextTick()
-			postAnim(this.$refs.grid.children, true)
+			// postAnim(this.$refs.grid.children, true)
 		},
+	},
+	mounted() {
+		window.addEventListener('resize', this.onResize)
+	},
+
+	beforeDestroy() {
+		window.removeEventListener('resize', this.onResize)
 	},
 	methods: {
 		filterUpdate(filter) {
 			this.active_filter = [filter]
-			if (filter === 'all') this.active_filter = []
+			if (filter === 'all') {
+				this.active_filter = []
+				this.currentProjects = this.allProjects
+			} else {
+				const filteredArray = []
+				this.allProjects.forEach((project) => {
+					if (Object.values(project.tags).includes(this.active_filter[0])) {
+						filteredArray.push(project)
+					}
+				})
+				// console.log(filteredArray);
+				this.currentProjects = filteredArray
+			}
 
 			// restart results
-			this.total_pages = 0
-			this.current_page = 1
-			this.page_size = 6
-			this.gridHeight = 825
-
-			this.$fetch()
+			this.getGridHeight()
 		},
+		onResize() {
+			// console.log(window.innerWidth);
+			if (document.querySelector('main').clientWidth > 900) {
+				this.display = 4
+				this.getGridHeight()
+			} else if (document.querySelector('main').clientWidth < 900) {
+				// console.log(2);
+				this.display = 2
+				this.getGridHeight()
+			} else {
+				this.display = 1
+				this.getGridHeight()
+			}
+		},
+		async getGridHeight() {
+			let height = 0
 
+			await this.currentProjects.forEach((element) => {
+				if (Object.keys(element.data.thumbnail_image).length > 0 && element.data.thumbnail_image.dimensions.width < element.data.thumbnail_image.dimensions.height) {
+					if (this.display === 4) {
+						height += 600
+					} else {
+						height += 300
+					}
+				} else {
+					height += 300
+				}
+			})
+			if (this.display === 4) {
+				height = Math.ceil(height / 4 / 300) * 300
+			} else if (this.display === 2) {
+				height = Math.ceil(height / 2 / 300) * 300
+			}
+			console.log(height)
+			// return height
+			this.gridHeight = height
+		},
 		// loadMore() {
 		// 	this.page_size += 6
 		// 	this.gridHeight += 825
@@ -170,17 +215,13 @@ export default {
 
 	.grid {
 		width: 100%;
-		// max-width: $container_max_width;
-		// border-left: 1px solid $line;
-		// columns: 4 15vw;
-		// column-gap: 0;
-		display: flex;
 		flex-flow: column wrap;
-		// flex-direction: column;
-		// flex-wrap: wrap;
-		max-height: 200vh;
+		// max-height: 200vh;
+		align-items: flex-start;
+		justify-content: flex-start;
+		display: flex;
 		.project_card {
-			// margin-right: 2rem;
+			width: 25%;
 			float: left;
 		}
 	}
@@ -238,25 +279,34 @@ export default {
 		&::after {
 			display: none;
 		}
-		.projects {
-			flex-direction: column;
-			.filter {
+		.filter {
+			width: 50%;
+			min-width: auto;
+			padding: 0;
+			margin-bottom: 25px;
+		}
+		.grid {
+			min-height: auto;
+			.project_card {
+				margin-right: 0;
 				width: 50%;
-				min-width: auto;
-				padding: 0;
-				margin-bottom: 25px;
+				height: 3;
 			}
-			.grid {
-				width: 93%;
-				// min-height: 450px;
-				padding-left: 40px;
-				justify-content: space-between;
-				.project_card {
-					margin-right: 0;
-				}
-			}
-			button {
-				margin: 0 auto;
+		}
+	}
+}
+@media (max-width: 600px) {
+	.container {
+		.title {
+			padding-left: 0;
+		}
+	}
+	.projects {
+		.grid {
+			min-height: initial !important;
+			flex-wrap: nowrap;
+			.project_card {
+				width: 100%;
 			}
 		}
 	}

@@ -22,7 +22,7 @@
 </template>
 
 <script>
-// import { postAnim } from '~/assets/anime'
+import { postAnim } from '~/assets/anime'
 export default {
 	name: 'Projects',
 	data: () => ({
@@ -31,9 +31,9 @@ export default {
 		// pagination
 		current_page: 1,
 		page_size: 100,
-		total_pages: null,
-		prev_page: null,
-		next_page: null,
+		// total_pages: null,
+		// prev_page: null,
+		// next_page: null,
 		display: null,
 		gridHeight: 0,
 		allProjects: [],
@@ -57,7 +57,7 @@ export default {
 			})
 
 		// fetch project posts
-		const projects = await this.$prismic.api.query([this.$prismic.predicates.at('document.type', 'project_post'), this.$prismic.predicates.at('document.tags', this.active_filter)], {
+		const projects = await this.$prismic.api.query([this.$prismic.predicates.at('document.type', 'project_post')], {
 			orderings: '[document.first_publication_date desc]',
 			pageSize: this.page_size,
 			page: this.current_page,
@@ -81,14 +81,6 @@ export default {
 		return this.$store.getters.page.head
 	},
 	computed: {
-		// projects: {
-		// 	get() {
-		// 		return this.$store.getters.projects
-		// 	},
-		// 	set(value) {
-		// 		return value
-		// 	},
-		// },
 		filters() {
 			return [
 				{
@@ -113,18 +105,19 @@ export default {
 	watch: {
 		currentLocale(newValue, oldValue) {
 			console.log('currentLocale changed')
-			// this.projects()
 			this.$nextTick()
 			this.fetch()
-			this.onResize()
 		},
 		async projects(newValue, oldValue) {
 			await this.$nextTick()
-			// postAnim(this.$refs.grid.children, true)
+			postAnim(this.$refs.grid.children, true)
 		},
 	},
 	mounted() {
 		window.addEventListener('resize', this.onResize)
+		this.onResize()
+	},
+	beforeUpdate() {
 		this.onResize()
 	},
 	beforeDestroy() {
@@ -202,9 +195,6 @@ export default {
 	flex-wrap: wrap;
 	&::after {
 		display: none;
-	}
-	.title {
-		padding-left: 70px;
 	}
 }
 .projects {
@@ -303,7 +293,7 @@ export default {
 	}
 	.projects {
 		.grid {
-			min-height: initial !important;
+			max-height: initial !important;
 			flex-wrap: nowrap;
 			.project_card {
 				width: 100%;

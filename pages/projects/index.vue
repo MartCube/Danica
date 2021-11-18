@@ -22,7 +22,7 @@
 </template>
 
 <script>
-import { postAnim } from '~/assets/anime'
+// import { postAnim } from '~/assets/anime'
 export default {
 	name: 'Projects',
 	data: () => ({
@@ -116,7 +116,7 @@ export default {
 			// this.projects()
 			this.$nextTick()
 			this.fetch()
-			this.getGridHeight()
+			this.onResize()
 		},
 		async projects(newValue, oldValue) {
 			await this.$nextTick()
@@ -125,8 +125,8 @@ export default {
 	},
 	mounted() {
 		window.addEventListener('resize', this.onResize)
+		this.onResize()
 	},
-
 	beforeDestroy() {
 		window.removeEventListener('resize', this.onResize)
 	},
@@ -146,16 +146,15 @@ export default {
 				// console.log(filteredArray);
 				this.currentProjects = filteredArray
 			}
-
 			// restart results
 			this.getGridHeight()
 		},
 		onResize() {
 			// console.log(window.innerWidth);
-			if (document.querySelector('main').clientWidth > 900) {
+			if (document.body.clientWidth > 900) {
 				this.display = 4
 				this.getGridHeight()
-			} else if (document.querySelector('main').clientWidth < 900) {
+			} else if (document.body.clientWidth < 900) {
 				// console.log(2);
 				this.display = 2
 				this.getGridHeight()
@@ -164,10 +163,10 @@ export default {
 				this.getGridHeight()
 			}
 		},
-		async getGridHeight() {
+		getGridHeight() {
 			let height = 0
 
-			await this.currentProjects.forEach((element) => {
+			this.currentProjects.forEach((element) => {
 				if (Object.keys(element.data.thumbnail_image).length > 0 && element.data.thumbnail_image.dimensions.width < element.data.thumbnail_image.dimensions.height) {
 					if (this.display === 4) {
 						height += 600
@@ -186,6 +185,7 @@ export default {
 			console.log(height)
 			// return height
 			this.gridHeight = height
+			return height
 		},
 		// loadMore() {
 		// 	this.page_size += 6

@@ -171,7 +171,7 @@ export default {
 				}
 			})
 			if (this.display === 4) {
-				height = Math.ceil(height / 4 / 300) * 300
+				height = Math.ceil(height / 3 / 300) * 300
 			} else if (this.display === 2) {
 				height = Math.ceil(height / 2 / 300) * 300
 			}
@@ -211,7 +211,7 @@ export default {
 		justify-content: flex-start;
 		display: flex;
 		.project_card {
-			width: 25%;
+			width: 33.33%;
 			float: left;
 		}
 	}

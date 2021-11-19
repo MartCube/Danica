@@ -4,9 +4,9 @@
 			<ImageItem v-if="thumbnailImage.hasOwnProperty('url')" :width="thumbnailImage.dimensions.width" :height="thumbnailImage.dimensions.height" :mobile="image.thumbnail.url" :src="thumbnailImage.url" :retina="thumbnailImage.url" :alt="title" />
 			<ImageItem v-else :width="image.dimensions.width" :height="image.dimensions.height" :mobile="image.thumbnail.url" :src="image.url" :retina="image.url" :alt="title" />
 			<h2>{{ title }}</h2>
-			<div class="link">
+			<!-- <div class="link">
 				<Icon name="chevron" fill="hsl(0, 0%, 10%)" size="25px" />
-			</div>
+			</div> -->
 		</div>
 	</n-link>
 </template>

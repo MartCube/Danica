@@ -321,7 +321,7 @@ export default {
 			flex-wrap: nowrap;
 			.project_card {
 				width: 100%;
-				height: 35vh;
+				height: 65vw;
 				&.portrait {
 					height: 80vh;
 				}

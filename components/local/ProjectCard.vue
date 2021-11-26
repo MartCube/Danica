@@ -1,7 +1,7 @@
 <template>
 	<n-link :to="link" class="project_card" :class="{ portrait: thumbnailClass }">
 		<div class="image">
-			<ImageItem v-if="thumbnailImage.hasOwnProperty('url')" :width="thumbnailImage.dimensions.width" :height="thumbnailImage.dimensions.height" :mobile="thumbnailImage.url" :src="thumbnailImage.url" :retina="thumbnailImage.url" :alt="title" />
+			<ImageItem v-if="thumbnailImage.hasOwnProperty('url')" :width="thumbnailImage.dimensions.width" :height="thumbnailImage.dimensions.height" :mobile="thumbnailImage.dimensions.width > thumbnailImage.dimensions.height ? thumbnailImage.url + Thumbnail_imgIX : thumbnailImage.url" :src="thumbnailImage.url" :retina="thumbnailImage.url" :alt="title" />
 			<ImageItem v-else :width="image.dimensions.width" :height="image.dimensions.height" :mobile="image.thumbnail.url" :src="image.url" :retina="image.url" :alt="title" />
 			<h2>{{ title }}</h2>
 			<!-- <div class="link">

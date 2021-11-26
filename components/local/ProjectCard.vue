@@ -1,13 +1,23 @@
 <template>
 	<n-link :to="link" class="project_card" :class="{ portrait: thumbnailClass }">
 		<div class="image">
-			<ImageItem v-if="thumbnailImage.hasOwnProperty('url')" :width="thumbnailImage.dimensions.width" :height="thumbnailImage.dimensions.height" :mobile="thumbnailImage.dimensions.width > thumbnailImage.dimensions.height ? thumbnailImage.url + Thumbnail_imgIX : thumbnailImage.url" :src="thumbnailImage.url" :retina="thumbnailImage.url" :alt="title" />
-			<ImageItem v-else :width="image.dimensions.width" :height="image.dimensions.height" :mobile="image.thumbnail.url" :src="image.url" :retina="image.url" :alt="title" />
-			<h2>{{ title }}</h2>
+			<picture v-if="thumbnailImage.hasOwnProperty('url')">
+				<source :data-srcset="thumbnailImage.dimensions.width > thumbnailImage.dimensions.height ? thumbnailImage.url + Thumbnail_imgIX : thumbnailImage.url" media="(max-width:500px)" />
+				<source :data-srcset="thumbnailImage.url" media="(min-width:1600px)" />
+				<img :width="thumbnailImage.dimensions.width" :height="thumbnailImage.dimensions.height" :src="thumbnailImage.url" loading="lazy" :alt="title" />
+			</picture>
+			<picture v-else>
+				<source :data-srcset="image.thumbnail.url" media="(max-width:500px)" />
+				<source :data-srcset="image.url" media="(min-width:1600px)" />
+				<img :width="image.dimensions.width" :height="image.dimensions.height" :src="image.url" :alt="title" loading="lazy" />
+			</picture>
+			<!-- <ImageItem v-if="thumbnailImage.hasOwnProperty('url')" :width="thumbnailImage.dimensions.width" :height="thumbnailImage.dimensions.height" :mobile="thumbnailImage.dimensions.width > thumbnailImage.dimensions.height ? thumbnailImage.url + Thumbnail_imgIX : thumbnailImage.url" :src="thumbnailImage.url" :retina="thumbnailImage.url" :alt="title" /> -->
+			<!-- <ImageItem v-else :width="image.dimensions.width" :height="image.dimensions.height" :mobile="image.thumbnail.url" :src="image.url" :retina="image.url" :alt="title" /> -->
 			<!-- <div class="link">
 				<Icon name="chevron" fill="hsl(0, 0%, 10%)" size="25px" />
 			</div> -->
 		</div>
+		<h2>{{ title }}</h2>
 	</n-link>
 </template>
 

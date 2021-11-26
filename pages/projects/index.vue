@@ -140,6 +140,7 @@ export default {
 				this.currentProjects = filteredArray
 			}
 			// restart results
+			// this.lazySizes.init()
 			this.getGridHeight()
 		},
 		onResize() {

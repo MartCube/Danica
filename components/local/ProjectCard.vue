@@ -1,7 +1,7 @@
 <template>
 	<n-link :to="link" class="project_card" :class="{ portrait: thumbnailClass }">
 		<div class="image">
-			<ImageItem v-if="thumbnailImage.hasOwnProperty('url')" :width="thumbnailImage.dimensions.width" :height="thumbnailImage.dimensions.height" :mobile="image.thumbnail.url" :src="thumbnailImage.url" :retina="thumbnailImage.url" :alt="title" />
+			<ImageItem v-if="thumbnailImage.hasOwnProperty('url')" :width="thumbnailImage.dimensions.width" :height="thumbnailImage.dimensions.height" :mobile="thumbnailImage.url" :src="thumbnailImage.url" :retina="thumbnailImage.url" :alt="title" />
 			<ImageItem v-else :width="image.dimensions.width" :height="image.dimensions.height" :mobile="image.thumbnail.url" :src="image.url" :retina="image.url" :alt="title" />
 			<h2>{{ title }}</h2>
 			<!-- <div class="link">
@@ -53,10 +53,6 @@ export default {
 
 	display: flex;
 	flex-direction: column;
-	height: 300px;
-	&.portrait {
-		height: 600px;
-	}
 
 	.image {
 		width: 100%;
@@ -129,9 +125,6 @@ export default {
 
 @media (max-width: 900px) {
 	.project_card {
-		&.portrait {
-			height: 300px;
-		}
 		.image {
 			.link {
 				width: 100%;
@@ -144,6 +137,16 @@ export default {
 				svg {
 					width: 2rem;
 					height: 2rem;
+				}
+			}
+			picture {
+				aspect-ratio: 16 / 9;
+			}
+		}
+		&.portrait {
+			.image {
+				picture {
+					// aspect-ratio: 2 / 3;
 				}
 			}
 		}

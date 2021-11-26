@@ -9,7 +9,7 @@
 		<Title :value="$t('pages.projects.name')" />
 
 		<!-- <div class="projects"> -->
-		<div ref="grid" class="grid" :style="`max-height: ${gridHeight}px;`">
+		<div ref="grid" class="grid" :style="`max-height: ${gridHeight};`">
 			<template v-if="$fetchState.error">error</template>
 			<template v-else-if="!$fetchState.pending">
 				<ProjectCard v-for="(project, i) in currentProjects" :key="i" :data="project" />
@@ -143,39 +143,52 @@ export default {
 			this.getGridHeight()
 		},
 		onResize() {
-			// console.log(window.innerWidth);
-			if (document.body.clientWidth > 900) {
+			console.log(document.body.clientWidth);
+			if (document.body.clientWidth + 20 >= 900) {
 				this.display = 4
 				this.getGridHeight()
-			} else if (document.body.clientWidth < 900) {
+			} else if (document.body.clientWidth + 20 <= 900) {
 				// console.log(2);
 				this.display = 2
 				this.getGridHeight()
-			} else {
-				this.display = 1
-				this.getGridHeight()
-			}
+			} 
+			// else if (document.body.clientWidth <= 600) {
+			// 	this.display = 1
+			// 	this.getGridHeight()
+			// }
 		},
 		getGridHeight() {
 			let height = 0
+			let portrait = 0
 
 			this.currentProjects.forEach((element) => {
 				if (Object.keys(element.data.thumbnail_image).length > 0 && element.data.thumbnail_image.dimensions.width < element.data.thumbnail_image.dimensions.height) {
 					if (this.display === 4) {
-						height += 600
-					} else {
-						height += 300
+						height += 40
+						portrait++
+					} else if (this.display === 2) {
+						height += 60
+						portrait++
 					}
-				} else {
-					height += 300
+				} else if (this.display === 2) {
+					height += 30
+					// portrait++
+				}
+				// else if (this.display === 2) {
+				// 	height += 25
+				// }
+				else {
+					height += 20
 				}
 			})
 			if (this.display === 4) {
-				height = Math.ceil(height / 3 / 300) * 300
+				console.log(height)
+				height = `${Math.ceil(height / 3 / 20) * 20}vw`
 			} else if (this.display === 2) {
-				height = Math.ceil(height / 2 / 300) * 300
+				console.log(height)
+				height = `${Math.ceil(height / 2 / 30) * 30}vw`
 			}
-			console.log(height)
+			console.log(portrait)
 			// return height
 			this.gridHeight = height
 			return height
@@ -213,6 +226,10 @@ export default {
 		.project_card {
 			width: 33.33%;
 			float: left;
+			height: 20vw;
+			&.portrait {
+				height: 40vw;
+			}
 		}
 	}
 	button {
@@ -278,9 +295,16 @@ export default {
 		.grid {
 			min-height: auto;
 			.project_card {
-				margin-right: 0;
+				height: 30vw;
 				width: 50%;
-				height: 3;
+				margin-right: 0;
+				// aspect-ratio: 16 / 9;
+				&.portrait {
+					height: 60vw;
+					// picture {
+					// 	aspect-ratio: 2 / 3;
+					// }
+				}
 			}
 		}
 	}
@@ -297,6 +321,10 @@ export default {
 			flex-wrap: nowrap;
 			.project_card {
 				width: 100%;
+				height: 35vh;
+				&.portrait {
+					height: 80vh;
+				}
 			}
 		}
 	}

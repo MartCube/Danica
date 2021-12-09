@@ -19,10 +19,6 @@
 				</div>
 
 				<div class="links">
-					<!-- <div id="security">
-						<a href="//www.dmca.com/Protection/Status.aspx?ID=f14b3ba7-8215-40f1-af85-e8cbfc89f1a2" title="DMCA.com Protection Status" class="dmca-badge"> <img src ="https://images.dmca.com/Badges/dmca-badge-w150-5x1-09.png?ID=f14b3ba7-8215-40f1-af85-e8cbfc89f1a2"  alt="DMCA.com Protection Status" /></a>  <script src="https://images.dmca.com/Badges/DMCABadgeHelper.min.js"> </script>
-					</div> -->
-					<!-- <span>|</span> -->
 					<n-link :to="localePath('/privacy-policy')">{{ $prismic.asText(data.privacy_policy) }}</n-link>
 				</div>
 			</div>
@@ -110,13 +106,14 @@ export default {
 	position: relative;
 
 	.wrap {
-		height: calc(100vh - 160px);
+		// height: calc(100vh - 160px);
 		display: flex;
 		.image {
 			width: 50%;
 
 			display: flex;
 			position: relative;
+			max-height: 40vw;
 			picture {
 				user-select: none;
 				object-fit: cover;

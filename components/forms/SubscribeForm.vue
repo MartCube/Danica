@@ -73,6 +73,11 @@ export default {
 			color: $black;
 		}
 	}
+	.input_item {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+	}
 }
 // @media (min-width: 1700px) {
 // 	.subscribe p{
@@ -86,10 +91,10 @@ export default {
 		margin-bottom: 15px;
 	}
 }
-@media (max-width: 600px) {
-	.input_item {
-		display: flex;
-		justify-content: space-between;
-	}
-}
+// @media (max-width: 600px) {
+// 	.input_item {
+// 		display: flex;
+// 		justify-content: space-between;
+// 	}
+// }
 </style>

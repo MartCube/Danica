@@ -92,7 +92,7 @@ export default {
 			`
 			// trigger netlify function
 			try {
-				await axios.post('https://danica.ua/functions/sendmail', this.form)
+				await axios.post('https://danica-dev.netlify.app/functions/sendmail', this.form)
 				// console.log(this.form)
 			} catch (error) {
 				console.log(error)

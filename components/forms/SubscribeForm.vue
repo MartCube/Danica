@@ -46,7 +46,7 @@ export default {
 
 			// trigger netlify function
 			try {
-				await this.$axios.$post('.netlify/functions/sendmail', this.form)
+				await this.$axios.$post('https://danica.ua/.netlify/functions/sendmail', this.form)
 			} catch (error) {
 				console.log(error)
 			}

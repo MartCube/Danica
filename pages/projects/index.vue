@@ -113,16 +113,6 @@ export default {
 			postAnim(this.$refs.grid.children, true)
 		},
 	},
-	// mounted() {
-	// 	window.addEventListener('resize', this.onResize)
-	// 	this.onResize()
-	// },
-	// beforeUpdate() {
-	// 	this.onResize()
-	// },
-	// beforeDestroy() {
-	// 	window.removeEventListener('resize', this.onResize)
-	// },
 	methods: {
 		filterUpdate(filter) {
 			this.active_filter = [filter]
@@ -136,69 +126,9 @@ export default {
 						filteredArray.push(project)
 					}
 				})
-				// console.log(filteredArray);
 				this.currentProjects = filteredArray
 			}
-			// restart results
-			// this.lazySizes.init()
-			// this.getGridHeight()
 		},
-		// onResize() {
-		// 	console.log(document.body.clientWidth);
-		// 	if (document.body.clientWidth + 20 >= 900) {
-		// 		this.display = 4
-		// 		this.getGridHeight()
-		// 	} else if (document.body.clientWidth + 20 <= 900) {
-		// 		// console.log(2);
-		// 		this.display = 2
-		// 		this.getGridHeight()
-		// 	}
-		// 	// else if (document.body.clientWidth <= 600) {
-		// 	// 	this.display = 1
-		// 	// 	this.getGridHeight()
-		// 	// }
-		// },
-		// getGridHeight() {
-		// 	let height = 0
-		// 	let portrait = 0
-
-		// 	this.currentProjects.forEach((element) => {
-		// 		if (Object.keys(element.data.thumbnail_image).length > 0 && element.data.thumbnail_image.dimensions.width < element.data.thumbnail_image.dimensions.height) {
-		// 			if (this.display === 4) {
-		// 				height += 40
-		// 				portrait++
-		// 			} else if (this.display === 2) {
-		// 				height += 60
-		// 				portrait++
-		// 			}
-		// 		} else if (this.display === 2) {
-		// 			height += 30
-		// 			// portrait++
-		// 		}
-		// 		// else if (this.display === 2) {
-		// 		// 	height += 25
-		// 		// }
-		// 		else {
-		// 			height += 20
-		// 		}
-		// 	})
-		// 	if (this.display === 4) {
-		// 		console.log(height)
-		// 		height = `${Math.ceil(height / 3 / 20) * 20}vw`
-		// 	} else if (this.display === 2) {
-		// 		console.log(height)
-		// 		height = `${Math.ceil(height / 2 / 30) * 30}vw`
-		// 	}
-		// 	console.log(portrait)
-		// 	// return height
-		// 	this.gridHeight = height
-		// 	return height
-		// },
-		// loadMore() {
-		// 	this.page_size += 6
-		// 	this.gridHeight += 825
-		// 	this.$fetch()
-		// },
 	},
 }
 </script>

@@ -19,8 +19,9 @@
 					<div class="info">
 						<p>
 							<span>{{ $t('pages.project_post.service') }}:</span>
-							<n-link v-if="slice.primary.service.type === 'service_second'" :to="localePath(`/${service_link.parentUid}/${slice.primary.service.uid}`)">{{ service_link.name }}</n-link>
-							<n-link v-else :to="localePath(`/${slice.primary.service.uid}/`)">{{ service_link.name }}</n-link>
+							<prismic-rich-text class="rich_text" :field="slice.primary.service" />
+							<!-- <n-link v-if="slice.primary.service.type === 'service_second'" :to="localePath(`/${service_link.parentUid}/${slice.primary.service.uid}`)">{{ service_link.name }}</n-link> -->
+							<!-- <n-link v-else :to="localePath(`/${slice.primary.service.uid}/`)">{{ service_link.name }}</n-link> -->
 						</p>
 						<p>
 							<span>{{ $t('pages.project_post.architect') }}:</span>
@@ -30,10 +31,10 @@
 							<span>{{ $t('pages.project_post.designer') }}:</span>
 							<n-link :to="`${localePath('aboutUs')}${slice.primary.designer.uid}/`">{{ slice.primary.designer_name }}</n-link>
 						</p>
-						<p>
+						<!-- <p>
 							<span>{{ $t('pages.project_post.builder') }}:</span>
 							<n-link :to="`${localePath('aboutUs')}${slice.primary.builder.uid}/`">{{ slice.primary.builder_name }}</n-link>
-						</p>
+						</p> -->
 						<p>
 							<span>{{ $t('pages.project_post.total_square') }}:</span>
 							{{ slice.primary.square }}
@@ -54,20 +55,20 @@
 							<span>{{ $t('pages.project_post.rooms') }}:</span>
 							{{ slice.primary.rooms }}
 						</p>
-						<p>
+						<!-- <p>
 							<span>{{ $t('pages.project_post.ovelap') }}:</span>
 							{{ slice.primary.overlap }}
-						</p>
+						</p> -->
 						<p>
 							<span>{{ $t('pages.project_post.garage') }}:</span>
 							{{ slice.primary.garage }}
 						</p>
-						<p>
+						<!-- <p>
 							<span>{{ $t('pages.project_post.material') }}:</span>
 							<n-link v-if="slice.primary.material.link_type === 'Web'" :to="slice.primary.material.url"></n-link>
 							{{ slice.primary.material_name }}
-						</p>
-						<p>
+						</p> -->
+						<!-- <p>
 							<span>{{ $t('pages.project_post.architecture_cost') }}:</span>
 							{{ slice.primary.architecture_price }}
 						</p>
@@ -86,7 +87,7 @@
 						<p>
 							<span>{{ $t('pages.project_post.total_price') }}:</span>
 							{{ slice.primary.turnkey_price }}
-						</p>
+						</p> -->
 					</div>
 				</template>
 

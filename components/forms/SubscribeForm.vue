@@ -13,7 +13,7 @@ extend('email', {
 	...email,
 	message: 'email not valid',
 })
-
+const axios = require('axios')
 export default {
 	components: {
 		ValidationObserver,
@@ -46,7 +46,7 @@ export default {
 
 			// trigger netlify function
 			try {
-				await this.$axios.$post('.netlify/functions/sendmail', this.form)
+				await axios.$post('.netlify/functions/sendmail', this.form)
 			} catch (error) {
 				console.log(error)
 			}

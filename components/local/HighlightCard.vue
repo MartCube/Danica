@@ -1,29 +1,35 @@
 <template>
 	<n-link v-if="first" :to="link" class="highlight_card first">
-		<ImageItem :src="image.url" :alt="title" :width="image.dimensions.width" :height="image.dimensions.height" />
-		<div class="text">
-			<h3>{{ title }}</h3>
-			<!-- Slice Machine -->
-			<div v-for="(slice, i) in data.data.body" :key="i" class="text_slice">
-				<p v-if="slice.slice_type == 'text' && i <= 2">{{ $prismic.asText(slice.primary.text) }}</p>
-			</div>
+		<div class="image">
+			<ImageItem :src="image.url" :alt="title" :width="image.dimensions.width" :height="image.dimensions.height" />
 		</div>
-		<div class="info">
-			<div class="service">
-				<h3>service</h3>
-				<p>{{ service_data.name }}</p>
+		<div class="content">
+			<div class="text">
+				<h3>{{ title }}</h3>
+				<!-- Slice Machine -->
+				<div v-for="(slice, i) in data.data.body" :key="i" class="text_slice">
+					<p v-if="slice.slice_type == 'text' && i <= 2">{{ $prismic.asText(slice.primary.text) }}</p>
+				</div>
 			</div>
-			<div class="square">
-				<h3>square</h3>
-				<p>{{ service_data.square }}</p>
-			</div>
-			<div class="link1">
-				<Icon fill="hsl(0, 0%, 10%)" name="chevron" size="32px" />
+			<div class="info">
+				<div class="service">
+					<h3>service</h3>
+					<prismic-rich-text class="rich_text" :field="service_data.name" />
+				</div>
+				<div class="square">
+					<h3>square</h3>
+					<p>{{ service_data.square }}</p>
+				</div>
+				<div class="link1">
+					<Icon fill="hsl(0, 0%, 10%)" name="chevron" size="32px" />
+				</div>
 			</div>
 		</div>
 	</n-link>
 	<n-link v-else :to="link" class="highlight_card" :class="{ last: last }">
-		<ImageItem :width="image.dimensions.width" :height="image.dimensions.height" :src="image.url" :alt="title" />
+		<div class="image">
+			<ImageItem :width="image.dimensions.width" :height="image.dimensions.height" :src="image.url" :alt="title" />
+		</div>
 		<div class="link">
 			<Icon fill="hsl(0, 0%, 10%)" name="chevron" size="32px" />
 		</div>
@@ -90,7 +96,7 @@ export default {
 			this.serviceName(project)
 		},
 		serviceName(project) {
-			this.service_data.name = project[0].primary.material_name
+			this.service_data.name = project[0].primary.service
 		},
 		serviceSquare(project) {
 			this.service_data.square = project[0].primary.square
@@ -103,10 +109,8 @@ export default {
 $transition: all 0.35s ease;
 
 .highlight_card {
-	width: 35%;
-	height: 500px;
-	margin-bottom: 80px;
-	margin-right: 5%;
+	width: 49.5%;
+	margin-bottom: 10px;
 
 	display: flex;
 	flex-direction: column;
@@ -116,28 +120,40 @@ $transition: all 0.35s ease;
 
 	&.first {
 		width: 100%;
-		height: 560px;
 		margin-right: 0;
 
 		display: flex;
 		flex-direction: row;
 
 		position: relative;
+		.image {
+			flex-basis: 50%;
+		}
+		.content {
+			display: flex;
+			flex-direction: column;
+			justify-content: space-between;
+			align-items: flex-start;
+			position: relative;
+			flex-basis: 51%;
+		}
 
 		.info {
-			width: max-content;
-			height: 120px;
+			width: 100%;
 			padding-left: 40px;
 			background: white;
-
 			position: absolute;
-			bottom: -1px;
-			right: 50%;
-			transform: translateX(50%);
-
+			bottom: 10px;
+			right: 0;
 			display: flex;
-			align-items: center;
+			align-items: flex-start;
 			justify-content: center;
+			.service {
+				max-width: 50%;
+			}
+			.square {
+				width: 30%;
+			}
 			.service,
 			.square {
 				margin-right: 40px;
@@ -185,19 +201,9 @@ $transition: all 0.35s ease;
 			}
 		}
 	}
-	&.last {
-		width: auto;
-		flex: 1;
-		margin-right: 0;
-		.title {
-			width: 100%;
-			height: 100%;
-			max-width: 100%;
-			z-index: 4;
-		}
-		.link {
-			opacity: 1;
-		}
+	.image {
+		width: 100%;
+		height: 100%;
 	}
 	picture {
 		z-index: 0;
@@ -235,8 +241,9 @@ $transition: all 0.35s ease;
 		opacity: 0; //opacity:1
 		transition: $transition;
 	}
-	&:nth-child(even) {
-		margin-left: 150px;
+	.text {
+		overflow: hidden;
+		height: 50%;
 	}
 
 	&:hover {
@@ -245,25 +252,29 @@ $transition: all 0.35s ease;
 		}
 	}
 }
-// @media (min-width: 1700px) {
-// 	.highlight_card{
-// 		&.first .info {
-// 			height: 150px;
-// 			margin-bottom: -1px;
-// 			.service, .square{
-// 				padding-top: 10px;
-// 			}
-// 			.link1{
-// 				width: 150px;
-// 				height: inherit;
-// 			}
-// 		}
-// 	}
-// }
+
+@media (max-width: 1500px) {
+	.highlight_card {
+		.text_slice {
+			display: none;
+		}
+	}
+}
 @media (max-width: 1200px) {
 	.highlight_card {
-		width: 30%;
-		height: 25%;
+		&.first {
+			.info {
+				.square ,
+				.service {
+					h3 {
+						font-size: 1.6rem;
+						line-height: 1.3;
+						margin-bottom: 10px;
+					}
+					margin-right: 20px;
+				}
+			}
+		}
 	}
 }
 </style>

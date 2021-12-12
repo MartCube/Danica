@@ -3,7 +3,7 @@
 		<MatchMedia v-slot="{ mobile }">
 			<LatestProjects v-if="mobile" :data="data" />
 
-			<section v-else>
+			<section v-else class="highlight_projects">
 				<template v-if="!$fetchState.pending">
 					<div class="name">
 						<span>{{ data.primary.name }}</span>
@@ -54,7 +54,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-section {
+.highlight_projects {
 	margin: 0 0 2rem 0;
 	max-width: $container_max_width;
 }
@@ -65,6 +65,7 @@ section {
 		width: calc(100% - 100px);
 		display: flex;
 		flex-wrap: wrap;
+		justify-content: space-between;
 	}
 }
 </style>

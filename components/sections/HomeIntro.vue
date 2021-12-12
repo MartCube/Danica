@@ -107,10 +107,11 @@ $animation-duration: 9s;
 
 	.bg_letter {
 		grid-column: 1 / 4;
-		grid-row: 1 / 7;
+		grid-row: 1 / 9;
 		display: grid;
 		opacity: 0;
 		z-index: 0;
+		line-height: 1.3;
 		font-size: 30rem;
 		font-family: 'Home';
 		font-weight: bold;

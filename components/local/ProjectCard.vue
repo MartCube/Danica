@@ -43,7 +43,8 @@ export default {
 
 	display: flex;
 	flex-direction: column;
-
+	height: 40vw;
+	width: max-content;
 	.image {
 		width: 100%;
 		height: 100%;
@@ -51,6 +52,7 @@ export default {
 		position: relative;
 		overflow: hidden;
 		display: block;
+		z-index: 0;
 		picture {
 			width: 100%;
 			height: 100%;
@@ -85,7 +87,7 @@ export default {
 		transition: opacity 0.3s ease;
 		padding: 22px;
 		position: absolute;
-		opacity: 0;
+		// opacity: 0;
 		bottom: 0;
 		left: 0;
 		z-index: 2;
@@ -131,13 +133,6 @@ export default {
 			}
 			picture {
 				aspect-ratio: 16 / 9;
-			}
-		}
-		&.portrait {
-			.image {
-				picture {
-					// aspect-ratio: 2 / 3;
-				}
 			}
 		}
 		h2 {

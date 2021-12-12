@@ -58,8 +58,12 @@ export default {
 	}
 }
 @media (max-width: 900px) {
-	.content .project_slide h2 {
-		padding: 20px 40px;
+	.content .project_slide {
+		width: max-content;
+		height: 15rem;
+		h2 {
+			padding: 20px 40px;
+		}
 	}
 }
 </style>

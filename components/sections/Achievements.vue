@@ -61,8 +61,8 @@ export default {
 <style lang="scss" scoped>
 .achievements {
 	max-width: $container_max_width;
+	padding-bottom: 3rem;
 	.content {
-		height: 500px;
 		display: flex;
 		flex-direction: column;
 		position: relative;
@@ -106,7 +106,7 @@ export default {
 		}
 		.image {
 			position: absolute;
-			width: 75%;
+			width: 65%;
 			top: 0;
 			right: 0;
 			z-index: -1;
@@ -137,30 +137,15 @@ export default {
 					}
 				}
 			}
-		}
-	}
-}
-@media (max-width: 500px) {
-	.achievements {
-		.content {
-			.text {
-				flex-wrap: wrap;
-				p {
-					margin-top: 3rem;
-					order: 2;
-				}
-				.counter-wrapper {
-					order: 1;
-					width: 100%;
-					flex-direction: column;
-					.counter {
-						margin-right: 1rem;
-					}
-				}
+			.image {
+				width: 100%;
+				top: 20%;
+				height: 40%;
 			}
 		}
 	}
 }
+
 @media (max-width: 900px) {
 	.achievements {
 		.content {
@@ -186,11 +171,36 @@ export default {
 					}
 				}
 			}
-			img {
+			.image {
 				width: 100%;
-				height: 260px;
-				top: initial;
-				bottom: 0;
+				height: 30%;
+				top: 10%;
+				// bottom: 0;
+			}
+		}
+	}
+}
+
+@media (max-width: 500px) {
+	.achievements {
+		.content {
+			.text {
+				flex-wrap: wrap;
+				p {
+					margin-top: 3rem;
+					order: 2;
+				}
+				.counter-wrapper {
+					order: 1;
+					width: 100%;
+					flex-direction: column;
+					.counter {
+						margin-right: 1rem;
+					}
+				}
+			}
+			.image {
+				height: 41%;
 			}
 		}
 	}

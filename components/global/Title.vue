@@ -31,7 +31,13 @@ export default {
 	text-transform: capitalize;
 	font-size: 4rem;
 }
+.projects .title {
+	padding-left: 70px;
+}
 @media (max-width: 900px) {
+	.projects .title {
+		padding-left: 0;
+	}
 	.title {
 		height: initial;
 		margin: 40px 0;

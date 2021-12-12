@@ -19,8 +19,7 @@
 					<div class="info">
 						<p>
 							<span>{{ $t('pages.project_post.service') }}:</span>
-							<n-link v-if="slice.primary.service.type === 'service_second'" :to="localePath(`/${service_link.parentUid}/${slice.primary.service.uid}`)">{{ service_link.name }}</n-link>
-							<n-link v-else :to="localePath(`/${slice.primary.service.uid}/`)">{{ service_link.name }}</n-link>
+							<prismic-rich-text class="rich_text" :field="slice.primary.service" />
 						</p>
 						<p>
 							<span>{{ $t('pages.project_post.architect') }}:</span>
@@ -29,10 +28,6 @@
 						<p>
 							<span>{{ $t('pages.project_post.designer') }}:</span>
 							<n-link :to="`${localePath('aboutUs')}${slice.primary.designer.uid}/`">{{ slice.primary.designer_name }}</n-link>
-						</p>
-						<p>
-							<span>{{ $t('pages.project_post.builder') }}:</span>
-							<n-link :to="`${localePath('aboutUs')}${slice.primary.builder.uid}/`">{{ slice.primary.builder_name }}</n-link>
 						</p>
 						<p>
 							<span>{{ $t('pages.project_post.total_square') }}:</span>
@@ -55,37 +50,8 @@
 							{{ slice.primary.rooms }}
 						</p>
 						<p>
-							<span>{{ $t('pages.project_post.ovelap') }}:</span>
-							{{ slice.primary.overlap }}
-						</p>
-						<p>
 							<span>{{ $t('pages.project_post.garage') }}:</span>
 							{{ slice.primary.garage }}
-						</p>
-						<p>
-							<span>{{ $t('pages.project_post.material') }}:</span>
-							<n-link v-if="slice.primary.material.link_type === 'Web'" :to="slice.primary.material.url"></n-link>
-							{{ slice.primary.material_name }}
-						</p>
-						<p>
-							<span>{{ $t('pages.project_post.architecture_cost') }}:</span>
-							{{ slice.primary.architecture_price }}
-						</p>
-						<p>
-							<span>{{ $t('pages.project_post.house_cost') }}:</span>
-							{{ slice.primary.house_price }}
-						</p>
-						<p>
-							<span>{{ $t('pages.project_post.design_cost') }}:</span>
-							{{ slice.primary.design_price }}
-						</p>
-						<p>
-							<span>{{ $t('pages.project_post.renovation_cost') }}:</span>
-							{{ slice.primary.renovation_price }}
-						</p>
-						<p>
-							<span>{{ $t('pages.project_post.total_price') }}:</span>
-							{{ slice.primary.turnkey_price }}
 						</p>
 					</div>
 				</template>
@@ -93,8 +59,16 @@
 				<template v-else-if="slice.slice_type == 'image'">
 					<template v-if="slice.primary.image !== undefined">
 						<ImageItem :width="slice.primary.image.dimensions.width" :height="slice.primary.image.dimensions.height" :src="slice.primary.image.url" :mobile="slice.primary.image.mobile.url" :retina="slice.primary.image.hasOwnProperty('retina') ? slice.primary.image.retina.url : ''" :alt="slice.primary.image.alt" />
-						<span class="description">"{{ slice.primary.image.alt }}"</span>
 					</template>
+				</template>
+
+				<template v-else-if="slice.slice_type == 'gallery'">
+					<CoolLightBox :items="getImagesArray(slice.items)" :index="gallery" @close="gallery = null"></CoolLightBox>
+					<div class="wrapper">
+						<figure v-for="(item, y) in slice.items" :key="y" @click="gallery = y">
+							<ImageItem :src="`${item.image.url}fit=clip`" :width="item.image.dimensions.width" :height="item.image.dimensions.height" :alt="item.image.alt !== null ? item.image.alt : 'alt'" />
+						</figure>
+					</div>
 				</template>
 
 				<template v-else-if="slice.slice_type == 'image_slider'">
@@ -133,8 +107,14 @@
 </template>
 
 <script>
+import CoolLightBox from 'vue-cool-lightbox'
+import 'vue-cool-lightbox/dist/vue-cool-lightbox.min.css'
+
 export default {
 	name: 'ProjectPost',
+	components: {
+		CoolLightBox,
+	},
 	data: () => ({
 		data: null,
 		url: '',
@@ -144,6 +124,7 @@ export default {
 			// currentUid: String,
 		},
 		projectInfo: [],
+		gallery: null,
 	}),
 	async fetch() {
 		// console.log('project post fetch')
@@ -165,9 +146,9 @@ export default {
 					return false
 				})
 				// console.log(this.projectInfo.length);
-				if (this.projectInfo.length > 0) {
-					this.service_url()
-				}
+				// if (this.projectInfo.length > 0) {
+				// 	this.service_url()
+				// }
 			})
 			.catch((error) => {
 				console.log(error)
@@ -229,7 +210,14 @@ export default {
 				return false
 			})
 		},
-
+		getImagesArray(dataArray) {
+			const imageUrls = []
+			dataArray.forEach((item) => {
+				imageUrls.push(item.image.url)
+			})
+			console.log(imageUrls)
+			return imageUrls
+		},
 		openModal(video) {
 			this.$store.dispatch('bindModalVideo', { data: video, open: true })
 		},
@@ -258,7 +246,54 @@ export default {
 	& > * {
 		margin-bottom: 25px;
 	}
-	overflow-x: hidden;
+	// overflow-x: hidden;
+	.gallery {
+		.wrapper {
+			display: grid;
+			grid-template-columns: repeat(4, calc(20vw - 20px));
+			grid-template-rows: repeat(5, 23vw);
+			grid-gap: 20px;
+			figure {
+				display: flex;
+				transition: width 0.2s linear;
+				picture {
+					object-fit: cover;
+				}
+				&:nth-child(1) {
+					grid-column: 1 / 3;
+					grid-row: 1 / 3;
+				}
+				&:nth-child(2) {
+					grid-column: 3 / 5;
+					grid-row: 1 / 1;
+				}
+				&:nth-child(3) {
+					grid-column: 3 / 5;
+					grid-row: 2 / 2;
+				}
+				&:nth-child(4) {
+					grid-column: 1 / 3;
+					grid-row: 3 / 5;
+				}
+				&:nth-child(5) {
+					grid-column: 3 / 5;
+					grid-row: 3 / 3;
+				}
+				&:nth-child(6) {
+					grid-column: 3 / 5;
+					grid-row: 4 / 4;
+				}
+				&:nth-child(7) {
+					grid-column: 1 / 3;
+					grid-row: 5 / 5;
+				}
+				&:nth-child(8) {
+					grid-column: 3 / 5;
+					grid-row: 5 / 5;
+				}
+			}
+		}
+	}
 
 	.intro {
 		width: 100%;
@@ -296,13 +331,19 @@ export default {
 		// max-width: 400px;
 		display: flex;
 		flex-wrap: wrap;
+		p {
+			display: flex;
+			margin: 10px 0;
+			padding-right: 1%;
+		}
+		.rich_text p {
+			font-size: inherit;
+		}
 		p,
 		a {
-			padding: 10px 0;
 			font-weight: bold;
-			text-transform: capitalize;
 			color: $black;
-			font-size: 1.5rem;
+			font-size: 1.2rem;
 			line-height: 1;
 			width: 50%;
 			span {
@@ -311,6 +352,7 @@ export default {
 				font-weight: normal;
 				border-left: 5px solid $primary;
 				padding-left: 0.5rem;
+				height: fit-content;
 			}
 		}
 		a {
@@ -334,7 +376,7 @@ export default {
 	}
 
 	.image {
-		width: 75%;
+		width: 63%;
 		display: flex;
 		flex-direction: column;
 		align-items: center;
@@ -387,7 +429,7 @@ export default {
 	}
 
 	.image_slider {
-		width: 100%;
+		width: -webkit-fill-available;
 		overflow-x: auto;
 		margin-bottom: 2rem;
 		padding-bottom: 2rem;
@@ -419,25 +461,38 @@ export default {
 			}
 		}
 		picture {
-			max-width: 800px;
-			height: 450px;
+			max-width: 50vw;
+			height: 30vw;
 			z-index: 7;
 		}
 	}
 }
 
-// @media (min-width: 1700px) {
-// 	.project_post{
-// 		.intro .title{
-// 			font-size: 4rem;
-// 			bottom: -1px;
-
-// 		}
-// 		.info p {
-// 			font-size: 1.8rem;
-// 		}
-// 	}
-// }
+@media (max-width: 1233px) {
+	.project_post {
+		.gallery {
+			.wrapper {
+				grid-template-columns: repeat(4, calc(18vw - 20px));
+			}
+		}
+	}
+}
+@media (max-width: 1020px) {
+	.project_post {
+		.info {
+			p {
+				flex-direction: column;
+			}
+			a {
+				width: auto;
+			}
+			p span,
+			a span {
+				margin-bottom: 0.7rem;
+			}
+		}
+	}
+}
 @media (max-width: 900px) {
 	.container::after {
 		z-index: -1;
@@ -462,12 +517,56 @@ export default {
 			margin: 40px 0;
 			padding-left: 55px;
 
-			p, a {
+			p,
+			a {
 				font-size: 1rem;
 				width: 100%;
 			}
 		}
 
+		.slice.gallery {
+			margin: 0 40px;
+			.wrapper {
+				grid-template-columns: repeat(1, 89vw);
+				grid-template-rows: repeat(10, 55vw);
+				grid-gap: 20px;
+				figure {
+					display: flex;
+					&:nth-child(1) {
+						grid-column: 1;
+						grid-row: 1 / 3;
+					}
+					&:nth-child(2) {
+						grid-column: 1;
+						grid-row: 3;
+					}
+					&:nth-child(3) {
+						grid-column: 1;
+						grid-row: 4;
+					}
+					&:nth-child(4) {
+						grid-column: 1;
+						grid-row: 5 / 7;
+					}
+					&:nth-child(5) {
+						grid-column: 1;
+						grid-row: 7;
+					}
+					&:nth-child(6) {
+						grid-column: 1;
+						grid-row: 8;
+					}
+					&:nth-child(7) {
+						grid-column: 1;
+						grid-row: 9;
+					}
+					&:nth-child(8) {
+						grid-column: 1;
+						grid-row: 10;
+					}
+				}
+			}
+		}
 		.slice {
 			margin: 0;
 			margin-bottom: 1rem;

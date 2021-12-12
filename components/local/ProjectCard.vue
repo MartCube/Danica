@@ -2,9 +2,9 @@
 	<n-link :to="link" class="project_card">
 		<div class="image">
 			<ImageItem :width="image.dimensions.width" :height="image.dimensions.height" :mobile="image.thumbnail.url" :src="image.url" :retina="image.url" :alt="title" />
-			<div class="link">
+			<!-- <div class="link">
 				<Icon name="chevron" fill="hsl(0, 0%, 10%)" size="25px" />
-			</div>
+			</div> -->
 		</div>
 		<h2>{{ title }}</h2>
 	</n-link>
@@ -23,6 +23,9 @@ export default {
 		image() {
 			return this.data.data.main_image
 		},
+		Thumbnail_imgIX() {
+			return `&fit=crop&w=1200&h=600`
+		},
 		title() {
 			return this.$prismic.asText(this.data.data.title)
 		},
@@ -35,30 +38,19 @@ export default {
 
 <style lang="scss" scoped>
 .project_card {
-	width: 300px;
 	cursor: pointer;
+	position: relative;
 
 	display: flex;
 	flex-direction: column;
 
 	.image {
-		width: inherit;
-		height: 300px;
-
+		width: 100%;
+		height: 100%;
 		user-select: none;
 		position: relative;
 		overflow: hidden;
-
-		.overlay {
-			position: absolute;
-			top: 0;
-			right: 0;
-			width: 100%;
-			height: 100%;
-			z-index: -1;
-			background: $black;
-			opacity: 0.2;
-		}
+		display: block;
 		picture {
 			width: 100%;
 			height: 100%;
@@ -66,14 +58,14 @@ export default {
 			position: relative;
 			object-fit: cover;
 			object-position: center;
-			transition: all 0.75s ease;
+			transition: all 0.1s ease;
 			&.lazyload,
 			&.lazyloading {
 				opacity: 0;
 			}
 			&.lazyloaded {
 				opacity: 1;
-				transition: all 0.75s ease;
+				transition: all 0.3s ease;
 			}
 		}
 		.link {
@@ -86,52 +78,44 @@ export default {
 			background: $primary;
 
 			opacity: 0;
-			transition: all 0.3s ease;
+			transition: opacity 0.3s ease;
 		}
 	}
 	h2 {
-		margin: 20px 40px;
-		padding-top: 20px;
-		position: relative;
+		transition: opacity 0.3s ease;
+		padding: 22px;
+		position: absolute;
+		opacity: 0;
+		bottom: 0;
+		left: 0;
+		z-index: 2;
+		color: $white;
+		text-transform: lowercase;
 		font-size: 1.8rem;
 		// text-transform: capitalize;
 		&::first-letter {
 			text-transform: capitalize;
 		}
-		&::after {
-			content: '';
-			position: absolute;
-			width: 10%;
-			background-color: $black;
-			height: 3px;
-			top: 0;
-			left: 0;
-		}
 	}
 
 	&:hover {
 		.image {
-			img {
-				transform: scale(1.1);
+			picture {
+				filter: brightness(0.4);
 			}
 			.link {
 				opacity: 1;
 			}
 		}
+		h2 {
+			opacity: 1;
+		}
 	}
 }
 
-// @media (min-width: 1700px) {
-// 	.project_card h2{
-// 		font-size: 2rem;
-// 	}
-// }
-
 @media (max-width: 900px) {
 	.project_card {
-		width: 40vw;
 		.image {
-			height: auto;
 			.link {
 				width: 100%;
 				height: 100%;
@@ -145,21 +129,31 @@ export default {
 					height: 2rem;
 				}
 			}
+			picture {
+				aspect-ratio: 16 / 9;
+			}
+		}
+		&.portrait {
+			.image {
+				picture {
+					// aspect-ratio: 2 / 3;
+				}
+			}
 		}
 		h2 {
-			margin: 20px;
+			opacity: 1;
+			margin-left: 20px;
 			font-size: 1.4rem;
 		}
 	}
 }
-@media (max-width: 500px) {
-	.projects .grid {
-		width: 90%;
-	}
+@media (max-width: 600px) {
 	.project_card {
-		width: 37vw;
 		h2 {
-			margin: 20px;
+			z-index: 1;
+			margin: 0;
+			padding: 15px 40px;
+			background-color: rgba(27, 27, 27, 0.6);
 			font-size: 1.1rem;
 		}
 	}

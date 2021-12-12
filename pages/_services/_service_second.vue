@@ -112,6 +112,7 @@ export default {
 		}
 		.image {
 			width: 50%;
+			height: 30%;
 			picture {
 				position: relative;
 				// max-width: 800px;
@@ -127,15 +128,6 @@ export default {
 	max-width: $container_max_width;
 }
 
-@media (min-width: 2000px) {
-	.container {
-		.image_text {
-			.image {
-				height: 40vh;
-			}
-		}
-	}
-}
 @media (max-width: 900px) {
 	.rich_text {
 		padding-right: 1rem;

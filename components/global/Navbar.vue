@@ -541,7 +541,7 @@ $transition: all 0.35s ease;
 // 	}
 // }
 
-@media (max-width: 1120px) {
+@media (max-width: 1200px) {
 	.navbar {
 		height: 60px;
 		padding: 0 40px;

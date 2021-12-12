@@ -117,7 +117,14 @@ section{
 	}
 
 }
-
+.info {
+	.rich_text {
+		p {
+			margin-bottom: 0;
+			line-height: 1;
+		}
+	}
+}
 .rich_text{
 	p {
 		color: $black;
@@ -129,6 +136,7 @@ section{
 		font-weight: inherit;
 		font-size: inherit;
 		line-height: inherit;
+		text-decoration: underline;
 		margin-bottom: 10px;
 		&:hover{
 			text-decoration: underline;

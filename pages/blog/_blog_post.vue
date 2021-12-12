@@ -24,7 +24,7 @@
 
 				<template v-else-if="slice.slice_type == 'image'">
 					<ImageItem :src="slice.primary.image.url" :mobile="slice.primary.image.mobile.url" :alt="slice.primary.image.alt" :height="slice.primary.image.dimensions.height" :width="slice.primary.image.dimensions.width" :retina="slice.primary.image.hasOwnProperty('retina') ? slice.primary.image.retina.url : ''"/>
-					<span class="description">"{{ slice.primary.image.alt }}"</span>
+					<!-- <span class="description">"{{ slice.primary.image.alt }}"</span> -->
 				</template>
 
 				<template v-else-if="slice.slice_type == 'image_slider'">

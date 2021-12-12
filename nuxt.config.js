@@ -26,7 +26,12 @@ export default {
 			},
 			{
 				property: 'fb:app_id',
-				content: '284462626583392',
+				content: '3139600679444222',
+			},
+			{
+				hid: 'facebook-domain-verification',
+				name: 'facebook-domain-verification',
+				content: 'buglyrj0r27njavajrqvn70cexub5h',
 			},
 		],
 		link: [{ rel: 'icon', type: 'image/png', href: '/favicon.png' }],

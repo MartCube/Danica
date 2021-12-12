@@ -110,7 +110,7 @@ $animation-duration: 9s;
 		grid-row: 1 / 7;
 		display: grid;
 		opacity: 0;
-		z-index: 6;
+		z-index: 0;
 		font-size: 30rem;
 		font-family: 'Home';
 		font-weight: bold;
@@ -142,10 +142,6 @@ $animation-duration: 9s;
 				font-size: 4rem;
 				line-height: 1.2;
 			}
-		}
-
-		button {
-			margin: 2rem 0;
 		}
 	}
 

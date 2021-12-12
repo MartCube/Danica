@@ -58,7 +58,7 @@ export default {
 
 		// fetch project posts
 		const projects = await this.$prismic.api.query([this.$prismic.predicates.at('document.type', 'project_post')], {
-			orderings: '[document.first_publication_date desc]',
+			orderings: '[document.last_publication_date desc]',
 			pageSize: this.page_size,
 			page: this.current_page,
 			lang: this.$i18n.localeProperties.prismic,

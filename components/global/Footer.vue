@@ -113,7 +113,6 @@ export default {
 
 			display: flex;
 			position: relative;
-			max-height: 40vw;
 			picture {
 				user-select: none;
 				object-fit: cover;
@@ -188,11 +187,15 @@ export default {
 		}
 	}
 }
-// @media (min-width: 1700px) {
-// 	.footer .policy .links p {
-// 		font-size: 1.5rem;
-// 	}
-// }
+@media (min-width: 1700px) {
+	.footer {
+		.wrap {
+			.image {
+				max-height: 40vw;
+			}
+		}
+	}
+}
 @media (max-width: 900px) {
 	.footer {
 		.wrap {

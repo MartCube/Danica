@@ -36,14 +36,8 @@ export default {
 				j.async = true
 				j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl
 				f.parentNode.insertBefore(j, f)
-			})(window, document, 'script', 'dataLayer', 'GTM-T5X9PFF')
+			})(window, document, 'script', 'dataLayer', 'GTM-TP987N2')
 		},
-		security() {
-			const script = document.createElement('script')
-			script.async = true
-			script.src = 'https://images.dmca.com/Badges/DMCABadgeHelper.min.js'
-			document.querySelector('#security').appendChild(script)
-		}
 	},
 }
 </script>

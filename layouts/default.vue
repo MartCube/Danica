@@ -39,15 +39,6 @@ export default {
 			})(window, document, 'script', 'dataLayer', 'GTM-TP987N2')
 
 		},
-			// <!-- Global site tag (gtag.js) - Google Analytics -->
-// <script async src="https://www.googletagmanager.com/gtag/js?id=UA-191786223-1"></script>
-// <script>
-//   window.dataLayer = window.dataLayer || [];
-//   function gtag(){dataLayer.push(arguments);}
-//   gtag('js', new Date());
-
-//   gtag('config', 'UA-191786223-1');
-// </script>
 	},
 }
 </script>

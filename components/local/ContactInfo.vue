@@ -9,6 +9,10 @@
 				<h4>{{ $t('pages.contact.find_us') }}</h4>
 				<a :href="map_url" rel="nofollow" target="_blank"> <Icon name="location" size="20px" />{{ $t('pages.contact.adress') }}</a>
 			</div>
+			<div class="location">
+				<h4>{{ $t('pages.contact.juridical') }}</h4>
+				<a rel="nofollow" target="_blank"> <Icon name="location" size="20px" />{{ $t('pages.contact.juridical_adress') }}</a>
+			</div>
 			<div class="smedias">
 				<h4>{{ $t('pages.contact.follow_us') }}</h4>
 				<div class="icons">

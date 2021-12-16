@@ -151,13 +151,14 @@ section{
 		list-style-type: none;
 		li {
 			margin-top: 20px;
-			display: flex;
+			display: inline-block;
 			line-height: 1.8rem;
 			font-size: 1.2rem;
 			&::before {
 				content: '';
 				margin-top: 10px;
 				margin-right: 20px;
+				float: left;
 				min-width: 20px;
 				height: 5px;
 				background: $primary;

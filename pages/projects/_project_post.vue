@@ -595,6 +595,9 @@ export default {
 			}
 			picture {
 				margin-bottom: 40px;
+				width: 100%;
+				max-width: 100vw;
+				height: 65vw;
 			}
 		}
 

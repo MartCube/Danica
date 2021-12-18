@@ -249,9 +249,9 @@ export default {
 	.projects {
 		.grid {
 			max-height: initial !important;
-			flex-wrap: nowrap;
+			flex-wrap: wrap;
 			.project_card {
-				width: 100%;
+				width: 100%vw;
 				height: 65vw;
 				&.portrait {
 					height: 80vh;

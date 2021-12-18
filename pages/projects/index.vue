@@ -251,7 +251,7 @@ export default {
 			max-height: initial !important;
 			flex-wrap: wrap;
 			.project_card {
-				width: 100%vw;
+				width: 100vw;
 				height: 65vw;
 				&.portrait {
 					height: 80vh;

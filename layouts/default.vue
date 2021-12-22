@@ -23,7 +23,7 @@ export default {
 		setTimeout(() => {
 			this.initGTM()
 			// this.security()
-		}, 5000)
+		}, 8000)
 	},
 	methods: {
 		initGTM() {

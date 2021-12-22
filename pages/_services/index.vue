@@ -23,6 +23,15 @@
 					</div>
 					<prismic-rich-text v-for="(item, key) in slice.items" :key="key" class="rich_text" :field="item.text" />
 				</section>
+				<section v-else-if="slice.slice_type == 'image_text_cta'" class="image_text_cta">
+					<div class="image">
+						<ImageItem :src="slice.primary.image.url" :mobile="slice.primary.image.mobile.url" :alt="slice.primary.image.alt" :width="slice.primary.image.dimensions.width" :height="slice.primary.image.dimensions.height" :retina="slice.primary.image.hasOwnProperty('retina') ? slice.primary.image.retina.url : ''" />
+					</div>
+					<div class="content">
+						<prismic-rich-text v-for="(item, key) in slice.items" :key="key" class="rich_text" :field="item.text" />
+						<ButtonItem @click.native="openModal"> {{ slice.primary.button_text }} </ButtonItem>
+					</div>
+				</section>
 			</div>
 		</template>
 	</div>
@@ -74,6 +83,11 @@ export default {
 	mounted() {
 		this.$store.dispatch('bindNavbarTransparent', true)
 	},
+	methods: {
+		openModal() {
+			this.$store.dispatch('bindModalContact', true)
+		},
+	},
 }
 </script>
 
@@ -81,12 +95,27 @@ export default {
 .container {
 	padding: 0;
 	padding-bottom: 80px;
-	.image_text {
+	.image_text,
+	.image_text_cta {
 		display: flex;
 		margin: 25px 0;
 		width: 100%;
 		align-items: center;
 		max-width: $container_max_width;
+		.content {
+			padding: 25px 30px 55px;
+			display: flex;
+			justify-content: flex-start;
+			flex-wrap: wrap;
+			width: 50%;
+			.rich_text {
+				padding: 0;
+				width: 100%;
+			}
+			button {
+				margin-top: 1rem;
+			}
+		}
 		.rich_text {
 			display: flex;
 			flex-direction: column;
@@ -119,12 +148,19 @@ export default {
 }
 
 @media (max-width: 900px) {
+	.container .image_text_cta {
+		.content {
+			width: 100%;
+			padding: 30px 30px 0 55px;
+		}
+	}
 	.rich_text {
 		padding-right: 1rem;
 		padding-left: 55px;
 	}
 	.container {
-		.image_text {
+		.image_text,
+		.image_text_cta {
 			flex-direction: column;
 
 			.rich_text {

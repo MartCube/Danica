@@ -22,6 +22,7 @@
 </template>
 
 <script>
+import lazySizes from 'lazysizes'
 import { postAnim } from '~/assets/anime'
 export default {
 	name: 'Projects',
@@ -108,9 +109,10 @@ export default {
 			this.$nextTick()
 			this.fetch()
 		},
-		async projects(newValue, oldValue) {
+		async currentProjects(newValue, oldValue) {
 			await this.$nextTick()
 			postAnim(this.$refs.grid.children, true)
+			lazySizes.loader.checkElems()
 		},
 	},
 	methods: {

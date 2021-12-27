@@ -1,16 +1,22 @@
 <template>
 	<n-link :to="link" class="project_card">
 		<div class="image">
-			<ImageItem :width="image.dimensions.width" :height="image.dimensions.height" :mobile="image.thumbnail.url" :src="image.url" :retina="image.url" :alt="title" />
+			<!-- <ImageItem :width="image.dimensions.width" :height="image.dimensions.height" :mobile="image.thumbnail.url" :src="image.url" :retina="image.url" :alt="title" /> -->
 			<!-- <div class="link">
 				<Icon name="chevron" fill="hsl(0, 0%, 10%)" size="25px" />
 			</div> -->
+			<picture>
+				<source :data-srcset="image.thumbnail.url" media="(max-width:500px)" />
+				<!-- <source :data-srcset="image.url" media="(min-width:1600px)" /> -->
+				<img :width="image.dimensions.width" :height="image.dimensions.height" :src="image.url" loading="lazy" class="lazyload" :alt="title" />
+			</picture>
 		</div>
 		<h2>{{ title }}</h2>
 	</n-link>
 </template>
 
 <script>
+
 export default {
 	name: 'ProjectCard',
 	props: {

@@ -1,6 +1,6 @@
 <template>
 	<div class="contact_form">
-		<ValidationObserver v-if="!message" ref="contact" tag="form" autocomplete="off" @submit.prevent="Submit()">
+		<ValidationObserver  ref="contact" tag="form" autocomplete="off" @submit.prevent="Submit()">
 			<h2 class="title">{{ data.title }}</h2>
 			<InputItem name="name" :label="data.name" rules="required" @getValue="getName" />
 			<InputItem name="number" :label="data.number" rules="min:9|required" @getValue="getNumber" />
@@ -9,10 +9,10 @@
 			<ButtonItem white> {{ data.submit }} <Icon name="mail" /> </ButtonItem>
 		</ValidationObserver>
 
-		<div v-else class="message">
+		<!-- <div v-else class="message">
 			<prismic-rich-text class="rich_text" :field="data.response" />
 			<ButtonItem white> {{ data.goback }} </ButtonItem>
-		</div>
+		</div> -->
 	</div>
 </template>
 
@@ -99,7 +99,9 @@ export default {
 			}
 			this.loading = false
 			console.log('submited')
-			this.message = !this.message
+			this.$router.push('/success/')
+			this.$store.dispatch('bindModalContact', false)
+			// this.message = !this.message
 		},
 	},
 }

@@ -53,6 +53,8 @@ export default {
 
 			this.loading = false
 			console.log('submited')
+			this.$router.push('/success/')
+			this.$store.dispatch('bindModalContact', false)
 		},
 	},
 }

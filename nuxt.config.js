@@ -190,6 +190,11 @@ export default {
 				ru: '/privacy-policy',
 				ua: '/privacy-policy',
 			},
+			success: {
+				en: '/success',
+				ru: '/success',
+				ua: '/success',
+			},
 		},
 	},
 

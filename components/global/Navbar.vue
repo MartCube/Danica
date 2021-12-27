@@ -192,7 +192,7 @@ $transition: all 0.35s ease;
 	flex-wrap: wrap;
 	position: fixed;
 	top: 0;
-	z-index: 10;
+	z-index: 15;
 	user-select: none;
 
 	background: white;

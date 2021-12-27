@@ -113,6 +113,8 @@ export default {
 		.image {
 			width: 50%;
 			height: 30%;
+			position: relative;
+			z-index: 10;
 			picture {
 				position: relative;
 				// max-width: 800px;

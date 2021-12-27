@@ -83,7 +83,7 @@ button {
 			left: 0;
 			z-index: -1;
 
-			width: 100%;
+			width: 5%;
 			height: 0; // height: 100%;
 			background-color: $primary;
 			transition: all 0.2s ease;

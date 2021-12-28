@@ -266,7 +266,7 @@ $animation-duration: 9s;
 			opacity: 0; // opacity: 1
 			transform: translateX(-10px);
 			text-transform: none;
-			line-height: initial;
+			line-height: 4.5vw;
 			font-weight: 700;
 			font-size: 4.5vw;
 			min-width: 1rem;

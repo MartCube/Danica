@@ -57,15 +57,15 @@ button {
 
 			transition: all 0.2s ease;
 		}
-		&.white {
-			color: $white;
-			svg {
-				fill: $white;
-			}
-			a {
-				color: inherit;
-			}
-		}
+		// &.white {
+		// 	color: $white;
+		// 	svg {
+		// 		fill: $white;
+		// 	}
+		// 	a {
+		// 		color: inherit;
+		// 	}
+		// }
 	}
 
 	transition: all 0.2s ease;
@@ -83,7 +83,7 @@ button {
 			left: 0;
 			z-index: -1;
 
-			width: 5%;
+			width: 100%;
 			height: 0; // height: 100%;
 			background-color: $primary;
 			transition: all 0.2s ease;

@@ -105,6 +105,10 @@ $animation-duration: 9s;
 		display: none;
 	}
 
+	button {
+		margin-top: 2rem;
+	}
+
 	.bg_letter {
 		grid-column: 1 / 4;
 		grid-row: 1 / 9;
@@ -222,7 +226,7 @@ $animation-duration: 9s;
 		margin-top: 2rem;
 		position: relative;
 		overflow: hidden;
-		height: 8rem;
+		height: 5vw;
 		z-index: 10;
 		.first {
 			z-index: 2;

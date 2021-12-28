@@ -66,7 +66,7 @@ export default {
 	},
 	service: {
 		buton_contact_form: 'Оправить',
-		button_all_projects: 'все проекты',
+		button_all_projects: 'Все проекты',
 		button_all_posts: 'Блог',
 		form: {
 			write_us: 'Напишите нам',

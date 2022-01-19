@@ -38,7 +38,7 @@ export default {
 
 	width: 100%;
 	height: 100vh;
-	z-index: 11;
+	z-index: 31;
 	position: fixed;
 	top: 0;
 	left: 0;

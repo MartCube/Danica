@@ -80,14 +80,16 @@
 				</template>
 
 				<template v-else-if="slice.slice_type == 'image_text'">
-					<div class="image_text">
-						<template v-if="slice.primary.image !== 'undefined'">
-							<ImageItem :src="slice.primary.image.url" :mobile="slice.primary.image.mobile.url" :width="slice.primary.image.dimensions.width" :height="slice.primary.image.dimensions.height" :retina="slice.primary.image.hasOwnProperty('retina') ? slice.primary.image.retina.url : ''" :alt="slice.primary.image.alt !== null ? slice.primary.image.alt : 'alt'" />
-						</template>
-						<div class="text">
-							<p v-for="(item, key) in slice.items" :key="key">{{ $prismic.asText(item.text) }}</p>
+					<!-- <div class="image_text"> -->
+					<template v-if="slice.primary.image !== 'undefined'">
+						<div class="image">
+							<ImageItem :src="slice.primary.image.url" :mobile="slice.primary.image.mobile.url" :alt="slice.primary.image.alt" :width="slice.primary.image.dimensions.width" :height="slice.primary.image.dimensions.height" :retina="slice.primary.image.hasOwnProperty('retina') ? slice.primary.image.retina.url : ''" />
 						</div>
+					</template>
+					<div class="content">
+						<p v-for="(item, key) in slice.items" :key="key">{{ $prismic.asText(item.text) }}</p>
 					</div>
+					<!-- </div> -->
 				</template>
 
 				<template v-else-if="slice.slice_type == 'video'">
@@ -101,6 +103,15 @@
 						</div>
 					</div>
 				</template>
+				<section v-else-if="slice.slice_type == 'image_text_cta'" class="image_text_cta">
+					<div class="image">
+						<ImageItem :src="slice.primary.image.url" :mobile="slice.primary.image.mobile.url" :alt="slice.primary.image.alt" :width="slice.primary.image.dimensions.width" :height="slice.primary.image.dimensions.height" :retina="slice.primary.image.hasOwnProperty('retina') ? slice.primary.image.retina.url : ''" />
+					</div>
+					<div class="content">
+						<prismic-rich-text v-for="(item, key) in slice.items" :key="key" class="rich_text" :field="item.text" />
+						<ButtonItem @click.native="openModalForm"> {{ slice.primary.button_text }} </ButtonItem>
+					</div>
+				</section>
 			</div>
 		</div>
 	</div>
@@ -220,6 +231,9 @@ export default {
 		},
 		openModal(video) {
 			this.$store.dispatch('bindModalVideo', { data: video, open: true })
+		},
+		openModalForm() {
+			this.$store.dispatch('bindModalContact', true)
 		},
 	},
 }
@@ -447,23 +461,55 @@ export default {
 		}
 	}
 
-	.image_text {
+	.image_text,
+	.image_text_cta {
 		display: flex;
 		margin: 25px 0;
-
-		.text {
+		width: 100%;
+		padding-left: 240px;
+		align-items: center;
+		.image_text,
+		.image_text_cta {
+			padding-left: 0;
+		}
+		.content {
+			padding: 25px 30px 55px;
+			display: flex;
+			justify-content: flex-start;
+			flex-wrap: wrap;
+			width: 50%;
+			.rich_text {
+				padding: 0;
+				width: 100%;
+			}
+			button {
+				margin-top: 1rem;
+			}
+		}
+		.rich_text {
 			display: flex;
 			flex-direction: column;
-			padding: 40px;
-			max-width: 50%;
+			padding: 25px 30px 55px;
+			max-width: 100%;
+			width: 50%;
 			p {
 				margin-bottom: 25px;
 			}
 		}
-		picture {
-			max-width: 50vw;
-			height: 30vw;
-			z-index: 7;
+		.image {
+			width: 50%;
+			height: 30%;
+			position: relative;
+			z-index: 10;
+			picture {
+				position: relative;
+				// max-width: 800px;
+				// height: 450px;
+				z-index: 9;
+				width: 100%;
+				height: 100%;
+				object-fit: cover;
+			}
 		}
 	}
 }
@@ -489,6 +535,32 @@ export default {
 			p span,
 			a span {
 				margin-bottom: 0.7rem;
+			}
+		}
+		.image_text_cta {
+			.content {
+				width: 100%;
+				padding: 30px 30px 0 55px;
+			}
+		}
+		.image_text,
+		.image_text_cta {
+			flex-direction: column;
+			padding-left: 0;
+			.rich_text {
+				display: flex;
+				flex-direction: column;
+				padding: 30px 30px 0 55px;
+				width: 100%;
+				p {
+					margin-bottom: 25px;
+				}
+			}
+			.image {
+				width: 100%;
+				picture {
+					// margin-bottom: 40px;
+				}
 			}
 		}
 	}

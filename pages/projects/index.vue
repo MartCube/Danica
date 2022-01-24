@@ -67,6 +67,10 @@ export default {
 		// this.$store.dispatch('bindProjects', projects.results)
 		this.allProjects = projects.results
 		if (this.$route.query.tag) {
+			// const activeUrlFilter = this.filters.filter((el) => {
+			// 	return	el.key === this.$route.query.tag
+			// })
+			// 	console.log(activeUrlFilter)
 			this.filterUpdate(this.$route.query.tag)
 		} else {
 			this.currentProjects = projects.results
@@ -124,6 +128,7 @@ export default {
 			if (filter === 'all') {
 				this.active_filter = []
 				this.currentProjects = this.allProjects
+				// this.$route.query = false
 			} else {
 				const filteredArray = []
 				this.allProjects.forEach((project) => {
@@ -131,6 +136,8 @@ export default {
 						filteredArray.push(project)
 					}
 				})
+				console.log(filter, this.active_filter)
+				// this.$route.query.tag = this.active_filter[0]
 				this.currentProjects = filteredArray
 			}
 		},

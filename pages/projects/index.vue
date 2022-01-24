@@ -64,10 +64,13 @@ export default {
 			page: this.current_page,
 			lang: this.$i18n.localeProperties.prismic,
 		})
-		this.$store.dispatch('bindProjects', projects.results)
-		this.currentProjects = projects.results
+		// this.$store.dispatch('bindProjects', projects.results)
 		this.allProjects = projects.results
-
+		if (this.$route.query.tag) {
+			this.filterUpdate(this.$route.query.tag)
+		} else {
+			this.currentProjects = projects.results
+		}
 		// this.onResize()
 		// this.total_pages = projects.total_pages
 		// this.prev_page = projects.prev_page

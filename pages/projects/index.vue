@@ -66,24 +66,15 @@ export default {
 		})
 		// this.$store.dispatch('bindProjects', projects.results)
 		this.allProjects = projects.results
-		if (this.$route.query.tag) {
-			// const activeUrlFilter = this.filters.filter((el) => {
-			// 	return	el.key === this.$route.query.tag
-			// })
-			// 	console.log(activeUrlFilter)
-			this.filterUpdate(this.$route.query.tag)
-		} else {
-			this.currentProjects = projects.results
-		}
+		this.currentProjects = projects.results
+		// if (this.$route.query.tag) {
+		// 	// console.log(this.$route.query.tag)
+		// 	this.filterUpdate(this.$route.query.tag)
+		// }
 		// this.onResize()
 		// this.total_pages = projects.total_pages
 		// this.prev_page = projects.prev_page
 		// this.next_page = projects.next_page
-	},
-	fetchKey(getCounter) {
-		// getCounter is a method that can be called to get the next number in a sequence
-		// as part of generating a unique fetchKey.
-		return 'project' + getCounter('project')
 	},
 	head() {
 		return this.$store.getters.page.head
@@ -110,6 +101,11 @@ export default {
 			]
 		},
 	},
+	fetchKey(getCounter) {
+		// getCounter is a method that can be called to get the next number in a sequence
+		// as part of generating a unique fetchKey.
+		return 'project' + getCounter('project')
+	},
 	watch: {
 		currentLocale(newValue, oldValue) {
 			console.log('currentLocale changed')
@@ -121,6 +117,12 @@ export default {
 			postAnim(this.$refs.grid.children, true)
 			lazySizes.loader.checkElems()
 		},
+	},
+	mounted() {
+		if (this.$route.query.tag) {
+			console.log(this.$route.query.tag)
+			this.filterUpdate(this.$route.query.tag)
+		}
 	},
 	methods: {
 		filterUpdate(filter) {
@@ -136,7 +138,6 @@ export default {
 						filteredArray.push(project)
 					}
 				})
-				console.log(filter, this.active_filter)
 				// this.$route.query.tag = this.active_filter[0]
 				this.currentProjects = filteredArray
 			}

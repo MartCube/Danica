@@ -138,7 +138,6 @@ export default {
 						filteredArray.push(project)
 					}
 				})
-				// this.$route.query.tag = this.active_filter[0]
 				this.currentProjects = filteredArray
 			}
 		},

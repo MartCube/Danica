@@ -380,17 +380,20 @@ $animation-duration: 9s;
 				text-transform: initial;
 			}
 		}
-		.text_slider span {
-			font-size: 8.5vw;
-			display: inline-block;
-			line-height: 5rem;
+		.text_slider {
+			height: 5rem;
+			span {
+				font-size: 8.5vw;
+				display: inline-block;
+				line-height: 5rem;
+			}
 		}
 	}
 	@media (max-width: 600px) {
 		.text {
 			width: 100%;
 			grid-column: 3 / 10;
-			grid-row: 2 /6;
+			grid-row: 4 / 6;
 			.title {
 				span {
 					font-size: 3rem;
@@ -403,8 +406,8 @@ $animation-duration: 9s;
 			}
 		}
 		.bg_letter {
-			grid-column: 1 / 5;
-			grid-row: 1 / 4;
+			grid-column: 1 / 9;
+			grid-row: 2 / 9;
 			font-size: 25rem;
 		}
 	}

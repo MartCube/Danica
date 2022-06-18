@@ -384,7 +384,7 @@ $animation-duration: 9s;
 		.bg_letter {
 			grid-column: 1 / 9;
 			grid-row: 3 / 9;
-			font-size: 100vw;
+			font-size: 90vw;
 		}
 		.text_slider {
 			height: 5rem;

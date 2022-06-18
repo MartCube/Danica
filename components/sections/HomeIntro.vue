@@ -369,16 +369,22 @@ $animation-duration: 9s;
 		.text {
 			width: 100%;
 			grid-column: 2 / 8;
-			grid-row: 2 / 7;
+			grid-row: 3 / 7;
 			.title span {
 				font-size: 10vw;
 				line-height: 1.2;
 			}
 			button {
 				align-self: flex-end;
-				margin: 14vw 10vw;
+				margin: 24vw 10vw;
 				text-transform: initial;
 			}
+		}
+
+		.bg_letter {
+			grid-column: 1 / 9;
+			grid-row: 3 / 9;
+			font-size: 100vw;
 		}
 		.text_slider {
 			height: 5rem;
@@ -401,14 +407,14 @@ $animation-duration: 9s;
 			}
 			button {
 				align-self: flex-end;
-				margin: 20% 10%;
+				margin: 40% 10%;
 				text-transform: initial;
 			}
 		}
 		.bg_letter {
 			grid-column: 1 / 9;
 			grid-row: 2 / 9;
-			font-size: 25rem;
+			// font-size: 100vw;
 		}
 	}
 	@media (max-width: 400px) {
@@ -419,9 +425,9 @@ $animation-duration: 9s;
 				}
 			}
 		}
-		.bg_letter {
-			font-size: 20rem;
-		}
+		// .bg_letter {
+		// 	font-size: 20rem;
+		// }
 	}
 }
 </style>

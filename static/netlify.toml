@@ -5,6 +5,24 @@
 	force = true
 
 [[redirects]]
+	from = "/ua/pro-nas/"
+	to = "/ua/"
+	status = 301
+	force = true
+
+[[redirects]]
+	from = "/o-nas"
+	to = "/"
+	status = 301
+	force = true
+
+[[redirects]]
+	from = "/en/about-us/"
+	to = "/en/"
+	status = 301
+	force = true
+
+[[redirects]]
 	from = "/ru/blog/minimalizm-kak-est/"
 	to = "/blog/minimalizm-kak-est/"
 	status = 301
